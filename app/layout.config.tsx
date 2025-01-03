@@ -10,6 +10,7 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 export const baseOptions: BaseLayoutProps = {
   nav: {
     title: "Pixel UI",
+    transparentMode: "top",
   },
   links: [
     {
