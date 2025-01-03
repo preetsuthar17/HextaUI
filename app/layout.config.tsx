@@ -13,10 +13,10 @@ export const baseOptions: BaseLayoutProps = {
     transparentMode: "top",
   },
   links: [
-    {
-      text: "Documentation",
-      url: "/docs/introduction/get-started",
-      active: "nested-url",
-    },
+    // {
+    //   text: "",
+    //   url: "/docs/introduction/get-started",
+    //   active: "nested-url",
+    // },
   ],
 };
