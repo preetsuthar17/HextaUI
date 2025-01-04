@@ -5,8 +5,6 @@ import { source } from "@/lib/source";
 
 import Image from "next/image";
 
-import { AlbumIcon } from "lucide-react";
-
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <DocsLayout
