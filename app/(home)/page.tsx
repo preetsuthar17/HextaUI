@@ -1,11 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { FaGithub } from "react-icons/fa";
-
-import { FaPaintBrush } from "react-icons/fa";
-import { FaStar } from "react-icons/fa";
-import { FaCode } from "react-icons/fa";
+import {
+  FaPaintBrush,
+  FaGithub,
+  FaCode,
+  FaStar,
+  FaTwitter,
+  FaRocket,
+  FaBolt,
+  FaMagic,
+} from "react-icons/fa";
 
 import type { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
@@ -81,38 +86,177 @@ const Hero = () => {
   );
 };
 
-const Features = () => {
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+  gradient,
+}: {
+  icon: any;
+  title: string;
+  description: string;
+  gradient: string;
+}) => {
   return (
-    <>
-      <section className="border border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden flex max-md:flex-col">
-        <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]  max-md:border-b border-r">
-          <h2 className="text-xl flex items-baseline gap-3 font-medium text-pretty">
-            <FaPaintBrush size={18} /> Customization
-          </h2>
-          <p className="text-primary/80 text-pretty">
-            Customize any components with your own style seamlessly!
+    <div className="group relative p-6 border border-primary/10  backdrop-blur-sm overflow-hidden hover:border-primary/20 transition-all duration-300">
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="flex items-center text-left gap-3 mb-4">
+          <div className="p-3 rounded-xl bg-primary/5 border border-primary/10">
+            <Icon size={24} className="text-primary" />
+          </div>
+          <h3 className="text-lg font-semibold leading-tight">{title}</h3>
+        </div>
+        <p className="text-primary/70 text-left text-sm text-">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const Features = () => {
+  const features = [
+    {
+      icon: FaPaintBrush,
+      title: "Endless Customization",
+      description:
+        "Transform components with your unique style. Every element is fully customizable with simple props and Tailwind classes.",
+      gradient: "bg-gradient-to-br from-purple-500/10 to-pink-500/10",
+    },
+    {
+      icon: FaStar,
+      title: "Stunning Components",
+      description:
+        "Modern, responsive UI components crafted for Next.js. Each piece is designed with attention to detail and performance.",
+      gradient: "bg-gradient-to-br from-yellow-500/10 to-orange-500/10",
+    },
+    {
+      icon: FaCode,
+      title: "Your Project, Your Code",
+      description:
+        "Copy, modify, and integrate components seamlessly. No complex dependencies or lock-in - just clean, efficient code.",
+      gradient: "bg-gradient-to-br from-blue-500/10 to-cyan-500/10",
+    },
+    {
+      icon: FaBolt,
+      title: "Lightning Fast",
+      description:
+        "Optimized for performance with minimal bundle size. Build fast, responsive websites without compromise.",
+      gradient: "bg-gradient-to-br from-green-500/10 to-emerald-500/10",
+    },
+    {
+      icon: FaMagic,
+      title: "Dark Mode Ready",
+      description:
+        "Seamless dark mode support out of the box. Create beautiful experiences for all user preferences.",
+      gradient: "bg-gradient-to-br from-violet-500/10 to-indigo-500/10",
+    },
+    {
+      icon: FaRocket,
+      title: "Production Ready",
+      description:
+        "Battle-tested components used in real-world applications. Deploy with confidence.",
+      gradient: "bg-gradient-to-br from-red-500/10 to-pink-500/10",
+    },
+  ];
+
+  return (
+    <section className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden py-20">
+      <div className="p-8 max-sm:p-4">
+        {/* Section Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold mb-4">Why Choose HextaUI?</h2>
+          <p className="text-primary/70 text-lg">
+            Everything you need to build modern web applications
           </p>
         </div>
-        <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]  max-md:border-b border-r">
-          <h2 className="text-xl flex items-baseline gap-3 font-medium text-nowrap max-sm:text-wrap">
-            <FaStar size={18} /> Stunning Components
-          </h2>
-          <p className="text-primary/80 text-pretty">
-            Modern, responsive, and customizable UI components designed for
-            Next.js.
+
+        {/* Features Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+              gradient={feature.gradient}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+const WallOfLove = () => {
+  return (
+    <section className="border  border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20">
+      <div className="flex flex-col gap-8 p-8 max-sm:p-4">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold mb-4">Wall of Love</h2>
+          <p className="text-primary/70 text-lg">
+            Be the first one to tweet about HextaUI.
           </p>
         </div>
-        <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]   ">
-          <h2 className="text-xl flex items-baseline gap-3 font-medium text-nowrap max-sm:text-wrap">
-            <FaCode size={18} /> Your Project, Your Code
-          </h2>
-          <p className="text-primary/80 text-pretty">
-            Copy, adapt, and make them uniquely yours. Build stunning websites
-            with less effort.
-          </p>
+
+        <div className="flex items-center justify-center text-center">
+          <div className="text-center text-primary/70">
+            <Link
+              className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+              href="https://twitter.com/intent/tweet?text=I%20love%20HextaUI%20%F0%9F%92%96%0A%0Ahttps%3A%2F%2Fhextaui.com&url="
+            >
+              <FaTwitter fill="#01a3f2" /> Share your experience
+            </Link>
+          </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
+  );
+};
+
+const CTA = () => {
+  return (
+    <section className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20">
+      {/* gradient */}
+      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-primary/10 opacity-80 to-transparent z-[-1]"></div>
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[40rem] h-[30rem] bg-background rounded-full z-[-1] blur-[30px]"></div>
+      {/* gradient */}
+
+      {/* background bars */}
+      <div className="flex items-center justify-between w-full h-fit absolute overflow-hidden bottom-0 skew-x-[-45deg] left-[10rem] z-[-1]">
+        {Array.from({ length: 14 }).map((_, i) => (
+          <div
+            key={i}
+            className="flex w-[2px] h-[30rem] bg-gradient-to-t from-primary/5 to-transparent"
+          ></div>
+        ))}
+      </div>
+      {/* background bars */}
+
+      <div className="flex flex-col items-center justify-center gap-8 p-16 max-sm:p-8 text-center">
+        <h2 className="text-4xl font-bold tracking-tight">
+          Ready to build something amazing?
+        </h2>
+        <p className="text-primary/70 text-lg max-w-2xl">
+          Join thousands of developers who are already using HextaUI to create
+          stunning websites with less effort. Start building today!
+        </p>
+        <div className="flex items-center flex-wrap justify-center gap-4">
+          <Link
+            href="/docs/get-started"
+            className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+          >
+            Get Started
+          </Link>
+          <Link
+            href="https://github.com/preetsuthar17/HextaUI"
+            target="_blank"
+            className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+          >
+            <FaGithub /> Star on GitHub
+          </Link>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -121,6 +265,8 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col justify-center text-center my-20">
       <Hero />
       <Features />
+      <WallOfLove />
+      <CTA />
     </main>
   );
 }
