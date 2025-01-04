@@ -77,6 +77,17 @@ export default {
         },
       },
       keyframes: {
+        meteor: {
+          "0%": {
+            transform: "rotate(215deg) translateX(0)",
+            opacity: "0%",
+          },
+          "70%": { opacity: "100%" },
+          "100%": {
+            transform: "rotate(215deg) translateX(-500px)",
+            opacity: "0",
+          },
+        },
         "accordion-down": {
           from: {
             height: "0",
@@ -97,6 +108,7 @@ export default {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        meteor: "meteor 0.2s linear infinite",
       },
     },
   },
