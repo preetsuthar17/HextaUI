@@ -6,8 +6,8 @@ import { FaGithub } from "react-icons/fa";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
-import type { Metadata } from "next";
 
+import type { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
 
 export const metadata: Metadata = customMetaDataGenerator({
