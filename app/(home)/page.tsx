@@ -39,13 +39,14 @@ const Hero = () => {
           </p>
           <div className="flex items-center flex-wrap gap-2">
             <Link
-              href="/docs"
+              href="/docs/get-started"
               className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
             >
               Get Started
             </Link>
             <Link
-              href="/components"
+              href="https://github.com/preetsuthar17/HextaUI"
+              target="_blank"
               className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
             >
               <FaGithub /> Star on GitHub
@@ -74,7 +75,7 @@ const Features = () => {
       <section className="border border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden flex max-md:flex-col">
         <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]  max-md:border-b border-r">
           <h2 className="text-xl flex items-baseline gap-3 font-medium text-pretty">
-            <FaPaintBrush size={18}/> Customization
+            <FaPaintBrush size={18} /> Customization
           </h2>
           <p className="text-primary/80 text-pretty">
             Customize any components with your own style seamlessly!
@@ -82,7 +83,7 @@ const Features = () => {
         </div>
         <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]  max-md:border-b border-r">
           <h2 className="text-xl flex items-baseline gap-3 font-medium text-nowrap max-sm:text-wrap">
-            <FaStar size={18}/>  Stunning Components
+            <FaStar size={18} /> Stunning Components
           </h2>
           <p className="text-primary/80 text-pretty">
             Modern, responsive, and customizable UI components designed for
@@ -91,7 +92,7 @@ const Features = () => {
         </div>
         <div className="grow p-[2rem] flex flex-col gap-4 max-sm:px-[1rem]   ">
           <h2 className="text-xl flex items-baseline gap-3 font-medium text-nowrap max-sm:text-wrap">
-          <FaCode size={18}/>  Your Project, Your Code
+            <FaCode size={18} /> Your Project, Your Code
           </h2>
           <p className="text-primary/80 text-pretty">
             Copy, adapt, and make them uniquely yours. Build stunning websites
