@@ -12,7 +12,7 @@ export const PreviewContainer = ({
   return (
     <div
       className={cn(
-        "bg-[hsl(var(--primary)/0.02)] border border-primary/10 min-h-[30rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative",
+        "bg-[#131315] border border-primary/10 min-h-[30rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative",
         className
       )}
     >

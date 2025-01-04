@@ -23,6 +23,10 @@ export default async function Page(props: {
       full={page.data.full}
       tableOfContent={{
         style: "clerk",
+        single: false,
+      }}
+      article={{
+        className: "max-sm:pb-16",
       }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>

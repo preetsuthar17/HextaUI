@@ -1,5 +1,10 @@
 import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
+import Image from "next/image";
+
+import { AlbumIcon } from "lucide-react";
+import { LayoutPanelTop } from "lucide-react";
+
 /**
  * Shared layout configurations
  *
@@ -7,16 +12,30 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
  * Home Layout: app/(home)/layout.tsx
  * Docs Layout: app/docs/layout.tsx
  */
+
 export const baseOptions: BaseLayoutProps = {
+  githubUrl: "https://github.com/preetsuthar17/PixelUI",
   nav: {
-    title: "Pixel UI",
+    title: (
+      <div className="flex items-center justify-center gap-2 font-medium text-sm">
+        <Image src="/logo.svg" alt="PixelUI" width={17} height={17} />
+        Pixel UI
+      </div>
+    ),
     transparentMode: "top",
   },
   links: [
-    // {
-    //   text: "",
-    //   url: "/docs/introduction/get-started",
-    //   active: "nested-url",
-    // },
+    {
+      text: "Get Started",
+      url: "/docs/get-started",
+      active: "nested-url",
+      icon: <AlbumIcon />,
+    },
+    {
+      text: "Components",
+      url: "/docs/application/animated-dock",
+      active: "nested-url",
+      icon: <LayoutPanelTop />,
+    },
   ],
 };
