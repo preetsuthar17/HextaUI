@@ -26,11 +26,18 @@ export const Particles: React.FC<ParticlesProps> = ({
   vy = 0,
 }) => {
   const getColorFromTheme = (): string => {
-    const theme = localStorage.getItem("theme");
-    return theme === "light" ? "#000000" : "#ffffff";
+    if (typeof window !== "undefined") {
+      const theme = localStorage.getItem("theme");
+      return theme === "light" ? "#000000" : "#ffffff";
+    }
+    return "#000000"; // default color
   };
 
-  const [particleColor, setParticleColor] = useState<string>(getColorFromTheme());
+  const [particleColor, setParticleColor] = useState<string>("#000000");
+
+  useEffect(() => {
+    setParticleColor(getColorFromTheme());
+  }, []);
 
   useEffect(() => {
     const handleStorageChange = () => {
