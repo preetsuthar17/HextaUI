@@ -6,6 +6,18 @@ import { FaGithub } from "react-icons/fa";
 import { FaPaintBrush } from "react-icons/fa";
 import { FaStar } from "react-icons/fa";
 import { FaCode } from "react-icons/fa";
+import type { Metadata } from "next";
+
+import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
+
+export const metadata: Metadata = customMetaDataGenerator({
+  title: "Build stunning websites with less effort — HextaUI",
+  description:
+    "Modern, responsive, and customizable UI components designed for Next.js. Copy, adapt, and make them uniquely yours.",
+  ogImage: "/banner.png",
+  twitterCard: "summary_large_image",
+  canonicalUrl: "https://hextaui.com",
+});
 
 const Hero = () => {
   return (

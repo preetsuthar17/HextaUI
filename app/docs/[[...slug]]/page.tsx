@@ -8,6 +8,9 @@ import {
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 
+import { generateOGImage } from "fumadocs-ui/og";
+import { metadataImage } from "@/lib/metadata";
+
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
@@ -37,7 +40,6 @@ export default async function Page(props: {
     </DocsPage>
   );
 }
-
 export async function generateStaticParams() {
   return source.generateParams();
 }
@@ -49,8 +51,8 @@ export async function generateMetadata(props: {
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  return {
+  return metadataImage.withImage(page.slugs, {
     title: page.data.title,
     description: page.data.description,
-  };
+  });
 }
