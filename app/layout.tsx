@@ -1,16 +1,19 @@
-import './global.css';
-import { RootProvider } from 'fumadocs-ui/provider';
-import { DM_Sans } from 'next/font/google';
-import type { ReactNode } from 'react';
+import "./global.css";
+import { RootProvider } from "fumadocs-ui/provider";
+import { DM_Sans } from "next/font/google";
+import type { ReactNode } from "react";
+import { Banner } from "fumadocs-ui/components/banner";
 
 const dm_sans = DM_Sans({
-  subsets: ['latin'],
+  subsets: ["latin"],
 });
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={dm_sans.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
+        {" "}
+        <Banner variant="rainbow" id="we-are-working-on-new-components">We are working on new components</Banner>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

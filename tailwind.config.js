@@ -11,7 +11,11 @@ export default {
     "./mdx-components.{ts,tsx}",
     "./node_modules/fumadocs-ui/dist/**/*.js",
   ],
-  presets: [createPreset()],
+  presets: [
+    createPreset({
+      preset: "vitepress",
+    }),
+  ],
   plugins: [require("tailwindcss-animate")],
   theme: {
     extend: {

@@ -4,6 +4,7 @@ description: A dock with animated icons that grow on hover.
 ---
 
 import { AnimatedDock } from "@/components/library/application/animated-dock";
+import { PreviewContainer } from "@/components/PreviewContainer";
 
 import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
@@ -11,7 +12,7 @@ import Link from "next/link";
 
 ## Preview
 
-<div className="bg-primary/5 border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center text-center">
+<PreviewContainer>
   <AnimatedDock
     items={[
       {
@@ -36,7 +37,7 @@ import Link from "next/link";
       },
     ]}
   />
-</div>
+</PreviewContainer>
 
 ## Code
 
