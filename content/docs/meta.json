@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "pages": [
+    "---Guide---",
+    "get-started",
+    "---UI---",
+    "general",
+    "application"
+  ]
+}
