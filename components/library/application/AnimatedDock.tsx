@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import React, { useRef } from "react";
 import {
@@ -37,7 +37,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-primary/10 shadow-md border-opacity-5 px-4 pb-3",
+        "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-secondary/50 border border-primary/10 shadow-md  px-4 pb-3",
         className
       )}
     >

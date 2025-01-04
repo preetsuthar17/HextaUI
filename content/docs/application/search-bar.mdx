@@ -7,40 +7,40 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 
 import { ModernSearchBar } from "@/components/library/application/SearchBar";
-
+import { PreviewContainer } from "@/components/PreviewContainer";
 
 ## Preview
 
-<div className="bg-primary/5 border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center text-center">
+<PreviewContainer>
   <ModernSearchBar />
-</div>
+</PreviewContainer>
 
-## Usage
+## Code
 
-```tsx
+```tsx title="SearchBar.tsx"
 "use client";
 
 import { FaSearch } from "react-icons/fa";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-const ModernSearchBar = () => {
+export const ModernSearchBar = () => {
   const [inputValue, setInputValue] = useState("");
 
   return (
     <>
-      <div className="flex items-center p-1 bg-black rounded-full  max-w-[30rem] w-full border border-white border-opacity-10 gap-1">
+      <div className="flex items-center p-1 rounded-full  max-w-[30rem] w-full border border-primary/10 border-opacity-10 gap-1">
         <Input
-          className="focus:ring-0 focus:border-opacity-10 rounded-full py-3 m-0 bg-zinc-950 border border-white border-opacity-5 w-full"
+          className="rounded-full py-3 w-full border-0 shadow-none focus-visible:ring-0"
           placeholder="Search"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
         />
         <Button
           variant="secondary"
-          className="border border-white border-opacity-5 rounded-full px-3 py-3"
+          className="border bg-primary text-primary-foreground  border-opacity-5 rounded-full px-2.5 py-3"
         >
           <FaSearch size={19} />
         </Button>

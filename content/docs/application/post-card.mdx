@@ -3,7 +3,7 @@ title: Post Card
 description: An Example card component of social media post.
 ---
 
-import { PostCard } from "@/components/library/application/post-card";
+import { PostCard } from "@/components/library/application/PostCard";
 import { PreviewContainer } from "@/components/PreviewContainer";
 
 ## Preview
@@ -14,20 +14,19 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 
 ## Code
 
-```tsx
+```tsx title="PostCard.tsx"
+"use client";
+
 import { FaRegPaperPlane } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
 import { FaBookmark } from "react-icons/fa";
 
-import Image from "next/legacy/image";
+import Image from "next/image";
 import { useState } from "react";
 
-import { Avatar, AvatarImage } from "@/components/ui/avatar";
-
 export const PostCard = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
   const [liked, setLiked] = useState(false);
   const [bookmarked, setBookmarked] = useState(false);
 
@@ -43,16 +42,17 @@ export const PostCard = () => {
 
   return (
     <>
-      <div className="p-4 rounded-2xl border border-white border-opacity-10 bg-zinc-950 w-full flex flex-col gap-6 max-w-[30rem] m-4">
+      <div className="p-4 rounded-2xl border border-primary/10 shadow-sm border-opacity-10 bg-secondary/50 text-secondary-foreground w-full flex flex-col gap-4 max-w-[30rem] m-4 text-sm ">
         <div className="flex items-center gap-4 card-header  justify-between">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center  justify-center  gap-4">
             <div className="flex items-center">
-              <Avatar>
-                <AvatarImage
-                  src="https://i.imgur.com/MUjzWdu.png"
-                  alt="HextaStudio"
-                />
-              </Avatar>
+              <img
+                width={35}
+                height={35}
+                src="https://i.imgur.com/MUjzWdu.png"
+                className="rounded-full"
+                alt="HextaStudio"
+              />
             </div>
             <div>
               <h3>
@@ -70,7 +70,7 @@ export const PostCard = () => {
           <p className="whitespace-pre-wrap">
             HextaUI - Gorgeous web components without any efforts! ✨<br />
             <br />
-            🚀 HextaStudio launched their new product HextaUI which is a
+            🚀 HextaStudio launched their new product HextaUI which is a``
             collection of beautiful web components. <br />
             <br />
             🥳 Check it out now!
@@ -80,7 +80,7 @@ export const PostCard = () => {
             height={1080}
             src="https://i.imgur.com/zU3m0eC.png"
             alt="HextaUI"
-            className="w-full auto max-w-full object-cover rounded-lg mt-4"
+            className="w-full auto max-w-full object-cover rounded-lg"
           />
         </div>
         <div className="flex justify-evenly">

@@ -9,7 +9,7 @@ import { useRef, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-export const FeedbackRating = () => {
+export const Feedback = () => {
   const [rating, setRating] = useState<number | null>(0);
   const [feedbackActive, setFeedbackActive] = useState(false);
   const node = useRef<HTMLDivElement>(null);

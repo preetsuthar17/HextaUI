@@ -3,7 +3,7 @@ title: Animated Dock
 description: A dock with animated icons that grow on hover.
 ---
 
-import { AnimatedDock } from "@/components/library/application/animated-dock";
+import { AnimatedDock } from "@/components/library/application/AnimatedDock";
 import { PreviewContainer } from "@/components/PreviewContainer";
 
 import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
@@ -41,7 +41,7 @@ import Link from "next/link";
 
 ## Code
 
-```tsx
+```tsx title="AnimatedDock.tsx"
 "use client";
 
 import React, { useRef } from "react";
@@ -134,9 +134,10 @@ export const DockItem = ({
 
 ## Usage
 
-```tsx
+```tsx title="Page.tsx"
 import { FaDiscord, FaGithub, FaLinkedin } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import { AnimatedDock } from "@/components/library/application/animated-dock";
 
 <AnimatedDock
   items={[
