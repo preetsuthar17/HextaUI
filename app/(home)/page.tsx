@@ -55,7 +55,7 @@ const Hero = () => {
         </div>
         <div className="relative overflow-hidden w-[1200px] max-sm:w-[1000px] h-full p-8 mb-8 mt-8 rounded-xl">
           <Image
-            src="https://i.imgur.com/bDLGgyE.png"
+            src="https://i.imgur.com/20ay5tO.png"
             alt="Hero Image"
             width={1920}
             height={1080}
