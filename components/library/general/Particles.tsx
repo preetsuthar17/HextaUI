@@ -21,10 +21,29 @@ export const Particles: React.FC<ParticlesProps> = ({
   ease = 50,
   size = 0.4,
   refresh = false,
-  color = "#ffffff",
+  color,
   vx = 0,
   vy = 0,
 }) => {
+  const getColorFromTheme = (): string => {
+    const theme = localStorage.getItem("theme");
+    return theme === "light" ? "#000000" : "#ffffff";
+  };
+
+  const [particleColor, setParticleColor] = useState<string>(getColorFromTheme());
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setParticleColor(getColorFromTheme());
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
+  }, []);
+
   interface MousePosition {
     x: number;
     y: number;
@@ -79,7 +98,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     return () => {
       window.removeEventListener("resize", initCanvas);
     };
-  }, [color]);
+  }, [particleColor]);
 
   useEffect(() => {
     onMouseMove();
@@ -159,7 +178,7 @@ export const Particles: React.FC<ParticlesProps> = ({
     };
   };
 
-  const rgb = hexToRgb(color);
+  const rgb = hexToRgb(particleColor);
 
   const drawCircle = (circle: Circle, update = false) => {
     if (context.current) {

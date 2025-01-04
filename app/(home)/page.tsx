@@ -46,7 +46,7 @@ const Hero = () => {
             </Link>
             <Link
               href="/components"
-              className="px-6 bg-gradient-to-b hover:bg-zinc-800 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+              className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
             >
               <FaGithub /> Star on GitHub
             </Link>
@@ -54,7 +54,7 @@ const Hero = () => {
         </div>
         <div className="relative overflow-hidden w-[1200px] max-sm:w-[1000px] h-full p-8 mb-8 mt-8 rounded-xl">
           <Image
-            src="https://i.imgur.com/691xsiC.png"
+            src="https://i.imgur.com/bDLGgyE.png"
             alt="Hero Image"
             width={1920}
             height={1080}
