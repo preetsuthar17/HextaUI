@@ -36,9 +36,9 @@ export default function Layout({ children }: { children: ReactNode }) {
       }}
       nav={{
         title: (
-          <div className="flex items-center justify-center gap-2 font-medium text-sm">
-            <Image src="/logo.svg" alt="PixelUI" width={17} height={17} />
-            Zap UI
+          <div className="flex items-center justify-center gap-2 font-semibold text-sm">
+            <Image src="/logo.svg" alt="HextaUI" width={17} height={17} />
+            HextaUI
           </div>
         ),
         transparentMode: "always",

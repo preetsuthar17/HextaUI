@@ -14,12 +14,12 @@ import { LayoutPanelTop } from "lucide-react";
  */
 
 export const baseOptions: BaseLayoutProps = {
-  githubUrl: "https://github.com/preetsuthar17/PixelUI",
+  githubUrl: "https://github.com/preetsuthar17/HextaUI",
   nav: {
     title: (
-      <div className="flex items-center justify-center gap-2 font-medium text-sm">
-        <Image src="/logo.svg" alt="PixelUI" width={17} height={17} />
-        Zap UI
+      <div className="flex items-center justify-center gap-2 font-semibold text-sm">
+        <Image src="/logo.svg" alt="HextaUI" width={17} height={17} />
+        HextaUI
       </div>
     ),
     transparentMode: "top",
