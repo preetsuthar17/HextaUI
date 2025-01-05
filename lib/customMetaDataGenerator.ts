@@ -35,7 +35,7 @@ export function customMetaDataGenerator({
   ogImage = "https://url-to-your-image-this-is-a-default-value-for-optional-parameter",
   twitterCard = "summary_large_image",
 }: PageSEOProps): Metadata {
-  const siteTitle = "Your Website Name";
+  const siteTitle = "HextaUI";
   const fullTitle = `${title} | ${siteTitle}`;
 
   const metadataImage =
