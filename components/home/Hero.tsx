@@ -3,11 +3,36 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { FaGithub } from "react-icons/fa";
-import { motion } from "framer-motion";
+import { FaGithub, FaStar } from "react-icons/fa";
+
+import { motion, animate, useMotionValue, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 
 const Hero = () => {
   const headingText = "Build stunning websites with less effort";
+  const [stars, setStars] = useState<number | null>(null);
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+
+  useEffect(() => {
+    const fetchStars = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
+        );
+        const data = await response.json();
+        setStars(data.stargazers_count);
+        animate(count, data.stargazers_count, {
+          duration: 2,
+          ease: "easeOut",
+        });
+      } catch (error) {
+        console.error("Error fetching GitHub stars:", error);
+      }
+    };
+
+    fetchStars();
+  }, []);
 
   const container = {
     hidden: { opacity: 0 },
@@ -86,7 +111,7 @@ const Hero = () => {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/docs/get-started"
-                className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+                className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
               >
                 Get Started
               </Link>
@@ -96,9 +121,13 @@ const Hero = () => {
               <Link
                 href="https://github.com/preetsuthar17/HextaUI"
                 target="_blank"
-                className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+                className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 hover group"
               >
-                <FaGithub /> Star on GitHub
+                <FaGithub /> Star on GitHub{" "}
+                <span>
+                  <FaStar className="group-hover:fill-yellow-300" />
+                </span>{" "}
+                <motion.span>{rounded}</motion.span>
               </Link>
             </motion.div>
           </motion.div>

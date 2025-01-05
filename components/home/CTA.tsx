@@ -35,14 +35,14 @@ const CTA = () => {
         <div className="flex items-center flex-wrap justify-center gap-4">
           <Link
             href="/docs/get-started"
-            className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+            className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
           >
             Get Started
           </Link>
           <Link
             href="https://github.com/preetsuthar17/HextaUI"
             target="_blank"
-            className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/20"
+            className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
           >
             <FaGithub /> Star on GitHub
           </Link>
