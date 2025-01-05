@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -36,11 +36,14 @@ export const Counter = ({
   const [value, setValue] = useState(start);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      if (value < end) {
-        setValue((prev) => prev + 1);
-      }
-    }, (duration / (end - start)) * 1000);
+    const interval = setInterval(
+      () => {
+        if (value < end) {
+          setValue((prev) => prev + 1);
+        }
+      },
+      (duration / (end - start)) * 1000,
+    );
 
     return () => clearInterval(interval);
   }, [value]);
@@ -51,7 +54,7 @@ export const Counter = ({
       {...rest}
       className={cn(
         "flex overflow-hidden rounded px-2 leading-none text-white font-bold ",
-        className
+        className,
       )}
     >
       {value >= 100000 && <Digit place={100000} value={value} />}
