@@ -13,7 +13,7 @@ export const PreviewContainer = ({
     <div
       className={cn(
         "dark:bg-[#131315] border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative",
-        className
+        className,
       )}
     >
       {children}

@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
 import { FaSearch } from "react-icons/fa";
 
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-
 
 export const ModernSearchBar = () => {
   const [inputValue, setInputValue] = useState("");
@@ -29,4 +28,3 @@ export const ModernSearchBar = () => {
     </>
   );
 };
-

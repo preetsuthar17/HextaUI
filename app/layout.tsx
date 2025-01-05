@@ -13,7 +13,9 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en" className={dm_sans.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         {" "}
-        <Banner variant="rainbow">We are working on new components &lt;3</Banner>
+        <Banner variant="rainbow">
+          We are working on new components &lt;3
+        </Banner>
         <RootProvider>{children}</RootProvider>
       </body>
     </html>

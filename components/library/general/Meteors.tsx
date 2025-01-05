@@ -1,5 +1,4 @@
-
-'use client'
+"use client";
 
 import React, { useEffect, useState } from "react";
 import clsx from "clsx";
@@ -15,7 +14,7 @@ interface MeteorsProps {
 
 export const Meteors = ({ number = 20 }: MeteorsProps) => {
   const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
-    []
+    [],
   );
 
   useEffect(() => {
@@ -34,7 +33,7 @@ export const Meteors = ({ number = 20 }: MeteorsProps) => {
         <span
           key={idx}
           className={cn(
-            "pointer-events-none absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor rounded-[9999px] bg-white shadow-[0_0_90px_10px_#ffffff10]"
+            "pointer-events-none absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor rounded-[9999px] bg-white shadow-[0_0_90px_10px_#ffffff10]",
           )}
           style={style}
         >

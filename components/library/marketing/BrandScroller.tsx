@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { BsAmazon, BsGoogle, BsSpotify, BsYoutube } from "react-icons/bs";
 
