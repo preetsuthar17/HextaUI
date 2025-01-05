@@ -1,16 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-
-import { useEffect, useState } from "react";
-
 import {
   FaPaintBrush,
-  FaGithub,
   FaCode,
   FaStar,
-  FaTwitter,
   FaRocket,
   FaBolt,
   FaMagic,
@@ -26,7 +19,7 @@ const FeatureCard = ({
   description: string;
 }) => {
   return (
-    <div className="group relative p-6 border-l border-t  border-primary/10  backdrop-blur-sm overflow-hidden hover:border-primary/20 transition-all duration-300 grow aspect-video max-h-[10rem] flex flex-col justify-center">
+    <div className="group relative p-6 border-l border-t  border-primary/10  backdrop-blur-sm overflow-hidden transition-all duration-300 grow aspect-video max-h-[10rem] flex flex-col justify-center">
       {/* Content */}
       <div className="relative z-10">
         <div className="flex opacity-40 items-center text-left gap-3 mb-4">

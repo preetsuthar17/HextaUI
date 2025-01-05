@@ -12,29 +12,20 @@ interface Contributor {
 
 const Contributors = () => {
   const [stats, setStats] = useState<{
-    stars: number;
     contributors: Contributor[];
-  }>({ stars: 0, contributors: [] });
+  }>({ contributors: [] });
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<unknown>(null);
 
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
-        // Fetch repository stats
-        const repoResponse = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI"
-        );
-        const repoData = await repoResponse.json();
-
-        // Fetch contributors
         const contributorsResponse = await fetch(
           "https://api.github.com/repos/preetsuthar17/HextaUI/contributors"
         );
         const contributorsData = await contributorsResponse.json();
 
         setStats({
-          stars: repoData.stargazers_count,
           contributors: contributorsData,
         });
         setLoading(false);
@@ -53,8 +44,8 @@ const Contributors = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center py-20">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+      <div className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20 flex items-center justify-center">
+        <div className="w-6 h-6 border-4 border-zinc-200 border-t-zinc-500 rounded-full animate-spin"></div>
       </div>
     );
   }
@@ -87,22 +78,32 @@ const Contributors = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            {displayedContributors.map((contributor, index) => (
-              <div key={contributor.id} className="group relative">
-                <img
-                  src={contributor.avatar_url}
-                  alt={`${contributor.login}'s avatar`}
-                  className="w-12 h-12 rounded-full border-2 border-primary/10 transition-transform duration-200 group-hover:scale-110"
-                />
-              </div>
-            ))}
-            {remainingContributors > 0 && (
-              <div className="w-12 h-12 rounded-full border-2 border-primary/10 flex items-center justify-center bg-primary/5 font-medium">
-                +{remainingContributors}
-              </div>
-            )}
-          </div>
+          {loading ? (
+            <div className="w-6 h-6 border-4 border-zinc-200 border-t-zinc-500 rounded-full animate-spin"></div>
+          ) : error ? (
+            <div className="text-center py-20 text-primary/70">
+              Unable to fetch GitHub data at the moment
+            </div>
+          ) : (
+            <div className="flex flex-wrap items-center justify-center -space-x-4">
+              {displayedContributors.map((contributor, index) => (
+                <>
+                  <div key={contributor.id} className="group relative">
+                    <img
+                      src={contributor.avatar_url}
+                      alt={`${contributor.login}'s avatar`}
+                      className="w-12 h-12 rounded-full border-4 border-background "
+                    />
+                  </div>
+                </>
+              ))}
+              {remainingContributors > 0 && (
+                <div className="w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-secondary font-medium z-[1]">
+                  +{remainingContributors}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

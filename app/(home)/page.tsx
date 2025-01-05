@@ -8,6 +8,7 @@ const Features = dynamic(() => import("@/components/home/Features"));
 const WallOfLove = dynamic(() => import("@/components/home/WallOfLove"));
 const Contributors = dynamic(() => import("@/components/home/Contributors"));
 const CTA = dynamic(() => import("@/components/home/CTA"));
+const Footer = dynamic(() => import("@/components/home/Footer"));
 
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites with less effort — HextaUI",
@@ -20,12 +21,13 @@ export const metadata: Metadata = customMetaDataGenerator({
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col justify-center text-center my-20">
+    <main className="flex flex-1 flex-col justify-center text-center mt-20">
       <Hero />
       <Features />
       <WallOfLove />
       <Contributors />
       <CTA />
+      <Footer />
     </main>
   );
 }
