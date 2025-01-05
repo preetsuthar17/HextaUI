@@ -1,0 +1,105 @@
+"use client";
+
+import Link from "next/link";
+import Image from "next/image";
+
+import { useEffect, useState } from "react";
+
+import {
+  FaPaintBrush,
+  FaGithub,
+  FaCode,
+  FaStar,
+  FaTwitter,
+  FaRocket,
+  FaBolt,
+  FaMagic,
+} from "react-icons/fa";
+
+const FeatureCard = ({
+  icon: Icon,
+  title,
+  description,
+}: {
+  icon: any;
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div className="group relative p-6 border-l border-t  border-primary/10  backdrop-blur-sm overflow-hidden hover:border-primary/20 transition-all duration-300 grow aspect-video max-h-[10rem] flex flex-col justify-center">
+      {/* Content */}
+      <div className="relative z-10">
+        <div className="flex opacity-40 items-center text-left gap-3 mb-4">
+          <div>
+            <Icon size={16} className="text-primary" />
+          </div>
+          <h3 className=" leading-tight">{title}</h3>
+        </div>
+        <p className="text-left font-medium">{description}</p>
+      </div>
+    </div>
+  );
+};
+
+const Features = () => {
+  const features = [
+    {
+      icon: FaPaintBrush,
+      title: "Endless Customization",
+      description: "Fully customizable with props and Tailwind classes.",
+    },
+    {
+      icon: FaStar,
+      title: "Stunning Components",
+      description: "Modern, responsive UI components for Next.js.",
+    },
+    {
+      icon: FaCode,
+      title: "Your Project, Your Code",
+      description: "Copy, modify, and integrate with clean code.",
+    },
+    {
+      icon: FaBolt,
+      title: "Lightning Fast",
+      description: "Optimized for performance and responsiveness.",
+    },
+    {
+      icon: FaMagic,
+      title: "Dark Mode Ready",
+      description: "Seamless support for dark mode.",
+    },
+    {
+      icon: FaRocket,
+      title: "Production Ready",
+      description: "Battle-tested components for real-world use.",
+    },
+  ];
+
+  return (
+    <section className="border border-t-0 pt-20 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden">
+      <div className="">
+        {/* Section Header */}
+        <div className="text-center mb-20">
+          <h2 className="text-4xl font-bold mb-4">Why Choose HextaUI?</h2>
+          <p className="text-primary/70 text-lg">
+            Everything you need to build modern web applications
+          </p>
+        </div>
+
+        {/* Features Grid */}
+        <div className="flex flex-wrap">
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={index}
+              icon={feature.icon}
+              title={feature.title}
+              description={feature.description}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Features;

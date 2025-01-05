@@ -24,6 +24,7 @@ export const baseOptions: BaseLayoutProps = {
     ),
     transparentMode: "top",
   },
+
   links: [
     {
       text: "Get Started",

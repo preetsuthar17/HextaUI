@@ -8,8 +8,8 @@ import {
 import { notFound } from "next/navigation";
 import defaultMdxComponents from "fumadocs-ui/mdx";
 
-import { generateOGImage } from "fumadocs-ui/og";
 import { metadataImage } from "@/lib/metadata";
+import { getGithubLastEdit } from "fumadocs-core/server";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -20,6 +20,12 @@ export default async function Page(props: {
 
   const MDX = page.data.body;
 
+  const time = await getGithubLastEdit({
+    owner: "preetsuthar17",
+    repo: "hextaui",
+    path: `content/docs/${page.file.path}`,
+  });
+
   return (
     <DocsPage
       toc={page.data.toc}
@@ -28,6 +34,19 @@ export default async function Page(props: {
         style: "clerk",
         single: false,
       }}
+      breadcrumb={{
+        full: true,
+      }}
+      footer={{
+        enabled: true,
+      }}
+      editOnGithub={{
+        owner: "preetsuthar17",
+        repo: "hextaui",
+        sha: "master",
+        path: `content/docs/${page.file.path}`,
+      }}
+      lastUpdate={time ? new Date(time) : undefined}
       article={{
         className: "max-sm:pb-16",
       }}
