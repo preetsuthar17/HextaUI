@@ -5,7 +5,7 @@ import Image from "next/image";
 
 import { FaGithub, FaStar } from "react-icons/fa";
 
-import { motion, animate, useMotionValue, useTransform } from "framer-motion";
+import { motion, animate, useMotionValue, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 
 const Hero = () => {

@@ -1,6 +1,6 @@
 "use client";
 
-import { MotionValue, motion, useSpring, useTransform } from "framer-motion";
+import { MotionValue, motion, useSpring, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";

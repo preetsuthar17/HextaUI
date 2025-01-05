@@ -7,7 +7,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-} from "framer-motion";
+} from "motion/react";
 
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
