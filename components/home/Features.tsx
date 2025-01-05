@@ -72,7 +72,7 @@ const Features = () => {
     <section className="border border-t-0 pt-20 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
       <div className="">
         {/* Section Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-20 px-2">
           <h2 className="text-4xl font-bold mb-4">Why Choose HextaUI?</h2>
           <p className="text-primary/70 text-lg">
             Everything you need to build modern web applications

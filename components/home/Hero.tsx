@@ -9,7 +9,7 @@ import { motion, animate, useMotionValue, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const headingText = "Build stunning websites with less effort";
+  const headingText = "Build stunning websites with less effort.";
   const [stars, setStars] = useState<number | null>(null);
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -18,7 +18,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);
@@ -39,7 +39,7 @@ const Hero = () => {
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.015,
+        staggerChildren: 0.05,
       },
     },
   };
@@ -79,17 +79,20 @@ const Hero = () => {
             variants={container}
             initial="hidden"
             animate="show"
-            className="text-5xl font-bold tracking-tight text-pretty"
+            className="text-5xl font-bold tracking-tight text-pretty  flex flex-wrap gap-1 max-sm:text-4xl"
           >
-            {headingText.split("").map((char, index) => (
-              <motion.span
-                key={index}
-                variants={letterAnimation}
-                transition={{ duration: 0.3 }}
-              >
-                {char === " " ? "\u00A0" : char}
-              </motion.span>
-            ))}
+            <motion.span className="flex flex-wrap gap-2">
+              {headingText.split(" ").map((word, index) => (
+                <motion.span
+                  key={index}
+                  variants={letterAnimation}
+                  transition={{ duration: 0.3 }}
+                  className="inline-block"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </motion.span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, filter: "blur(10px)" }}
@@ -106,12 +109,12 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex items-center flex-wrap gap-2"
+            className="flex items-center flex-wrap gap-2 w-full"
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/docs/get-started"
-                className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
+                className="px-6 bg-primary text-primary-foreground py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10  "
               >
                 Get Started
               </Link>
@@ -121,7 +124,7 @@ const Hero = () => {
               <Link
                 href="https://github.com/preetsuthar17/HextaUI"
                 target="_blank"
-                className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 hover group"
+                className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 hover group "
               >
                 <FaGithub /> Star on GitHub{" "}
                 <span>

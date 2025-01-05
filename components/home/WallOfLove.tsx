@@ -20,9 +20,9 @@ const WallOfLove = () => {
     <section className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20 bg-homecards">
       <div className="flex flex-col gap-8 p-8 max-sm:p-4">
         <div className="text-center">
-          <div className="flex items-center justify-center flex-col gap-4 mb-20">
+          <div className="flex items-center justify-center flex-col gap-4 mb-20 px-2">
             <div>
-              <h2 className="text-4xl font-bold mb-4 flex items-center gap-4 justify-center">
+              <h2 className="text-4xl font-bold mb-4 flex items-center gap-4 justify-center flex-wrap">
                 <FaTwitter className="text-primary text-3xl fill-[#01a3f2]" />
                 Wall of Love
               </h2>
