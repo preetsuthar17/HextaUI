@@ -90,3 +90,9 @@
     @apply bg-background text-foreground;
   }
 }
+
+pre,
+code {
+  font-size: 16px !important;
+  line-height: 1.6rem !important;
+}
