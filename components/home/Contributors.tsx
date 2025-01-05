@@ -87,15 +87,13 @@ const Contributors = () => {
           ) : (
             <div className="flex flex-wrap items-center justify-center -space-x-4">
               {displayedContributors.map((contributor, index) => (
-                <>
-                  <div key={contributor.id} className="group relative">
-                    <img
-                      src={contributor.avatar_url}
-                      alt={`${contributor.login}'s avatar`}
-                      className="w-12 h-12 rounded-full border-4 border-background "
-                    />
-                  </div>
-                </>
+                <div key={contributor.id} className="group relative">
+                  <img
+                    src={contributor.avatar_url}
+                    alt={`${contributor.login}'s avatar`}
+                    className="w-12 h-12 rounded-full border-4 border-background "
+                  />
+                </div>
               ))}
               {remainingContributors > 0 && (
                 <div className="w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-secondary font-medium z-[1]">
