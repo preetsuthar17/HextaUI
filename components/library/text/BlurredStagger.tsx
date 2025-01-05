@@ -37,7 +37,7 @@ export const BlurredStagger = ({
           variants={container}
           initial="hidden"
           animate="show"
-          className="text-2xl font-semibold tracking-tight text-pretty"
+          className="text-base "
         >
           {headingText.split("").map((char, index) => (
             <motion.span
