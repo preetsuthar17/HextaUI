@@ -69,16 +69,18 @@ const Features = () => {
   ];
 
   return (
-    <section className="border border-t-0 pt-20 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
+    <section className="border border-t-0 py-2 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
       <div className="">
-        {/* Section Header */}
-        <div className="text-center mb-20 px-2">
-          <h2 className="text-4xl font-bold mb-4">Why Choose HextaUI?</h2>
-          <p className="text-primary/70 text-lg">
-            Everything you need to build modern web applications
-          </p>
+        <div className="flex items-center justify-center flex-col gap-4 my-24 px-2">
+          <div>
+            <h2 className="text-4xl font-bold mb-4 flex items-center gap-4 justify-center flex-wrap">
+              Why Choose HextaUI?
+            </h2>
+            <p className="text-primary/70 text-lg mb-3  ">
+              Everything you need to build modern web applications
+            </p>
+          </div>
         </div>
-
         {/* Features Grid */}
         <div className="flex flex-wrap">
           {features.map((feature, index) => (
