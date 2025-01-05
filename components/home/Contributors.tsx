@@ -21,7 +21,7 @@ const Contributors = () => {
     const fetchGitHubData = async () => {
       try {
         const contributorsResponse = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors"
+          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors",
         );
         const contributorsData = await contributorsResponse.json();
 

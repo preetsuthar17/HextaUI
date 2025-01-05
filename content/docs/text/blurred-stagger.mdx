@@ -12,7 +12,6 @@ import { BlurredStagger } from "@/components/library/text/BlurredStagger";
   <BlurredStagger />
 </PreviewContainer>
 
-
 ## Code
 
 ```tsx title="BlurredStagger.tsx"
@@ -20,7 +19,11 @@ import { BlurredStagger } from "@/components/library/text/BlurredStagger";
 
 import { motion } from "framer-motion";
 
-export const BlurredStagger = ({ text="we love hextaui.com ❤️" }: { text: string }) => {
+export const BlurredStagger = ({
+  text = "we love hextaui.com ❤️",
+}: {
+  text: string;
+}) => {
   const headingText = text;
 
   const container = {
@@ -69,15 +72,12 @@ export const BlurredStagger = ({ text="we love hextaui.com ❤️" }: { text: st
 };
 ```
 
-
 ## Usage
 
 ```tsx title="index.tsx"
-
 import { BlurredStagger } from "@/components/library/text/BlurredStagger";
 
 <div>
-<BlurredStagger text="HextaUI is awesome ❤️" />
-</div>
-
+  <BlurredStagger text="HextaUI is awesome ❤️" />
+</div>;
 ```

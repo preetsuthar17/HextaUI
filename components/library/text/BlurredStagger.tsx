@@ -2,7 +2,11 @@
 
 import { motion } from "framer-motion";
 
-export const BlurredStagger = ({ text="we love hextaui.com ❤️" }: { text: string }) => {
+export const BlurredStagger = ({
+  text = "we love hextaui.com ❤️",
+}: {
+  text: string;
+}) => {
   const headingText = text;
 
   const container = {
