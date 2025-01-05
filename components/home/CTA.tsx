@@ -3,18 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import { useEffect, useState } from "react";
-
-import {
-  FaPaintBrush,
-  FaGithub,
-  FaCode,
-  FaStar,
-  FaTwitter,
-  FaRocket,
-  FaBolt,
-  FaMagic,
-} from "react-icons/fa";
+import { FaGithub } from "react-icons/fa";
 
 const CTA = () => {
   return (

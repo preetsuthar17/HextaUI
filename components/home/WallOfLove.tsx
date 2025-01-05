@@ -6,7 +6,7 @@ import { FaTwitter } from "react-icons/fa";
 
 const WallOfLove = () => {
   return (
-    <section className="border  border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20">
+    <section className="border  border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20  bg-homecards">
       <div className="flex flex-col gap-8 p-8 max-sm:p-4">
         <div className="text-center">
           <div className=" flex items-center justify-center flex-col gap-4">

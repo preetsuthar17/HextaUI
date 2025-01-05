@@ -6,11 +6,13 @@ interface Props {}
 const Footer: NextPage<Props> = ({}) => {
   return (
     <footer>
-      <div className="mt-20 border-t py-10 h-full flex items-center text-center justify-center">
+      <div className="mt-20 border-t py-10 h-full flex items-center text-center justify-center  bg-homecards">
         <div>
           <p className="text-primary/70">
             Made with ❤️ by{" "}
-            <Link href="https://x.com/preetsuthar17" className="text-primary">@preett</Link>
+            <Link href="https://x.com/preetsuthar17" className="text-primary">
+              @preett
+            </Link>
           </p>
         </div>
       </div>

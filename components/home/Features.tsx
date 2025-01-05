@@ -22,7 +22,7 @@ const FeatureCard = ({
     <div className="group relative p-6 border-l border-t  border-primary/10  backdrop-blur-sm overflow-hidden transition-all duration-300 grow aspect-video max-h-[10rem] flex flex-col justify-center">
       {/* Content */}
       <div className="relative z-10">
-        <div className="flex opacity-40 items-center text-left gap-3 mb-4">
+        <div className="flex opacity-60 items-center text-left gap-3 mb-4">
           <div>
             <Icon size={16} className="text-primary" />
           </div>
@@ -69,7 +69,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="border border-t-0 pt-20 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden">
+    <section className="border border-t-0 pt-20 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
       <div className="">
         {/* Section Header */}
         <div className="text-center mb-20">
