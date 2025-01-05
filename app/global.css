@@ -96,3 +96,60 @@ code {
   font-size: 16px !important;
   line-height: 1.6rem !important;
 }
+
+/* react-tweet */
+
+.tweet-container_article__xwKMw {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-items: center !important;
+  align-items: start !important;
+  text-align: left !important;
+  border-radius: 0 !important;
+  gap: 1rem !important;
+  border: 1px solid hsl(var(--primary) / 10%) !important;
+}
+
+.quoted-tweet-container_root__pxwIP {
+  border: 1px solid hsl(var(--primary) / 10%) !important;
+  border-radius: 0 !important;
+  background: hsl(var(--secondary) / 50%) !important;
+}
+
+.tweet-container_root__JSkvp {
+  border-radius: 0 !important;
+  background-color: var(--background) !important;
+  border: 1px solid hsl(var(--primary) / 10%) !important;
+  text-align: left !important;
+  margin-bottom: 1rem !important;
+  margin-top: 0 !important;
+}
+
+.tweet-header_header__Qv8I1 {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+}
+
+.tweet-header_avatar__J7SA5 {
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.tweet-body_root__RNPsG {
+  font-size: 15px !important;
+}
+
+.tweet-header_authorFollow__OMdIB {
+  display: none !important;
+}
+
+.tweet-replies_replies__Ig_qi {
+  display: none !important;
+}
+
+.tweet-info_infoLink___soR1 {
+  display: none !important;
+}
