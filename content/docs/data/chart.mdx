@@ -1,0 +1,358 @@
+---
+title: Chart
+description: A responsive and customizable chart component using Recharts.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Chart } from "@/components/library/data/Chart";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+{/* examples */}
+import { CustomHeight } from "@/components/library/data/Chart";
+import { MultipleSeries } from "@/components/library/data/Chart";
+import { BasicChart } from "@/components/library/data/Chart";
+import { WithoutGridOrLegend } from "@/components/library/data/Chart";
+
+## Preview
+
+<PreviewContainer>
+  <Chart
+  className="h-[300px] text-sm"
+    data={[
+      { name: "2000", users: Math.floor(Math.random() * 1000) },
+      { name: "2001", users: Math.floor(Math.random() * 1000) },
+      { name: "2002", users: Math.floor(Math.random() * 1000) },
+      { name: "2003", users: Math.floor(Math.random() * 1000) },
+      { name: "2004", users: Math.floor(Math.random() * 1000) },
+      { name: "2005", users: Math.floor(Math.random() * 1000) },
+      { name: "2006", users: Math.floor(Math.random() * 1000) },
+      { name: "2007", users: Math.floor(Math.random() * 1000) },
+      { name: "2008", users: Math.floor(Math.random() * 1000) },
+      { name: "2009", users: Math.floor(Math.random() * 1000) },
+      { name: "2010", users: Math.floor(Math.random() * 1000) },
+      { name: "2011", users: Math.floor(Math.random() * 1000) },
+      { name: "2012", users: Math.floor(Math.random() * 1000) },
+      { name: "2013", users: Math.floor(Math.random() * 1000) },
+      { name: "2014", users: Math.floor(Math.random() * 1000) },
+      { name: "2015", users: Math.floor(Math.random() * 1000) },
+      { name: "2016", users: Math.floor(Math.random() * 1000) },
+      { name: "2017", users: Math.floor(Math.random() * 1000) },
+      { name: "2018", users: Math.floor(Math.random() * 1000) },
+      { name: "2019", users: Math.floor(Math.random() * 1000) },
+      { name: "2020", users: Math.floor(Math.random() * 1000) },
+      { name: "2021", users: Math.floor(Math.random() * 1000) },
+      { name: "2022", users: Math.floor(Math.random() * 1000) },
+      { name: "2023", users: Math.floor(Math.random() * 1000) },
+      { name: "2024", users: Math.floor(Math.random() * 1000) },
+    ]}
+    config={{
+      users: {
+        label: "Active Users",
+        color: "#f3640b",
+      },
+
+    }}
+
+/>
+
+</PreviewContainer>
+
+## Installation
+
+```bash
+npm install recharts
+```
+
+## Code
+
+```tsx title="Chart.tsx"
+"use client";
+
+import {
+  Bar,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
+import { cn } from "@/lib/utils";
+
+export interface ChartConfig {
+  [key: string]: {
+    label: string;
+    color: string;
+    icon?: React.ComponentType;
+  };
+}
+
+export interface ChartProps {
+  data: any[];
+  config: ChartConfig;
+  className?: string;
+  dataKeys?: string[];
+  xAxisKey?: string;
+  showGrid?: boolean;
+  showTooltip?: boolean;
+  showLegend?: boolean;
+}
+
+export function Chart({
+  data,
+  config,
+  className,
+  dataKeys,
+  xAxisKey = "name",
+  showGrid = true,
+  showTooltip = true,
+  showLegend = true,
+}: ChartProps) {
+  const keys = dataKeys || Object.keys(config);
+
+  return (
+    <div className={cn("w-full h-[500px]", className)}>
+      <ResponsiveContainer width="100%" height="100%">
+        <BarChart data={data}>
+          {showGrid && (
+            <CartesianGrid className="opacity-10" vertical={false} />
+          )}
+
+          <XAxis
+            dataKey={xAxisKey}
+            tickLine={false}
+            axisLine={false}
+            padding={{ left: 20, right: 20 }}
+          />
+
+          {showTooltip && (
+            <Tooltip
+              content={({ active, payload, label }) => {
+                if (!active || !payload) return null;
+
+                return (
+                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                    <div className="font-medium">{label}</div>
+                    {payload.map((item: any, index: number) => (
+                      <div
+                        key={index}
+                        className="flex items-center gap-2 text-sm text-muted-foreground"
+                      >
+                        <div
+                          className="h-2 w-2 rounded-full"
+                          style={{ backgroundColor: item.fill }}
+                        />
+                        <span>{config[item.dataKey].label}:</span>
+                        <span className="font-medium text-foreground">
+                          {item.value}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
+          )}
+
+          {showLegend && (
+            <Legend
+              content={({ payload }) => {
+                if (!payload) return null;
+
+                return (
+                  <div className="flex gap-4 text-sm text-muted-foreground">
+                    {payload.map((item: any, index: number) => (
+                      <div key={index} className="flex items-center gap-2">
+                        <div
+                          className="h-2 w-2 rounded-full"
+                          style={{ backgroundColor: item.color }}
+                        />
+                        <span>{item.value}</span>
+                      </div>
+                    ))}
+                  </div>
+                );
+              }}
+            />
+          )}
+
+          {keys.map((key) => (
+            <Bar
+              key={key}
+              dataKey={key}
+              fill={config[key].color}
+              radius={[4, 4, 0, 0]}
+            />
+          ))}
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+}
+```
+
+## Usage
+
+```tsx title="Chart.tsx"
+import { Chart } from "@/components/library/data/Chart";
+
+// Define your data
+const data = [
+  { name: "Jan", users: 100, revenue: 400 },
+  { name: "Feb", users: 150, revenue: 600 },
+  { name: "Mar", users: 200, revenue: 800 },
+];
+
+// Define your configuration
+const config = {
+  users: {
+    label: "Active Users",
+    color: "hsl(var(--blue))",
+  },
+  revenue: {
+    label: "Revenue",
+    color: "hsl(var(--secondary))",
+  },
+};
+
+export function ChartExample() {
+  return <Chart data={data} config={config} className="h-[400px]" />;
+}
+```
+
+## Props
+
+### Chart
+
+<AutoTypeTable path="./components/library/data/Chart.tsx" name="ChartProps" />
+
+### Configuration
+
+The `ChartConfig` type allows you to specify how each data series should be displayed:
+
+```tsx
+interface ChartConfig {
+  [key: string]: {
+    label: string; // Display label for the series
+    color: string; // Color for the bars/lines
+    icon?: React.ComponentType; // Optional icon component
+  };
+}
+```
+
+## Examples
+
+### Basic Chart
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <BasicChart />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Chart
+      data={[
+        { name: "Jan", value: 100 },
+        { name: "Feb", value: 150 },
+        { name: "Mar", value: 200 },
+      ]}
+      config={{
+        value: {
+          label: "Value",
+          color: "hsl(var(--blue))",
+        },
+      }}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+### Multiple Series
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <MultipleSeries />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Chart
+      data={[
+        { name: "Q1", sales: 100, profit: 20 },
+        { name: "Q2", sales: 150, profit: 40 },
+        { name: "Q3", sales: 180, profit: 50 },
+      ]}
+      config={{
+        sales: {
+          label: "Sales",
+          color: "hsl(var(--blue))",
+        },
+        profit: {
+          label: "Profit",
+          color: "hsl(var(--secondary))",
+        },
+      }}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+### Custom Height
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <CustomHeight />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Chart
+      data={[
+        { name: "Jan", value: 100 },
+        { name: "Feb", value: 150 },
+        { name: "Mar", value: 200 },
+      ]}
+      config={{
+        value: {
+          label: "Value",
+          color: "hsl(var(--blue))",
+        },
+      }}
+      className="h-[300px]"
+    />
+    ```
+  </Tab>
+</Tabs>
+
+### Without Grid or Legend
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <WithoutGridOrLegend />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Chart
+      data={[
+        { name: "Jan", value: 100 },
+        { name: "Feb", value: 150 },
+        { name: "Mar", value: 200 },
+      ]}
+      config={{
+        value: {
+          label: "Value",
+          color: "hsl(var(--blue))",
+        },
+      }}
+      showGrid={false}
+      showLegend={false}
+    />
+    ```
+  </Tab>
+</Tabs>
