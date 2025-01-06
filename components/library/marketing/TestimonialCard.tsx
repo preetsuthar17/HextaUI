@@ -1,7 +1,7 @@
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
-import Image from "next/image";
 
 export interface TestimonialCardProps {
   name: string;
@@ -32,7 +32,7 @@ export const TestimonialCard = ({
       </div>
 
       {/* Content Container */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 justify-between h-full">
         {/* Rating Stars */}
         {rating > 0 && (
           <div className="flex gap-1">
@@ -55,26 +55,30 @@ export const TestimonialCard = ({
           {testimonial}
         </p>
 
-        {/* Author Info */}
-        <div className="flex items-center gap-4 pt-4">
-          {image && (
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <Image
-                src={image}
-                alt={name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 48px) 100vw, 48px"
-              />
-            </div>
-          )}
+        <div className="flex items-center gap-4 justify-start">
+          {/* Author Info */}
+          <div className="flex items-center gap-4 ">
+            {image && (
+              <div className="relative h-12 w-12 overflow-hidden rounded-full flex items-center justify-center">
+                <Avatar>
+                  <AvatarImage
+                    src={image}
+                    alt={`${name}`}
+                    height={48}
+                    width={48}
+                  />
+                  <AvatarFallback>{name[0]}</AvatarFallback>
+                </Avatar>
+              </div>
+            )}
 
-          <div className="flex flex-col">
-            <h3 className="font-semibold text-foreground">{name}</h3>
-            <p className="text-sm text-muted-foreground">
-              {role}
-              {company && ` @ ${company}`}
-            </p>
+            <div className="flex flex-col">
+              <h3 className="font-semibold text-foreground">{name}</h3>
+              <p className="text-sm text-muted-foreground">
+                {role}
+                {company && `@ ${company}`}
+              </p>
+            </div>
           </div>
         </div>
       </div>

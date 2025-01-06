@@ -9,14 +9,22 @@ import { TestimonialCard } from "@/components/library/marketing/TestimonialCard"
 ## Preview
 
 <PreviewContainer>
-  <div className="grid gap-4 md:grid-cols-2">
+  <div className="grid gap-4 grid-cols-1 md:grid-cols-2">
     <TestimonialCard
       name="Sarah Johnson"
       role="Product Manager"
-      company="TechCorp"
+      company="Amazun"
       rating={5}
-      image="https://placehold.co/48"
+      image="https://placehold.co/48?text=S"
       testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
+    />
+    <TestimonialCard
+      name="John Doe"
+      role="Software Engineer"
+      company="Goggle"
+      rating={4}
+      image="https://placehold.co/48?text=J"
+      testimonial="The components are well documented and easy to customize. The code quality is top-notch and the support is excellent. I'm very happy with my purchase."
     />
   </div>
 </PreviewContainer>
@@ -26,10 +34,10 @@ import { TestimonialCard } from "@/components/library/marketing/TestimonialCard"
 ```tsx title="TestimonialCard.tsx"
 "use client";
 
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
-import Image from "next/image";
 
-interface TestimonialCardProps {
+export interface TestimonialCardProps {
   name: string;
   role: string;
   company?: string;
@@ -58,7 +66,7 @@ export const TestimonialCard = ({
       </div>
 
       {/* Content Container */}
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 justify-between h-full">
         {/* Rating Stars */}
         {rating > 0 && (
           <div className="flex gap-1">
@@ -81,26 +89,30 @@ export const TestimonialCard = ({
           {testimonial}
         </p>
 
-        {/* Author Info */}
-        <div className="flex items-center gap-4 pt-4">
-          {image && (
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <Image
-                src={image}
-                alt={name}
-                fill
-                className="object-cover"
-                sizes="(max-width: 48px) 100vw, 48px"
-              />
-            </div>
-          )}
+        <div className="flex items-center gap-4 justify-start">
+          {/* Author Info */}
+          <div className="flex items-center gap-4 ">
+            {image && (
+              <div className="relative h-12 w-12 overflow-hidden rounded-full flex items-center justify-center">
+                <Avatar>
+                  <AvatarImage
+                    src={image}
+                    alt={`${name}`}
+                    height={48}
+                    width={48}
+                  />
+                  <AvatarFallback>{name[0]}</AvatarFallback>
+                </Avatar>
+              </div>
+            )}
 
-          <div className="flex flex-col">
-            <h3 className="font-semibold text-foreground">{name}</h3>
-            <p className="text-sm text-muted-foreground">
-              {role}
-              {company && ` @ ${company}`}
-            </p>
+            <div className="flex flex-col">
+              <h3 className="font-semibold text-foreground">{name}</h3>
+              <p className="text-sm text-muted-foreground">
+                {role}
+                {company && `@ ${company}`}
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -114,14 +126,24 @@ export const TestimonialCard = ({
 ```tsx
 import { TestimonialCard } from "@/components/library/marketing/TestimonialCard";
 
-<TestimonialCard
-  name="Sarah Johnson"
-  role="Product Manager"
-  company="TechCorp"
-  rating={5}
-  image="https://placehold.co/48"
-  testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
-/>;
+<div className="grid gap-4 grid-cols-1 md:grid-cols-2">
+  <TestimonialCard
+    name="Sarah Johnson"
+    role="Product Manager"
+    company="Amazun"
+    rating={5}
+    image="https://placehold.co/48?text=S"
+    testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
+  />
+  <TestimonialCard
+    name="John Doe"
+    role="Software Engineer"
+    company="Goggle"
+    rating={4}
+    image="https://placehold.co/48?text=J"
+    testimonial="The components are well documented and easy to customize. The code quality is top-notch and the support is excellent. I'm very happy with my purchase."
+  />
+</div>;
 ```
 
 ## Props
