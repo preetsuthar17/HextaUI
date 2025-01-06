@@ -18,13 +18,6 @@ import { TestimonialCard } from "@/components/library/marketing/TestimonialCard"
       image="https://placehold.co/48"
       testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
     />
-    <TestimonialCard
-      name="Mike Chen"
-      role="Senior Developer"
-      image="https://placehold.co/48"
-      rating={4}
-      testimonial="The component library is incredibly well-thought-out. It saves us countless hours of development time while maintaining high quality and accessibility standards."
-    />
   </div>
 </PreviewContainer>
 
@@ -121,25 +114,17 @@ export const TestimonialCard = ({
 ```tsx
 import { TestimonialCard } from "@/components/library/marketing/TestimonialCard";
 
-// Basic usage
 <TestimonialCard
   name="Sarah Johnson"
   role="Product Manager"
-  testimonial="Amazing product that has transformed our workflow!"
-  image="https://placeholder.co/48"
-/>
-
-// With all props
-<TestimonialCard
-  name="Mike Chen"
-  role="Senior Developer"
   company="TechCorp"
   rating={5}
-  image="https://placeholder.co/48"
-  testimonial="Incredible component library that saves us time and maintains quality."
-  className="max-w-lg"
-/>
+  image="https://placehold.co/48"
+  testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
+/>;
 ```
+
+## Props
 
 <AutoTypeTable
   path="./components/library/marketing/TestimonialCard.tsx"
