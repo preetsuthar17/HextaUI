@@ -31,7 +31,7 @@ const WallOfLove = () => {
               </p>
             </div>
           </div>
-          <div className="columns-1 gap-4 md:columns-2  lg:columns-3 ">
+          <div className="columns-1 gap-4 md:columns-2  lg:columns-3 [mask-image:linear-gradient(180deg,#000000_10%,transparent_100%)]">
             {tweets.map((tweetId) => (
               <Tweet id={tweetId} key={tweetId} />
             ))}
