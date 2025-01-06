@@ -13,7 +13,7 @@ const fontSize = 40;
 const padding = 10;
 const height = fontSize + padding;
 
-interface CounterProps
+export interface CounterProps
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLParagraphElement>,
     HTMLParagraphElement

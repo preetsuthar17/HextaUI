@@ -8,7 +8,7 @@ const cn = (...args: any[]) => {
   return clsx(twMerge(...args));
 };
 
-interface MeteorsProps {
+export interface MeteorsProps {
   number?: number;
 }
 

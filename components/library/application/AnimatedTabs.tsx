@@ -2,7 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 
-export function AnimatedTabs({ tabs }: { tabs: { label: string }[] }) {
+export interface AnimatedTabsProps {
+  tabs: { label: string }[];
+}
+
+export function AnimatedTabs({ tabs }: AnimatedTabsProps) {
   const [activeTab, setActiveTab] = useState(tabs[0].label);
   const containerRef = useRef<HTMLDivElement>(null);
   const activeTabRef = useRef<HTMLButtonElement>(null);
@@ -20,9 +24,9 @@ export function AnimatedTabs({ tabs }: { tabs: { label: string }[] }) {
         const clipRight = offsetLeft + offsetWidth + 16;
 
         container.style.clipPath = `inset(0 ${Number(
-          100 - (clipRight / container.offsetWidth) * 100,
+          100 - (clipRight / container.offsetWidth) * 100
         ).toFixed()}% 0 ${Number(
-          (clipLeft / container.offsetWidth) * 100,
+          (clipLeft / container.offsetWidth) * 100
         ).toFixed()}% round 17px)`;
       }
     }

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-interface ParticlesProps {
+export interface ParticlesProps {
   className?: string;
   quantity?: number;
   staticity?: number;

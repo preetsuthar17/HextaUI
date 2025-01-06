@@ -18,12 +18,12 @@ const cn = (...args: any[]) => {
   return twMerge(clsx(args));
 };
 
-interface AnimatedDockProps {
+export interface AnimatedDockProps {
   className?: string;
   items: DockItemData[];
 }
 
-interface DockItemData {
+export interface DockItemData {
   link: string;
   Icon: React.ReactNode;
   target?: string;

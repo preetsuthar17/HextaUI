@@ -2,11 +2,13 @@
 
 import { motion } from "motion/react";
 
-export const BlurredStagger = ({
-  text = "we love hextaui.com ❤️",
-}: {
+export interface BlurredStaggerProps {
   text: string;
-}) => {
+}
+
+export const BlurredStagger = ({
+  text = "Hello World!",
+}: BlurredStaggerProps) => {
   const headingText = text;
 
   const container = {

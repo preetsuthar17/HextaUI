@@ -2,15 +2,17 @@
 
 import { useRef, useState } from "react";
 
+export interface SpotlightCardProps {
+  children: any;
+  className?: string;
+  spotlightColor?: string;
+}
+
 export const SpotlightCard = ({
   children,
   className = "",
   spotlightColor = "#ffffff30",
-}: {
-  children: any;
-  className?: string;
-  spotlightColor?: string;
-}) => {
+}: SpotlightCardProps) => {
   const divRef = useRef<HTMLDivElement>(null);
   const [isFocused, setIsFocused] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });

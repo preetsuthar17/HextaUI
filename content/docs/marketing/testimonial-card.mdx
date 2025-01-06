@@ -1,0 +1,147 @@
+---
+title: Testimonial Card
+description: A responsive testimonial card component with rating stars and author information.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TestimonialCard } from "@/components/library/marketing/TestimonialCard";
+
+## Preview
+
+<PreviewContainer>
+  <div className="grid gap-4 md:grid-cols-2">
+    <TestimonialCard
+      name="Sarah Johnson"
+      role="Product Manager"
+      company="TechCorp"
+      rating={5}
+      image="https://placehold.co/48"
+      testimonial="This library has completely transformed how we build our UI components. The attention to detail and smooth animations make our application stand out. Highly recommended!"
+    />
+    <TestimonialCard
+      name="Mike Chen"
+      role="Senior Developer"
+      image="https://placehold.co/48"
+      rating={4}
+      testimonial="The component library is incredibly well-thought-out. It saves us countless hours of development time while maintaining high quality and accessibility standards."
+    />
+  </div>
+</PreviewContainer>
+
+## Code
+
+```tsx title="TestimonialCard.tsx"
+"use client";
+
+import { Star } from "lucide-react";
+import Image from "next/image";
+
+interface TestimonialCardProps {
+  name: string;
+  role: string;
+  company?: string;
+  testimonial: string;
+  rating?: number;
+  image?: string;
+  className?: string;
+}
+
+export const TestimonialCard = ({
+  name,
+  role,
+  company,
+  testimonial,
+  rating = 5,
+  image = "",
+  className = "",
+}: TestimonialCardProps) => {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-2xl border border-primary/10 bg-background p-6 transition-all hover:shadow-lg dark:hover:shadow-primary/5 md:p-8 ${className}`}
+    >
+      {/* Quote Icon */}
+      <div className="absolute right-6 top-6 text-6xl font-serif text-muted-foreground/20">
+        "
+      </div>
+
+      {/* Content Container */}
+      <div className="flex flex-col gap-4">
+        {/* Rating Stars */}
+        {rating > 0 && (
+          <div className="flex gap-1">
+            {Array.from({ length: 5 }).map((_, index) => (
+              <Star
+                key={index}
+                size={16}
+                className={`${
+                  index < rating
+                    ? "fill-yellow-400 text-yellow-400"
+                    : "fill-muted text-muted"
+                }`}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Testimonial Text */}
+        <p className="text-pretty text-base text-muted-foreground">
+          {testimonial}
+        </p>
+
+        {/* Author Info */}
+        <div className="flex items-center gap-4 pt-4">
+          {image && (
+            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+              <Image
+                src={image}
+                alt={name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 48px) 100vw, 48px"
+              />
+            </div>
+          )}
+
+          <div className="flex flex-col">
+            <h3 className="font-semibold text-foreground">{name}</h3>
+            <p className="text-sm text-muted-foreground">
+              {role}
+              {company && ` @ ${company}`}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+```
+
+## Usage
+
+```tsx
+import { TestimonialCard } from "@/components/library/marketing/TestimonialCard";
+
+// Basic usage
+<TestimonialCard
+  name="Sarah Johnson"
+  role="Product Manager"
+  testimonial="Amazing product that has transformed our workflow!"
+  image="https://placeholder.co/48"
+/>
+
+// With all props
+<TestimonialCard
+  name="Mike Chen"
+  role="Senior Developer"
+  company="TechCorp"
+  rating={5}
+  image="https://placeholder.co/48"
+  testimonial="Incredible component library that saves us time and maintains quality."
+  className="max-w-lg"
+/>
+```
+
+<AutoTypeTable
+  path="./components/library/marketing/TestimonialCard.tsx"
+  name="TestimonialCardProps"
+/>

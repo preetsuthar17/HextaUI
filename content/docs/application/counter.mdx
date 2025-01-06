@@ -53,14 +53,11 @@ export const Counter = ({
   const [value, setValue] = useState(start);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => {
-        if (value < end) {
-          setValue((prev) => prev + 1);
-        }
-      },
-      (duration / (end - start)) * 1000,
-    );
+    const interval = setInterval(() => {
+      if (value < end) {
+        setValue((prev) => prev + 1);
+      }
+    }, (duration / (end - start)) * 1000);
 
     return () => clearInterval(interval);
   }, [value]);
@@ -71,7 +68,7 @@ export const Counter = ({
       {...rest}
       className={cn(
         "flex overflow-hidden rounded px-2 leading-none text-white font-bold ",
-        className,
+        className
       )}
     >
       {value >= 100000 && <Digit place={100000} value={value} />}
@@ -131,3 +128,11 @@ function Number({ mv, number }: { mv: MotionValue; number: number }) {
 ```tsx title="index.tsx"
 <Countdown end={50} duration={20} />
 ```
+
+## Props
+
+<AutoTypeTable
+  path="./components/library/applicaition/Counter.tsx"
+  name="CounterProps"
+/>
+>

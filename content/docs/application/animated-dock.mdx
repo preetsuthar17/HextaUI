@@ -82,7 +82,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-primary/10 shadow-md border-opacity-5 px-4 pb-3",
-        className,
+        className
       )}
     >
       {items.map((item, index) => (
@@ -164,3 +164,19 @@ import { AnimatedDock } from "@/components/library/application/animated-dock";
   ]}
 />;
 ```
+
+## Props
+
+### AnimatedDock Props
+
+<AutoTypeTable
+  path="./components/library/application/AnimatedDock.tsx"
+  name="AnimatedDockProps"
+/>
+
+### DockItem Props
+
+<AutoTypeTable
+  path="./components/library/application/AnimatedDock.tsx"
+  name="DockItemData"
+/>
