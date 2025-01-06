@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["i.imgur.com"],
+    domains: ["i.imgur.com", "placehold.co"],
   },
 };
 
