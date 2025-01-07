@@ -28,6 +28,8 @@ export default {
         background: "hsl(var(--background))",
         homecards: "hsl(var(--home-cards))",
         foreground: "hsl(var(--foreground))",
+        orange: "hsl(var(--orange))",
+        blue: "hsl(var(--blue))",
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
