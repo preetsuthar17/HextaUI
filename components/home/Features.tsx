@@ -69,7 +69,7 @@ const Features = () => {
   ];
 
   return (
-    <section className="border border-t-0 py-2 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
+    <section className="border border-t-0 pt-2 border-b border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden bg-homecards">
       <div className="">
         <div className="flex items-center justify-center flex-col gap-4 my-24 px-2">
           <div>
