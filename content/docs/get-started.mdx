@@ -149,3 +149,24 @@ export default function Home() {
         ```
 
 </Steps>
+
+<Steps>
+  <Step>Canvas Confetti</Step>
+    ```bash
+    npm install canvas-confetti
+    ```
+    <Step>Usage</Step>
+        ```tsx title="index.tsx"
+        import { useEffect } from "react";
+        import confetti from "canvas-confetti";
+
+        export default function Home() {
+          useEffect(() => {
+            confetti();
+          }, []);
+
+          return <div>Hello World</div>;
+        }
+        ```
+
+</Steps>
