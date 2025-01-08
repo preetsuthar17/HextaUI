@@ -71,6 +71,7 @@
     "zod": "^3.24.1"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.9.0",
     "@types/mdx": "^2.0.13",
     "@types/node": "22.10.4",
     "@types/react": "^18.0.2",
