@@ -11,6 +11,8 @@ import { createTypeTable } from "fumadocs-typescript/ui";
 
 import { metadataImage } from "@/lib/metadata";
 import { getGithubLastEdit } from "fumadocs-core/server";
+import { Metadata } from "next";
+import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -60,19 +62,22 @@ export default async function Page(props: {
     </DocsPage>
   );
 }
+
 export async function generateStaticParams() {
   return source.generateParams();
 }
 
 export async function generateMetadata(props: {
   params: Promise<{ slug?: string[] }>;
-}) {
+}): Promise<Metadata> {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
 
-  return metadataImage.withImage(page.slugs, {
+  return customMetaDataGenerator({
     title: page.data.title,
     description: page.data.description,
+    ogImage: metadataImage.getImageMeta(page.slugs).url,
+    canonicalUrl: `https://hextaui.com/docs/${page.slugs.join("/")}`,
   });
 }
