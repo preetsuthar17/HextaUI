@@ -52,7 +52,7 @@ export function Typewriter({
           }
         }
       },
-      isDeleting ? deleteSpeed : speed
+      isDeleting ? deleteSpeed : speed,
     );
 
     return () => clearTimeout(timeout);

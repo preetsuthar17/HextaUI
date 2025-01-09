@@ -240,8 +240,8 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
                     index < currentStep
                       ? "bg-primary text-background"
                       : index === currentStep
-                      ? "border-primary"
-                      : "border-muted-foreground"
+                        ? "border-primary"
+                        : "border-muted-foreground"
                   }`}
                 >
                   {index < currentStep ? "✓" : index + 1}
