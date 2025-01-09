@@ -151,7 +151,7 @@ const ConfirmationStep: React.FC<StepProps> = ({ formData }) => {
 
 export interface StepProp {
   title: string;
-  component: React.ReactNode;
+  component: React.ReactElement<StepProps>;
 }
 
 export interface MultiStepFormProps {
@@ -269,13 +269,10 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
           exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
           transition={{ duration: 0.3 }}
         >
-          {React.cloneElement(
-            steps[currentStep].component as React.ReactElement,
-            {
-              updateFormData,
-              formData,
-            }
-          )}
+          {React.cloneElement(steps[currentStep].component, {
+            updateFormData,
+            formData,
+          })}
         </motion.div>
       </AnimatePresence>
       <div className="mt-6 sm:mt-8 flex justify-between">
