@@ -12,7 +12,7 @@ const Footer: NextPage<Props> = ({}) => {
           target="_blank"
         >
           <img
-            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=768925&theme=neutral"
+            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=768925&theme=dark"
             alt="HextaUI - Build&#0032;stunning&#0032;websites&#0032;with&#0032;less&#0032;effort | Product Hunt"
             style={{ width: "250px", height: "54px" }}
             width="250"
