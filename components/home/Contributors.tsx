@@ -20,21 +20,31 @@ const Contributors = () => {
   useEffect(() => {
     const fetchGitHubData = async () => {
       try {
+        const headers = {
+          Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+          "Content-Type": "application/json",
+        };
+
         const contributorsResponse = await fetch(
           "https://api.github.com/repos/preetsuthar17/HextaUI/contributors",
+          { headers }
         );
+
+        if (!contributorsResponse.ok) {
+          throw new Error(`HTTP error! status: ${contributorsResponse.status}`);
+        }
+
         const contributorsData = await contributorsResponse.json();
 
-        setStats({
-          contributors: contributorsData,
-        });
-        setLoading(false);
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError(String(err));
+        if (!Array.isArray(contributorsData)) {
+          throw new Error("Contributors data is not an array");
         }
+
+        setStats({ contributors: contributorsData });
+      } catch (err) {
+        console.error("Error fetching GitHub data:", err);
+        setError(err);
+      } finally {
         setLoading(false);
       }
     };
