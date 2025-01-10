@@ -122,6 +122,11 @@ code {
   border: 1px solid hsl(var(--primary) / 10%) !important;
   border-radius: 0 !important;
   background: hsl(var(--secondary) / 50%) !important;
+  border-radius: 16px !important;
+}
+
+.tweet-media_image__j5PzO {
+  border-radius: 8px !important;
 }
 
 .tweet-container_root__fgWUE {
