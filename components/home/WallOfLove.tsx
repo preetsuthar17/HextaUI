@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
 import { Tweet } from "react-tweet";
+import { useEffect, useState } from "react";
 
 const tweets = [
   "1875895384226373680",
@@ -21,7 +22,30 @@ const tweets = [
   "1877552363809948079",
 ];
 
+const useWindowSize = () => {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  return width;
+};
+
 const WallOfLove = () => {
+  const width = useWindowSize();
+  const getColumnCount = () => {
+    if (width < 768) return 1; // mobile
+    if (width < 1024) return 2; // tablet
+    return 3; // desktop
+  };
+
+  const columnCount = getColumnCount();
+  const TWEETS_PER_COLUMN = Math.ceil(tweets.length / columnCount);
+
   return (
     <section className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20 bg-homecards">
       <div className="flex flex-col gap-8 p-8 max-sm:p-4">
@@ -37,11 +61,36 @@ const WallOfLove = () => {
               </p>
             </div>
           </div>
-          <div className="columns-1 gap-4 md:columns-2  lg:columns-3 [mask-image:linear-gradient(180deg,#000000_10%,transparent_100%)]">
-            {tweets.map((tweetId) => (
-              <Tweet id={tweetId} key={tweetId} />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 overflow-hidden [--gap:1rem] h-[90rem] [mask-image:linear-gradient(180deg,transparent_0%,rgba(0,0,0,1)_10%,rgba(0,0,0,1)_90%,transparent_100%)] [--duration:500s]">
+            {Array.from({ length: columnCount }).map((_, colIndex) => (
+              <div
+                key={colIndex}
+                className="flex flex-col overflow-hidden group"
+              >
+                <div className="flex flex-col animate-marqueeY group-hover:[animation-play-state:paused]">
+                  {Array(8)
+                    .fill(0)
+                    .map((_, repeatIndex) => (
+                      <div key={repeatIndex} className="flex flex-col">
+                        {tweets
+                          .slice(
+                            colIndex * TWEETS_PER_COLUMN,
+                            (colIndex + 1) * TWEETS_PER_COLUMN
+                          )
+                          .map((tweetId) => (
+                            <Tweet
+                              key={`${tweetId}-${repeatIndex}`}
+                              id={tweetId}
+                            />
+                          ))}
+                      </div>
+                    ))}
+                </div>
+              </div>
             ))}
           </div>
+
           <div className="flex items-center justify-center text-center mt-8">
             <div className="text-center text-primary/70">
               <Link

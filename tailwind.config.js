@@ -115,12 +115,21 @@ export default {
             transform: "translateX(calc(-100% - var(--gap)))",
           },
         },
+        marqueeY: {
+          "0%": {
+            transform: "translateY(0%)",
+          },
+          "100%": {
+            transform: "translateY(calc(-100% - var(--gap)))",
+          },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         meteor: "meteor 0.2s linear infinite",
         marquee: "marquee 30s linear infinite",
+        marqueeY: "marqueeY var(--duration) linear infinite",
       },
     },
   },

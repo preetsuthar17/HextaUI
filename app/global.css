@@ -113,14 +113,14 @@ code {
   justify-items: center !important;
   align-items: start !important;
   text-align: left !important;
-  border-radius: 0 !important;
+  border-radius: 16px !important;
+  border-radius: 16px !important;
   gap: 1rem !important;
   border: 1px solid hsl(var(--primary) / 10%) !important;
 }
 
 .quoted-tweet-container_root___TGKv {
   border: 1px solid hsl(var(--primary) / 10%) !important;
-  border-radius: 0 !important;
   background: hsl(var(--secondary) / 50%) !important;
   border-radius: 16px !important;
 }
@@ -130,7 +130,7 @@ code {
 }
 
 .tweet-container_root__fgWUE {
-  border-radius: 0 !important;
+  border-radius: 16px !important;
   background-color: var(--background) !important;
   border: 1px solid hsl(var(--primary) / 10%) !important;
   text-align: left !important;
@@ -169,4 +169,10 @@ code {
 
 .tweet-actions_actions__N_T9z {
   width: 100% !important;
+}
+
+@media screen and (max-width: 380px) {
+  .tweet-actions_copyText__NyI5I {
+    display: none !important;
+  }
 }
