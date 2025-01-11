@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = customMetaDataGenerator({
-  title: "Build stunning websites with less effort — HextaUI",
+  title: "Build stunning websites with less effort",
   description:
     "Modern, responsive, and customizable UI components designed for Next.js. Copy, adapt, and make them uniquely yours.",
   ogImage: "/banner.png",
