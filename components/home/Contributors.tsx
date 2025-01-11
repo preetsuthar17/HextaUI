@@ -1,5 +1,6 @@
 "use client";
 
+import { AlertTriangle } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { FaHeart } from "react-icons/fa";
@@ -62,8 +63,11 @@ const Contributors = () => {
 
   if (error) {
     return (
-      <div className="text-center py-20 text-primary/70">
-        Unable to fetch GitHub data at the moment
+      <div className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto relative overflow-hidden py-20 bg-homecards text-center justify-center items-center text-muted-foreground font-medium">
+        <div className="flex items-center justify-center flex-col gap-2">
+          <AlertTriangle className="text-destructive" />
+          Unable to fetch Contributor data at the moment
+        </div>
       </div>
     );
   }
