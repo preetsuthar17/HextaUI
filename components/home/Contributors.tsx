@@ -28,7 +28,7 @@ const Contributors = () => {
 
         const contributorsResponse = await fetch(
           "https://api.github.com/repos/preetsuthar17/HextaUI/contributors",
-          { headers }
+          { headers },
         );
 
         if (!contributorsResponse.ok) {
