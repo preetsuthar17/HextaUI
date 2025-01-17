@@ -546,106 +546,106 @@ export function TwoFactorAuthForm() {
   );
 }
 
-// // Enterprise SSO Login Form
-// const ssoSchema = z.object({
-//   organization: z.string().min(1, "Organization is required"),
-//   domain: z.string().min(1, "Domain is required"),
-//   rememberDevice: z.boolean().default(false),
-// });
+// Enterprise SSO Login Form
+const ssoSchema = z.object({
+  organization: z.string().min(1, "Organization is required"),
+  domain: z.string().min(1, "Domain is required"),
+  rememberDevice: z.boolean().default(false),
+});
 
-// type SSOFormData = z.infer<typeof ssoSchema>;
+type SSOFormData = z.infer<typeof ssoSchema>;
 
-// export function EnterpriseSSO() {
-//   const [isLoading, setIsLoading] = useState(false);
+export function EnterpriseSSO() {
+  const [isLoading, setIsLoading] = useState(false);
 
-//   const form = useForm<SSOFormData>({
-//     resolver: zodResolver(ssoSchema),
-//     defaultValues: {
-//       organization: "",
-//       domain: "",
-//       rememberDevice: false,
-//     },
-//   });
+  const form = useForm<SSOFormData>({
+    resolver: zodResolver(ssoSchema),
+    defaultValues: {
+      organization: "",
+      domain: "",
+      rememberDevice: false,
+    },
+  });
 
-//   function onSubmit(values: SSOFormData) {
-//     setIsLoading(true);
-//     setTimeout(() => {
-//       setIsLoading(false);
-//       console.log(values);
-//     }, 1500);
-//   }
+  function onSubmit(values: SSOFormData) {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log(values);
+    }, 1500);
+  }
 
-//   return (
-//     <Card className="w-[400px] bg-secondary/50">
-//       <CardHeader>
-//         <CardTitle className="flex items-center gap-2">
-//           <KeyRound className="h-5 w-5" />
-//           Enterprise Login
-//         </CardTitle>
-//         <CardDescription>
-//           Sign in with your organization credentials
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent>
-//         <Form {...form}>
-//           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-//             <FormField
-//               control={form.control}
-//               name="organization"
-//               render={({ field }) => (
-//                 <FormItem>
-//                   <FormLabel>Organization Name</FormLabel>
-//                   <FormControl>
-//                     <Input placeholder="Acme Inc." {...field} />
-//                   </FormControl>
-//                   <FormMessage />
-//                 </FormItem>
-//               )}
-//             />
+  return (
+    <Card className="w-[400px] bg-secondary/50">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <KeyRound className="h-5 w-5" />
+          Enterprise Login
+        </CardTitle>
+        <CardDescription>
+          Sign in with your organization credentials
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="organization"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Organization Name</FormLabel>
+                  <FormControl>
+                    <Input placeholder="Acme Inc." {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-//             <FormField
-//               control={form.control}
-//               name="domain"
-//               render={({ field }) => (
-//                 <FormItem>
-//                   <FormLabel>Organization Domain</FormLabel>
-//                   <FormControl>
-//                     <Input placeholder="acme.com" {...field} />
-//                   </FormControl>
-//                   <FormMessage />
-//                 </FormItem>
-//               )}
-//             />
+            <FormField
+              control={form.control}
+              name="domain"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Organization Domain</FormLabel>
+                  <FormControl>
+                    <Input placeholder="acme.com" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-//             <FormField
-//               control={form.control}
-//               name="rememberDevice"
-//               render={({ field }) => (
-//                 <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-//                   <FormControl>
-//                     <Checkbox
-//                       checked={field.value}
-//                       onCheckedChange={field.onChange}
-//                     />
-//                   </FormControl>
-//                   <div className="space-y-1 leading-none">
-//                     <FormLabel>Remember this device</FormLabel>
-//                   </div>
-//                 </FormItem>
-//               )}
-//             />
+            <FormField
+              control={form.control}
+              name="rememberDevice"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>Remember this device</FormLabel>
+                  </div>
+                </FormItem>
+              )}
+            />
 
-//             <Button type="submit" className="w-full" disabled={isLoading}>
-//               {isLoading ? "Authenticating..." : "Continue with SSO"}
-//             </Button>
-//           </form>
-//         </Form>
-//       </CardContent>
-//       <CardFooter>
-//         <p className="text-sm text-muted-foreground">
-//           Contact your IT administrator if you're having trouble logging in.
-//         </p>
-//       </CardFooter>
-//     </Card>
-//   );
-// }
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Authenticating..." : "Continue with SSO"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+      <CardFooter>
+        <p className="text-sm text-muted-foreground">
+          Contact your IT administrator if you're having trouble logging in.
+        </p>
+      </CardFooter>
+    </Card>
+  );
+}
