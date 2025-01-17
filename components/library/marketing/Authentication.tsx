@@ -61,219 +61,219 @@ const signUpSchema = z
 
 type FormData = z.infer<typeof signUpSchema>;
 
-// export function SimpleSignUp() {
-//   const [isLoading, setIsLoading] = useState<boolean>(false);
+export function SimpleSignUp() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-//   const form = useForm<FormData>({
-//     resolver: zodResolver(signUpSchema),
-//     defaultValues: {
-//       username: "",
-//       email: "",
-//       password: "",
-//       confirmPassword: "",
-//       terms: false,
-//     },
-//   });
+  const form = useForm<FormData>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      terms: false,
+    },
+  });
 
-//   function onSubmit(values: FormData) {
-//     setIsLoading(true);
-//     // Simulate API call
-//     setTimeout(() => {
-//       setIsLoading(false);
-//       console.log(values);
-//       // Here you would typically send the data to your backend
-//     }, 2000);
-//   }
+  function onSubmit(values: FormData) {
+    setIsLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log(values);
+      // Here you would typically send the data to your backend
+    }, 2000);
+  }
 
-//   return (
-//     <Card className="w-[400px] bg-secondary/50">
-//       <CardHeader className="space-y-1">
-//         <CardTitle className="font-medium">Welcome 👋</CardTitle>
-//         <CardDescription className="text-2xl ">
-//           Let's get started!
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent>
-//         <Form {...form}>
-//           <form
-//             onSubmit={form.handleSubmit(onSubmit)}
-//             className="flex flex-col gap-8"
-//           >
-//             <div className="space-y-4">
-//               <FormField
-//                 control={form.control}
-//                 name="username"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Username</FormLabel>
-//                     <FormControl>
-//                       <Input placeholder="John Doe" {...field} />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//               <FormField
-//                 control={form.control}
-//                 name="email"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Email</FormLabel>
-//                     <FormControl>
-//                       <Input
-//                         type="email"
-//                         placeholder="john@example.com"
-//                         {...field}
-//                       />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//               <FormField
-//                 control={form.control}
-//                 name="password"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Password</FormLabel>
-//                     <FormControl>
-//                       <Input
-//                         type="password"
-//                         placeholder="Create a strong password"
-//                         {...field}
-//                       />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//               <FormField
-//                 control={form.control}
-//                 name="confirmPassword"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Confirm Password</FormLabel>
-//                     <FormControl>
-//                       <Input
-//                         type="password"
-//                         placeholder="Retype your password"
-//                         {...field}
-//                       />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//             </div>
-//             <div>
-//               <Button type="submit" className="w-full" disabled={isLoading}>
-//                 {isLoading ? "Creating account..." : "Create new account"}
-//               </Button>
-//             </div>
-//           </form>
-//         </Form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+  return (
+    <Card className="w-[400px] bg-secondary/50">
+      <CardHeader className="space-y-1">
+        <CardTitle className="font-medium">Welcome 👋</CardTitle>
+        <CardDescription className="text-2xl ">
+          Let's get started!
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-8"
+          >
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="username"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Username</FormLabel>
+                    <FormControl>
+                      <Input placeholder="John Doe" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="john@example.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Create a strong password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="confirmPassword"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Confirm Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Retype your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Creating account..." : "Create new account"}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+}
 
-// // SIMPLE SIGN IN FORM
+// SIMPLE SIGN IN FORM
 
-// const signInSchema = z.object({
-//   email: z.string().email({
-//     message: "Please enter a valid email address.",
-//   }),
-//   password: z.string().min(8, {
-//     message: "Password must be at least 8 characters.",
-//   }),
-// });
+const signInSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address.",
+  }),
+  password: z.string().min(8, {
+    message: "Password must be at least 8 characters.",
+  }),
+});
 
-// type SignInFormData = z.infer<typeof signInSchema>;
+type SignInFormData = z.infer<typeof signInSchema>;
 
-// export function SimpleSignIn() {
-//   const [isLoading, setIsLoading] = useState<boolean>(false);
+export function SimpleSignIn() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-//   const form = useForm<SignInFormData>({
-//     resolver: zodResolver(signInSchema),
-//     defaultValues: {
-//       email: "",
-//       password: "",
-//     },
-//   });
+  const form = useForm<SignInFormData>({
+    resolver: zodResolver(signInSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-//   function onSubmit(values: SignInFormData) {
-//     setIsLoading(true);
-//     // Simulate API call
-//     setTimeout(() => {
-//       setIsLoading(false);
-//       console.log(values);
-//       // Here you would typically send the data to your backend
-//     }, 2000);
-//   }
+  function onSubmit(values: SignInFormData) {
+    setIsLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log(values);
+      // Here you would typically send the data to your backend
+    }, 2000);
+  }
 
-//   return (
-//     <Card className="w-[400px] bg-secondary/50">
-//       <CardHeader className="space-y-1">
-//         <CardTitle className="font-medium">Welcome Back 👋</CardTitle>
-//         <CardDescription className="text-2xl ">
-//           Sign in to your account
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent>
-//         <Form {...form}>
-//           <form
-//             onSubmit={form.handleSubmit(onSubmit)}
-//             className="flex flex-col gap-8"
-//           >
-//             <div className="space-y-4">
-//               <FormField
-//                 control={form.control}
-//                 name="email"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Email</FormLabel>
-//                     <FormControl>
-//                       <Input
-//                         type="email"
-//                         placeholder="john@example.com"
-//                         {...field}
-//                       />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//               <FormField
-//                 control={form.control}
-//                 name="password"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Password</FormLabel>
-//                     <FormControl>
-//                       <Input
-//                         type="password"
-//                         placeholder="Enter your password"
-//                         {...field}
-//                       />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//             </div>
-//             <div>
-//               <Button type="submit" className="w-full" disabled={isLoading}>
-//                 {isLoading ? "Signing in..." : "Sign in"}
-//               </Button>
-//             </div>
-//           </form>
-//         </Form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+  return (
+    <Card className="w-[400px] bg-secondary/50">
+      <CardHeader className="space-y-1">
+        <CardTitle className="font-medium">Welcome Back 👋</CardTitle>
+        <CardDescription className="text-2xl ">
+          Sign in to your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-8"
+          >
+            <div className="space-y-4">
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="email"
+                        placeholder="john@example.com"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="password"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Password</FormLabel>
+                    <FormControl>
+                      <Input
+                        type="password"
+                        placeholder="Enter your password"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div>
+              <Button type="submit" className="w-full" disabled={isLoading}>
+                {isLoading ? "Signing in..." : "Sign in"}
+              </Button>
+            </div>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+}
 
-// // ALL IN ONE COMPONENT
+// ALL IN ONE COMPONENT
 
 // export function AllInOneAuthentication() {
 //   const [isLoading, setIsLoading] = useState<boolean>(false);
