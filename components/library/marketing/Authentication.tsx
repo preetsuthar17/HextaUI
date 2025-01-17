@@ -275,167 +275,167 @@ export function SimpleSignIn() {
 
 // ALL IN ONE COMPONENT
 
-// export function AllInOneAuthentication() {
-//   const [isLoading, setIsLoading] = useState<boolean>(false);
-//   const [authMethod, setAuthMethod] = useState<string>("email");
+export function AllInOneAuthentication() {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [authMethod, setAuthMethod] = useState<string>("email");
 
-//   const form = useForm<FormData>({
-//     resolver: zodResolver(signUpSchema),
-//     defaultValues: {
-//       email: "",
-//       password: "",
-//     },
-//   });
+  const form = useForm<FormData>({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
+  });
 
-//   function onSubmit(values: FormData) {
-//     setIsLoading(true);
-//     // Simulate API call
-//     setTimeout(() => {
-//       setIsLoading(false);
-//       console.log(values);
-//       // Here you would typically send the data to your backend
-//     }, 2000);
-//   }
+  function onSubmit(values: FormData) {
+    setIsLoading(true);
+    // Simulate API call
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log(values);
+      // Here you would typically send the data to your backend
+    }, 2000);
+  }
 
-//   function handleSocialLogin(provider: string) {
-//     console.log(`Logging in with ${provider}`);
-//     // Here you would typically initiate the OAuth flow for the selected provider
-//   }
+  function handleSocialLogin(provider: string) {
+    console.log(`Logging in with ${provider}`);
+    // Here you would typically initiate the OAuth flow for the selected provider
+  }
 
-//   function handleMagicLink() {
-//     const email = form.getValues("email");
-//     if (email) {
-//       console.log(`Sending magic link to ${email}`);
-//       // Here you would typically send a magic link to the provided email
-//     } else {
-//       form.setError("email", {
-//         type: "manual",
-//         message: "Email is required for magic link",
-//       });
-//     }
-//   }
+  function handleMagicLink() {
+    const email = form.getValues("email");
+    if (email) {
+      console.log(`Sending magic link to ${email}`);
+      // Here you would typically send a magic link to the provided email
+    } else {
+      form.setError("email", {
+        type: "manual",
+        message: "Email is required for magic link",
+      });
+    }
+  }
 
-//   return (
-//     <Card className="w-[400px] bg-secondary/50">
-//       <CardHeader>
-//         <CardTitle>Authentication</CardTitle>
-//         <CardDescription>
-//           Choose your preferred method to sign in
-//         </CardDescription>
-//       </CardHeader>
-//       <CardContent>
-//         <Tabs defaultValue="email" onValueChange={setAuthMethod}>
-//           <TabsList className="grid w-full grid-cols-3">
-//             <TabsTrigger value="email">Email</TabsTrigger>
-//             <TabsTrigger value="social">Social</TabsTrigger>
-//             <TabsTrigger value="magic">Magic Link</TabsTrigger>
-//           </TabsList>
-//           <TabsContent value="email">
-//             <Form {...form}>
-//               <form
-//                 onSubmit={form.handleSubmit(onSubmit)}
-//                 className="space-y-4"
-//               >
-//                 <FormField
-//                   control={form.control}
-//                   name="email"
-//                   render={({ field }) => (
-//                     <FormItem>
-//                       <FormLabel>Email</FormLabel>
-//                       <FormControl>
-//                         <Input
-//                           type="email"
-//                           placeholder="you@example.com"
-//                           {...field}
-//                         />
-//                       </FormControl>
-//                       <FormMessage />
-//                     </FormItem>
-//                   )}
-//                 />
-//                 <FormField
-//                   control={form.control}
-//                   name="password"
-//                   render={({ field }) => (
-//                     <FormItem>
-//                       <FormLabel>Password</FormLabel>
-//                       <FormControl>
-//                         <Input
-//                           type="password"
-//                           placeholder="••••••••"
-//                           {...field}
-//                         />
-//                       </FormControl>
-//                       <FormMessage />
-//                     </FormItem>
-//                   )}
-//                 />
-//                 <Button type="submit" className="w-full" disabled={isLoading}>
-//                   {isLoading ? "Signing in..." : "Sign in"}
-//                 </Button>
-//               </form>
-//             </Form>
-//           </TabsContent>
-//           <TabsContent value="social">
-//             <div className="space-y-4 pt-2">
-//               <Button
-//                 variant="outline"
-//                 className="w-full"
-//                 onClick={() => handleSocialLogin("github")}
-//               >
-//                 <Github className="mr-2 h-4 w-4" />
-//                 Continue with GitHub
-//               </Button>
-//               <Button
-//                 variant="outline"
-//                 className="w-full"
-//                 onClick={() => handleSocialLogin("twitter")}
-//               >
-//                 <Twitter className="mr-2 h-4 w-4" />
-//                 Continue with Twitter
-//               </Button>
-//               <Separator />
-//               <p className="text-center text-sm text-muted-foreground">
-//                 More options coming soon...
-//               </p>
-//             </div>
-//           </TabsContent>
-//           <TabsContent value="magic">
-//             <Form {...form}>
-//               <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
-//                 <FormField
-//                   control={form.control}
-//                   name="email"
-//                   render={({ field }) => (
-//                     <FormItem>
-//                       <FormLabel>Email</FormLabel>
-//                       <FormControl>
-//                         <Input
-//                           type="email"
-//                           placeholder="you@example.com"
-//                           {...field}
-//                         />
-//                       </FormControl>
-//                       <FormMessage />
-//                     </FormItem>
-//                   )}
-//                 />
-//                 <Button
-//                   type="button"
-//                   className="w-full"
-//                   onClick={handleMagicLink}
-//                 >
-//                   <Mail className="mr-2 h-4 w-4" />
-//                   Send Magic Link
-//                 </Button>
-//               </form>
-//             </Form>
-//           </TabsContent>
-//         </Tabs>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+  return (
+    <Card className="w-[400px] bg-secondary/50">
+      <CardHeader>
+        <CardTitle>Authentication</CardTitle>
+        <CardDescription>
+          Choose your preferred method to sign in
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Tabs defaultValue="email" onValueChange={setAuthMethod}>
+          <TabsList className="grid w-full grid-cols-3">
+            <TabsTrigger value="email">Email</TabsTrigger>
+            <TabsTrigger value="social">Social</TabsTrigger>
+            <TabsTrigger value="magic">Magic Link</TabsTrigger>
+          </TabsList>
+          <TabsContent value="email">
+            <Form {...form}>
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-4"
+              >
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="you@example.com"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Password</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="password"
+                          placeholder="••••••••"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button type="submit" className="w-full" disabled={isLoading}>
+                  {isLoading ? "Signing in..." : "Sign in"}
+                </Button>
+              </form>
+            </Form>
+          </TabsContent>
+          <TabsContent value="social">
+            <div className="space-y-4 pt-2">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => handleSocialLogin("github")}
+              >
+                <Github className="mr-2 h-4 w-4" />
+                Continue with GitHub
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => handleSocialLogin("twitter")}
+              >
+                <Twitter className="mr-2 h-4 w-4" />
+                Continue with Twitter
+              </Button>
+              <Separator />
+              <p className="text-center text-sm text-muted-foreground">
+                More options coming soon...
+              </p>
+            </div>
+          </TabsContent>
+          <TabsContent value="magic">
+            <Form {...form}>
+              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Email</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="email"
+                          placeholder="you@example.com"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  className="w-full"
+                  onClick={handleMagicLink}
+                >
+                  <Mail className="mr-2 h-4 w-4" />
+                  Send Magic Link
+                </Button>
+              </form>
+            </Form>
+          </TabsContent>
+        </Tabs>
+      </CardContent>
+    </Card>
+  );
+}
 
 // // Two-Factor Authentication Form
 // const twoFactorSchema = z.object({
