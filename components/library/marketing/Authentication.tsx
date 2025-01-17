@@ -437,114 +437,114 @@ export function AllInOneAuthentication() {
   );
 }
 
-// // Two-Factor Authentication Form
-// const twoFactorSchema = z.object({
-//   verificationMethod: z.enum(["sms", "authenticator", "email"]),
-//   phoneNumber: z.string().optional(),
-//   code: z.string().min(6, "Verification code must be 6 digits").max(6),
-// });
+// Two-Factor Authentication Form
+const twoFactorSchema = z.object({
+  verificationMethod: z.enum(["sms", "authenticator", "email"]),
+  phoneNumber: z.string().optional(),
+  code: z.string().min(6, "Verification code must be 6 digits").max(6),
+});
 
-// type TwoFactorFormData = z.infer<typeof twoFactorSchema>;
+type TwoFactorFormData = z.infer<typeof twoFactorSchema>;
 
-// export function TwoFactorAuthForm() {
-//   const [isLoading, setIsLoading] = useState(false);
-//   const [codeSent, setCodeSent] = useState(false);
+export function TwoFactorAuthForm() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [codeSent, setCodeSent] = useState(false);
 
-//   const form = useForm<TwoFactorFormData>({
-//     resolver: zodResolver(twoFactorSchema),
-//     defaultValues: {
-//       verificationMethod: "authenticator",
-//       code: "",
-//     },
-//   });
+  const form = useForm<TwoFactorFormData>({
+    resolver: zodResolver(twoFactorSchema),
+    defaultValues: {
+      verificationMethod: "authenticator",
+      code: "",
+    },
+  });
 
-//   function onSubmit(values: TwoFactorFormData) {
-//     setIsLoading(true);
-//     setTimeout(() => {
-//       setIsLoading(false);
-//       console.log(values);
-//     }, 1500);
-//   }
+  function onSubmit(values: TwoFactorFormData) {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      console.log(values);
+    }, 1500);
+  }
 
-//   return (
-//     <Card className="w-[400px] bg-secondary/50">
-//       <CardHeader>
-//         <CardTitle className="flex items-center gap-2">
-//           <Shield className="h-5 w-5" />
-//           Two-Factor Authentication
-//         </CardTitle>
-//         <CardDescription>Verify your identity to continue</CardDescription>
-//       </CardHeader>
-//       <CardContent>
-//         <Form {...form}>
-//           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-//             <FormField
-//               control={form.control}
-//               name="verificationMethod"
-//               render={({ field }) => (
-//                 <FormItem>
-//                   <FormLabel>Verification Method</FormLabel>
-//                   <Select
-//                     onValueChange={field.onChange}
-//                     defaultValue={field.value}
-//                   >
-//                     <FormControl>
-//                       <SelectTrigger>
-//                         <SelectValue placeholder="Select verification method" />
-//                       </SelectTrigger>
-//                     </FormControl>
-//                     <SelectContent>
-//                       <SelectItem value="authenticator">
-//                         Authenticator App
-//                       </SelectItem>
-//                       <SelectItem value="sms">SMS</SelectItem>
-//                       <SelectItem value="email">Email</SelectItem>
-//                     </SelectContent>
-//                   </Select>
-//                   <FormMessage />
-//                 </FormItem>
-//               )}
-//             />
+  return (
+    <Card className="w-[400px] bg-secondary/50">
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Shield className="h-5 w-5" />
+          Two-Factor Authentication
+        </CardTitle>
+        <CardDescription>Verify your identity to continue</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+            <FormField
+              control={form.control}
+              name="verificationMethod"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Verification Method</FormLabel>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Select verification method" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      <SelectItem value="authenticator">
+                        Authenticator App
+                      </SelectItem>
+                      <SelectItem value="sms">SMS</SelectItem>
+                      <SelectItem value="email">Email</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-//             {form.watch("verificationMethod") === "sms" && (
-//               <FormField
-//                 control={form.control}
-//                 name="phoneNumber"
-//                 render={({ field }) => (
-//                   <FormItem>
-//                     <FormLabel>Phone Number</FormLabel>
-//                     <FormControl>
-//                       <Input placeholder="+1 (555) 000-0000" {...field} />
-//                     </FormControl>
-//                     <FormMessage />
-//                   </FormItem>
-//                 )}
-//               />
-//             )}
+            {form.watch("verificationMethod") === "sms" && (
+              <FormField
+                control={form.control}
+                name="phoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone Number</FormLabel>
+                    <FormControl>
+                      <Input placeholder="+1 (555) 000-0000" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            )}
 
-//             <FormField
-//               control={form.control}
-//               name="code"
-//               render={({ field }) => (
-//                 <FormItem>
-//                   <FormLabel>Verification Code</FormLabel>
-//                   <FormControl>
-//                     <Input placeholder="000000" maxLength={6} {...field} />
-//                   </FormControl>
-//                   <FormMessage />
-//                 </FormItem>
-//               )}
-//             />
+            <FormField
+              control={form.control}
+              name="code"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Verification Code</FormLabel>
+                  <FormControl>
+                    <Input placeholder="000000" maxLength={6} {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
 
-//             <Button type="submit" className="w-full" disabled={isLoading}>
-//               {isLoading ? "Verifying..." : "Verify"}
-//             </Button>
-//           </form>
-//         </Form>
-//       </CardContent>
-//     </Card>
-//   );
-// }
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? "Verifying..." : "Verify"}
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
+  );
+}
 
 // // Enterprise SSO Login Form
 // const ssoSchema = z.object({
