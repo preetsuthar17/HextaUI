@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "pages": [
+    "---Guide---",
+    "get-started",
+    "templates",
+    "---Components---",
+    "animation",
+    "text",
+    "application",
+    "data",
+    "marketing"
+  ]
+}
