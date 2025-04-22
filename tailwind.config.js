@@ -1,5 +1,5 @@
 // @ts-check
-import { createPreset } from "fumadocs-ui/tailwind-plugin";
+// import { createPreset } from "fumadocs-ui/tailwind-plugin";
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -11,12 +11,12 @@ export default {
     "./mdx-components.{ts,tsx}",
     "./node_modules/fumadocs-ui/dist/**/*.js",
   ],
-  presets: [
-    createPreset({
-      preset: "vitepress",
-    }),
-  ],
-  plugins: [require("tailwindcss-animate")],
+  // presets: [
+  //   createPreset({
+  //     preset: "vitepress",
+  //   }),
+  // ],
+  // plugins: [require("tailwindcss-animate")],
   theme: {
     extend: {
       borderRadius: {
