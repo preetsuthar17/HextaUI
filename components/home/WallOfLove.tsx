@@ -94,7 +94,7 @@ const WallOfLove = () => {
           <div className="flex items-center justify-center text-center mt-8">
             <div className="text-center text-primary/70">
               <Link
-                className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10"
+                className="px-6 bg-linear-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10"
                 href="https://twitter.com/intent/tweet?text=I%20love%20HextaUI%20%F0%9F%92%96%0A%0Ahttps%3A%2F%2Fhextaui.com&url="
               >
                 Share your experience

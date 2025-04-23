@@ -78,7 +78,7 @@ export const DraggableList: React.FC<DraggableListProps> = ({
             onDragOver={(e) => handleDragOver(e, item.id)}
             onDragEnd={handleDragEnd}
             className={cn(
-              "cursor-grab rounded-lg border bg-secondary/50 border-primary/10 p-4 shadow-sm transition-colors",
+              "cursor-grab rounded-lg border bg-secondary/50 border-primary/10 p-4 shadow-xs transition-colors",
               dragOverItemId === item.id &&
                 "border-2 border-orange bg-secondary/40",
               draggedItem?.id === item.id &&

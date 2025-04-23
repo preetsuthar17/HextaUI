@@ -1,11 +1,139 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+@source '../node_modules/fumadocs-ui/dist/**/*.js';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme {
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --color-background: hsl(var(--background));
+  --color-homecards: hsl(var(--home-cards));
+  --color-foreground: hsl(var(--foreground));
+  --color-orange: hsl(var(--orange));
+  --color-blue: hsl(var(--blue));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-chart-1: hsl(var(--chart-1));
+  --color-chart-2: hsl(var(--chart-2));
+  --color-chart-3: hsl(var(--chart-3));
+  --color-chart-4: hsl(var(--chart-4));
+  --color-chart-5: hsl(var(--chart-5));
+
+  --color-sidebar: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+
+  --animate-accordion-down: accordion-down 0.2s ease-out;
+  --animate-accordion-up: accordion-up 0.2s ease-out;
+  --animate-meteor: meteor 0.2s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marquee-y: marqueeY var(--duration) linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(215deg) translateX(0);
+      opacity: 0%;
+    }
+    70% {
+      opacity: 100%;
+    }
+    100% {
+      transform: rotate(215deg) translateX(-500px);
+      opacity: 0;
+    }
+  }
+  @keyframes accordion-down {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes accordion-up {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marqueeY {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@layer utilities {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
 }
 
 @layer base {
@@ -107,7 +235,7 @@ code {
 
 /* react-tweet */
 
-.tweet-container_article__gTBag {
+.tweet-container_article__0ERPK {
   display: flex !important;
   flex-direction: column !important;
   justify-items: center !important;
@@ -119,7 +247,7 @@ code {
   border: 1px solid hsl(var(--primary) / 10%) !important;
 }
 
-.quoted-tweet-container_root___TGKv {
+.quoted-tweet-container_root__92393 {
   border: 1px solid hsl(var(--primary) / 10%) !important;
   background: hsl(var(--secondary) / 50%) !important;
   border-radius: 16px !important;
@@ -129,7 +257,7 @@ code {
   border-radius: 8px !important;
 }
 
-.tweet-container_root__fgWUE {
+.tweet-container_root__0rJLq {
   border-radius: 16px !important;
   background-color: var(--background) !important;
   border: 1px solid hsl(var(--primary) / 10%) !important;
@@ -138,7 +266,7 @@ code {
   margin-top: 0 !important;
 }
 
-.tweet-header_header__5PnKS {
+.tweet-header_header__CXzdi {
   display: flex !important;
   justify-content: space-between !important;
   align-items: center !important;
@@ -146,33 +274,33 @@ code {
   width: 100% !important;
 }
 
-.tweet-header_avatar__fAfnL {
+.tweet-header_avatar__0Wi9G {
   width: 40px !important;
   height: 40px !important;
 }
 
-.tweet-body_root__3nbbe {
+.tweet-body_root__ChzUj {
   font-size: 15px !important;
 }
 
-.tweet-header_authorFollow__3VEyh {
+.tweet-header_follow__Fi7bf {
   display: none !important;
 }
 
-.tweet-replies_replies__Z2aQ1 {
+.tweet-replies_replies__PUxl8 {
   display: none !important;
 }
 
-.tweet-info_infoLink__uGv8F {
+.tweet-info_infoLink__xdgYO {
   display: none !important;
 }
 
-.tweet-actions_actions__N_T9z {
+.tweet-actions_actions__UDw7H {
   width: 100% !important;
 }
 
 @media screen and (max-width: 380px) {
-  .tweet-actions_copyText__NyI5I {
+  .tweet-actions_copyText__fEqBx {
     display: none !important;
   }
 }

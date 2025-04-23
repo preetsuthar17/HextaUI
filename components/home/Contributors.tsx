@@ -110,7 +110,7 @@ const Contributors = () => {
                 </div>
               ))}
               {remainingContributors > 0 && (
-                <div className="w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-secondary font-medium z-[1]">
+                <div className="w-12 h-12 rounded-full border-4 border-background flex items-center justify-center bg-secondary font-medium z-1">
                   +{remainingContributors}
                 </div>
               )}

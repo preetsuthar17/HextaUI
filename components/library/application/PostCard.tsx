@@ -25,7 +25,7 @@ export const PostCard = () => {
 
   return (
     <>
-      <div className="p-4 rounded-2xl border border-primary/10 shadow-sm border-opacity-10 bg-secondary/50 text-secondary-foreground w-full flex flex-col gap-4 max-w-[30rem] m-4 text-sm ">
+      <div className="p-4 rounded-2xl border border-primary/10 shadow-xs border-opacity-10 bg-secondary/50 text-secondary-foreground w-full flex flex-col gap-4 max-w-[30rem] m-4 text-sm ">
         <div className="flex items-center gap-4 card-header  justify-between">
           <div className="flex items-center  justify-center  gap-4">
             <div className="flex items-center">

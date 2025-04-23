@@ -48,7 +48,7 @@ export const Feedback = () => {
       >
         <div className="w-full">
           <textarea
-            className="w-full h-[8rem] p-2 rounded-md border border-primary/10 border-opacity-10 resize-none -mb-1 text-primary outline-none text-sm transition-all duration-500"
+            className="w-full h-[8rem] p-2 rounded-md border border-primary/10 border-opacity-10 resize-none -mb-1 text-primary outline-hidden text-sm transition-all duration-500"
             style={{
               filter: feedbackActive ? "blur(0px)" : "blur(100px)",
             }}

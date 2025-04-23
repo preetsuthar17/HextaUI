@@ -9,7 +9,7 @@ const CTA = () => {
   return (
     <section className="border border-t-0 border-primary/10 max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden py-20">
       {/* gradient */}
-      <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-t from-primary/10 opacity-80 to-transparent z-[-1]"></div>
+      <div className="absolute top-0 left-0 w-full h-full bg-linear-to-t from-primary/10 opacity-80 to-transparent z-[-1]"></div>
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[40rem] h-[30rem] bg-background rounded-full z-[-1] blur-[30px]"></div>
       {/* gradient */}
 
@@ -18,7 +18,7 @@ const CTA = () => {
         {Array.from({ length: 14 }).map((_, i) => (
           <div
             key={i}
-            className="flex w-[2px] h-[30rem] bg-gradient-to-t from-primary/5 to-transparent"
+            className="flex w-[2px] h-[30rem] bg-linear-to-t from-primary/5 to-transparent"
           ></div>
         ))}
       </div>
@@ -42,7 +42,7 @@ const CTA = () => {
           <Link
             href="https://github.com/preetsuthar17/HextaUI"
             target="_blank"
-            className="px-6 bg-gradient-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
+            className="px-6 bg-linear-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
           >
             <FaGithub /> Star on GitHub
           </Link>

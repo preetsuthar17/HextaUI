@@ -63,7 +63,7 @@ export function Chart({
                 if (!active || !payload) return null;
 
                 return (
-                  <div className="rounded-lg border bg-background p-2 shadow-sm">
+                  <div className="rounded-lg border bg-background p-2 shadow-xs">
                     <div className="font-medium">{label}</div>
                     {payload.map((item: any, index: number) => (
                       <div

@@ -6,8 +6,7 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import defaultMdxComponents from "fumadocs-ui/mdx";
-import { createTypeTable } from "fumadocs-typescript/ui";
+import { getMDXComponents } from "@/components/mdx-components";
 
 import { metadataImage } from "@/lib/metadata";
 import { getGithubLastEdit } from "fumadocs-core/server";
@@ -28,7 +27,7 @@ export default async function Page(props: {
     repo: "hextaui",
     path: `content/docs/${page.file.path}`,
   });
-  const { AutoTypeTable } = createTypeTable();
+
   return (
     <DocsPage
       toc={page.data.toc}
@@ -57,7 +56,7 @@ export default async function Page(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents, AutoTypeTable }} />
+        <MDX components={getMDXComponents()} />
       </DocsBody>
     </DocsPage>
   );
