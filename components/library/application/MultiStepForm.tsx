@@ -27,7 +27,7 @@ const PersonalInfoStep: React.FC<StepProps> = ({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold mb-4">Personal Information</h2>
       <div>
         <label
@@ -86,7 +86,7 @@ const AddressStep: React.FC<StepProps> = ({ updateFormData, formData }) => {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold mb-4">Address</h2>
       <div>
         <label
@@ -240,8 +240,8 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
                     index < currentStep
                       ? "bg-primary text-background"
                       : index === currentStep
-                        ? "border-primary"
-                        : "border-muted-foreground"
+                      ? "border-primary"
+                      : "border-muted-foreground"
                   }`}
                 >
                   {index < currentStep ? "✓" : index + 1}
