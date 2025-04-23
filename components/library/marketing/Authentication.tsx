@@ -99,7 +99,7 @@ export function SimpleSignUp() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-8"
           >
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4">
               <FormField
                 control={form.control}
                 name="username"
@@ -225,7 +225,7 @@ export function SimpleSignIn() {
             onSubmit={form.handleSubmit(onSubmit)}
             className="flex flex-col gap-8"
           >
-            <div className="space-y-4">
+            <div className="flex flex-col gap-4">
               <FormField
                 control={form.control}
                 name="email"
@@ -334,7 +334,7 @@ export function AllInOneAuthentication() {
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
-                className="space-y-4"
+                className="flex flex-col gap-4"
               >
                 <FormField
                   control={form.control}
@@ -377,7 +377,7 @@ export function AllInOneAuthentication() {
             </Form>
           </TabsContent>
           <TabsContent value="social">
-            <div className="space-y-4 pt-2">
+            <div className="flex flex-col gap-4 pt-2">
               <Button
                 variant="outline"
                 className="w-full"
@@ -402,7 +402,10 @@ export function AllInOneAuthentication() {
           </TabsContent>
           <TabsContent value="magic">
             <Form {...form}>
-              <form onSubmit={(e) => e.preventDefault()} className="space-y-4">
+              <form
+                onSubmit={(e) => e.preventDefault()}
+                className="flex flex-col gap-4"
+              >
                 <FormField
                   control={form.control}
                   name="email"
