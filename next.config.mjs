@@ -6,7 +6,16 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: true,
   images: {
-    domains: ["i.imgur.com", "placehold.co"],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'i.imgur.com'
+      },
+      {
+        protocol: 'https',
+        hostname: 'placehold.co'
+      }
+    ]
   },
 };
 
