@@ -480,7 +480,10 @@ export function TwoFactorAuthForm() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             <FormField
               control={form.control}
               name="verificationMethod"
@@ -591,7 +594,10 @@ export function EnterpriseSSO() {
       </CardHeader>
       <CardContent>
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+          <form
+            onSubmit={form.handleSubmit(onSubmit)}
+            className="flex flex-col gap-4"
+          >
             <FormField
               control={form.control}
               name="organization"
@@ -624,7 +630,7 @@ export function EnterpriseSSO() {
               control={form.control}
               name="rememberDevice"
               render={({ field }) => (
-                <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+                <FormItem className="flex flex-row items-start gap-2 space-y-0">
                   <FormControl>
                     <Checkbox
                       checked={field.value}
