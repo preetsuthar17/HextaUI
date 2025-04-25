@@ -18,7 +18,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);
@@ -75,7 +75,7 @@ const Hero = () => {
         {/* background bars */}
 
         <div className="flex flex-col justify-center gap-8 p-[2rem] max-sm:px-[1rem]">
-          <motion.div
+          {/* <motion.div
             variants={container}
             initial="hidden"
             animate="show"
@@ -94,7 +94,7 @@ const Hero = () => {
                 height="54"
               />
             </a>
-          </motion.div>
+          </motion.div> */}
           <motion.h1
             variants={container}
             initial="hidden"
