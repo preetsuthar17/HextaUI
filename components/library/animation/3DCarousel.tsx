@@ -24,7 +24,7 @@ export function useMediaQuery(
   {
     defaultValue = false,
     initializeWithValue = true,
-  }: UseMediaQueryOptions = {},
+  }: UseMediaQueryOptions = {}
 ): boolean {
   const getMatches = (query: string): boolean => {
     if (IS_SERVER) {
@@ -100,7 +100,7 @@ const Carousel = memo(
     const rotation = useMotionValue(0);
     const transform = useTransform(
       rotation,
-      (value) => `rotate3d(0, 1, 0, ${value}deg)`,
+      (value) => `rotate3d(0, 1, 0, ${value}deg)`
     );
 
     return (
@@ -166,7 +166,7 @@ const Carousel = memo(
         </motion.div>
       </div>
     );
-  },
+  }
 );
 
 const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
@@ -178,7 +178,7 @@ export const ThreeDCarousel = () => {
   const controls = useAnimation();
   const cards = useMemo(
     () => keywords.map((keyword) => `https://picsum.photos/200/300?${keyword}`),
-    [],
+    []
   );
 
   useEffect(() => {
@@ -207,7 +207,7 @@ export const ThreeDCarousel = () => {
             layoutId={`img-container-${activeImg}`}
             layout="position"
             onClick={handleClose}
-            className="fixed inset-0 bg-black bg-opacity-10 flex items-center justify-center z-50 m-5 md:m-36 lg:mx-[19rem] rounded-3xl h-fit"
+            className="fixed inset-0 bg-black/10 flex items-center justify-center z-50 m-5 md:m-36 lg:mx-[19rem] rounded-3xl h-fit"
             style={{ willChange: "opacity" }}
             transition={transitionOverlay}
           >
