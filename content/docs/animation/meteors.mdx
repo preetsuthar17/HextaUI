@@ -10,41 +10,31 @@ import { Meteors } from "@/components/library/animation/Meteors";
 
 <PreviewContainer>
   <div className="translate-y-[-10rem] w-full h-full flex items-start justify-start translate-x-[-20rem]">
-    <Meteors />
+    <Meteors number={10} />
   </div>
 </PreviewContainer>
 
 ## Code
 
-```tsx title="tailwind.config.js"
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      keyframes: {
-        // ...
-        meteor: {
-          "0%": { transform: "rotate(215deg) translateX(0)", opacity: "0" },
-          "70%": { opacity: "100%" },
-          "100%": {
-            transform: "rotate(215deg) translateX(-500px)",
-            opacity: "",
-          },
-        },
-      },
-      animation: {
-        // ...
-        meteor: "meteor 0.2s linear infinite",
-      },
-    },
-  },
-  plugins: [],
-};
+```css title="global.css"
+@theme {
+  /* -------------------- Tailwind v4 ------------------------ */
+  --animate-meteor: meteor 0.2s linear infinite;
+
+  @keyframes meteor {
+    0% {
+      transform: rotate(200deg) translateX(0);
+      opacity: 0%;
+    }
+    70% {
+      opacity: 100%;
+    }
+    100% {
+      transform: rotate(200deg) translateX(-500px);
+      opacity: 0;
+    }
+  }
+}
 ```
 
 ```tsx title="Meteors.tsx"
@@ -58,13 +48,13 @@ const cn = (...args: any[]) => {
   return clsx(twMerge(...args));
 };
 
-interface MeteorsProps {
+export interface MeteorsProps {
   number?: number;
 }
 
 export const Meteors = ({ number = 20 }: MeteorsProps) => {
   const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
-    [],
+    []
   );
 
   useEffect(() => {
@@ -83,11 +73,11 @@ export const Meteors = ({ number = 20 }: MeteorsProps) => {
         <span
           key={idx}
           className={cn(
-            "pointer-events-none absolute left-1/2 top-1/2 h-0.5 w-0.5 rotate-[215deg] animate-meteor rounded-[9999px] bg-white shadow-[0_0_90px_10px_#ffffff10]",
+            "pointer-events-none absolute left-1/2 top-1/2 h-0.5 w-0.5  rotate-[215deg] animate-meteor rounded-[9999px] bg-white shadow-[0_0_90px_10px_#ffffff10]"
           )}
           style={style}
         >
-          <div className="pointer-events-none absolute top-1/2 -z-10 h-[1px] w-[50px] -translate-y-1/2 bg-linear-to-r from-slate-500 to-transparent" />
+          <div className="pointer-events-none absolute top-1/2 -z-10 h-[1px] w-[50px] translate-x-[-50px] -translate-y-1/2 bg-linear-to-l from-slate-500 to-transparent" />
         </span>
       ))}
     </>
