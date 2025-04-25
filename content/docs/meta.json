@@ -3,8 +3,9 @@
   "pages": [
     "---Guide---",
     "get-started",
-    "templates",
+    "upgrade-tailwind-v3-to-v4",
     "---Components---",
+    "templates",
     "animation",
     "text",
     "application",
