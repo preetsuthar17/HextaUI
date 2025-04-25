@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { FaGithub, FaStar } from "react-icons/fa";
 
@@ -18,7 +18,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);
