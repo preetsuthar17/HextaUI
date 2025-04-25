@@ -27,10 +27,10 @@ export const DraggableList: React.FC<DraggableListProps> = ({
 }) => {
   const [items, setItems] = useState(initialItems);
   const [draggedItem, setDraggedItem] = useState<DraggableItemProps | null>(
-    null,
+    null
   );
   const [dragOverItemId, setDragOverItemId] = useState<string | number | null>(
-    null,
+    null
   );
 
   const handleDragStart = (item: DraggableItemProps) => {
@@ -63,7 +63,7 @@ export const DraggableList: React.FC<DraggableListProps> = ({
   };
 
   return (
-    <div className={cn("space-y-2", className)}>
+    <div className={cn("flex flex-col gap-2", className)}>
       <AnimatePresence>
         {items.map((item) => (
           <motion.div
@@ -82,7 +82,7 @@ export const DraggableList: React.FC<DraggableListProps> = ({
               dragOverItemId === item.id &&
                 "border-2 border-orange bg-secondary/40",
               draggedItem?.id === item.id &&
-                "border-2 border-gray-400 opacity-50",
+                "border-2 border-gray-400 opacity-50"
             )}
           >
             {item.content}
@@ -120,10 +120,12 @@ export const DraggableListExample = () => {
   };
 
   return (
-    <DraggableList
-      items={items}
-      onChange={handleReorder}
-      className="max-w-md"
-    />
+    <div className="flex flex-col gap-2">
+      <DraggableList
+        items={items}
+        onChange={handleReorder}
+        className="max-w-md flex"
+      />
+    </div>
   );
 };
