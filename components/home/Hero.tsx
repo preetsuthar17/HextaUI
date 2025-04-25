@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 import { FaGithub, FaStar } from "react-icons/fa";
 
