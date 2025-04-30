@@ -174,7 +174,7 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
 
     /* custom colors */
-    --orange: 12, 76%, 61%;
+    --orange: #fc5212;
     --blue: 221, 83%, 53%;
   }
   .dark {
