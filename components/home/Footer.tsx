@@ -1,3 +1,4 @@
+import { Star } from "lucide-react";
 import { NextPage } from "next";
 import Link from "next/link";
 
@@ -7,18 +8,13 @@ const Footer: NextPage<Props> = ({}) => {
   return (
     <footer>
       <div className="mt-20 border-t py-10 h-full flex items-center text-center justify-center  bg-homecards flex-col-reverse gap-4">
-        <a
-          href="https://www.producthunt.com/posts/hextaui-2?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-hextaui&#0045;2"
+        <Link
+          href="https://github.com/sponsors/preetsuthar17"
           target="_blank"
+          className="px-6 bg-linear-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10  hover:fill-yellow-300"
         >
-          <img
-            src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=768925&theme=dark"
-            alt="HextaUI - Build&#0032;stunning&#0032;websites&#0032;with&#0032;less&#0032;effort | Product Hunt"
-            style={{ width: "250px", height: "54px" }}
-            width="250"
-            height="54"
-          />
-        </a>
+          <Star size={15} fill="yellow" /> Sponsor HextaUI
+        </Link>
         <div>
           <p className="text-primary/70">
             Made with ❤️ by{" "}

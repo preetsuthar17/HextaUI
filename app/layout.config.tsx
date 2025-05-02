@@ -2,7 +2,7 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
 import Image from "next/image";
 
-import { AlbumIcon } from "lucide-react";
+import { AlbumIcon, Star } from "lucide-react";
 import { LayoutPanelTop } from "lucide-react";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 
@@ -36,20 +36,20 @@ export const baseOptions: BaseLayoutProps = {
     {
       text: "Components",
       url: "/docs/application/animated-dock",
-      active: "nested-url",
+      active: "url",
       icon: <LayoutPanelTop />,
     },
     {
-      text: "Discord",
+      text: "Discord Server",
       url: "https://t.co/H48AyU1HnG",
       active: "nested-url",
       icon: <FaDiscord />,
     },
     {
-      text: "GitHub",
-      url: "https://github.com/preetsuthar17/HextaUI",
+      text: "Sponsor HextaUI",
+      url: "https://github.com/sponsors/preetsuthar17",
       active: "nested-url",
-      icon: <FaGithub />,
+      icon: <Star />,
     },
   ],
 };
