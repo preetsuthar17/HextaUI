@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { AlbumIcon } from "lucide-react";
 import { LayoutPanelTop } from "lucide-react";
+import { FaDiscord, FaGithub } from "react-icons/fa";
 
 /**
  * Shared layout configurations
@@ -37,6 +38,18 @@ export const baseOptions: BaseLayoutProps = {
       url: "/docs/application/animated-dock",
       active: "nested-url",
       icon: <LayoutPanelTop />,
+    },
+    {
+      text: "Discord",
+      url: "https://t.co/H48AyU1HnG",
+      active: "nested-url",
+      icon: <FaDiscord />,
+    },
+    {
+      text: "GitHub",
+      url: "https://github.com/preetsuthar17/HextaUI",
+      active: "nested-url",
+      icon: <FaGithub />,
     },
   ],
 };
