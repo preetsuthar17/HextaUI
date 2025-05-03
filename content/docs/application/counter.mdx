@@ -22,19 +22,11 @@ import { useEffect, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
 
-const cn = (...args: any[]) => {
-  return twMerge(clsx(args));
-};
+const cn = (...args: any[]) => twMerge(clsx(args));
 
-const fontSize = 40;
-const padding = 10;
-const height = fontSize + padding;
+const digitHeight = 40 + 10; // fontSize (40) + padding (10)
 
-interface CounterProps
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLParagraphElement>,
-    HTMLParagraphElement
-  > {
+export interface CounterProps {
   start?: number;
   end: number;
   duration?: number;
@@ -53,25 +45,25 @@ export const Counter = ({
   const [value, setValue] = useState(start);
 
   useEffect(() => {
-    const interval = setInterval(
-      () => {
-        if (value < end) {
-          setValue((prev) => prev + 1);
-        }
-      },
-      (duration / (end - start)) * 1000,
-    );
+    const stepTime = (duration / (end - start)) * 1000;
+    const interval = setInterval(() => {
+      setValue((prev) => {
+        if (prev < end) return prev + 1;
+        clearInterval(interval);
+        return prev;
+      });
+    }, stepTime);
 
     return () => clearInterval(interval);
-  }, [value]);
+  }, [start, end, duration]);
 
   return (
     <div
       style={{ fontSize }}
       {...rest}
       className={cn(
-        "flex overflow-hidden rounded px-2 leading-none text-primary font-bold ",
-        className,
+        "flex overflow-hidden rounded px-2 leading-none text-primary font-bold",
+        className
       )}
     >
       {value >= 100000 && <Digit place={100000} value={value} />}
@@ -84,35 +76,47 @@ export const Counter = ({
   );
 };
 
-function Digit({ place, value }: { place: number; value: number }) {
-  let valueRoundedToPlace = Math.floor(value / place);
-  let animatedValue = useSpring(valueRoundedToPlace);
+interface DigitProps {
+  place: number;
+  value: number;
+}
+
+function Digit({ place, value }: DigitProps) {
+  const displayValue = Math.floor(value / place);
+  const animatedValue = useSpring(displayValue);
 
   useEffect(() => {
-    animatedValue.set(valueRoundedToPlace);
-  }, [animatedValue, valueRoundedToPlace]);
+    animatedValue.set(displayValue);
+  }, [animatedValue, displayValue]);
 
   return (
-    <div style={{ height }} className="relative w-[1ch] tabular-nums">
-      {[...Array(10)].map((_, i) => (
+    <div
+      style={{ height: digitHeight }}
+      className="relative w-[1ch] tabular-nums"
+    >
+      {Array.from({ length: 10 }, (_, i) => (
         <Number key={i} mv={animatedValue} number={i} />
       ))}
     </div>
   );
 }
 
-function Number({ mv, number }: { mv: MotionValue; number: number }) {
-  let y = useTransform(mv, (latest) => {
-    let placeValue = latest % 10;
-    let offset = (10 + number - placeValue) % 10;
+interface NumberProps {
+  mv: MotionValue<number>;
+  number: number;
+}
 
-    let memo = offset * height;
+function Number({ mv, number }: NumberProps) {
+  const y = useTransform(mv, (latest) => {
+    const placeValue = latest % 10;
+    let offset = (10 + number - placeValue) % 10;
+    let pos = offset * digitHeight;
 
     if (offset > 5) {
-      memo -= 10 * height;
+      pos -= 10 * digitHeight;
     }
 
-    return memo;
+    return pos;
   });
 
   return (

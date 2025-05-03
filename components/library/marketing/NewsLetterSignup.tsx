@@ -41,12 +41,8 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
     try {
       await onSubmit(email);
       setIsSubmitted(true);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
-    } catch (err) {
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+    } catch {
       setError("An error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -67,7 +63,8 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             onSubmit={handleSubmit}
             className="flex flex-col gap-4"
           >
-            <div className="flex items-start justify-center gap-1 flex-col overflow-y-hidden">
+            {/* Header */}
+            <div className="flex flex-col items-start gap-1 overflow-y-hidden">
               <motion.h2
                 className="text-2xl font-bold text-foreground leading-tight"
                 initial={{ opacity: 0, y: 10 }}
@@ -85,18 +82,20 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                 Stay up to date with our latest news and updates.
               </motion.p>
             </div>
+
+            {/* Input */}
             <div className="space-y-2">
               <motion.label
+                htmlFor="email"
+                className="font-medium text-sm"
                 initial={{ opacity: 0, filter: "blur(3px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ delay: 0.6 }}
-                className="font-medium text-sm"
-                htmlFor="email"
               >
                 Email address
               </motion.label>
               <motion.div
-                className="flex gap-2 max-sm:flex-wrap items-center justify-end"
+                className="flex flex-wrap items-center gap-2 justify-end"
                 initial={{ opacity: 0, filter: "blur(3px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ delay: 0.7 }}
@@ -107,7 +106,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-3 py-2 border rounded-md focus-visible:ring-0 focus-within:ring-0 focus:outline-white/10 text-sm"
+                  className="w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-0 focus-within:ring-0 focus:outline-white/10"
                 />
                 <Button
                   type="submit"
@@ -115,7 +114,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                   className="relative overflow-hidden"
                 >
                   <motion.div
-                    key="default"
+                    key="button-content"
                     initial={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     className="flex items-center px-4"
@@ -126,6 +125,8 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
                 </Button>
               </motion.div>
             </div>
+
+            {/* Error */}
             <AnimatePresence>
               {error && (
                 <motion.p
@@ -147,7 +148,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             exit={{ opacity: 0 }}
             className="text-center"
           >
-            <h2 className="text-2xl font-bold text-foreground mb-2">
+            <h2 className="mb-2 text-2xl font-bold text-foreground">
               Thank you for subscribing!
             </h2>
             <p className="text-muted-foreground">
@@ -160,14 +161,12 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
   );
 };
 
-// Example
-
+// Example Usage
 export const NewsletterSignupExample: React.FC = () => {
   const handleSubmit = async (email: string) => {
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log("Submitted email:", email);
-    // Here you would typically send the email to your server
   };
 
   return (

@@ -3,7 +3,13 @@
 import { useState, useRef, DragEvent, ChangeEvent } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import clsx from "clsx";
-import { UploadCloud, File, Trash2, Loader, CheckCircle } from "lucide-react";
+import {
+  UploadCloud,
+  File as FileIcon,
+  Trash2,
+  Loader,
+  CheckCircle,
+} from "lucide-react";
 
 interface FileWithPreview {
   id: string;
@@ -21,46 +27,35 @@ export default function FileUpload() {
   const [isDragging, setIsDragging] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Handle dropped or selected files
+  // Process dropped or selected files
   const handleFiles = (fileList: FileList) => {
-    const newFiles: FileWithPreview[] = Array.from(fileList).map((file) => {
-      console.log(
-        `Processing file: ${file.name}, size: ${file.size}, type: ${file.type}`,
-      );
-      return {
-        id: URL.createObjectURL(file) + "-" + Date.now(),
-        preview: URL.createObjectURL(file),
-        progress: 0,
-        name: file.name,
-        size: file.size,
-        type: file.type,
-        // Optionally, you can add lastModified if you use it elsewhere
-        lastModified: file.lastModified,
-        // Keep a reference to the original file if needed
-        file,
-      };
-    });
-
+    const newFiles = Array.from(fileList).map((file) => ({
+      id: `${URL.createObjectURL(file)}-${Date.now()}`,
+      preview: URL.createObjectURL(file),
+      progress: 0,
+      name: file.name,
+      size: file.size,
+      type: file.type,
+      lastModified: file.lastModified,
+      file,
+    }));
     setFiles((prev) => [...prev, ...newFiles]);
-    newFiles.forEach((file) => simulateUpload(file.id));
+    newFiles.forEach((f) => simulateUpload(f.id));
   };
 
+  // Simulate upload progress
   const simulateUpload = (id: string) => {
     let progress = 0;
     const interval = setInterval(() => {
       progress += Math.random() * 15;
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f,
-        ),
+          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f
+        )
       );
-
-      // Add vibration feedback when upload completes (if supported)
       if (progress >= 100) {
         clearInterval(interval);
-        if (navigator.vibrate) {
-          navigator.vibrate(100);
-        }
+        if (navigator.vibrate) navigator.vibrate(100);
       }
     }, 300);
   };
@@ -73,28 +68,26 @@ export default function FileUpload() {
 
   const onDragOver = (e: DragEvent) => {
     e.preventDefault();
-    if (!isDragging) setIsDragging(true);
+    setIsDragging(true);
   };
 
-  const onDragLeave = () => {
-    setIsDragging(false);
-  };
+  const onDragLeave = () => setIsDragging(false);
 
   const onSelect = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) handleFiles(e.target.files);
   };
 
   const formatFileSize = (bytes: number): string => {
-    if (bytes === undefined || bytes === null || bytes === 0) return "0 Bytes";
+    if (!bytes) return "0 Bytes";
     const k = 1024;
     const sizes = ["Bytes", "KB", "MB", "GB"];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
+    return `${(bytes / Math.pow(k, i)).toFixed(2)} ${sizes[i]}`;
   };
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4 md:p-6">
-      {/* Drop Zone with improved UX */}
+      {/* Drop zone */}
       <motion.div
         onDragOver={onDragOver}
         onDragLeave={onDragLeave}
@@ -102,25 +95,19 @@ export default function FileUpload() {
         onClick={() => inputRef.current?.click()}
         initial={false}
         animate={{
-          borderColor: isDragging ? "#3b82f6" : "#d1d5db",
+          borderColor: isDragging ? "#3b82f6" : "#ffffff10",
           scale: isDragging ? 1.02 : 1,
         }}
         whileHover={{ scale: 1.01 }}
         transition={{ duration: 0.2 }}
         className={clsx(
-          "relative border-2 border-dashed rounded-2xl p-8 md:p-12 text-center cursor-pointer",
-          "shadow-sm hover:shadow-md group",
-          "bg-white/90 dark:bg-zinc-800/90",
-          "backdrop-blur",
-          "dark:border-zinc-700",
-          isDragging ? "ring-4 ring-blue-400/30 border-blue-500" : "",
+          "relative rounded-2xl p-8 md:p-12 text-center cursor-pointer bg-secondary/50 border border-primary/10 shadow-sm hover:shadow-md backdrop-blur group",
+          isDragging && "ring-4 ring-blue-400/30 border-blue-500"
         )}
       >
-        <div className="flex flex-col items-center justify-center gap-5">
+        <div className="flex flex-col items-center gap-5">
           <motion.div
-            animate={{
-              y: isDragging ? [-5, 0, -5] : 0,
-            }}
+            animate={{ y: isDragging ? [-5, 0, -5] : 0 }}
             transition={{
               duration: 1.5,
               repeat: isDragging ? Infinity : 0,
@@ -146,7 +133,7 @@ export default function FileUpload() {
                 "w-16 h-16 md:w-20 md:h-20 drop-shadow-sm",
                 isDragging
                   ? "text-blue-500"
-                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300",
+                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300"
               )}
             />
           </motion.div>
@@ -155,9 +142,9 @@ export default function FileUpload() {
             <h3 className="text-xl md:text-2xl font-semibold text-zinc-800 dark:text-zinc-100">
               {isDragging
                 ? "Drop files here"
-                : files.length > 0
-                  ? "Add more files"
-                  : "Upload your files"}
+                : files.length
+                ? "Add more files"
+                : "Upload your files"}
             </h3>
             <p className="text-zinc-600 dark:text-zinc-300 md:text-lg max-w-md mx-auto">
               {isDragging ? (
@@ -172,7 +159,7 @@ export default function FileUpload() {
               )}
             </p>
             <p className="text-sm text-zinc-500 dark:text-zinc-400">
-              Supports images, documents, videos and more
+              Supports images, documents, videos, and more
             </p>
           </div>
 
@@ -180,14 +167,14 @@ export default function FileUpload() {
             ref={inputRef}
             type="file"
             multiple
-            className="hidden"
+            hidden
             onChange={onSelect}
             accept="image/*,application/pdf,video/*,audio/*,text/*,application/zip"
           />
         </div>
       </motion.div>
-      {/* Files List */}
-      {/* Files List with Scroll Area */}
+
+      {/* Uploaded files list */}
       <div className="mt-8">
         <AnimatePresence>
           {files.length > 0 && (
@@ -211,12 +198,11 @@ export default function FileUpload() {
           )}
         </AnimatePresence>
 
-        {/* Scrollable Container */}
         <div
           className={clsx(
             "flex flex-col gap-3 overflow-y-auto pr-2",
             files.length > 3 &&
-              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent",
+              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent"
           )}
         >
           <AnimatePresence>
@@ -247,12 +233,12 @@ export default function FileUpload() {
                   )}
                 </div>
 
-                {/* Info & Progress */}
+                {/* File info & progress */}
                 <div className="flex-1 min-w-0">
                   <div className="flex flex-col gap-1 w-full">
-                    {/* Filename - More prominent */}
+                    {/* Filename */}
                     <div className="flex items-center gap-2 min-w-0">
-                      <File className="w-5 h-5 flex-shrink-0 text-blue-500 dark:text-blue-400" />
+                      <FileIcon className="w-5 h-5 flex-shrink-0 text-blue-500 dark:text-blue-400" />
                       <h4
                         className="font-medium text-base md:text-lg truncate text-zinc-800 dark:text-zinc-200"
                         title={file.name}
@@ -261,7 +247,7 @@ export default function FileUpload() {
                       </h4>
                     </div>
 
-                    {/* File details row */}
+                    {/* Details & remove/loading */}
                     <div className="flex items-center justify-between gap-3 text-sm text-zinc-500 dark:text-zinc-400">
                       <span className="text-xs md:text-sm">
                         {formatFileSize(file.size)}
@@ -278,7 +264,7 @@ export default function FileUpload() {
                             onClick={(e) => {
                               e.stopPropagation();
                               setFiles((prev) =>
-                                prev.filter((f) => f.id !== file.id),
+                                prev.filter((f) => f.id !== file.id)
                               );
                             }}
                             aria-label="Remove file"
@@ -287,6 +273,8 @@ export default function FileUpload() {
                       </span>
                     </div>
                   </div>
+
+                  {/* Progress bar */}
                   <div className="w-full h-2 bg-zinc-200 dark:bg-zinc-700 rounded-full overflow-hidden mt-3">
                     <motion.div
                       initial={{ width: 0 }}
@@ -299,7 +287,7 @@ export default function FileUpload() {
                       }}
                       className={clsx(
                         "h-full rounded-full shadow-inner",
-                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500",
+                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500"
                       )}
                     />
                   </div>

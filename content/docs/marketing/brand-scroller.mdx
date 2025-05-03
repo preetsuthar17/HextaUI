@@ -14,35 +14,30 @@ import { BrandScroller } from "@/components/library/marketing/BrandScroller";
 
 ## Code
 
-```js title="tailwind.config.js"
-/** @type {import('tailwindcss').Config} */
-module.exports = {
-  content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
-  theme: {
-    extend: {
-      keyframes: {
-        // ...
-        marquee: {
-          "0%": {
-            transform: "translateX(0%)",
-          },
-          "100%": {
-            transform: "translateX(calc(-100% - var(--gap)))",
-          },
-        },
-      },
-      animation: {
-        marquee: "marquee 30s linear infinite",
-        // ...
-      },
-    },
-  },
-  plugins: [],
-};
+```css title="global.css"
+@theme {
+  //
+  --animate-marquee: marquee 30s linear infinite;
+  --animate-marqueeY: marqueeY 200s linear infinite;
+
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
+  @keyframes marqueeY {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(calc(-100% - var(--gap)));
+    }
+  }
+  //
+}
 ```
 
 ```tsx title="BrandScroller.tsx"

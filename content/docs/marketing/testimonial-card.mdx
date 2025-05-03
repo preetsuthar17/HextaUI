@@ -47,7 +47,7 @@ export interface TestimonialCardProps {
   className?: string;
 }
 
-export const TestimonialCard = ({
+export const TestimonialCard: React.FC<TestimonialCardProps> = ({
   name,
   role,
   company,
@@ -55,7 +55,7 @@ export const TestimonialCard = ({
   rating = 5,
   image = "",
   className = "",
-}: TestimonialCardProps) => {
+}) => {
   return (
     <div
       className={`relative overflow-hidden rounded-2xl border border-primary/10 bg-background p-6 transition-all hover:shadow-lg dark:hover:shadow-primary/5 md:p-8 ${className}`}
@@ -89,30 +89,22 @@ export const TestimonialCard = ({
           {testimonial}
         </p>
 
-        <div className="flex items-center gap-4 justify-start">
-          {/* Author Info */}
-          <div className="flex items-center gap-4 ">
-            {image && (
-              <div className="relative h-12 w-12 overflow-hidden rounded-full flex items-center justify-center">
-                <Avatar>
-                  <AvatarImage
-                    src={image}
-                    alt={`${name}`}
-                    height={48}
-                    width={48}
-                  />
-                  <AvatarFallback>{name[0]}</AvatarFallback>
-                </Avatar>
-              </div>
-            )}
-
-            <div className="flex flex-col">
-              <h3 className="font-semibold text-foreground">{name}</h3>
-              <p className="text-sm text-muted-foreground">
-                {role}
-                {company && `@ ${company}`}
-              </p>
+        {/* Author Info */}
+        <div className="flex items-center gap-4">
+          {image && (
+            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+              <Avatar>
+                <AvatarImage src={image} alt={name} width={48} height={48} />
+                <AvatarFallback>{name[0]}</AvatarFallback>
+              </Avatar>
             </div>
+          )}
+          <div className="flex flex-col">
+            <h3 className="font-semibold text-foreground">{name}</h3>
+            <p className="text-sm text-muted-foreground">
+              {role}
+              {company && ` @ ${company}`}
+            </p>
           </div>
         </div>
       </div>

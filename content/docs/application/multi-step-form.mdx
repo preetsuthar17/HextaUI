@@ -38,7 +38,7 @@ import confetti from "canvas-confetti";
 
 export interface StepProp {
   title: string;
-  component: React.ReactNode;
+  component: React.ReactElement<StepProps>;
 }
 
 export interface MultiStepFormProps {
@@ -58,48 +58,41 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
   const [isCompleted, setIsCompleted] = useState(false);
 
   const isStepValid = useCallback(() => {
-    const currentStepData = steps[currentStep];
-    switch (currentStepData.title) {
-      case "Personal Info":
-        return formData.name?.trim() && formData.email?.trim();
-      case "Address":
-        return formData.street?.trim() && formData.city?.trim();
-      case "Confirmation":
-        return true;
-      default:
-        return false;
+    const title = steps[currentStep].title;
+    if (title === "Personal Info") {
+      return formData.name?.trim() && formData.email?.trim();
     }
+    if (title === "Address") {
+      return formData.street?.trim() && formData.city?.trim();
+    }
+    return true;
   }, [currentStep, formData, steps]);
 
   const handleNext = useCallback(() => {
     if (currentStep < steps.length - 1 && isStepValid()) {
       setDirection(1);
-      setCurrentStep(currentStep + 1);
+      setCurrentStep((s) => s + 1);
     } else if (currentStep === steps.length - 1 && isStepValid()) {
       setIsCompleted(true);
       onComplete(formData);
-      confetti({
-        particleCount: 100,
-        spread: 70,
-        origin: { y: 0.6 },
-      });
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
     }
   }, [currentStep, steps.length, onComplete, formData, isStepValid]);
 
   const handlePrevious = useCallback(() => {
     if (currentStep > 0) {
       setDirection(-1);
-      setCurrentStep(currentStep - 1);
+      setCurrentStep((s) => s - 1);
     }
   }, [currentStep]);
 
-  const updateFormData = useCallback((stepData: any) => {
-    setFormData((prevData: any) => ({ ...prevData, ...stepData }));
+  const updateFormData = useCallback((data: any) => {
+    setFormData((prev: any) => ({ ...prev, ...data }));
   }, []);
 
   if (isCompleted) {
     return (
-      <div className="flex items-center justify-center h-full">
+      <div className="flex items-center justify-center h-full p-4">
         <h2 className="text-2xl font-bold text-primary">
           Thank you for submitting!
         </h2>
@@ -109,38 +102,35 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
 
   return (
     <div
-      className={`bg-secondary/50  rounded-lg border border-primary/10 p-4 ${className}`}
+      className={`bg-secondary/50 rounded-lg border border-primary/10 p-4 ${className} overflow-hidden`}
     >
-      <div className="mb-6 sm:mb-8">
+      {/* Progress */}
+      <div className="mb-6">
         <div className="flex flex-wrap justify-between gap-4 items-center">
-          {steps.map((step, index) => (
-            <React.Fragment key={index}>
+          {steps.map((step, idx) => (
+            <React.Fragment key={idx}>
               <div
-                className={`flex items-center mb-2 sm:mb-0 ${
-                  index <= currentStep
-                    ? "text-primary"
-                    : "text-muted-foreground"
+                className={`flex items-center ${
+                  idx <= currentStep ? "text-primary" : "text-muted-foreground"
                 }`}
               >
                 <div
-                  className={`w-6 h-6 text-sm rounded-full flex items-center justify-center border-2 ${
-                    index < currentStep
+                  className={`w-6 h-6 flex items-center justify-center rounded-full border-2 ${
+                    idx < currentStep
                       ? "bg-primary text-background"
-                      : index === currentStep
-                        ? "border-primary"
-                        : "border-muted-foreground"
+                      : idx === currentStep
+                      ? "border-primary"
+                      : "border-muted-foreground"
                   }`}
                 >
-                  {index < currentStep ? "✓" : index + 1}
+                  {idx < currentStep ? "✓" : idx + 1}
                 </div>
-                <span className="ml-2 text-sm sm:text-base font-medium">
-                  {step.title}
-                </span>
+                <span className="ml-2 text-sm font-medium">{step.title}</span>
               </div>
-              {index < steps.length - 1 && (
+              {idx < steps.length - 1 && (
                 <div
-                  className={`hidden sm:block flex-1 h-1 rounded-full mx-2 ${
-                    index < currentStep ? "bg-primary" : "bg-primary/50"
+                  className={`hidden sm:block flex-1 h-1 mx-2 rounded-full ${
+                    idx < currentStep ? "bg-primary" : "bg-primary/50"
                   }`}
                 />
               )}
@@ -148,6 +138,8 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
           ))}
         </div>
       </div>
+
+      {/* Step Content */}
       <AnimatePresence mode="wait" initial={false}>
         <motion.div
           key={currentStep}
@@ -156,31 +148,30 @@ export const MultiStepForm: React.FC<MultiStepFormProps> = ({
           exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
           transition={{ duration: 0.3 }}
         >
-          {React.cloneElement(
-            steps[currentStep].component as React.ReactElement,
-            {
-              updateFormData,
-              formData,
-            },
-          )}
+          {React.cloneElement(steps[currentStep].component, {
+            updateFormData,
+            formData,
+          })}
         </motion.div>
       </AnimatePresence>
-      <div className="mt-6 sm:mt-8 flex justify-between">
+
+      {/* Navigation */}
+      <div className="mt-6 flex justify-between">
         <button
           onClick={handlePrevious}
           disabled={currentStep === 0}
-          className="flex items-center px-3 py-1 sm:px-4 sm:py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50 text-sm sm:text-base"
+          className="flex items-center px-3 py-2 bg-secondary text-secondary-foreground rounded-md disabled:opacity-50"
         >
-          <ChevronLeft className="mr-1 sm:mr-2" size={16} />
+          <ChevronLeft className="mr-2" size={16} />
           Previous
         </button>
         <button
           onClick={handleNext}
           disabled={!isStepValid()}
-          className="flex items-center px-3 py-1 sm:px-4 sm:py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50 text-sm sm:text-base"
+          className="flex items-center px-3 py-2 bg-primary text-primary-foreground rounded-md disabled:opacity-50"
         >
           {currentStep === steps.length - 1 ? "Complete" : "Next"}
-          <ChevronRight className="ml-1 sm:ml-2" size={16} />
+          <ChevronRight className="ml-2" size={16} />
         </button>
       </div>
     </div>

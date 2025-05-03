@@ -11,7 +11,10 @@ export interface PasswordStrengthMeterProps {
   criteriaClassName?: string;
   colors?: string[];
   levels?: number;
-  customRequirements?: { label: string; test: (pass: string) => boolean }[];
+  customRequirements?: {
+    label: string;
+    test: (pass: string) => boolean;
+  }[];
 }
 
 export function PasswordStrengthMeter({
@@ -24,14 +27,14 @@ export function PasswordStrengthMeter({
   levels = 4,
   customRequirements,
 }: PasswordStrengthMeterProps) {
-  const [strength, setStrength] = useState<number>(0);
+  const [strength, setStrength] = useState(0);
   const [requirementsMet, setRequirementsMet] = useState<boolean[]>([]);
 
   const defaultRequirements = useMemo(
     () => [
       {
         label: `At least ${minLength} characters`,
-        test: (pass: string) => pass?.length >= minLength,
+        test: (pass: string) => pass.length >= minLength,
       },
       {
         label: "Contains uppercase letter",
@@ -46,20 +49,21 @@ export function PasswordStrengthMeter({
         test: (pass: string) => /[^A-Za-z0-9]/.test(pass),
       },
     ],
-    [minLength],
+    [minLength]
   );
 
-  const requirements = customRequirements || defaultRequirements;
+  const requirements = customRequirements ?? defaultRequirements;
 
   useEffect(() => {
     const met = requirements.map((req) => req.test(password));
     setRequirementsMet(met);
+
     const metCount = met.filter(Boolean).length;
-    const newStrength = Math.min(
+    const level = Math.min(
       Math.floor((metCount / requirements.length) * levels),
-      levels,
+      levels
     );
-    setStrength(newStrength);
+    setStrength(level);
   }, [password, requirements, levels]);
 
   return (
@@ -68,18 +72,21 @@ export function PasswordStrengthMeter({
       role="region"
       aria-label="Password strength meter"
     >
+      {/* Strength Bar */}
       <div className={cn("flex gap-1", barClassName)}>
-        {[...Array(levels)].map((_, i) => (
+        {Array.from({ length: levels }).map((_, i) => (
           <div
             key={i}
             className="h-2 flex-1 rounded-full bg-muted transition-all"
             style={{
-              backgroundColor: i < strength ? colors[strength - 1] : "",
+              backgroundColor: i < strength ? colors[strength - 1] : undefined,
             }}
             aria-hidden="true"
           />
         ))}
       </div>
+
+      {/* Criteria List */}
       <div
         className={cn("text-sm text-muted-foreground pt-2", criteriaClassName)}
       >
@@ -88,7 +95,7 @@ export function PasswordStrengthMeter({
             key={req.label}
             className={cn(
               "flex items-center gap-2",
-              requirementsMet[i] && "text-green-600",
+              requirementsMet[i] && "text-green-600"
             )}
           >
             <span className="text-xs">•</span>
@@ -100,7 +107,7 @@ export function PasswordStrengthMeter({
   );
 }
 
-export const PasswordStrengthMeterExample = () => {
+export const PasswordStrengthMeterExample: React.FC = () => {
   const [password, setPassword] = useState("");
 
   return (

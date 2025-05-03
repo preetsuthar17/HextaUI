@@ -26,10 +26,22 @@ import { useRef, useEffect, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 
-export const FeedbackRating = () => {
+export const Feedback = () => {
   const [rating, setRating] = useState<number | null>(0);
   const [feedbackActive, setFeedbackActive] = useState(false);
+  const [feedback, setFeedback] = useState(""); // Add state for textarea
   const node = useRef<HTMLDivElement>(null);
+
+  const handleSubmit = () => {
+    // Handle form submission logic here
+    console.log("Rating:", rating);
+    console.log("Feedback:", feedback);
+
+    // Example: Reset feedback and rating after submission
+    setFeedback("");
+    setRating(0);
+    setFeedbackActive(false);
+  };
 
   useEffect(() => {
     if (feedbackActive === true) {
@@ -50,7 +62,7 @@ export const FeedbackRating = () => {
     <>
       <div
         ref={node}
-        className={`flex gap-4 px-6 py-3 bg-secondary/50 border-opacity-10 shadow-sm border border-primary/10 items-start transition-all ease-in-out overflow-hidden flex-col max-[315px]:scale-95 ${
+        className={`flex gap-4 px-6 py-3 bg-secondary/50  shadow-sm border border-primary/10 items-start transition-all ease-in-out overflow-hidden flex-col max-[315px]:scale-95 ${
           feedbackActive ? "rounded-md" : "rounded-full"
         } ${
           feedbackActive ? "max-[374px]:h-[16rem] h-[13rem]" : "h-[3.5rem]"
@@ -67,9 +79,12 @@ export const FeedbackRating = () => {
           <textarea
             className="w-full h-[8rem] p-2 rounded-md border border-primary/10 border-opacity-10 resize-none -mb-1 text-primary outline-hidden text-sm transition-all duration-500"
             style={{
-              filter: feedbackActive ? "blur(0px)" : "blur(100px)",
+              filter: feedbackActive ? "blur(0px)" : "blur(10px)",
             }}
             placeholder="Your feedback..."
+            value={feedback}
+            onChange={(e) => setFeedback(e.target.value)}
+            disabled={!feedbackActive}
           />
         </div>
         <div
@@ -95,8 +110,7 @@ export const FeedbackRating = () => {
                 className={`${rating === 1 ? "opacity-100" : "opacity-50"}`}
                 fill={`${rating === 1 ? "red" : "currentColor"}`}
               />
-            </button>{" "}
-            <button
+            </button> <button
               onClick={() => {
                 setRating(2);
                 setFeedbackActive(true);
@@ -108,8 +122,7 @@ export const FeedbackRating = () => {
                 className={`${rating === 2 ? "opacity-100" : "opacity-50"}`}
                 fill={`${rating === 2 ? "orange" : "currentColor"}`}
               />
-            </button>{" "}
-            <button
+            </button> <button
               onClick={() => {
                 setRating(3);
                 setFeedbackActive(true);
@@ -137,7 +150,11 @@ export const FeedbackRating = () => {
             </button>
           </div>
           <div>
-            <Button className="text-sm px-2 py-1 max-[374px]:w-full max-[374px]:py-2 flex items-center justify-center">
+            <Button
+              className="text-sm cursor pointer px-2 py-1 max-[374px]:w-full max-[374px]:py-2 flex items-center justify-center"
+              onClick={handleSubmit}
+              disabled={!feedbackActive || !feedback}
+            >
               Send
             </Button>
           </div>

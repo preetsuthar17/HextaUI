@@ -18,31 +18,28 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 "use client";
 
 import { FaSearch } from "react-icons/fa";
-
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
-export const ModernSearchBar = () => {
+export const ModernSearchBar: React.FC = () => {
   const [inputValue, setInputValue] = useState("");
 
   return (
-    <>
-      <div className="flex items-center p-1 rounded-full  max-w-[30rem] w-full border border-primary/10 border-opacity-10 gap-1">
-        <Input
-          className="rounded-full py-3 w-full border-0 shadow-none focus-visible:ring-0"
-          placeholder="Search"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <Button
-          variant="secondary"
-          className="border bg-primary text-primary-foreground  border-opacity-5 rounded-full px-2.5 py-3"
-        >
-          <FaSearch size={19} />
-        </Button>
-      </div>
-    </>
+    <div className="flex w-full max-w-[30rem] items-center gap-1 rounded-full border border-primary/10 border-opacity-10 bg-secondary/50 p-1">
+      <Input
+        className="w-full rounded-full border-0 py-3 shadow-none focus-visible:ring-0"
+        placeholder="Search"
+        value={inputValue}
+        onChange={(e) => setInputValue(e.target.value)}
+      />
+      <Button
+        variant="secondary"
+        className="rounded-full border border-opacity-5 bg-primary px-2.5 py-3 text-primary-foreground"
+      >
+        <FaSearch size={19} />
+      </Button>
+    </div>
   );
 };
 ```

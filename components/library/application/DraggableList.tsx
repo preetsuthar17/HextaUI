@@ -5,9 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { twMerge } from "tailwind-merge";
 import clsx from "clsx";
 
-const cn = (...args: any[]) => {
-  return twMerge(clsx(args));
-};
+const cn = (...args: any[]) => twMerge(clsx(args));
 
 export interface DraggableItemProps {
   id: string;
@@ -27,10 +25,10 @@ export const DraggableList: React.FC<DraggableListProps> = ({
 }) => {
   const [items, setItems] = useState(initialItems);
   const [draggedItem, setDraggedItem] = useState<DraggableItemProps | null>(
-    null,
+    null
   );
   const [dragOverItemId, setDragOverItemId] = useState<string | number | null>(
-    null,
+    null
   );
 
   const handleDragStart = (item: DraggableItemProps) => {
@@ -43,18 +41,18 @@ export const DraggableList: React.FC<DraggableListProps> = ({
   };
 
   const handleDragEnd = () => {
-    if (!draggedItem || !dragOverItemId) {
+    if (!draggedItem || dragOverItemId == null) {
       setDraggedItem(null);
       setDragOverItemId(null);
       return;
     }
 
     const newItems = [...items];
-    const draggedIndex = items.findIndex((item) => item.id === draggedItem.id);
-    const dropIndex = items.findIndex((item) => item.id === dragOverItemId);
+    const fromIndex = items.findIndex((i) => i.id === draggedItem.id);
+    const toIndex = items.findIndex((i) => i.id === dragOverItemId);
 
-    newItems.splice(draggedIndex, 1);
-    newItems.splice(dropIndex, 0, draggedItem);
+    newItems.splice(fromIndex, 1);
+    newItems.splice(toIndex, 0, draggedItem);
 
     setItems(newItems);
     onChange?.(newItems);
@@ -82,7 +80,7 @@ export const DraggableList: React.FC<DraggableListProps> = ({
               dragOverItemId === item.id &&
                 "border-2 border-orange bg-secondary/40",
               draggedItem?.id === item.id &&
-                "border-2 border-gray-400 opacity-50",
+                "border-2 border-gray-400 opacity-50"
             )}
           >
             {item.content}
@@ -96,19 +94,15 @@ export const DraggableList: React.FC<DraggableListProps> = ({
 export const DraggableItem: React.FC<{
   children: React.ReactNode;
   className?: string;
-}> = ({ children, className }) => {
-  return (
-    <div className={cn("flex items-center gap-2", className)}>
-      <div className="text-gray-400">≡</div>
-      {children}
-    </div>
-  );
-};
+}> = ({ children, className }) => (
+  <div className={cn("flex items-center gap-2", className)}>
+    <div className="text-gray-400">≡</div>
+    {children}
+  </div>
+);
 
-/**COMPONENT USAGE EXAMPLE */
-
-export const DraggableListExample = () => {
-  const [items, setItems] = useState([
+export const DraggableListExample: React.FC = () => {
+  const [items, setItems] = useState<DraggableItemProps[]>([
     { id: "1", content: <DraggableItem>First Item</DraggableItem> },
     { id: "2", content: <DraggableItem>Second Item</DraggableItem> },
     { id: "3", content: <DraggableItem>Third Item</DraggableItem> },
@@ -116,7 +110,7 @@ export const DraggableListExample = () => {
 
   const handleReorder = (newItems: DraggableItemProps[]) => {
     setItems(newItems);
-    // Do something with the new order
+    // handle updated order...
   };
 
   return (
