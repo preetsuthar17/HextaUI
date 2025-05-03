@@ -7,7 +7,7 @@ Modern, responsive, and customizable UI components designed for Next.js. Copy, a
 
 ## License
 
-Licensed under the [MIT license.](https://github.com/preetsuthar17/HextaUI/blob/main/LICENSE.md)
+Licensed under the [MIT license.](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE)
 
 # Star History
 
