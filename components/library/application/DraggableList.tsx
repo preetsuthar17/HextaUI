@@ -27,10 +27,10 @@ export const DraggableList: React.FC<DraggableListProps> = ({
 }) => {
   const [items, setItems] = useState(initialItems);
   const [draggedItem, setDraggedItem] = useState<DraggableItemProps | null>(
-    null
+    null,
   );
   const [dragOverItemId, setDragOverItemId] = useState<string | number | null>(
-    null
+    null,
   );
 
   const handleDragStart = (item: DraggableItemProps) => {
@@ -82,7 +82,7 @@ export const DraggableList: React.FC<DraggableListProps> = ({
               dragOverItemId === item.id &&
                 "border-2 border-orange bg-secondary/40",
               draggedItem?.id === item.id &&
-                "border-2 border-gray-400 opacity-50"
+                "border-2 border-gray-400 opacity-50",
             )}
           >
             {item.content}

@@ -43,7 +43,7 @@ export default function FileUpload() {
   const handleFiles = (fileList: FileList) => {
     const newFiles: FileWithPreview[] = Array.from(fileList).map((file) => {
       console.log(
-        `Processing file: ${file.name}, size: ${file.size}, type: ${file.type}`
+        `Processing file: ${file.name}, size: ${file.size}, type: ${file.type}`,
       );
       return {
         id: URL.createObjectURL(file) + "-" + Date.now(),
@@ -69,8 +69,8 @@ export default function FileUpload() {
       progress += Math.random() * 15;
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f
-        )
+          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f,
+        ),
       );
 
       // Add vibration feedback when upload completes (if supported)
@@ -131,7 +131,7 @@ export default function FileUpload() {
           "bg-white/90 dark:bg-zinc-800/90",
           "backdrop-blur",
           "dark:border-zinc-700",
-          isDragging ? "ring-4 ring-blue-400/30 border-blue-500" : ""
+          isDragging ? "ring-4 ring-blue-400/30 border-blue-500" : "",
         )}
       >
         <div className="flex flex-col items-center justify-center gap-5">
@@ -164,7 +164,7 @@ export default function FileUpload() {
                 "w-16 h-16 md:w-20 md:h-20 drop-shadow-sm",
                 isDragging
                   ? "text-blue-500"
-                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300"
+                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300",
               )}
             />
           </motion.div>
@@ -174,8 +174,8 @@ export default function FileUpload() {
               {isDragging
                 ? "Drop files here"
                 : files.length > 0
-                ? "Add more files"
-                : "Upload your files"}
+                  ? "Add more files"
+                  : "Upload your files"}
             </h3>
             <p className="text-zinc-600 dark:text-zinc-300 md:text-lg max-w-md mx-auto">
               {isDragging ? (
@@ -234,7 +234,7 @@ export default function FileUpload() {
           className={clsx(
             "flex flex-col gap-3 overflow-y-auto pr-2",
             files.length > 3 &&
-              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent"
+              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent",
           )}
         >
           <AnimatePresence>
@@ -296,7 +296,7 @@ export default function FileUpload() {
                             onClick={(e) => {
                               e.stopPropagation();
                               setFiles((prev) =>
-                                prev.filter((f) => f.id !== file.id)
+                                prev.filter((f) => f.id !== file.id),
                               );
                             }}
                             aria-label="Remove file"
@@ -317,7 +317,7 @@ export default function FileUpload() {
                       }}
                       className={clsx(
                         "h-full rounded-full shadow-inner",
-                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500"
+                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500",
                       )}
                     />
                   </div>
