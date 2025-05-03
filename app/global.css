@@ -62,6 +62,29 @@
   --animate-meteor: meteor 0.2s linear infinite;
   --animate-marquee: marquee 30s linear infinite;
   --animate-marqueeY: marqueeY 200s linear infinite;
+  --animate-glow-slow: glow 2.5s ease-in-out infinite;
+  --animate-bounce-drop: bounceDrop 0.8s ease;
+
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+    }
+    50% {
+      box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+    }
+  }
+
+  @keyframes bounce {
+    0% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
 
   @keyframes meteor {
     0% {
