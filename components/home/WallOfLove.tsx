@@ -20,6 +20,10 @@ const tweets = [
   "1877366311241548273",
   "1877366719775129689",
   "1877552363809948079",
+  "1785958241970913372",
+  "1788483420617588972",
+  "1791555321871122586",
+  "1793606675745878490",
 ];
 
 const useWindowSize = () => {
@@ -76,7 +80,7 @@ const WallOfLove = () => {
                         {tweets
                           .slice(
                             colIndex * TWEETS_PER_COLUMN,
-                            (colIndex + 1) * TWEETS_PER_COLUMN,
+                            (colIndex + 1) * TWEETS_PER_COLUMN
                           )
                           .map((tweetId) => (
                             <Tweet
