@@ -11,6 +11,7 @@ export const { docs, meta } = defineDocs({
   docs: {
     schema: frontmatterSchema.extend({
       new: z.boolean().default(false),
+      pro: z.boolean().default(false),
     }),
   },
 });

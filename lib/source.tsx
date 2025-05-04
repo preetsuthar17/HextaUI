@@ -13,6 +13,7 @@ export const source = loader({
 
       const data = file.data.data as {
         new: boolean;
+        pro: boolean;
       };
       if (data.new)
         node.name = (
@@ -20,6 +21,15 @@ export const source = loader({
             {node.name}
             <div className="border-green-600 border bg-green-300 text-black text-xs py-0.2 px-2 rounded-md font-semibold">
               New
+            </div>
+          </>
+        );
+      else if (data.pro)
+        node.name = (
+          <>
+            {node.name}
+            <div className="border-yellow-600 border bg-yellow-300 text-black text-xs py-0.2 px-2 rounded-md font-semibold">
+              Pro
             </div>
           </>
         );
