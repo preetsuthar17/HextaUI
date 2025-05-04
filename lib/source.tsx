@@ -18,7 +18,7 @@ export const source = loader({
         node.name = (
           <>
             {node.name}
-            <div className="border-green-600 border bg-green-500/20 text-xs py-0.2 px-2 rounded-full font-medium">
+            <div className="border-green-600 border bg-green-300 text-black text-xs py-0.2 px-2 rounded-md font-semibold">
               New
             </div>
           </>
