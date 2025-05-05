@@ -19,7 +19,7 @@ export const source = loader({
         node.name = (
           <>
             {node.name}
-            <div className="border-green-600 border bg-green-300 text-black text-xs py-0.2 px-2 rounded-md font-semibold">
+            <div className="border-blue-600 border bg-blue-600 text-white text-xs py-0.2 px-2 rounded-md">
               New
             </div>
           </>
@@ -28,7 +28,7 @@ export const source = loader({
         node.name = (
           <>
             {node.name}
-            <div className="border-yellow-600 border bg-yellow-300 text-black text-xs py-0.2 px-2 rounded-md font-semibold">
+            <div className="border-orange-600 border bg-orange-600 text-white text-xs py-0.2 px-2 rounded-md">
               Pro
             </div>
           </>
