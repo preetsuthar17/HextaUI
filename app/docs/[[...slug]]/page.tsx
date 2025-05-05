@@ -37,7 +37,9 @@ export default async function Page(props: {
         single: false,
       }}
       breadcrumb={{
-        full: true,
+        includeRoot: true,
+        includeSeparator: true,
+        enabled: true,
       }}
       footer={{
         enabled: true,
