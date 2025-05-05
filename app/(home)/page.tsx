@@ -11,9 +11,9 @@ const CTA = dynamic(() => import("@/components/home/CTA"));
 const Footer = dynamic(() => import("@/components/home/Footer"));
 
 export const metadata: Metadata = customMetaDataGenerator({
-  title: "Build stunning websites with less effort",
+  title: "Build stunning websites effortlessly",
   description:
-    "Modern, responsive, and customizable UI components designed for Next.js. Copy, adapt, and make them uniquely yours.",
+    "Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.",
   ogImage: "/banner.png",
   twitterCard: "summary_large_image",
   canonicalUrl: "https://hextaui.com",

@@ -9,7 +9,7 @@ import { motion, animate, useMotionValue, useTransform } from "motion/react";
 import { useEffect, useState } from "react";
 
 const Hero = () => {
-  const headingText = "Build stunning websites with less effort.";
+  const headingText = "Build stunning websites effortlessly";
   const [stars, setStars] = useState<number | null>(null);
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -18,7 +18,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);

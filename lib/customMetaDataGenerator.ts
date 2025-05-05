@@ -25,8 +25,8 @@ interface PageSEOProps {
 }
 
 export function customMetaDataGenerator({
-  title = "Build stunning websites with less effort — HextaUI",
-  description = "Modern, responsive, and customizable UI components designed for Next.js. Copy, adapt, and make them uniquely yours.",
+  title = "Build stunning websites effortlessly — HextaUI",
+  description = "Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.",
   canonicalUrl = "https://hextaui.com",
   ogType = "website",
   keywords = [

@@ -1,6 +1,6 @@
-# Build stunning websites with less effort
+# Build stunning websites effortlessly
 
-Modern, responsive, and customizable UI components designed for Next.js. Copy, adapt, and make them uniquely yours.
+Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.
 
 ![Alt](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg "Repobeats analytics image")
 
