@@ -40,7 +40,7 @@ function cx(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-type MouseTrackerContextType = {
+export type MouseTrackerContextType = {
   position: { x: number; y: number };
   active: boolean;
   wrapperRef: React.RefObject<HTMLDivElement | null>;
@@ -59,7 +59,7 @@ export const useMouseTracker = (): MouseTrackerContextType => {
   return context;
 };
 
-type MouseTrackerProviderProps = React.ComponentProps<"div"> & {
+export type MouseTrackerProviderProps = React.ComponentProps<"div"> & {
   children: React.ReactNode;
 };
 
@@ -113,7 +113,7 @@ function MouseTrackerProvider({
   );
 }
 
-type PointerProps = HTMLMotionProps<"div"> & {
+export type PointerProps = HTMLMotionProps<"div"> & {
   children: React.ReactNode;
 };
 
@@ -161,7 +161,7 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
   );
 }
 
-type Anchor =
+export type Anchor =
   | "top"
   | "top-left"
   | "top-right"
@@ -172,7 +172,7 @@ type Anchor =
   | "right"
   | "center";
 
-type PointerFollowerProps = HTMLMotionProps<"div"> & {
+export type PointerFollowerProps = HTMLMotionProps<"div"> & {
   align?: Anchor;
   gap?: number;
   transition?: SpringOptions;
@@ -254,10 +254,10 @@ function PointerFollower({
 }
 
 export {
-  MouseTrackerProvider as CursorProvider,
-  Pointer as Cursor,
-  PointerFollower as CursorFollow,
-  useMouseTracker as useCursor,
+  MouseTrackerProvider,
+  Pointer,
+  PointerFollower,
+  useMouseTracker,
   type MouseTrackerContextType as CursorContextType,
   type MouseTrackerProviderProps as CursorProviderProps,
   type PointerProps as CursorProps,
@@ -268,9 +268,18 @@ export {
 ## Usage
 
 ```tsx title="App.tsx"
-import { CursorProvider, Cursor, CursorFollow } from "@/components/ui/Cursor";
+import {
+  MouseTrackerProvider as CursorProvider,
+  Pointer as Cursor,
+  PointerFollower as CursorFollow,
+} from "@/components/ui/cursor";
 
-export const CursorDemo = () => {
+import Link from "next/link";
+
+import { MousePointer2 } from "lucide-react";
+import { Star } from "lucide-react";
+
+const CursorDemo = () => {
   return (
     <div className="max-w-sm rounded-2xl bg-secondary/50 border border-primary/10 shadow-md overflow-hidden relative group">
       <div className="p-6 flex flex-col gap-8">
@@ -298,16 +307,16 @@ export const CursorDemo = () => {
         </div>
       </div>
 
-      <MouseTrackerProvider>
-        <Pointer>
-          <MousePointer2 className="fill-blue-600 stroke-white/10" size={30} />
-        </Pointer>
-        <PointerFollower align="bottom-right">
-          <div className="bg-blue-600 text-white border border-white/10 text-xs px-3 py-1 rounded-md shadow-md">
-            preett
+      <CursorProvider>
+        <Cursor>
+          <MousePointer2 className="fill-blue-500 stroke-white/10" size={30} />
+        </Cursor>
+        <CursorFollow align="bottom-right">
+          <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-md shadow-md">
+            HextaStudio
           </div>
-        </PointerFollower>
-      </MouseTrackerProvider>
+        </CursorFollow>
+      </CursorProvider>
     </div>
   );
 };
