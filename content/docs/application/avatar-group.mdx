@@ -1,10 +1,48 @@
+---
+title: Avatar Group
+description: A component that displays a group of avatars.
+new: true
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer.tsx";
+import { AvatarGroup } from "@/components/library/application/AvatarGroup";
+
+## Preview
+
+<PreviewContainer>
+  <AvatarGroup
+    avatars={[
+      {
+        src: "https://pbs.twimg.com/profile_images/1913868626605535232/yYTNh-zg_400x400.jpg",
+        label: "preett",
+      },
+      {
+        src: "https://pbs.twimg.com/profile_images/1909249051968839680/MdA0uZV4_400x400.png",
+        label: "21st.dev",
+      },
+      {
+        src: "https://pbs.twimg.com/profile_images/1593304942210478080/TUYae5z7_400x400.jpg",
+        label: "shadcn",
+      },
+      { src: "/logo.png", label: "HextaUI" },
+      { src: "/logo.png", label: "HextaUI" },
+      { src: "/logo.png", label: "HextaUI" },
+    ]}
+    maxVisible={4}
+    size={50}
+  />
+</PreviewContainer>
+
+## Code
+
+```tsx title="AvatarGroup.tsx"
 "use client";
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export interface AvatarGroupProps {
-  avatars: { src: string; alt?: string; label?: string }[]; 
+interface AvatarGroupProps {
+  avatars: { src: string; alt?: string; label?: string }[];
   maxVisible?: number;
   size?: number;
   overlap?: number;
@@ -111,3 +149,28 @@ const AvatarGroup = ({
 };
 
 export { AvatarGroup };
+```
+
+## Usage
+
+```tsx title="App.tsx"
+import { AvatarGroup } from "@/components/ui/AvatarGroup";
+<AvatarGroup
+  avatars={[
+    { src: "/logo.png", label: "HextaUI" },
+    { src: "/logo.png", label: "HextaUI" },
+    { src: "/logo.png", label: "HextaUI" },
+    { src: "/logo.png", label: "HextaUI" },
+    { src: "/logo.png", label: "HextaUI" },
+  ]}
+  maxVisible={4}
+  size={50}
+/>;
+```
+
+## Props
+
+<AutoTypeTable
+  path="./components/library/application/AvatarGroup.tsx"
+  name="AvatarGroupProps"
+/>
