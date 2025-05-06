@@ -122,8 +122,8 @@ const Hero = () => {
           >
             <span className="text-primary">Modern</span>,{" "}
             <span className="text-primary">responsive</span>, and{" "}
-            <span className="text-primary">customizable UI</span> components
-            designed for Next.js. Copy, adapt, and make them uniquely yours.
+            <span className="text-primary">customizable UI</span> components for
+            Next.js. Copy, adapt, and personalize them.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
