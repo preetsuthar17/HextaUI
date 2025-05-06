@@ -28,28 +28,29 @@ export const baseOptions: BaseLayoutProps = {
 
   links: [
     {
-      text: "Get Started",
-      url: "/docs/get-started",
-      active: "nested-url",
-      icon: <AlbumIcon />,
-    },
-    {
       text: "Components",
       url: "/docs/application/animated-dock",
       active: "url",
       icon: <LayoutPanelTop />,
     },
+
     {
-      text: "Discord Server",
-      url: "https://t.co/H48AyU1HnG",
+      text: "Showcase",
+      url: "/showcase",
       active: "nested-url",
       icon: <FaDiscord />,
     },
     {
-      text: "Sponsor HextaUI",
-      url: "https://github.com/sponsors/preetsuthar17",
+      text: "Sponsors",
+      url: "/sponsors",
       active: "nested-url",
       icon: <Star />,
+    },
+    {
+      text: "Discord",
+      url: "https://t.co/H48AyU1HnG",
+      active: "nested-url",
+      icon: <FaDiscord />,
     },
   ],
 };
