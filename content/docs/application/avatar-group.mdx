@@ -41,7 +41,7 @@ import { AvatarGroup } from "@/components/library/application/AvatarGroup";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface AvatarGroupProps {
+export interface AvatarGroupProps {
   avatars: { src: string; alt?: string; label?: string }[];
   maxVisible?: number;
   size?: number;
@@ -98,17 +98,19 @@ const AvatarGroup = ({
                     initial={{
                       opacity: 0,
                       scale: 0.7,
+                      filter: "blur(5px)",
                       y: 10,
                     }}
                     animate={{
                       opacity: 1,
                       scale: 1,
-                      y: 0,
                       filter: "blur(0px)",
+                      y: 0,
                     }}
                     exit={{
                       opacity: 0,
                       scale: 0.7,
+                      filter: "blur(5px)",
                       y: 10,
                     }}
                     transition={{
