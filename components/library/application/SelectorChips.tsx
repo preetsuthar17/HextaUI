@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 
 export type SelectorChipsProps = {
   options: string[];
