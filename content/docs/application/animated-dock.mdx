@@ -79,7 +79,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-secondary/50 border border-primary/10 shadow-md px-4 pb-3",
-        className,
+        className
       )}
     >
       {items.map((item, index) => (
@@ -111,8 +111,14 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
   });
 
   const widthSync = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-
   const width = useSpring(widthSync, {
+    mass: 0.1,
+    stiffness: 150,
+    damping: 12,
+  });
+
+  const iconScale = useTransform(width, [40, 80], [1, 1.5]);
+  const iconSpring = useSpring(iconScale, {
     mass: 0.1,
     stiffness: 150,
     damping: 12,
@@ -124,9 +130,12 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
       style={{ width }}
       className="aspect-square w-10 rounded-full bg-primary text-secondary-foreground flex items-center justify-center"
     >
-      <div className="flex items-center justify-center w-full h-full grow">
+      <motion.div
+        style={{ scale: iconSpring }}
+        className="flex items-center justify-center w-full h-full grow"
+      >
         {children}
-      </div>
+      </motion.div>
     </motion.div>
   );
 };
