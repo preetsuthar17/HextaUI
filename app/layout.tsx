@@ -15,11 +15,11 @@ export default function Layout({ children }: { children: ReactNode }) {
     <html lang="en" className={dm_sans.className} suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
         {" "}
-        <Banner variant="rainbow">
+        {/* <Banner variant="rainbow">
           <Link href="https://github.com/sponsors/preetsuthar17">
             Sponsor HextaUI &lt;3
           </Link>{" "}
-        </Banner>
+        </Banner> */}
         <RootProvider>{children}</RootProvider>
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
         <script
