@@ -23,7 +23,7 @@ export const PostCard: React.FC = () => {
   };
 
   return (
-    <div className="m-4 max-w-[30rem] w-full rounded-2xl border border-primary/10 bg-secondary/50 p-4 text-sm text-secondary-foreground shadow-xs">
+    <div className="m-4 max-w-[30rem] w-full rounded-2xl border border-primary/10 bg-background p-4 text-sm text-secondary-foreground shadow-xs">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 card-header">
         <div className="flex items-center gap-4">

@@ -86,7 +86,7 @@ export function SimpleSignUp() {
   }
 
   return (
-    <Card className="w-[400px] bg-secondary/50">
+    <Card className="w-[400px] bg-background">
       <CardHeader className="space-y-1">
         <CardTitle className="font-medium">Welcome 👋</CardTitle>
         <CardDescription className="text-2xl ">
@@ -212,7 +212,7 @@ export function SimpleSignIn() {
   }
 
   return (
-    <Card className="w-[400px] bg-secondary/50">
+    <Card className="w-[400px] bg-background">
       <CardHeader className="space-y-1">
         <CardTitle className="font-medium">Welcome Back 👋</CardTitle>
         <CardDescription className="text-2xl ">
@@ -316,7 +316,7 @@ export function AllInOneAuthentication() {
   }
 
   return (
-    <Card className="w-[400px] bg-secondary/50">
+    <Card className="w-[400px] bg-background">
       <CardHeader>
         <CardTitle>Authentication</CardTitle>
         <CardDescription>
@@ -470,7 +470,7 @@ export function TwoFactorAuthForm() {
   }
 
   return (
-    <Card className="w-[400px] bg-secondary/50">
+    <Card className="w-[400px] bg-background">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <Shield className="h-5 w-5" />
@@ -582,7 +582,7 @@ export function EnterpriseSSO() {
   }
 
   return (
-    <Card className="w-[400px] bg-secondary/50">
+    <Card className="w-[400px] bg-background">
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
           <KeyRound className="h-5 w-5" />

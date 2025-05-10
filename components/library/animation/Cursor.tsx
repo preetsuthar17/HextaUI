@@ -237,7 +237,7 @@ function PointerFollower({
 
 export const CursorDemo = () => {
   return (
-    <div className="max-w-sm rounded-2xl bg-secondary/50 border border-primary/10 shadow-md overflow-hidden relative group">
+    <div className="max-w-sm rounded-2xl bg-background border border-primary/10 shadow-md overflow-hidden relative group">
       <div className="p-6 flex flex-col gap-8">
         <p className="text-4xl font-bold tracking-tight">
           Ready to build something amazing?

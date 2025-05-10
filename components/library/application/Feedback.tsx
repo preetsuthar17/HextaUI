@@ -45,7 +45,7 @@ export const Feedback = () => {
     <>
       <div
         ref={node}
-        className={`flex gap-4 px-6 py-3 bg-secondary/50  shadow-sm border border-primary/10 items-start transition-all ease-in-out overflow-hidden flex-col max-[315px]:scale-95 ${
+        className={`flex gap-4 px-6 py-3 bg-background  shadow-sm border border-primary/10 items-start transition-all ease-in-out overflow-hidden flex-col max-[315px]:scale-95 ${
           feedbackActive ? "rounded-md" : "rounded-full"
         } ${
           feedbackActive ? "max-[374px]:h-[16rem] h-[13rem]" : "h-[3.5rem]"

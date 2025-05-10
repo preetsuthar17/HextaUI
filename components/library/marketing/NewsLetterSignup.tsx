@@ -51,7 +51,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 
   return (
     <div
-      className={`bg-secondary/50 border border-primary/10 rounded-lg p-6 ${className}`}
+      className={`bg-background border border-primary/10 rounded-lg p-6 ${className}`}
     >
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
