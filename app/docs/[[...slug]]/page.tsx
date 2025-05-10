@@ -33,8 +33,7 @@ export default async function Page(props: {
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{
-        style: "clerk",
-        single: false,
+        enabled: false,
       }}
       breadcrumb={{
         includeRoot: true,
