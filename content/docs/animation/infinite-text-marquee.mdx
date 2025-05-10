@@ -6,6 +6,7 @@ new: true
 
 import { PreviewContainer } from "@/components/PreviewContainer.tsx";
 import { InfiniteTextMarquee } from "@/components/library/animation/InfiniteTextMarquee";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -22,9 +23,13 @@ import { InfiniteTextMarquee } from "@/components/library/animation/InfiniteText
   />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="InfiniteTextMarquee.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/infinite-text-marquee"
+```
+
+```tsx title="InfiniteTextMarquee.tsx" tab="Manually"
 "use client";
 
 import * as React from "react";

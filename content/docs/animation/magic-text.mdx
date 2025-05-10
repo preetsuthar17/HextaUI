@@ -5,6 +5,7 @@ description: Simple animated text component that reveals as we scroll down the p
 
 import { PreviewContainer } from "@/components/PreviewContainer.tsx";
 import { MagicText } from "@/components/library/animation/MagicText";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -19,9 +20,13 @@ import { MagicText } from "@/components/library/animation/MagicText";
   />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="MagicText.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/magic-text"
+```
+
+```tsx title="MagicText.tsx" tab="Manually"
 "use client";
 
 import { motion, useScroll, useTransform } from "motion/react";

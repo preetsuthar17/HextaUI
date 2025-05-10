@@ -6,6 +6,7 @@ new: true
 
 import { SelectorChipsDemo } from "@/components/library/application/SelectorChips";
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -13,9 +14,13 @@ import { PreviewContainer } from "@/components/PreviewContainer";
   <SelectorChipsDemo />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="SelectorChips.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/selector-chips"
+```
+
+```tsx title="SelectorChips.tsx" tab="Manually"
 "use client";
 
 import * as React from "react";

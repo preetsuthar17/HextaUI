@@ -5,6 +5,7 @@ description: Animate text with a shining effect.
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { ShiningText } from "@/components/library/text/ShiningText";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { ShiningText } from "@/components/library/text/ShiningText";
   <ShiningText />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="ShiningText.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextui/shining-text"
+```
+
+```tsx title="ShiningText.tsx" tab="Manually"
 "use client";
 
 import { motion } from "motion/react";

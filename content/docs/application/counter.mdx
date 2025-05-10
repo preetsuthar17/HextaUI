@@ -5,6 +5,7 @@ description: A simple animated counter component.
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Counter } from "@/components/library/application/Counter";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { Counter } from "@/components/library/application/Counter";
   <Counter end={50} duration={10} />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="Counter.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/animated-counter"
+```
+
+```tsx title="Counter.tsx" tab="Manually"
 "use client";
 
 import { MotionValue, motion, useSpring, useTransform } from "motion/react";
@@ -63,7 +68,7 @@ export const Counter = ({
       {...rest}
       className={cn(
         "flex overflow-hidden rounded px-2 leading-none text-primary font-bold",
-        className,
+        className
       )}
     >
       {value >= 100000 && <Digit place={100000} value={value} />}

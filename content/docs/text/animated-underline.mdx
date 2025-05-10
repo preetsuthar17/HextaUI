@@ -5,6 +5,7 @@ description: Animate text with an underline effect.
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { AnimatedUnderline } from "@/components/library/text/AnimatedUnderline";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { AnimatedUnderline } from "@/components/library/text/AnimatedUnderline";
   <AnimatedUnderline />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="AnimatedUnderline.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextui/animated-underline"
+```
+
+```tsx title="AnimatedUnderline.tsx" tab="Manually"
 "use client";
 
 export function AnimatedUnderline() {

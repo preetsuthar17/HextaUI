@@ -6,6 +6,7 @@ new: true
 
 import { PreviewContainer } from "@/components/PreviewContainer.tsx";
 import { AvatarGroup } from "@/components/library/application/AvatarGroup";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -33,9 +34,13 @@ import { AvatarGroup } from "@/components/library/application/AvatarGroup";
   />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="AvatarGroup.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/avatar-group"
+```
+
+```tsx title="AvatarGroup.tsx" tab="Manually"
 "use client";
 
 import { useState } from "react";

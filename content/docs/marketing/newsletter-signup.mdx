@@ -5,6 +5,7 @@ description: A customizable newsletter signup form with validation and success m
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { NewsletterSignupExample } from "@/components/library/marketing/NewsLetterSignup.tsx";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { NewsletterSignupExample } from "@/components/library/marketing/NewsLett
   <NewsletterSignupExample />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="NewsletterSignup.tsx"
+```bash tab="CLI" title="NPM" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/newsletter-signup"
+```
+
+```tsx title="NewsletterSignup.tsx" tab="Manually"
 "use client";
 
 import React, { useState } from "react";
@@ -68,7 +73,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 
   return (
     <div
-      className={`bg-secondary/50 border border-primary/10 rounded-lg p-6 ${className}`}
+      className={`bg-background border border-primary/10 rounded-lg p-6 ${className}`}
     >
       <AnimatePresence mode="wait">
         {!isSubmitted ? (

@@ -5,6 +5,7 @@ description: Text that types itself out like a typewriter.
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Typewriter } from "@/components/library/text/Typewriter";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -18,9 +19,13 @@ import { Typewriter } from "@/components/library/text/Typewriter";
   />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextui/typewriter-text"
+```
+
+```tsx title="Typewriter.tsx" tab="Manually"
 "use client";
 
 import { useEffect, useState } from "react";
@@ -75,7 +80,7 @@ export function Typewriter({
           }
         }
       },
-      isDeleting ? deleteSpeed : speed,
+      isDeleting ? deleteSpeed : speed
     );
 
     return () => clearTimeout(timeout);

@@ -5,6 +5,7 @@ description: A button that shines when hovered
 
 import { ShiningButton } from "@/components/library/application/ShiningButton";
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { PreviewContainer } from "@/components/PreviewContainer";
   <ShiningButton />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="ShiningButton.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/shining-button"
+```
+
+```tsx title="ShiningButton.tsx" tab="Manually"
 export const ShiningButton = () => {
   return (
     <>

@@ -5,6 +5,7 @@ description: A responsive testimonial card component with rating stars and autho
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { TestimonialCard } from "@/components/library/marketing/TestimonialCard";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -29,9 +30,13 @@ import { TestimonialCard } from "@/components/library/marketing/TestimonialCard"
   </div>
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="TestimonialCard.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextaui/testimonial-card"
+```
+
+```tsx title="TestimonialCard.tsx" tab="Manually"
 "use client";
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";

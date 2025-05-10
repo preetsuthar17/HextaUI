@@ -5,6 +5,7 @@ description: A stagger effect for text with a blur filter.
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { BlurredStagger } from "@/components/library/text/BlurredStagger";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Preview
 
@@ -12,9 +13,13 @@ import { BlurredStagger } from "@/components/library/text/BlurredStagger";
   <BlurredStagger />
 </PreviewContainer>
 
-## Code
+## Install Component
 
-```tsx title="BlurredStagger.tsx"
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/hextui/blurred-stagger-text"
+```
+
+```tsx title="BlurredStagger.tsx" tab="Manually"
 "use client";
 
 import { motion } from "motion/react";
