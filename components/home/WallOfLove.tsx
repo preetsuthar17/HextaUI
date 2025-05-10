@@ -6,6 +6,7 @@ import { Tweet } from "react-tweet";
 import { useEffect, useState } from "react";
 
 const tweets = [
+  "1920730864687763482",
   "1875895384226373680",
   "1782653978683072684",
   "1787091751997440143",
