@@ -7,7 +7,7 @@ import {
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx-components";
-
+import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { metadataImage } from "@/lib/metadata";
 import { getGithubLastEdit } from "fumadocs-core/server";
 import { Metadata } from "next";
@@ -56,6 +56,7 @@ export default async function Page(props: {
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      <InlineTOC items={page.data.toc} />
       <DocsBody>
         <MDX components={getMDXComponents()} />
       </DocsBody>
