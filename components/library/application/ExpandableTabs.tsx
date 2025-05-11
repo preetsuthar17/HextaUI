@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import type { LucideIcon } from "lucide-react";
 
 import { clsx, type ClassValue } from "clsx";

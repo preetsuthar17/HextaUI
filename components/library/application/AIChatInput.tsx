@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import { Lightbulb, Mic, Globe, Paperclip, Send } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion } from "motion/react";
 
 const PLACEHOLDERS = [
   "Generate website with HextaUI",
