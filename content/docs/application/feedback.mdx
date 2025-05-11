@@ -110,7 +110,8 @@ export const Feedback = () => {
                 className={`${rating === 1 ? "opacity-100" : "opacity-50"}`}
                 fill={`${rating === 1 ? "red" : "currentColor"}`}
               />
-            </button> <button
+            </button>{" "}
+            <button
               onClick={() => {
                 setRating(2);
                 setFeedbackActive(true);
@@ -122,7 +123,8 @@ export const Feedback = () => {
                 className={`${rating === 2 ? "opacity-100" : "opacity-50"}`}
                 fill={`${rating === 2 ? "orange" : "currentColor"}`}
               />
-            </button> <button
+            </button>{" "}
+            <button
               onClick={() => {
                 setRating(3);
                 setFeedbackActive(true);

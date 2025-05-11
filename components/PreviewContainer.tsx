@@ -32,7 +32,7 @@ export const PreviewContainer = ({
         key={key}
         className={cn(
           "dark:bg-background border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative",
-          className
+          className,
         )}
       >
         {/* Dot pattern background */}

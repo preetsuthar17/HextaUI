@@ -53,7 +53,7 @@ export const ExpandableTabs = ({
     <div
       className={cn(
         "flex items-center gap-3 p-4 rounded-2xl bg-secondary shadow-sm ",
-        className
+        className,
       )}
     >
       {tabs.map((tab) => {
@@ -67,7 +67,7 @@ export const ExpandableTabs = ({
             className={cn(
               "flex items-center justify-center rounded-xl cursor-pointer overflow-hidden h-[50px]",
               tab.color,
-              isActive ? "flex-1" : "flex-none"
+              isActive ? "flex-1" : "flex-none",
             )}
             onClick={() => setActiveTabId(tab.id)}
             initial={false}

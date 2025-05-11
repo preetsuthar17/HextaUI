@@ -126,7 +126,7 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
           data-role="custom-pointer"
           className={cx(
             "pointer-events-none z-[9999] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className
+            className,
           )}
           style={{ top: y, left: x, ...style }}
           initial={{ scale: 0, opacity: 0 }}
@@ -218,7 +218,7 @@ function PointerFollower({
           data-role="pointer-follower"
           className={cx(
             "pointer-events-none z-[9998] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className
+            className,
           )}
           style={{ top: y, left: x, ...style }}
           initial={{ scale: 0, opacity: 0 }}

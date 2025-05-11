@@ -83,7 +83,7 @@ const WallOfLove = () => {
                         {tweets
                           .slice(
                             colIndex * TWEETS_PER_COLUMN,
-                            (colIndex + 1) * TWEETS_PER_COLUMN
+                            (colIndex + 1) * TWEETS_PER_COLUMN,
                           )
                           .map((tweetId) => (
                             <Tweet
