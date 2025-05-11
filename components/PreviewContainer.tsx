@@ -23,7 +23,7 @@ export const PreviewContainer = ({
     <div className="relative">
       <button
         onClick={handleRefresh}
-        className="absolute top-4 right-4 z-10 p-2 rounded-full hover:bg-primary/10 transition-colors"
+        className="absolute top-4 right-4 z-999 p-2 rounded-full hover:bg-primary/10 transition-colors"
         aria-label="Refresh preview"
       >
         <RefreshCw className="w-4 h-4 text-primary/70" />
@@ -39,25 +39,29 @@ export const PreviewContainer = ({
         <div
           className="absolute inset-0 pointer-events-none z-0"
           aria-hidden="true"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, var(--dot-color, rgba(0,0,0,0.07)) 1.5px, transparent 1.5px)",
-            backgroundSize: "18px 18px",
-            borderRadius: "inherit",
-            // Set the dot color variable based on theme
-            "--dot-color": "rgba(0,0,0,0.07)",
-          } as React.CSSProperties}
+          style={
+            {
+              backgroundImage:
+                "radial-gradient(circle, var(--dot-color, rgba(0,0,0,0.07)) 1.5px, transparent 1.5px)",
+              backgroundSize: "18px 18px",
+              borderRadius: "inherit",
+              // Set the dot color variable based on theme
+              "--dot-color": "rgba(0,0,0,0.07)",
+            } as React.CSSProperties
+          }
         />
         <div
           className="absolute inset-0 pointer-events-none z-0 dark:block hidden"
           aria-hidden="true"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle, var(--dot-color-dark, rgba(255,255,255,0.09)) 1.5px, transparent 1.5px)",
-            backgroundSize: "18px 18px",
-            borderRadius: "inherit",
-            "--dot-color-dark": "rgba(255,255,255,0.09)",
-          } as React.CSSProperties}
+          style={
+            {
+              backgroundImage:
+                "radial-gradient(circle, var(--dot-color-dark, rgba(255,255,255,0.09)) 1.5px, transparent 1.5px)",
+              backgroundSize: "18px 18px",
+              borderRadius: "inherit",
+              "--dot-color-dark": "rgba(255,255,255,0.09)",
+            } as React.CSSProperties
+          }
         />
         <div className="relative z-10 w-full h-full flex items-center justify-center">
           {children}
