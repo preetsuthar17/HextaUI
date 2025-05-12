@@ -327,3 +327,7 @@ code {
     display: none !important;
   }
 }
+
+.prose img {
+  border-radius: 14px;
+}
