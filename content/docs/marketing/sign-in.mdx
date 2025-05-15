@@ -9,6 +9,7 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 import { SignIn1 } from "@/components/library/marketing/SignIn.tsx";
 import { SignIn2 } from "@/components/library/marketing/SignIn.tsx";
 import { SignIn3 } from "@/components/library/marketing/SignIn.tsx";
+import { SignIn4 } from "@/components/library/marketing/SignIn.tsx";
 
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
@@ -27,6 +28,10 @@ npx shadcn@latest add "https://21st.dev/r/preetsuthar17/particles"
 ```
 
 ### Install Component
+
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/preetsuthar17/modern-stunning-sign-in"
+```
 
 ```tsx tab="Manually"
 "use client";
@@ -176,6 +181,209 @@ export { SignIn1 };
 import React, { useState } from "react";
 
 const SignIn2 = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [isPwdFocused, setIsPwdFocused] = React.useState(false);
+  const [isPwdTyping, setIsPwdTyping] = React.useState(false);
+  const [spyEye, setSpyEye] = React.useState<null | 0 | 1>(null);
+
+  const maxEmailLength = 24;
+  const emailProgress = Math.min(email.length / maxEmailLength, 1);
+
+  // Handle eyelid animation timers
+  React.useEffect(() => {
+    let spyTimeout: NodeJS.Timeout;
+    if (isPwdFocused && password.length > 0 && isPwdTyping) {
+      setSpyEye(null);
+      spyTimeout = setTimeout(() => {
+        setIsPwdTyping(false);
+        setSpyEye(Math.random() > 0.5 ? 0 : 1);
+      }, 2000);
+    }
+    return () => clearTimeout(spyTimeout);
+  }, [isPwdFocused, password, isPwdTyping]);
+
+  // Reset eyelids
+  React.useEffect(() => {
+    if (!isPwdFocused || password.length === 0) {
+      setSpyEye(null);
+      setIsPwdTyping(false);
+    }
+  }, [isPwdFocused, password]);
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSignIn = () => {
+    if (!email || !password) {
+      setError("Please enter both email and password!");
+      return;
+    }
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address!");
+      return;
+    }
+    setError("");
+    alert("Sign in successful! (Demo)");
+  };
+
+  const eyesClosed =
+    isPwdFocused && password.length > 0 && (isPwdTyping || spyEye === null);
+  const eyePop = isPwdFocused && password.length > 0;
+
+  return (
+    <div className="min-h-screen flex flex-col items-center justify-center px-2">
+      <div className="w-full max-w-xs sm:max-w-sm md:max-w-md bg-white border-4 border-black shadow-[8px_8px_0_0_#000] p-6 sm:p-8 flex flex-col items-center cartoonish-signin overflow-hidden">
+        {/* Eyes */}
+        <div className="flex justify-center mb-4">
+          {[0, 1].map((idx) => {
+            let lidDown = false;
+            let peek = false;
+
+            if (password.length === 0 || !isPwdFocused) {
+              lidDown = false;
+            } else if (eyesClosed) {
+              lidDown = true;
+            } else if (spyEye !== null) {
+              lidDown = spyEye !== idx;
+              peek = spyEye === idx;
+            }
+
+            const lidTransform = lidDown
+              ? "translateY(0%)"
+              : peek
+              ? "translateY(-60%)"
+              : "translateY(-100%)";
+
+            return (
+              <div
+                key={idx}
+                className="relative w-12 h-12 mx-2 flex items-center justify-center transition-transform duration-300 overflow-hidden"
+                style={{
+                  transitionTimingFunction: "cubic-bezier(.4,2,.6,1)",
+                  transform: eyePop ? "scale(1.25)" : "scale(1)",
+                }}
+              >
+                {/* Eye white */}
+                <div className="absolute left-0 bottom-0 w-12 h-12 bg-white border-4 border-black" />
+
+                {/* Pupil */}
+                <div
+                  className="absolute"
+                  style={{
+                    left: 6 + emailProgress * 16,
+                    bottom: 6,
+                    width: 20,
+                    height: 20,
+                    background: "#000",
+                    borderRadius: "50%",
+                    transition: "left 0.3s cubic-bezier(.4,2,.6,1)",
+                  }}
+                />
+
+                {/* Highlight */}
+                <div
+                  className="absolute"
+                  style={{
+                    left: 12 + emailProgress * 16,
+                    bottom: 12,
+                    width: 8,
+                    height: 8,
+                    background: "#fff",
+                    borderRadius: "50%",
+                    transition: "left 0.3s cubic-bezier(.4,2,.6,1)",
+                  }}
+                />
+
+                {/* Eyelid */}
+                <div
+                  className="absolute left-0 top-0 w-12 h-12 bg-black border-b-4 border-yellow z-10"
+                  style={{
+                    transform: lidTransform,
+                    transition: "transform 0.4s cubic-bezier(.4,2,.6,1)",
+                  }}
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Title */}
+        <h2 className="text-3xl font-extrabold text-black mb-1 tracking-wider font-[Comic Sans MS,Comic Sans,cursive]">
+          Sign In
+        </h2>
+        <p className="text-base text-pink-600 font-bold mb-6 text-center font-[Comic Sans MS,Comic Sans,cursive]">
+          Welcome back! Please sign in to continue.
+        </p>
+
+        {/* Form */}
+        <div className="w-full flex flex-col gap-4 mb-2">
+          <input
+            placeholder="Email"
+            type="email"
+            value={email}
+            className="w-full px-4 py-2 border-2 border-black bg-yellow-100 text-black text-base font-bold focus:outline-none focus:ring-2 focus:ring-pink-400"
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            value={password}
+            className="w-full px-4 py-2 border-2 border-black bg-blue-100 text-black text-base font-bold focus:outline-none focus:ring-2 focus:ring-pink-400"
+            onFocus={() => {
+              setIsPwdFocused(true);
+              setIsPwdTyping(true);
+            }}
+            onBlur={() => setIsPwdFocused(false)}
+            onChange={(e) => {
+              setPassword(e.target.value);
+              setIsPwdTyping(true);
+            }}
+          />
+          {error && (
+            <div className="text-sm text-red-500 text-left font-bold">
+              {error}
+            </div>
+          )}
+        </div>
+
+        {/* Button */}
+        <button
+          onClick={handleSignIn}
+          className="w-full bg-pink-400 border-2 border-black text-white font-extrabold py-2 mt-2 shadow-[4px_4px_0_0_#000] hover:bg-pink-500 transition"
+        >
+          Sign In
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export { SignIn2 };
+```
+
+## Sign In 3
+
+### Preview
+
+<PreviewContainer>
+  <SignIn3 />
+</PreviewContainer>
+
+### Install Component
+
+```bash tab="CLI" title="NPM"
+npx shadcn@latest add "https://21st.dev/r/preetsuthar17/clean-minimal-sign-in"
+```
+
+```tsx tab="Manually"
+"use client";
+
+import React, { useState } from "react";
+
+const SignIn3 = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -283,15 +491,15 @@ const SignIn2 = () => {
   );
 };
 
-export { SignIn2 };
+export { SignIn3 };
 ```
 
-## Sign In 3
+## Sign In 4
 
 ### Preview
 
 <PreviewContainer>
-  <SignIn3 />
+  <SignIn4 />
 </PreviewContainer>
 
 ### Install Component
@@ -301,7 +509,7 @@ export { SignIn2 };
 
 import React, { useState } from "react";
 
-const SignIn3 = () => {
+const SignIn4 = () => {
   const [email, setEmail] = React.useState("");
   const [error, setError] = React.useState("");
 
@@ -363,5 +571,5 @@ const SignIn3 = () => {
   );
 };
 
-export { SignIn3 };
+export { SignIn4 };
 ```
