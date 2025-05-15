@@ -1,6 +1,5 @@
 "use client";
 
-import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -55,12 +54,16 @@ const ProfileDropdown = () => {
             className="absolute top-12 mt-3 w-64 sm:w-72 bg-white dark:bg-secondary text-secondary-foreground rounded-2xl shadow-xl p-4 space-y-4 z-50 right-0 sm:right-0 md:right-0 lg:right-0 sm:left-auto left-0"
             ref={menuRef}
           >
-            <div className="flex items-center gap-3 border-b  border-secondary-foreground/10 pb-4">
-              <img
-                src="/logo.png"
-                alt="User"
-                className="w-10 h-10 rounded-full"
-              />
+            <div className="flex items-center gap-3 border-b border-secondary-foreground/10 pb-4">
+              <div className="relative shadow-xl rounded-full">
+                <img
+                  src="/logo.png"
+                  alt="User"
+                  className="w-10 h-10 rounded-full"
+                />
+                {/* Online badge */}
+                <span className="absolute bottom-0 right-0 block w-3 h-3 bg-green-500 border-2 border-white dark:border-gray-900 rounded-full"></span>
+              </div>
               <div className="flex flex-col">
                 <h4 className="font-semibold text-sm sm:text-base">HextaUI</h4>
                 <p className="text-xs sm:text-sm">hi@hextastudio.com</p>
@@ -108,7 +111,7 @@ const ProfileDropdownExample = () => {
   return (
     <div className="h-1/2 flex items-center justify-start text-center flex-col w-full">
       {/* Navbar */}
-      <nav className="rounded-full shadow-lg/5 bg-white dark:bg-secondary text-secondary-foreground  max-w-2xl w-full">
+      <nav className="rounded-full shadow-lg/5 bg-white dark:bg-secondary text-secondary-foreground max-w-2xl w-full">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-lg font-bold text-primary pl-4">HextaUI</div>
           <div className="flex items-center gap-4 max-md:hidden">
