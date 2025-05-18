@@ -13,9 +13,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
   <FileUpload />
 </PreviewContainer>
 
-<Callout title="21st.dev" type="info">
-  ### This component is available on [21st.dev](https://tinyurl.com/yjwybrp3).
-</Callout>
+> ### This component is available on [21st.dev](https://tinyurl.com/yjwybrp3).
 
 ## Install Component
 
@@ -76,8 +74,8 @@ export default function FileUpload() {
       progress += Math.random() * 15;
       setFiles((prev) =>
         prev.map((f) =>
-          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f,
-        ),
+          f.id === id ? { ...f, progress: Math.min(progress, 100) } : f
+        )
       );
       if (progress >= 100) {
         clearInterval(interval);
@@ -128,7 +126,7 @@ export default function FileUpload() {
         transition={{ duration: 0.2 }}
         className={clsx(
           "relative rounded-2xl p-8 md:p-12 text-center cursor-pointer bg-background border border-primary/10 shadow-sm hover:shadow-md backdrop-blur group",
-          isDragging && "ring-4 ring-blue-400/30 border-blue-500",
+          isDragging && "ring-4 ring-blue-400/30 border-blue-500"
         )}
       >
         <div className="flex flex-col items-center gap-5">
@@ -159,7 +157,7 @@ export default function FileUpload() {
                 "w-16 h-16 md:w-20 md:h-20 drop-shadow-sm",
                 isDragging
                   ? "text-blue-500"
-                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300",
+                  : "text-zinc-700 dark:text-zinc-300 group-hover:text-blue-500 transition-colors duration-300"
               )}
             />
           </motion.div>
@@ -169,8 +167,8 @@ export default function FileUpload() {
               {isDragging
                 ? "Drop files here"
                 : files.length
-                  ? "Add more files"
-                  : "Upload your files"}
+                ? "Add more files"
+                : "Upload your files"}
             </h3>
             <p className="text-zinc-600 dark:text-zinc-300 md:text-lg max-w-md mx-auto">
               {isDragging ? (
@@ -228,7 +226,7 @@ export default function FileUpload() {
           className={clsx(
             "flex flex-col gap-3 overflow-y-auto pr-2",
             files.length > 3 &&
-              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent",
+              "max-h-96 scrollbar-thin scrollbar-thumb-zinc-300 dark:scrollbar-thumb-zinc-600 scrollbar-track-transparent"
           )}
         >
           <AnimatePresence>
@@ -290,7 +288,7 @@ export default function FileUpload() {
                             onClick={(e) => {
                               e.stopPropagation();
                               setFiles((prev) =>
-                                prev.filter((f) => f.id !== file.id),
+                                prev.filter((f) => f.id !== file.id)
                               );
                             }}
                             aria-label="Remove file"
@@ -313,7 +311,7 @@ export default function FileUpload() {
                       }}
                       className={clsx(
                         "h-full rounded-full shadow-inner",
-                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500",
+                        file.progress < 100 ? "bg-blue-500" : "bg-emerald-500"
                       )}
                     />
                   </div>
