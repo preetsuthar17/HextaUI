@@ -21,7 +21,7 @@ export const metadata: Metadata = customMetaDataGenerator({
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col justify-center text-center mt-20">
+    <main className="flex flex-1 flex-col justify-center text-center mt-20  z-0">
       <Hero />
       <Features />
       <WallOfLove />

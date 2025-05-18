@@ -15,7 +15,7 @@ export const metadata: Metadata = customMetaDataGenerator({
 const ShowcasePage = () => {
   return (
     <>
-      <main className="flex flex-1 flex-col justify-center text-center mt-20 gap-5 mb-20">
+      <main className="flex flex-1 flex-col justify-center text-center mt-20 gap-5 mb-20 z-0">
         {" "}
         <section className="border border-primary/10 min-h-[20rem] max-w-[60rem] w-[90%] mx-auto text-left relative overflow-hidden flex items-center">
           {/* gradient */}
