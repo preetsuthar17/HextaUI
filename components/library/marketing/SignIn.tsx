@@ -201,8 +201,8 @@ const SignIn2 = () => {
             const lidTransform = lidDown
               ? "translateY(0%)"
               : peek
-              ? "translateY(-60%)"
-              : "translateY(-100%)";
+                ? "translateY(-60%)"
+                : "translateY(-100%)";
 
             return (
               <div
