@@ -19,18 +19,18 @@ export const source = loader({
         node.name = (
           <>
             {node.name}
-            <div className="border-blue-600 border bg-blue-600 text-white text-xs py-0.2 px-2 rounded-md">
+            <span className="border-blue-600 border bg-blue-600 text-white text-xs py-0.2 px-2 rounded-md">
               New
-            </div>
+            </span>
           </>
         );
       else if (data.pro)
         node.name = (
           <>
             {node.name}
-            <div className="border-orange-600 border bg-orange-600 text-white text-xs py-0.2 px-2 rounded-md">
+            <span className="border-orange-600 border bg-orange-600 text-white text-xs py-0.2 px-2 rounded-md">
               Pro
-            </div>
+            </span>
           </>
         );
 
