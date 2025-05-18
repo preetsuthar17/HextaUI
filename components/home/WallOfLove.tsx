@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 const tweets = [
   "1920730864687763482",
+  "1923850294204522637",
   "1875895384226373680",
   "1782653978683072684",
   "1787091751997440143",
@@ -83,7 +84,7 @@ const WallOfLove = () => {
                         {tweets
                           .slice(
                             colIndex * TWEETS_PER_COLUMN,
-                            (colIndex + 1) * TWEETS_PER_COLUMN,
+                            (colIndex + 1) * TWEETS_PER_COLUMN
                           )
                           .map((tweetId) => (
                             <Tweet
