@@ -20,7 +20,7 @@ export const BasicConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerBasicConfetti}>
+    <Button variant="outline" onClick={triggerBasicConfetti}>
       Basic Confetti
     </Button>
   );
@@ -38,7 +38,7 @@ export const RandomConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerRandomConfetti}>
+    <Button variant="outline" onClick={triggerRandomConfetti}>
       Random Direction Confetti
     </Button>
   );
@@ -85,7 +85,7 @@ export const RealisticConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerRealisticConfetti}>
+    <Button variant="outline" onClick={triggerRealisticConfetti}>
       Realistic Confetti
     </Button>
   );
@@ -118,7 +118,7 @@ export const FireworksConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerFireworks}>
+    <Button variant="outline" onClick={triggerFireworks}>
       Fireworks
     </Button>
   );
@@ -157,7 +157,7 @@ export const StarConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerStarBurst}>
+    <Button variant="outline" onClick={triggerStarBurst}>
       Star Burst
     </Button>
   );
@@ -199,7 +199,7 @@ export const SnowConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerSnowEffect}>
+    <Button variant="outline" onClick={triggerSnowEffect}>
       Snow Effect
     </Button>
   );
@@ -236,7 +236,7 @@ export const SchoolPrideConfetti = () => {
   };
 
   return (
-    <Button variant="secondary" onClick={triggerSchoolPride}>
+    <Button variant="outline" onClick={triggerSchoolPride}>
       School Pride
     </Button>
   );
