@@ -126,7 +126,7 @@ function Pointer({ ref, className, style, children, ...rest }: PointerProps) {
           data-role="custom-pointer"
           className={cx(
             "pointer-events-none z-[9999] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className,
+            className
           )}
           style={{ top: y, left: x, ...style }}
           initial={{ scale: 0, opacity: 0 }}
@@ -218,7 +218,7 @@ function PointerFollower({
           data-role="pointer-follower"
           className={cx(
             "pointer-events-none z-[9998] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className,
+            className
           )}
           style={{ top: y, left: x, ...style }}
           initial={{ scale: 0, opacity: 0 }}
@@ -237,7 +237,7 @@ function PointerFollower({
 
 export const CursorDemo = () => {
   return (
-    <div className="max-w-sm rounded-2xl bg-background border border-primary/10 shadow-md overflow-hidden relative group">
+    <div className="max-w-sm rounded-4xl bg-background border border-primary/10 shadow-2xl/10 overflow-hidden relative group">
       <div className="p-6 flex flex-col gap-8">
         <p className="text-4xl font-bold tracking-tight">
           Ready to build something amazing?
