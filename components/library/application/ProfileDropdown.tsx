@@ -51,7 +51,7 @@ const ProfileDropdown = () => {
               stiffness: 300,
               damping: 20,
             }}
-            className="absolute top-12 mt-3 w-64 sm:w-72 bg-white dark:bg-secondary text-secondary-foreground rounded-2xl shadow-xl p-4 space-y-4 z-50 right-0 sm:right-0 md:right-0 lg:right-0 sm:left-auto left-0"
+            className="absolute top-12 mt-3 w-64 sm:w-72 bg-white dark:bg-secondary text-secondary-foreground rounded-2xl shadow-xl p-4 space-y-4 z-50 right-0"
             ref={menuRef}
           >
             <div className="flex items-center gap-3 border-b border-secondary-foreground/10 pb-4">
@@ -114,14 +114,14 @@ const ProfileDropdownExample = () => {
       <nav className="rounded-full shadow-lg/5 bg-white dark:bg-secondary text-secondary-foreground max-w-2xl w-full">
         <div className="container mx-auto px-4 py-3 flex justify-between items-center">
           <div className="text-lg font-bold text-primary pl-4">HextaUI</div>
-          <div className="flex items-center gap-4 max-md:hidden">
-            <a href="#" className="text-sm hover:text-primary">
+          <div className="flex items-center gap-4 ">
+            <a href="#" className="text-sm hover:text-primary max-md:hidden">
               Home
             </a>
-            <a href="#" className="text-sm hover:text-primary">
+            <a href="#" className="text-sm hover:text-primary max-md:hidden">
               About
             </a>
-            <a href="#" className="text-sm hover:text-primary">
+            <a href="#" className="text-sm hover:text-primary max-md:hidden">
               Contact
             </a>
             <ProfileDropdown />
