@@ -65,7 +65,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
 }) => {
   return (
     <div
-      className={`relative overflow-hidden rounded-2xl border border-primary/10 bg-background p-6 transition-all hover:shadow-lg dark:hover:shadow-primary/5 md:p-8 ${className}`}
+      className={`relative overflow-hidden rounded-4xl bg-background border border-primary/10 shadow-2xl/10 p-6 md:p-8 ${className}`}
     >
       {/* Quote Icon */}
       <div className="absolute right-6 top-6 text-6xl font-serif text-muted-foreground/20">
@@ -99,7 +99,7 @@ export const TestimonialCard: React.FC<TestimonialCardProps> = ({
         {/* Author Info */}
         <div className="flex items-center gap-4">
           {image && (
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full flex items-center justify-center">
               <Avatar>
                 <AvatarImage src={image} alt={name} width={48} height={48} />
                 <AvatarFallback>{name[0]}</AvatarFallback>
