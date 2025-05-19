@@ -39,8 +39,7 @@ export const PostCard: React.FC = () => {
     setBookmarked((prev) => !prev);
   };
 
-  return (
-    <div className="m-4 max-w-[30rem] w-full rounded-2xl border border-primary/10 bg-background p-4 text-sm text-secondary-foreground shadow-xs">
+   <div className="m-4 max-w-[30rem] w-full rounded-4xl bg-background border border-primary/10 shadow-2xl/10 p-4">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 card-header">
         <div className="flex items-center gap-4">
@@ -89,7 +88,7 @@ export const PostCard: React.FC = () => {
       <div className="mt-4 flex justify-evenly gap-2">
         <button
           onClick={handleLike}
-          className="flex grow items-center justify-center gap-3 rounded-md px-4 py-2 transition hover:bg-white/5"
+          className="flex grow items-center justify-center gap-3 rounded-xl px-4 py-2 transition hover:bg-white/5"
         >
           {liked ? <FaHeart color="red" /> : <FaRegHeart />}
           <span className="hidden opacity-90 text-[14px] transition hover:opacity-100 max-[488px]:inline">
@@ -99,7 +98,7 @@ export const PostCard: React.FC = () => {
 
         <button
           onClick={handleBookmark}
-          className="flex grow items-center justify-center gap-3 rounded-md px-4 py-2 transition hover:bg-white/5"
+          className="flex grow items-center justify-center gap-3 rounded-xl px-4 py-2 transition hover:bg-white/5"
         >
           {bookmarked ? <FaBookmark color="#00bfff" /> : <FaRegBookmark />}
           <span className="hidden opacity-90 text-[14px] transition hover:opacity-100 max-[488px]:inline">
@@ -107,7 +106,7 @@ export const PostCard: React.FC = () => {
           </span>
         </button>
 
-        <button className="flex grow items-center justify-center gap-3 rounded-md px-4 py-2 transition hover:bg-white/5">
+        <button className="flex grow items-center justify-center gap-3 rounded-xl px-4 py-2 transition hover:bg-white/5">
           <FaRegPaperPlane />
           <span className="hidden opacity-90 text-[14px] transition hover:opacity-100 max-[488px]:inline">
             Share
