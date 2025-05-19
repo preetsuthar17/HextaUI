@@ -12,12 +12,12 @@ import { FaBolt } from "react-icons/fa";
 
 ## Preview
 
-<PreviewContainer>
+<PreviewContainer className="h-[30rem]">
   <SpotlightCard
-    className="magic-card flex flex-col gap-4 max-w-[30rem]"
-    spotlightColor="#ffffff30"
+    className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-4xl bg-background border border-primary/10 shadow-2xl/10"
+    spotlightColor="#6300ff30"
   >
-    <div className="text-2xl font-bold flex items-center gap-2">
+    <div className="text-2xl font-bold flex items-center gap-2 ">
       <FaBolt className="text-yellow-500" />
       <span>Lighting Fast</span>
     </div>
@@ -38,7 +38,7 @@ import { useRef, useState } from "react";
 export const SpotlightCard = ({
   children,
   className = "",
-  spotlightColor = "#ffffff30",
+  spotlightColor = "#6300ff30",
 }: {
   children: any;
   className?: string;
@@ -105,7 +105,7 @@ import { FaBolt } from "react-icons/fa";
 import { SpotlightCard } from "@/components/library/animation/SpotlightCard";
 
 <SpotlightCard
-  className="magic-card flex flex-col gap-4 max-w-[30rem]"
+  className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-4xl bg-background border border-primary/10 shadow-2xl/10"
   spotlightColor="#ffffff30"
 >
   <div className="text-2xl font-bold flex items-center gap-2">
