@@ -75,7 +75,7 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
 
   return (
     <div
-      className={`bg-background border border-primary/10 rounded-lg p-6 ${className}`}
+      className={`max-w-[30rem] rounded-4xl bg-background border border-primary/10 shadow-2xl/10 p-6 ${className}`}
     >
       <AnimatePresence mode="wait">
         {!isSubmitted ? (
@@ -108,34 +108,44 @@ export const NewsletterSignup: React.FC<NewsletterSignupProps> = ({
             </div>
 
             {/* Input */}
-            <div className="space-y-2">
-              <motion.label
-                htmlFor="email"
-                className="font-medium text-sm"
-                initial={{ opacity: 0, filter: "blur(3px)" }}
-                animate={{ opacity: 1, filter: "blur(0px)" }}
-                transition={{ delay: 0.6 }}
-              >
-                Email address
-              </motion.label>
+            <div className="flex flex-col gap-4">
+              <div>
+                <motion.label
+                  htmlFor="email"
+                  className="font-medium text-sm"
+                  initial={{ opacity: 0, filter: "blur(3px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ delay: 0.6 }}
+                >
+                  Email address
+                </motion.label>
+                <motion.div
+                  className="flex flex-wrap items-center gap-2 justify-end"
+                  initial={{ opacity: 0, filter: "blur(3px)" }}
+                  animate={{ opacity: 1, filter: "blur(0px)" }}
+                  transition={{ delay: 0.7 }}
+                >
+                  <Input
+                    type="email"
+                    id="email"
+                    placeholder="you@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full rounded-xl border px-3 py-2 text-sm focus-visible:ring-0 focus-within:ring-0 focus:outline-white/10"
+                  />
+                </motion.div>
+              </div>
+
               <motion.div
                 className="flex flex-wrap items-center gap-2 justify-end"
                 initial={{ opacity: 0, filter: "blur(3px)" }}
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ delay: 0.7 }}
               >
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="you@example.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="w-full rounded-md border px-3 py-2 text-sm focus-visible:ring-0 focus-within:ring-0 focus:outline-white/10"
-                />
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="relative overflow-hidden"
+                  className="relative overflow-hidden rounded-xl"
                 >
                   <motion.div
                     key="button-content"
