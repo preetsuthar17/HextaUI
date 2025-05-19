@@ -275,6 +275,7 @@ code {
   border: 1px solid hsl(var(--primary) / 10%) !important;
   background: hsl(var(--secondary) / 50%) !important;
   border-radius: 16px !important;
+  display: none;
 }
 
 .tweet-media_image__j5PzO {
