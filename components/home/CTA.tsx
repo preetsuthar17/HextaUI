@@ -43,9 +43,9 @@ const CTA = () => {
           <Link
             href="https://github.com/sponsors/preetsuthar17"
             target="_blank"
-            className="px-6 bg-linear-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10  hover:fill-yellow-300"
+            className="px-6 bg-linear-to-b hover:bg-primary/10 transition-all py-3 rounded-full border text-sm font-medium flex items-center justify-center gap-2 text-center max-md:grow shadow-inner shadow-black/10 "
           >
-            <Star size={15} fill="yellow" /> Sponsor HextaUI
+            <Star size={15} fill="black" /> Sponsor HextaUI
           </Link>
         </div>
       </div>
