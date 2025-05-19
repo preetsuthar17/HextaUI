@@ -19,7 +19,6 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
       gradientColors={["#2EB9DF", "#2EB9DF", "#9E00FF"]}
       animationDuration={2}
     />
-
   <div className="flex items-center justify-center w-12 h-12 border border-primary/10 bg-background text-xss rounded-md p-4">B</div>
   </div>
 </PreviewContainer>
@@ -123,9 +122,14 @@ import { GradientTracing } from "@/components/library/animation/GradientTracing"
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
+    <PreviewContainer className="min-h-[40rem] flex flex-col items-center justify-center gap-4">
+      <div className="flex items-center justify-center w-12 h-12 border border-primary/10 bg-background text-xss rounded-md p-4">A</div>
+  
       <GradientTracing width={300} height={100} path="M0,50 Q150,0 300,50" />
+        <div className="flex items-center justify-center w-12 h-12 border border-primary/10 bg-background text-xss rounded-md p-4">B</div>
+
     </PreviewContainer>
+
   </Tab>
   <Tab value="Code">
     ```tsx
@@ -139,13 +143,16 @@ import { GradientTracing } from "@/components/library/animation/GradientTracing"
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer className="min-h-[40rem]">
+          <div className="flex items-center justify-center w-12 h-12 border border-primary/10 bg-background text-xss rounded-md p-4">A</div>
       <GradientTracing
         width={300}
         height={100}
         path="M0,50 C75,0 150,100 225,50 S300,0 375,50"
         gradientColors={["#FF6B6B", "#FF6B6B", "#4ECDC4"]}
       />
+
     </PreviewContainer>
+
   </Tab>
   <Tab value="Code">
     ```tsx
@@ -154,202 +161,6 @@ import { GradientTracing } from "@/components/library/animation/GradientTracing"
       height={100}
       path="M0,50 C75,0 150,100 225,50 S300,0 375,50"
       gradientColors={["#FF6B6B", "#FF6B6B", "#4ECDC4"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Heart shape
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={250}
-        path="M150,30 C150,30 125,0 75,0 S0,30 0,75 C0,150 150,170 150,170 C150,170 300,150 300,75 C300,30 270,0 225,0 S150,30 150,30"
-        gradientColors={["#FF85A2", "#FF85A2", "#FFC300"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={250}
-      path="M150,30 C150,30 125,0 75,0 S0,30 0,75 C0,150 150,170 150,170 C150,170 300,150 300,75 C300,30 270,0 225,0 S150,30 150,30"
-      gradientColors={["#FF85A2", "#FF85A2", "#FFC300"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Spiral
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={200}
-        height={200}
-        path="M100,100 m0,-75 a75,75 0 1,1 -0.1,0 z"
-        gradientColors={["#7B68EE", "#7B68EE", "#3498DB"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={200}
-      height={200}
-      path="M100,100 m0,-75 a75,75 0 1,1 -0.1,0 z"
-      gradientColors={["#7B68EE", "#7B68EE", "#3498DB"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Double helix
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={100}
-        path="M0,50 C25,0 50,100 75,50 S125,0 150,50 S200,100 225,50 S275,0 300,50 M0,50 C25,100 50,0 75,50 S125,100 150,50 S200,0 225,50 S275,100 300,50"
-        gradientColors={["#FF6B6B", "#FF6B6B", "#4ECDC4"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={100}
-      path="M0,50 C25,0 50,100 75,50 S125,0 150,50 S200,100 225,50 S275,0 300,50 M0,50 C25,100 50,0 75,50 S125,100 150,50 S200,0 225,50 S275,100 300,50"
-      gradientColors={["#FF6B6B", "#FF6B6B", "#4ECDC4"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Infinity symbol
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={100}
-        path="M50,50 C50,25 75,25 100,50 S150,75 150,50 S125,25 100,50 C75,75 50,75 50,50 M150,50 C150,25 175,25 200,50 S250,75 250,50 S225,25 200,50 C175,75 150,75 150,50"
-        gradientColors={["#9B59B6", "#9B59B6", "#3498DB"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={100}
-      path="M50,50 C50,25 75,25 100,50 S150,75 150,50 S125,25 100,50 C75,75 50,75 50,50 M150,50 C150,25 175,25 200,50 S250,75 250,50 S225,25 200,50 C175,75 150,75 150,50"
-      gradientColors={["#9B59B6", "#9B59B6", "#3498DB"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Bouncing ball
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={250}
-        path="M0,150 Q75,0 150,150 T300,150"
-        gradientColors={["#E74C3C", "#E74C3C", "#F39C12"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={250}
-      path="M0,150 Q75,0 150,150 T300,150"
-      gradientColors={["#E74C3C", "#E74C3C", "#F39C12"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Lightning bolt
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={200}
-        height={200}
-        path="M100,0 L75,75 L125,75 L50,200 L100,100 L50,100 L100,0"
-        gradientColors={["#F1C40F", "#F1C40F", "#E67E22"]}
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={200}
-      height={200}
-      path="M100,0 L75,75 L125,75 L50,200 L100,100 L50,100 L100,0"
-      gradientColors={["#F1C40F", "#F1C40F", "#E67E22"]}
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Zigzag path
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={100}
-        path="M0,50 L75,25 L150,75 L225,25 L300,50"
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={100}
-      path="M0,50 L75,25 L150,75 L225,25 L300,50"
-    />
-    ```
-  </Tab>
-</Tabs>
-
-### Loop path
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer className="min-h-[40rem]">
-      <GradientTracing
-        width={300}
-        height={250}
-        path="M0,75 C100,0 200,150 300,75"
-      />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <GradientTracing
-      width={300}
-      height={250}
-      path="M0,75 C100,0 200,150 300,75"
     />
     ```
   </Tab>
