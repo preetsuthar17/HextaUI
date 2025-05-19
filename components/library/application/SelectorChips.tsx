@@ -21,7 +21,7 @@ const SelectorChips: React.FC<SelectorChipsProps> = ({ options, onChange }) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2 max-w-xl w-full bg-background border border-primary/10 p-4 rounded-3xl shadow-2xl/10">
       {options.map((option) => {
         const isSelected = selected.includes(option);
         return (
@@ -123,7 +123,6 @@ const SelectorChipsDemo = () => {
           "Next.js",
           "Remix",
           "Astro",
-          "Sapper",
           "Nuxt.js",
         ]}
         onChange={(selected) => setSelectedItems(selected)}
