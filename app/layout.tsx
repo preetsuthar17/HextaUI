@@ -1,13 +1,13 @@
 import "./global.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { DM_Sans, JetBrains_Mono } from "next/font/google";
+import { DM_Sans, Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { Banner } from "fumadocs-ui/components/banner";
 import Link from "next/link";
 
-const dm_sans = DM_Sans({
+const dm_sans = Inter({
   subsets: ["latin"],
 });
 
