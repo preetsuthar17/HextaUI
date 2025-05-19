@@ -29,7 +29,7 @@ export const baseOptions: BaseLayoutProps = {
   links: [
     {
       text: "Components",
-      url: "/docs/application/apple-writing-effect",
+      url: "/docs/animation/apple-hello-effect",
       active: "url",
       icon: <LayoutPanelTop />,
     },
