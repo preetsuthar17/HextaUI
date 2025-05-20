@@ -49,7 +49,7 @@ export function PasswordStrengthMeter({
         test: (pass: string) => /[^A-Za-z0-9]/.test(pass),
       },
     ],
-    [minLength]
+    [minLength],
   );
 
   const requirements = customRequirements ?? defaultRequirements;
@@ -61,7 +61,7 @@ export function PasswordStrengthMeter({
     const metCount = met.filter(Boolean).length;
     const level = Math.min(
       Math.floor((metCount / requirements.length) * levels),
-      levels
+      levels,
     );
     setStrength(level);
   }, [password, requirements, levels]);
@@ -96,7 +96,7 @@ export function PasswordStrengthMeter({
             key={req.label}
             className={cn(
               "flex items-center gap-2",
-              requirementsMet[i] && "text-green-600"
+              requirementsMet[i] && "text-green-600",
             )}
           >
             <span className="text-xs">•</span>

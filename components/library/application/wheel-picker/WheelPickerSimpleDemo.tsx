@@ -39,10 +39,7 @@ const options: WheelPickerOption[] = [
 export function WheelPickerSimpleDemo() {
   return (
     <WheelPickerWrapper>
-      <WheelPicker
-        options={options}
-        defaultValue="react-router"
-      />
+      <WheelPicker options={options} defaultValue="react-router" />
     </WheelPickerWrapper>
   );
 }
