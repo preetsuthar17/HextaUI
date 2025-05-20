@@ -1,0 +1,27 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitType": "docs",
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "ncdai",
+      "name": "Chánh Đại",
+      "avatar_url": "https://avatars.githubusercontent.com/u/10192821?v=4",
+      "profile": "http://chanhdai.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "skipCi": true,
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "projectName": "HextaUI",
+  "projectOwner": "preetsuthar17"
+}
