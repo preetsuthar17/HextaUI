@@ -2,9 +2,9 @@ import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
 
 import Image from "next/image";
 
-import { AlbumIcon, Star } from "lucide-react";
-import { LayoutPanelTop } from "lucide-react";
-import { FaDiscord, FaGithub } from "react-icons/fa";
+import { LayoutPanelTop, Star } from "lucide-react";
+import { FaDiscord } from "react-icons/fa";
+import { TbSparkles } from "react-icons/tb";
 
 /**
  * Shared layout configurations
@@ -38,7 +38,7 @@ export const baseOptions: BaseLayoutProps = {
       text: "Showcase",
       url: "/showcase",
       active: "nested-url",
-      icon: <FaDiscord />,
+      icon: <TbSparkles />,
     },
     {
       text: "Sponsors",
