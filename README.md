@@ -4,7 +4,7 @@
 
 ![Repobeats analytics image](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg)
 
-
+---
 
 ## 🚀 Getting Started
 
@@ -36,7 +36,7 @@ npm run dev
 
 Visit [http://localhost:3000](http://localhost:3000) in your browser.
 
-
+---
 
 ### 🔐 Environment Variables
 
@@ -48,7 +48,7 @@ NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
 
 👉 [Learn how to create a GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-
+---
 
 ## 📁 Project Structure
 
@@ -75,7 +75,7 @@ NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
 ┃     ┗ component-3.mdx
 ```
 
-
+---
 
 ## 🧱 Adding a New Component
 
@@ -108,7 +108,7 @@ const Component1 = () => {
 export { Component1 };
 ```
 
-
+---
 
 ### 2. Create Documentation File
 
@@ -121,11 +121,11 @@ content/docs/<category>/component-1.mdx
 #### Template
 
 ````mdx
-
+---
 title: Component 1
 description: This is a sample component.
 new: true
-
+---
 
 import { Component1 } from "@/components/library/<category>/Component1";
 import { PreviewContainer } from "@/components/PreviewContainer";
@@ -153,7 +153,7 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 ```
 ````
 
-
+---
 
 ## Contributors
 
@@ -166,13 +166,15 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
+![GitHub contributors](https://img.shields.io/github/contributors/preetsuthar17/HextaUI)
 
+---
 
 ## 📜 License
 
 This project is licensed under the [MIT License](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE).
 
-
+---
 
 ## ⭐ Star History
 
