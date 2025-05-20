@@ -6,6 +6,44 @@ Modern, responsive, customizable UI components for Next.js. Copy, adapt, and per
 
 ## Contribution Guide
 
+### Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/preetsuthar17/HextaUI.git
+```
+
+Go to the project directory
+
+```bash
+  cd HextaUI
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+Open your browser and go to [http://localhost:3000](http://localhost:3000)
+
+### Environment variables
+
+To run the project, you need to create a `.env.local` file in the root directory and add the following environment variables:
+
+```bash
+NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
+```
+
+[Managing GitHub tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
 ### File structure
 
 ```bash
@@ -91,7 +129,6 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 ```tsx title="App.tsx"
 // Usage of your component
 ```
-````
 
 ## License
 
@@ -100,3 +137,4 @@ Licensed under the [MIT license.](https://github.com/preetsuthar17/HextaUI/blob/
 # Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=preetsuthar17/HextaUI&type=Date)](https://star-history.com/#preetsuthar17/HextaUI&Date)
+````
