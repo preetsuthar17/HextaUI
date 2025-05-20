@@ -1,5 +1,5 @@
-import type { WheelPickerOption } from "@/components/library/application/WheelPicker";
-import { WheelPicker, WheelPickerWrapper } from "@/components/library/application/WheelPicker";
+import type { WheelPickerOption } from "./WheelPicker";
+import { WheelPicker, WheelPickerWrapper } from "./WheelPicker";
 
 const createArray = (length: number, add = 0): WheelPickerOption[] =>
   Array.from({ length }, (_, i) => {
