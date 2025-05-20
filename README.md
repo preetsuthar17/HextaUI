@@ -1,4 +1,7 @@
 # 🌟 Build Stunning Websites Effortlessly
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 **HextaUI** provides modern, responsive, and customizable UI components for Next.js. Copy, adapt, and personalize them to build beautiful web interfaces with ease.
 
@@ -158,6 +161,20 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://chanhdai.com"><img src="https://avatars.githubusercontent.com/u/10192821?v=4?s=100" width="100px;" alt="Chánh Đại"/><br /><sub><b>Chánh Đại</b></sub></a><br /><a href="https://github.com/preetsuthar17/HextaUI/issues?q=author%3Ancdai" title="Bug reports">🐛</a> <a href="https://github.com/preetsuthar17/HextaUI/commits?author=ncdai" title="Code">💻</a></td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
 
