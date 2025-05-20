@@ -23,7 +23,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 > ### This component is available on [21st.dev](https://tinyurl.com/3pw732ad).
 
-## Install Component
+## Installation
 
 ```bash tab="CLI" title="NPM"
 npx shadcn@latest add "https://21st.dev/r/hextaui/animated-tabs"
@@ -56,9 +56,9 @@ export function AnimatedTabs({ tabs }: AnimatedTabsProps) {
         const clipRight = offsetLeft + offsetWidth + 16;
 
         container.style.clipPath = `inset(0 ${Number(
-          100 - (clipRight / container.offsetWidth) * 100,
+          100 - (clipRight / container.offsetWidth) * 100
         ).toFixed()}% 0 ${Number(
-          (clipLeft / container.offsetWidth) * 100,
+          (clipLeft / container.offsetWidth) * 100
         ).toFixed()}% round 17px)`;
       }
     }

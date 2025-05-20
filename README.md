@@ -128,7 +128,7 @@ import { PreviewContainer } from "@/components/PreviewContainer";
   <Component1 />
 </PreviewContainer>
 
-## Install Component
+## Installation
 
 ```bash tab="CLI" title="NPM"
 {/* Leave this blank */}

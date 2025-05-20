@@ -42,7 +42,7 @@ import Link from "next/link";
 
 > ### This component is available on [21st.dev](https://tinyurl.com/bdf9nana).
 
-## Install Component
+## Installation
 
 ```bash tab="CLI" title="NPM"
 npx shadcn@latest add "https://21st.dev/r/hextaui/animated-dock"
@@ -86,7 +86,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto flex h-16 items-end gap-4 rounded-2xl bg-background border border-primary/10 shadow-md px-4 pb-3",
-        className,
+        className
       )}
     >
       {items.map((item, index) => (
