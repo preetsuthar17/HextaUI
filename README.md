@@ -177,5 +177,3 @@ This project is licensed under the [MIT License](https://github.com/preetsuthar1
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=preetsuthar17/HextaUI&type=Date)](https://star-history.com/#preetsuthar17/HextaUI&Date)
-
-_Let me know if you want this split into individual files or formatted for a specific documentation tool like Docusaurus or VitePress._
