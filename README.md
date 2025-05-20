@@ -1,79 +1,95 @@
-# Build stunning websites effortlessly
+# 🌟 Build Stunning Websites Effortlessly
 
-Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.
+**HextaUI** provides modern, responsive, and customizable UI components for Next.js. Copy, adapt, and personalize them to build beautiful web interfaces with ease.
 
-![Alt](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg "Repobeats analytics image")
+![Repobeats analytics image](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg)
 
-## Contribution Guide
 
-### Run Locally
 
-Clone the project
+## 🚀 Getting Started
 
-```bash
-  git clone https://github.com/preetsuthar17/HextaUI.git
-```
+### 🛠️ Run Locally
 
-Go to the project directory
+Clone the repository:
 
 ```bash
-  cd HextaUI
+git clone https://github.com/preetsuthar17/HextaUI.git
 ```
 
-Install dependencies
+Navigate into the project directory:
 
 ```bash
-  npm install
+cd HextaUI
 ```
 
-Start the server
+Install the dependencies:
 
 ```bash
-  npm run dev
+npm install
 ```
 
-Open your browser and go to [http://localhost:3000](http://localhost:3000)
+Start the development server:
 
-### Environment variables
+```bash
+npm run dev
+```
 
-To run the project, you need to create a `.env.local` file in the root directory and add the following environment variables:
+Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+
+
+### 🔐 Environment Variables
+
+To run the project, create a `.env.local` file at the root and add:
 
 ```bash
 NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
 ```
 
-[Managing GitHub tokens](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+👉 [Learn how to create a GitHub token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 
-### File structure
+
+
+## 📁 Project Structure
 
 ```bash
 ┣ components
-┃ ┣ library
-┃ ┃ ┣ category 1
-┃ ┃ ┃ ┣ Component1.tsx
-┃ ┃ ┃ ┣ Component2.tsx
-┃ ┃ ┃ ┣ Component3.tsx
-┃ ┃ ┣ category 2
-┃ ┃ ┃ ┣ Component1.tsx
-┃ ┃ ┃ ┣ Component2.tsx
-┃ ┃ ┣ Component3.tsx
+┃ ┗ library
+┃   ┣ category-1
+┃   ┃ ┣ Component1.tsx
+┃   ┃ ┣ Component2.tsx
+┃   ┃ ┗ Component3.tsx
+┃   ┗ category-2
+┃     ┣ Component1.tsx
+┃     ┣ Component2.tsx
+┃     ┗ Component3.tsx
 ┣ content
-┃ ┣ docs
-┃ ┃ ┣ category 1
-┃ ┃ ┃ ┣ Component1.mdx
-┃ ┃ ┃ ┣ Component2.mdx
-┃ ┃ ┃ ┣ Component3.mdx
-┃ ┃ ┣ category 2
-┃ ┃ ┃ ┣ Component1.mdx
-┃ ┃ ┃ ┣ Component2.mdx
-┃ ┃ ┃ ┣ Component3.mdx
+┃ ┗ docs
+┃   ┣ category-1
+┃   ┃ ┣ component-1.mdx
+┃   ┃ ┣ component-2.mdx
+┃   ┃ ┗ component-3.mdx
+┃   ┗ category-2
+┃     ┣ component-1.mdx
+┃     ┣ component-2.mdx
+┃     ┗ component-3.mdx
 ```
 
-### Code Structure
 
-Suppose you are adding new component called `Component1`. Create new file in `components/library/category/Component1.tsx`
 
-Choose the category that best fits your component. If you are unsure, you can google the component name to see which category it falls under.
+## 🧱 Adding a New Component
+
+### 1. Create Component File
+
+Create your new component in the appropriate category:
+
+```bash
+components/library/<category>/Component1.tsx
+```
+
+If unsure which category fits, search the component name online for context.
+
+#### Example
 
 ```tsx
 "use client";
@@ -92,20 +108,26 @@ const Component1 = () => {
 export { Component1 };
 ```
 
-this is how basic component code should look like. You can add your own styles and logic as per your requirement.
 
-### Docs Structure
 
-Just like you created a new file in `components/library/category/Component1.tsx`, create a new file in `content/docs/category/component-1.mdx`
+### 2. Create Documentation File
+
+Add documentation for your component:
+
+```bash
+content/docs/<category>/component-1.mdx
+```
+
+#### Template
 
 ````mdx
----
+
 title: Component 1
 description: This is a sample component.
 new: true
----
 
-import { Component1 } from "@/components/library/category/Component1";
+
+import { Component1 } from "@/components/library/<category>/Component1";
 import { PreviewContainer } from "@/components/PreviewContainer";
 
 ## Preview
@@ -117,24 +139,43 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 ## Install Component
 
 ```bash tab="CLI" title="NPM"
-{/* keep this empty */}
+{/* Leave this blank */}
 ```
 
 ```tsx tab="Manually" title="Component1.tsx"
-// Code for your component file
+// Paste the full code of your component here
 ```
 
 ## Usage
 
 ```tsx title="App.tsx"
-// Usage of your component
+// Example usage of the component
 ```
+````
 
-## License
 
-Licensed under the [MIT license.](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE)
 
-# Star History
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+
+
+## 📜 License
+
+This project is licensed under the [MIT License](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE).
+
+
+
+## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=preetsuthar17/HextaUI&type=Date)](https://star-history.com/#preetsuthar17/HextaUI&Date)
-````
+
+Let me know if you want this split into individual files or formatted for a specific documentation tool like Docusaurus or VitePress.
