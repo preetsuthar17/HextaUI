@@ -1,0 +1,207 @@
+"use client";
+
+import React, { useEffect, useState } from "react";
+import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
+
+const RefractedGlassEffect = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springConfig = { damping: 20, stiffness: 10, mass: 0.3 };
+  const smoothMouseX = useSpring(mouseX, springConfig);
+  const smoothMouseY = useSpring(mouseY, springConfig);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const centerX = window.innerWidth / 2;
+      const centerY = window.innerHeight / 2;
+
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const maxDistance = 120;
+      const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+      let limitedX = deltaX;
+      let limitedY = deltaY;
+
+      if (distance > maxDistance) {
+        const ratio = maxDistance / distance;
+        limitedX = deltaX * ratio;
+        limitedY = deltaY * ratio;
+      }
+
+      const scaleFactor = 1.2;
+      const newX = limitedX * scaleFactor;
+      const newY = limitedY * scaleFactor;
+      mouseX.set(newX);
+      mouseY.set(newY);
+
+      console.log("Mouse position:", { newX, newY });
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [mouseX, mouseY]);
+
+  const shapeVariants = {
+    initial: {
+      scale: 0,
+      opacity: 0,
+      rotateX: 0,
+      rotateY: 0,
+    },
+    animate: {
+      scale: [0, 1.2, 1, 1.5, 0.8, 1, 0.6, 0],
+      opacity: [0, 1, 1, 1, 1, 1, 0.5, 0],
+      rotateX: [0, 0, 0, 360, 360, 360, 360, 0],
+      rotateY: [0, 0, 0, 360, 360, 360, 360, 0],
+      width: [
+        "200px",
+        "200px",
+        "200px",
+        "300px",
+        "250px",
+        "200px",
+        "150px",
+        "200px",
+      ],
+      height: [
+        "200px",
+        "200px",
+        "200px",
+        "150px",
+        "300px",
+        "200px",
+        "120px",
+        "200px",
+      ],
+      transition: {
+        duration: 15,
+        ease: "easeInOut",
+        repeat: Infinity,
+        times: [0, 0.12, 0.25, 0.4, 0.6, 0.75, 0.9, 1],
+      },
+    },
+  };
+
+  const cubeConfigs = [
+    {
+      id: "front",
+      transform: "translateZ(100px)",
+      background: "linear-gradient(45deg, #ff0000, white, #8b0000)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.4), 0 0 50px rgba(255, 0, 0, 1), 0 0 100px rgba(255, 0, 0, 0.6)",
+      filter: "saturate(2) contrast(1.5)",
+      width: "100%",
+      height: "100%",
+    },
+    {
+      id: "right",
+      transform: "rotateY(90deg) translateZ(100px)",
+      background: "linear-gradient(45deg, white, #8b0000, #4b0000)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.4), 0 0 50px rgba(220, 20, 60, 1), 0 0 100px rgba(220, 20, 60, 0.6)",
+      filter: "saturate(2) contrast(1.5)",
+      width: "100%",
+      height: "100%",
+    },
+    {
+      id: "back",
+      transform: "rotateY(180deg) translateZ(100px)",
+      background: "linear-gradient(45deg, #8b0000, #4b0000, #2f0000)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.3), 0 0 50px rgba(139, 0, 0, 1), 0 0 100px rgba(139, 0, 0, 0.6)",
+      filter: "saturate(2) contrast(1.5)",
+      width: "100%",
+      height: "100%",
+    },
+    {
+      id: "left",
+      transform: "rotateY(-90deg) translateZ(100px)",
+      background: "linear-gradient(45deg, #ff4500, white, #8b0000)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.4), 0 0 50px rgba(255, 69, 0, 1), 0 0 100px rgba(255, 69, 0, 0.6)",
+      filter: "saturate(2) contrast(1.5)",
+      width: "100%",
+      height: "100%",
+    },
+    {
+      id: "top",
+      transform: "rotateX(90deg) translateZ(100px)",
+      background: "linear-gradient(45deg, #c0c0c0, #808080, #404040)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.5), 0 0 40px rgba(192, 192, 192, 0.8), 0 0 80px rgba(192, 192, 192, 0.4)",
+      filter: "saturate(1.5) contrast(1.3)",
+      width: "50%",
+      height: "100%",
+    },
+    {
+      id: "bottom",
+      transform: "rotateX(-90deg) translateZ(100px)",
+      background: "linear-gradient(45deg, #2c2c2c, #1a1a1a, #0d0d0d)",
+      boxShadow:
+        "inset 0 0 40px rgba(255, 255, 255, 0.2), 0 0 40px rgba(44, 44, 44, 0.8), 0 0 80px rgba(44, 44, 44, 0.4)",
+      filter: "saturate(1.5) contrast(1.3)",
+      width: "100%",
+      height: "100%",
+    },
+  ];
+  return (
+    <div
+      className="relative h-screen w-screen overflow-hidden bg-black rounded-4xl my-4"
+      style={{
+        maskImage: "radial-gradient(circle, black, black)",
+      }}
+    >
+      {" "}
+      <main className="flex h-full w-full items-center justify-center">
+        <motion.div
+          className="relative scale-60 bg-transparent"
+          style={{
+            perspective: "1000px",
+            transformStyle: "preserve-3d",
+            filter:
+              "drop-shadow(0 0 60px rgba(255, 0, 0, 1)) drop-shadow(0 0 120px rgba(220, 20, 60, 0.8)) brightness(1.8)",
+            x: smoothMouseX,
+            y: smoothMouseY,
+          }}
+          variants={shapeVariants}
+          initial="initial"
+          animate="animate"
+        >
+          {cubeConfigs.map((config) => (
+            <motion.div
+              key={config.id}
+              className="absolute"
+              style={{
+                transform: config.transform,
+                width: config.width,
+                height: config.height,
+                background: config.background,
+                boxShadow: config.boxShadow,
+                filter: config.filter,
+              }}
+            />
+          ))}
+        </motion.div>
+
+        <div className="absolute inset-0 z-50 flex rotate-[35deg] items-center justify-center backdrop-blur-2xl">
+          {Array.from({ length: 12 }).map((_, index) => (
+            <div
+              key={index}
+              className={`h-full w-[5.33%] ${
+                index > 0 ? "-ml-2" : ""
+              } [background:linear-gradient(270deg,rgba(0,0,0,0)_0%,rgba(0,0,0,1)_88%,rgba(0,0,0,0)_100%)]`}
+            />
+          ))}
+        </div>
+
+        <div className="pointer-events-none absolute inset-0 z-60" />
+      </main>
+    </div>
+  );
+};
+
+export { RefractedGlassEffect };
