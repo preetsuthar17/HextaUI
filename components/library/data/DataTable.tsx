@@ -139,10 +139,10 @@ export function DataTable<T extends Record<string, any>>({
   };
   if (loading) {
     return (
-      <div className={cn("w-full bg-white rounded-lg ", className)}>
+      <div className={cn("w-full bg-white rounded-2xl ", className)}>
         <div className="animate-pulse p-6">
           {/* Search skeleton */}
-          {searchable && <div className="mb-6 h-11 bg-muted rounded-lg"></div>}
+          {searchable && <div className="mb-6 h-11 bg-muted rounded-2xl"></div>}
           {/* Table skeleton */}
           <div className="border border-border  overflow-hidden">
             <div className="bg-muted/30 h-14"></div>
@@ -156,11 +156,11 @@ export function DataTable<T extends Record<string, any>>({
           {/* Pagination skeleton */}
           <div className="mt-6 flex justify-between items-center">
             <div className="h-4 bg-muted rounded w-48"></div>
-            <div className="flex space-x-2">
-              <div className="h-9 w-20 bg-muted rounded-lg"></div>
-              <div className="h-9 w-9 bg-muted rounded-lg"></div>
-              <div className="h-9 w-9 bg-muted rounded-lg"></div>
-              <div className="h-9 w-16 bg-muted rounded-lg"></div>
+            <div className="flex gap-2">
+              <div className="h-9 w-20 bg-muted rounded-2xl"></div>
+              <div className="h-9 w-9 bg-muted rounded-2xl"></div>
+              <div className="h-9 w-9 bg-muted rounded-2xl"></div>
+              <div className="h-9 w-16 bg-muted rounded-2xl"></div>
             </div>
           </div>
         </div>
@@ -168,10 +168,16 @@ export function DataTable<T extends Record<string, any>>({
     );
   }
   return (
-    <div className={cn("w-full space-y-6 bg-white rounded-lg", className)}>
+    <div
+      className={cn(
+        "w-full bg-white rounded-2xl",
+        bordered && "border border-border",
+        className
+      )}
+    >
       {/* Search and Filters */}
       {searchable && (
-        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 p-4 border-b border-border">
           <div className="relative w-full sm:w-auto sm:flex-1 sm:max-w-sm">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
             <input
@@ -182,7 +188,7 @@ export function DataTable<T extends Record<string, any>>({
                 setSearch(e.target.value);
                 setCurrentPage(1);
               }}
-              className="w-full pl-10 pr-4 py-2.5 border border-input rounded-lg bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
+              className="w-full pl-10 pr-4 py-2.5 border border-input rounded-2xl bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
             />
           </div>
         </div>
@@ -191,7 +197,7 @@ export function DataTable<T extends Record<string, any>>({
       <div
         className={cn(
           "overflow-hidden bg-white",
-          bordered && "border border-border "
+          searchable ? "rounded-b-2xl" : "rounded-2xl"
         )}
       >
         <div className="overflow-x-auto">
@@ -213,7 +219,7 @@ export function DataTable<T extends Record<string, any>>({
                     style={column.width ? { width: column.width } : undefined}
                   >
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-2">
+                      <div className="flex items-center gap-2">
                         <span className="text-sm font-semibold">
                           {column.header}
                         </span>
@@ -335,15 +341,15 @@ export function DataTable<T extends Record<string, any>>({
             {Math.min(currentPage * itemsPerPage, sortedData.length)} of{" "}
             {sortedData.length} results
           </div>
-          <div className="flex items-center space-x-2 order-1 sm:order-2">
+          <div className="flex items-center gap-2 order-1 sm:order-2">
             <button
               onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
               disabled={currentPage === 1}
-              className="px-3 py-2 text-sm border border-input rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-3 py-2 text-sm border border-input rounded-2xl hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Previous
             </button>
-            <div className="hidden sm:flex items-center space-x-1">
+            <div className="hidden sm:flex items-center gap-1">
               {Array.from({ length: Math.min(totalPages, 5) }).map((_, i) => {
                 const pageNumber =
                   currentPage <= 3
@@ -359,7 +365,7 @@ export function DataTable<T extends Record<string, any>>({
                     key={pageNumber}
                     onClick={() => setCurrentPage(pageNumber)}
                     className={cn(
-                      "px-3 py-2 text-sm border border-input rounded-lg hover:bg-muted transition-colors",
+                      "px-3 py-2 text-sm border border-input rounded-2xl hover:bg-muted transition-colors",
                       currentPage === pageNumber &&
                         "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
                     )}
@@ -374,7 +380,7 @@ export function DataTable<T extends Record<string, any>>({
                 setCurrentPage((prev) => Math.min(prev + 1, totalPages))
               }
               disabled={currentPage === totalPages}
-              className="px-3 py-2 text-sm border border-input rounded-lg hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-3 py-2 text-sm border border-input rounded-2xl hover:bg-muted disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Next
             </button>
@@ -438,7 +444,7 @@ export const BasicDataTableDemo = () => {
       render: (value) => (
         <span
           className={cn(
-            "px-2 py-1 rounded-full text-xs font-medium",
+            "px-2 py-1 rounded-md text-xs font-medium",
             value === "Active" && "bg-green-100 text-green-800",
             value === "Inactive" && "bg-red-100 text-red-800",
             value === "Pending" && "bg-yellow-100 text-yellow-800"
