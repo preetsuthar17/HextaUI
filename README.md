@@ -6,6 +6,9 @@
 
 ![Repobeats analytics image](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg)
 
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=preetsuthar17/hextaui@github)](https://gitads.dev/v1/ad-track?source=preetsuthar17/hextaui@github)
+
 ## 🚀 Getting Started
 
 ### 🛠️ Run Locally
