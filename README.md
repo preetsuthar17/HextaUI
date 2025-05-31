@@ -177,3 +177,5 @@ This project is licensed under the [MIT License](https://github.com/preetsuthar1
 ## ⭐ Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=preetsuthar17/HextaUI&type=Date)](https://star-history.com/#preetsuthar17/HextaUI&Date)
+
+<!-- GitAds-Verify: 792PHUGPEJW7IBUPHP4KQV182HP3YZCB -->
