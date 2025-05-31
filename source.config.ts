@@ -16,4 +16,6 @@ export const { docs, meta } = defineDocs({
   },
 });
 
-export default defineConfig();
+export default defineConfig({
+  lastModifiedTime: "git",
+});

@@ -9,7 +9,6 @@ import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/components/mdx-components";
 import { InlineTOC } from "fumadocs-ui/components/inline-toc";
 import { metadataImage } from "@/lib/metadata";
-import { getGithubLastEdit } from "fumadocs-core/server";
 import { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
 
@@ -21,12 +20,6 @@ export default async function Page(props: {
   if (!page) notFound();
 
   const MDX = page.data.body;
-
-  const time = await getGithubLastEdit({
-    owner: "preetsuthar17",
-    repo: "hextaui",
-    path: `content/docs/${page.file.path}`,
-  });
 
   return (
     <DocsPage
@@ -49,7 +42,9 @@ export default async function Page(props: {
         sha: "master",
         path: `content/docs/${page.file.path}`,
       }}
-      lastUpdate={time ? new Date(time) : undefined}
+      lastUpdate={
+        page.data.lastModified ? new Date(page.data.lastModified) : undefined
+      }
       article={{
         className: "max-sm:pb-16",
       }}
