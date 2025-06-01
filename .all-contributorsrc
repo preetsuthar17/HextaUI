@@ -1,5 +1,7 @@
 {
-  "files": ["README.md"],
+  "files": [
+    "README.md"
+  ],
   "imageSize": 100,
   "commit": false,
   "commitType": "docs",
@@ -10,7 +12,19 @@
       "name": "Chánh Đại",
       "avatar_url": "https://avatars.githubusercontent.com/u/10192821?v=4",
       "profile": "http://chanhdai.com",
-      "contributions": ["bug", "code"]
+      "contributions": [
+        "bug",
+        "code"
+      ]
+    },
+    {
+      "login": "m7ez1n",
+      "name": "Mateus Mendes ",
+      "avatar_url": "https://avatars.githubusercontent.com/u/44484286?v=4",
+      "profile": "https://www.mmendes.dev",
+      "contributions": [
+        "design"
+      ]
     }
   ],
   "contributorsPerLine": 7,
