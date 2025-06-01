@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
-import { ChevronUp, ChevronDown, Search, Filter } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ChevronDown, ChevronUp, Filter, Search } from "lucide-react";
+import React, { useMemo, useState } from "react";
 
 export type DataTableColumn<T> = {
   key: keyof T;
@@ -139,7 +139,7 @@ export function DataTable<T extends Record<string, any>>({
   };
   if (loading) {
     return (
-      <div className={cn("w-full bg-white rounded-2xl ", className)}>
+      <div className={cn("w-full bg-card rounded-2xl ", className)}>
         <div className="animate-pulse p-6">
           {/* Search skeleton */}
           {searchable && <div className="mb-6 h-11 bg-muted rounded-2xl"></div>}
@@ -149,7 +149,7 @@ export function DataTable<T extends Record<string, any>>({
             {Array.from({ length: 5 }).map((_, i) => (
               <div
                 key={i}
-                className="h-14 border-t border-border bg-white"
+                className="h-14 border-t border-border bg-card"
               ></div>
             ))}
           </div>
@@ -170,7 +170,7 @@ export function DataTable<T extends Record<string, any>>({
   return (
     <div
       className={cn(
-        "w-full bg-white rounded-2xl",
+        "w-full bg-card rounded-2xl",
         bordered && "border border-border",
         className
       )}
@@ -196,7 +196,7 @@ export function DataTable<T extends Record<string, any>>({
       {/* Table */}
       <div
         className={cn(
-          "overflow-hidden bg-white",
+          "overflow-hidden bg-muted/30",
           searchable ? "rounded-b-2xl" : "rounded-2xl"
         )}
       >
@@ -285,13 +285,13 @@ export function DataTable<T extends Record<string, any>>({
                 ))}
               </tr>
             </thead>{" "}
-            <tbody className="bg-white">
+            <tbody className="bg-card">
               {paginatedData.length === 0 ? (
                 <tr>
                   <td
                     colSpan={columns.length}
                     className={cn(
-                      "text-center text-muted-foreground bg-white",
+                      "text-center text-muted-foreground bg-card",
                       compact ? "px-4 py-12" : "px-6 py-16"
                     )}
                   >
@@ -306,7 +306,7 @@ export function DataTable<T extends Record<string, any>>({
                   <tr
                     key={index}
                     className={cn(
-                      "border-t border-border bg-white transition-colors",
+                      "border-t border-border bg-card transition-colors",
                       striped && index % 2 === 0 && "bg-muted/20",
                       hoverable && "hover:bg-muted/30",
                       onRowClick && "cursor-pointer"
@@ -335,7 +335,7 @@ export function DataTable<T extends Record<string, any>>({
       </div>{" "}
       {/* Pagination */}
       {showPagination && totalPages > 1 && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-white border-t border-border">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-4 bg-card border-t border-border">
           <div className="text-sm text-muted-foreground order-2 sm:order-1">
             Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
             {Math.min(currentPage * itemsPerPage, sortedData.length)} of{" "}

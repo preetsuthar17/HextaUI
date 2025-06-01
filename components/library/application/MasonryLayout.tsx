@@ -34,7 +34,7 @@ const MasonryDemo = () => {
   const imageCards = [
     <div
       key="1"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -44,10 +44,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Nature Photography
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Beautiful landscapes and wildlife captured in stunning detail
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -60,7 +60,7 @@ const MasonryDemo = () => {
 
     <div
       key="2"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -70,10 +70,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Mountain Views
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Scenic mountain ranges and majestic peaks reaching for the sky
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -86,7 +86,7 @@ const MasonryDemo = () => {
 
     <div
       key="3"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -96,10 +96,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           City Life
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Urban photography showcasing modern architecture and vibrant street
           scenes
         </p>
@@ -113,7 +113,7 @@ const MasonryDemo = () => {
 
     <div
       key="4"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -123,10 +123,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Sunset Collection
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Golden hour moments that paint the sky in warm, ethereal colors
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -139,7 +139,7 @@ const MasonryDemo = () => {
 
     <div
       key="5"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -149,10 +149,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Ocean Waves
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Peaceful coastal scenes with rhythmic waves and endless horizons
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -165,7 +165,7 @@ const MasonryDemo = () => {
 
     <div
       key="6"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -175,10 +175,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Forest Path
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Mystical woodland trails surrounded by ancient trees and dappled light
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -191,7 +191,7 @@ const MasonryDemo = () => {
 
     <div
       key="7"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -201,10 +201,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Abstract Art
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Creative digital compositions exploring form, color, and imagination
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -217,7 +217,7 @@ const MasonryDemo = () => {
 
     <div
       key="8"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -227,10 +227,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Desert Landscape
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Vast sandy horizons where silence meets infinite space
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -243,7 +243,7 @@ const MasonryDemo = () => {
 
     <div
       key="9"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -253,10 +253,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Winter Wonderland
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Snow-covered landscapes creating a pristine, magical atmosphere
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -269,7 +269,7 @@ const MasonryDemo = () => {
 
     <div
       key="10"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -279,10 +279,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Street Photography
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Candid moments capturing the authentic rhythm of daily life
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -295,7 +295,7 @@ const MasonryDemo = () => {
 
     <div
       key="11"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -305,10 +305,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Architectural Marvels
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400  text-sm leading-relaxed">
           Modern building designs that push the boundaries of form and function
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -321,7 +321,7 @@ const MasonryDemo = () => {
 
     <div
       key="12"
-      className="group bg-white rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
+      className="group bg-card rounded-xl shadow-2xl/10 border-0 overflow-hidden transition-all duration-300 hover:-translate-y-1"
     >
       <div className="relative overflow-hidden p-4">
         <img
@@ -331,10 +331,10 @@ const MasonryDemo = () => {
         />
       </div>
       <div className="p-5">
-        <h3 className="font-semibold text-gray-900 text-lg mb-2 group-hover:text-blue-600 transition-colors">
+        <h3 className="font-semibold text-gray-900 dark:text-white text-lg mb-2 group-hover:text-blue-600 transition-colors">
           Garden Blooms
         </h3>
-        <p className="text-gray-600 text-sm leading-relaxed">
+        <p className="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
           Colorful flower collections celebrating nature's artistic palette
         </p>
         <div className="mt-3 flex items-center text-xs text-gray-400">
@@ -351,7 +351,7 @@ const MasonryDemo = () => {
       <div className="max-w-7xl mx-auto space-y-20">
         {/* Header */}
         <div className="text-center">
-          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent mb-6">
+          <h1 className="text-5xl font-bold bg-gradient-to-r from-gray-900 dark:from-white to-gray-600 dark:to-gray-600 bg-clip-text text-transparent mb-6">
             Responsive Masonry Layout
           </h1>
         </div>

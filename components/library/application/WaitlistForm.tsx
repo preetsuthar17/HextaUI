@@ -1,8 +1,8 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import * as React from "react";
-import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
 declare module "canvas-confetti";
 
 // Constants
@@ -104,7 +104,7 @@ const WaitlistForm = () => {
         }`}
         variants={childVariants}
       >
-        <h1 className="text-4xl font-medium bg-gradient-to-b from-[#00000030] to-[#000] bg-clip-text text-transparent">
+        <h1 className="text-4xl font-medium bg-gradient-to-b from-[#00000030] to-[#000] bg-clip-text text-transparent dark:from-white">
           Join the waitlist for the
           <span
             className={`pl-2 ${
@@ -129,7 +129,7 @@ const WaitlistForm = () => {
           className={
             width <= SMALL_BREAKPOINT
               ? "flex flex-col gap-4 w-full"
-              : "flex flex-row items-center w-full space-x-4 rounded-full border border-gray-200 bg-white p-2"
+              : "flex flex-row items-center w-full space-x-4 rounded-full border border-gray-200 bg-muted p-2"
           }
         >
           <input
@@ -139,7 +139,7 @@ const WaitlistForm = () => {
             placeholder="name@example.com"
             className={`${
               width <= SMALL_BREAKPOINT
-                ? "px-4 py-4 w-full text-lg focus:outline-none rounded-full border border-gray-200 bg-white"
+                ? "px-4 py-4 w-full text-lg focus:outline-none rounded-full border border-gray-200 bg-card"
                 : "flex-1 rounded-full bg-transparent px-4 py-4 text-lg focus:outline-none"
             }`}
             required
@@ -162,7 +162,7 @@ const WaitlistForm = () => {
   return (
     <motion.div
       layout
-      className={`w-[95%] max-w-2xl rounded-4xl bg-white border border-black/10 shadow-2xl/10 ${
+      className={`w-[95%] max-w-2xl rounded-4xl bg-muted border border-black/10 shadow-2xl/10 ${
         width <= SMALL_BREAKPOINT ? "p-8" : "p-12"
       } min-h-[300px] flex items-center`}
       variants={containerVariants}
