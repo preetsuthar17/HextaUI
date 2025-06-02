@@ -87,7 +87,7 @@ export const RippleEffect = ({
       className={cn(
         "relative overflow-hidden rounded-lg cursor-pointer select-none",
         getSizeClasses(),
-        className
+        className,
       )}
       onMouseDown={createRipple}
     >

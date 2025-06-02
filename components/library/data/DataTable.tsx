@@ -53,7 +53,7 @@ export function DataTable<T extends Record<string, any>>({
   }>({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>(
-    {}
+    {},
   );
 
   // Filter data based on search and column filters
@@ -66,7 +66,7 @@ export function DataTable<T extends Record<string, any>>({
         columns.some((column) => {
           const value = row[column.key];
           return value?.toString().toLowerCase().includes(search.toLowerCase());
-        })
+        }),
       );
     }
 
@@ -172,7 +172,7 @@ export function DataTable<T extends Record<string, any>>({
       className={cn(
         "w-full bg-card rounded-2xl",
         bordered && "border border-border",
-        className
+        className,
       )}
     >
       {/* Search and Filters */}
@@ -197,7 +197,7 @@ export function DataTable<T extends Record<string, any>>({
       <div
         className={cn(
           "overflow-hidden bg-muted/30",
-          searchable ? "rounded-b-2xl" : "rounded-2xl"
+          searchable ? "rounded-b-2xl" : "rounded-2xl",
         )}
       >
         <div className="overflow-x-auto">
@@ -213,7 +213,7 @@ export function DataTable<T extends Record<string, any>>({
                       compact ? "px-4 py-3" : "px-6 py-4",
                       column.sortable &&
                         "cursor-pointer hover:bg-muted/50 transition-colors",
-                      column.width && `w-[${column.width}]`
+                      column.width && `w-[${column.width}]`,
                     )}
                     onClick={() => column.sortable && handleSort(column.key)}
                     style={column.width ? { width: column.width } : undefined}
@@ -231,7 +231,7 @@ export function DataTable<T extends Record<string, any>>({
                                 sortConfig.key === column.key &&
                                   sortConfig.direction === "asc"
                                   ? "text-primary"
-                                  : "text-muted-foreground/40"
+                                  : "text-muted-foreground/40",
                               )}
                             />
                             <ChevronDown
@@ -240,7 +240,7 @@ export function DataTable<T extends Record<string, any>>({
                                 sortConfig.key === column.key &&
                                   sortConfig.direction === "desc"
                                   ? "text-primary"
-                                  : "text-muted-foreground/40"
+                                  : "text-muted-foreground/40",
                               )}
                             />
                           </div>
@@ -262,7 +262,7 @@ export function DataTable<T extends Record<string, any>>({
                           onChange={(e) =>
                             handleColumnFilter(
                               String(column.key),
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           onClick={(e) => e.stopPropagation()}
@@ -292,7 +292,7 @@ export function DataTable<T extends Record<string, any>>({
                     colSpan={columns.length}
                     className={cn(
                       "text-center text-muted-foreground bg-card",
-                      compact ? "px-4 py-12" : "px-6 py-16"
+                      compact ? "px-4 py-12" : "px-6 py-16",
                     )}
                   >
                     <div className="flex flex-col items-center space-y-2">
@@ -309,7 +309,7 @@ export function DataTable<T extends Record<string, any>>({
                       "border-t border-border bg-card transition-colors",
                       striped && index % 2 === 0 && "bg-muted/20",
                       hoverable && "hover:bg-muted/30",
-                      onRowClick && "cursor-pointer"
+                      onRowClick && "cursor-pointer",
                     )}
                     onClick={() => onRowClick?.(row, index)}
                   >
@@ -318,7 +318,7 @@ export function DataTable<T extends Record<string, any>>({
                         key={String(column.key)}
                         className={cn(
                           "text-sm text-foreground",
-                          compact ? "px-4 py-3" : "px-6 py-4"
+                          compact ? "px-4 py-3" : "px-6 py-4",
                         )}
                       >
                         {column.render
@@ -355,8 +355,8 @@ export function DataTable<T extends Record<string, any>>({
                   currentPage <= 3
                     ? i + 1
                     : currentPage >= totalPages - 2
-                    ? totalPages - 4 + i
-                    : currentPage - 2 + i;
+                      ? totalPages - 4 + i
+                      : currentPage - 2 + i;
 
                 if (pageNumber < 1 || pageNumber > totalPages) return null;
 
@@ -367,7 +367,7 @@ export function DataTable<T extends Record<string, any>>({
                     className={cn(
                       "px-3 py-2 text-sm border border-input rounded-2xl hover:bg-muted transition-colors",
                       currentPage === pageNumber &&
-                        "bg-primary text-primary-foreground border-primary hover:bg-primary/90"
+                        "bg-primary text-primary-foreground border-primary hover:bg-primary/90",
                     )}
                   >
                     {pageNumber}
@@ -447,7 +447,7 @@ export const BasicDataTableDemo = () => {
             "px-2 py-1 rounded-md text-xs font-medium",
             value === "Active" && "bg-green-100 text-green-800",
             value === "Inactive" && "bg-red-100 text-red-800",
-            value === "Pending" && "bg-yellow-100 text-yellow-800"
+            value === "Pending" && "bg-yellow-100 text-yellow-800",
           )}
         >
           {value}

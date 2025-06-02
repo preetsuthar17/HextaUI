@@ -174,7 +174,7 @@ function SortableCard({
         "shadow-[0_1px_3px_rgba(0,0,0,0.05)] hover:shadow-[0_8px_25px_rgba(0,0,0,0.1)]",
         "transition-all duration-300 ease-out",
         isDragging &&
-          "shadow-[0_20px_40px_rgba(0,0,0,0.15)] border-gray-300/80 z-50"
+          "shadow-[0_20px_40px_rgba(0,0,0,0.15)] border-gray-300/80 z-50",
       )}
       onClick={() => onCardClick?.(card, column)}
     >
@@ -183,7 +183,7 @@ function SortableCard({
         <div
           className={cn(
             "absolute top-0 left-4 right-4 h-0.5 rounded-full",
-            priorityConfig[card.priority].dot
+            priorityConfig[card.priority].dot,
           )}
         />
       )}
@@ -274,7 +274,7 @@ function SortableCard({
                 <div
                   className={cn(
                     "w-2 h-2 rounded-full",
-                    priorityConfig[card.priority].dot
+                    priorityConfig[card.priority].dot,
                   )}
                 />
               </div>
@@ -287,7 +287,7 @@ function SortableCard({
                   dueDateInfo.isOverdue && "bg-red-50 text-red-700",
                   dueDateInfo.isToday && "bg-amber-50 text-amber-700",
                   dueDateInfo.isTomorrow && "bg-blue-50 text-blue-700",
-                  dueDateInfo.isNormal && "bg-gray-50 text-gray-600"
+                  dueDateInfo.isNormal && "bg-gray-50 text-gray-600",
                 )}
               >
                 {dueDateInfo.isOverdue && <AlertCircle className="h-3 w-3" />}
@@ -341,7 +341,7 @@ function SortableColumn({
       className={cn(
         "flex flex-col bg-gray-50/80 backdrop-blur-sm rounded-2xl p-5 min-h-[500px] group border border-gray-200/50",
         maxColumnWidth ? `w-[${maxColumnWidth}px]` : "w-80",
-        "flex-shrink-0 shadow-sm"
+        "flex-shrink-0 shadow-sm",
       )}
       style={
         maxColumnWidth ? { width: `${maxColumnWidth}px` } : { width: "320px" }
@@ -367,7 +367,8 @@ function SortableColumn({
               isNearLimit &&
                 !isOverLimit &&
                 "bg-amber-100 text-amber-800 border border-amber-200",
-              !isNearLimit && "bg-gray-200 text-gray-700 border border-gray-300"
+              !isNearLimit &&
+                "bg-gray-200 text-gray-700 border border-gray-300",
             )}
           >
             {column.cards.length}
@@ -444,7 +445,7 @@ export function KanbanBoard({
       activationConstraint: {
         distance: 8,
       },
-    })
+    }),
   );
 
   const updateColumns = useCallback(
@@ -452,7 +453,7 @@ export function KanbanBoard({
       setColumns(newColumns);
       onColumnsChange?.(newColumns);
     },
-    [onColumnsChange]
+    [onColumnsChange],
   );
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -472,10 +473,11 @@ export function KanbanBoard({
 
     // Find the columns
     const activeColumn = columns.find((col) =>
-      col.cards.some((card) => card.id === activeId)
+      col.cards.some((card) => card.id === activeId),
     );
     const overColumn = columns.find(
-      (col) => col.id === overId || col.cards.some((card) => card.id === overId)
+      (col) =>
+        col.id === overId || col.cards.some((card) => card.id === overId),
     );
 
     if (!activeColumn || !overColumn) return;
@@ -520,16 +522,16 @@ export function KanbanBoard({
     if (activeId === overId) return;
 
     const activeColumn = columns.find((col) =>
-      col.cards.some((card) => card.id === activeId)
+      col.cards.some((card) => card.id === activeId),
     );
 
     if (!activeColumn) return;
 
     const activeIndex = activeColumn.cards.findIndex(
-      (card) => card.id === activeId
+      (card) => card.id === activeId,
     );
     const overIndex = activeColumn.cards.findIndex(
-      (card) => card.id === overId
+      (card) => card.id === overId,
     );
 
     if (activeIndex !== -1 && overIndex !== -1) {
@@ -710,8 +712,8 @@ export const BasicKanbanDemo = () => {
 
     setColumns((prev) =>
       prev.map((col) =>
-        col.id === columnId ? { ...col, cards: [...col.cards, newCard] } : col
-      )
+        col.id === columnId ? { ...col, cards: [...col.cards, newCard] } : col,
+      ),
     );
   };
 
@@ -720,8 +722,8 @@ export const BasicKanbanDemo = () => {
       prev.map((col) =>
         col.id === columnId
           ? { ...col, cards: col.cards.filter((card) => card.id !== cardId) }
-          : col
-      )
+          : col,
+      ),
     );
   };
 

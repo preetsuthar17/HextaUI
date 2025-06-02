@@ -8,7 +8,8 @@
     "start": "next start",
     "postinstall": "fumadocs-mdx",
     "format": "prettier --write . --ignore-path .gitignore",
-    "info": "next info"
+    "info": "next info",
+    "check": "tsc --noEmit"
   },
   "dependencies": {
     "@dnd-kit/core": "^6.3.1",
