@@ -24,8 +24,8 @@ export default function HomePage() {
     <main className="flex flex-1 flex-col justify-center text-center mt-20  z-0">
       <Hero />
       <Features />
-      <WallOfLove />
       <Contributors />
+      <WallOfLove />
       <CTA />
       <Footer />
     </main>
