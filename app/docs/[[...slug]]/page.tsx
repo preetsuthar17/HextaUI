@@ -31,7 +31,6 @@ export default async function Page(props: {
       breadcrumb={{
         includeRoot: true,
         includeSeparator: true,
-        enabled: true,
       }}
       footer={{
         enabled: true,
