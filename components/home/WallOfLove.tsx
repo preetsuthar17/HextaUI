@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import { FaTwitter } from "react-icons/fa";
-import { Tweet } from "react-tweet";
 import { useEffect, useState } from "react";
+import { TweetCard } from "../other/TweetCard";
+import { ClientTweetCard } from "../other/ClientTweetCard";
 
 const tweets = [
   "1920730864687763482",
@@ -80,14 +81,14 @@ const WallOfLove = () => {
                   {Array(8)
                     .fill(0)
                     .map((_, repeatIndex) => (
-                      <div key={repeatIndex} className="flex flex-col">
+                      <div key={repeatIndex} className="flex flex-col ">
                         {tweets
                           .slice(
                             colIndex * TWEETS_PER_COLUMN,
-                            (colIndex + 1) * TWEETS_PER_COLUMN,
+                            (colIndex + 1) * TWEETS_PER_COLUMN
                           )
                           .map((tweetId) => (
-                            <Tweet
+                            <ClientTweetCard
                               key={`${tweetId}-${repeatIndex}`}
                               id={tweetId}
                             />
