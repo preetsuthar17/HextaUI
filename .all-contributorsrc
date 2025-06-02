@@ -25,6 +25,15 @@
       "contributions": [
         "design"
       ]
+    },
+    {
+      "login": "fuma-nama",
+      "name": "Fuma Nama",
+      "avatar_url": "https://avatars.githubusercontent.com/u/76240755?v=4",
+      "profile": "https://fuma-nama.vercel.app",
+      "contributions": [
+        "maintenance"
+      ]
     }
   ],
   "contributorsPerLine": 7,
