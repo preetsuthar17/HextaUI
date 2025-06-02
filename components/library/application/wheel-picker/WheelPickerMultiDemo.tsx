@@ -19,10 +19,12 @@ const meridiemOptions: WheelPickerOption[] = [
 
 export function WheelPickerMultiDemo() {
   return (
-    <WheelPickerWrapper>
-      <WheelPicker options={hourOptions} infinite />
-      <WheelPicker options={minuteOptions} infinite />
-      <WheelPicker options={meridiemOptions} />
-    </WheelPickerWrapper>
+    <div className="w-56">
+      <WheelPickerWrapper>
+        <WheelPicker options={hourOptions} infinite />
+        <WheelPicker options={minuteOptions} infinite />
+        <WheelPicker options={meridiemOptions} />
+      </WheelPickerWrapper>
+    </div>
   );
 }

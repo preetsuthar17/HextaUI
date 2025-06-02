@@ -17,7 +17,7 @@ import { Step, Steps } from "fumadocs-ui/components/steps";
 
 ## About
 
-The Wheel Picker component is built on top of [React Wheel Picker](https://react-wheel-picker.chanhdai.com).
+The Wheel Picker component is built on top of [React Wheel Picker](https://react-wheel-picker.chanhdai.com?utm_source=hextaui).
 
 ## Installation
 
@@ -79,7 +79,9 @@ function WheelPickerWrapper({
   return (
     <WheelPickerPrimitive.WheelPickerWrapper
       className={cn(
-        "max-w-56 rounded-lg border border-zinc-200 bg-white shadow-xs dark:border-zinc-800 dark:bg-zinc-950",
+        "w-56 rounded-lg bg-white px-1 shadow-sm ring ring-black/5 dark:bg-zinc-900 dark:ring-white/15",
+        "*:data-rwp:first:*:data-rwp-highlight-wrapper:rounded-s-md",
+        "*:data-rwp:last:*:data-rwp-highlight-wrapper:rounded-e-md",
         className
       )}
       {...props}
@@ -94,9 +96,9 @@ function WheelPicker({
   return (
     <WheelPickerPrimitive.WheelPicker
       classNames={{
-        optionItem: "text-zinc-400 dark:text-zinc-600",
+        optionItem: "text-zinc-400 dark:text-zinc-500",
         highlightWrapper:
-          "bg-zinc-100 text-zinc-950 dark:bg-zinc-900 dark:text-zinc-50",
+          "bg-zinc-100 text-zinc-950 dark:bg-zinc-800 dark:text-zinc-50",
         ...classNames,
       }}
       {...props}
@@ -155,7 +157,7 @@ return (
 );
 ```
 
-See the [React Wheel Picker](https://github.com/ncdai/react-wheel-picker?tab=readme-ov-file#usage) documentation for more information.
+See the [React Wheel Picker](https://react-wheel-picker.chanhdai.com?utm_source=hextaui) documentation for more information.
 
 ## Example
 
@@ -172,8 +174,8 @@ See the [React Wheel Picker](https://github.com/ncdai/react-wheel-picker?tab=rea
 <Tab value="Code">
 
 ```tsx title="components/wheel-picker-simple-demo.tsx"
-import type { WheelPickerOption } from "@/components/wheel-picker";
-import { WheelPicker, WheelPickerWrapper } from "@/components/wheel-picker";
+import type { WheelPickerOption } from "./WheelPicker";
+import { WheelPicker, WheelPickerWrapper } from "./WheelPicker";
 
 const options: WheelPickerOption[] = [
   {
@@ -212,9 +214,11 @@ const options: WheelPickerOption[] = [
 
 export function WheelPickerSimpleDemo() {
   return (
-    <WheelPickerWrapper>
-      <WheelPicker options={options} defaultValue="react-router" />
-    </WheelPickerWrapper>
+    <div className="w-56">
+      <WheelPickerWrapper>
+        <WheelPicker options={options} defaultValue="react-router" />
+      </WheelPickerWrapper>
+    </div>
   );
 }
 ```
@@ -233,40 +237,44 @@ export function WheelPickerSimpleDemo() {
 </Tab>
 
 <Tab value="Code">
+
 ```tsx title="components/wheel-picker-multi-demo.tsx"
-import type { WheelPickerOption } from "@/components/wheel-picker";
-import { WheelPicker, WheelPickerWrapper } from "@/components/wheel-picker";
+import type { WheelPickerOption } from "./WheelPicker";
+import { WheelPicker, WheelPickerWrapper } from "./WheelPicker";
 
 const createArray = (length: number, add = 0): WheelPickerOption[] =>
-Array.from({ length }, (\_, i) => {
-const value = i + add;
-return {
-label: value.toString().padStart(2, "0"),
-value: value.toString(),
-};
-});
+  Array.from({ length }, (_, i) => {
+    const value = i + add;
+    return {
+      label: value.toString().padStart(2, "0"),
+      value: value.toString(),
+    };
+  });
 
 const hourOptions = createArray(12, 1);
 const minuteOptions = createArray(60);
 const meridiemOptions: WheelPickerOption[] = [
-{ label: "AM", value: "AM" },
-{ label: "PM", value: "PM" },
+  { label: "AM", value: "AM" },
+  { label: "PM", value: "PM" },
 ];
 
 export function WheelPickerMultiDemo() {
   return (
-    <WheelPickerWrapper>
-      <WheelPicker options={hourOptions} infinite />
-      <WheelPicker options={minuteOptions} infinite />
-      <WheelPicker options={meridiemOptions} />
-    </WheelPickerWrapper>
+    <div className="w-56">
+      <WheelPickerWrapper>
+        <WheelPicker options={hourOptions} infinite />
+        <WheelPicker options={minuteOptions} infinite />
+        <WheelPicker options={meridiemOptions} />
+      </WheelPickerWrapper>
+    </div>
   );
 }
 ```
+
 </Tab>
 </Tabs>
 
 ## Acknowledgements
 
-- [Chánh Đại](https://chanhdai.com) - Creator of this component.
-- [React Wheel Picker](https://react-wheel-picker.chanhdai.com) - The original library that this component is based on.
+- [Chánh Đại](https://chanhdai.com?utm_source=hextaui) - Creator of this component.
+- [React Wheel Picker](https://react-wheel-picker.chanhdai.com?utm_source=hextaui) - The original library that this component is based on.
