@@ -1,0 +1,701 @@
+---
+title: Spotlight Mask
+description: Create a spotlight mask effect that follows the mouse cursor and reveals custom background content through a circular mask with soft faded edges. Fully customizable with React components.
+new: true
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import {
+  SpotlightMask,
+  SimpleSpotlightMask,
+  SpotlightBackground,
+  SpotlightOverlay,
+} from "@/components/library/animation/SpotlightMask";
+import { MatrixBackground } from "@/components/library/animation/MatrixBackground";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+
+## Preview
+
+<PreviewContainer className="h-[50rem]">
+  <SpotlightMask
+    maskSize={190}
+    fadeSize={400}
+    className="w-full h-full rounded-xl"
+    background={
+      <SpotlightBackground className="bg-black  h-full">
+        <MatrixBackground
+          textColor="text-green-400"
+          fontSize={14}
+          cellSize={18}
+          animationSpeed={80}
+        />
+      </SpotlightBackground>
+    }
+    overlay={<SpotlightOverlay className="bg-black/90 backdrop-blur-2xl" />}
+  >
+    <div className="flex items-center justify-center h-full font-mono">
+      <div className="relative bg-gradient-to-br from-black/40 via-green-900/20 to-black/40 backdrop-blur-lg border border-green-400/40 rounded-2xl p-8 shadow-2xl shadow-green-400/20 hover:shadow-green-400/30 transition-all duration-300 hover:scale-105 group">
+        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400/20 via-transparent to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+        {/* Content */}
+        <div className="relative text-center text-white">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-2xl mb-6 border border-green-400/30 relative overflow-hidden group-hover:border-green-400/50 transition-all duration-300">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+            <div className="relative">
+
+            </div>
+          </div>
+
+          <h2 className="text-5xl font-bold mb-3 bg-gradient-to-r from-green-300 via-green-400 to-green-300 bg-clip-text text-transparent animate-pulse">
+            MATRIX_UNLOCKED
+          </h2>
+          <p className="text-green-300/90 font-mono text-base tracking-[0.2em] mb-6 relative">
+            <span className="relative z-10">REALITY_DECODED</span>
+            <div className="absolute inset-0 blur-sm text-green-400/50">
+              REALITY_DECODED
+            </div>
+          </p>
+
+          <div className="flex justify-center items-center space-x-3 mb-4">
+            {[0, 1, 2, 3, 4].map((i) => (
+              <div
+                key={i}
+                className="w-1 h-8 bg-gradient-to-t from-green-600 to-green-300 rounded-full animate-pulse"
+                style={{
+                  animationDelay: `${i * 0.15}s`,
+                  animationDuration: "1.2s",
+                }}
+              ></div>
+            ))}
+          </div>
+
+          <div className="flex items-center justify-center space-x-2 text-xs text-green-400/80 tracking-wider">
+            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+            <span>SYSTEM_ACTIVE</span>
+            <div
+              className="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+              style={{ animationDelay: "0.5s" }}
+            ></div>
+          </div>
+        </div>
+
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(6)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-green-400/60 rounded-full animate-ping"
+              style={{
+                left: `${20 + i * 15}%`,
+                top: `${10 + (i % 3) * 30}%`,
+                animationDelay: `${i * 0.8}s`,
+                animationDuration: "3s",
+              }}
+            ></div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+  </SpotlightMask>
+</PreviewContainer>
+
+## Installation
+
+<Tabs items={["Manually"]}>
+  <Tab value="Manually">
+
+```tsx title="SpotlightMask.tsx"
+"use client";
+
+import {
+  useRef,
+  useState,
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+} from "react";
+
+interface SpotlightContextType {
+  position: { x: number; y: number };
+  isHovered: boolean;
+  maskSize: number;
+  isMoving: boolean;
+  lastMoveTime: number;
+}
+
+const SpotlightContext = createContext<SpotlightContextType | null>(null);
+
+export const useSpotlightPosition = () => {
+  const context = useContext(SpotlightContext);
+  return context;
+};
+
+export interface SpotlightMaskProps {
+  children?: ReactNode;
+  background?: ReactNode;
+  overlay?: ReactNode;
+  maskSize?: number;
+  fadeSize?: number;
+  className?: string;
+  containerProps?: React.HTMLAttributes<HTMLDivElement>;
+  backgroundProps?: React.HTMLAttributes<HTMLDivElement>;
+  overlayProps?: React.HTMLAttributes<HTMLDivElement>;
+  contentProps?: React.HTMLAttributes<HTMLDivElement>;
+  transition?: string;
+  onPositionChange?: (position: {
+    x: number;
+    y: number;
+    isHovered: boolean;
+  }) => void;
+}
+
+export const SpotlightMask = ({
+  children,
+  background,
+  overlay,
+  maskSize = 150,
+  fadeSize = 50,
+  className = "",
+  containerProps = {},
+  backgroundProps = {},
+  overlayProps = {},
+  contentProps = {},
+  transition = "mask-image 0.3s ease-out, -webkit-mask-image 0.3s ease-out",
+  onPositionChange,
+}: SpotlightMaskProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [isMoving, setIsMoving] = useState(false);
+  const [lastMoveTime, setLastMoveTime] = useState(0);
+  const moveTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (moveTimeoutRef.current) {
+        clearTimeout(moveTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const newPosition = {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+
+    setPosition(newPosition);
+    setIsMoving(true);
+    setLastMoveTime(Date.now());
+
+    if (moveTimeoutRef.current) {
+      clearTimeout(moveTimeoutRef.current);
+    }
+
+    moveTimeoutRef.current = setTimeout(() => {
+      setIsMoving(false);
+    }, 100);
+
+    onPositionChange?.({ ...newPosition, isHovered });
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+    onPositionChange?.({ ...position, isHovered: true });
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+    onPositionChange?.({ ...position, isHovered: false });
+  };
+
+  const maskStyle = {
+    maskImage: isHovered
+      ? `radial-gradient(circle at ${position.x}px ${
+          position.y
+        }px, transparent 0px, transparent ${
+          maskSize - fadeSize
+        }px, black ${maskSize}px)`
+      : `radial-gradient(circle at ${position.x}px ${position.y}px, black 0px)`,
+    WebkitMaskImage: isHovered
+      ? `radial-gradient(circle at ${position.x}px ${
+          position.y
+        }px, transparent 0px, transparent ${
+          maskSize - fadeSize
+        }px, black ${maskSize}px)`
+      : `radial-gradient(circle at ${position.x}px ${position.y}px, black 0px)`,
+    transition,
+  };
+
+  const { className: containerClassName = "", ...restContainerProps } =
+    containerProps;
+  const {
+    className: backgroundClassName = "",
+    style: backgroundStyle = {},
+    ...restBackgroundProps
+  } = backgroundProps;
+  const {
+    className: overlayClassName = "",
+    style: overlayStyle = {},
+    ...restOverlayProps
+  } = overlayProps;
+  const {
+    className: contentClassName = "",
+    style: contentStyle = {},
+    ...restContentProps
+  } = contentProps;
+  return (
+    <SpotlightContext.Provider
+      value={{
+        position,
+        isHovered,
+        maskSize,
+        isMoving,
+        lastMoveTime,
+      }}
+    >
+      <div
+        ref={containerRef}
+        className={`relative overflow-hidden ${className} ${containerClassName}`}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        {...restContainerProps}
+      >
+        {background && (
+          <div
+            className={`absolute inset-0 w-full h-full ${backgroundClassName}`}
+            style={backgroundStyle}
+            {...restBackgroundProps}
+          >
+            {background}
+          </div>
+        )}
+
+        {overlay && (
+          <div
+            className={`absolute inset-0 w-full h-full z-10 ${overlayClassName}`}
+            style={{
+              ...overlayStyle,
+              ...maskStyle,
+            }}
+            {...restOverlayProps}
+          >
+            {overlay}
+          </div>
+        )}
+
+        {/* Content Layer */}
+        {children && (
+          <div
+            className={`relative z-30 [height:inherit] ${contentClassName}`}
+            style={contentStyle}
+            {...restContentProps}
+          >
+            {children}
+          </div>
+        )}
+      </div>
+    </SpotlightContext.Provider>
+  );
+};
+
+export interface SimpleSpotlightMaskProps {
+  children: ReactNode;
+  backgroundImage?: string;
+  backgroundColor?: string;
+  overlayColor?: string;
+  maskSize?: number;
+  fadeSize?: number;
+  className?: string;
+  enableBlur?: boolean;
+  blurAmount?: number;
+  transition?: string;
+}
+
+export const SimpleSpotlightMask = ({
+  children,
+  backgroundImage,
+  backgroundColor = "#1a1a1a",
+  overlayColor = "rgba(0, 0, 0, 1)",
+  maskSize = 150,
+  fadeSize = 50,
+  className = "",
+  enableBlur = false,
+  blurAmount = 4,
+  transition,
+}: SimpleSpotlightMaskProps) => {
+  const backgroundComponent = backgroundImage ? (
+    <div
+      className="w-full h-full bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundColor,
+        backgroundImage: `url(${backgroundImage})`,
+      }}
+    />
+  ) : (
+    <div className="w-full h-full" style={{ backgroundColor }} />
+  );
+
+  const overlayComponent = (
+    <div
+      className="w-full h-full"
+      style={{
+        backgroundColor: overlayColor,
+        filter: enableBlur ? `blur(${blurAmount}px)` : undefined,
+      }}
+    />
+  );
+
+  return (
+    <SpotlightMask
+      background={backgroundComponent}
+      overlay={overlayComponent}
+      maskSize={maskSize}
+      fadeSize={fadeSize}
+      className={className}
+      transition={transition}
+      contentProps={{ className: "pointer-events-none" }}
+    >
+      {children}
+    </SpotlightMask>
+  );
+};
+
+export const SpotlightBackground = ({
+  children,
+  className = "",
+  ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+  <div className={`w-full h-full ${className}`} {...props}>
+    {children}
+  </div>
+);
+
+export const SpotlightOverlay = ({
+  children,
+  className = "",
+  blur = false,
+  blurAmount = 4,
+  ...props
+}: React.HTMLAttributes<HTMLDivElement> & {
+  blur?: boolean;
+  blurAmount?: number;
+}) => (
+  <div
+    className={`w-full h-full ${className}`}
+    style={{
+      filter: blur ? `blur(${blurAmount}px)` : undefined,
+      ...props.style,
+    }}
+    {...props}
+  >
+    {children}
+  </div>
+);
+```
+
+```tsx title="MatrixBackground.tsx"
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import { useSpotlightPosition } from "./SpotlightMask";
+
+interface MatrixBackgroundProps {
+  className?: string;
+  textColor?: string;
+  fontSize?: number;
+  cellSize?: number;
+  animationSpeed?: number;
+}
+
+interface MatrixCell {
+  id: string;
+  x: number;
+  y: number;
+  char: string;
+  originalChar: string;
+  isAnimating: boolean;
+  animationFrame: number;
+}
+
+const MATRIX_CHARS =
+  "アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン".split(
+    ""
+  );
+const ADDITIONAL_CHARS = "0123456789!@#$%^&*()".split("");
+const ALL_CHARS = [...MATRIX_CHARS, ...ADDITIONAL_CHARS];
+
+export const MatrixBackground = ({
+  className = "",
+  textColor = "text-green-400",
+  fontSize = 16,
+  cellSize = 20,
+  animationSpeed = 100,
+}: MatrixBackgroundProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [cells, setCells] = useState<MatrixCell[]>([]);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const animationRef = useRef<number | null>(null);
+  const lastUpdateRef = useRef<number>(0);
+
+  const spotlightContext = useSpotlightPosition();
+
+  useEffect(() => {
+    const updateDimensions = () => {
+      if (!containerRef.current) return;
+
+      const rect = containerRef.current.getBoundingClientRect();
+      const newWidth = rect.width;
+      const newHeight = rect.height;
+
+      if (newWidth === dimensions.width && newHeight === dimensions.height)
+        return;
+
+      setDimensions({ width: newWidth, height: newHeight });
+
+      const cols = Math.floor(newWidth / cellSize);
+      const rows = Math.floor(newHeight / cellSize);
+
+      const newCells: MatrixCell[] = [];
+
+      for (let row = 0; row < rows; row++) {
+        for (let col = 0; col < cols; col++) {
+          const char = ALL_CHARS[Math.floor(Math.random() * ALL_CHARS.length)];
+          newCells.push({
+            id: `${row}-${col}`,
+            x: col * cellSize,
+            y: row * cellSize,
+            char,
+            originalChar: char,
+            isAnimating: false,
+            animationFrame: 0,
+          });
+        }
+      }
+
+      setCells(newCells);
+    };
+
+    updateDimensions();
+
+    const resizeObserver = new ResizeObserver(updateDimensions);
+    if (containerRef.current) {
+      resizeObserver.observe(containerRef.current);
+    }
+
+    return () => resizeObserver.disconnect();
+  }, [cellSize, dimensions.width, dimensions.height]);
+  useEffect(() => {
+    if (!spotlightContext?.isHovered) {
+      setCells((prev) =>
+        prev.map((cell) => ({
+          ...cell,
+          char: cell.originalChar,
+          isAnimating: false,
+          animationFrame: 0,
+        }))
+      );
+      return;
+    }
+
+    const animate = (timestamp: number) => {
+      if (timestamp - lastUpdateRef.current > animationSpeed) {
+        setCells((prev) =>
+          prev.map((cell) => {
+            const distance = Math.sqrt(
+              Math.pow(cell.x + cellSize / 2 - spotlightContext.position.x, 2) +
+                Math.pow(cell.y + cellSize / 2 - spotlightContext.position.y, 2)
+            );
+
+            const isInMask = distance <= spotlightContext.maskSize;
+
+            if (
+              isInMask &&
+              spotlightContext.isHovered &&
+              spotlightContext.isMoving
+            ) {
+              const newAnimationFrame = cell.animationFrame + 1;
+              const shouldChange = newAnimationFrame % 1 === 0; // Change every frame
+
+              return {
+                ...cell,
+                char: shouldChange
+                  ? ALL_CHARS[Math.floor(Math.random() * ALL_CHARS.length)]
+                  : cell.char,
+                isAnimating: true,
+                animationFrame: newAnimationFrame,
+              };
+            } else if (isInMask && spotlightContext.isHovered) {
+              return {
+                ...cell,
+                animationFrame: 0,
+              };
+            } else {
+              return {
+                ...cell,
+                char: cell.originalChar,
+                isAnimating: false,
+                animationFrame: 0,
+              };
+            }
+          })
+        );
+
+        lastUpdateRef.current = timestamp;
+      }
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animationRef.current = requestAnimationFrame(animate);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [spotlightContext, animationSpeed, cellSize]);
+
+  return (
+    <div
+      ref={containerRef}
+      className={`relative w-full h-full overflow-hidden ${className}`}
+    >
+      <div className="absolute inset-0 font-mono leading-none select-none">
+        {cells.map((cell) => (
+          <span
+            key={cell.id}
+            className={`absolute ${textColor} ${
+              cell.isAnimating ? "opacity-100" : "opacity-70"
+            } transition-opacity duration-100`}
+            style={{
+              left: cell.x,
+              top: cell.y,
+              fontSize: `${fontSize}px`,
+              lineHeight: `${cellSize}px`,
+              width: cellSize,
+              height: cellSize,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {cell.char}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+};
+```
+
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="index.tsx"
+import {
+  SpotlightMask,
+  SimpleSpotlightMask,
+  SpotlightBackground,
+  SpotlightOverlay,
+} from "@/components/SpotlightMask";
+import { MatrixBackground } from "@/components/MatrixBackground";
+
+const App = () => {
+  return (
+    <>
+      <SpotlightMask
+        maskSize={190}
+        fadeSize={400}
+        className="w-full h-full rounded-xl"
+        background={
+          <SpotlightBackground className="bg-black  h-full">
+            <MatrixBackground
+              textColor="text-green-400"
+              fontSize={14}
+              cellSize={18}
+              animationSpeed={80}
+            />
+          </SpotlightBackground>
+        }
+        overlay={<SpotlightOverlay className="bg-black/90 backdrop-blur-2xl" />}
+      >
+        <div className="flex items-center justify-center h-full font-mono">
+          <div className="relative bg-gradient-to-br from-black/40 via-green-900/20 to-black/40 backdrop-blur-lg border border-green-400/40 rounded-2xl p-8 shadow-2xl shadow-green-400/20 hover:shadow-green-400/30 transition-all duration-300 hover:scale-105 group">
+            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-green-400/20 via-transparent to-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+            {/* Content */}
+            <div className="relative text-center text-white">
+              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-green-400/20 to-green-600/20 rounded-2xl mb-6 border border-green-400/30 relative overflow-hidden group-hover:border-green-400/50 transition-all duration-300">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-green-400/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <div className="relative"></div>
+              </div>
+
+              <h2 className="text-5xl font-bold mb-3 bg-gradient-to-r from-green-300 via-green-400 to-green-300 bg-clip-text text-transparent animate-pulse">
+                MATRIX_UNLOCKED
+              </h2>
+              <p className="text-green-300/90 font-mono text-base tracking-[0.2em] mb-6 relative">
+                <span className="relative z-10">REALITY_DECODED</span>
+                <div className="absolute inset-0 blur-sm text-green-400/50">
+                  REALITY_DECODED
+                </div>
+              </p>
+
+              <div className="flex justify-center items-center space-x-3 mb-4">
+                {[0, 1, 2, 3, 4].map((i) => (
+                  <div
+                    key={i}
+                    className="w-1 h-8 bg-gradient-to-t from-green-600 to-green-300 rounded-full animate-pulse"
+                    style={{
+                      animationDelay: `${i * 0.15}s`,
+                      animationDuration: "1.2s",
+                    }}
+                  ></div>
+                ))}
+              </div>
+
+              <div className="flex items-center justify-center space-x-2 text-xs text-green-400/80 tracking-wider">
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                <span>SYSTEM_ACTIVE</span>
+                <div
+                  className="w-2 h-2 bg-green-400 rounded-full animate-pulse"
+                  style={{ animationDelay: "0.5s" }}
+                ></div>
+              </div>
+            </div>
+
+            <div className="absolute inset-0 pointer-events-none">
+              {[...Array(6)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute w-1 h-1 bg-green-400/60 rounded-full animate-ping"
+                  style={{
+                    left: `${20 + i * 15}%`,
+                    top: `${10 + (i % 3) * 30}%`,
+                    animationDelay: `${i * 0.8}s`,
+                    animationDuration: "3s",
+                  }}
+                ></div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SpotlightMask>
+    </>
+  );
+};
+```
+
+## Props
+
+<AutoTypeTable
+  path="./components/library/animation/SpotlightMask.tsx"
+  name="SpotlightMaskProps"
+/>
