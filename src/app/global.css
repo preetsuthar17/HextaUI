@@ -3,9 +3,15 @@
 @import "fumadocs-ui/css/preset.css";
 
 :root {
+  --hu-radius: 16px;
+  --hu-background: hsl(0, 0%, 100%);
+  --hu-foreground: hsl(0, 0%, 0%);
+
+  --hu-font-inter: var(--font-inter);
+  --hu-font-jetbrains: var(--font-jetbrains-mono);
 }
 
-body,
-html {
-  font-family: "Inter", sans-serif !important;
+code,
+pre {
+  font-family: var(--hu-font-jetbrains) !important;
 }
