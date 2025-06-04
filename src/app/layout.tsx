@@ -1,19 +1,18 @@
 import "./global.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { DM_Sans, Geist, Inter, JetBrains_Mono } from "next/font/google";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
-import { Banner } from "fumadocs-ui/components/banner";
-import Link from "next/link";
-
 const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["400", "500", "600", "700"],
 });
 
 const jetbrains_mono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-code",
+  variable: "--font-jetbrains-mono",
   weight: ["500", "700"],
 });
 
