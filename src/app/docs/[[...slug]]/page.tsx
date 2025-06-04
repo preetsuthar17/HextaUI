@@ -26,7 +26,7 @@ export default async function Page(props: {
       toc={page.data.toc}
       full={page.data.full}
       tableOfContent={{
-        enabled: false,
+        style: "clerk",
       }}
       breadcrumb={{
         includeRoot: true,
