@@ -15,3 +15,8 @@ code,
 pre {
   font-family: var(--hu-font-jetbrains) !important;
 }
+
+::selection {
+  background-color: hsl(0, 0%, 0%);
+  color: hsl(0, 0%, 100%);
+}
