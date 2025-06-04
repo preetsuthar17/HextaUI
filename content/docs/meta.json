@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "---Getting Started---",
+    "getting-started/introduction",
+    "getting-started/installation",
+    "---Everything by HextaUI---",
+    "...everything-by-hextaui",
+    "---Foundation---",
+    "foundation/colors",
+    "foundation/typography"
+  ]
+}
