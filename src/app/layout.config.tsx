@@ -8,6 +8,7 @@ import Image from "next/image";
  * Docs Layout: app/docs/layout.tsx
  */
 export const baseOptions: BaseLayoutProps = {
+  githubUrl: "https://github.com/preetsuthar17/HextaUI",
   nav: {
     title: (
       <>

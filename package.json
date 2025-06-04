@@ -9,12 +9,15 @@
     "postinstall": "fumadocs-mdx"
   },
   "dependencies": {
+    "@next/third-parties": "^15.3.3",
+    "clsx": "^2.1.1",
     "fumadocs-core": "15.5.0",
     "fumadocs-mdx": "11.6.6",
     "fumadocs-ui": "15.5.0",
     "next": "15.3.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "tailwind-merge": "^3.3.0",
     "zod": "^3.25.51"
   },
   "devDependencies": {
