@@ -35,7 +35,9 @@
 }
 
 code,
-pre {
+pre,
+kbd,
+samp {
   font-family: var(--hu-font-jetbrains) !important;
 }
 
