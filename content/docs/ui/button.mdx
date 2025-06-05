@@ -10,16 +10,32 @@ import { Download, ArrowRight, Heart, Settings, Trash2 } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 
-<PreviewContainer>
-  <div className="flex gap-4 flex-wrap">
-    <Button>Default</Button>
-    <Button variant="secondary">Secondary</Button>
-    <Button variant="outline">Outline</Button>
-    <Button variant="ghost">Ghost</Button>
-    <Button variant="link">Link</Button>
-    <Button variant="destructive">Destructive</Button>
-  </div>
-</PreviewContainer>
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <Button>Default</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="outline">Outline</Button>
+        <Button variant="ghost">Ghost</Button>
+        <Button variant="link">Link</Button>
+        <Button variant="destructive">Destructive</Button>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap">
+      <Button>Default</Button>
+      <Button variant="secondary">Secondary</Button>
+      <Button variant="outline">Outline</Button>
+      <Button variant="ghost">Ghost</Button>
+      <Button variant="link">Link</Button>
+      <Button variant="destructive">Destructive</Button>
+    </div>
+    ```
+  </Tab>
+</Tabs>
 
 ## Installation
 
@@ -71,7 +87,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ButtonProps
@@ -97,7 +113,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref,
+    ref
   ) => {
     const Comp = asChild ? Slot : "button";
 
@@ -135,7 +151,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon && !loading && rightIcon}
       </Comp>
     );
-  },
+  }
 );
 
 Button.displayName = "Button";
@@ -155,12 +171,16 @@ npx hexta-ui add button
 
 ## Usage
 
-```tsx
+```tsx title="App.tsx"
 import { Button } from "@/components/ui/Button";
-```
 
-```tsx
-<Button variant="outline">Button</Button>
+export function App() {
+  return (
+    <div className="p-4">
+      <Button>Click me</Button>
+    </div>
+  );
+}
 ```
 
 ## Examples
@@ -358,4 +378,13 @@ export function LinkAsButton() {
 
 ## Props
 
-<AutoTypeTable path="./src/components/ui/Button.tsx" name="CustomButtonProps" />
+| Prop        | Type                                                                          | Default     | Description                                          |
+| ----------- | ----------------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
+| `variant`   | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style variant of the button               |
+| `size`      | `"default" \| "sm" \| "lg" \| "xl" \| "icon"`                                 | `"default"` | The size of the button                               |
+| `asChild`   | `boolean`                                                                     | `false`     | When true, the button will render as a child element |
+| `loading`   | `boolean`                                                                     | `false`     | Shows loading spinner and disables the button        |
+| `leftIcon`  | `React.ReactNode`                                                             | `undefined` | Icon to display on the left side of the button text  |
+| `rightIcon` | `React.ReactNode`                                                             | `undefined` | Icon to display on the right side of the button text |
+| `disabled`  | `boolean`                                                                     | `false`     | Disables the button interaction                      |
+| `className` | `string`                                                                      | `undefined` | Additional CSS classes to apply                      |
