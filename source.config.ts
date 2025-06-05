@@ -5,6 +5,8 @@ import {
   metaSchema,
 } from "fumadocs-mdx/config";
 
+import { remarkInstall } from "fumadocs-docgen";
+
 import { z } from "zod";
 
 export const docs = defineDocs({
@@ -21,7 +23,7 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
-    // MDX options
+    remarkPlugins: [remarkInstall],
   },
   lastModifiedTime: "git",
 });

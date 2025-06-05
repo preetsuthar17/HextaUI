@@ -38,7 +38,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "content/docs/ui/button.mdx"  ],
   "exclude": [
     "node_modules"
   ]
