@@ -30,7 +30,13 @@ export default function Layout({ children }: { children: ReactNode }) {
             Sponsor HextaUI &lt;3
           </Link>{" "}
         </Banner> */}
-        <RootProvider>{children}</RootProvider>
+        <RootProvider
+          theme={{
+            enabled: false,
+          }}
+        >
+          {children}
+        </RootProvider>
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
         <script
           data-goatcounter="https://hextui.goatcounter.com/count"
