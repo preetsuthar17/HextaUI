@@ -156,7 +156,14 @@ npx hexta-ui add separator
 ```tsx title="App.tsx"
 import { Separator } from "@/components/ui/Separator";
 
-<Separator />;
+export function App() {
+  return (
+    <div className="p-4">
+      <p>Content above</p>
+      <Separator />
+      <p>Content below</p>
+    </div>
+  );
 ```
 
 ## Examples
@@ -326,54 +333,57 @@ import { Separator } from "@/components/ui/Separator";
 ### Text Variants
 
 <Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="space-y-8">
-        <div>
-          <p className="text-sm mb-4">Different text examples</p>
-          <div className="space-y-6">
-            <Separator>OR</Separator>
-            <Separator>AND</Separator>
-            <Separator>Continue with</Separator>
-            <Separator>More options</Separator>
-          </div>
-        </div>
-        
-        <div>
-          <p className="text-sm mb-4">Vertical text separator</p>
-          <div className="flex items-center justify-center h-32">
-            <div className="flex h-full items-center space-x-4">
-              <div className="text-sm">Option A</div>
-              <Separator orientation="vertical">OR</Separator>
-              <div className="text-sm">Option B</div>
+    <Tab value="Preview">
+        <PreviewContainer>
+            <div className="space-y-8">
+                <div>
+                    <p className="text-sm mb-4">Different text examples</p>
+                    <div className="space-y-6">
+                        <Separator>OR</Separator>
+                        <Separator>AND</Separator>
+                        <Separator>Continue with</Separator>
+                        <Separator>More options</Separator>
+                    </div>
+                </div>
+                
+                <div>
+                    <p className="text-sm mb-4">Vertical text separator</p>
+                    <div className="flex items-center justify-center h-32">
+                        <div className="flex h-full items-center space-x-4">
+                            <div className="text-sm">Option A</div>
+                            <Separator orientation="vertical">OR</Separator>
+                            <div className="text-sm">Option B</div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+        </PreviewContainer>
+    </Tab>
+    <Tab value="Code">
+        ```tsx
+        {/* Horizontal text separators */}
+        <Separator>OR</Separator>
+        <Separator>AND</Separator>
+        <Separator>Continue with</Separator>
+        <Separator>More options</Separator>
+
+        {/* Vertical text separator */}
+        <div className="flex h-full items-center space-x-4">
+            <div>Option A</div>
+            <Separator orientation="vertical">OR</Separator>
+            <div>Option B</div>
         </div>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    {/* Horizontal text separators */}
-    <Separator>OR</Separator>
-    <Separator>AND</Separator>
-    <Separator>Continue with</Separator>
-    <Separator>More options</Separator>
+        ```
 
-    {/* Vertical text separator */}
-    <div className="flex h-full items-center space-x-4">
-      <div>Option A</div>
-      <Separator orientation="vertical">OR</Separator>
-      <div>Option B</div>
-    </div>
-    ```
+    </Tab>
 
-  </Tab>
 </Tabs>
 
 ## Props
 
-<AutoTypeTable
-  path="./src/components/ui/Separator.tsx"
-  name="CustomSeparatorProps"
-/>
+| Prop          | Type                         | Default        | Description                                  |
+| ------------- | ---------------------------- | -------------- | -------------------------------------------- |
+| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the separator             |
+| `size`        | `"sm" \| "md" \| "lg"`       | `"sm"`         | The thickness of the separator               |
+| `className`   | `string`                     | -              | Additional CSS classes                       |
+| `children`    | `React.ReactNode`            | -              | Text content to display within the separator |
