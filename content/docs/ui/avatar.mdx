@@ -1,0 +1,791 @@
+---
+title: Avatar
+description: An image element with a fallback for representing the user.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  AvatarGroup,
+} from "@/components/ui/Avatar";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Avatar>
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+          <AvatarFallback>VC</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap items-center">
+      <Avatar>
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+        <AvatarFallback>VC</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+pnpm add @radix-ui/react-avatar class-variance-authority
+```
+
+<div className="my-6 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
+  <div className="flex">
+    <div className="ml-3">
+      <h3 className="text-sm font-medium text-orange-800 dark:text-orange-200">
+        Required Component
+      </h3>
+      <div className="mt-2 text-sm text-orange-700 dark:text-orange-300">
+        <p>
+          This component requires the <code>Tooltip</code> component when using
+          the tooltip functionality. Make sure you have installed and set up the
+          Tooltip component before using tooltips with avatars.
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+[Tooltip Component](/docs/ui/tooltip)
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/avatar.tsx"
+"use client";
+
+import * as React from "react";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import { cva, type VariantProps } from "class-variance-authority";
+import { PS } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "./Tooltip";
+
+const avatarVariants = cva(
+  "relative flex shrink-0 overflow-hidden rounded-full",
+  {
+    variants: {
+      size: {
+        xs: "h-6 w-6",
+        sm: "h-8 w-8",
+        md: "h-10 w-10",
+        lg: "h-12 w-12",
+        xl: "h-16 w-16",
+        "2xl": "h-20 w-20",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+);
+
+interface AvatarProps
+  extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Root>,
+    VariantProps<typeof avatarVariants> {
+  tooltip?: string | React.ComponentProps<typeof TooltipContent>;
+}
+
+const Avatar = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Root>,
+  AvatarProps
+>(({ className, size, tooltip, ...props }, ref) => {
+  const avatar = (
+    <AvatarPrimitive.Root
+      ref={ref}
+      className={PS(avatarVariants({ size }), className)}
+      {...props}
+    />
+  );
+
+  if (!tooltip) {
+    return avatar;
+  }
+
+  const tooltipProps =
+    typeof tooltip === "string" ? { children: tooltip } : tooltip;
+
+  return (
+    <TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger asChild>{avatar}</TooltipTrigger>
+        <TooltipContent {...tooltipProps} />
+      </Tooltip>
+    </TooltipProvider>
+  );
+});
+Avatar.displayName = AvatarPrimitive.Root.displayName;
+
+const AvatarImage = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Image>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Image>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Image
+    ref={ref}
+    className={PS("aspect-square h-full w-full object-cover", className)}
+    {...props}
+  />
+));
+AvatarImage.displayName = AvatarPrimitive.Image.displayName;
+
+const AvatarFallback = React.forwardRef<
+  React.ElementRef<typeof AvatarPrimitive.Fallback>,
+  React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
+>(({ className, ...props }, ref) => (
+  <AvatarPrimitive.Fallback
+    ref={ref}
+    className={PS(
+      "flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] font-medium",
+      className
+    )}
+    {...props}
+  />
+));
+AvatarFallback.displayName = AvatarPrimitive.Fallback.displayName;
+
+interface AvatarGroupProps extends React.HTMLAttributes<HTMLDivElement> {
+  max?: number;
+  spacing?: "tight" | "normal" | "loose";
+  size?: VariantProps<typeof avatarVariants>["size"];
+  children: React.ReactElement[];
+}
+
+const avatarGroupSpacing = {
+  tight: "-space-x-2",
+  normal: "-space-x-1",
+  loose: "space-x-1",
+};
+
+const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
+  (
+    { className, max = 3, spacing = "normal", size = "md", children, ...props },
+    ref
+  ) => {
+    const avatarsToShow = children.slice(0, max);
+    const remainingCount = Math.max(0, children.length - max);
+
+    return (
+      <div
+        ref={ref}
+        className={PS(
+          "flex items-center",
+          avatarGroupSpacing[spacing],
+          className
+        )}
+        {...props}
+      >
+        {avatarsToShow.map((child, index) => {
+          if (React.isValidElement(child)) {
+            return React.cloneElement(child, {
+              key: index,
+              size,
+              className: PS(
+                "border-2 border-[hsl(var(--hu-background))]",
+                (child.props as any)?.className
+              ),
+            } as any);
+          }
+          return child;
+        })}
+        {remainingCount > 0 && (
+          <Avatar
+            size={size}
+            className="border-2 border-[hsl(var(--hu-background))]"
+          >
+            <AvatarFallback className="bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] font-semibold">
+              +{remainingCount}
+            </AvatarFallback>
+          </Avatar>
+        )}
+      </div>
+    );
+  }
+);
+AvatarGroup.displayName = "AvatarGroup";
+
+export { Avatar, AvatarImage, AvatarFallback, AvatarGroup, avatarVariants };
+export type { AvatarGroupProps };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add avatar
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="App.tsx"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
+
+export function App() {
+  return (
+    <Avatar>
+      <AvatarImage
+        src="https://github.com/preetsuthar17.png"
+        alt="@preetsuthar17"
+      />
+      <AvatarFallback>PS</AvatarFallback>
+    </Avatar>
+  );
+}
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Avatar>
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Avatar>
+      <AvatarImage
+        src="https://github.com/preetsuthar17.png"
+        alt="@preetsuthar17"
+      />
+      <AvatarFallback>PS</AvatarFallback>
+    </Avatar>
+    ```
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Avatar size="xs">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar size="sm">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar size="md">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar size="lg">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar size="xl">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar size="2xl">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap items-center">
+      <Avatar size="xs">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar size="sm">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar size="md">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar size="lg">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar size="xl">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar size="2xl">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Fallback Only
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Avatar>
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+        <Avatar>
+          <AvatarFallback>VC</AvatarFallback>
+        </Avatar>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap items-center">
+      <Avatar>
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+      <Avatar>
+        <AvatarFallback>VC</AvatarFallback>
+      </Avatar>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Avatar Group
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-6">
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Default Group (max 3)</h4>
+          <AvatarGroup>
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>XY</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Large Group (max 5)</h4>
+          <AvatarGroup max={5} size="lg">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>XY</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>MN</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>QR</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </div>
+      </div>
+    </PreviewContainer>
+
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-6">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Default Group (max 3)</h4>
+        <AvatarGroup>
+          <Avatar>
+            <AvatarImage
+              src="https://github.com/preetsuthar17.png"
+              alt="@preetsuthar17"
+            />
+            <AvatarFallback>PS</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>AB</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>XY</AvatarFallback>
+          </Avatar>
+        </AvatarGroup>
+      </div>
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Large Group (max 5)</h4>
+        <AvatarGroup max={5} size="lg">
+          <Avatar>
+            <AvatarImage
+              src="https://github.com/preetsuthar17.png"
+              alt="@preetsuthar17"
+            />
+            <AvatarFallback>PS</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>AB</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>XY</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>MN</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>QR</AvatarFallback>
+          </Avatar>
+        </AvatarGroup>
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Group Spacing
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-6">
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Tight Spacing</h4>
+          <AvatarGroup spacing="tight">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Normal Spacing</h4>
+          <AvatarGroup spacing="normal">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Loose Spacing</h4>
+          <AvatarGroup spacing="loose">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+          </AvatarGroup>
+        </div>
+      </div>
+    </PreviewContainer>
+
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-6">
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Tight Spacing</h4>
+        <AvatarGroup spacing="tight">
+          <Avatar>
+            <AvatarImage
+              src="https://github.com/preetsuthar17.png"
+              alt="@preetsuthar17"
+            />
+            <AvatarFallback>PS</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </AvatarGroup>
+      </div>
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Normal Spacing</h4>
+        <AvatarGroup spacing="normal">
+          <Avatar>
+            <AvatarImage
+              src="https://github.com/preetsuthar17.png"
+              alt="@preetsuthar17"
+            />
+            <AvatarFallback>PS</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </AvatarGroup>
+      </div>
+
+      <div className="space-y-2">
+        <h4 className="text-sm font-medium">Loose Spacing</h4>
+        <AvatarGroup spacing="loose">
+          <Avatar>
+            <AvatarImage
+              src="https://github.com/preetsuthar17.png"
+              alt="@preetsuthar17"
+            />
+            <AvatarFallback>PS</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarFallback>VC</AvatarFallback>
+          </Avatar>
+          <Avatar>
+            <AvatarFallback>JD</AvatarFallback>
+          </Avatar>
+        </AvatarGroup>
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Avatar with Tooltip
+
+> **Note:** The [Tooltip component](/docs/ui/tooltip) is required to use the tooltip functionality with Avatar.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <AvatarGroup spacing="tight">
+        <Avatar tooltip="preetsuthar17">
+          <AvatarImage
+            src="https://github.com/preetsuthar17.png"
+            alt="@preetsuthar17"
+          />
+          <AvatarFallback>PS</AvatarFallback>
+        </Avatar>
+        <Avatar tooltip={{ children: "Vercel", variant: "dark" }}>
+          <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+          <AvatarFallback>VC</AvatarFallback>
+        </Avatar>
+        <Avatar tooltip="John Doe" size="lg">
+          <AvatarFallback>JD</AvatarFallback>
+        </Avatar>
+        <Avatar
+          tooltip={{ children: "Admin User", variant: "destructive" }}
+          size="sm"
+        >
+          <AvatarFallback>AU</AvatarFallback>
+        </Avatar>
+      </AvatarGroup>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap items-center">
+      <Avatar tooltip="preetsuthar17">
+        <AvatarImage
+          src="https://github.com/preetsuthar17.png"
+          alt="@preetsuthar17"
+        />
+        <AvatarFallback>PS</AvatarFallback>
+      </Avatar>
+      <Avatar tooltip={{ children: "Vercel", variant: "dark" }}>
+        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+        <AvatarFallback>VC</AvatarFallback>
+      </Avatar>
+      <Avatar tooltip="John Doe" size="lg">
+        <AvatarFallback>JD</AvatarFallback>
+      </Avatar>
+      <Avatar
+        tooltip={{ children: "Admin User", variant: "destructive" }}
+        size="sm"
+      >
+        <AvatarFallback>AU</AvatarFallback>
+      </Avatar>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+### Avatar
+
+| Prop        | Type                                                      | Default     | Description                             |
+| ----------- | --------------------------------------------------------- | ----------- | --------------------------------------- |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"`      | The size of the avatar                  |
+| `tooltip`   | `string` \| `TooltipContentProps`                         | `undefined` | Tooltip content or props for the avatar |
+| `className` | `string`                                                  | `undefined` | Additional CSS classes                  |
+
+### AvatarGroup
+
+| Prop        | Type                                                      | Default     | Description                       |
+| ----------- | --------------------------------------------------------- | ----------- | --------------------------------- |
+| `max`       | `number`                                                  | `3`         | Maximum number of avatars to show |
+| `spacing`   | `"tight"` \| `"normal"` \| `"loose"`                      | `"normal"`  | Spacing between avatars           |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"`      | Size of all avatars in the group  |
+| `children`  | `React.ReactElement[]`                                    | required    | Array of Avatar components        |
+| `className` | `string`                                                  | `undefined` | Additional CSS classes            |
