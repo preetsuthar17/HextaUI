@@ -34,10 +34,13 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
-export type CustomButtonProps = Omit<ButtonProps, keyof React.ComponentProps<'button'>>;
+export type CustomButtonProps = Omit<
+  ButtonProps,
+  keyof React.ComponentProps<"button">
+>;
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -62,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref
+    ref,
   ) => {
     const Comp = asChild ? Slot : "button";
 
@@ -118,7 +121,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {content}
       </button>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
