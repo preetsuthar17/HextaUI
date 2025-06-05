@@ -1,0 +1,381 @@
+---
+title: Separator
+description: A separator component for dividing content visually.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { Separator } from "@/components/ui/Separator";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-6">
+        <div className="text-sm">Content above separator</div>
+        <div>
+          <Separator className="my-4">OR</Separator>
+        </div>
+        <div className="flex items-center space-x-4 text-sm">
+          <span>Home</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>About</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>Contact</span>
+          <Separator orientation="vertical" className="h-4" />
+          <span>Blog</span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-6">
+      <div className="text-sm">Content above separator</div>
+      <div>
+        <Separator className="my-4">OR</Separator>
+      </div>
+      <div className="flex items-center space-x-4 text-sm">
+        <span>Home</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>About</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>Contact</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>Blog</span>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install @radix-ui/react-separator class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/separator.tsx"
+"use client";
+
+import * as React from "react";
+import * as SeparatorPrimitive from "@radix-ui/react-separator";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const separatorVariants = cva("shrink-0 bg-[hsl(var(--hu-border))]", {
+  variants: {
+    orientation: {
+      horizontal: "h-[1px] w-full",
+      vertical: "h-full w-[1px]",
+    },
+    size: {
+      sm: "",
+      md: "",
+      lg: "",
+    },
+  },
+  compoundVariants: [
+    {
+      orientation: "horizontal",
+      size: "sm",
+      className: "h-[1px]",
+    },
+    {
+      orientation: "horizontal",
+      size: "md",
+      className: "h-[2px]",
+    },
+    {
+      orientation: "horizontal",
+      size: "lg",
+      className: "h-[4px]",
+    },
+    {
+      orientation: "vertical",
+      size: "sm",
+      className: "w-[1px]",
+    },
+    {
+      orientation: "vertical",
+      size: "md",
+      className: "w-[2px]",
+    },
+    {
+      orientation: "vertical",
+      size: "lg",
+      className: "w-[4px]",
+    },
+  ],
+  defaultVariants: {
+    orientation: "horizontal",
+    size: "sm",
+  },
+});
+
+export interface SeparatorProps
+  extends React.ComponentPropsWithoutRef<typeof SeparatorPrimitive.Root>,
+    VariantProps<typeof separatorVariants> {}
+
+const Separator = React.forwardRef<
+  React.ElementRef<typeof SeparatorPrimitive.Root>,
+  SeparatorProps
+>(({ className, orientation = "horizontal", size, ...props }, ref) => (
+  <SeparatorPrimitive.Root
+    ref={ref}
+    decorative
+    orientation={orientation}
+    className={cn(separatorVariants({ orientation, size }), className)}
+    {...props}
+  />
+));
+Separator.displayName = SeparatorPrimitive.Root.displayName;
+
+export { Separator, separatorVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add separator
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Separator } from "@/components/ui/Separator";
+```
+
+```tsx
+<Separator />
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-4">
+        <p>Content above</p>
+        <Separator />
+        <p>Content below</p>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <p>Content above</p>
+      <Separator />
+      <p>Content below</p>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Orientations
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-6">
+        <div>
+          <p className="text-sm mb-2">Horizontal</p>
+          <div className="space-y-4">
+            <p>Content above</p>
+            <Separator orientation="horizontal" />
+            <p>Content below</p>
+          </div>
+        </div>
+        <div>
+          <p className="text-sm mb-2">Vertical</p>
+          <div className="flex h-12 items-center space-x-4">
+            <span>Left content</span>
+            <Separator orientation="vertical" />
+            <span>Right content</span>
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    {/* Horizontal */}
+    <div className="space-y-4">
+      <p>Content above</p>
+      <Separator orientation="horizontal" />
+      <p>Content below</p>
+    </div>
+
+    {/* Vertical */}
+    <div className="flex h-12 items-center space-x-4">
+      <span>Left content</span>
+      <Separator orientation="vertical" />
+      <span>Right content</span>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-6">
+        <div>
+          <p className="text-sm mb-2">Small (1px)</p>
+          <Separator size="sm" />
+        </div>
+        <div>
+          <p className="text-sm mb-2">Medium (2px)</p>
+          <Separator size="md" />
+        </div>
+        <div>
+          <p className="text-sm mb-2">Large (4px)</p>
+          <Separator size="lg" />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Separator size="sm" />
+    <Separator size="md" />
+    <Separator size="lg" />
+    ```
+  </Tab>
+</Tabs>
+
+### Vertical Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center space-x-6 h-16">
+        <div className="flex items-center space-x-2">
+          <span className="text-sm">Small</span>
+          <Separator orientation="vertical" size="sm" className="h-8" />
+          <span className="text-sm">Content</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm">Medium</span>
+          <Separator orientation="vertical" size="md" className="h-8" />
+          <span className="text-sm">Content</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <span className="text-sm">Large</span>
+          <Separator orientation="vertical" size="lg" className="h-8" />
+          <span className="text-sm">Content</span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Separator orientation="vertical" size="sm" className="h-8" />
+    <Separator orientation="vertical" size="md" className="h-8" />
+    <Separator orientation="vertical" size="lg" className="h-8" />
+    ```
+  </Tab>
+</Tabs>
+
+### Navigation
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center space-x-4 text-sm">
+        <span>Home</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>About</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>Contact</span>
+        <Separator orientation="vertical" className="h-4" />
+        <span>Blog</span>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex items-center space-x-4 text-sm">
+      <span>Home</span>
+      <Separator orientation="vertical" className="h-4" />
+      <span>About</span>
+      <Separator orientation="vertical" className="h-4" />
+      <span>Contact</span>
+      <Separator orientation="vertical" className="h-4" />
+      <span>Blog</span>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Text Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-8">
+        <div>
+          <p className="text-sm mb-4">Different text examples</p>
+          <div className="space-y-6">
+            <Separator>OR</Separator>
+            <Separator>AND</Separator>
+            <Separator>Continue with</Separator>
+            <Separator>More options</Separator>
+          </div>
+        </div>
+        
+        <div>
+          <p className="text-sm mb-4">Vertical text separator</p>
+          <div className="flex items-center justify-center h-32">
+            <div className="flex h-full items-center space-x-4">
+              <div className="text-sm">Option A</div>
+              <Separator orientation="vertical">OR</Separator>
+              <div className="text-sm">Option B</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    {/* Horizontal text separators */}
+    <Separator>OR</Separator>
+    <Separator>AND</Separator>
+    <Separator>Continue with</Separator>
+    <Separator>More options</Separator>
+
+    {/* Vertical text separator */}
+    <div className="flex h-full items-center space-x-4">
+      <div>Option A</div>
+      <Separator orientation="vertical">OR</Separator>
+      <div>Option B</div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<AutoTypeTable
+  path="./src/components/ui/Separator.tsx"
+  name="CustomSeparatorProps"
+/>
