@@ -29,7 +29,7 @@ const kbdVariants = cva(
       variant: "default",
       size: "sm",
     },
-  }
+  },
 );
 
 export interface KbdProps
@@ -79,7 +79,7 @@ const Kbd = React.forwardRef<HTMLElement, KbdProps>(
         {children}
       </kbd>
     );
-  }
+  },
 );
 
 Kbd.displayName = "Kbd";
