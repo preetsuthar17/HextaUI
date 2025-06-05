@@ -30,7 +30,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Installation
 
-```bash tab="CLI" title="NPM"
+```package-install tab="CLI"
 npx shadcn@latest add "https://21st.dev/r/hextaui/ripple-effect"
 ```
 
@@ -124,7 +124,7 @@ export const RippleEffect = ({
       className={cn(
         "relative overflow-hidden rounded-lg cursor-pointer select-none",
         getSizeClasses(),
-        className,
+        className
       )}
       onMouseDown={createRipple}
     >

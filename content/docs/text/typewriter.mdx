@@ -23,7 +23,7 @@ import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 
 ## Installation
 
-```bash tab="CLI" title="NPM"
+```package-install tab="CLI"
 npx shadcn@latest add "https://21st.dev/r/hextui/typewriter-text"
 ```
 
@@ -82,7 +82,7 @@ export function Typewriter({
           }
         }
       },
-      isDeleting ? deleteSpeed : speed,
+      isDeleting ? deleteSpeed : speed
     );
 
     return () => clearTimeout(timeout);
