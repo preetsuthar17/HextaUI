@@ -134,7 +134,7 @@ import { PreviewContainer } from "@/components/PreviewContainer";
 
 ## Installation
 
-```bash tab="CLI" title="NPM"
+```package-install tab="CLI"
 {/* Leave this blank */}
 ```
 
