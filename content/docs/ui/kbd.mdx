@@ -1,0 +1,529 @@
+---
+title: Kbd
+description: A keyboard key component for displaying keyboard shortcuts and key combinations.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { Kbd } from "@/components/ui/Kbd";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-4 items-center">
+        <Kbd>Ctrl</Kbd>
+        <Kbd>⌘</Kbd>
+        <Kbd>Shift</Kbd>
+        <Kbd>Alt</Kbd>
+        <Kbd>Enter</Kbd>
+        <Kbd>Esc</Kbd>
+        <Kbd>Space</Kbd>
+        <Kbd>Tab</Kbd>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-4 items-center">
+      <Kbd>Ctrl</Kbd>
+      <Kbd>⌘</Kbd>
+      <Kbd>Shift</Kbd>
+      <Kbd>Alt</Kbd>
+      <Kbd>Enter</Kbd>
+      <Kbd>Esc</Kbd>
+      <Kbd>Space</Kbd>
+      <Kbd>Tab</Kbd>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+pnpm add class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/kbd.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const kbdVariants = cva(
+  "inline-flex items-center justify-center font-mono text-xs font-medium bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] border border-[hsl(var(--hu-border))] rounded-md border-b-3 transition-all duration-75 cursor-pointer select-none active:translate-y-[1px] active:border-b-[1px]  hover:bg-[hsl(var(--hu-muted))]/80",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] border-[hsl(var(--hu-border))]",
+        outline:
+          "bg-transparent border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]",
+        solid:
+          "bg-[hsl(var(--hu-foreground))] text-[hsl(var(--hu-background))] border-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-foreground))]/90",
+        secondary:
+          "bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] border-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-secondary))]/80",
+      },
+      size: {
+        xs: "h-5 px-1.5 text-[10px] min-w-[1.25rem]",
+        sm: "h-6 px-2 text-xs min-w-[1.5rem]",
+        md: "h-7 px-2.5 text-sm min-w-[1.75rem]",
+        lg: "h-8 px-3 text-sm min-w-[2rem]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "sm",
+    },
+  }
+);
+
+export interface KbdProps
+  extends React.HTMLAttributes<HTMLElement>,
+    VariantProps<typeof kbdVariants> {
+  keys?: string[];
+  onClick?: () => void;
+}
+
+const Kbd = React.forwardRef<HTMLElement, KbdProps>(
+  ({ className, variant, size, keys, children, onClick, ...props }, ref) => {
+    // If keys array is provided, render multiple kbd elements
+    if (keys && keys.length > 0) {
+      return (
+        <span
+          className="inline-flex items-center gap-1"
+          ref={ref as React.Ref<HTMLSpanElement>}
+          onClick={onClick}
+        >
+          {keys.map((key, index) => (
+            <React.Fragment key={index}>
+              <kbd
+                className={cn(kbdVariants({ variant, size }), className)}
+                {...props}
+              >
+                {key}
+              </kbd>
+              {index < keys.length - 1 && (
+                <span className="text-[hsl(var(--hu-muted-foreground))] text-xs px-1">
+                  +
+                </span>
+              )}
+            </React.Fragment>
+          ))}
+        </span>
+      );
+    }
+
+    // Single kbd element
+    return (
+      <kbd
+        className={cn(kbdVariants({ variant, size }), className)}
+        ref={ref}
+        onClick={onClick}
+        {...props}
+      >
+        {children}
+      </kbd>
+    );
+  }
+);
+
+Kbd.displayName = "Kbd";
+
+export { Kbd, kbdVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add kbd
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="App.tsx"
+import { Kbd } from "@/components/ui/Kbd";
+
+export function App() {
+  return (
+    <div>
+      Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-2 items-center">
+        <span>Press</span>
+        <Kbd>Enter</Kbd>
+        <span>to submit</span>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-2 items-center">
+      <span>Press</span>
+      <Kbd>Enter</Kbd>
+      <span>to submit</span>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-4 items-center">
+        <Kbd size="xs">Ctrl</Kbd>
+        <Kbd size="sm">Ctrl</Kbd>
+        <Kbd size="md">Ctrl</Kbd>
+        <Kbd size="lg">Ctrl</Kbd>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-4 items-center">
+      <Kbd size="xs">Ctrl</Kbd>
+      <Kbd size="sm">Ctrl</Kbd>
+      <Kbd size="md">Ctrl</Kbd>
+      <Kbd size="lg">Ctrl</Kbd>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-4 items-center">
+        <Kbd variant="default">Default</Kbd>
+        <Kbd variant="outline">Outline</Kbd>
+        <Kbd variant="solid">Solid</Kbd>
+        <Kbd variant="secondary">Secondary</Kbd>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-4 items-center">
+      <Kbd variant="default">Default</Kbd>
+      <Kbd variant="outline">Outline</Kbd>
+      <Kbd variant="solid">Solid</Kbd>
+      <Kbd variant="secondary">Secondary</Kbd>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Key Combinations
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4">
+        <div className="flex items-center gap-2">
+          <span>Save:</span>
+          <Kbd keys={["Ctrl", "S"]} />
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Copy:</span>
+          <Kbd keys={["⌘", "C"]} />
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Select All:</span>
+          <Kbd keys={["Ctrl", "Shift", "A"]} />
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Force Quit:</span>
+          <Kbd keys={["⌘", "⌥", "Esc"]} />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-4">
+      <div className="flex items-center gap-2">
+        <span>Save:</span>
+        <Kbd keys={["Ctrl", "S"]} />
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Copy:</span>
+        <Kbd keys={["⌘", "C"]} />
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Select All:</span>
+        <Kbd keys={["Ctrl", "Shift", "A"]} />
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Force Quit:</span>
+        <Kbd keys={["⌘", "⌥", "Esc"]} />
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Common Shortcuts
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+        <div className="flex justify-between items-center">
+          <span>Undo</span>
+          <Kbd keys={["Ctrl", "Z"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Redo</span>
+          <Kbd keys={["Ctrl", "Y"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Find</span>
+          <Kbd keys={["Ctrl", "F"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Replace</span>
+          <Kbd keys={["Ctrl", "H"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>New Tab</span>
+          <Kbd keys={["Ctrl", "T"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Close Tab</span>
+          <Kbd keys={["Ctrl", "W"]} />
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Refresh</span>
+          <Kbd>F5</Kbd>
+        </div>
+        <div className="flex justify-between items-center">
+          <span>Dev Tools</span>
+          <Kbd>F12</Kbd>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+      <div className="flex justify-between items-center">
+        <span>Undo</span>
+        <Kbd keys={["Ctrl", "Z"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Redo</span>
+        <Kbd keys={["Ctrl", "Y"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Find</span>
+        <Kbd keys={["Ctrl", "F"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Replace</span>
+        <Kbd keys={["Ctrl", "H"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>New Tab</span>
+        <Kbd keys={["Ctrl", "T"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Close Tab</span>
+        <Kbd keys={["Ctrl", "W"]} />
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Refresh</span>
+        <Kbd>F5</Kbd>
+      </div>
+      <div className="flex justify-between items-center">
+        <span>Dev Tools</span>
+        <Kbd>F12</Kbd>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Function Keys
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: 12 }, (_, i) => (
+          <Kbd key={i} size="xs">
+            F{i + 1}
+          </Kbd>
+        ))}
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-2">
+      {Array.from({ length: 12 }, (_, i) => (
+        <Kbd key={i} size="xs">
+          F{i + 1}
+        </Kbd>
+      ))}
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Arrow Keys
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col items-center gap-2">
+        <Kbd>↑</Kbd>
+        <div className="flex gap-2">
+          <Kbd>←</Kbd>
+          <Kbd>↓</Kbd>
+          <Kbd>→</Kbd>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col items-center gap-2">
+      <Kbd>↑</Kbd>
+      <div className="flex gap-2">
+        <Kbd>←</Kbd>
+        <Kbd>↓</Kbd>
+        <Kbd>→</Kbd>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Special Characters
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-wrap gap-4 items-center">
+        <div className="flex items-center gap-2">
+          <span>Command:</span>
+          <Kbd>⌘</Kbd>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Option:</span>
+          <Kbd>⌥</Kbd>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Shift:</span>
+          <Kbd>⇧</Kbd>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Control:</span>
+          <Kbd>⌃</Kbd>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Return:</span>
+          <Kbd>↩</Kbd>
+        </div>
+        <div className="flex items-center gap-2">
+          <span>Delete:</span>
+          <Kbd>⌫</Kbd>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-wrap gap-4 items-center">
+      <div className="flex items-center gap-2">
+        <span>Command:</span>
+        <Kbd>⌘</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Option:</span>
+        <Kbd>⌥</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Shift:</span>
+        <Kbd>⇧</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Control:</span>
+        <Kbd>⌃</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Return:</span>
+        <Kbd>↩</Kbd>
+      </div>
+      <div className="flex items-center gap-2">
+        <span>Delete:</span>
+        <Kbd>⌫</Kbd>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+### Kbd
+
+| Prop        | Type                                                     | Default     | Description                                   |
+| ----------- | -------------------------------------------------------- | ----------- | --------------------------------------------- |
+| `variant`   | `"default"` \| `"outline"` \| `"solid"` \| `"secondary"` | `"default"` | The visual style variant of the kbd element   |
+| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                     | `"sm"`      | The size of the kbd element                   |
+| `keys`      | `string[]`                                               | `undefined` | Array of keys for key combinations (optional) |
+| `className` | `string`                                                 | `undefined` | Additional CSS classes                        |
+| `children`  | `React.ReactNode`                                        | `undefined` | The key content (used for single keys)        |
+
+## Accessibility
+
+- Uses semantic `<kbd>` HTML element for keyboard input
+- Maintains proper contrast ratios for readability
+- Screen reader friendly with clear semantic meaning
+- Supports keyboard navigation and focus states
+
+## Common Key Symbols
+
+For macOS users, you can use these common symbols:
+
+- `⌘` - Command key (Cmd)
+- `⌥` - Option key (Alt)
+- `⇧` - Shift key
+- `⌃` - Control key
+- `↩` - Return/Enter key
+- `⌫` - Delete key
+- `⌦` - Forward delete
+- `⇥` - Tab key
+- `⎋` - Escape key
+- `⇪` - Caps Lock
+- `⏎` - Return
+- `⌤` - Enter
+- `⌧` - Clear
