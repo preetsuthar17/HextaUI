@@ -23,9 +23,14 @@
 
   --hu-destructive: 0, 84%, 55%;
 
+  --hu-muted-foreground: 0, 0%, 45%;
+
   --hu-ring: 0, 0%, 70%;
 
   --hu-border: 11, 0%, 90%;
+
+  /* Fumadocs */
+  --color-fd-background: hsl(var(--hu-background));
 }
 
 code,
