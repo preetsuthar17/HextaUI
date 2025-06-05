@@ -67,18 +67,16 @@ Install following dependencies:
 pnpm add @radix-ui/react-avatar class-variance-authority
 ```
 
-<div className="my-6 rounded-lg border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
+<div className="my-6 rounded-xl border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
   <div className="flex">
     <div className="ml-3">
       <h3 className="text-sm font-medium text-orange-800 dark:text-orange-200">
         Required Component
       </h3>
       <div className="mt-2 text-sm text-orange-700 dark:text-orange-300">
-        <p>
-          This component requires the <code>Tooltip</code> component when using
-          the tooltip functionality. Make sure you have installed and set up the
-          Tooltip component before using tooltips with avatars.
-        </p>
+        This component requires the <code>Tooltip</code> component when using
+        the tooltip functionality. Make sure you have installed and set up the
+        Tooltip component before using tooltips with avatars.
       </div>
     </div>
   </div>
@@ -118,7 +116,7 @@ const avatarVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  },
+  }
 );
 
 interface AvatarProps
@@ -177,7 +175,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={PS(
       "flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] font-medium",
-      className,
+      className
     )}
     {...props}
   />
@@ -200,7 +198,7 @@ const avatarGroupSpacing = {
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   (
     { className, max = 3, spacing = "normal", size = "md", children, ...props },
-    ref,
+    ref
   ) => {
     const avatarsToShow = children.slice(0, max);
     const remainingCount = Math.max(0, children.length - max);
@@ -211,7 +209,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         className={PS(
           "flex items-center",
           avatarGroupSpacing[spacing],
-          className,
+          className
         )}
         {...props}
       >
@@ -222,7 +220,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               size,
               className: PS(
                 "border-2 border-[hsl(var(--hu-background))]",
-                (child.props as any)?.className,
+                (child.props as any)?.className
               ),
             } as any);
           }
@@ -240,7 +238,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
       </div>
     );
-  },
+  }
 );
 AvatarGroup.displayName = "AvatarGroup";
 
