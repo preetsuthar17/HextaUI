@@ -3,26 +3,29 @@
 @import "fumadocs-ui/css/preset.css";
 
 :root {
-  --hu-radius: 16px;
-  --hu-background: hsl(0, 0%, 100%);
-  --hu-foreground: hsl(0, 0%, 0%);
+  --hu-background: 0, 0%, 100%;
+  --hu-foreground: 0, 0%, 0%;
 
   --hu-font-inter: var(--font-inter);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
-  --hu-success: hsl(120, 100%, 25%);
-  --hu-success-foreground: hsl(120, 100%, 95%);
+  --hu-card-background: 0, 0%, 100%;
+  --hu-card-foreground: 220, 9%, 15%;
 
-  --hu-destructive: hsl(0, 100%, 25%);
-  --hu-destructive-foreground: hsl(0, 100%, 95%);
+  --hu-primary: 0, 0%, 0%;
+  --hu-primary-foreground: 0, 0%, 100%;
 
-  --hu-warning: hsl(60, 100%, 25%);
-  --hu-warning-foreground: hsl(60, 100%, 95%);
+  --hu-secondary: 11, 0%, 95%;
+  --hu-secondary-foreground: 222, 84%, 5%;
 
-  --hu-info: hsl(210, 100%, 25%);
-  --hu-info-foreground: hsl(210, 100%, 95%);
+  --hu-accent: 11, 0%, 96%;
+  --hu-accent-foreground: 222, 84%, 5%;
 
-  --hu-border: hsl(0, 0%, 90%);
+  --hu-destructive: 0, 84%, 55%;
+
+  --hu-ring: 0, 0%, 70%;
+
+  --hu-border: 11, 0%, 90%;
 }
 
 code,
@@ -33,4 +36,8 @@ pre {
 ::selection {
   background-color: hsl(0, 0%, 0%);
   color: hsl(0, 0%, 100%);
+}
+
+[data-theme-toggle] {
+  display: none;
 }
