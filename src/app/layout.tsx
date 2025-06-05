@@ -3,6 +3,8 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Banner } from "fumadocs-ui/components/banner";
+import Link from "next/link";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -25,11 +27,11 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       <body className="flex flex-col min-h-screen">
         {" "}
-        {/* <Banner variant="rainbow">
-          <Link href="https://github.com/sponsors/preetsuthar17">
-            Sponsor HextaUI &lt;3
+        <Banner variant="rainbow">
+          <Link href="/docs/everything-by-hextaui/blocks">
+            Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
           </Link>{" "}
-        </Banner> */}
+        </Banner>
         <RootProvider
           theme={{
             enabled: false,
