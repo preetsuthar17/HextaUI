@@ -8,7 +8,7 @@ import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Download, ArrowRight, Heart, Settings, Trash2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/Button";
 
 <PreviewContainer>
   <div className="flex gap-4 flex-wrap">
@@ -71,7 +71,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ButtonProps
@@ -97,7 +97,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref,
+    ref
   ) => {
     const Comp = asChild ? Slot : "button";
 
@@ -135,7 +135,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {rightIcon && !loading && rightIcon}
       </Comp>
     );
-  },
+  }
 );
 
 Button.displayName = "Button";
@@ -358,4 +358,4 @@ export function LinkAsButton() {
 
 ## Props
 
-<AutoTypeTable path="./src/components/ui/button.tsx" name="CustomButtonProps" />
+<AutoTypeTable path="./src/components/ui/Button.tsx" name="CustomButtonProps" />
