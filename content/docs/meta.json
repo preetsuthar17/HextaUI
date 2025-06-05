@@ -8,6 +8,8 @@
     "---Foundation---",
     "foundation/colors",
     "foundation/typography",
-    "foundation/theming"
+    "foundation/theming",
+    "---UI---",
+    "...ui"
   ]
 }
