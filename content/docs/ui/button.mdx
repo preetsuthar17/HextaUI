@@ -343,11 +343,12 @@ You can use the `asChild` prop to make another component look like a button. Her
 <Tab value="Code">
 ```tsx
 import { Button } from "@/components/ui/Button";
+import Link from "next/link";
 
 export function LinkAsButton() {
   return (
     <Button asChild>
-      <a href="/login">Login</a>
+      <Link href="/login">Login</Link>
     </Button>
   );
 }
@@ -357,4 +358,4 @@ export function LinkAsButton() {
 
 ## Props
 
-{/* <AutoTypeTable path="./src/components/ui/Button.tsx" name="ButtonProps" /> */}
+<AutoTypeTable path="./src/components/ui/button.tsx" name="CustomButtonProps" />
