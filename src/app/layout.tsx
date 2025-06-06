@@ -32,13 +32,7 @@ export default function Layout({ children }: { children: ReactNode }) {
             Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
           </Link>{" "}
         </Banner>
-        <RootProvider
-          theme={{
-            enabled: false,
-          }}
-        >
-          {children}
-        </RootProvider>
+        <RootProvider>{children}</RootProvider>
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
         <script
           data-goatcounter="https://hextui.goatcounter.com/count"
