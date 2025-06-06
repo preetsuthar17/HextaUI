@@ -1,0 +1,579 @@
+---
+title: Chip
+description: A compact, interactive element for displaying status, categories, or filters with optional icons and dismissible functionality.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { Chip } from "@/components/ui/Chip/Chip.tsx";
+import { ChipWithIcon } from "@/components/ui/Chip/ChipWithIcon";
+import {
+  DismissibleChipExamples,
+  InteractiveChipExamples,
+  FilterTagExamples,
+  RealWorldChipExamples,
+} from "@/components/ui/Chip/ChipExamples";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <Chip>Default</Chip>
+        <Chip variant="secondary">Secondary</Chip>
+        <Chip variant="outline">Outline</Chip>
+        <Chip variant="ghost">Ghost</Chip>
+        <Chip variant="destructive">Destructive</Chip>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap">
+      <Chip>Default</Chip>
+      <Chip variant="secondary">Secondary</Chip>
+      <Chip variant="outline">Outline</Chip>
+      <Chip variant="ghost">Ghost</Chip>
+      <Chip variant="destructive">Destructive</Chip>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority lucide-react
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/chip.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { type LucideIcon, X } from "lucide-react";
+
+const chipVariants = cva(
+  "inline-flex items-center justify-center rounded-full border text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-transparent bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
+        secondary:
+          "border-transparent bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] hover:bg-[hsl(var(--hu-secondary))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
+        destructive:
+          "border-transparent bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-destructive))]/80 focus-visible:ring-[hsl(var(--hu-destructive))]",
+        outline:
+          "border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+        ghost:
+          "border-transparent text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+      },
+      size: {
+        sm: "h-6 px-2 gap-1 text-xs",
+        default: "h-7 px-3 gap-1.5 text-sm",
+        lg: "h-8 px-4 text-sm gap-2",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface ChipProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof chipVariants> {
+  icon?: LucideIcon;
+  iconPosition?: "left" | "right";
+  dismissible?: boolean;
+  onDismiss?: () => void;
+}
+
+const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      icon: Icon,
+      iconPosition = "left",
+      dismissible = false,
+      onDismiss,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const iconSize = size === "sm" ? 12 : size === "lg" ? 14 : 12;
+    const closeIconSize = size === "sm" ? 10 : size === "lg" ? 12 : 10;
+
+    const handleDismiss = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      onDismiss?.();
+    };
+
+    return (
+      <div
+        ref={ref}
+        className={cn(chipVariants({ variant, size }), className)}
+        {...props}
+      >
+        {Icon && iconPosition === "left" && (
+          <Icon size={iconSize} className="shrink-0" />
+        )}
+        {children}
+        {Icon && iconPosition === "right" && !dismissible && (
+          <Icon size={iconSize} className="shrink-0" />
+        )}
+        {dismissible && (
+          <button
+            type="button"
+            onClick={handleDismiss}
+            className="ml-1 shrink-0 rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+            aria-label="Remove"
+          >
+            <X size={closeIconSize} />
+          </button>
+        )}
+      </div>
+    );
+  }
+);
+
+Chip.displayName = "Chip";
+
+export { Chip, chipVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```bash
+npx hextaui add chip
+```
+
+</Tab>
+</Tabs>
+
+## Examples
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <Chip variant="default">Default</Chip>
+        <Chip variant="secondary">Secondary</Chip>
+        <Chip variant="outline">Outline</Chip>
+        <Chip variant="ghost">Ghost</Chip>
+        <Chip variant="destructive">Destructive</Chip>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap">
+      <Chip variant="default">Default</Chip>
+      <Chip variant="secondary">Secondary</Chip>
+      <Chip variant="outline">Outline</Chip>
+      <Chip variant="ghost">Ghost</Chip>
+      <Chip variant="destructive">Destructive</Chip>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap items-center">
+        <Chip size="sm">Small</Chip>
+        <Chip size="default">Default</Chip>
+        <Chip size="lg">Large</Chip>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-4 flex-wrap items-center">
+      <Chip size="sm">Small</Chip>
+      <Chip size="default">Default</Chip>
+      <Chip size="lg">Large</Chip>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### With Icons
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <ChipWithIcon iconName="Tag" variant="default">
+          Category
+        </ChipWithIcon>
+        <ChipWithIcon iconName="User" variant="secondary" iconPosition="left">
+          Member
+        </ChipWithIcon>
+        <ChipWithIcon iconName="Star" variant="outline">
+          Featured
+        </ChipWithIcon>
+        <ChipWithIcon iconName="Shield" variant="ghost">
+          Premium
+        </ChipWithIcon>
+        <ChipWithIcon iconName="AlertTriangle" variant="destructive">
+          Warning
+        </ChipWithIcon>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Tag, User, Star, Shield, AlertTriangle } from "lucide-react";
+
+    <div className="flex gap-4 flex-wrap">
+      <Chip icon={Tag} variant="default">
+        Category
+      </Chip>
+      <Chip icon={User} variant="secondary" iconPosition="left">
+        Member
+      </Chip>
+      <Chip icon={Star} variant="outline">
+        Featured
+      </Chip>
+      <Chip icon={Shield} variant="ghost">
+        Premium
+      </Chip>
+      <Chip icon={AlertTriangle} variant="destructive">
+        Warning
+      </Chip>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Icon Positions
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <ChipWithIcon iconName="ArrowRight" variant="default" iconPosition="left">
+          Next
+        </ChipWithIcon>
+        <ChipWithIcon iconName="ArrowRight" variant="secondary" iconPosition="right">
+          Continue
+        </ChipWithIcon>
+        <ChipWithIcon iconName="Mail" variant="outline" iconPosition="left">
+          Email
+        </ChipWithIcon>
+        <ChipWithIcon iconName="Phone" variant="ghost" iconPosition="right">
+          Call
+        </ChipWithIcon>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { ArrowRight, Mail, Phone } from "lucide-react";
+
+    <div className="flex gap-4 flex-wrap">
+      <Chip icon={ArrowRight} variant="default" iconPosition="left">
+        Next
+      </Chip>
+      <Chip icon={ArrowRight} variant="secondary" iconPosition="right">
+        Continue
+      </Chip>
+      <Chip icon={Mail} variant="outline" iconPosition="left">
+        Email
+      </Chip>
+      <Chip icon={Phone} variant="ghost" iconPosition="right">
+        Call
+      </Chip>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Dismissible Chips
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DismissibleChipExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Tag, User } from "lucide-react";
+
+    <div className="flex gap-4 flex-wrap">
+      <Chip dismissible onDismiss={() => alert("Chip dismissed!")}>
+        Remove me
+      </Chip>
+      <Chip
+        icon={Tag}
+        variant="secondary"
+        dismissible
+        onDismiss={() => alert("Tag removed!")}
+      >
+        JavaScript
+      </Chip>
+      <Chip
+        icon={User}
+        variant="outline"
+        dismissible
+        onDismiss={() => alert("User removed!")}
+      >
+        John Doe
+      </Chip>
+      <Chip variant="destructive" dismissible size="sm">
+        Error
+      </Chip>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Filter Tags
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FilterTagExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Tag, User } from "lucide-react";
+
+    <div className="space-y-4">
+      <div>
+        <h4 className="text-sm font-medium mb-2">Technologies</h4>
+        <div className="flex gap-2 flex-wrap">
+          <Chip icon={Tag} variant="outline" dismissible>React</Chip>
+          <Chip icon={Tag} variant="outline" dismissible>TypeScript</Chip>
+          <Chip icon={Tag} variant="outline" dismissible>Next.js</Chip>
+          <Chip icon={Tag} variant="outline" dismissible>Tailwind</Chip>
+        </div>
+      </div>
+      <div>
+        <h4 className="text-sm font-medium mb-2">Team Members</h4>
+        <div className="flex gap-2 flex-wrap">
+          <Chip icon={User} variant="secondary" size="sm" dismissible>Alice</Chip>
+          <Chip icon={User} variant="secondary" size="sm" dismissible>Bob</Chip>
+          <Chip icon={User} variant="secondary" size="sm" dismissible>Charlie</Chip>
+        </div>
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Status Indicators
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <ChipWithIcon iconName="Clock" variant="ghost">Pending</ChipWithIcon>
+        <ChipWithIcon iconName="CheckCircle" variant="secondary">In Progress</ChipWithIcon>
+        <ChipWithIcon iconName="Check" variant="default">Completed</ChipWithIcon>
+        <ChipWithIcon iconName="X" variant="destructive">Failed</ChipWithIcon>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Clock, CheckCircle, Check, X } from "lucide-react";
+
+    <div className="flex gap-4 flex-wrap">
+      <Chip icon={Clock} variant="ghost">Pending</Chip>
+      <Chip icon={CheckCircle} variant="secondary">In Progress</Chip>
+      <Chip icon={Check} variant="default">Completed</Chip>
+      <Chip icon={X} variant="destructive">Failed</Chip>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Contact Information
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-3">
+        <div className="flex gap-2 flex-wrap">
+          <ChipWithIcon iconName="Mail" variant="outline" size="sm">
+            john@example.com
+          </ChipWithIcon>
+          <ChipWithIcon iconName="Phone" variant="outline" size="sm">
+            +1 (555) 123-4567
+          </ChipWithIcon>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          <ChipWithIcon iconName="MapPin" variant="ghost" size="sm">
+            San Francisco, CA
+          </ChipWithIcon>
+          <ChipWithIcon iconName="Globe" variant="ghost" size="sm">
+            www.example.com
+          </ChipWithIcon>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Mail, Phone, MapPin, Globe } from "lucide-react";
+
+    <div className="space-y-3">
+      <div className="flex gap-2 flex-wrap">
+        <Chip icon={Mail} variant="outline" size="sm">
+          john@example.com
+        </Chip>
+        <Chip icon={Phone} variant="outline" size="sm">
+          +1 (555) 123-4567
+        </Chip>
+      </div>
+      <div className="flex gap-2 flex-wrap">
+        <Chip icon={MapPin} variant="ghost" size="sm">
+          San Francisco, CA
+        </Chip>
+        <Chip icon={Globe} variant="ghost" size="sm">
+          www.example.com
+        </Chip>
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Interactive Chips
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <InteractiveChipExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Heart, Plus } from "lucide-react";
+
+    <div className="flex gap-4 flex-wrap">
+      <Chip className="cursor-pointer" onClick={() => alert("Chip clicked!")}>
+        Clickable
+      </Chip>
+      <Chip
+        icon={Heart}
+        variant="outline"
+        className="cursor-pointer hover:bg-red-50 hover:border-red-300 hover:text-red-600"
+        onClick={() => alert("Like clicked!")}
+      >
+        Like
+      </Chip>
+      <Chip variant="secondary" className="cursor-pointer" tabIndex={0}>
+        Focusable
+      </Chip>
+      <Chip
+        icon={Plus}
+        variant="ghost"
+        className="cursor-pointer"
+        onClick={() => alert("Add clicked!")}
+      >
+        Add Filter
+      </Chip>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Real-world Examples
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <RealWorldChipExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Award, Star, Tag, User } from "lucide-react";
+
+    <div className="space-y-6">
+      <div>
+        <h4 className="text-sm font-medium mb-3">Product Tags</h4>
+        <div className="flex gap-2 flex-wrap">
+          <Chip icon={Award} variant="default" size="sm">New</Chip>
+          <Chip icon={Star} variant="secondary" size="sm">Bestseller</Chip>
+          <Chip icon={Tag} variant="outline" size="sm">Sale</Chip>
+          <Chip variant="destructive" size="sm">Limited</Chip>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-medium mb-3">Selected Filters</h4>
+        <div className="flex gap-2 flex-wrap">
+          <Chip variant="outline" dismissible>Price: $50-100</Chip>
+          <Chip variant="outline" dismissible>Brand: Nike</Chip>
+          <Chip variant="outline" dismissible>Color: Blue</Chip>
+          <Chip variant="outline" dismissible>Size: Medium</Chip>
+        </div>
+      </div>
+
+      <div>
+        <h4 className="text-sm font-medium mb-3">Event Attendees</h4>
+        <div className="flex gap-2 flex-wrap">
+          <Chip icon={User} variant="secondary" size="sm" dismissible>
+            Sarah Wilson
+          </Chip>
+          <Chip icon={User} variant="secondary" size="sm" dismissible>
+            Mike Johnson
+          </Chip>
+          <Chip icon={User} variant="secondary" size="sm" dismissible>
+            Anna Davis
+          </Chip>
+          <Chip variant="ghost" size="sm" className="cursor-pointer">
+            +5 more
+          </Chip>
+        </div>
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+| Prop           | Type                                                                | Default     | Description                                           |
+| -------------- | ------------------------------------------------------------------- | ----------- | ----------------------------------------------------- |
+| `variant`      | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost"` | `"default"` | The visual style variant of the chip                  |
+| `size`         | `"sm" \| "default" \| "lg"`                                         | `"default"` | The size of the chip                                  |
+| `icon`         | `LucideIcon`                                                        | `undefined` | Icon component to display in the chip                 |
+| `iconPosition` | `"left" \| "right"`                                                 | `"left"`    | Position of the icon relative to the text             |
+| `dismissible`  | `boolean`                                                           | `false`     | Whether the chip can be dismissed with a close button |
+| `onDismiss`    | `() => void`                                                        | `undefined` | Callback function called when the chip is dismissed   |
+| `className`    | `string`                                                            | `undefined` | Additional CSS classes to apply                       |
+| `children`     | `ReactNode`                                                         | `undefined` | The content to display inside the chip                |
