@@ -15,7 +15,7 @@ const badgeVariants = cva(
         secondary:
           "border-transparent bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] hover:bg-[hsl(var(--hu-secondary))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
         destructive:
-          "border-transparent bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-destructive))]/80 focus-visible:ring-[hsl(var(--hu-destructive))]",
+          "border-transparent bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] hover:bg-[hsl(var(--hu-destructive))]/80 focus-visible:ring-[hsl(var(--hu-destructive))]",
         outline:
           "border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
         ghost:
