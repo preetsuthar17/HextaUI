@@ -6,8 +6,8 @@ description: A versatile badge component for displaying status, labels, or categ
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-import { Badge } from "@/components/ui/Badge";
-import { BadgeWithIcon } from "@/components/BadgeWithIcon";
+import { Badge } from "@/components/ui/Badge/Badge";
+import { BadgeWithIcon } from "@/components/ui/Badge/BadgeWithIcon";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -469,4 +469,11 @@ npx hextaui add badge
 
 ## Props
 
-<AutoTypeTable path="./src/components/ui/Badge.tsx" name="BadgeProps" />
+| Prop           | Type                                                                | Default     | Description                               |
+| -------------- | ------------------------------------------------------------------- | ----------- | ----------------------------------------- |
+| `variant`      | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost"` | `"default"` | The visual style variant of the badge     |
+| `size`         | `"sm" \| "default" \| "lg"`                                         | `"default"` | The size of the badge                     |
+| `icon`         | `LucideIcon`                                                        | `undefined` | Icon component to display in the badge    |
+| `iconPosition` | `"left" \| "right"`                                                 | `"left"`    | Position of the icon relative to the text |
+| `className`    | `string`                                                            | `undefined` | Additional CSS classes to apply           |
+| `children`     | `ReactNode`                                                         | `undefined` | The content to display inside the badge   |
