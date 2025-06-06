@@ -4,7 +4,21 @@ description: How to customize the look and feel of HextaUI components using them
 icon: Palette
 ---
 
-## HextaUI variables
+### Font Family
+
+HextaUI uses two primary font families for its components:
+
+- **Inter**: A versatile sans-serif font for body text and UI elements.
+- **JetBrains Mono**: A monospaced font for code blocks and technical content.
+
+```css title="app/globals.css"
+:root {
+  --font-inter: "Inter", sans-serif;
+  --font-jetbrains-mono: "JetBrains Mono", monospace;
+}
+```
+
+### variables
 
 ```css title="app/globals.css"
 :root {
@@ -14,5 +28,71 @@ icon: Palette
 
   --hu-font-inter: var(--font-inter);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
+
+  /* Color palette */
+  --hu-card: 0, 0%, 100%;
+  --hu-card-foreground: 0, 0%, 14%;
+
+  --hu-primary: 0, 0%, 20%;
+  --hu-primary-foreground: 0, 0%, 98%;
+
+  --hu-secondary: 0, 0%, 97%;
+  --hu-secondary-foreground: 0, 0%, 20%;
+
+  --hu-muted: 0, 0%, 97%;
+  --hu-muted-foreground: 0, 0%, 56%;
+
+  --hu-accent: 0, 0%, 97%;
+  --hu-accent-foreground: 0, 0%, 20%;
+
+  --hu-destructive: 9, 96%, 57%;
+  --hu-destructive-foreground: 0, 0%, 98%;
+
+  --hu-border: 0, 0%, 92%;
+  --hu-input: 0, 0%, 92%;
+  --hu-ring: 0, 0%, 71%;
+}
+
+.dark {
+  --hu-background: 0, 0%, 7%;
+  --hu-foreground: 0, 0%, 100%;
+
+  --hu-card: 0, 0%, 8%;
+  --hu-card-foreground: 0, 0%, 100%;
+
+  --hu-primary: 0, 0%, 100%;
+  --hu-primary-foreground: 0, 0%, 20%;
+
+  --hu-secondary: 0, 0%, 15%;
+  --hu-secondary-foreground: 0, 0%, 100%;
+
+  --hu-muted: 0, 0%, 15%;
+  --hu-muted-foreground: 0, 0%, 71%;
+
+  --hu-accent: 0, 0%, 15%;
+  --hu-accent-foreground: 0, 0%, 100%;
+
+  --hu-destructive: 0, 84%, 50%;
+  --hu-destructive-foreground: 0, 0%, 98%;
+
+  --hu-border: 0, 0%, 100%, 10%;
+  --hu-input: 0, 0%, 100%, 15%;
+  --hu-ring: 0, 0%, 56%;
+}
+```
+
+### Customizing Colors
+
+You can customize the HextaUI color palette by overriding these CSS variables in your own stylesheet:
+
+```css title="Custom theme example"
+:root {
+  /* Custom primary colors */
+  --hu-primary: 221, 83%, 53%;
+  --hu-primary-foreground: 0, 0%, 98%;
+
+  /* Custom destructive colors */
+  --hu-destructive: 0, 84%, 60%;
+  --hu-destructive-foreground: 0, 0%, 98%;
 }
 ```
