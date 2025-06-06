@@ -25,7 +25,10 @@ import {
           <AvatarFallback>PS</AvatarFallback>
         </Avatar>
         <Avatar>
-          <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+          <AvatarImage
+            src="https://github.com/fuma-nama.png"
+            alt="@fuma-nama"
+          />
           <AvatarFallback>VC</AvatarFallback>
         </Avatar>
         <Avatar>
@@ -45,7 +48,7 @@ import {
         <AvatarFallback>PS</AvatarFallback>
       </Avatar>
       <Avatar>
-        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+        <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
         <AvatarFallback>VC</AvatarFallback>
       </Avatar>
       <Avatar>
@@ -116,7 +119,7 @@ const avatarVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  },
+  }
 );
 
 interface AvatarProps
@@ -175,7 +178,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={PS(
       "flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] font-medium",
-      className,
+      className
     )}
     {...props}
   />
@@ -198,7 +201,7 @@ const avatarGroupSpacing = {
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   (
     { className, max = 3, spacing = "normal", size = "md", children, ...props },
-    ref,
+    ref
   ) => {
     const avatarsToShow = children.slice(0, max);
     const remainingCount = Math.max(0, children.length - max);
@@ -209,7 +212,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         className={PS(
           "flex items-center",
           avatarGroupSpacing[spacing],
-          className,
+          className
         )}
         {...props}
       >
@@ -220,7 +223,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               size,
               className: PS(
                 "border-2 border-[hsl(var(--hu-background))]",
-                (child.props as any)?.className,
+                (child.props as any)?.className
               ),
             } as any);
           }
@@ -238,7 +241,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
       </div>
     );
-  },
+  }
 );
 AvatarGroup.displayName = "AvatarGroup";
 
@@ -456,7 +459,7 @@ export function App() {
               <AvatarFallback>PS</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -482,7 +485,7 @@ export function App() {
               <AvatarFallback>PS</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -520,7 +523,7 @@ export function App() {
             <AvatarFallback>PS</AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <Avatar>
@@ -546,7 +549,7 @@ export function App() {
             <AvatarFallback>PS</AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <Avatar>
@@ -589,7 +592,7 @@ export function App() {
               <AvatarFallback>PS</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -609,7 +612,7 @@ export function App() {
               <AvatarFallback>PS</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -629,7 +632,7 @@ export function App() {
               <AvatarFallback>PS</AvatarFallback>
             </Avatar>
             <Avatar>
-              <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
               <AvatarFallback>VC</AvatarFallback>
             </Avatar>
             <Avatar>
@@ -655,7 +658,7 @@ export function App() {
             <AvatarFallback>PS</AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <Avatar>
@@ -675,7 +678,7 @@ export function App() {
             <AvatarFallback>PS</AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <Avatar>
@@ -695,7 +698,7 @@ export function App() {
             <AvatarFallback>PS</AvatarFallback>
           </Avatar>
           <Avatar>
-            <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
             <AvatarFallback>VC</AvatarFallback>
           </Avatar>
           <Avatar>
@@ -724,8 +727,11 @@ export function App() {
           />
           <AvatarFallback>PS</AvatarFallback>
         </Avatar>
-        <Avatar tooltip={{ children: "Vercel", variant: "dark" }}>
-          <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+        <Avatar tooltip={{ children: "fuma-nama", variant: "dark" }}>
+          <AvatarImage
+            src="https://github.com/fuma-nama.png"
+            alt="@fuma-nama"
+          />
           <AvatarFallback>VC</AvatarFallback>
         </Avatar>
         <Avatar tooltip="John Doe" size="lg">
@@ -750,8 +756,8 @@ export function App() {
         />
         <AvatarFallback>PS</AvatarFallback>
       </Avatar>
-      <Avatar tooltip={{ children: "Vercel", variant: "dark" }}>
-        <AvatarImage src="https://github.com/vercel.png" alt="@vercel" />
+      <Avatar tooltip={{ children: "fuma-nama", variant: "dark" }}>
+        <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
         <AvatarFallback>VC</AvatarFallback>
       </Avatar>
       <Avatar tooltip="John Doe" size="lg">
