@@ -13,7 +13,7 @@ const buttonVariants = cva(
         default:
           "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))]",
         destructive:
-          "bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-destructive))]/90 focus-visible:ring-[hsl(var(--hu-destructive))]",
+          "bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] hover:bg-[hsl(var(--hu-destructive))]/90 focus-visible:ring-[hsl(var(--hu-destructive))]",
         outline:
           "border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
         secondary:
@@ -34,7 +34,7 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export type CustomButtonProps = Omit<
@@ -65,7 +65,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref,
+    ref
   ) => {
     const Comp = asChild ? Slot : "button";
 
@@ -121,7 +121,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {content}
       </button>
     );
-  },
+  }
 );
 
 Button.displayName = "Button";
