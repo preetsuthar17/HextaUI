@@ -31,8 +31,8 @@ export const PreviewContainer = ({
       <div
         key={key}
         className={cn(
-          "dark:bg-background border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative",
-          className,
+          "dark:bg-background border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative bg-[var(--hu-background)]",
+          className
         )}
       >
         <div className="relative z-0 w-full h-full flex items-center justify-center">
