@@ -1,0 +1,704 @@
+---
+title: Card
+description: A flexible container component for displaying content in a card layout with header, content, and footer sections.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+
+import { Bell, Settings, User, Calendar, Mail, Phone } from "lucide-react";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Card Title</CardTitle>{" "}
+          <CardDescription>
+            Card description goes here to provide context about the content.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm">
+            This is the main content area of the card where you can place any
+            content.
+          </p>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full">Action</Button>
+        </CardFooter>
+      </Card>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    {" "}
+    ```tsx
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Welcome to HextaUI</CardTitle>{" "}
+        <CardDescription>
+          Beautiful components for modern web applications with elegant design
+          and smooth interactions.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+          Experience the perfect blend of aesthetics and functionality with our
+          comprehensive component library.
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">Get Started</Button>
+      </CardFooter>
+    </Card>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/card.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const cardVariants = cva(
+  "relative rounded-2xl bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden",
+  {
+    variants: {
+      variant: {
+        default:
+          "border border-[hsl(var(--hu-border))] shadow-sm hover:shadow-lg hover:shadow-[hsl(var(--hu-primary))]/5 hover:-translate-y-0.5",
+        outline:
+          "border-2 border-[hsl(var(--hu-border))] shadow-sm hover:border-[hsl(var(--hu-primary))]/30 hover:shadow-lg hover:-translate-y-0.5",
+        ghost:
+          "border-transparent shadow-none hover:bg-[hsl(var(--hu-accent))] hover:shadow-md",
+        elevated:
+          "border border-[hsl(var(--hu-border))]/50 shadow-lg shadow-[hsl(var(--hu-primary))]/5 hover:shadow-xl hover:shadow-[hsl(var(--hu-primary))]/10 hover:-translate-y-1",
+        gradient:
+          "border border-[hsl(var(--hu-border))]/30 bg-gradient-to-br from-[hsl(var(--hu-card))] via-[hsl(var(--hu-card))] to-[hsl(var(--hu-accent))]/20 shadow-lg hover:shadow-xl hover:-translate-y-0.5",
+        glass:
+          "border border-[hsl(var(--hu-border))]/20 bg-[hsl(var(--hu-card))]/80 backdrop-blur-sm shadow-lg hover:bg-[hsl(var(--hu-card))]/90 hover:shadow-xl hover:-translate-y-0.5",
+      },
+      size: {
+        sm: "p-4",
+        default: "p-6",
+        lg: "p-8",
+        xl: "p-10",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+export interface CardProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof cardVariants> {}
+
+const Card = React.forwardRef<HTMLDivElement, CardProps>(
+  ({ className, variant, size, ...props }, ref) => (
+    <div
+      ref={ref}
+      className={cn(cardVariants({ variant, size }), className)}
+      {...props}
+    />
+  ),
+);
+Card.displayName = "Card";
+
+const CardHeader = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex flex-col space-y-2 pb-4", className)}
+    {...props}
+  />
+));
+CardHeader.displayName = "CardHeader";
+
+const CardTitle = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLHeadingElement>
+>(({ className, ...props }, ref) => (
+  <h3
+    ref={ref}
+    className={cn(
+      "text-xl font-semibold leading-tight tracking-tight text-[hsl(var(--hu-foreground))]",
+      className,
+    )}
+    {...props}
+  />
+));
+CardTitle.displayName = "CardTitle";
+
+const CardDescription = React.forwardRef<
+  HTMLParagraphElement,
+  React.HTMLAttributes<HTMLParagraphElement>
+>(({ className, ...props }, ref) => (
+  <p
+    ref={ref}
+    className={cn(
+      "text-sm text-[hsl(var(--hu-muted-foreground))] leading-relaxed",
+      className,
+    )}
+    {...props}
+  />
+));
+CardDescription.displayName = "CardDescription";
+
+const CardContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div ref={ref} className={cn("space-y-4", className)} {...props} />
+));
+CardContent.displayName = "CardContent";
+
+const CardFooter = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(
+      "flex items-center justify-between pt-4 mt-6 border-t border-[hsl(var(--hu-border))]/30",
+      className,
+    )}
+    {...props}
+  />
+));
+CardFooter.displayName = "CardFooter";
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  cardVariants,
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add card
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+```
+
+```tsx
+<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card Description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    <p>Card content goes here.</p>
+  </CardContent>
+  <CardFooter>
+    <Button>Action</Button>
+  </CardFooter>
+</Card>
+```
+
+## Examples
+
+### Basic Card
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Card className="w-full max-w-sm">
+        <CardHeader>
+          <CardTitle>Notifications</CardTitle>
+          <CardDescription>You have 3 unread messages.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center space-x-4 rounded-2xl border border-[hsl(var(--hu-border))] p-4">
+            <Bell className="h-4 w-4" />
+            <div className="flex-1 space-y-1">
+              <p className="text-sm font-medium leading-none">
+                Push Notifications
+              </p>
+              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                Send notifications to device.
+              </p>
+            </div>
+          </div>
+        </CardContent>
+        <CardFooter>
+          <Button className="w-full">
+            <Settings className="mr-2 h-4 w-4" />
+            Settings
+          </Button>
+        </CardFooter>
+      </Card>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card className="w-full max-w-sm">
+      <CardHeader>
+        <CardTitle>Notifications</CardTitle>
+        <CardDescription>You have 3 unread messages.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex items-center space-x-4 rounded-md border border-[hsl(var(--hu-border))] p-4">
+          <Bell className="h-4 w-4" />
+          <div className="flex-1 space-y-1">
+            <p className="text-sm font-medium leading-none">
+              Push Notifications
+            </p>
+            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              Send notifications to device.
+            </p>
+          </div>
+        </div>
+      </CardContent>
+      <CardFooter>
+        <Button className="w-full">
+          <Settings className="mr-2 h-4 w-4" />
+          Settings
+        </Button>
+      </CardFooter>
+    </Card>
+    ```
+  </Tab>
+</Tabs>
+
+### Card Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-4xl">
+        <Card variant="default" className="w-full">
+          <CardHeader>
+            <CardTitle>Default Card</CardTitle>
+            <CardDescription>Standard card styling</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Default card content with standard border.</p>
+          </CardContent>
+        </Card>
+        
+        <Card variant="outline" className="w-full">
+          <CardHeader>
+            <CardTitle>Outline Card</CardTitle>
+            <CardDescription>Card with thicker border</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Outline card with emphasized border.</p>
+          </CardContent>
+        </Card>
+        
+        <Card variant="ghost" className="w-full">
+          <CardHeader>
+            <CardTitle>Ghost Card</CardTitle>
+            <CardDescription>Card without border</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Ghost card with no border or shadow.</p>
+          </CardContent>
+        </Card>
+        
+        <Card variant="elevated" className="w-full">
+          <CardHeader>
+            <CardTitle>Elevated Card</CardTitle>
+            <CardDescription>Card with enhanced shadow</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Elevated card with larger shadow effect.</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card variant="default">
+      <CardHeader>
+        <CardTitle>Default Card</CardTitle>
+        <CardDescription>Standard card styling</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Default card content with standard border.</p>
+      </CardContent>
+    </Card>
+
+    <Card variant="outline">
+      <CardHeader>
+        <CardTitle>Outline Card</CardTitle>
+        <CardDescription>Card with thicker border</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Outline card with emphasized border.</p>
+      </CardContent>
+    </Card>
+
+    <Card variant="ghost">
+      <CardHeader>
+        <CardTitle>Ghost Card</CardTitle>
+        <CardDescription>Card without border</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Ghost card with no border or shadow.</p>
+      </CardContent>
+    </Card>
+
+    <Card variant="elevated">
+      <CardHeader>
+        <CardTitle>Elevated Card</CardTitle>
+        <CardDescription>Card with enhanced shadow</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Elevated card with larger shadow effect.</p>
+      </CardContent>
+    </Card>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Card Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-4 w-full max-w-2xl">
+        <Card size="sm" className="w-full">
+          <CardHeader>
+            <CardTitle>Small Card</CardTitle>
+            <CardDescription>Compact padding</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Small card with reduced padding.</p>
+          </CardContent>
+        </Card>
+        
+        <Card size="default" className="w-full">
+          <CardHeader>
+            <CardTitle>Default Card</CardTitle>
+            <CardDescription>Standard padding</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Default card with standard padding.</p>
+          </CardContent>
+        </Card>
+        
+        <Card size="lg" className="w-full">
+          <CardHeader>
+            <CardTitle>Large Card</CardTitle>
+            <CardDescription>Increased padding</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm">Large card with increased padding.</p>
+          </CardContent>
+        </Card>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card size="sm">
+      <CardHeader>
+        <CardTitle>Small Card</CardTitle>
+        <CardDescription>Compact padding</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Small card with reduced padding.</p>
+      </CardContent>
+    </Card>
+
+    <Card size="default">
+      <CardHeader>
+        <CardTitle>Default Card</CardTitle>
+        <CardDescription>Standard padding</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Default card with standard padding.</p>
+      </CardContent>
+    </Card>
+
+    <Card size="lg">
+      <CardHeader>
+        <CardTitle>Large Card</CardTitle>
+        <CardDescription>Increased padding</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p>Large card with increased padding.</p>
+      </CardContent>
+    </Card>
+    ```
+
+  </Tab>
+</Tabs>
+
+### Profile Card
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Card className="w-full max-w-sm">
+        <CardHeader className="text-center pb-2">
+          <div className="w-20 h-20 rounded-full bg-[hsl(var(--hu-accent))] mx-auto mb-4 flex items-center justify-center">
+            <User className="h-10 w-10 text-[hsl(var(--hu-accent-foreground))]" />
+          </div>
+          <CardTitle>John Doe</CardTitle>
+          <CardDescription>Software Engineer at HextaUI</CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="flex items-center space-x-2">
+            <Mail className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <span className="text-sm">john@example.com</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Phone className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <span className="text-sm">+1 (555) 123-4567</span>
+          </div>
+          <div className="flex items-center space-x-2">
+            <Calendar className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <span className="text-sm">Joined January 2024</span>
+          </div>
+        </CardContent>
+        <CardFooter className="flex gap-2">
+          <Button variant="outline" className="flex-1">
+            Message
+          </Button>
+          <Button className="flex-1">Follow</Button>
+        </CardFooter>
+      </Card>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card className="w-full max-w-sm">
+      <CardHeader className="text-center pb-2">
+        <div className="w-20 h-20 rounded-full bg-[hsl(var(--hu-accent))] mx-auto mb-4 flex items-center justify-center">
+          <User className="h-10 w-10 text-[hsl(var(--hu-accent-foreground))]" />
+        </div>
+        <CardTitle>John Doe</CardTitle>
+        <CardDescription>Software Engineer at HextaUI</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="flex items-center space-x-2">
+          <Mail className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <span className="text-sm">john@example.com</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Phone className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <span className="text-sm">+1 (555) 123-4567</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <Calendar className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <span className="text-sm">Joined January 2024</span>
+        </div>
+      </CardContent>
+      <CardFooter className="flex gap-2">
+        <Button variant="outline" className="flex-1">
+          Message
+        </Button>
+        <Button className="flex-1">Follow</Button>
+      </CardFooter>
+    </Card>
+    ```
+  </Tab>
+</Tabs>
+
+### Login Form Card
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Card className="w-full max-w-md">
+        <CardHeader>
+          <CardTitle>Sign In</CardTitle>
+          <CardDescription>
+            Enter your credentials to access your account
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="space-y-4">
+          <div className="space-y-2">
+            <Label htmlFor="card-email">Email</Label>
+            <Input
+              id="card-email"
+              type="email"
+              placeholder="Enter your email"
+              leftIcon={<Mail />}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="card-password">Password</Label>
+            <Input
+              id="card-password"
+              type="password"
+              placeholder="Enter your password"
+            />
+          </div>
+        </CardContent>
+        <CardFooter className="flex flex-col space-y-2">
+          <Button className="w-full">Sign In</Button>
+          <Button variant="outline" className="w-full">
+            Sign Up
+          </Button>
+        </CardFooter>
+      </Card>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card className="w-full max-w-md">
+      <CardHeader>
+        <CardTitle>Sign In</CardTitle>
+        <CardDescription>
+          Enter your credentials to access your account
+        </CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-4">
+        <div className="space-y-2">
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            type="email"
+            placeholder="Enter your email"
+            leftIcon={<Mail />}
+          />
+        </div>
+        <div className="space-y-2">
+          <Label htmlFor="password">Password</Label>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Enter your password"
+          />
+        </div>
+      </CardContent>
+      <CardFooter className="flex flex-col space-y-2">
+        <Button className="w-full">Sign In</Button>
+        <Button variant="outline" className="w-full">
+          Sign Up
+        </Button>
+      </CardFooter>
+    </Card>
+    ```
+  </Tab>
+</Tabs>
+
+### Simple Content Card
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Card className="w-full max-w-md">
+        <CardContent className="pt-6">
+          <div className="text-center space-y-2">
+            <h3 className="text-lg font-semibold">Welcome!</h3>
+            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              This is a simple card without header or footer.
+            </p>
+            <Button className="mt-4">Get Started</Button>
+          </div>
+        </CardContent>
+      </Card>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Card className="w-full max-w-md">
+      <CardContent className="pt-6">
+        <div className="text-center space-y-2">
+          <h3 className="text-lg font-semibold">Welcome!</h3>
+          <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            This is a simple card without header or footer.
+          </p>
+          <Button className="mt-4">Get Started</Button>
+        </div>
+      </CardContent>
+    </Card>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+### Card
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual variant of the card",
+      type: '"default" | "outline" | "ghost" | "elevated"',
+      default: '"default"',
+    },
+    size: {
+      description: "The padding size of the card",
+      type: '"sm" | "default" | "lg" | "xl"',
+      default: '"default"',
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
+
+### CardHeader, CardTitle, CardDescription, CardContent, CardFooter
+
+All sub-components accept standard HTML div/heading/paragraph attributes and can be customized with the `className` prop.
+
+## Accessibility
+
+- Cards use semantic HTML structure
+- Proper heading hierarchy with CardTitle
+- Screen reader friendly content organization
+- Focus management when interactive elements are present
