@@ -4,4 +4,36 @@ description: How to install and set up HextaUI in your Next.js project.
 icon: Package
 ---
 
-`Coming soon!`
+## Setting Up Utils
+
+Let's get started by setting up the necessary utilities for HextaUI. Follow these steps to install and configure HextaUI in your Next.js project.
+
+<div className="fd-steps">
+    <div className="fd-step">
+        ### Install Dependencies
+
+        Run the following command in your terminal to install the required dependencies:
+
+        ```package-install
+        npm install clsx tailwind-merge motion class-variance-authority lucide-react
+        ```
+    </div>
+
+    <div className="fd-step">
+        ### Create new file
+
+        Create a new file named `utils.ts` in the `src` or `root` directory of your Next.js project.
+
+        Add the following code to `utils.ts`:
+
+        ```ts
+        import { clsx, type ClassValue } from "clsx";
+        import { twMerge } from "tailwind-merge";
+
+        export function cn(...inputs: ClassValue[]) {
+        return twMerge(clsx(inputs));
+        }
+        ```
+    </div>
+
+</div>
