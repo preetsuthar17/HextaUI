@@ -1,6 +1,6 @@
 "use client";
 
-import { Chip } from "@/components/ui/Chip/Chip";
+import { Chip } from "@/components/ui/Chip/chip";
 import { ChipWithIcon } from "@/components/ui/Chip/ChipWithIcon";
 
 export function DismissibleChipExamples() {

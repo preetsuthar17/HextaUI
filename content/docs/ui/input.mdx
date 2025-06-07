@@ -14,25 +14,6 @@ import { Button } from "@/components/ui/button";
 
 import { Search, User, Mail, Lock } from "lucide-react";
 
-## Usage
-
-<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
-  <Tab value="Preview">
-    <PreviewContainer>
-      <Input placeholder="Enter your text..." />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-
-```tsx
-import { Input } from "@/components/ui/input";
-
-<Input placeholder="Enter your text..." />;
-```
-
-  </Tab>
-</Tabs>
-
 ## Installation
 
 <Tabs items={["Manual", "CLI"]}>
@@ -225,14 +206,12 @@ npx hexta-ui add input
 
 ```tsx
 import { Input } from "@/components/ui/input";
+```
 
-export function App() {
-  return (
-    <div className="grid w-full max-w-sm items-center gap-1.5">
-      <Input id="email" type="email" placeholder="Enter your email" />
-    </div>
-  );
-}
+```tsx
+<div className="grid w-full max-w-sm items-center gap-1.5">
+  <Input id="email" type="email" placeholder="Enter your email" />
+</div>
 ```
 
 ## Examples

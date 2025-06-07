@@ -9,7 +9,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./Tooltip";
+} from "./tooltip";
 
 const avatarVariants = cva(
   "relative flex shrink-0 overflow-hidden rounded-full",

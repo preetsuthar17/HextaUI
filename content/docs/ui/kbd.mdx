@@ -5,7 +5,7 @@ description: A keyboard key component for displaying keyboard shortcuts and key 
 
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-import { Kbd } from "@/components/ui/Kbd";
+import { Kbd } from "@/components/ui/kbd";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -153,16 +153,12 @@ npx hexta-ui add kbd
 
 ## Usage
 
-```tsx title="App.tsx"
+```tsx
 import { Kbd } from "@/components/ui/Kbd";
+```
 
-export function App() {
-  return (
-    <div>
-      Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save
-    </div>
-  );
-}
+```tsx
+Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save
 ```
 
 ## Examples

@@ -12,7 +12,7 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/Tooltip";
+} from "@/components/ui/tooltip";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -186,26 +186,24 @@ npx hexta-ui add tooltip
 
 ## Usage
 
-```tsx title="App.tsx"
+```tsx
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/Tooltip";
+```
 
-export function App() {
-  return (
-    <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger>Hover me</TooltipTrigger>
-        <TooltipContent>
-          <p>This is a tooltip</p>
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-  );
-}
+```tsx
+<TooltipProvider>
+  <Tooltip>
+    <TooltipTrigger>Hover me</TooltipTrigger>
+    <TooltipContent>
+      <p>This is a tooltip</p>
+    </TooltipContent>
+  </Tooltip>
+</TooltipProvider>
 ```
 
 ## Examples

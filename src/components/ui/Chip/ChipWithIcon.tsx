@@ -1,6 +1,6 @@
 "use client";
 
-import { Chip, type ChipProps } from "@/components/ui/Chip/Chip";
+import { Chip, type ChipProps } from "@/components/ui/Chip/chip";
 import {
   Star,
   CheckCircle,

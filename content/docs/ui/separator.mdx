@@ -6,7 +6,7 @@ description: A separator component for dividing content visually.
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-import { Separator } from "@/components/ui/Separator";
+import { Separator } from "@/components/ui/separator";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -153,17 +153,16 @@ npx hexta-ui add separator
 
 ## Usage
 
-```tsx title="App.tsx"
+```tsx
 import { Separator } from "@/components/ui/Separator";
+```
 
-export function App() {
-  return (
-    <div className="p-4">
-      <p>Content above</p>
-      <Separator />
-      <p>Content below</p>
-    </div>
-  );
+```tsx
+<div className="p-4">
+  <p>Content above</p>
+  <Separator />
+  <p>Content below</p>
+</div>
 ```
 
 ## Examples

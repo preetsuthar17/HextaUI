@@ -6,7 +6,7 @@ description: A versatile badge component for displaying status, labels, or categ
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-import { Badge } from "@/components/ui/Badge/Badge";
+import { Badge } from "@/components/ui/Badge/badge";
 import { BadgeWithIcon } from "@/components/ui/Badge/BadgeWithIcon";
 
 <Tabs items={["Preview", "Code"]}>
@@ -127,6 +127,20 @@ npx hextaui add badge
 
 </Tab>
 </Tabs>
+
+## Usage
+
+```tsx
+import { Badge } from "@/components/ui/Badge/Badge";
+```
+
+```tsx
+<Badge variant="default">Default</Badge>
+<Badge variant="secondary">Secondary</Badge>
+<Badge variant="outline">Outline</Badge>
+<Badge variant="ghost">Ghost</Badge>
+<Badge variant="destructive">Destructive</Badge>
+```
 
 ## Examples
 

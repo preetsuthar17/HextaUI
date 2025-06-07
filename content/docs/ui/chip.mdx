@@ -6,7 +6,7 @@ description: A compact, interactive element for displaying status, categories, o
 import { PreviewContainer } from "@/components/PreviewContainer";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
-import { Chip } from "@/components/ui/Chip/Chip.tsx";
+import { Chip } from "@/components/ui/Chip/chip.tsx";
 import { ChipWithIcon } from "@/components/ui/Chip/ChipWithIcon";
 import {
   DismissibleChipExamples,
@@ -164,6 +164,20 @@ npx hextaui add chip
 
 </Tab>
 </Tabs>
+
+## Usage
+
+```tsx
+import { Chip } from "@/components/ui/Chip";
+```
+
+```tsx
+<Chip variant="default">Default Chip</Chip>
+<Chip variant="secondary">Secondary Chip</Chip>
+<Chip variant="outline">Outline Chip</Chip>
+<Chip variant="ghost">Ghost Chip</Chip>
+<Chip variant="destructive">Destructive Chip</Chip>
+```
 
 ## Examples
 
