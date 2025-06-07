@@ -26,12 +26,12 @@ Let's get started by setting up the necessary utilities for HextaUI. Follow thes
 
         Add the following code to `utils.ts`:
 
-        ```ts
+        ```tsx
         import { clsx, type ClassValue } from "clsx";
         import { twMerge } from "tailwind-merge";
 
         export function cn(...inputs: ClassValue[]) {
-        return twMerge(clsx(inputs));
+            return twMerge(clsx(inputs));
         }
         ```
     </div>
