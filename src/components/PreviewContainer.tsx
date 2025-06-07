@@ -21,18 +21,18 @@ export const PreviewContainer = ({
 
   return (
     <div className="relative">
-      {/* <button
+      <button
         onClick={handleRefresh}
         className="absolute top-4 right-4 z-9999999999 p-2 rounded-full hover:bg-primary/10 transition-colors"
         aria-label="Refresh preview"
       >
         <RefreshCw className="w-4 h-4 text-primary/70" />
-      </button> */}
+      </button>
       <div
         key={key}
         className={cn(
           "dark:bg-background border border-primary/10 min-h-[15rem] rounded-xl p-4 flex items-center justify-center not-prose overflow-hidden relative bg-[var(--hu-background)]",
-          className,
+          className
         )}
       >
         <div className="relative z-0 w-full h-full flex items-center justify-center">
