@@ -1,0 +1,529 @@
+---
+title: Label
+description: Displays a label element with enhanced styling and accessibility features for form controls.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { Mail, Lock, User } from "lucide-react";
+
+## Usage
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="grid w-full max-w-sm items-center gap-1.5">
+        <Label htmlFor="email">Email</Label>
+        <Input id="email" type="email" placeholder="Enter your email" />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+
+<div className="grid w-full max-w-sm items-center gap-1.5">
+  <Label htmlFor="email">Email</Label>
+  <Input id="email" type="email" placeholder="Enter your email" />
+</div>;
+```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/label.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const labelVariants = cva(
+  "text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+  {
+    variants: {
+      variant: {
+        default: "text-[hsl(var(--hu-foreground))]",
+        destructive: "text-[hsl(var(--hu-destructive))]",
+        muted: "text-[hsl(var(--hu-muted-foreground))]",
+      },
+      size: {
+        default: "text-sm",
+        sm: "text-xs",
+        lg: "text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface LabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement>,
+    VariantProps<typeof labelVariants> {
+  required?: boolean;
+  optional?: boolean;
+}
+
+const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
+  (
+    { className, variant, size, required, optional, children, ...props },
+    ref
+  ) => {
+    return (
+      <label
+        ref={ref}
+        className={cn(labelVariants({ variant, size, className }))}
+        {...props}
+      >
+        {children}
+        {required && (
+          <span
+            className="text-[hsl(var(--hu-destructive))] ml-1"
+            aria-label="required"
+          >
+            *
+          </span>
+        )}
+        {optional && !required && (
+          <span className="text-[hsl(var(--hu-muted-foreground))] ml-1 font-normal">
+            (optional)
+          </span>
+        )}
+      </label>
+    );
+  }
+);
+
+Label.displayName = "Label";
+
+export { Label, labelVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add label
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx title="App.tsx"
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+
+export function App() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Label htmlFor="email">Email</Label>
+      <Input id="email" type="email" placeholder="Enter your email" />
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <div className="grid w-full items-center gap-1.5">
+          <Label size="sm" htmlFor="small">Small Label</Label>
+          <Input id="small" placeholder="Small input" size="sm" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="default">Default Label</Label>
+          <Input id="default" placeholder="Default input" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label size="lg" htmlFor="large">Large Label</Label>
+          <Input id="large" placeholder="Large input" size="lg" />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="grid w-full items-center gap-1.5">
+  <Label size="sm" htmlFor="small">Small Label</Label>
+  <Input id="small" placeholder="Small input" size="sm" />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="default">Default Label</Label>
+  <Input id="default" placeholder="Default input" />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label size="lg" htmlFor="large">Large Label</Label>
+  <Input id="large" placeholder="Large input" size="lg" />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="default-variant">Default Label</Label>
+          <Input id="default-variant" placeholder="Enter text" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label variant="destructive" htmlFor="error-variant">Error Label</Label>
+          <Input id="error-variant" placeholder="Enter text" error />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label variant="muted" htmlFor="muted-variant">Muted Label</Label>
+          <Input id="muted-variant" placeholder="Enter text" />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="default-variant">Default Label</Label>
+  <Input id="default-variant" placeholder="Enter text" />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label variant="destructive" htmlFor="error-variant">Error Label</Label>
+  <Input id="error-variant" placeholder="Enter text" error />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label variant="muted" htmlFor="muted-variant">Muted Label</Label>
+  <Input id="muted-variant" placeholder="Enter text" />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Required and Optional Labels
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="required-field" required>Required Field</Label>
+          <Input id="required-field" placeholder="This field is required" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="optional-field" optional>Optional Field</Label>
+          <Input id="optional-field" placeholder="This field is optional" />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="normal-field">Normal Field</Label>
+          <Input id="normal-field" placeholder="Normal field" />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="required-field" required>Required Field</Label>
+  <Input id="required-field" placeholder="This field is required" />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="optional-field" optional>Optional Field</Label>
+  <Input id="optional-field" placeholder="This field is optional" />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="normal-field">Normal Field</Label>
+  <Input id="normal-field" placeholder="Normal field" />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### With Icons and Complex Inputs
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="email-with-icon" required>Email Address</Label>
+          <Input 
+            id="email-with-icon" 
+            type="email" 
+            placeholder="Enter your email" 
+            leftIcon={<Mail />}
+            clearable
+          />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="password-with-icon" required>Password</Label>
+          <Input 
+            id="password-with-icon" 
+            type="password" 
+            placeholder="Enter your password" 
+            leftIcon={<Lock />}
+          />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="username-with-icon" optional>Username</Label>
+          <Input 
+            id="username-with-icon" 
+            type="text" 
+            placeholder="Choose a username" 
+            leftIcon={<User />}
+            clearable
+          />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Mail, Lock, User } from "lucide-react";
+
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="email-with-icon" required>Email Address</Label>
+  <Input
+    id="email-with-icon"
+    type="email"
+    placeholder="Enter your email"
+    leftIcon={<Mail />}
+    clearable
+  />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="password-with-icon" required>Password</Label>
+  <Input
+    id="password-with-icon"
+    type="password"
+    placeholder="Enter your password"
+    leftIcon={<Lock />}
+  />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="username-with-icon" optional>Username</Label>
+  <Input
+    id="username-with-icon"
+    type="text"
+    placeholder="Choose a username"
+    leftIcon={<User />}
+    clearable
+  />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Form Layout Examples
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <form className="space-y-4">
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="form-email" required>Email</Label>
+            <Input 
+              id="form-email" 
+              type="email" 
+              placeholder="Enter your email"
+              leftIcon={<Mail />}
+              clearable
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="form-password" required>Password</Label>
+            <Input 
+              id="form-password" 
+              type="password" 
+              placeholder="Enter your password"
+              leftIcon={<Lock />}
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="form-confirm" required>Confirm Password</Label>
+            <Input 
+              id="form-confirm" 
+              type="password" 
+              placeholder="Confirm your password"
+              leftIcon={<Lock />}
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="form-bio" optional>Bio</Label>
+            <Input 
+              id="form-bio" 
+              placeholder="Tell us about yourself"
+              clearable
+            />
+          </div>
+        </form>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<form className="space-y-4">
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="form-email" required>
+      Email
+    </Label>
+    <Input
+      id="form-email"
+      type="email"
+      placeholder="Enter your email"
+      leftIcon={<Mail />}
+      clearable
+    />
+  </div>
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="form-password" required>
+      Password
+    </Label>
+    <Input
+      id="form-password"
+      type="password"
+      placeholder="Enter your password"
+      leftIcon={<Lock />}
+    />
+  </div>
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="form-confirm" required>
+      Confirm Password
+    </Label>
+    <Input
+      id="form-confirm"
+      type="password"
+      placeholder="Confirm your password"
+      leftIcon={<Lock />}
+    />
+  </div>
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="form-bio" optional>
+      Bio
+    </Label>
+    <Input id="form-bio" placeholder="Tell us about yourself" clearable />
+  </div>
+</form>
+```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 w-full max-w-sm">
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="disabled-input">Disabled Field</Label>
+          <Input id="disabled-input" placeholder="Disabled input" disabled />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="disabled-required" required>Disabled Required Field</Label>
+          <Input id="disabled-required" placeholder="Disabled required input" disabled />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="disabled-input">Disabled Field</Label>
+  <Input id="disabled-input" placeholder="Disabled input" disabled />
+</div>
+<div className="grid w-full items-center gap-1.5">
+  <Label htmlFor="disabled-required" required>Disabled Required Field</Label>
+  <Input id="disabled-required" placeholder="Disabled required input" disabled />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the label",
+      type: '"default" | "destructive" | "muted"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the label text",
+      type: '"default" | "sm" | "lg"',
+      default: '"default"',
+    },
+    required: {
+      description: "Shows a red asterisk (*) to indicate required field",
+      type: "boolean",
+      default: "false",
+    },
+    optional: {
+      description: "Shows '(optional)' text to indicate optional field",
+      type: "boolean",
+      default: "false",
+    },
+    className: {
+      description: "Additional CSS classes to apply to the label",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
+
+## Form Association
+
+The Label component works seamlessly with form controls:
+
+```tsx
+// Proper association using htmlFor
+<Label htmlFor="email">Email Address</Label>
+<Input id="email" type="email" />
+
+// Required field indication
+<Label htmlFor="password" required>Password</Label>
+<Input id="password" type="password" />
+
+// Optional field indication
+<Label htmlFor="bio" optional>Biography</Label>
+<Input id="bio" />
+```
