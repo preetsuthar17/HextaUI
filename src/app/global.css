@@ -69,6 +69,7 @@ pre,
 kbd,
 samp {
   font-family: var(--hu-font-jetbrains) !important;
+  font-size: 14px;
 }
 
 ::selection {
