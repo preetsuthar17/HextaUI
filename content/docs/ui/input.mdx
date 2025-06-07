@@ -1,0 +1,952 @@
+---
+title: Input
+description: Displays a form input field with enhanced features like password visibility toggle, clearable functionality, and Zod validation support.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable, ObjectTable } from "fumadocs-ui/components/type-table";
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
+import { Search, User, Mail, Lock } from "lucide-react";
+
+## Usage
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Input placeholder="Enter your text..." />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Input } from "@/components/ui/input";
+
+<Input placeholder="Enter your text..." />;
+```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/input.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { Eye, EyeOff, X } from "lucide-react";
+
+const inputVariants = cva(
+  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
+  {
+    variants: {
+      variant: {
+        default: "border-[hsl(var(--hu-border))]",
+        destructive:
+          "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
+        ghost:
+          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-background))] focus-visible:border-[hsl(var(--hu-border))]",
+      },
+      size: {
+        default: "h-9 px-3 py-2",
+        sm: "h-8 px-2 py-1 text-xs",
+        lg: "h-10 px-4 py-2",
+        xl: "h-12 px-6 py-3 text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "size">,
+    VariantProps<typeof inputVariants> {
+  leftIcon?: React.ReactNode;
+  rightIcon?: React.ReactNode;
+  error?: boolean;
+  clearable?: boolean;
+  onClear?: () => void;
+}
+
+const Input = React.forwardRef<HTMLInputElement, InputProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      type = "text",
+      leftIcon,
+      rightIcon,
+      error,
+      clearable,
+      onClear,
+      value,
+      ...props
+    },
+    ref
+  ) => {
+    const [showPassword, setShowPassword] = React.useState(false);
+    const [internalValue, setInternalValue] = React.useState(
+      props.defaultValue || ""
+    );
+
+    const inputVariant = error ? "destructive" : variant;
+    const isPassword = type === "password";
+    const actualType = isPassword && showPassword ? "text" : type;
+
+    // Determine if this is a controlled component
+    const isControlled = value !== undefined;
+    const inputValue = isControlled ? value : internalValue;
+    const showClearButton =
+      clearable && inputValue && String(inputValue).length > 0;
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) {
+        setInternalValue(e.target.value);
+      }
+      props.onChange?.(e);
+    };
+
+    const handleClear = () => {
+      const clearEvent = {
+        target: { value: "" },
+        currentTarget: { value: "" },
+      } as React.ChangeEvent<HTMLInputElement>;
+
+      if (!isControlled) {
+        setInternalValue("");
+      }
+      onClear?.();
+      props.onChange?.(clearEvent);
+    };
+
+    const togglePasswordVisibility = () => {
+      setShowPassword(!showPassword);
+    };
+
+    return (
+      <div className="relative">
+        {leftIcon && (
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0 z-10">
+            {leftIcon}
+          </div>
+        )}
+
+        <input
+          type={actualType}
+          className={cn(
+            inputVariants({ variant: inputVariant, size, className }),
+            leftIcon && "pl-10",
+            (rightIcon || isPassword || showClearButton) && "pr-10"
+          )}
+          ref={ref}
+          {...(isControlled
+            ? { value: inputValue }
+            : { defaultValue: props.defaultValue })}
+          onChange={handleInputChange}
+          {...(({ defaultValue, ...rest }) => rest)(props)}
+        />
+
+        {/* Right side icons container */}
+        {(rightIcon || isPassword || showClearButton) && (
+          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
+            {/* Custom right icon */}
+            {rightIcon && (
+              <div className="text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0">
+                {rightIcon}
+              </div>
+            )}
+
+            {/* Clear button */}
+            {showClearButton && (
+              <button
+                type="button"
+                onClick={handleClear}
+                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                tabIndex={-1}
+              >
+                <X />
+              </button>
+            )}
+
+            {/* Password visibility toggle */}
+            {isPassword && (
+              <button
+                type="button"
+                onClick={togglePasswordVisibility}
+                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                tabIndex={-1}
+              >
+                {showPassword ? <EyeOff /> : <Eye />}
+              </button>
+            )}
+          </div>
+        )}
+      </div>
+    );
+  }
+);
+
+Input.displayName = "Input";
+
+export { Input, inputVariants };
+```
+
+  </Tab>
+    <Tab value="CLI">
+```package-install
+npx hexta-ui add input
+```
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Input } from "@/components/ui/input";
+
+export function App() {
+  return (
+    <div className="grid w-full max-w-sm items-center gap-1.5">
+      <Input id="email" type="email" placeholder="Enter your email" />
+    </div>
+  );
+}
+```
+
+## Examples
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input placeholder="Small input" size="sm" />
+        <Input placeholder="Default input" />
+        <Input placeholder="Large input" size="lg" />
+        <Input placeholder="Extra large input" size="xl" />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Input placeholder="Small input" size="sm" />
+<Input placeholder="Default input" />
+<Input placeholder="Large input" size="lg" />
+<Input placeholder="Extra large input" size="xl" />
+```
+
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input placeholder="Default input" />
+        <Input placeholder="Ghost input" variant="ghost" />
+        <Input placeholder="Error input" error />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Input placeholder="Default input" />
+<Input placeholder="Ghost input" variant="ghost" />
+<Input placeholder="Error input" error />
+```
+
+  </Tab>
+</Tabs>
+
+### Password Input with Visibility Toggle
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input 
+          type="password" 
+          placeholder="Enter password" 
+          leftIcon={<Lock />}
+        />
+        <Input 
+          type="password" 
+          placeholder="Confirm password" 
+          leftIcon={<Lock />}
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Lock } from "lucide-react";
+
+<Input
+  type="password"
+  placeholder="Enter password"
+  leftIcon={<Lock />}
+/>
+<Input
+  type="password"
+  placeholder="Confirm password"
+  leftIcon={<Lock />}
+/>
+```
+
+  </Tab>
+</Tabs>
+
+### Clearable Input
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input 
+          placeholder="Clearable input" 
+          clearable 
+          defaultValue="Clear me!"
+        />
+        <Input 
+          placeholder="Search with clear" 
+          leftIcon={<Search />}
+          clearable 
+          defaultValue="Search term"
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Search } from "lucide-react";
+
+<Input
+  placeholder="Clearable input"
+  clearable
+  defaultValue="Clear me!"
+/>
+<Input
+  placeholder="Search with clear"
+  leftIcon={<Search />}
+  clearable
+  defaultValue="Search term"
+/>
+```
+
+  </Tab>
+</Tabs>
+
+### With Icons
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input 
+          placeholder="Search..." 
+          leftIcon={<Search />}
+          clearable
+        />
+        <Input 
+          placeholder="Username" 
+          leftIcon={<User />}
+        />
+        <Input 
+          placeholder="Email" 
+          type="email"
+          leftIcon={<Mail />}
+          clearable
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Search, User, Mail } from "lucide-react";
+
+<Input
+  placeholder="Search..."
+  leftIcon={<Search />}
+  clearable
+/>
+<Input
+  placeholder="Username"
+  leftIcon={<User />}
+/>
+<Input
+  placeholder="Email"
+  type="email"
+  leftIcon={<Mail />}
+  clearable
+/>
+```
+
+  </Tab>
+</Tabs>
+
+### Input Types
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input type="text" placeholder="Text input" clearable />
+        <Input type="email" placeholder="Email input" clearable />
+        <Input type="password" placeholder="Password input" />
+        <Input type="number" placeholder="Number input" clearable />
+        <Input type="url" placeholder="URL input" clearable />
+        <Input type="tel" placeholder="Phone input" clearable />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Input type="text" placeholder="Text input" clearable />
+<Input type="email" placeholder="Email input" clearable />
+<Input type="password" placeholder="Password input" />
+<Input type="number" placeholder="Number input" clearable />
+<Input type="url" placeholder="URL input" clearable />
+<Input type="tel" placeholder="Phone input" clearable />
+```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        <Input placeholder="Disabled input" disabled />
+        <Input 
+          placeholder="Disabled with icon" 
+          leftIcon={<User />}
+          disabled 
+        />
+        <Input 
+          type="password" 
+          placeholder="Disabled password" 
+          disabled 
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Input placeholder="Disabled input" disabled />
+<Input
+  placeholder="Disabled with icon"
+  leftIcon={<User />}
+  disabled
+/>
+<Input
+  type="password"
+  placeholder="Disabled password"
+  disabled
+/>
+```
+
+  </Tab>
+</Tabs>
+
+### File Input
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <Input type="file" />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Input type="file" />
+```
+
+  </Tab>
+</Tabs>
+
+## Form Examples with Zod Validation
+
+### Basic Login Form
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>      <div className="w-full max-w-sm mx-auto">
+        <form className="space-y-4">
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="email" required>Email</Label>
+            <Input
+              id="email"
+              type="email"
+              placeholder="Enter your email"
+              leftIcon={<Mail />}
+              clearable
+              size="lg"
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="password" required>Password</Label>
+            <Input
+              id="password"
+              type="password"
+              placeholder="Enter your password"
+              leftIcon={<Lock />}
+              size="lg"
+            />
+          </div>
+          <Button
+            type="submit" 
+            variant="default"
+            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+            size="lg"
+          >
+            Sign In
+          </Button>
+        </form>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+"use client";
+
+import { z } from "zod";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Mail, Lock } from "lucide-react";
+
+const loginSchema = z.object({
+  email: z.string().email("Invalid email address"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+});
+
+type LoginForm = z.infer<typeof loginSchema>;
+
+export function LoginForm() {
+  const [formData, setFormData] = useState<Partial<LoginForm>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof LoginForm, string>>
+  >({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = loginSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof LoginForm, string>> = {};
+      result.error.issues.forEach((issue) => {
+        if (issue.path[0]) {
+          fieldErrors[issue.path[0] as keyof LoginForm] = issue.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    console.log("Valid form data:", result.data);
+  };
+
+  const updateField =
+    (field: keyof LoginForm) => (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+      if (errors[field]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
+    };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="email" required>
+          Email
+        </Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          leftIcon={<Mail />}
+          clearable
+          value={formData.email || ""}
+          onChange={updateField("email")}
+          error={!!errors.email}
+          size="lg"
+        />
+        {errors.email && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.email}
+          </p>
+        )}
+      </div>
+
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="password" required>
+          Password
+        </Label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="Enter your password"
+          leftIcon={<Lock />}
+          value={formData.password || ""}
+          onChange={updateField("password")}
+          error={!!errors.password}
+          size="lg"
+        />
+        {errors.password && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.password}
+          </p>
+        )}
+      </div>
+
+      <Button
+        variant="default"
+        size="lg"
+        type="submit"
+        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+      >
+        Sign In
+      </Button>
+    </form>
+  );
+}
+```
+
+  </Tab>
+</Tabs>
+
+### Registration Form with Complex Validation
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>      <div className="w-full max-w-sm mx-auto">
+        <form className="space-y-4">
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="username" required>Username</Label>
+            <Input
+              id="username"
+              type="text"
+              placeholder="Enter username"
+              leftIcon={<User />}
+              clearable
+              size="lg"
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="reg-email" required>Email</Label>
+            <Input
+              id="reg-email"
+              type="email"
+              placeholder="Enter your email"
+              leftIcon={<Mail />}
+              clearable
+              size="lg"
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="reg-password" required>Password</Label>
+            <Input
+              id="reg-password"
+              type="password"
+              placeholder="Create password"
+              leftIcon={<Lock />}
+              size="lg"
+            />
+          </div>
+          <div className="grid w-full items-center gap-1.5">
+            <Label htmlFor="confirm-password" required>Confirm Password</Label>
+            <Input
+              id="confirm-password"
+              type="password"
+              placeholder="Confirm password"
+              leftIcon={<Lock />}
+              size="lg"
+            />
+          </div>
+          <Button
+            type="submit"
+            size="lg"
+            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+          >
+            Create Account
+          </Button>
+        </form>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+"use client";
+
+import { z } from "zod";
+import { useState } from "react";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { User, Mail, Lock } from "lucide-react";
+
+const registrationSchema = z
+  .object({
+    username: z
+      .string()
+      .min(3, "Username must be at least 3 characters")
+      .max(20, "Username must be less than 20 characters")
+      .regex(
+        /^[a-zA-Z0-9_]+$/,
+        "Username can only contain letters, numbers, and underscores"
+      ),
+    email: z.string().email("Invalid email address"),
+    password: z
+      .string()
+      .min(8, "Password must be at least 8 characters")
+      .regex(/[A-Z]/, "Password must contain at least one uppercase letter")
+      .regex(/[a-z]/, "Password must contain at least one lowercase letter")
+      .regex(/[0-9]/, "Password must contain at least one number")
+      .regex(
+        /[^A-Za-z0-9]/,
+        "Password must contain at least one special character"
+      ),
+    confirmPassword: z.string(),
+  })
+  .refine((data) => data.password === data.confirmPassword, {
+    message: "Passwords don't match",
+    path: ["confirmPassword"],
+  });
+
+type RegistrationForm = z.infer<typeof registrationSchema>;
+
+export function RegistrationForm() {
+  const [formData, setFormData] = useState<Partial<RegistrationForm>>({});
+  const [errors, setErrors] = useState<
+    Partial<Record<keyof RegistrationForm, string>>
+  >({});
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    const result = registrationSchema.safeParse(formData);
+
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof RegistrationForm, string>> = {};
+      result.error.issues.forEach((issue) => {
+        if (issue.path[0]) {
+          fieldErrors[issue.path[0] as keyof RegistrationForm] = issue.message;
+        }
+      });
+      setErrors(fieldErrors);
+      return;
+    }
+
+    setErrors({});
+    console.log("Valid registration data:", result.data);
+  };
+
+  const updateField =
+    (field: keyof RegistrationForm) =>
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+      if (errors[field]) {
+        setErrors((prev) => ({ ...prev, [field]: undefined }));
+      }
+    };
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="username" required>
+          Username
+        </Label>
+        <Input
+          id="username"
+          type="text"
+          placeholder="Enter username"
+          leftIcon={<User />}
+          clearable
+          value={formData.username || ""}
+          onChange={updateField("username")}
+          error={!!errors.username}
+          size="lg"
+        />
+        {errors.username && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.username}
+          </p>
+        )}
+      </div>
+
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="email" required>
+          Email
+        </Label>
+        <Input
+          id="email"
+          type="email"
+          placeholder="Enter your email"
+          leftIcon={<Mail />}
+          clearable
+          value={formData.email || ""}
+          onChange={updateField("email")}
+          error={!!errors.email}
+          size="lg"
+        />
+        {errors.email && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.email}
+          </p>
+        )}
+      </div>
+
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="password" required>
+          Password
+        </Label>
+        <Input
+          id="password"
+          type="password"
+          placeholder="Create password"
+          leftIcon={<Lock />}
+          value={formData.password || ""}
+          onChange={updateField("password")}
+          error={!!errors.password}
+          size="lg"
+        />
+        {errors.password && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.password}
+          </p>
+        )}
+      </div>
+
+      <div className="grid w-full items-center gap-1.5">
+        <Label htmlFor="confirmPassword" required>
+          Confirm Password
+        </Label>
+        <Input
+          id="confirmPassword"
+          type="password"
+          placeholder="Confirm password"
+          leftIcon={<Lock />}
+          value={formData.confirmPassword || ""}
+          onChange={updateField("confirmPassword")}
+          error={!!errors.confirmPassword}
+          size="lg"
+        />
+        {errors.confirmPassword && (
+          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+            {errors.confirmPassword}
+          </p>
+        )}
+      </div>
+
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+      >
+        Create Account
+      </Button>
+    </form>
+  );
+}
+```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual variant of the input",
+      type: '"default" | "destructive" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the input",
+      type: '"sm" | "default" | "lg" | "xl"',
+      default: '"default"',
+    },
+    leftIcon: {
+      description: "Icon to display on the left side of the input",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+    rightIcon: {
+      description: "Icon to display on the right side of the input",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+    error: {
+      description: "Whether the input is in an error state",
+      type: "boolean",
+      default: "false",
+    },
+    clearable: {
+      description: "Whether to show a clear button when the input has content",
+      type: "boolean",
+      default: "false",
+    },
+    onClear: {
+      description: "Callback function called when the clear button is clicked",
+      type: "() => void",
+      default: "undefined",
+    },
+  }}
+/>
+
+## Form Validation with Zod
+
+The Input component works excellently with Zod for type-safe form validation:
+
+```tsx
+import { z } from "zod";
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+// Use with error state for visual feedback
+<Input type="email" error={!!errors.email} onChange={handleChange} />;
+```
