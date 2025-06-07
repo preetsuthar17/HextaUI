@@ -13,6 +13,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Kbd } from "@/components/ui/kbd";
 
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
@@ -110,7 +111,7 @@ const tooltipVariants = cva(
       variant: "default",
       size: "md",
     },
-  },
+  }
 );
 
 const Tooltip = TooltipPrimitive.Root;
@@ -461,11 +462,11 @@ import {
             </TooltipTrigger>
             <TooltipContent size="lg" className="max-w-xs">
               <div className="space-y-2">
-                <p className="font-medium">Feature Description</p>
-                <p className="text-sm opacity-80">
+                <div className="font-medium">Feature Description</div>
+                <div className="text-sm opacity-80">
                   This is a more detailed explanation of what this feature does
                   and how it works.
-                </p>
+                </div>
                 <div className="flex gap-1">
                   <span className="text-xs bg-[hsl(var(--hu-secondary))] px-1.5 py-0.5 rounded">
                     New
@@ -484,9 +485,9 @@ import {
             <TooltipContent>
               <div className="flex items-center gap-1">
                 <span>Save file</span>
-                <kbd className="px-1 py-0.5 text-xs bg-[hsl(var(--hu-secondary))] rounded">
+                <Kbd className="px-1 py-0.5 text-xs bg-[hsl(var(--hu-secondary))] rounded">
                   Ctrl+S
-                </kbd>
+                </Kbd>
               </div>
             </TooltipContent>
           </Tooltip>
@@ -496,27 +497,45 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button variant="outline">Rich content</Button>
-      </TooltipTrigger>
-      <TooltipContent size="lg" className="max-w-xs">
-        <div className="space-y-2">
-          <p className="font-medium">Feature Description</p>
-          <p className="text-sm opacity-80">
-            This is a more detailed explanation of what this feature does.
-          </p>
-          <div className="flex gap-1">
-            <span className="text-xs bg-secondary px-1.5 py-0.5 rounded">
-              New
-            </span>
-            <span className="text-xs bg-accent px-1.5 py-0.5 rounded">
-              Beta
-            </span>
-          </div>
-        </div>
-      </TooltipContent>
-    </Tooltip>
+    <TooltipProvider>
+      <div className="flex gap-4 flex-wrap">
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Rich content</Button>
+          </TooltipTrigger>
+          <TooltipContent size="lg" className="max-w-xs">
+            <div className="space-y-2">
+              <div className="font-medium">Feature Description</div>
+              <div className="text-sm opacity-80">
+                This is a more detailed explanation of what this feature does
+                and how it works.
+              </div>
+              <div className="flex gap-1">
+                <span className="text-xs bg-[hsl(var(--hu-secondary))] px-1.5 py-0.5 rounded">
+                  New
+                </span>
+                <span className="text-xs bg-[hsl(var(--hu-accent))] px-1.5 py-0.5 rounded">
+                  Beta
+                </span>
+              </div>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button variant="outline">Keyboard shortcut</Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <div className="flex items-center gap-1">
+              <span>Save file</span>
+              <Kbd className="px-1 py-0.5 text-xs bg-[hsl(var(--hu-secondary))] rounded">
+                Ctrl+S
+              </Kbd>
+            </div>
+          </TooltipContent>
+        </Tooltip>
+      </div>
+    </TooltipProvider>
     ```
   </Tab>
 </Tabs>
