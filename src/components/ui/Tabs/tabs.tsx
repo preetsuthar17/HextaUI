@@ -13,6 +13,8 @@ const tabsVariants = cva(
         default:
           "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))]",
         ghost: "bg-transparent",
+        underline:
+          "bg-transparent border-b border-[hsl(var(--hu-border))] rounded-none",
       },
       size: {
         sm: "h-9 p-1",
@@ -36,6 +38,8 @@ const tabTriggerVariants = cva(
           "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))]",
         ghost:
           "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))] data-[state=active]:bg-transparent",
+        underline:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))] rounded-none",
       },
       size: {
         sm: "px-2.5 py-1 text-xs",
@@ -130,9 +134,17 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
         {" "}
         {/* Animated indicator */}
         <motion.div
-          className="absolute top-1 bottom-1 rounded-md z-10"
+          className={cn(
+            "absolute z-10",
+            variant === "underline"
+              ? "bottom-0 h-0.5 rounded-none"
+              : "top-1 bottom-1 rounded-md"
+          )}
           style={{
-            backgroundColor: indicatorColor,
+            backgroundColor:
+              variant === "underline"
+                ? "hsl(var(--hu-foreground))"
+                : indicatorColor,
           }}
           initial={false}
           animate={{

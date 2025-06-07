@@ -11,6 +11,7 @@ import { Home, Settings, User, Bell, Search, Heart } from "lucide-react";
 
 import { Tabs as TabsComponent, TabsContent } from "@/components/ui/Tabs";
 import { TabsWithContent } from "@/components/ui/Tabs";
+import { TabsUnderlineExample } from "@/components/ui/Tabs";
 
 <Tabs items={["Preview", "Code"]}>
   {" "}
@@ -74,6 +75,8 @@ const tabsVariants = cva(
         default:
           "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))]",
         ghost: "bg-transparent",
+        underline:
+          "bg-transparent border-b border-[hsl(var(--hu-border))] rounded-none",
       },
       size: {
         sm: "h-9 p-1",
@@ -97,6 +100,8 @@ const tabTriggerVariants = cva(
           "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))]",
         ghost:
           "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))] data-[state=active]:bg-transparent",
+        underline:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-foreground))] rounded-none",
       },
       size: {
         sm: "px-2.5 py-1 text-xs",
@@ -191,7 +196,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
         {" "}
         {/* Animated indicator */}
         <motion.div
-          className="absolute top-1 bottom-1 rounded-md z-10"
+          className={cn(
+            "absolute z-10",
+            variant === "underline"
+              ? "bottom-0 h-0.5 rounded-none"
+              : "top-1 bottom-1 rounded-md"
+          )}
           style={{
             backgroundColor: indicatorColor,
           }}
@@ -358,8 +368,7 @@ export default function MyComponent() {
             ]}
             defaultValue="home"
           />
-        </div>{" "}
-        <div className="space-y-2">
+        </div>{" "}        <div className="space-y-2">
           <h4 className="text-sm font-medium">Ghost</h4>
           <TabsComponent
             variant="ghost"
@@ -371,13 +380,27 @@ export default function MyComponent() {
             defaultValue="home"
           />
         </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Underline</h4>
+          <TabsComponent
+            variant="underline"
+            items={[
+              { id: "home", label: "Home" },
+              { id: "about", label: "About" },
+              { id: "contact", label: "Contact" },
+            ]}
+            defaultValue="home"
+          />
+        </div>
       </div>
-    </PreviewContainer>
-  </Tab>
+    </PreviewContainer>  </Tab>
+
   <Tab value="Code">
     ```tsx
     <Tabs variant="default" items={tabs} defaultValue="home" />
     <Tabs variant="ghost" items={tabs} defaultValue="home" />
+    <Tabs variant="underline" items={tabs} defaultValue="home" />
     ```
   </Tab>
 </Tabs>
@@ -468,7 +491,56 @@ export default function MyComponent() {
     <Tabs size="sm" items={tabs} defaultValue="tab1" />
     <Tabs size="default" items={tabs} defaultValue="tab1" />
     <Tabs size="lg" items={tabs} defaultValue="tab1" />
+    ```  </Tab>
+</Tabs>
+
+### Underline Variant
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-md mx-auto">
+        <TabsUnderlineExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Tabs, TabsContent } from "@/components/ui/tabs";
+    import { Home, Settings, User, Bell } from "lucide-react";
+
+    function TabsUnderlineExample() {
+      const [activeTab, setActiveTab] = useState("home");
+
+      return (
+        <div className="w-full">
+          <Tabs
+            variant="underline"
+            items={[
+              { id: "home", label: "Home", icon: <Home /> },
+              { id: "notifications", label: "Notifications", icon: <Bell /> },
+              { id: "profile", label: "Profile", icon: <User /> },
+              { id: "settings", label: "Settings", icon: <Settings /> },
+            ]}
+            value={activeTab}
+            onValueChange={setActiveTab}
+          />
+
+          <TabsContent value="home" activeValue={activeTab}>
+            <div className="p-4 bg-accent/5 rounded-md mt-4">
+              <h3 className="font-semibold">Home Content</h3>
+              <p className="text-sm text-muted-foreground mt-2">
+                This is the home tab content with underline variant.
+              </p>
+            </div>
+          </TabsContent>
+
+          {/* Other TabsContent components... */}
+        </div>
+      );
+    }
     ```
+
   </Tab>
 </Tabs>
 
@@ -539,16 +611,16 @@ export default function MyComponent() {
 
 ### Tabs
 
-| Prop             | Type                        | Default                    | Description                                          |
-| ---------------- | --------------------------- | -------------------------- | ---------------------------------------------------- |
-| `items`          | `TabItem[]`                 | -                          | Array of tab items with id, label, and optional icon |
-| `defaultValue`   | `string`                    | `items[0]?.id`             | The default active tab value                         |
-| `value`          | `string`                    | -                          | The controlled active tab value                      |
-| `onValueChange`  | `(value: string) => void`   | -                          | Callback when tab changes                            |
-| `variant`        | `"default" \| "ghost"`      | `"default"`                | Visual variant of the tabs                           |
-| `size`           | `"sm" \| "default" \| "lg"` | `"default"`                | Size of the tabs                                     |
-| `indicatorColor` | `string`                    | `"hsl(var(--hu-primary))"` | Custom color for the animated indicator              |
-| `className`      | `string`                    | -                          | Additional CSS classes                               |
+| Prop             | Type                                  | Default                    | Description                                          |
+| ---------------- | ------------------------------------- | -------------------------- | ---------------------------------------------------- |
+| `items`          | `TabItem[]`                           | -                          | Array of tab items with id, label, and optional icon |
+| `defaultValue`   | `string`                              | `items[0]?.id`             | The default active tab value                         |
+| `value`          | `string`                              | -                          | The controlled active tab value                      |
+| `onValueChange`  | `(value: string) => void`             | -                          | Callback when tab changes                            |
+| `variant`        | `"default" \| "ghost" \| "underline"` | `"default"`                | Visual variant of the tabs                           |
+| `size`           | `"sm" \| "default" \| "lg"`           | `"default"`                | Size of the tabs                                     |
+| `indicatorColor` | `string`                              | `"hsl(var(--hu-primary))"` | Custom color for the animated indicator              |
+| `className`      | `string`                              | -                          | Additional CSS classes                               |
 
 ### TabsContent
 
