@@ -60,8 +60,8 @@ importers:
         specifier: ^19.1.0
         version: 19.1.0(react@19.1.0)
       shiki:
-        specifier: ^3.5.0
-        version: 3.6.0
+        specifier: 3.5.0
+        version: 3.5.0
       tailwind-merge:
         specifier: ^3.3.0
         version: 3.3.0
