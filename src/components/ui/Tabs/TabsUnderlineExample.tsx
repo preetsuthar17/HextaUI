@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Tabs, TabsContent } from "./tabs";
+import { Tabs, TabsContent } from "./index";
 import { Home, Settings, User, Bell } from "lucide-react";
 
 export function TabsUnderlineExample() {

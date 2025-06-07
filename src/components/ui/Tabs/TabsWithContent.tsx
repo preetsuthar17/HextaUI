@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Tabs, TabsContent } from "./tabs";
+import { Tabs, TabsContent } from "./index";
 import { Home, Settings, Search } from "lucide-react";
 
 export function TabsWithContent() {

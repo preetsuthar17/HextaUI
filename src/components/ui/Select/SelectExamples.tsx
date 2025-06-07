@@ -10,7 +10,7 @@ import {
   SelectGroup,
   SelectLabel,
   SelectSeparator,
-} from "./select";
+} from "./index";
 import {
   User,
   Mail,

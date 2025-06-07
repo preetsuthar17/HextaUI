@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Toggle } from "./toggle";
+import { Toggle } from "./index";
 import { Heart, Star, Bookmark, ThumbsUp } from "lucide-react";
 
 export function ToggleWithIcons() {
