@@ -1,0 +1,223 @@
+"use client";
+
+import * as React from "react";
+import { motion } from "motion/react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const tabsVariants = cva(
+  "relative inline-flex items-center justify-center rounded-lg transition-all duration-300",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))]",
+        ghost: "bg-transparent",
+      },
+      size: {
+        sm: "h-9 p-1",
+        default: "h-10 p-1.5",
+        lg: "h-12 p-2",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+const tabTriggerVariants = cva(
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))]",
+        ghost:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))] data-[state=active]:bg-transparent",
+      },
+      size: {
+        sm: "px-2.5 py-1 text-xs",
+        default: "px-3 py-1.5 text-sm",
+        lg: "px-4 py-2 text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface TabItem {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+export interface TabsProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tabsVariants> {
+  items: TabItem[];
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  indicatorColor?: string;
+}
+
+const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      items,
+      defaultValue,
+      value,
+      onValueChange,
+      indicatorColor = "hsl(var(--hu-accent))",
+      ...props
+    },
+    ref
+  ) => {
+    const [activeValue, setActiveValue] = React.useState(
+      value || defaultValue || items[0]?.id
+    );
+    const [activeTabBounds, setActiveTabBounds] = React.useState({
+      left: 0,
+      width: 0,
+    });
+
+    const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+
+    React.useEffect(() => {
+      if (value !== undefined) {
+        setActiveValue(value);
+      }
+    }, [value]);
+
+    React.useEffect(() => {
+      const activeIndex = items.findIndex(
+        (item: TabItem) => item.id === activeValue
+      );
+      const activeTab = tabRefs.current[activeIndex];
+
+      if (activeTab) {
+        const tabRect = activeTab.getBoundingClientRect();
+        const containerRect = activeTab.parentElement?.getBoundingClientRect();
+
+        if (containerRect) {
+          setActiveTabBounds({
+            left: tabRect.left - containerRect.left,
+            width: tabRect.width,
+          });
+        }
+      }
+    }, [activeValue, items]);
+
+    const handleTabClick = (tabId: string) => {
+      setActiveValue(tabId);
+      onValueChange?.(tabId);
+    };
+
+    return (
+      <div
+        ref={ref}
+        className={cn(tabsVariants({ variant, size }), className)}
+        {...props}
+      >
+        {" "}
+        {/* Animated indicator */}
+        <motion.div
+          className="absolute top-1 bottom-1 rounded-md z-10"
+          style={{
+            backgroundColor: indicatorColor,
+          }}
+          initial={false}
+          animate={{
+            left: activeTabBounds.left,
+            width: activeTabBounds.width,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 30,
+          }}
+        />
+        {/* Tab triggers */}
+        {items.map((item: TabItem, index: number) => {
+          const isActive = activeValue === item.id;
+
+          return (
+            <button
+              key={item.id}
+              ref={(el) => {
+                tabRefs.current[index] = el;
+              }}
+              className={cn(
+                tabTriggerVariants({ variant, size }),
+                "relative z-20 text-[hsl(var(--hu-muted-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))]"
+              )}
+              data-state={isActive ? "active" : "inactive"}
+              onClick={() => handleTabClick(item.id)}
+              type="button"
+            >
+              {item.icon && (
+                <span className="mr-2 [&_svg]:size-4">{item.icon}</span>
+              )}
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+);
+
+Tabs.displayName = "Tabs";
+
+// Content component for tab panels
+export interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: string;
+  activeValue?: string;
+}
+
+const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
+  ({ className, value, activeValue, children, ...props }, ref) => {
+    const isActive = value === activeValue;
+
+    if (!isActive) return null;
+
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onAnimationStart,
+      onAnimationEnd,
+      onTransitionEnd,
+      ...divProps
+    } = props;
+
+    return (
+      <motion.div
+        ref={ref}
+        className={cn(
+          "ring-offset-[hsl(var(--hu-background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2",
+          className
+        )}
+        initial={{ opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 4 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        {...divProps}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+TabsContent.displayName = "TabsContent";
+
+export { Tabs, TabsContent, tabsVariants };

@@ -1,0 +1,567 @@
+---
+title: Tabs
+description: A set of layered sections of content with smooth animations and modern styling.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import * as React from "react";
+
+import { Home, Settings, User, Bell, Search, Heart } from "lucide-react";
+
+import { Tabs as TabsComponent, TabsContent } from "@/components/ui/Tabs";
+import { TabsWithContent } from "@/components/ui/Tabs";
+
+<Tabs items={["Preview", "Code"]}>
+  {" "}
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col items-center gap-6 w-full">
+        {" "}
+        <TabsComponent
+          items={[
+            { id: "home", label: "Home", icon: <Home /> },
+            { id: "settings", label: "Settings", icon: <Settings /> },
+            { id: "profile", label: "Profile", icon: <User /> },
+          ]}
+          defaultValue="home"
+        />
+      </div>
+    </PreviewContainer>{" "}
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col items-center gap-6 w-full">
+      <Tabs
+        items={[
+          { id: "home", label: "Home", icon: <Home /> },
+          { id: "settings", label: "Settings", icon: <Settings /> },
+          { id: "profile", label: "Profile", icon: <User /> },
+        ]}
+        defaultValue="home"
+      />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install motion class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/tabs.tsx"
+"use client";
+
+import * as React from "react";
+import { motion } from "motion/react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const tabsVariants = cva(
+  "relative inline-flex items-center justify-center rounded-lg transition-all duration-300",
+  {
+    variants: {
+      variant: {
+        default:
+          "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))]",
+        ghost: "bg-transparent",
+      },
+      size: {
+        sm: "h-9 p-1",
+        default: "h-10 p-1.5",
+        lg: "h-12 p-2",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+const tabTriggerVariants = cva(
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))]",
+        ghost:
+          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))] data-[state=active]:bg-transparent",
+      },
+      size: {
+        sm: "px-2.5 py-1 text-xs",
+        default: "px-3 py-1.5 text-sm",
+        lg: "px-4 py-2 text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+export interface TabItem {
+  id: string;
+  label: string;
+  icon?: React.ReactNode;
+}
+
+export interface TabsProps
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tabsVariants> {
+  items: TabItem[];
+  defaultValue?: string;
+  value?: string;
+  onValueChange?: (value: string) => void;
+  indicatorColor?: string;
+}
+
+const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      items,
+      defaultValue,
+      value,
+      onValueChange,
+      indicatorColor = "hsl(var(--hu-accent))",
+      ...props
+    },
+    ref
+  ) => {
+    const [activeValue, setActiveValue] = React.useState(
+      value || defaultValue || items[0]?.id
+    );
+    const [activeTabBounds, setActiveTabBounds] = React.useState({
+      left: 0,
+      width: 0,
+    });
+
+    const tabRefs = React.useRef<(HTMLButtonElement | null)[]>([]);
+
+    React.useEffect(() => {
+      if (value !== undefined) {
+        setActiveValue(value);
+      }
+    }, [value]);
+
+    React.useEffect(() => {
+      const activeIndex = items.findIndex(
+        (item: TabItem) => item.id === activeValue
+      );
+      const activeTab = tabRefs.current[activeIndex];
+
+      if (activeTab) {
+        const tabRect = activeTab.getBoundingClientRect();
+        const containerRect = activeTab.parentElement?.getBoundingClientRect();
+
+        if (containerRect) {
+          setActiveTabBounds({
+            left: tabRect.left - containerRect.left,
+            width: tabRect.width,
+          });
+        }
+      }
+    }, [activeValue, items]);
+
+    const handleTabClick = (tabId: string) => {
+      setActiveValue(tabId);
+      onValueChange?.(tabId);
+    };
+
+    return (
+      <div
+        ref={ref}
+        className={cn(tabsVariants({ variant, size }), className)}
+        {...props}
+      >
+        {" "}
+        {/* Animated indicator */}
+        <motion.div
+          className="absolute top-1 bottom-1 rounded-md z-10"
+          style={{
+            backgroundColor: indicatorColor,
+          }}
+          initial={false}
+          animate={{
+            left: activeTabBounds.left,
+            width: activeTabBounds.width,
+          }}
+          transition={{
+            type: "spring",
+            stiffness: 400,
+            damping: 30,
+          }}
+        />
+        {/* Tab triggers */}
+        {items.map((item: TabItem, index: number) => {
+          const isActive = activeValue === item.id;
+
+          return (
+            <button
+              key={item.id}
+              ref={(el) => {
+                tabRefs.current[index] = el;
+              }}
+              className={cn(
+                tabTriggerVariants({ variant, size }),
+                "relative z-20 text-[hsl(var(--hu-muted-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))]"
+              )}
+              data-state={isActive ? "active" : "inactive"}
+              onClick={() => handleTabClick(item.id)}
+              type="button"
+            >
+              {item.icon && (
+                <span className="mr-2 [&_svg]:size-4">{item.icon}</span>
+              )}
+              {item.label}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+);
+
+Tabs.displayName = "Tabs";
+
+// Content component for tab panels
+export interface TabsContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  value: string;
+  activeValue?: string;
+}
+
+const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
+  ({ className, value, activeValue, children, ...props }, ref) => {
+    const isActive = value === activeValue;
+
+    if (!isActive) return null;
+
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onAnimationStart,
+      onAnimationEnd,
+      onTransitionEnd,
+      ...divProps
+    } = props;
+
+    return (
+      <motion.div
+        ref={ref}
+        className={cn(
+          "ring-offset-[hsl(var(--hu-background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2",
+          className
+        )}
+        initial={{ opacity: 0, y: 4 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 4 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        {...divProps}
+      >
+        {children}
+      </motion.div>
+    );
+  }
+);
+
+TabsContent.displayName = "TabsContent";
+
+export { Tabs, TabsContent, tabsVariants };
+```
+
+</Tab>
+
+<Tab value="CLI">
+
+```package-install tab="CLI"
+npx shadcn@latest add "https://ui.shadcn.com/docs/components/tabs"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Tabs, TabsContent } from "@/components/ui/tabs";
+import { TabsWithContent } from "@/components/ui/Tabs";
+```
+
+```tsx
+export default function MyComponent() {
+  return <TabsWithContent />;
+}
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex justify-center w-full">
+        <TabsComponent
+          items={[
+            { id: "account", label: "Account" },
+            { id: "password", label: "Password" },
+            { id: "settings", label: "Settings" },
+          ]}
+          defaultValue="account"
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Tabs
+      items={[
+        { id: "account", label: "Account" },
+        { id: "password", label: "Password" },
+        { id: "settings", label: "Settings" },
+      ]}
+      defaultValue="account"
+    />
+    ```
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col items-center gap-6 w-full">
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Default</h4>
+          <TabsComponent
+            variant="default"
+            items={[
+              { id: "home", label: "Home" },
+              { id: "about", label: "About" },
+              { id: "contact", label: "Contact" },
+            ]}
+            defaultValue="home"
+          />
+        </div>{" "}
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Ghost</h4>
+          <TabsComponent
+            variant="ghost"
+            items={[
+              { id: "home", label: "Home" },
+              { id: "about", label: "About" },
+              { id: "contact", label: "Contact" },
+            ]}
+            defaultValue="home"
+          />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Tabs variant="default" items={tabs} defaultValue="home" />
+    <Tabs variant="ghost" items={tabs} defaultValue="home" />
+    ```
+  </Tab>
+</Tabs>
+
+### With Icons
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col items-center gap-4 w-full">        <TabsComponent
+          items={[
+            { id: "home", label: "Home", icon: <Home /> },
+            { id: "search", label: "Search", icon: <Search /> },
+            { id: "notifications", label: "Notifications", icon: <Bell /> },
+          ]}
+          defaultValue="home"
+        />
+      </div>
+    </PreviewContainer>  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Home, Search, Bell, Heart } from "lucide-react";
+
+    <Tabs
+      items={[
+        { id: "home", label: "Home", icon: <Home /> },
+        { id: "search", label: "Search", icon: <Search /> },
+        { id: "notifications", label: "Notifications", icon: <Bell /> },
+        { id: "favorites", label: "Favorites", icon: <Heart /> },
+      ]}
+      defaultValue="home"
+    />
+    ```
+
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col items-center gap-6 w-full">
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Small</h4>
+          <TabsComponent
+            size="sm"
+            items={[
+              { id: "tab1", label: "Tab 1" },
+              { id: "tab2", label: "Tab 2" },
+              { id: "tab3", label: "Tab 3" },
+            ]}
+            defaultValue="tab1"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Default</h4>
+          <TabsComponent
+            size="default"
+            items={[
+              { id: "tab1", label: "Tab 1" },
+              { id: "tab2", label: "Tab 2" },
+              { id: "tab3", label: "Tab 3" },
+            ]}
+            defaultValue="tab1"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <h4 className="text-sm font-medium">Large</h4>
+          <TabsComponent
+            size="lg"
+            items={[
+              { id: "tab1", label: "Tab 1" },
+              { id: "tab2", label: "Tab 2" },
+              { id: "tab3", label: "Tab 3" },
+            ]}
+            defaultValue="tab1"
+          />
+        </div>
+      </div>
+    </PreviewContainer>
+
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Tabs size="sm" items={tabs} defaultValue="tab1" />
+    <Tabs size="default" items={tabs} defaultValue="tab1" />
+    <Tabs size="lg" items={tabs} defaultValue="tab1" />
+    ```
+  </Tab>
+</Tabs>
+
+### With Content
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-md mx-auto">
+        <TabsWithContent />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function TabsWithContent() {
+      const [activeTab, setActiveTab] = useState("overview");
+
+      return (
+        <div className="w-full max-w-md">
+          <Tabs
+            items={[
+              { id: "overview", label: "Overview", icon: <Home /> },
+              { id: "analytics", label: "Analytics", icon: <Search /> },
+              { id: "settings", label: "Settings", icon: <Settings /> },
+            ]}
+            value={activeTab}
+            onValueChange={setActiveTab}
+          />
+
+          <div className="mt-4 p-4 border rounded-xl">
+            <TabsContent value="overview" activeValue={activeTab}>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Overview</h3>
+                <p className="text-sm text-muted-foreground">
+                  Welcome to your dashboard overview...
+                </p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="analytics" activeValue={activeTab}>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Analytics</h3>
+                <p className="text-sm text-muted-foreground">
+                  Detailed analytics and insights...
+                </p>
+              </div>
+            </TabsContent>
+
+            <TabsContent value="settings" activeValue={activeTab}>
+              <div className="space-y-2">
+                <h3 className="text-lg font-semibold">Settings</h3>
+                <p className="text-sm text-muted-foreground">
+                  Configure your preferences...
+                </p>
+              </div>
+            </TabsContent>
+          </div>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+### Tabs
+
+| Prop             | Type                        | Default                    | Description                                          |
+| ---------------- | --------------------------- | -------------------------- | ---------------------------------------------------- |
+| `items`          | `TabItem[]`                 | -                          | Array of tab items with id, label, and optional icon |
+| `defaultValue`   | `string`                    | `items[0]?.id`             | The default active tab value                         |
+| `value`          | `string`                    | -                          | The controlled active tab value                      |
+| `onValueChange`  | `(value: string) => void`   | -                          | Callback when tab changes                            |
+| `variant`        | `"default" \| "ghost"`      | `"default"`                | Visual variant of the tabs                           |
+| `size`           | `"sm" \| "default" \| "lg"` | `"default"`                | Size of the tabs                                     |
+| `indicatorColor` | `string`                    | `"hsl(var(--hu-primary))"` | Custom color for the animated indicator              |
+| `className`      | `string`                    | -                          | Additional CSS classes                               |
+
+### TabsContent
+
+| Prop          | Type     | Default | Description                           |
+| ------------- | -------- | ------- | ------------------------------------- |
+| `value`       | `string` | -       | The tab value this content belongs to |
+| `activeValue` | `string` | -       | The currently active tab value        |
+| `className`   | `string` | -       | Additional CSS classes                |
+
+### TabItem
+
+| Prop    | Type              | Default | Description                                  |
+| ------- | ----------------- | ------- | -------------------------------------------- |
+| `id`    | `string`          | -       | Unique identifier for the tab                |
+| `label` | `string`          | -       | Display text for the tab                     |
+| `icon`  | `React.ReactNode` | -       | Optional icon to display alongside the label |
