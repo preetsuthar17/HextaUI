@@ -61,6 +61,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const [internalValue, setInternalValue] = React.useState(
       props.defaultValue || "",
     );
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    // Combine external ref with internal ref
+    React.useImperativeHandle(ref, () => inputRef.current!);
 
     const inputVariant = error ? "destructive" : variant;
     const isPassword = type === "password";
@@ -80,33 +84,51 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     const handleClear = () => {
-      const clearEvent = {
-        target: { value: "" },
-        currentTarget: { value: "" },
-      } as React.ChangeEvent<HTMLInputElement>;
-
+      // Clear the internal state for uncontrolled inputs
       if (!isControlled) {
         setInternalValue("");
       }
+
+      // Call the onClear callback if provided
       onClear?.();
-      props.onChange?.(clearEvent);
+
+      // Create a synthetic event to trigger onChange with empty value
+      if (inputRef.current) {
+        const input = inputRef.current;
+
+        // Set the input's value directly
+        input.value = "";
+
+        // Create a synthetic React ChangeEvent
+        const syntheticEvent = {
+          target: input,
+          currentTarget: input,
+          nativeEvent: new Event("input", { bubbles: true }),
+          isDefaultPrevented: () => false,
+          isPropagationStopped: () => false,
+          persist: () => {},
+          preventDefault: () => {},
+          stopPropagation: () => {},
+          bubbles: true,
+          cancelable: true,
+          defaultPrevented: false,
+          eventPhase: 0,
+          isTrusted: true,
+          timeStamp: Date.now(),
+          type: "change",
+        } as React.ChangeEvent<HTMLInputElement>;
+
+        // Trigger the onChange handler
+        props.onChange?.(syntheticEvent);
+
+        // Focus the input after clearing
+        input.focus();
+      }
     };
 
     const togglePasswordVisibility = () => {
       setShowPassword(!showPassword);
     };
-
-    // Calculate right padding based on icons
-    let rightPadding = "";
-    const iconsCount = [
-      isPassword, // password toggle
-      showClearButton, // clear button
-      rightIcon, // custom right icon
-    ].filter(Boolean).length;
-
-    if (iconsCount > 0) {
-      rightPadding = `pr-${8 + iconsCount * 6}`;
-    }
 
     return (
       <div className="relative">
@@ -122,7 +144,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             leftIcon && "pl-10",
             (rightIcon || isPassword || showClearButton) && "pr-10",
           )}
-          ref={ref}
+          ref={inputRef}
           {...(isControlled
             ? { value: inputValue }
             : { defaultValue: props.defaultValue })}
