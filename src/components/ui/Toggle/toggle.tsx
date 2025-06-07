@@ -31,7 +31,7 @@ const toggleVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface ToggleProps
@@ -47,7 +47,7 @@ const Toggle = React.forwardRef<
 >(
   (
     { className, variant, size, leftIcon, rightIcon, children, ...props },
-    ref
+    ref,
   ) => (
     <TogglePrimitive.Root
       ref={ref}
@@ -58,7 +58,7 @@ const Toggle = React.forwardRef<
       {children}
       {rightIcon && rightIcon}
     </TogglePrimitive.Root>
-  )
+  ),
 );
 
 Toggle.displayName = TogglePrimitive.Root.displayName;
