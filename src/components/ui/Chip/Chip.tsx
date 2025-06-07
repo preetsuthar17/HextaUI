@@ -31,7 +31,7 @@ const chipVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface ChipProps
@@ -56,7 +56,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const iconSize = size === "sm" ? 12 : size === "lg" ? 14 : 12;
     const closeIconSize = size === "sm" ? 10 : size === "lg" ? 12 : 10;
@@ -91,7 +91,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Chip.displayName = "Chip";

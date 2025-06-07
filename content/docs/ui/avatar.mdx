@@ -119,7 +119,7 @@ const avatarVariants = cva(
     defaultVariants: {
       size: "md",
     },
-  }
+  },
 );
 
 interface AvatarProps
@@ -178,7 +178,7 @@ const AvatarFallback = React.forwardRef<
     ref={ref}
     className={PS(
       "flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] font-medium",
-      className
+      className,
     )}
     {...props}
   />
@@ -201,7 +201,7 @@ const avatarGroupSpacing = {
 const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
   (
     { className, max = 3, spacing = "normal", size = "md", children, ...props },
-    ref
+    ref,
   ) => {
     const avatarsToShow = children.slice(0, max);
     const remainingCount = Math.max(0, children.length - max);
@@ -212,7 +212,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         className={PS(
           "flex items-center",
           avatarGroupSpacing[spacing],
-          className
+          className,
         )}
         {...props}
       >
@@ -223,7 +223,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               size,
               className: PS(
                 "border-2 border-[hsl(var(--hu-background))]",
-                (child.props as any)?.className
+                (child.props as any)?.className,
               ),
             } as any);
           }
@@ -241,7 +241,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
         )}
       </div>
     );
-  }
+  },
 );
 AvatarGroup.displayName = "AvatarGroup";
 
