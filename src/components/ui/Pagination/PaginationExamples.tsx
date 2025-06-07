@@ -38,7 +38,7 @@ export function PaginationBasic() {
   const visiblePages = isMobile ? 3 : 5;
   const pages = Array.from(
     { length: Math.min(visiblePages, totalPages) },
-    (_, i) => i + 1
+    (_, i) => i + 1,
   );
 
   return (
@@ -163,7 +163,7 @@ export function PaginationWithEllipsis() {
             >
               {page}
             </PaginationItem>
-          )
+          ),
         )}
         <PaginationNext
           onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
