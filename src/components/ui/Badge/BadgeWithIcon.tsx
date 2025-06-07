@@ -1,6 +1,6 @@
 "use client";
 
-import { Badge, type BadgeProps } from "./badge";
+import { Badge, type BadgeProps } from "@/components/ui/Badge/badge";
 import {
   Star,
   CheckCircle,
