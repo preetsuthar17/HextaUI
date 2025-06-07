@@ -889,6 +889,22 @@ export function RegistrationForm() {
   </Tab>
 </Tabs>
 
+## Form Validation with Zod
+
+The Input component works excellently with Zod for type-safe form validation:
+
+```tsx
+import { z } from "zod";
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+// Use with error state for visual feedback
+<Input type="email" error={!!errors.email} onChange={handleChange} />;
+```
+
 ## Props
 
 <TypeTable
@@ -930,19 +946,3 @@ export function RegistrationForm() {
     },
   }}
 />
-
-## Form Validation with Zod
-
-The Input component works excellently with Zod for type-safe form validation:
-
-```tsx
-import { z } from "zod";
-
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
-});
-
-// Use with error state for visual feedback
-<Input type="email" error={!!errors.email} onChange={handleChange} />;
-```

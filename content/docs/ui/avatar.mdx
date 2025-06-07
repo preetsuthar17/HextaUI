@@ -4,6 +4,8 @@ description: An image element with a fallback for representing the user.
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import {
@@ -776,18 +778,54 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
 
 ### Avatar
 
-| Prop        | Type                                                      | Default     | Description                             |
-| ----------- | --------------------------------------------------------- | ----------- | --------------------------------------- |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"`      | The size of the avatar                  |
-| `tooltip`   | `string` \| `TooltipContentProps`                         | `undefined` | Tooltip content or props for the avatar |
-| `className` | `string`                                                  | `undefined` | Additional CSS classes                  |
+<TypeTable
+  type={{
+    size: {
+      description: "The size of the avatar",
+      type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+      default: '"md"',
+    },
+    tooltip: {
+      description: "Tooltip content or props for the avatar",
+      type: "string | TooltipContentProps",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
 
 ### AvatarGroup
 
-| Prop        | Type                                                      | Default     | Description                       |
-| ----------- | --------------------------------------------------------- | ----------- | --------------------------------- |
-| `max`       | `number`                                                  | `3`         | Maximum number of avatars to show |
-| `spacing`   | `"tight"` \| `"normal"` \| `"loose"`                      | `"normal"`  | Spacing between avatars           |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"` \| `"xl"` \| `"2xl"` | `"md"`      | Size of all avatars in the group  |
-| `children`  | `React.ReactElement[]`                                    | required    | Array of Avatar components        |
-| `className` | `string`                                                  | `undefined` | Additional CSS classes            |
+<TypeTable
+  type={{
+    max: {
+      description: "Maximum number of avatars to show",
+      type: "number",
+      default: "3",
+    },
+    spacing: {
+      description: "Spacing between avatars",
+      type: '"tight" | "normal" | "loose"',
+      default: '"normal"',
+    },
+    size: {
+      description: "Size of all avatars in the group",
+      type: '"xs" | "sm" | "md" | "lg" | "xl" | "2xl"',
+      default: '"md"',
+    },
+    children: {
+      description: "Array of Avatar components",
+      type: "React.ReactElement[]",
+      default: "required",
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>

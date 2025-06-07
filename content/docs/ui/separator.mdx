@@ -4,6 +4,8 @@ description: A separator component for dividing content visually.
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Separator } from "@/components/ui/separator";
@@ -380,9 +382,27 @@ import { Separator } from "@/components/ui/Separator";
 
 ## Props
 
-| Prop          | Type                         | Default        | Description                                  |
-| ------------- | ---------------------------- | -------------- | -------------------------------------------- |
-| `orientation` | `"horizontal" \| "vertical"` | `"horizontal"` | The orientation of the separator             |
-| `size`        | `"sm" \| "md" \| "lg"`       | `"sm"`         | The thickness of the separator               |
-| `className`   | `string`                     | -              | Additional CSS classes                       |
-| `children`    | `React.ReactNode`            | -              | Text content to display within the separator |
+<TypeTable
+  type={{
+    orientation: {
+      description: "The orientation of the separator",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+    },
+    size: {
+      description: "The thickness of the separator",
+      type: '"sm" | "md" | "lg"',
+      default: '"sm"',
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "Text content to display within the separator",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

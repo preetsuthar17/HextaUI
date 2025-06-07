@@ -4,6 +4,8 @@ description: A compact, interactive element for displaying status, categories, o
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Chip } from "@/components/ui/Chip";
@@ -581,13 +583,47 @@ import { Chip } from "@/components/ui/Chip";
 
 ## Props
 
-| Prop           | Type                                                                | Default     | Description                                           |
-| -------------- | ------------------------------------------------------------------- | ----------- | ----------------------------------------------------- |
-| `variant`      | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost"` | `"default"` | The visual style variant of the chip                  |
-| `size`         | `"sm" \| "default" \| "lg"`                                         | `"default"` | The size of the chip                                  |
-| `icon`         | `LucideIcon`                                                        | `undefined` | Icon component to display in the chip                 |
-| `iconPosition` | `"left" \| "right"`                                                 | `"left"`    | Position of the icon relative to the text             |
-| `dismissible`  | `boolean`                                                           | `false`     | Whether the chip can be dismissed with a close button |
-| `onDismiss`    | `() => void`                                                        | `undefined` | Callback function called when the chip is dismissed   |
-| `className`    | `string`                                                            | `undefined` | Additional CSS classes to apply                       |
-| `children`     | `ReactNode`                                                         | `undefined` | The content to display inside the chip                |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the chip",
+      type: '"default" | "secondary" | "destructive" | "outline" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the chip",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    icon: {
+      description: "Icon component to display in the chip",
+      type: "LucideIcon",
+      default: "undefined",
+    },
+    iconPosition: {
+      description: "Position of the icon relative to the text",
+      type: '"left" | "right"',
+      default: '"left"',
+    },
+    dismissible: {
+      description: "Whether the chip can be dismissed with a close button",
+      type: "boolean",
+      default: "false",
+    },
+    onDismiss: {
+      description: "Callback function called when the chip is dismissed",
+      type: "() => void",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "The content to display inside the chip",
+      type: "ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

@@ -4,6 +4,8 @@ description: Displays a button component with various styles and states.
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Download, ArrowRight, Heart, Settings, Trash2 } from "lucide-react";
@@ -374,13 +376,47 @@ export function LinkAsButton() {
 
 ## Props
 
-| Prop        | Type                                                                          | Default     | Description                                          |
-| ----------- | ----------------------------------------------------------------------------- | ----------- | ---------------------------------------------------- |
-| `variant`   | `"default" \| "destructive" \| "outline" \| "secondary" \| "ghost" \| "link"` | `"default"` | The visual style variant of the button               |
-| `size`      | `"default" \| "sm" \| "lg" \| "xl" \| "icon"`                                 | `"default"` | The size of the button                               |
-| `asChild`   | `boolean`                                                                     | `false`     | When true, the button will render as a child element |
-| `loading`   | `boolean`                                                                     | `false`     | Shows loading spinner and disables the button        |
-| `leftIcon`  | `React.ReactNode`                                                             | `undefined` | Icon to display on the left side of the button text  |
-| `rightIcon` | `React.ReactNode`                                                             | `undefined` | Icon to display on the right side of the button text |
-| `disabled`  | `boolean`                                                                     | `false`     | Disables the button interaction                      |
-| `className` | `string`                                                                      | `undefined` | Additional CSS classes to apply                      |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the button",
+      type: '"default" | "destructive" | "outline" | "secondary" | "ghost" | "link"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the button",
+      type: '"default" | "sm" | "lg" | "xl" | "icon"',
+      default: '"default"',
+    },
+    asChild: {
+      description: "When true, the button will render as a child element",
+      type: "boolean",
+      default: "false",
+    },
+    loading: {
+      description: "Shows loading spinner and disables the button",
+      type: "boolean",
+      default: "false",
+    },
+    leftIcon: {
+      description: "Icon to display on the left side of the button text",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+    rightIcon: {
+      description: "Icon to display on the right side of the button text",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+    disabled: {
+      description: "Disables the button interaction",
+      type: "boolean",
+      default: "false",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>

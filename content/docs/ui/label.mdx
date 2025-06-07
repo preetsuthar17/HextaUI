@@ -6,6 +6,7 @@ description: Displays a label element with enhanced styling and accessibility fe
 import { Tab, Tabs } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 import { PreviewContainer } from "@/components/PreviewContainer";
+
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Mail, Lock, User } from "lucide-react";
@@ -476,6 +477,24 @@ import { Mail, Lock, User } from "lucide-react";
   </Tab>
 </Tabs>
 
+## Form Association
+
+The Label component works seamlessly with form controls:
+
+```tsx
+// Proper association using htmlFor
+<Label htmlFor="email">Email Address</Label>
+<Input id="email" type="email" />
+
+// Required field indication
+<Label htmlFor="password" required>Password</Label>
+<Input id="password" type="password" />
+
+// Optional field indication
+<Label htmlFor="bio" optional>Biography</Label>
+<Input id="bio" />
+```
+
 ## Props
 
 <TypeTable
@@ -507,21 +526,3 @@ import { Mail, Lock, User } from "lucide-react";
     },
   }}
 />
-
-## Form Association
-
-The Label component works seamlessly with form controls:
-
-```tsx
-// Proper association using htmlFor
-<Label htmlFor="email">Email Address</Label>
-<Input id="email" type="email" />
-
-// Required field indication
-<Label htmlFor="password" required>Password</Label>
-<Input id="password" type="password" />
-
-// Optional field indication
-<Label htmlFor="bio" optional>Biography</Label>
-<Input id="bio" />
-```

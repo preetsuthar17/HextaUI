@@ -4,6 +4,8 @@ description: A keyboard key component for displaying keyboard shortcuts and key 
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 import { Kbd } from "@/components/ui/kbd";
 
@@ -489,37 +491,32 @@ Press <Kbd>Ctrl</Kbd> + <Kbd>S</Kbd> to save
 
 ## Props
 
-### Kbd
-
-| Prop        | Type                                                     | Default     | Description                                   |
-| ----------- | -------------------------------------------------------- | ----------- | --------------------------------------------- |
-| `variant`   | `"default"` \| `"outline"` \| `"solid"` \| `"secondary"` | `"default"` | The visual style variant of the kbd element   |
-| `size`      | `"xs"` \| `"sm"` \| `"md"` \| `"lg"`                     | `"sm"`      | The size of the kbd element                   |
-| `keys`      | `string[]`                                               | `undefined` | Array of keys for key combinations (optional) |
-| `className` | `string`                                                 | `undefined` | Additional CSS classes                        |
-| `children`  | `React.ReactNode`                                        | `undefined` | The key content (used for single keys)        |
-
-## Accessibility
-
-- Uses semantic `<kbd>` HTML element for keyboard input
-- Maintains proper contrast ratios for readability
-- Screen reader friendly with clear semantic meaning
-- Supports keyboard navigation and focus states
-
-## Common Key Symbols
-
-For macOS users, you can use these common symbols:
-
-- `⌘` - Command key (Cmd)
-- `⌥` - Option key (Alt)
-- `⇧` - Shift key
-- `⌃` - Control key
-- `↩` - Return/Enter key
-- `⌫` - Delete key
-- `⌦` - Forward delete
-- `⇥` - Tab key
-- `⎋` - Escape key
-- `⇪` - Caps Lock
-- `⏎` - Return
-- `⌤` - Enter
-- `⌧` - Clear
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the kbd element",
+      type: '"default" | "outline" | "solid" | "secondary"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the kbd element",
+      type: '"xs" | "sm" | "md" | "lg"',
+      default: '"sm"',
+    },
+    keys: {
+      description: "Array of keys for key combinations (optional)",
+      type: "string[]",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "The key content (used for single keys)",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

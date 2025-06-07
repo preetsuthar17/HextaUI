@@ -4,6 +4,8 @@ description: A set of layered sections of content with smooth animations and mod
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 import * as React from "react";
 
@@ -611,29 +613,91 @@ export default function MyComponent() {
 
 ### Tabs
 
-| Prop             | Type                                  | Default                    | Description                                          |
-| ---------------- | ------------------------------------- | -------------------------- | ---------------------------------------------------- |
-| `items`          | `TabItem[]`                           | -                          | Array of tab items with id, label, and optional icon |
-| `defaultValue`   | `string`                              | `items[0]?.id`             | The default active tab value                         |
-| `value`          | `string`                              | -                          | The controlled active tab value                      |
-| `onValueChange`  | `(value: string) => void`             | -                          | Callback when tab changes                            |
-| `variant`        | `"default" \| "ghost" \| "underline"` | `"default"`                | Visual variant of the tabs                           |
-| `size`           | `"sm" \| "default" \| "lg"`           | `"default"`                | Size of the tabs                                     |
-| `indicatorColor` | `string`                              | `"hsl(var(--hu-primary))"` | Custom color for the animated indicator              |
-| `className`      | `string`                              | -                          | Additional CSS classes                               |
+<TypeTable
+  type={{
+    items: {
+      description: "Array of tab items with id, label, and optional icon",
+      type: "TabItem[]",
+      default: "undefined",
+    },
+    defaultValue: {
+      description: "The default active tab value",
+      type: "string",
+      default: "items[0]?.id",
+    },
+    value: {
+      description: "The controlled active tab value",
+      type: "string",
+      default: "undefined",
+    },
+    onValueChange: {
+      description: "Callback when tab changes",
+      type: "(value: string) => void",
+      default: "undefined",
+    },
+    variant: {
+      description: "Visual variant of the tabs",
+      type: '"default" | "ghost" | "underline"',
+      default: '"default"',
+    },
+    size: {
+      description: "Size of the tabs",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    indicatorColor: {
+      description: "Custom color for the animated indicator",
+      type: "string",
+      default: '"hsl(var(--hu-accent))"',
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
 
 ### TabsContent
 
-| Prop          | Type     | Default | Description                           |
-| ------------- | -------- | ------- | ------------------------------------- |
-| `value`       | `string` | -       | The tab value this content belongs to |
-| `activeValue` | `string` | -       | The currently active tab value        |
-| `className`   | `string` | -       | Additional CSS classes                |
+<TypeTable
+  type={{
+    value: {
+      description: "The tab value this content belongs to",
+      type: "string",
+      default: "undefined",
+    },
+    activeValue: {
+      description: "The currently active tab value",
+      type: "string",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
 
 ### TabItem
 
-| Prop    | Type              | Default | Description                                  |
-| ------- | ----------------- | ------- | -------------------------------------------- |
-| `id`    | `string`          | -       | Unique identifier for the tab                |
-| `label` | `string`          | -       | Display text for the tab                     |
-| `icon`  | `React.ReactNode` | -       | Optional icon to display alongside the label |
+<TypeTable
+  type={{
+    id: {
+      description: "Unique identifier for the tab",
+      type: "string",
+      default: "undefined",
+    },
+    label: {
+      description: "Display text for the tab",
+      type: "string",
+      default: "undefined",
+    },
+    icon: {
+      description: "Optional icon to display alongside the label",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

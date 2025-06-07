@@ -4,6 +4,8 @@ description: A versatile badge component for displaying status, labels, or categ
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Badge } from "@/components/ui/Badge";
@@ -483,11 +485,37 @@ import { Badge } from "@/components/ui/Badge/Badge";
 
 ## Props
 
-| Prop           | Type                                                                | Default     | Description                               |
-| -------------- | ------------------------------------------------------------------- | ----------- | ----------------------------------------- |
-| `variant`      | `"default" \| "secondary" \| "destructive" \| "outline" \| "ghost"` | `"default"` | The visual style variant of the badge     |
-| `size`         | `"sm" \| "default" \| "lg"`                                         | `"default"` | The size of the badge                     |
-| `icon`         | `LucideIcon`                                                        | `undefined` | Icon component to display in the badge    |
-| `iconPosition` | `"left" \| "right"`                                                 | `"left"`    | Position of the icon relative to the text |
-| `className`    | `string`                                                            | `undefined` | Additional CSS classes to apply           |
-| `children`     | `ReactNode`                                                         | `undefined` | The content to display inside the badge   |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the badge",
+      type: '"default" | "secondary" | "destructive" | "outline" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the badge",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    icon: {
+      description: "Icon component to display in the badge",
+      type: "LucideIcon",
+      default: "undefined",
+    },
+    iconPosition: {
+      description: "Position of the icon relative to the text",
+      type: '"left" | "right"',
+      default: '"left"',
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "The content to display inside the badge",
+      type: "ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

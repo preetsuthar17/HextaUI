@@ -4,6 +4,8 @@ description: A popup that displays information related to an element when the el
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Button } from "@/components/ui/button";
@@ -542,10 +544,32 @@ import {
 
 ## Props
 
-| Prop         | Type                                                    | Default     | Description                                         |
-| ------------ | ------------------------------------------------------- | ----------- | --------------------------------------------------- |
-| `variant`    | `"default"` \| `"dark"` \| `"light"` \| `"destructive"` | `"default"` | The visual style of the tooltip                     |
-| `size`       | `"sm"` \| `"md"` \| `"lg"`                              | `"md"`      | The size of the tooltip                             |
-| `side`       | `"top"` \| `"right"` \| `"bottom"` \| `"left"`          | `"top"`     | The preferred side of the trigger to render against |
-| `sideOffset` | `number`                                                | `4`         | The distance in pixels from the trigger             |
-| `className`  | `string`                                                | `undefined` | Additional CSS classes                              |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style of the tooltip",
+      type: '"default" | "dark" | "light" | "destructive"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the tooltip",
+      type: '"sm" | "md" | "lg"',
+      default: '"md"',
+    },
+    side: {
+      description: "The preferred side of the trigger to render against",
+      type: '"top" | "right" | "bottom" | "left"',
+      default: '"top"',
+    },
+    sideOffset: {
+      description: "The distance in pixels from the trigger",
+      type: "number",
+      default: "4",
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>

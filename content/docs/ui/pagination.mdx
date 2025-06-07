@@ -4,6 +4,8 @@ description: Navigation component for splitting content across multiple pages wi
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import {
@@ -904,32 +906,88 @@ function useMediaQuery(query: string): boolean;
 
 ### Pagination
 
-| Prop        | Type                     | Default     | Description              |
-| ----------- | ------------------------ | ----------- | ------------------------ |
-| `variant`   | `"default" \| "compact"` | `"default"` | The visual style variant |
-| `className` | `string`                 | -           | Additional CSS classes   |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant",
+      type: '"default" | "compact"',
+      default: '"default"',
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
 
 ### PaginationItem
 
-| Prop       | Type                                | Default     | Description                          |
-| ---------- | ----------------------------------- | ----------- | ------------------------------------ |
-| `variant`  | `"default" \| "outline" \| "ghost"` | `"default"` | The visual style variant             |
-| `size`     | `"default" \| "sm" \| "lg"`         | `"default"` | The size of the pagination item      |
-| `isActive` | `boolean`                           | `false`     | Whether the item is the current page |
-| `onClick`  | `() => void`                        | -           | Click handler                        |
-| `disabled` | `boolean`                           | `false`     | Whether the item is disabled         |
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant",
+      type: '"default" | "outline" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the pagination item",
+      type: '"default" | "sm" | "lg"',
+      default: '"default"',
+    },
+    isActive: {
+      description: "Whether the item is the current page",
+      type: "boolean",
+      default: "false",
+    },
+    onClick: {
+      description: "Click handler",
+      type: "() => void",
+      default: "undefined",
+    },
+    disabled: {
+      description: "Whether the item is disabled",
+      type: "boolean",
+      default: "false",
+    },
+  }}
+/>
 
 ### PaginationPrevious / PaginationNext
 
-| Prop       | Type                        | Default                 | Description                       |
-| ---------- | --------------------------- | ----------------------- | --------------------------------- |
-| `size`     | `"default" \| "sm" \| "lg"` | `"default"`             | The size of the navigation button |
-| `onClick`  | `() => void`                | -                       | Click handler                     |
-| `disabled` | `boolean`                   | `false`                 | Whether the button is disabled    |
-| `children` | `React.ReactNode`           | `"Previous"` / `"Next"` | Custom label text                 |
+<TypeTable
+  type={{
+    size: {
+      description: "The size of the navigation button",
+      type: '"default" | "sm" | "lg"',
+      default: '"default"',
+    },
+    onClick: {
+      description: "Click handler",
+      type: "() => void",
+      default: "undefined",
+    },
+    disabled: {
+      description: "Whether the button is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    children: {
+      description: "Custom label text",
+      type: "React.ReactNode",
+      default: '"Previous" / "Next"',
+    },
+  }}
+/>
 
 ### PaginationEllipsis
 
-| Prop        | Type     | Default | Description            |
-| ----------- | -------- | ------- | ---------------------- |
-| `className` | `string` | -       | Additional CSS classes |
+<TypeTable
+  type={{
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>

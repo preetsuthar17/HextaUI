@@ -4,8 +4,9 @@ description: A two-state button that can be either on or off with smooth transit
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
-import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import {
   Bold,
@@ -507,48 +508,49 @@ Toggles can be grouped together to create more complex interactive components li
 <TypeTable
   type={{
     variant: {
-      default: '"default"',
       description: "The visual style variant of the toggle",
+      type: '"default" | "outline" | "ghost" | "secondary"',
+      default: '"default"',
     },
     size: {
-      default: '"default"',
       description: "The size of the toggle",
+      type: '"sm" | "default" | "lg" | "xl" | "icon"',
+      default: '"default"',
     },
     pressed: {
-      default: "undefined",
       description: "The controlled state of the toggle",
+      type: "boolean",
+      default: "undefined",
     },
     defaultPressed: {
-      default: "false",
       description: "The default state of the toggle when uncontrolled",
+      type: "boolean",
+      default: "false",
     },
     onPressedChange: {
-      default: "undefined",
       description: "Callback fired when the toggle state changes",
+      type: "(pressed: boolean) => void",
+      default: "undefined",
     },
     leftIcon: {
-      default: "undefined",
       description: "Icon to display on the left side of the toggle text",
+      type: "React.ReactNode",
+      default: "undefined",
     },
     rightIcon: {
-      default: "undefined",
       description: "Icon to display on the right side of the toggle text",
+      type: "React.ReactNode",
+      default: "undefined",
     },
     disabled: {
-      default: "false",
       description: "Disables the toggle interaction",
+      type: "boolean",
+      default: "false",
     },
     className: {
-      default: "undefined",
       description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
     },
   }}
 />
-
-## Accessibility
-
-- Toggle uses the native HTML button element with ARIA attributes
-- Supports keyboard navigation with Space and Enter keys
-- Screen reader friendly with proper state announcements
-- Focus management with visible focus indicators
-- Use `aria-label` for icon-only toggles to provide accessible names
