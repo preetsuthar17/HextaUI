@@ -28,7 +28,7 @@
   --hu-destructive-foreground: 0, 0%, 98%;
 
   --hu-border: 0, 0%, 92%;
-  --hu-input: 0, 0%, 92%;
+  --hu-input: 0, 0%, 100%;
   --hu-ring: 0, 0%, 71%;
 
   --color-fd-background: hsl(var(--hu-background));
@@ -57,7 +57,7 @@
   --hu-destructive-foreground: 0, 0%, 98%;
 
   --hu-border: 0, 0%, 100%, 10%;
-  --hu-input: 0, 0%, 100%, 15%;
+  --hu-input: 0, 0%, 100%, 5%;
   --hu-ring: 0, 0%, 56%;
 
   --color-fd-background: hsl(var(--hu-background));

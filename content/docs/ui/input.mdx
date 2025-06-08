@@ -53,7 +53,7 @@ import { cn } from "@/lib/utils";
 import { Eye, EyeOff, X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
+  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
   {
     variants: {
       variant: {
@@ -61,7 +61,7 @@ const inputVariants = cva(
         destructive:
           "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-background))] focus-visible:border-[hsl(var(--hu-border))]",
+          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-[hsl(var(--hu-border))]",
       },
       size: {
         default: "h-9 px-3 py-2",

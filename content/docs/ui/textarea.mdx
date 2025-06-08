@@ -62,7 +62,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 const textareaVariants = cva(
-  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all resize-y",
+  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all resize-y",
   {
     variants: {
       variant: {
@@ -70,7 +70,7 @@ const textareaVariants = cva(
         destructive:
           "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-background))] focus-visible:border-[hsl(var(--hu-border))]",
+          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-[hsl(var(--hu-border))]",
       },
       size: {
         sm: "min-h-[60px] px-2 py-1 text-xs",
