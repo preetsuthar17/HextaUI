@@ -30,21 +30,21 @@ export function PerformanceMonitor() {
       for (const entry of entries) {
         if (entry.entryType === "measure" && entry.name.includes("React")) {
           console.log(
-            `[Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`
+            `[Performance] ${entry.name}: ${entry.duration.toFixed(2)}ms`,
           );
         }
 
         // Monitor paint times
         if (entry.entryType === "paint") {
           console.log(
-            `[Performance] ${entry.name}: ${entry.startTime.toFixed(2)}ms`
+            `[Performance] ${entry.name}: ${entry.startTime.toFixed(2)}ms`,
           );
         }
 
         // Monitor layout shifts
         if (entry.entryType === "layout-shift" && (entry as any).value > 0.1) {
           console.warn(
-            `[Performance] Layout shift detected: ${(entry as any).value}`
+            `[Performance] Layout shift detected: ${(entry as any).value}`,
           );
         }
       }
@@ -56,7 +56,7 @@ export function PerformanceMonitor() {
     } catch (error) {
       console.warn(
         "[Performance] Could not observe performance metrics:",
-        error
+        error,
       );
     }
 

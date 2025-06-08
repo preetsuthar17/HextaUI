@@ -5,16 +5,16 @@
 [data-banner] {
   /* Force a new stacking context and composite layer */
   transform: translateZ(0);
-  
+
   /* Optimize for animations by preventing unnecessary layer promotions */
   will-change: auto;
-  
+
   /* Prevent 3D transform glitches */
   backface-visibility: hidden;
-  
+
   /* Contain expensive operations */
   contain: layout style paint;
-  
+
   /* Optimize paint operations */
   isolation: isolate;
 }
