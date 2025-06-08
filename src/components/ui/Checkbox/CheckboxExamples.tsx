@@ -81,7 +81,7 @@ export function CheckboxIndeterminate() {
 
   const handleItemChange = (id: number, checked: boolean) => {
     setItems(
-      items.map((item) => (item.id === id ? { ...item, checked } : item))
+      items.map((item) => (item.id === id ? { ...item, checked } : item)),
     );
   };
 
@@ -188,7 +188,7 @@ export function CheckboxAnimated() {
 
   const handleChange = (id: number, checked: boolean) => {
     setItems(
-      items.map((item) => (item.id === id ? { ...item, checked } : item))
+      items.map((item) => (item.id === id ? { ...item, checked } : item)),
     );
   };
 
