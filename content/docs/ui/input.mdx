@@ -72,7 +72,7 @@ const inputVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface InputProps
@@ -100,11 +100,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       value,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || ""
+      props.defaultValue || "",
     );
 
     const inputVariant = error ? "destructive" : variant;
@@ -154,7 +154,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             inputVariants({ variant: inputVariant, size, className }),
             leftIcon && "pl-10",
-            (rightIcon || isPassword || showClearButton) && "pr-10"
+            (rightIcon || isPassword || showClearButton) && "pr-10",
           )}
           ref={ref}
           {...(isControlled
@@ -201,7 +201,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";
@@ -727,7 +727,7 @@ const registrationSchema = z
       .max(20, "Username must be less than 20 characters")
       .regex(
         /^[a-zA-Z0-9_]+$/,
-        "Username can only contain letters, numbers, and underscores"
+        "Username can only contain letters, numbers, and underscores",
       ),
     email: z.string().email("Invalid email address"),
     password: z
@@ -738,7 +738,7 @@ const registrationSchema = z
       .regex(/[0-9]/, "Password must contain at least one number")
       .regex(
         /[^A-Za-z0-9]/,
-        "Password must contain at least one special character"
+        "Password must contain at least one special character",
       ),
     confirmPassword: z.string(),
   })
