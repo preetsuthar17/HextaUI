@@ -42,10 +42,6 @@ export default function Layout({ children }: { children: ReactNode }) {
           async
           src="//gc.zgo.at/count.js"
         ></script>
-        <script
-          crossOrigin="anonymous"
-          src="//unpkg.com/react-scan/dist/auto.global.js"
-        />
       </body>
     </html>
   );
