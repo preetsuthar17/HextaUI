@@ -44,7 +44,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         className={cn(
           loaderVariants({ size, variant }),
           isMounted && "animate-spin",
-          className
+          className,
         )}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -69,7 +69,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         />
       </svg>
     );
-  }
+  },
 );
 
 Loader.displayName = "Loader";
