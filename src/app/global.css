@@ -99,3 +99,69 @@ samp {
     height: 0;
   }
 }
+
+/* Responsive MenuBar scrollbar utilities */
+.scrollbar-hide {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  /* WebKit browsers */
+  display: none;
+}
+
+/* Touch-friendly scrolling for mobile devices */
+@media (max-width: 640px) {
+  .scrollbar-hide {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Enhanced touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+  [role="menubar"] button {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  [role="menuitem"] {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+}
+.scrollbar-hide {
+  /* IE and Edge */
+  -ms-overflow-style: none;
+  /* Firefox */
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  /* WebKit browsers */
+  display: none;
+}
+
+/* Touch-friendly scrolling for mobile devices */
+@media (max-width: 640px) {
+  .scrollbar-hide {
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+  }
+}
+
+/* Enhanced touch targets for mobile */
+@media (hover: none) and (pointer: coarse) {
+  [role="menubar"] button {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+
+  [role="menuitem"] {
+    min-height: 44px;
+    padding: 0.75rem 1rem;
+  }
+}
