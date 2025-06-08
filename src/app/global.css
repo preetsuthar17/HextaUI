@@ -3,7 +3,7 @@
 @import "fumadocs-ui/css/preset.css";
 
 :root {
-  --hu-font-inter: var(--font-inter);
+  --hu-font-geist: var(--font-geist);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
   --hu-background: 0, 0%, 100%;
@@ -73,6 +73,6 @@ samp {
 }
 
 ::selection {
-  background-color: hsl(0, 0%, 0%);
-  color: hsl(0, 0%, 100%);
+  background-color: hsl(var(--hu-foreground));
+  color: hsl(var(--hu-background));
 }

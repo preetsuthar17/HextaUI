@@ -1,14 +1,14 @@
 import "./global.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Banner } from "fumadocs-ui/components/banner";
 import Link from "next/link";
 
-const inter = Inter({
+const geist = Geist({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-geist",
   weight: ["400", "500", "600", "700"],
 });
 
@@ -22,7 +22,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${inter.className} ${jetbrains_mono.variable}`}
+      className={`${geist.className} ${jetbrains_mono.variable}`}
       suppressHydrationWarning
     >
       <body className="flex flex-col min-h-screen">
