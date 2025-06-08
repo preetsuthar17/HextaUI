@@ -24,15 +24,15 @@ const inputOTPVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const inputOTPSlotVariants = cva(
-  "relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center border-y border-r border-input bg-background text-xs sm:text-sm transition-all first:rounded-l-lg sm:first:rounded-l-xl first:border-l last:rounded-r-lg sm:last:rounded-r-xl focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center border-y border-r border-input bg-[hsl(var(--hu-accent))] text-xs sm:text-sm transition-all first:rounded-l-lg sm:first:rounded-l-xl first:border-l last:rounded-r-lg sm:last:rounded-r-xl focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-input text-foreground",
+        default: "border-input text-[hsl(var(--hu-foreground))]",
         destructive:
           "border-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] focus-within:ring-[hsl(var(--hu-ring))]",
       },
@@ -46,7 +46,7 @@ const inputOTPSlotVariants = cva(
         active:
           "border-primary ring-2 ring-[hsl(var(--hu-ring))] ring-offset-2",
         filled:
-          "bg-accent border-[hsl(var(--hu-border))] text-accent-foreground",
+          "bg-accent border-[hsl(var(--hu-border))] text-[hsl(var(--hu-accent-foreground))]",
       },
     },
     defaultVariants: {
@@ -54,7 +54,7 @@ const inputOTPSlotVariants = cva(
       size: "default",
       state: "default",
     },
-  },
+  }
 );
 
 export interface InputOTPProps {
@@ -86,20 +86,20 @@ const InputOTP = React.forwardRef<
       children,
       ...props
     },
-    ref,
+    ref
   ) => (
     <OTPInput
       ref={ref}
       containerClassName={cn(
         inputOTPVariants({ variant, size: otpSize }),
-        containerClassName,
+        containerClassName
       )}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
     >
       {children}
     </OTPInput>
-  ),
+  )
 );
 InputOTP.displayName = "InputOTP";
 
@@ -129,7 +129,7 @@ const InputOTPSlot = React.forwardRef<
 >(
   (
     { index, className, variant, otpSize, state, animated = true, ...props },
-    ref,
+    ref
   ) => {
     const inputOTPContext = React.useContext(OTPInputContext);
     const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
@@ -145,7 +145,7 @@ const InputOTPSlot = React.forwardRef<
             size: otpSize,
             state: state || currentState,
           }),
-          className,
+          className
         )}
         {...props}
       >
@@ -182,7 +182,7 @@ const InputOTPSlot = React.forwardRef<
         {slotContent}
       </motion.div>
     );
-  },
+  }
 );
 InputOTPSlot.displayName = "InputOTPSlot";
 
@@ -198,8 +198,8 @@ const InputOTPSeparator = React.forwardRef<
       size === "sm"
         ? "text-xs"
         : size === "lg"
-          ? "text-sm sm:text-base"
-          : "text-xs sm:text-sm",
+        ? "text-sm sm:text-base"
+        : "text-xs sm:text-sm"
     )}
     {...props}
   >
