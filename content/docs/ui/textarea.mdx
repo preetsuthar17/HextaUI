@@ -1,0 +1,600 @@
+---
+title: Textarea
+description: Displays a multi-line text input field with enhanced features like clearable functionality, auto-resizing, and Zod validation support.
+---
+
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { TypeTable, ObjectTable } from "fumadocs-ui/components/type-table";
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import { Textarea } from "@/components/ui/Textarea";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
+
+import {
+  BasicTextarea,
+  TextareaWithLabel,
+  TextareaVariants,
+  TextareaSizes,
+  ClearableTextarea,
+  DisabledTextarea,
+  TextareaWithError,
+  FormExample,
+} from "@/components/ui/Textarea";
+
+<Tabs items={["Preview", "Code"]} className="not-prose">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <Textarea placeholder="Enter your message here..." />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<Textarea placeholder="Enter your message here..." />
+```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/Textarea/textarea.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { X } from "lucide-react";
+
+const textareaVariants = cva(
+  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all resize-y",
+  {
+    variants: {
+      variant: {
+        default: "border-[hsl(var(--hu-border))]",
+        destructive:
+          "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
+        ghost:
+          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-background))] focus-visible:border-[hsl(var(--hu-border))]",
+      },
+      size: {
+        sm: "min-h-[60px] px-2 py-1 text-xs",
+        default: "min-h-[80px] px-3 py-2",
+        lg: "min-h-[120px] px-4 py-2",
+        xl: "min-h-[160px] px-6 py-3 text-base",
+        fixed: "h-[80px] px-3 py-2 resize-none",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+export interface TextareaProps
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, "size">,
+    VariantProps<typeof textareaVariants> {
+  error?: boolean;
+  clearable?: boolean;
+  onClear?: () => void;
+}
+
+const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      error,
+      clearable = false,
+      onClear,
+      value,
+      onChange,
+      ...props
+    },
+    ref,
+  ) => {
+    const [internalValue, setInternalValue] = React.useState(
+      props.defaultValue || "",
+    );
+    const textareaRef = React.useRef<HTMLTextAreaElement>(null);
+
+    React.useImperativeHandle(ref, () => textareaRef.current!, []);
+
+    const isControlled = value !== undefined;
+    const textareaValue = isControlled ? value : internalValue;
+
+    const showClearButton =
+      clearable && textareaValue && String(textareaValue).length > 0;
+
+    const handleClear = React.useCallback(() => {
+      const syntheticEvent = {
+        target: { value: "" },
+        currentTarget: { value: "" },
+      } as React.ChangeEvent<HTMLTextAreaElement>;
+
+      if (!isControlled) {
+        setInternalValue("");
+      }
+
+      if (onChange) {
+        onChange(syntheticEvent);
+      }
+
+      if (onClear) {
+        onClear();
+      }
+
+      if (textareaRef.current) {
+        textareaRef.current.focus();
+      }
+    }, [isControlled, onChange, onClear]);
+
+    const handleChange = React.useCallback(
+      (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        if (!isControlled) {
+          setInternalValue(e.target.value);
+        }
+
+        if (onChange) {
+          onChange(e);
+        }
+      },
+      [isControlled, onChange],
+    );
+
+    // Determine variant - if error is true, use destructive variant
+    const effectiveVariant = error ? "destructive" : variant;
+
+    return (
+      <div className="relative">
+        <textarea
+          className={cn(
+            textareaVariants({ variant: effectiveVariant, size }),
+            className,
+          )}
+          ref={textareaRef}
+          value={textareaValue}
+          onChange={handleChange}
+          {...props}
+        />
+
+        {/* Clear button */}
+        {showClearButton && (
+          <div className="absolute top-2 right-2">
+            <button
+              type="button"
+              onClick={handleClear}
+              className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0 p-1 rounded-md hover:bg-[hsl(var(--hu-accent))]"
+              tabIndex={-1}
+            >
+              <X />
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  },
+);
+
+Textarea.displayName = "Textarea";
+
+export { Textarea, textareaVariants };
+```
+
+  </Tab>
+    <Tab value="CLI">
+```package-install
+npx hexta-ui add textarea
+```
+  </Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Textarea } from "@/components/ui/Textarea";
+```
+
+```tsx
+<div className="grid w-full max-w-sm items-center gap-1.5">
+  <Textarea placeholder="Enter your message..." />
+</div>
+```
+
+## Examples
+
+### Basic Textarea
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <BasicTextarea />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="w-full max-w-sm">
+  <Textarea placeholder="Enter your message here..." />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### With Label
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <TextareaWithLabel />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Label } from "@/components/ui/label";
+
+<div className="w-full max-w-sm">
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="message">Your message</Label>
+    <Textarea id="message" placeholder="Type your message here..." />
+  </div>
+</div>;
+```
+
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <TextareaSizes />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="flex flex-col gap-3 w-full max-w-sm">
+  <Textarea placeholder="Small textarea" size="sm" />
+  <Textarea placeholder="Default textarea" />
+  <Textarea placeholder="Large textarea" size="lg" />
+  <Textarea placeholder="Extra large textarea" size="xl" />
+  <Textarea placeholder="Fixed height textarea (no resize)" size="fixed" />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <TextareaVariants />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="flex flex-col gap-3 w-full max-w-sm">
+  <Textarea placeholder="Default textarea" />
+  <Textarea placeholder="Ghost textarea" variant="ghost" />
+  <Textarea placeholder="Error textarea" error />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Clearable Textarea
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ClearableTextarea />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="flex flex-col gap-3 w-full max-w-sm">
+  <Textarea
+    placeholder="Clearable textarea"
+    clearable
+    defaultValue="Clear me!"
+  />
+  <Textarea
+    placeholder="Another clearable textarea"
+    clearable
+    defaultValue="This content can be cleared with the X button"
+  />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DisabledTextarea />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+<div className="w-full max-w-sm">
+  <Textarea
+    placeholder="This textarea is disabled"
+    disabled
+    defaultValue="You cannot edit this content"
+  />
+</div>
+```
+
+  </Tab>
+</Tabs>
+
+### With Error
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <TextareaWithError />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+import { Label } from "@/components/ui/label";
+
+<div className="w-full max-w-sm">
+  <div className="grid w-full items-center gap-1.5">
+    <Label htmlFor="error-message" required>
+      Message
+    </Label>
+    <Textarea id="error-message" placeholder="Enter your message..." error />
+    <p className="text-xs text-[hsl(var(--hu-destructive))]">
+      This field is required.
+    </p>
+  </div>
+</div>;
+```
+
+  </Tab>
+</Tabs>
+
+## Form Examples with Zod Validation
+
+### Contact Form
+
+<Tabs items={["Preview", "Code"]} className="not-prose mt-6">
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FormExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/Textarea";
+
+function ContactForm() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    message: "",
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
+
+  const handleChange =
+    (field: string) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: e.target.value }));
+    };
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="contact-name" required>
+            Name
+          </Label>
+          <Input
+            id="contact-name"
+            type="text"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange("name")}
+            clearable
+          />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="contact-email" required>
+            Email
+          </Label>
+          <Input
+            id="contact-email"
+            type="email"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange("email")}
+            clearable
+          />
+        </div>
+        <div className="grid w-full items-center gap-1.5">
+          <Label htmlFor="contact-message" required>
+            Message
+          </Label>
+          <Textarea
+            id="contact-message"
+            placeholder="Enter your message..."
+            value={formData.message}
+            onChange={handleChange("message")}
+            clearable
+            size="lg"
+          />
+        </div>
+        <Button type="submit" className="w-full">
+          Send Message
+        </Button>
+      </form>
+    </div>
+  );
+}
+```
+
+  </Tab>
+</Tabs>
+
+## Form Validation with Zod
+
+The Textarea component works excellently with Zod for type-safe form validation:
+
+```tsx
+import { z } from "zod";
+
+const schema = z.object({
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  email: z.string().email(),
+});
+
+// Use with error state for visual feedback
+<Textarea error={!!errors.message} onChange={handleChange} />;
+```
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual variant of the textarea",
+      type: '"default" | "destructive" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the textarea",
+      type: '"sm" | "default" | "lg" | "xl" | "fixed"',
+      default: '"default"',
+    },
+    error: {
+      description: "Whether the textarea is in an error state",
+      type: "boolean",
+      default: "false",
+    },
+    clearable: {
+      description:
+        "Whether to show a clear button when the textarea has content",
+      type: "boolean",
+      default: "false",
+    },
+    onClear: {
+      description: "Callback function called when the clear button is clicked",
+      type: "() => void",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+    placeholder: {
+      description: "Placeholder text for the textarea",
+      type: "string",
+      default: "undefined",
+    },
+    disabled: {
+      description: "Whether the textarea is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    rows: {
+      description: "Number of visible text lines for the textarea",
+      type: "number",
+      default: "undefined",
+    },
+    cols: {
+      description: "Visible width of the textarea",
+      type: "number",
+      default: "undefined",
+    },
+    maxLength: {
+      description: "Maximum number of characters allowed",
+      type: "number",
+      default: "undefined",
+    },
+    minLength: {
+      description: "Minimum number of characters required",
+      type: "number",
+      default: "undefined",
+    },
+    required: {
+      description: "Whether the textarea is required",
+      type: "boolean",
+      default: "false",
+    },
+    readOnly: {
+      description: "Whether the textarea is read-only",
+      type: "boolean",
+      default: "false",
+    },
+    value: {
+      description: "The controlled value of the textarea",
+      type: "string",
+      default: "undefined",
+    },
+    defaultValue: {
+      description: "The default value of the textarea (uncontrolled)",
+      type: "string",
+      default: "undefined",
+    },
+    onChange: {
+      description: "Callback function called when the value changes",
+      type: "(event: React.ChangeEvent<HTMLTextAreaElement>) => void",
+      default: "undefined",
+    },
+    onFocus: {
+      description: "Callback function called when the textarea receives focus",
+      type: "(event: React.FocusEvent<HTMLTextAreaElement>) => void",
+      default: "undefined",
+    },
+    onBlur: {
+      description: "Callback function called when the textarea loses focus",
+      type: "(event: React.FocusEvent<HTMLTextAreaElement>) => void",
+      default: "undefined",
+    },
+  }}
+/>
