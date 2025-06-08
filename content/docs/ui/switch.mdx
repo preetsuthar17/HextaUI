@@ -1,0 +1,446 @@
+---
+title: Switch
+description: A control that allows the user to toggle between checked and not checked with smooth animations and multiple variants.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  Switch,
+  BasicSwitch,
+  SwitchWithLabel,
+  SwitchVariants,
+  SwitchSizes,
+  DisabledSwitch,
+  ControlledSwitch,
+  SwitchWithError,
+  AnimatedSwitch,
+} from "@/components/ui/Switch";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <Switch defaultChecked />
+        <Switch variant="secondary" defaultChecked />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Switch defaultChecked />
+    <Switch variant="secondary" defaultChecked />
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install @radix-ui/react-switch class-variance-authority motion
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/switch.tsx"
+"use client";
+
+import * as React from "react";
+import * as SwitchPrimitive from "@radix-ui/react-switch";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+
+const switchVariants = cva(
+  "peer inline-flex shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 focus-visible:ring-offset-[hsl(var(--hu-background))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[hsl(var(--hu-primary))] data-[state=unchecked]:bg-[hsl(var(--hu-input))]",
+  {
+    variants: {
+      variant: {
+        default:
+          "data-[state=checked]:bg-[hsl(var(--hu-primary))] data-[state=unchecked]:bg-[hsl(var(--hu-input))]",
+        secondary:
+          "data-[state=checked]:bg-[hsl(var(--hu-secondary))] data-[state=unchecked]:bg-[hsl(var(--hu-input))]",
+      },
+      size: {
+        sm: "h-5 w-9",
+        default: "h-6 w-11",
+        lg: "h-7 w-13",
+        xl: "h-8 w-15",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+const switchThumbVariants = cva(
+  "pointer-events-none block rounded-full bg-[hsl(var(--hu-background))] shadow-lg ring-0 transition-transform",
+  {
+    variants: {
+      variant: {
+        default: "bg-[hsl(var(--hu-background))]",
+        secondary: "bg-[hsl(var(--hu-background))]",
+      },
+      size: {
+        sm: "h-4 w-4 data-[state=checked]:translate-x-4 data-[state=unchecked]:translate-x-0",
+        default:
+          "h-5 w-5 data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0",
+        lg: "h-6 w-6 data-[state=checked]:translate-x-6 data-[state=unchecked]:translate-x-0",
+        xl: "h-7 w-7 data-[state=checked]:translate-x-7 data-[state=unchecked]:translate-x-0",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+export interface SwitchProps
+  extends React.ComponentPropsWithoutRef<typeof SwitchPrimitive.Root>,
+    VariantProps<typeof switchVariants> {
+  label?: string;
+  description?: string;
+  error?: string;
+  animated?: boolean;
+}
+
+const Switch = React.forwardRef<
+  React.ElementRef<typeof SwitchPrimitive.Root>,
+  SwitchProps
+>(
+  (
+    {
+      className,
+      variant,
+      size,
+      label,
+      description,
+      error,
+      animated = true,
+      id,
+      ...props
+    },
+    ref,
+  ) => {
+    const switchId = id || React.useId();
+
+    const switchElement = (
+      <SwitchPrimitive.Root
+        ref={ref}
+        id={switchId}
+        className={cn(switchVariants({ variant, size }), className)}
+        {...props}
+      >
+        <SwitchPrimitive.Thumb
+          className={cn(switchThumbVariants({ variant, size }))}
+          asChild={animated}
+        >
+          {animated ? (
+            <motion.div
+              layout
+              transition={{
+                type: "spring",
+                stiffness: 700,
+                damping: 30,
+              }}
+              className={cn(switchThumbVariants({ variant, size }))}
+            />
+          ) : (
+            <div className={cn(switchThumbVariants({ variant, size }))} />
+          )}
+        </SwitchPrimitive.Thumb>
+      </SwitchPrimitive.Root>
+    );
+
+    if (label || description || error) {
+      return (
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            {switchElement}
+            <div className="grid gap-1.5 leading-none">
+              {label && (
+                <label
+                  htmlFor={switchId}
+                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                >
+                  {label}
+                </label>
+              )}
+              {description && (
+                <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                  {description}
+                </p>
+              )}
+            </div>
+          </div>
+          {error && (
+            <p className="text-xs text-[hsl(var(--hu-destructive))]">{error}</p>
+          )}
+        </div>
+      );
+    }
+
+    return switchElement;
+  },
+);
+
+Switch.displayName = SwitchPrimitive.Root.displayName;
+
+export { Switch, switchVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx @hexta-ui/cli@latest add switch
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Switch } from "@/components/ui/Switch";
+```
+
+```tsx
+<Switch />
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Switch />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Switch />
+    ```
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SwitchVariants />
+    </PreviewContainer>
+  </Tab>{" "}
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <Switch defaultChecked />
+      <Switch variant="secondary" defaultChecked />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SwitchSizes />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <Switch size="sm" defaultChecked />
+      <Switch defaultChecked />
+      <Switch size="lg" defaultChecked />
+      <Switch size="xl" defaultChecked />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### With Label
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SwitchWithLabel />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Switch
+      label="Push Notifications"
+      description="Receive notifications on your device"
+    />
+    ```
+  </Tab>
+</Tabs>
+
+### Disabled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DisabledSwitch />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Switch disabled />
+    <Switch disabled defaultChecked />
+    ```
+  </Tab>
+</Tabs>
+
+### Controlled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ControlledSwitch />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    const [notifications, setNotifications] = React.useState(false);
+    const [darkMode, setDarkMode] = React.useState(true);
+
+    return (
+      <div className="space-y-4">
+        <Switch
+          label="Enable Notifications"
+          description="Get notified about important updates"
+          checked={notifications}
+          onCheckedChange={setNotifications}
+        />        <Switch
+          label="Dark Mode"
+          description="Use dark theme across the application"
+          variant="secondary"
+          checked={darkMode}
+          onCheckedChange={setDarkMode}
+        />
+      </div>
+    );
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Error
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SwitchWithError />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    const [agreed, setAgreed] = React.useState(false);
+
+    <Switch
+      label="I agree to the terms and conditions"
+      description="Please read and accept our terms before proceeding"
+      checked={agreed}
+      onCheckedChange={setAgreed}
+      error={!agreed ? "You must agree to the terms" : undefined}
+    />
+    ```
+
+  </Tab>
+</Tabs>
+
+### Animation Control
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <AnimatedSwitch />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Switch defaultChecked animated={true} />
+    <Switch defaultChecked animated={false} />
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the switch",
+      type: '"default" | "secondary"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the switch",
+      type: '"sm" | "default" | "lg" | "xl"',
+      default: '"default"',
+    },
+    checked: {
+      description: "The controlled state of the switch",
+      type: "boolean",
+      default: "undefined",
+    },
+    defaultChecked: {
+      description: "The default state of the switch when uncontrolled",
+      type: "boolean",
+      default: "false",
+    },
+    onCheckedChange: {
+      description: "Callback fired when the switch state changes",
+      type: "(checked: boolean) => void",
+      default: "undefined",
+    },
+    label: {
+      description: "Label text to display next to the switch",
+      type: "string",
+      default: "undefined",
+    },
+    description: {
+      description: "Description text to display below the label",
+      type: "string",
+      default: "undefined",
+    },
+    error: {
+      description: "Error message to display below the switch",
+      type: "string",
+      default: "undefined",
+    },
+    animated: {
+      description: "Whether to use smooth animations for the thumb movement",
+      type: "boolean",
+      default: "true",
+    },
+    disabled: {
+      description: "Disables the switch interaction",
+      type: "boolean",
+      default: "false",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
