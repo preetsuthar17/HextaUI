@@ -1,0 +1,1002 @@
+---
+title: Dropdown Menu
+description: A versatile dropdown menu component with animations, multiple variants, and full accessibility support.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  DropdownMenuDemo,
+  DropdownMenuSimple,
+  DropdownMenuCheckboxes,
+  DropdownMenuRadioGroupDemo,
+  DropdownMenuTheme,
+  DropdownMenuMore,
+  DropdownMenuProfile,
+  DropdownMenuNotifications,
+} from "@/components/ui/DropdownMenu";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-4 flex-wrap">
+        <DropdownMenuDemo />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+    } from "@/components/ui/DropdownMenu";
+    import { Button } from "@/components/ui/Button";
+
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Open Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel icon={User}>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem icon={User} shortcut="⇧⌘P">
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem icon={CreditCard} shortcut="⌘B">
+            Billing
+          </DropdownMenuItem>
+          <DropdownMenuItem icon={Settings} shortcut="⌘S">
+            Settings
+          </DropdownMenuItem>
+          <DropdownMenuItem icon={Keyboard} shortcut="⌘K">
+            Keyboard shortcuts
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem icon={Users}>Team</DropdownMenuItem>
+          <DropdownMenuSub>
+            <DropdownMenuSubTrigger icon={UserPlus}>
+              Invite users
+            </DropdownMenuSubTrigger>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem icon={Mail}>Email</DropdownMenuItem>
+              <DropdownMenuItem icon={MessageSquare}>Message</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem icon={PlusCircle}>More...</DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuSub>
+          <DropdownMenuItem icon={Plus} shortcut="⌘+T">
+            New Team
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem icon={Github}>GitHub</DropdownMenuItem>
+        <DropdownMenuItem icon={LifeBuoy}>Support</DropdownMenuItem>
+        <DropdownMenuItem disabled icon={Cloud}>
+          API
+        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem icon={LogOut} variant="destructive" shortcut="⇧⌘Q">
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+
+    ```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install @radix-ui/react-dropdown-menu motion class-variance-authority lucide-react
+```
+
+<div className="my-6 rounded-xl border border-orange-200 bg-orange-50 p-4 dark:border-orange-800 dark:bg-orange-950">
+  <div className="flex">
+    <div className="ml-3">
+      <h3 className="text-sm font-medium text-orange-800 dark:text-orange-200">
+        Required Component
+      </h3>
+      <div className="mt-2 text-sm text-orange-700 dark:text-orange-300">
+        This component requires <code>Kbd</code> component to display keyboard
+        shortcuts.
+      </div>
+    </div>
+  </div>
+</div>
+
+[Kbd Component](/docs/ui/kbd)
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/dropdown-menu.tsx"
+"use client";
+
+import * as React from "react";
+import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import { motion, AnimatePresence } from "motion/react";
+import { Check, ChevronRight, Circle, type LucideIcon } from "lucide-react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { Kbd } from "../kbd";
+
+const DropdownMenu = DropdownMenuPrimitive.Root;
+
+const DropdownMenuTrigger = DropdownMenuPrimitive.Trigger;
+
+const DropdownMenuGroup = DropdownMenuPrimitive.Group;
+
+const DropdownMenuPortal = DropdownMenuPrimitive.Portal;
+
+const DropdownMenuSub = DropdownMenuPrimitive.Sub;
+
+const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
+
+// Motion wrapper for animations
+const MotionContent = React.forwardRef<
+  React.ElementRef<typeof motion.div>,
+  React.ComponentPropsWithoutRef<typeof motion.div>
+>(({ children, ...props }, ref) => (
+  <motion.div
+    ref={ref}
+    initial={{ opacity: 0, scale: 0.95, y: -8 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    exit={{ opacity: 0, scale: 0.95, y: -8 }}
+    transition={{
+      type: "spring",
+      stiffness: 400,
+      damping: 25,
+      duration: 0.2,
+    }}
+    {...props}
+  >
+    {children}
+  </motion.div>
+));
+MotionContent.displayName = "MotionContent";
+
+const DropdownMenuSubTrigger = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubTrigger>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubTrigger> & {
+    inset?: boolean;
+    icon?: LucideIcon;
+  }
+>(({ className, inset, children, icon: Icon, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubTrigger
+    ref={ref}
+    className={cn(
+      "flex cursor-default gap-2 select-none items-center rounded-lg px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
+      "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
+      "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
+      "data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))]",
+      "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+      inset && "pl-8",
+      className,
+    )}
+    {...props}
+  >
+    <motion.div
+      className="flex text-sm w-full items-center gap-2"
+      whileHover={{ x: 2 }}
+      transition={{ duration: 0.1 }}
+    >
+      {Icon && <Icon size={16} className="shrink-0" />}
+      <span className="flex-1">{children}</span>
+      <ChevronRight className="ml-auto h-4 w-4" />
+    </motion.div>
+  </DropdownMenuPrimitive.SubTrigger>
+));
+DropdownMenuSubTrigger.displayName =
+  DropdownMenuPrimitive.SubTrigger.displayName;
+
+const DropdownMenuSubContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.SubContent
+    ref={ref}
+    className={cn(
+      "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-lg",
+      "data-[state=open]:animate-in data-[state=closed]:animate-out",
+      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+      "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+      "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
+      "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+      className,
+    )}
+    {...props}
+  />
+));
+DropdownMenuSubContent.displayName =
+  DropdownMenuPrimitive.SubContent.displayName;
+
+const DropdownMenuContent = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Content>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
+>(({ className, sideOffset = 4, ...props }, ref) => (
+  <DropdownMenuPrimitive.Portal>
+    <DropdownMenuPrimitive.Content
+      ref={ref}
+      sideOffset={sideOffset}
+      className={cn(
+        "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-xl",
+        "data-[state=open]:animate-in data-[state=closed]:animate-out",
+        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
+        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
+        "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
+        "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+        className,
+      )}
+      {...props}
+    />
+  </DropdownMenuPrimitive.Portal>
+));
+DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
+
+const dropdownMenuItemVariants = cva(
+  "relative flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
+  {
+    variants: {
+      variant: {
+        default:
+          "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))] active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+        destructive:
+          "text-[hsl(var(--hu-destructive))] hover:bg-[hsl(var(--hu-destructive))] hover:text-[hsl(var(--hu-destructive-foreground))] focus:bg-[hsl(var(--hu-destructive))] focus:text-[hsl(var(--hu-destructive-foreground))] active:bg-[hsl(var(--hu-destructive))] active:text-[hsl(var(--hu-destructive-foreground))]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+const DropdownMenuItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Item>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Item> & {
+    inset?: boolean;
+    icon?: LucideIcon;
+    shortcut?: string;
+  } & VariantProps<typeof dropdownMenuItemVariants>
+>(
+  (
+    { className, variant, inset, icon: Icon, shortcut, children, ...props },
+    ref,
+  ) => (
+    <DropdownMenuPrimitive.Item
+      ref={ref}
+      className={cn(
+        dropdownMenuItemVariants({ variant }),
+        "data-disabled:pointer-events-none data-disabled:opacity-50",
+        inset && "pl-8",
+        className,
+      )}
+      {...props}
+    >
+      <motion.div
+        className="flex text-sm w-full items-center gap-2"
+        whileHover={{ x: 2 }}
+        transition={{ duration: 0.1 }}
+      >
+        {Icon && <Icon size={16} className="shrink-0" />}
+        <span className="flex-1 text-sm">{children}</span>
+        {shortcut && (
+          <Kbd size="xs" className="ml-auto text-xs tracking-widest opacity-60">
+            {shortcut}
+          </Kbd>
+        )}
+      </motion.div>
+    </DropdownMenuPrimitive.Item>
+  ),
+);
+DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
+
+const DropdownMenuCheckboxItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.CheckboxItem>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.CheckboxItem> & {
+    icon?: LucideIcon;
+  }
+>(({ className, children, checked, icon: Icon, ...props }, ref) => (
+  <DropdownMenuPrimitive.CheckboxItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-lg py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
+      "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
+      "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+      "data-disabled:pointer-events-none data-disabled:opacity-50",
+      className,
+    )}
+    checked={checked}
+    {...props}
+  >
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.1 }}
+        >
+          <Check className="h-4 w-4" />
+        </motion.div>
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    <motion.div
+      className="flex text-sm w-full items-center gap-2"
+      whileHover={{ x: 2 }}
+      transition={{ duration: 0.1 }}
+    >
+      {Icon && <Icon size={16} className="shrink-0" />}
+      {children}
+    </motion.div>
+  </DropdownMenuPrimitive.CheckboxItem>
+));
+DropdownMenuCheckboxItem.displayName =
+  DropdownMenuPrimitive.CheckboxItem.displayName;
+
+const DropdownMenuRadioItem = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.RadioItem>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.RadioItem> & {
+    icon?: LucideIcon;
+  }
+>(({ className, children, icon: Icon, ...props }, ref) => (
+  <DropdownMenuPrimitive.RadioItem
+    ref={ref}
+    className={cn(
+      "relative flex cursor-default select-none items-center rounded-lg py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
+      "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
+      "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+      "data-disabled:pointer-events-none data-disabled:opacity-50",
+      className,
+    )}
+    {...props}
+  >
+    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+      <DropdownMenuPrimitive.ItemIndicator>
+        <motion.div
+          initial={{ scale: 0 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 0.1 }}
+        >
+          <Circle className="h-2 w-2 fill-current" />
+        </motion.div>
+      </DropdownMenuPrimitive.ItemIndicator>
+    </span>
+    <motion.div
+      className="flex text-sm w-full items-center gap-2"
+      whileHover={{ x: 2 }}
+      transition={{ duration: 0.1 }}
+    >
+      {Icon && <Icon size={16} className="shrink-0" />}
+      {children}
+    </motion.div>
+  </DropdownMenuPrimitive.RadioItem>
+));
+DropdownMenuRadioItem.displayName = DropdownMenuPrimitive.RadioItem.displayName;
+
+const DropdownMenuLabel = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Label>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Label> & {
+    inset?: boolean;
+    icon?: LucideIcon;
+  }
+>(({ className, inset, icon: Icon, children, ...props }, ref) => (
+  <DropdownMenuPrimitive.Label
+    ref={ref}
+    className={cn(
+      "px-3 py-1.5 text-sm font-semibold text-[hsl(var(--hu-muted-foreground))] flex items-center gap-2",
+      inset && "pl-8",
+      className,
+    )}
+    {...props}
+  >
+    {Icon && <Icon size={16} className="shrink-0" />}
+    {children}
+  </DropdownMenuPrimitive.Label>
+));
+DropdownMenuLabel.displayName = DropdownMenuPrimitive.Label.displayName;
+
+const DropdownMenuSeparator = React.forwardRef<
+  React.ElementRef<typeof DropdownMenuPrimitive.Separator>,
+  React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Separator>
+>(({ className, ...props }, ref) => (
+  <DropdownMenuPrimitive.Separator
+    ref={ref}
+    className={cn("-mx-1 my-1 h-px bg-[hsl(var(--hu-border))]", className)}
+    {...props}
+  />
+));
+DropdownMenuSeparator.displayName = DropdownMenuPrimitive.Separator.displayName;
+
+const DropdownMenuShortcut = ({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLSpanElement>) => {
+  return (
+    <span
+      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+      {...props}
+    />
+  );
+};
+DropdownMenuShortcut.displayName = "DropdownMenuShortcut";
+
+export {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+  dropdownMenuItemVariants,
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```bash
+npx hextaui add dropdown-menu
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu";
+```
+
+```tsx
+<DropdownMenu>
+  <DropdownMenuTrigger>Open</DropdownMenuTrigger>
+  <DropdownMenuContent>
+    <DropdownMenuItem>Profile</DropdownMenuItem>
+    <DropdownMenuItem>Settings</DropdownMenuItem>
+    <DropdownMenuItem>Logout</DropdownMenuItem>
+  </DropdownMenuContent>
+</DropdownMenu>
+```
+
+## Examples
+
+### Basic Dropdown
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuSimple />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+      DropdownMenuSeparator,
+    } from "@/components/ui/DropdownMenu";
+    import { Edit, Copy, Archive, Trash } from "lucide-react";
+
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline" size="sm">
+          Actions
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent >
+        <DropdownMenuItem icon={Edit}>Edit</DropdownMenuItem>
+        <DropdownMenuItem icon={Copy}>Copy</DropdownMenuItem>
+        <DropdownMenuItem icon={Archive}>Archive</DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem icon={Trash} variant="destructive">
+          Delete
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Icons and Shortcuts
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuDemo />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+      DropdownMenuGroup,
+      DropdownMenuSub,
+      DropdownMenuSubContent,
+      DropdownMenuSubTrigger,
+    } from "@/components/ui/DropdownMenu";
+    import { User, Settings, CreditCard, LogOut, Plus, Users } from "lucide-react";
+
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="outline">Open Menu</Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56">
+        <DropdownMenuLabel icon={User}>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuItem icon={User} shortcut="⇧⌘P">
+            Profile
+          </DropdownMenuItem>
+          <DropdownMenuItem icon={CreditCard} shortcut="⌘B">
+            Billing
+          </DropdownMenuItem>
+          <DropdownMenuItem icon={Settings} shortcut="⌘S">
+            Settings
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator />
+        <DropdownMenuItem icon={LogOut} variant="destructive" shortcut="⇧⌘Q">
+          Log out
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Checkboxes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuCheckboxes />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+      DropdownMenuCheckboxItem,
+    } from "@/components/ui/DropdownMenu";
+
+    function DropdownMenuCheckboxes() {
+      const [showStatusBar, setShowStatusBar] = React.useState(true);
+      const [showActivityBar, setShowActivityBar] = React.useState(false);
+      const [showPanel, setShowPanel] = React.useState(false);
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">View</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>Appearance</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuCheckboxItem
+              checked={showStatusBar}
+              onCheckedChange={setShowStatusBar}
+            >
+              Status Bar
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={showActivityBar}
+              onCheckedChange={setShowActivityBar}
+              disabled
+            >
+              Activity Bar
+            </DropdownMenuCheckboxItem>
+            <DropdownMenuCheckboxItem
+              checked={showPanel}
+              onCheckedChange={setShowPanel}
+            >
+              Panel
+            </DropdownMenuCheckboxItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Radio Groups
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuRadioGroupDemo />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+      DropdownMenuRadioGroup,
+      DropdownMenuRadioItem,
+    } from "@/components/ui/DropdownMenu";
+
+    function DropdownMenuRadioGroupDemo() {
+      const [position, setPosition] = React.useState("bottom");
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">Panel Position</Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56">
+            <DropdownMenuLabel>Panel Position</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
+              <DropdownMenuRadioItem value="top">Top</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="bottom">Bottom</DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="right">Right</DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Theme Selector
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuTheme />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+      DropdownMenuRadioGroup,
+      DropdownMenuRadioItem,
+    } from "@/components/ui/DropdownMenu";
+    import { Palette, Sun, Moon, Monitor } from "lucide-react";
+
+    function DropdownMenuTheme() {
+      const [theme, setTheme] = React.useState("system");
+
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="sm">
+              <Palette className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent >
+            <DropdownMenuLabel icon={Palette}>Theme</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuRadioGroup value={theme} onValueChange={setTheme}>
+              <DropdownMenuRadioItem value="light" icon={Sun}>
+                Light
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="dark" icon={Moon}>
+                Dark
+              </DropdownMenuRadioItem>
+              <DropdownMenuRadioItem value="system" icon={Monitor}>
+                System
+              </DropdownMenuRadioItem>
+            </DropdownMenuRadioGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Profile Dropdown
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuProfile />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">    
+  ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+      DropdownMenuGroup,
+    } from "@/components/ui/DropdownMenu";
+    import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/Avatar";
+    import { User, Settings, Bell, LogOut } from "lucide-react";
+
+    function DropdownMenuProfile() {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" className="relative h-8 w-8 rounded-full p-0">
+              <Avatar size="sm">
+                <AvatarImage
+                  src="https://github.com/preetsuthar17.png"
+                  alt="@preetsuthar17"
+                />
+                <AvatarFallback>PS</AvatarFallback>
+              </Avatar>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent className="w-56"  forceMount>
+            <DropdownMenuLabel className="font-normal">
+              <div className="flex flex-col space-y-1">
+                <p className="text-sm font-medium leading-none">Preet Suthar</p>
+                <p className="text-xs leading-none text-muted-foreground">
+                  preet@example.com
+                </p>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem icon={User}>Profile</DropdownMenuItem>
+              <DropdownMenuItem icon={Settings}>Settings</DropdownMenuItem>
+              <DropdownMenuItem icon={Bell}>Notifications</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem icon={LogOut} variant="destructive">
+              Log out
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Notifications Dropdown
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuNotifications />
+    </PreviewContainer>  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+      DropdownMenuLabel,
+      DropdownMenuSeparator,
+    } from "@/components/ui/DropdownMenu";
+    import { Badge } from "@/components/ui/Badge";
+    import { Bell } from "lucide-react";
+
+    function DropdownMenuNotifications() {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="sm" className="relative">
+              <Bell className="h-4 w-4" />
+              <Badge
+                variant="destructive"
+                size="sm"
+                className="absolute -top-2 -right-2 h-5 w-5 rounded-full p-0 text-[10px] flex items-center justify-center"
+              >
+                3
+              </Badge>
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent  className="w-80">
+            <DropdownMenuLabel icon={Bell}>
+              <div className="flex items-center justify-between">
+                <span>Notifications</span>
+                <Badge variant="secondary" size="sm">3 new</Badge>
+              </div>
+            </DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <div className="max-h-[300px] overflow-y-auto">
+              <DropdownMenuItem>
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium">New message received</p>
+                    <Badge variant="default" size="sm">New</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">2 minutes ago</p>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium">Project deployment successful</p>
+                    <Badge variant="outline" size="sm">Success</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">1 hour ago</p>
+                </div>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center justify-between">
+                    <p className="text-sm font-medium">System maintenance scheduled</p>
+                    <Badge variant="secondary" size="sm">Info</Badge>
+                  </div>
+                  <p className="text-xs text-muted-foreground">3 hours ago</p>
+                </div>
+              </DropdownMenuItem>
+            </div>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem className="text-center">
+              View all notifications
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Action Menu
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DropdownMenuMore />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import {
+      DropdownMenu,
+      DropdownMenuContent,
+      DropdownMenuItem,
+      DropdownMenuTrigger,
+      DropdownMenuSeparator,
+    } from "@/components/ui/DropdownMenu";
+    import { MoreHorizontal, Edit, Copy, Star, Archive, Trash } from "lucide-react";
+
+    function DropdownMenuMore() {
+      return (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="ghost" size="sm">
+              <MoreHorizontal className="h-4 w-4" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent >
+            <DropdownMenuItem icon={Edit}>Edit</DropdownMenuItem>
+            <DropdownMenuItem icon={Copy}>Make a copy</DropdownMenuItem>
+            <DropdownMenuItem icon={Star}>Add to favorites</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem icon={Archive}>Archive</DropdownMenuItem>
+            <DropdownMenuItem icon={Trash} variant="destructive">
+              Delete
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Mobile Best Practices
+
+```tsx
+// Use responsive width classes for dropdown content
+<DropdownMenuContent className="w-[95vw] max-w-56 sm:w-56">
+  {/* Content */}
+</DropdownMenuContent>
+
+// For wider content like notifications
+<DropdownMenuContent className="w-[95vw] max-w-80 sm:w-80">
+  {/* Notification content */}
+</DropdownMenuContent>
+```
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the menu item",
+      type: '"default" | "destructive"',
+      default: '"default"',
+    },
+    icon: {
+      description: "Icon component to display in the menu item",
+      type: "LucideIcon",
+      default: "undefined",
+    },
+    shortcut: {
+      description: "Keyboard shortcut text to display",
+      type: "string",
+      default: "undefined",
+    },
+    inset: {
+      description: "Whether to inset the menu item for visual hierarchy",
+      type: "boolean",
+      default: "false",
+    },
+    disabled: {
+      description: "Whether the menu item is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    asChild: {
+      description: "Change the component to the passed child",
+      type: "boolean",
+      default: "false",
+    },
+    align: {
+      description: "The preferred alignment against the trigger",
+      type: '"start" | "center" | "end"',
+      default: '"center"',
+    },
+    side: {
+      description: "The preferred side of the trigger to render against",
+      type: '"top" | "right" | "bottom" | "left"',
+      default: '"bottom"',
+    },
+    sideOffset: {
+      description: "The distance in pixels from the trigger",
+      type: "number",
+      default: "4",
+    },
+  }}
+/>
