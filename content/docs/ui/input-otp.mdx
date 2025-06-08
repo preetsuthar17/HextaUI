@@ -1,0 +1,1104 @@
+---
+title: Input OTP
+description: A flexible and accessible one-time password input component with customizable slots, patterns, and animations.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+  InputOTPExamples,
+  InputOTPCompleteExample,
+  InputOTPPatternExample,
+  InputOTPAnimatedExample,
+} from "@/components/ui/InputOTP";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    {" "}
+    <PreviewContainer>
+      <div className="flex flex-col gap-8 max-w-md mx-auto">
+        <div className="flex flex-col gap-3 text-center">
+          <InputOTP maxLength={6}>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
+          <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            Enter your one-time password.
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>{" "}
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-8 max-w-md mx-auto">
+      <div className="flex flex-col gap-3 text-center">
+        <InputOTP maxLength={6}>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        <div className="text-sm text-muted-foreground">
+          Enter your one-time password.
+        </div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install input-otp class-variance-authority motion
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/input-otp.tsx"
+"use client";
+
+import * as React from "react";
+import { OTPInput, OTPInputContext } from "input-otp";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+
+const inputOTPVariants = cva(
+  "flex items-center gap-1 sm:gap-2 has-[:disabled]:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "",
+        destructive: "",
+      },
+      size: {
+        sm: "gap-0.5 sm:gap-1",
+        default: "gap-1 sm:gap-2",
+        lg: "gap-2 sm:gap-3",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+const inputOTPSlotVariants = cva(
+  "relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center border-y border-r border-input bg-background text-xs sm:text-sm transition-all first:rounded-l-lg sm:first:rounded-l-xl first:border-l last:rounded-r-lg sm:last:rounded-r-xl focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "border-input text-foreground",
+        destructive:
+          "border-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] focus-within:ring-[hsl(var(--hu-ring))]",
+      },
+      size: {
+        sm: "h-6 w-6 sm:h-8 sm:w-8 text-xs",
+        default: "h-8 w-8 sm:h-10 sm:w-10 text-xs sm:text-sm",
+        lg: "h-10 w-10 sm:h-12 sm:w-12 text-sm sm:text-base",
+      },
+      state: {
+        default: "",
+        active:
+          "border-primary ring-2 ring-[hsl(var(--hu-ring))] ring-offset-2",
+        filled:
+          "bg-accent border-[hsl(var(--hu-border))] text-accent-foreground",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+      state: "default",
+    },
+  },
+);
+
+export interface InputOTPProps {
+  maxLength: number;
+  value?: string;
+  onChange?: (newValue: string) => void;
+  onComplete?: (newValue: string) => void;
+  disabled?: boolean;
+  pattern?: string;
+  className?: string;
+  containerClassName?: string;
+  animated?: boolean;
+  variant?: "default" | "destructive";
+  otpSize?: "sm" | "default" | "lg";
+  children?: React.ReactNode;
+}
+
+const InputOTP = React.forwardRef<
+  React.ElementRef<typeof OTPInput>,
+  InputOTPProps
+>(
+  (
+    {
+      className,
+      containerClassName,
+      variant,
+      otpSize,
+      animated = true,
+      children,
+      ...props
+    },
+    ref,
+  ) => (
+    <OTPInput
+      ref={ref}
+      containerClassName={cn(
+        inputOTPVariants({ variant, size: otpSize }),
+        containerClassName,
+      )}
+      className={cn("disabled:cursor-not-allowed", className)}
+      {...props}
+    >
+      {children}
+    </OTPInput>
+  ),
+);
+InputOTP.displayName = "InputOTP";
+
+const InputOTPGroup = React.forwardRef<
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div"> &
+    Omit<VariantProps<typeof inputOTPVariants>, "size"> & {
+      otpSize?: "sm" | "default" | "lg";
+    }
+>(({ className, variant, otpSize, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn(inputOTPVariants({ variant, size: otpSize }), className)}
+    {...props}
+  />
+));
+InputOTPGroup.displayName = "InputOTPGroup";
+
+const InputOTPSlot = React.forwardRef<
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div"> &
+    Omit<VariantProps<typeof inputOTPSlotVariants>, "size"> & {
+      index: number;
+      animated?: boolean;
+      otpSize?: "sm" | "default" | "lg";
+    }
+>(
+  (
+    { index, className, variant, otpSize, state, animated = true, ...props },
+    ref,
+  ) => {
+    const inputOTPContext = React.useContext(OTPInputContext);
+    const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
+
+    const currentState = isActive ? "active" : char ? "filled" : "default";
+
+    const slotContent = (
+      <div
+        ref={ref}
+        className={cn(
+          inputOTPSlotVariants({
+            variant,
+            size: otpSize,
+            state: state || currentState,
+          }),
+          className,
+        )}
+        {...props}
+      >
+        {char}
+        {hasFakeCaret && (
+          <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+            <motion.div
+              className="h-3 w-px sm:h-4 sm:w-px bg-[hsl(var(--hu-foreground))]"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: [0, 1, 0] }}
+              transition={{
+                duration: 1.2,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+          </div>
+        )}
+      </div>
+    );
+
+    if (!animated) return slotContent;
+
+    return (
+      <motion.div
+        initial={{ scale: 0.8, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{
+          duration: 0.2,
+          delay: index * 0.05,
+          ease: "easeOut",
+        }}
+      >
+        {slotContent}
+      </motion.div>
+    );
+  },
+);
+InputOTPSlot.displayName = "InputOTPSlot";
+
+const InputOTPSeparator = React.forwardRef<
+  React.ElementRef<"div">,
+  React.ComponentPropsWithoutRef<"div"> & VariantProps<typeof inputOTPVariants>
+>(({ variant, size, ...props }, ref) => (
+  <div
+    ref={ref}
+    role="separator"
+    className={cn(
+      "flex items-center justify-center text-[hsl(var(--hu-muted-foreground))] px-1 sm:px-2",
+      size === "sm"
+        ? "text-xs"
+        : size === "lg"
+          ? "text-sm sm:text-base"
+          : "text-xs sm:text-sm",
+    )}
+    {...props}
+  >
+    <svg
+      width="6"
+      height="6"
+      viewBox="0 0 8 8"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className="sm:w-2 sm:h-2"
+    >
+      <circle cx="4" cy="4" r="1" fill="currentColor" />
+    </svg>
+  </div>
+));
+InputOTPSeparator.displayName = "InputOTPSeparator";
+
+export {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+  inputOTPVariants,
+  inputOTPSlotVariants,
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```bash
+npx hextaui add input-otp
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import {
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+  InputOTPSeparator,
+} from "@/components/ui/input-otp";
+```
+
+```tsx
+<InputOTP maxLength={6}>
+  <InputOTPGroup>
+    <InputOTPSlot index={0} />
+    <InputOTPSlot index={1} />
+    <InputOTPSlot index={2} />
+  </InputOTPGroup>
+  <InputOTPSeparator />
+  <InputOTPGroup>
+    <InputOTPSlot index={3} />
+    <InputOTPSlot index={4} />
+    <InputOTPSlot index={5} />
+  </InputOTPGroup>
+</InputOTP>
+```
+
+## Examples
+
+### Basic Examples
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <InputOTPExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState } from "react";
+    import {
+      InputOTP,
+      InputOTPGroup,
+      InputOTPSlot,
+      InputOTPSeparator,
+    } from "@/components/ui/input-otp";
+
+    function InputOTPExamples() {
+        const [value, setValue] = useState("");
+        return (
+            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                Basic OTP Input
+                </h3>
+                <div className="flex flex-col items-center gap-3">
+                <InputOTP
+                    maxLength={6}
+                    value={value}
+                    onChange={(value) => setValue(value)}
+                >
+                    <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                </InputOTP>
+                <div className="text-center text-sm text-[hsl(var(--hu-muted-foreground))]">
+                    Enter your one-time password.
+                </div>
+                </div>
+            </div>{" "}
+            <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                With Separator
+                </h3>
+                <div className="flex justify-center">
+                <InputOTP maxLength={6}>
+                    <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    </InputOTPGroup>
+                    <InputOTPSeparator />
+                    <InputOTPGroup>
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                    </InputOTPGroup>
+                </InputOTP>
+                </div>
+            </div>{" "}
+            <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                Different Sizes
+                </h3>
+                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-3">
+                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
+                    Small
+                    </div>
+                    <div className="flex justify-center">
+                    <InputOTP maxLength={4} otpSize="sm">
+                        <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        </InputOTPGroup>
+                    </InputOTP>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
+                    Default
+                    </div>
+                    <div className="flex justify-center">
+                    <InputOTP maxLength={4} otpSize="default">
+                        <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        </InputOTPGroup>
+                    </InputOTP>
+                    </div>
+                </div>
+                <div className="flex flex-col gap-3">
+                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
+                    Large
+                    </div>
+                    <div className="flex justify-center">
+                    <InputOTP maxLength={4} otpSize="lg">
+                        <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                        </InputOTPGroup>
+                    </InputOTP>
+                    </div>
+                </div>
+                </div>
+            </div>{" "}
+            <div className="flex flex-col gap-4">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                Variants
+                </h3>
+                <div className="flex flex-col gap-4 items-center text-center">
+                <div className="flex flex-col gap-2">
+                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    Default
+                    </div>
+                    <InputOTP maxLength={4} variant="default">
+                    <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                    </InputOTPGroup>
+                    </InputOTP>
+                </div>
+                <div className="flex flex-col gap-2 items-center text-center">
+                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    Destructive
+                    </div>
+                    <InputOTP maxLength={4} variant="destructive">
+                    <InputOTPGroup>
+                        <InputOTPSlot index={0} />
+                        <InputOTPSlot index={1} />
+                        <InputOTPSlot index={2} />
+                        <InputOTPSlot index={3} />
+                    </InputOTPGroup>
+                    </InputOTP>
+                    <div className="text-xs text-[hsl(var(--hu-destructive))]">
+                    Invalid verification code. Please try again.
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        );
+        }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Complete Verification Flow
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <InputOTPCompleteExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState } from "react";
+    import {
+      InputOTP,
+      InputOTPGroup,
+      InputOTPSlot,
+      InputOTPSeparator,
+    } from "@/components/ui/input-otp";
+
+    function InputOTPCompleteExample() {
+        const [value, setValue] = useState("");
+        const [isComplete, setIsComplete] = useState(false);
+        const [isLoading, setIsLoading] = useState(false);
+
+        const handleComplete = async (value: string) => {
+            setIsLoading(true);
+            // Simulate API call
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setIsComplete(true);
+            setIsLoading(false);
+        };
+
+        const handleChange = (newValue: string) => {
+            setValue(newValue);
+            setIsComplete(false);
+            if (newValue.length === 6) {
+            handleComplete(newValue);
+            }
+        };
+        return (
+            <div className="flex flex-col gap-6 max-w-md mx-auto text-center items-center">
+            <div className="flex flex-col gap-2">
+                <h3 className="text-lg font-semibold">Verify your email</h3>
+                <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                We've sent a verification code to your email address.
+                </p>
+            </div>
+            <div className="flex flex-col gap-4">
+                <InputOTP
+                maxLength={6}
+                value={value}
+                onChange={handleChange}
+                disabled={isLoading || isComplete}
+                >
+                <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                </InputOTPGroup>
+                <InputOTPSeparator />
+                <InputOTPGroup>
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                </InputOTPGroup>
+                </InputOTP>
+
+                {isLoading && (
+                <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                    Verifying...
+                </div>
+                )}
+
+                {isComplete && (
+                <div className="text-sm text-[hsl(var(--hu-primary))] font-medium">
+                    ✓ Verification successful!
+                </div>
+                )}
+
+                {!isComplete && !isLoading && value.length > 0 && (
+                <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    {value.length}/6 characters entered
+                </div>
+                )}
+            </div>{" "}
+            <div className="flex flex-col gap-2">
+                <button
+                className="text-sm text-[hsl(var(--hu-primary))] hover:underline"
+                onClick={() => {
+                    setValue("");
+                    setIsComplete(false);
+                    setIsLoading(false);
+                }}
+                >
+                Resend code
+                </button>
+                <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                Didn't receive the code? Check your spam folder.
+                </div>
+            </div>
+            </div>
+        );
+        }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Pattern Validation
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <InputOTPPatternExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState } from "react";
+    import {
+      InputOTP,
+      InputOTPGroup,
+      InputOTPSlot,
+    } from "@/components/ui/input-otp";
+
+    function InputOTPPatternExample() {
+        const [value, setValue] = useState("");
+        return (
+            <div className="flex flex-col gap-6">
+            <div className="flex flex-col gap-3">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                Numeric Only
+                </h3>
+                <InputOTP
+                maxLength={6}
+                pattern={"[0-9]*"}
+                value={value}
+                onChange={setValue}
+                >
+                <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSeparator />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                </InputOTPGroup>
+                </InputOTP>
+                <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                Only numbers are allowed
+                </div>
+            </div>
+
+            <div className="flex flex-col gap-3">
+                <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+                Alphanumeric
+                </h3>
+                <InputOTP maxLength={6} pattern={"[A-Za-z0-9]*"}>
+                <InputOTPGroup>
+                    <InputOTPSlot index={0} />
+                    <InputOTPSlot index={1} />
+                    <InputOTPSlot index={2} />
+                    <InputOTPSeparator />
+                    <InputOTPSlot index={3} />
+                    <InputOTPSlot index={4} />
+                    <InputOTPSlot index={5} />
+                </InputOTPGroup>
+                </InputOTP>
+                <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                Letters and numbers are allowed
+                </div>
+            </div>
+            </div>
+        );
+        }
+
+    ```
+
+  </Tab>
+</Tabs>
+
+### Animated Slots
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <InputOTPAnimatedExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState } from "react";
+    import {
+      InputOTP,
+      InputOTPGroup,
+      InputOTPSlot,
+    } from "@/components/ui/input-otp";
+
+    function InputOTPAnimatedExample() {
+      const [values, setValues] = useState<string[]>(["", "", ""]);
+      const [currentInput, setCurrentInput] = useState(0);
+
+      const handleValueChange = (index: number, value: string) => {
+        const newValues = [...values];
+        newValues[index] = value;
+        setValues(newValues);
+
+        if (value.length === 4 && index < 2) {
+          setCurrentInput(index + 1);
+        }
+      };
+      return (
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-2 text-center">
+            <h3 className="text-lg font-semibold">Enter your backup codes</h3>
+            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              Enter any of your 8-digit backup codes
+            </p>
+          </div>
+
+          <div className="flex flex-col gap-4 items-center justify-center text-center">
+            {values.map((value, index) => (
+              <div key={index} className="flex flex-col gap-2">
+                <div className="text-xs font-medium text-[hsl(var(--hu-muted-foreground))]">
+                  Code {index + 1}
+                </div>
+                <InputOTP
+                  maxLength={4}
+                  value={value}
+                  onChange={(newValue) => handleValueChange(index, newValue)}
+                  pattern={"[0-9]*"}
+                  animated={true}
+                >
+                  <InputOTPGroup>
+                    <InputOTPSlot index={0} animated={true} />
+                    <InputOTPSlot index={1} animated={true} />
+                    <InputOTPSlot index={2} animated={true} />
+                    <InputOTPSlot index={3} animated={true} />
+                  </InputOTPGroup>
+                </InputOTP>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <button
+              className="px-4 py-2 text-sm font-medium bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-md hover:bg-[hsl(var(--hu-primary))]/80 transition-colors disabled:opacity-50"
+              disabled={!values.some((v) => v.length === 4)}
+            >
+              Verify backup code
+            </button>
+          </div>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      {" "}
+      <div className="flex flex-col gap-4 max-w-md mx-auto">
+        <div className="flex flex-col gap-2">
+          <div className="text-sm font-medium">Disabled Input</div>
+          <InputOTP maxLength={6} disabled>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            This field is currently disabled
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>{" "}
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-4 max-w-md mx-auto">
+      <div className="flex flex-col gap-2">
+        <div className="text-sm font-medium">Disabled Input</div>
+        <InputOTP maxLength={6} disabled>
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        <div className="text-xs text-muted-foreground">
+          This field is currently disabled
+        </div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Error State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    {" "}
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 max-w-md mx-auto">
+        <div className="flex flex-col gap-2">
+          <div className="text-sm font-medium">Verification Code</div>
+          <InputOTP maxLength={6} variant="destructive">
+            <InputOTPGroup>
+              <InputOTPSlot index={0} variant="destructive" />
+              <InputOTPSlot index={1} variant="destructive" />
+              <InputOTPSlot index={2} variant="destructive" />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} variant="destructive" />
+              <InputOTPSlot index={4} variant="destructive" />
+              <InputOTPSlot index={5} variant="destructive" />
+            </InputOTPGroup>
+          </InputOTP>
+          <div className="text-xs text-[hsl(var(--hu-destructive))]">
+            Invalid verification code. Please try again.
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>{" "}
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-4 max-w-md mx-auto">
+      <div className="flex flex-col gap-2">
+        <div className="text-sm font-medium">Verification Code</div>
+        <InputOTP maxLength={6} variant="destructive">
+          <InputOTPGroup>
+            <InputOTPSlot index={0} variant="destructive" />
+            <InputOTPSlot index={1} variant="destructive" />
+            <InputOTPSlot index={2} variant="destructive" />
+          </InputOTPGroup>
+          <InputOTPSeparator />
+          <InputOTPGroup>
+            <InputOTPSlot index={3} variant="destructive" />
+            <InputOTPSlot index={4} variant="destructive" />
+            <InputOTPSlot index={5} variant="destructive" />
+          </InputOTPGroup>
+        </InputOTP>
+        <div className="text-xs text-destructive">
+          Invalid verification code. Please try again.
+        </div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Responsive Design
+
+The InputOTP component automatically adapts to different screen sizes, providing optimal usability on both desktop and mobile devices.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex flex-col gap-4 max-w-md mx-auto">
+        <div className="flex flex-col gap-3">
+          <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+            Responsive Layout
+          </h3>
+          <div className="flex justify-center">
+            <InputOTP maxLength={6}>
+              <InputOTPGroup>
+                <InputOTPSlot index={0} />
+                <InputOTPSlot index={1} />
+                <InputOTPSlot index={2} />
+              </InputOTPGroup>
+              <InputOTPSeparator />
+              <InputOTPGroup>
+                <InputOTPSlot index={3} />
+                <InputOTPSlot index={4} />
+                <InputOTPSlot index={5} />
+              </InputOTPGroup>
+            </InputOTP>
+          </div>
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
+            Automatically adjusts size for mobile devices
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex flex-col gap-4 max-w-md mx-auto">
+      <div className="flex flex-col gap-3">
+        <h3 className="text-sm font-semibold">Responsive Layout</h3>
+        <div className="flex justify-center">
+          <InputOTP maxLength={6}>
+            <InputOTPGroup>
+              <InputOTPSlot index={0} />
+              <InputOTPSlot index={1} />
+              <InputOTPSlot index={2} />
+            </InputOTPGroup>
+            <InputOTPSeparator />
+            <InputOTPGroup>
+              <InputOTPSlot index={3} />
+              <InputOTPSlot index={4} />
+              <InputOTPSlot index={5} />
+            </InputOTPGroup>
+          </InputOTP>
+        </div>
+        <div className="text-xs text-muted-foreground text-center">
+          Automatically adjusts size for mobile devices
+        </div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+**Features:**
+
+- **Mobile-first design:** Smaller slots (8×8) on mobile, larger (10×10) on desktop
+- **Responsive gaps:** Reduced spacing between slots on mobile devices
+- **Touch-friendly:** Appropriate touch targets for mobile interaction
+- **Optimized typography:** Smaller text on mobile, standard size on desktop
+- **Adaptive separators:** Responsive sizing for visual separators
+
+## Props
+
+### InputOTP
+
+<TypeTable
+  type={{
+    maxLength: {
+      description: "The maximum number of characters allowed",
+      type: "number",
+      default: "6",
+    },
+    value: {
+      description: "The current value of the input",
+      type: "string",
+      default: "undefined",
+    },
+    onChange: {
+      description: "Callback function called when the value changes",
+      type: "(value: string) => void",
+      default: "undefined",
+    },
+    onComplete: {
+      description: "Callback function called when all slots are filled",
+      type: "(value: string) => void",
+      default: "undefined",
+    },
+    pattern: {
+      description: "Regex pattern to validate input characters",
+      type: "string",
+      default: "undefined",
+    },
+    disabled: {
+      description: "Whether the input is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    variant: {
+      description: "The visual style variant of the input",
+      type: '"default" | "destructive"',
+      default: '"default"',
+    },
+    otpSize: {
+      description: "The size of the input slots",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    animated: {
+      description: "Whether to enable slot animations",
+      type: "boolean",
+      default: "true",
+    },
+    containerClassName: {
+      description: "Additional CSS classes for the container",
+      type: "string",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
+
+### InputOTPSlot
+
+<TypeTable
+  type={{
+    index: {
+      description: "The index of the slot (0-based)",
+      type: "number",
+      default: "undefined",
+    },
+    variant: {
+      description: "The visual style variant of the slot",
+      type: '"default" | "destructive"',
+      default: '"default"',
+    },
+    otpSize: {
+      description: "The size of the slot",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    state: {
+      description: "The current state of the slot",
+      type: '"default" | "active" | "filled"',
+      default: '"default"',
+    },
+    animated: {
+      description: "Whether to enable slot animations",
+      type: "boolean",
+      default: "true",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
+
+### InputOTPGroup
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the group",
+      type: '"default" | "destructive"',
+      default: '"default"',
+    },
+    otpSize: {
+      description: "The size of the group",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
+
+### InputOTPSeparator
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant of the separator",
+      type: '"default" | "destructive"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the separator",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
