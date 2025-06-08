@@ -59,7 +59,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
       "data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
@@ -90,7 +90,7 @@ const DropdownMenuSubContent = React.forwardRef<
       "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
       "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
       "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -113,7 +113,7 @@ const DropdownMenuContent = React.forwardRef<
         "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
         "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
         "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className
+        className,
       )}
       {...props}
     />
@@ -135,7 +135,7 @@ const dropdownMenuItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const DropdownMenuItem = React.forwardRef<
@@ -148,7 +148,7 @@ const DropdownMenuItem = React.forwardRef<
 >(
   (
     { className, variant, inset, icon: Icon, shortcut, children, ...props },
-    ref
+    ref,
   ) => (
     <DropdownMenuPrimitive.Item
       ref={ref}
@@ -156,7 +156,7 @@ const DropdownMenuItem = React.forwardRef<
         dropdownMenuItemVariants({ variant }),
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         inset && "pl-8",
-        className
+        className,
       )}
       {...props}
     >
@@ -174,7 +174,7 @@ const DropdownMenuItem = React.forwardRef<
         )}
       </motion.div>
     </DropdownMenuPrimitive.Item>
-  )
+  ),
 );
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
@@ -192,7 +192,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className
+      className,
     )}
     checked={checked}
     {...props}
@@ -235,7 +235,7 @@ const DropdownMenuRadioItem = React.forwardRef<
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className
+      className,
     )}
     {...props}
   >
@@ -274,7 +274,7 @@ const DropdownMenuLabel = React.forwardRef<
     className={cn(
       "px-3 py-1.5 text-sm font-semibold text-[hsl(var(--hu-muted-foreground))] flex items-center gap-2",
       inset && "pl-8",
-      className
+      className,
     )}
     {...props}
   >
