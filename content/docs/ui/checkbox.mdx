@@ -21,7 +21,6 @@ import {
 } from "@/components/ui/Checkbox";
 
 <Tabs items={["Preview", "Code"]}>
-  {" "}
   <Tab value="Preview">
     <PreviewContainer>
       <div className="flex flex-col gap-4">
@@ -31,7 +30,7 @@ import {
         <Checkbox label="Disabled checkbox" disabled />
         <Checkbox label="Disabled checked" checked disabled />
       </div>
-    </PreviewContainer>{" "}
+    </PreviewContainer>
   </Tab>
   <Tab value="Code">
     ```tsx
@@ -216,7 +215,7 @@ export { Checkbox, checkboxVariants, type CheckboxProps };
 </Tab>
 <Tab value="CLI">
 
-```bash
+```package-install
 npx hextaui add checkbox
 ```
 

@@ -16,11 +16,9 @@ import { TabsWithContent } from "@/components/ui/Tabs";
 import { TabsUnderlineExample } from "@/components/ui/Tabs";
 
 <Tabs items={["Preview", "Code"]}>
-  {" "}
   <Tab value="Preview">
     <PreviewContainer>
       <div className="flex flex-col items-center gap-6 w-full">
-        {" "}
         <TabsComponent
           items={[
             { id: "home", label: "Home", icon: <Home /> },
@@ -30,7 +28,7 @@ import { TabsUnderlineExample } from "@/components/ui/Tabs";
           defaultValue="home"
         />
       </div>
-    </PreviewContainer>{" "}
+    </PreviewContainer>
   </Tab>
   <Tab value="Code">
     ```tsx
@@ -195,7 +193,6 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
         className={cn(tabsVariants({ variant, size }), className)}
         {...props}
       >
-        {" "}
         {/* Animated indicator */}
         <motion.div
           className={cn(
@@ -370,7 +367,8 @@ export default function MyComponent() {
             ]}
             defaultValue="home"
           />
-        </div>{" "}        <div className="space-y-2">
+        </div>
+        <div className="space-y-2">
           <h4 className="text-sm font-medium">Ghost</h4>
           <TabsComponent
             variant="ghost"

@@ -3,7 +3,7 @@ title: Card
 description: A flexible container component for displaying content in a card layout with header, content, and footer sections.
 ---
 
-import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 import { TypeTable } from "fumadocs-ui/components/type-table";
 
 import { PreviewContainer } from "@/components/PreviewContainer";
@@ -27,7 +27,7 @@ import { Bell, Settings, User, Calendar, Mail, Phone } from "lucide-react";
     <PreviewContainer>
       <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle>Card Title</CardTitle>{" "}
+          <CardTitle>Card Title</CardTitle>
           <CardDescription>
             Card description goes here to provide context about the content.
           </CardDescription>
@@ -45,11 +45,10 @@ import { Bell, Settings, User, Calendar, Mail, Phone } from "lucide-react";
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
-    {" "}
     ```tsx
     <Card className="w-full max-w-sm">
       <CardHeader>
-        <CardTitle>Welcome to HextaUI</CardTitle>{" "}
+        <CardTitle>Welcome to HextaUI</CardTitle>
         <CardDescription>
           Beautiful components for modern web applications with elegant design
           and smooth interactions.
