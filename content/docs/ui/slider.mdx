@@ -1,0 +1,781 @@
+---
+title: Slider
+description: A customizable range input component for selecting numeric values with multiple variants and sizes.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import {
+  BasicSlider,
+  SliderWithLabel,
+  SliderVariants,
+  SliderSizes,
+  SliderWithMinMax,
+  RangeSlider,
+  SteppedSlider,
+  DisabledSlider,
+  SliderWithError,
+  FormExample,
+} from "@/components/ui/Slider";
+import { Tab, Tabs } from "fumadocs-ui/components/tabs";
+import { Step, Steps } from "fumadocs-ui/components/steps";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+## Preview
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SliderWithLabel />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { Slider } from "@/src/components/ui/Slider";
+
+    export function SliderWithLabel() {
+      const [value, setValue] = React.useState([25]);
+
+      return (
+        <Slider
+          value={value}
+          onValueChange={setValue}
+          label="Volume"
+          description="Adjust the volume level"
+          showValue
+          max={100}
+          step={1}
+        />
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Steps>
+  <Step>
+    Install the required dependencies:
+
+    ```bash
+    npm install @radix-ui/react-slider class-variance-authority
+    ```
+
+  </Step>
+  <Step>
+    Copy and paste the following code into your project:
+
+    ```tsx
+    "use client";
+
+    import * as React from "react";
+    import * as SliderPrimitive from "@radix-ui/react-slider";
+    import { cva, type VariantProps } from "class-variance-authority";
+    import { cn } from "@/lib/utils";
+
+    const sliderVariants = cva(
+      "relative flex w-full touch-none select-none items-center",
+      {
+        variants: {
+          variant: {
+            default: "",
+            destructive: "",
+            ghost: "",
+          },
+          size: {
+            sm: "h-3",
+            default: "h-4",
+            lg: "h-5",
+            xl: "h-6",
+          },
+        },
+        defaultVariants: {
+          variant: "default",
+          size: "default",
+        },
+      }
+    );
+
+    const sliderTrackVariants = cva(
+      "relative w-full grow overflow-hidden rounded-full",
+      {
+        variants: {
+          variant: {
+            default: "bg-[hsl(var(--hu-muted))]",
+            destructive: "bg-[hsl(var(--hu-destructive))]/20",
+            ghost: "bg-[hsl(var(--hu-accent))]",
+          },
+          size: {
+            sm: "h-1.5",
+            default: "h-2",
+            lg: "h-2.5",
+            xl: "h-3",
+          },
+        },
+        defaultVariants: {
+          variant: "default",
+          size: "default",
+        },
+      }
+    );
+
+    const sliderRangeVariants = cva(
+      "absolute h-full rounded-full transition-all",
+      {
+        variants: {
+          variant: {
+            default: "bg-[hsl(var(--hu-primary))]",
+            destructive: "bg-[hsl(var(--hu-destructive))]",
+            ghost: "bg-[hsl(var(--hu-foreground))]",
+          },
+        },
+        defaultVariants: {
+          variant: "default",
+        },
+      }
+    );
+
+    const sliderThumbVariants = cva(
+      "block rounded-full border-2 bg-[hsl(var(--hu-background))] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-md",
+      {
+        variants: {
+          variant: {
+            default: "border-[hsl(var(--hu-primary))] hover:border-[hsl(var(--hu-primary))]/80",
+            destructive: "border-[hsl(var(--hu-destructive))] hover:border-[hsl(var(--hu-destructive))]/80",
+            ghost: "border-[hsl(var(--hu-foreground))] hover:border-[hsl(var(--hu-foreground))]/80",
+          },
+          size: {
+            sm: "h-3 w-3",
+            default: "h-4 w-4",
+            lg: "h-5 w-5",
+            xl: "h-6 w-6",
+          },
+        },
+        defaultVariants: {
+          variant: "default",
+          size: "default",
+        },
+      }
+    );
+
+    export interface SliderProps
+      extends Omit<React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>, "size">,
+        VariantProps<typeof sliderVariants> {
+      label?: string;
+      description?: string;
+      error?: boolean | string;
+      showValue?: boolean;
+      showMinMax?: boolean;
+      formatValue?: (value: number) => string;
+      onValueChange?: (value: number[]) => void;
+    }
+
+    const Slider = React.forwardRef<
+      React.ElementRef<typeof SliderPrimitive.Root>,
+      SliderProps
+    >(
+      (
+        {
+          className,
+          variant,
+          size,
+          label,
+          description,
+          error,
+          showValue = false,
+          showMinMax = false,
+          formatValue = (value) => value.toString(),
+          min = 0,
+          max = 100,
+          step = 1,
+          value,
+          defaultValue,
+          onValueChange,
+          disabled,
+          orientation = "horizontal",
+          ...props
+        },
+        ref
+      ) => {
+        const [internalValue, setInternalValue] = React.useState<number[]>(
+          defaultValue || value || [min]
+        );
+
+        const currentValue = value || internalValue;
+        const effectiveVariant = error ? "destructive" : variant;
+
+        const handleValueChange = React.useCallback(
+          (newValue: number[]) => {
+            if (!value) {
+              setInternalValue(newValue);
+            }
+            onValueChange?.(newValue);
+          },
+          [value, onValueChange]
+        );
+
+        const sliderId = React.useId();
+        const descriptionId = React.useId();
+
+        const sliderElement = (
+          <SliderPrimitive.Root
+            ref={ref}
+            id={sliderId}
+            className={cn(sliderVariants({ variant: effectiveVariant, size }), className)}
+            value={currentValue}
+            onValueChange={handleValueChange}
+            min={min}
+            max={max}
+            step={step}
+            disabled={disabled}
+            orientation={orientation}
+            aria-describedby={description ? descriptionId : undefined}
+            {...props}
+          >
+            <SliderPrimitive.Track
+              className={cn(sliderTrackVariants({ variant: effectiveVariant, size }))}
+            >
+              <SliderPrimitive.Range
+                className={cn(sliderRangeVariants({ variant: effectiveVariant }))}
+              />
+            </SliderPrimitive.Track>
+            {currentValue.map((_, index) => (
+              <SliderPrimitive.Thumb
+                key={index}
+                className={cn(sliderThumbVariants({ variant: effectiveVariant, size }))}
+              />
+            ))}
+          </SliderPrimitive.Root>
+        );
+
+        if (label || description || showValue || showMinMax || error) {
+          return (
+            <div className="space-y-2">
+              {/* Header with label and value */}
+              {(label || showValue) && (
+                <div className="flex items-center justify-between">
+                  {label && (
+                    <label
+                      htmlFor={sliderId}
+                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                    >
+                      {label}
+                    </label>
+                  )}
+                  {showValue && (
+                    <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                      {currentValue.length === 1
+                        ? formatValue(currentValue[0])
+                        : currentValue.map(formatValue).join(" - ")}
+                    </span>
+                  )}
+                </div>
+              )}
+
+              {/* Slider */}
+              <div className="space-y-2">
+                {sliderElement}
+
+                {/* Min/Max labels */}
+                {showMinMax && (
+                  <div className="flex justify-between text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    <span>{formatValue(min)}</span>
+                    <span>{formatValue(max)}</span>
+                  </div>
+                )}
+              </div>
+
+              {/* Description and error */}
+              {(description || error) && (
+                <div className="space-y-1">
+                  {description && (
+                    <p
+                      id={descriptionId}
+                      className="text-sm text-[hsl(var(--hu-muted-foreground))]"
+                    >
+                      {description}
+                    </p>
+                  )}
+                  {error && typeof error === "string" && (
+                    <p className="text-sm text-[hsl(var(--hu-destructive))]">
+                      {error}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        }
+
+        return sliderElement;
+      }
+    );
+
+    Slider.displayName = SliderPrimitive.Root.displayName;
+
+    export { Slider };
+    ```
+
+  </Step>
+  <Step>
+    Update the import paths to match your project structure.
+  </Step>
+</Steps>
+
+## Usage
+
+```tsx
+import { Slider } from "@/components/ui/Slider";
+```
+
+```tsx
+<Slider defaultValue={[50]} max={100} step={1} />
+```
+
+## Examples
+
+### Basic Slider
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <BasicSlider />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function BasicSlider() {
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider defaultValue={[50]} max={100} step={1} />
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SliderVariants />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function SliderVariants() {
+      return (
+        <div className="w-full max-w-md space-y-6">
+          <div>
+            <label className="text-sm font-medium mb-2 block">Default</label>
+            <Slider defaultValue={[30]} max={100} step={1} />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-2 block">Destructive</label>
+            <Slider defaultValue={[70]} max={100} step={1} variant="destructive" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-2 block">Ghost</label>
+            <Slider defaultValue={[50]} max={100} step={1} variant="ghost" />
+          </div>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SliderSizes />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function SliderSizes() {
+      return (
+        <div className="w-full max-w-md space-y-6">
+          <div>
+            <label className="text-sm font-medium mb-2 block">Small</label>
+            <Slider defaultValue={[25]} max={100} step={1} size="sm" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-2 block">Default</label>
+            <Slider defaultValue={[50]} max={100} step={1} size="default" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-2 block">Large</label>
+            <Slider defaultValue={[75]} max={100} step={1} size="lg" />
+          </div>
+
+          <div>
+            <label className="text-sm font-medium mb-2 block">Extra Large</label>
+            <Slider defaultValue={[90]} max={100} step={1} size="xl" />
+          </div>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Min/Max Labels
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SliderWithMinMax />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function SliderWithMinMax() {
+      const [value, setValue] = React.useState([50]);
+
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider
+            value={value}
+            onValueChange={setValue}
+            label="Temperature"
+            description="Set the desired temperature"
+            showValue
+            showMinMax
+            min={0}
+            max={100}
+            step={5}
+            formatValue={(val) => `${val}°C`}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Range Slider
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <RangeSlider />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function RangeSlider() {
+      const [value, setValue] = React.useState([20, 80]);
+
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider
+            value={value}
+            onValueChange={setValue}
+            label="Price Range"
+            description="Select your budget range"
+            showValue
+            showMinMax
+            min={0}
+            max={1000}
+            step={10}
+            formatValue={(val) => `$${val}`}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Stepped Slider
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SteppedSlider />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function SteppedSlider() {
+      const [value, setValue] = React.useState([3]);
+
+      const formatRating = (val: number) => {
+        const ratings = ["Poor", "Fair", "Good", "Great", "Excellent"];
+        return ratings[val - 1] || "Unknown";
+      };
+
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider
+            value={value}
+            onValueChange={setValue}
+            label="Rating"
+            description="Rate your experience"
+            showValue
+            min={1}
+            max={5}
+            step={1}
+            formatValue={formatRating}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DisabledSlider />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function DisabledSlider() {
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider
+            defaultValue={[60]}
+            max={100}
+            step={1}
+            disabled
+            label="Disabled Slider"
+            description="This slider is disabled"
+            showValue
+          />
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### With Error State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SliderWithError />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function SliderWithError() {
+      const [value, setValue] = React.useState([95]);
+
+      return (
+        <div className="w-full max-w-md space-y-4">
+          <Slider
+            value={value}
+            onValueChange={setValue}
+            label="CPU Usage"
+            description="Current CPU usage percentage"
+            showValue
+            showMinMax
+            max={100}
+            step={1}
+            error={value[0] > 90 ? "CPU usage is critically high!" : false}
+            formatValue={(val) => `${val}%`}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Form Integration
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FormExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    export function FormExample() {
+      const [settings, setSettings] = React.useState({
+        volume: [75],
+        brightness: [50],
+        contrast: [60],
+        priceRange: [100, 500],
+      });
+
+      const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        console.log("Settings:", settings);
+        alert("Settings saved!");
+      };
+
+      return (
+        <form onSubmit={handleSubmit} className="w-full max-w-md space-y-6">
+          <h3 className="text-lg font-semibold">Display Settings</h3>
+
+          <Slider
+            value={settings.volume}
+            onValueChange={(value) => setSettings(s => ({ ...s, volume: value }))}
+            label="Volume"
+            description="Adjust system volume"
+            showValue
+            showMinMax
+            max={100}
+            step={1}
+            formatValue={(val) => `${val}%`}
+          />
+
+          <Slider
+            value={settings.brightness}
+            onValueChange={(value) => setSettings(s => ({ ...s, brightness: value }))}
+            label="Brightness"
+            description="Screen brightness level"
+            showValue
+            max={100}
+            step={5}
+            formatValue={(val) => `${val}%`}
+          />
+
+          <Slider
+            value={settings.contrast}
+            onValueChange={(value) => setSettings(s => ({ ...s, contrast: value }))}
+            label="Contrast"
+            description="Screen contrast level"
+            showValue
+            max={100}
+            step={5}
+            formatValue={(val) => `${val}%`}
+          />
+
+          <Slider
+            value={settings.priceRange}
+            onValueChange={(value) => setSettings(s => ({ ...s, priceRange: value }))}
+            label="Price Range"
+            description="Budget range for purchases"
+            showValue
+            showMinMax
+            min={0}
+            max={1000}
+            step={25}
+            formatValue={(val) => `$${val}`}
+          />
+
+          <Button
+            type="submit"
+            className="w-full px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-primary))]/90 transition-colors"
+          >
+            Save Settings
+          </Button>
+        </form>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "Visual style variant",
+      type: '"default" | "destructive" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "Size of the slider",
+      type: '"sm" | "default" | "lg" | "xl"',
+      default: '"default"',
+    },
+    label: {
+      description: "Label text displayed above the slider",
+      type: "string",
+      default: "undefined",
+    },
+    description: {
+      description: "Description text displayed below the slider",
+      type: "string",
+      default: "undefined",
+    },
+    error: {
+      description: "Error state; if string, displays as error message",
+      type: "boolean | string",
+      default: "false",
+    },
+    showValue: {
+      description: "Whether to display the current value",
+      type: "boolean",
+      default: "false",
+    },
+    showMinMax: {
+      description: "Whether to display min/max labels",
+      type: "boolean",
+      default: "false",
+    },
+    formatValue: {
+      description: "Function to format displayed values",
+      type: "(value: number) => string",
+      default: "(value) => value.toString()",
+    },
+    value: {
+      description: "Controlled value",
+      type: "number[]",
+      default: "undefined",
+    },
+    defaultValue: {
+      description: "Default value for uncontrolled usage",
+      type: "number[]",
+      default: "[min]",
+    },
+    onValueChange: {
+      description: "Callback fired when value changes",
+      type: "(value: number[]) => void",
+      default: "undefined",
+    },
+    min: {
+      description: "Minimum value",
+      type: "number",
+      default: "0",
+    },
+    max: {
+      description: "Maximum value",
+      type: "number",
+      default: "100",
+    },
+    step: {
+      description: "Step increment",
+      type: "number",
+      default: "1",
+    },
+    disabled: {
+      description: "Whether the slider is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    orientation: {
+      description: "Slider orientation",
+      type: '"horizontal" | "vertical"',
+      default: '"horizontal"',
+    },
+  }}
+/>
