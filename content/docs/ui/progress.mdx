@@ -1,0 +1,888 @@
+---
+title: Progress
+description: A versatile progress component for displaying completion status, loading states, and step-by-step processes.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { Progress } from "@/components/ui/Progress";
+import {
+  ProgressExamples,
+  AnimatedProgressExample,
+  ProgressWithSteps,
+} from "@/components/ui/Progress";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-8 w-full max-w-md">
+        <Progress value={65} label="Loading..." className="w-full" />
+        <Progress
+          value={65}
+          label="Download Progress"
+          showValue
+          className="w-full"
+        />
+        <div className="flex justify-center">
+          <Progress value={65} label="Processing" type="circular" showValue />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-8 w-full max-w-md">
+      <Progress value={65} label="Loading..." className="w-full" />
+      <Progress
+        value={65}
+        label="Download Progress"
+        showValue
+        className="w-full"
+      />
+      <div className="flex justify-center">
+        <Progress value={65} label="Processing" type="circular" showValue />
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install @radix-ui/react-progress class-variance-authority motion
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/progress.tsx"
+"use client";
+
+import * as React from "react";
+import * as ProgressPrimitive from "@radix-ui/react-progress";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { motion } from "motion/react";
+
+const progressVariants = cva(
+  "relative overflow-hidden rounded-full bg-[hsl(var(--hu-secondary))]",
+  {
+    variants: {
+      variant: {
+        default: "bg-[hsl(var(--hu-secondary))]",
+        primary: "bg-[hsl(var(--hu-primary))]/10",
+        secondary: "bg-[hsl(var(--hu-secondary))]",
+        destructive: "bg-[hsl(var(--hu-destructive))]/10",
+        outline:
+          "bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]",
+      },
+      size: {
+        sm: "h-1.5",
+        default: "h-2.5",
+        lg: "h-3",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  },
+);
+
+const progressIndicatorVariants = cva(
+  "h-full w-full flex-1 rounded-full transition-all duration-500 ease-out",
+  {
+    variants: {
+      variant: {
+        default: "bg-[hsl(var(--hu-primary))]",
+        primary: "bg-[hsl(var(--hu-primary))]",
+        secondary: "bg-[hsl(var(--hu-foreground))]",
+        destructive: "bg-[hsl(var(--hu-destructive))]",
+        outline: "bg-[hsl(var(--hu-primary))]",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  },
+);
+
+const circularProgressVariants = cva(
+  "relative flex items-center justify-center",
+  {
+    variants: {
+      size: {
+        sm: "w-12 h-12",
+        default: "w-16 h-16",
+        lg: "w-20 h-20",
+      },
+    },
+    defaultVariants: {
+      size: "default",
+    },
+  },
+);
+
+export interface ProgressProps
+  extends React.ComponentPropsWithoutRef<typeof ProgressPrimitive.Root>,
+    VariantProps<typeof progressVariants> {
+  value?: number;
+  showValue?: boolean;
+  animated?: boolean;
+  type?: "linear" | "circular";
+  strokeWidth?: number;
+  label?: string;
+}
+
+const Progress = React.forwardRef<
+  React.ElementRef<typeof ProgressPrimitive.Root>,
+  ProgressProps
+>(
+  (
+    {
+      className,
+      value = 0,
+      variant,
+      size,
+      showValue = false,
+      animated = true,
+      type = "linear",
+      strokeWidth,
+      label,
+      ...props
+    },
+    ref,
+  ) => {
+    const progress = Math.min(Math.max(value, 0), 100);
+
+    if (type === "circular") {
+      const circleSize = size === "sm" ? 48 : size === "lg" ? 80 : 64;
+      const radius = (circleSize - (strokeWidth || 8)) / 2;
+      const circumference = 2 * Math.PI * radius;
+      const strokeDashoffset = circumference - (progress / 100) * circumference;
+      return (
+        <div className="space-y-2">
+          {label && (
+            <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+              {label}
+            </div>
+          )}
+          <div className={cn(circularProgressVariants({ size }), className)}>
+            <svg
+              width={circleSize}
+              height={circleSize}
+              className="transform -rotate-90"
+            >
+              {/* Background circle */}
+              <circle
+                cx={circleSize / 2}
+                cy={circleSize / 2}
+                r={radius}
+                stroke="hsl(var(--hu-secondary))"
+                strokeWidth={strokeWidth || 8}
+                fill="transparent"
+                className="opacity-20"
+              />
+              {/* Progress circle */}
+              <motion.circle
+                cx={circleSize / 2}
+                cy={circleSize / 2}
+                r={radius}
+                stroke={
+                  variant === "destructive"
+                    ? "hsl(var(--hu-destructive))"
+                    : variant === "secondary"
+                      ? "hsl(var(--hu-secondary-foreground))"
+                      : variant === "outline"
+                        ? "hsl(var(--hu-foreground))"
+                        : "hsl(var(--hu-primary))"
+                }
+                strokeWidth={strokeWidth || 8}
+                fill="transparent"
+                strokeLinecap="round"
+                strokeDasharray={circumference}
+                initial={{ strokeDashoffset: circumference }}
+                animate={{
+                  strokeDashoffset: animated
+                    ? strokeDashoffset
+                    : strokeDashoffset,
+                }}
+                transition={{
+                  duration: animated ? 1.5 : 0,
+                  ease: "easeInOut",
+                }}
+              />
+            </svg>
+            {showValue && (
+              <motion.div
+                className="absolute inset-0 flex items-center justify-center text-sm font-semibold tabular-nums"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: animated ? 0.5 : 0, duration: 0.3 }}
+              >
+                {Math.round(progress)}%
+              </motion.div>
+            )}
+          </div>
+          {showValue && (
+            <motion.div
+              className="text-center text-xs font-medium text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+              initial={{ opacity: 0, y: -5 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
+            >
+              {Math.round(progress)}%
+            </motion.div>
+          )}
+        </div>
+      );
+    }
+    return (
+      <div className="space-y-2">
+        {label && (
+          <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+            {label}
+          </div>
+        )}
+        <ProgressPrimitive.Root
+          ref={ref}
+          className={cn(progressVariants({ variant, size }), className)}
+          {...props}
+        >
+          <ProgressPrimitive.Indicator
+            className={cn(progressIndicatorVariants({ variant }))}
+            asChild
+          >
+            <motion.div
+              initial={{ transform: "translateX(-100%)" }}
+              animate={{ transform: `translateX(-${100 - progress}%)` }}
+              transition={{
+                duration: animated ? 1.2 : 0,
+                ease: "easeInOut",
+              }}
+            />
+          </ProgressPrimitive.Indicator>
+        </ProgressPrimitive.Root>
+        {showValue && (
+          <motion.div
+            className="text-right text-xs font-semibold text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+            initial={{ opacity: 0, y: -5 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
+          >
+            {Math.round(progress)}%
+          </motion.div>
+        )}
+      </div>
+    );
+  },
+);
+
+Progress.displayName = ProgressPrimitive.Root.displayName;
+
+export { Progress, progressVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```bash
+npx hextaui add progress
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Progress } from "@/components/ui/Progress/Progress";
+```
+
+```tsx
+<Progress value={65} label="Loading..." />
+<Progress value={65} label="Download Progress" showValue />
+<Progress value={65} label="Processing" type="circular" showValue />
+```
+
+## Examples
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    {" "}
+    <PreviewContainer>
+      <div className="space-y-6 w-full max-w-md">
+        <Progress
+          value={75}
+          label="Default Variant"
+          variant="default"
+          showValue
+          className="w-full"
+        />
+        <Progress
+          value={60}
+          label="Primary Variant"
+          variant="primary"
+          showValue
+          className="w-full"
+        />
+        <Progress
+          value={45}
+          label="Secondary Variant"
+          variant="secondary"
+          showValue
+          className="w-full"
+        />
+        <Progress
+          value={30}
+          label="Destructive Variant"
+          variant="destructive"
+          showValue
+          className="w-full"
+        />
+        <Progress
+          value={85}
+          label="Outline Variant"
+          variant="outline"
+          showValue
+          className="w-full"
+        />
+      </div>
+    </PreviewContainer>{" "}
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-6 w-full max-w-md">
+      <Progress
+        value={75}
+        label="Default Variant"
+        variant="default"
+        showValue
+        className="w-full"
+      />
+      <Progress
+        value={60}
+        label="Primary Variant"
+        variant="primary"
+        showValue
+        className="w-full"
+      />
+      <Progress
+        value={45}
+        label="Secondary Variant"
+        variant="secondary"
+        showValue
+        className="w-full"
+      />
+      <Progress
+        value={30}
+        label="Destructive Variant"
+        variant="destructive"
+        showValue
+        className="w-full"
+      />
+      <Progress
+        value={85}
+        label="Outline Variant"
+        variant="outline"
+        showValue
+        className="w-full"
+      />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    {" "}
+    <PreviewContainer>
+      <div className="space-y-8 w-full max-w-md">
+        <Progress
+          value={65}
+          label="Small Progress"
+          size="sm"
+          className="w-full"
+        />
+        <Progress
+          value={65}
+          label="Default Progress"
+          size="default"
+          className="w-full"
+        />
+        <Progress
+          value={65}
+          label="Large Progress"
+          size="lg"
+          className="w-full"
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>{" "}
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-8 w-full max-w-md">
+      <Progress
+        value={65}
+        label="Small Progress"
+        size="sm"
+        className="w-full"
+      />
+      <Progress
+        value={65}
+        label="Default Progress"
+        size="default"
+        className="w-full"
+      />
+      <Progress
+        value={65}
+        label="Large Progress"
+        size="lg"
+        className="w-full"
+      />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Circular Progress
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-8 items-center justify-center">
+        <div className="text-center space-y-3">
+          <Progress value={25} type="circular" size="sm" />
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Small
+          </div>
+        </div>
+        <div className="text-center space-y-3">
+          <Progress value={50} type="circular" size="default" showValue />
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Default
+          </div>
+        </div>
+        <div className="text-center space-y-3">
+          <Progress
+            value={75}
+            type="circular"
+            size="lg"
+            showValue
+            variant="destructive"
+          />
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Large
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-8 items-center justify-center">
+      <div className="text-center space-y-3">
+        <Progress value={25} type="circular" size="sm" />
+        <div className="text-xs text-muted-foreground">Small</div>
+      </div>
+      <div className="text-center space-y-3">
+        <Progress value={50} type="circular" size="default" showValue />
+        <div className="text-xs text-muted-foreground">Default</div>
+      </div>
+      <div className="text-center space-y-3">
+        <Progress
+          value={75}
+          type="circular"
+          size="lg"
+          showValue
+          variant="destructive"
+        />
+        <div className="text-xs text-muted-foreground">Large</div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Animated Progress
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <AnimatedProgressExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState, useEffect } from "react";
+    import { Progress } from "@/components/ui/Progress";
+
+    function AnimatedProgressExample() {
+      const [progress, setProgress] = useState(0);
+
+      useEffect(() => {
+        const interval = setInterval(() => {
+          setProgress((prev) => {
+            if (prev >= 100) {
+              return 0;
+            }
+            return prev + 10;
+          });
+        }, 600);
+
+        return () => clearInterval(interval);
+      }, []);
+
+      return (
+        <div className="space-y-4">
+          <Progress value={progress} showValue animated />
+          <Progress value={progress} type="circular" showValue animated />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Loading States
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-8 w-full max-w-md">
+        <div className="space-y-3">
+          <div className="flex justify-between items-center text-sm">
+            <span className="font-medium">Uploading files...</span>
+            <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
+              3 of 5
+            </span>
+          </div>
+          <Progress value={60} className="w-full" />
+        </div>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center text-sm">
+            <span className="font-medium">Installing packages</span>
+            <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
+              85%
+            </span>
+          </div>
+          <Progress value={85} variant="secondary" className="w-full" />
+        </div>
+        <div className="space-y-3">
+          <div className="flex justify-between items-center text-sm">
+            <span className="font-medium">Build failed</span>
+            <span className="text-[hsl(var(--hu-destructive))] text-xs font-medium">
+              Error
+            </span>
+          </div>
+          <Progress value={45} variant="destructive" className="w-full" />
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-8 w-full max-w-md">
+      <div className="space-y-3">
+        <div className="flex justify-between items-center text-sm">
+          <span className="font-medium">Uploading files...</span>
+          <span className="text-muted-foreground text-xs">3 of 5</span>
+        </div>
+        <Progress value={60} className="w-full" />
+      </div>
+      <div className="space-y-3">
+        <div className="flex justify-between items-center text-sm">
+          <span className="font-medium">Installing packages</span>
+          <span className="text-muted-foreground text-xs">85%</span>
+        </div>
+        <Progress value={85} variant="secondary" className="w-full" />
+      </div>
+      <div className="space-y-3">
+        <div className="flex justify-between items-center text-sm">
+          <span className="font-medium">Build failed</span>
+          <span className="text-destructive text-xs font-medium">Error</span>
+        </div>
+        <Progress value={45} variant="destructive" className="w-full" />
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Step Progress
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ProgressWithSteps />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { useState } from "react";
+    import { Progress } from "@/components/ui/Progress";
+
+    function ProgressWithSteps() {
+      const [currentStep, setCurrentStep] = useState(0);
+      const steps = ["Planning", "Development", "Testing", "Deployment"];
+      const progress = ((currentStep + 1) / steps.length) * 100;
+
+      return (
+        <div className="space-y-4">
+          <div className="flex justify-between text-sm">
+            {steps.map((step, index) => (
+              <span
+                key={step}
+                className={`${
+                  index <= currentStep
+                    ? "text-primary font-medium"
+                    : "text-muted-foreground"
+                }`}
+              >
+                {step}
+              </span>
+            ))}
+          </div>
+          <Progress value={progress} />
+          <div className="flex gap-2">
+            <button
+              onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+              disabled={currentStep === 0}
+              className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded disabled:opacity-50"
+            >
+              Previous
+            </button>
+            <button
+              onClick={() =>
+                setCurrentStep(Math.min(steps.length - 1, currentStep + 1))
+              }
+              disabled={currentStep === steps.length - 1}
+              className="px-3 py-1 text-sm bg-primary text-primary-foreground rounded disabled:opacity-50"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Custom Stroke Width
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex gap-8 items-center">
+        <Progress
+          value={70}
+          type="circular"
+          strokeWidth={4}
+          size="default"
+          showValue
+        />
+        <Progress
+          value={70}
+          type="circular"
+          strokeWidth={8}
+          size="default"
+          showValue
+        />
+        <Progress
+          value={70}
+          type="circular"
+          strokeWidth={12}
+          size="lg"
+          showValue
+        />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex gap-8 items-center">
+      <Progress
+        value={70}
+        type="circular"
+        strokeWidth={4}
+        size="default"
+        showValue
+      />
+      <Progress
+        value={70}
+        type="circular"
+        strokeWidth={8}
+        size="default"
+        showValue
+      />
+      <Progress
+        value={70}
+        type="circular"
+        strokeWidth={12}
+        size="lg"
+        showValue
+      />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Without Animation
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-4 w-full max-w-md">
+        <Progress value={75} animated={false} showValue />
+        <Progress value={75} type="circular" animated={false} showValue />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4 w-full max-w-md">
+      <Progress value={75} animated={false} showValue />
+      <Progress value={75} type="circular" animated={false} showValue />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Real-world Examples
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-8 w-full max-w-md">
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold">Profile Completion</span>
+            <Progress value={80} type="circular" size="sm" />
+          </div>
+          <Progress value={80} size="sm" className="w-full" />
+          <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
+            4 of 5 sections completed
+          </div>
+        </div>
+        
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold">Storage Usage</span>
+            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] font-medium">7.2 GB of 10 GB</span>
+          </div>
+          <Progress value={72} variant="secondary" className="w-full" />
+        </div>
+
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-sm font-semibold">Download Progress</span>
+            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] font-medium">Downloading...</span>
+          </div>
+          <Progress value={45} showValue className="w-full" />
+        </div>
+      </div>
+    </PreviewContainer>
+
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-8 w-full max-w-md">
+      <div className="space-y-4">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold">Profile Completion</span>
+          <Progress value={80} type="circular" size="sm" />
+        </div>
+        <Progress value={80} size="sm" className="w-full" />
+        <div className="text-xs text-muted-foreground text-center">
+          4 of 5 sections completed
+        </div>
+      </div>
+      
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold">Storage Usage</span>
+          <span className="text-xs text-muted-foreground font-medium">7.2 GB of 10 GB</span>
+        </div>
+        <Progress value={72} variant="secondary" className="w-full" />
+      </div>
+
+      <div className="space-y-3">
+        <div className="flex items-center justify-between">
+          <span className="text-sm font-semibold">Download Progress</span>
+          <span className="text-xs text-muted-foreground font-medium">Downloading...</span>
+        </div>
+        <Progress value={45} showValue className="w-full" />
+      </div>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    value: {
+      description: "The progress value (0-100)",
+      type: "number",
+      default: "0",
+    },
+    variant: {
+      description: "The visual style variant of the progress",
+      type: '"default" | "primary" | "secondary" | "destructive" | "outline"',
+      default: '"default"',
+    },
+    size: {
+      description: "The size of the progress bar",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    type: {
+      description: "The type of progress display",
+      type: '"linear" | "circular"',
+      default: '"linear"',
+    },
+    showValue: {
+      description: "Whether to display the progress percentage",
+      type: "boolean",
+      default: "false",
+    },
+    animated: {
+      description: "Whether to animate the progress changes",
+      type: "boolean",
+      default: "true",
+    },
+    strokeWidth: {
+      description:
+        "Custom stroke width for circular progress (only applies to circular type)",
+      type: "number",
+      default: "8",
+    },
+    label: {
+      description: "Optional text label to display above the progress bar",
+      type: "string",
+      default: "undefined",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
