@@ -1,0 +1,488 @@
+---
+title: Loader
+description: A simple and elegant loading spinner component with multiple sizes and color variants.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { Loader } from "@/components/ui/Loader";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center gap-6 flex-wrap">
+        <Loader size="xs" />
+        <Loader size="sm" />
+        <Loader size="md" />
+        <Loader size="lg" />
+        <Loader size="xl" />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex items-center gap-6 flex-wrap">
+      <Loader size="xs" />
+      <Loader size="sm" />
+      <Loader size="md" />
+      <Loader size="lg" />
+      <Loader size="xl" />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/loader.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const loaderVariants = cva("inline-block", {
+  variants: {
+    size: {
+      xs: "h-3 w-3",
+      sm: "h-4 w-4",
+      md: "h-5 w-5",
+      lg: "h-6 w-6",
+      xl: "h-8 w-8",
+    },
+    variant: {
+      default: "text-[hsl(var(--hu-foreground))]",
+      primary: "text-[hsl(var(--hu-primary))]",
+      secondary: "text-[hsl(var(--hu-secondary-foreground))]",
+      muted: "text-[hsl(var(--hu-muted-foreground))]",
+    },
+  },
+  defaultVariants: {
+    size: "md",
+    variant: "default",
+  },
+});
+
+export interface LoaderProps
+  extends React.SVGAttributes<SVGSVGElement>,
+    VariantProps<typeof loaderVariants> {}
+
+const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
+  ({ className, size, variant, ...props }, ref) => {
+    const [isMounted, setIsMounted] = React.useState(false);
+
+    React.useEffect(() => {
+      setIsMounted(true);
+    }, []);
+
+    return (
+      <svg
+        ref={ref}
+        className={cn(
+          loaderVariants({ size, variant }),
+          isMounted && "animate-spin",
+          className
+        )}
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        role="status"
+        aria-label="Loading"
+        suppressHydrationWarning
+        {...props}
+      >
+        <circle
+          className="opacity-25"
+          cx="12"
+          cy="12"
+          r="10"
+          stroke="currentColor"
+          strokeWidth="4"
+        />{" "}
+        <path
+          className="opacity-75"
+          fill="currentColor"
+          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+        />
+      </svg>
+    );
+  }
+);
+
+Loader.displayName = "Loader";
+
+export { Loader, loaderVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hextaui add loader
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Loader } from "@/components/ui/Loader";
+```
+
+```tsx
+<Loader />
+<Loader size="lg" />
+<Loader variant="primary" />
+<Loader size="sm" variant="muted" />
+```
+
+## Examples
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center gap-6 flex-wrap">
+        <div className="flex flex-col items-center gap-2">
+          <Loader size="xs" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Extra Small
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader size="sm" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Small
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader size="md" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Medium
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader size="lg" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Large
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader size="xl" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Extra Large
+          </span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex items-center gap-6 flex-wrap">
+      <Loader size="xs" />
+      <Loader size="sm" />
+      <Loader size="md" />
+      <Loader size="lg" />
+      <Loader size="xl" />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center gap-6 flex-wrap">
+        <div className="flex flex-col items-center gap-2">
+          <Loader variant="default" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Default
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader variant="primary" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Primary
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader variant="secondary" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Secondary
+          </span>
+        </div>
+        <div className="flex flex-col items-center gap-2">
+          <Loader variant="muted" />
+          <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            Muted
+          </span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex items-center gap-6 flex-wrap">
+      <Loader variant="default" />
+      <Loader variant="primary" />
+      <Loader variant="secondary" />
+      <Loader variant="muted" />
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### With Loading Text
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-4">
+        <div className="flex items-center gap-3">
+          <Loader size="sm" />
+          <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            Loading...
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Loader variant="primary" />
+          <span className="text-sm">Processing your request</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Loader size="sm" variant="muted" />
+          <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            Uploading files
+          </span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Loader variant="secondary" />
+          <span className="text-sm">Saving changes</span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <div className="flex items-center gap-3">
+        <Loader size="sm" />
+        <span className="text-sm text-muted-foreground">Loading...</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Loader variant="primary" />
+        <span className="text-sm">Processing your request</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Loader size="sm" variant="muted" />
+        <span className="text-sm text-muted-foreground">Uploading files</span>
+      </div>
+      <div className="flex items-center gap-3">
+        <Loader variant="secondary" />
+        <span className="text-sm">Saving changes</span>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Button Integration
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-4">
+        <button
+          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
+          disabled
+        >
+          <Loader size="sm" className="text-current" />
+          <span>Loading...</span>
+        </button>
+        <button
+          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-secondary))]/90 transition-colors disabled:opacity-50"
+          disabled
+        >
+          <Loader size="sm" className="text-current" />
+          <span>Processing</span>
+        </button>
+        <button
+          className="flex items-center gap-2 px-4 py-2 border border-[hsl(var(--hu-border))] rounded-xl hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:opacity-50"
+          disabled
+        >
+          <Loader size="sm" />
+          <span>Uploading</span>
+        </button>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <button
+        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+        disabled
+      >
+        <Loader size="sm" className="text-current" />
+        <span>Loading...</span>
+      </button>
+      <button
+        className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-xl hover:bg-secondary/90 transition-colors disabled:opacity-50"
+        disabled
+      >
+        <Loader size="sm" className="text-current" />
+        <span>Processing</span>
+      </button>
+      <button
+        className="flex items-center gap-2 px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors disabled:opacity-50"
+        disabled
+      >
+        <Loader size="sm" />
+        <span>Uploading</span>
+      </button>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Content Loading States
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="space-y-6">
+        <div className="border border-[hsl(var(--hu-border))] rounded-2xl p-8">
+          <div className="flex items-center justify-center h-32">
+            <div className="text-center space-y-4">
+              <Loader size="xl" variant="primary" />
+              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                Loading content...
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="border border-[hsl(var(--hu-border))] rounded-2xl p-6">
+          <div className="flex items-center justify-center h-24">
+            <div className="text-center space-y-3">
+              <Loader size="lg" variant="muted" />
+              <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                Fetching data...
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-6">
+      <div className="border border-border rounded-2xl p-8">
+        <div className="flex items-center justify-center h-32">
+          <div className="text-center space-y-4">
+            <Loader size="xl" variant="primary" />
+            <p className="text-sm text-muted-foreground">Loading content...</p>
+          </div>
+        </div>
+      </div>
+      <div className="border border-border rounded-2xl p-6">
+        <div className="flex items-center justify-center h-24">
+          <div className="text-center space-y-3">
+            <Loader size="lg" variant="muted" />
+            <p className="text-xs text-muted-foreground">Fetching data...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Inline Loading
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      {" "}
+      <div className="space-y-4">
+        <div className="text-sm">
+          Please wait while we process your request{" "}
+          <Loader size="xs" className="inline-block align-text-bottom mx-1" />
+        </div>
+        <div className="flex items-center gap-2 text-sm">
+          <span>Status:</span>
+          <Loader size="xs" variant="primary" />
+          <span className="text-[hsl(var(--hu-muted-foreground))]">
+            Connecting...
+          </span>
+        </div>
+        <div className="flex items-center gap-2 text-sm">
+          <span>Upload progress:</span>
+          <Loader size="xs" variant="secondary" />
+          <span className="text-[hsl(var(--hu-muted-foreground))]">
+            47% complete
+          </span>
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <div className="text-sm">
+        Please wait while we process your request{" "}
+        <Loader size="xs" className="inline-block align-text-bottom mx-1" />
+      </div>
+      <div className="flex items-center gap-2 text-sm">
+        <span>Status:</span>
+        <Loader size="xs" variant="primary" />
+        <span className="text-muted-foreground">Connecting...</span>
+      </div>
+      <div className="flex items-center gap-2 text-sm">
+        <span>Upload progress:</span>
+        <Loader size="xs" variant="secondary" />
+        <span className="text-muted-foreground">47% complete</span>
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    size: {
+      description: "The size of the loader",
+      type: '"xs" | "sm" | "md" | "lg" | "xl"',
+      default: '"md"',
+    },
+    variant: {
+      description: "The color variant of the loader",
+      type: '"default" | "primary" | "secondary" | "muted"',
+      default: '"default"',
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+  }}
+/>
