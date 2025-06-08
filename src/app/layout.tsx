@@ -1,10 +1,12 @@
 import "./global.css";
+import "./banner-optimizations.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Banner } from "fumadocs-ui/components/banner";
 import Link from "next/link";
+import OptimizedBanner from "@/components/OptimizedBanner";
+import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -27,18 +29,23 @@ export default function Layout({ children }: { children: ReactNode }) {
     >
       <body className="flex flex-col min-h-screen">
         {" "}
-        <Banner variant="rainbow">
+        <OptimizedBanner variant="rainbow">
           <Link href="/docs/everything-by-hextaui/blocks">
             Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
           </Link>{" "}
-        </Banner>
+        </OptimizedBanner>
         <RootProvider>{children}</RootProvider>
+        <PerformanceMonitor />
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
         <script
           data-goatcounter="https://hextui.goatcounter.com/count"
           async
           src="//gc.zgo.at/count.js"
         ></script>
+        <script
+          crossOrigin="anonymous"
+          src="//unpkg.com/react-scan/dist/auto.global.js"
+        />
       </body>
     </html>
   );

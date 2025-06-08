@@ -1,0 +1,43 @@
+/* Performance optimizations for Banner component */
+/* Target fumadocs-ui banner specifically to reduce compositor workload */
+
+/* Optimize banner container for hardware acceleration */
+[data-banner] {
+  /* Force a new stacking context and composite layer */
+  transform: translateZ(0);
+  
+  /* Optimize for animations by preventing unnecessary layer promotions */
+  will-change: auto;
+  
+  /* Prevent 3D transform glitches */
+  backface-visibility: hidden;
+  
+  /* Contain expensive operations */
+  contain: layout style paint;
+  
+  /* Optimize paint operations */
+  isolation: isolate;
+}
+
+/* If the banner uses gradients or animations, optimize them */
+[data-banner] * {
+  /* Prevent child elements from creating new layers unnecessarily */
+  transform: none;
+  will-change: auto;
+}
+
+/* Specifically target rainbow variant optimizations */
+[data-banner][data-variant="rainbow"] {
+  /* Additional optimizations for potentially expensive rainbow effects */
+  contain: strict;
+  content-visibility: auto;
+}
+
+/* Optimize any gradients or animations in the banner */
+[data-banner] *[style*="gradient"],
+[data-banner] *[class*="gradient"],
+[data-banner] *[class*="rainbow"] {
+  /* Force gradients onto GPU but prevent excessive layer creation */
+  transform: translateZ(0);
+  will-change: auto;
+}
