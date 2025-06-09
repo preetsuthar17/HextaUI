@@ -126,7 +126,7 @@ const skeletonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface SkeletonProps
@@ -163,7 +163,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       style,
       ...props
     },
-    ref,
+    ref
   ) => {
     const customStyle = {
       width: typeof width === "number" ? `${width}px` : width,
@@ -180,13 +180,13 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           shimmer && "relative overflow-hidden",
           shimmer &&
             "before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent",
-          className,
+          className
         )}
         style={customStyle}
         {...props}
       />
     );
-  },
+  }
 );
 Skeleton.displayName = "Skeleton";
 
@@ -268,7 +268,7 @@ const SkeletonCard = React.forwardRef<
       showFooter = true,
       ...props
     },
-    ref,
+    ref
   ) => (
     <div
       ref={ref}
@@ -298,7 +298,7 @@ const SkeletonCard = React.forwardRef<
         )}
       </div>
     </div>
-  ),
+  )
 );
 SkeletonCard.displayName = "SkeletonCard";
 
@@ -373,7 +373,7 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <SkeletonAvatar size="sm" />
       <SkeletonAvatar size="default" />
       <SkeletonAvatar size="lg" />
@@ -394,7 +394,7 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="flex items-center gap-4">
+    <div className="flex flex-wrap items-center gap-4">
       <SkeletonButton size="sm" />
       <SkeletonButton size="default" />
       <SkeletonButton size="lg" />
@@ -413,14 +413,14 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="grid gap-6 md:grid-cols-2">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
       {/* Full card with image, header, content, and footer */}
       <SkeletonCard />
 
       {/* Card without image */}
       <SkeletonCard showImage={false} />
     </div>
-    <div className="grid gap-6 md:grid-cols-3 mt-4">
+    <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4">
       {/* Card without footer */}
       <SkeletonCard showFooter={false} />
 
@@ -445,12 +445,12 @@ import {
   </Tab>{" "}
   <Tab value="Code">
     ```tsx
-    <div className="rounded-lg border p-6 space-y-4">
-      <div className="flex items-center space-x-4">
+    <div className="rounded-lg border p-4 sm:p-6 space-y-4">
+      <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
         <SkeletonAvatar size="lg" />
-        <div className="space-y-2 flex-1">
-          <Skeleton className="h-4 w-1/3" />
-          <Skeleton className="h-3 w-1/2" />
+        <div className="space-y-2 flex-1 w-full">
+          <Skeleton className="h-4 w-full sm:w-1/3" />
+          <Skeleton className="h-3 w-3/4 sm:w-1/2" />
         </div>
       </div>
       <div className="space-y-2">
@@ -458,7 +458,7 @@ import {
         <Skeleton className="h-4 w-4/5" />
         <Skeleton className="h-4 w-3/5" />
       </div>
-      <div className="flex justify-between gap-4">
+      <div className="flex flex-col sm:flex-row justify-between gap-4">
         <SkeletonButton size="sm" />
         <SkeletonButton size="sm" />
       </div>
@@ -477,17 +477,20 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {Array.from({ length: 3 }).map((_, i) => (
-        <div key={i} className="flex space-x-4">
-          <Skeleton className="w-16 h-16 rounded-lg" />
+        <div
+          key={i}
+          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+        >
+          <Skeleton className="w-full sm:w-16 h-32 sm:h-16 rounded-lg" />
           <div className="flex-1 space-y-2">
-            <Skeleton className="h-4 w-3/4" />
-            <Skeleton className="h-3 w-1/2" />
-            <div className="flex items-center space-x-2">
+            <SkeletonText className="w-full sm:w-3/4" />
+            <SkeletonText className="w-4/5 sm:w-1/2" size="sm" />
+            <div className="flex flex-wrap items-center gap-2">
               <SkeletonAvatar size="sm" />
-              <Skeleton className="h-3 w-20" />
-              <Skeleton className="h-3 w-16" />
+              <SkeletonText className="w-20" size="sm" />
+              <SkeletonText className="w-16" size="sm" />
             </div>
           </div>
         </div>
@@ -507,36 +510,38 @@ import {
   </Tab>{" "}
   <Tab value="Code">
     ```tsx
-    <div className="rounded-md border">
-      {/* Header */}
-      <div className="border-b p-4">
-        <div className="grid grid-cols-4 gap-4 items-center">
-          <Skeleton className="h-3" />
-          <Skeleton className="h-3" />
-          <Skeleton className="h-3" />
-          <Skeleton className="h-3" />
-        </div>
-      </div>
-      {/* Rows */}
-      {Array.from({ length: 5 }).map((_, i) => (
-        <div key={i} className="border-b last:border-b-0 p-4">
+    <div className="rounded-md border overflow-x-auto">
+      <div className="min-w-[600px]">
+        {/* Header */}
+        <div className="border-b p-4">
           <div className="grid grid-cols-4 gap-4 items-center">
-            <div className="flex items-center space-x-2">
-              <SkeletonAvatar size="sm" />
-              <Skeleton className="h-3 w-20" />
-            </div>
-            <div className="flex justify-center">
-              <Skeleton className="h-3 w-16" />
-            </div>
-            <div className="flex justify-center">
-              <Skeleton className="h-3 w-16" />
-            </div>
-            <div className="flex justify-center">
-              <SkeletonButton size="sm" />
-            </div>
+            <SkeletonText size="sm" />
+            <SkeletonText size="sm" />
+            <SkeletonText size="sm" />
+            <SkeletonText size="sm" />
           </div>
         </div>
-      ))}
+        {/* Rows */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="border-b last:border-b-0 p-4">
+            <div className="grid grid-cols-4 gap-4 items-center">
+              <div className="flex items-center space-x-2">
+                <SkeletonAvatar size="sm" />
+                <SkeletonText className="w-20" size="sm" />
+              </div>
+              <div className="flex justify-center">
+                <SkeletonText className="w-16" size="sm" />
+              </div>
+              <div className="flex justify-center">
+                <SkeletonText className="w-16" size="sm" />
+              </div>
+              <div className="flex justify-center">
+                <SkeletonButton size="sm" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
     ```
   </Tab>
@@ -584,27 +589,34 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="space-y-4">
-      {/* Title */}
-      <Skeleton className="h-8 w-4/5" />
-
-      {/* Author */}
-      <div className="flex items-center space-x-4">
-        <SkeletonAvatar size="sm" />
-        <div className="space-y-1">
-          <Skeleton className="h-3 w-24" />
-          <Skeleton className="h-3 w-20" />
+    <div className="space-y-4 sm:space-y-6">
+      {/* Header */}
+      <div className="space-y-3 sm:space-y-4">
+        <SkeletonText className="w-full sm:w-4/5" size="xl" />
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
+          <SkeletonAvatar size="sm" />
+          <div className="space-y-1">
+            <SkeletonText className="w-24" size="sm" />
+            <SkeletonText className="w-20" size="sm" />
+          </div>
         </div>
       </div>
 
       {/* Featured Image */}
-      <SkeletonCard className="h-64" />
+      <SkeletonCard className="h-48 sm:h-64" />
 
       {/* Content */}
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-full" />
-        <Skeleton className="h-4 w-3/4" />
+      <div className="space-y-2 sm:space-y-3">
+        {Array.from({ length: 6 }).map((_, i) => (
+          <SkeletonText key={i} className={i === 5 ? "w-3/4" : "w-full"} />
+        ))}
+      </div>
+
+      {/* Tags */}
+      <div className="flex flex-wrap gap-2">
+        {Array.from({ length: 3 }).map((_, i) => (
+          <Skeleton key={i} className="h-6 w-16 rounded-full" />
+        ))}
       </div>
     </div>
     ```

@@ -29,7 +29,7 @@ export function AvatarSkeletons() {
     <div className="space-y-4">
       <div className="space-y-2">
         <h3 className="text-sm font-medium">Avatar Sizes</h3>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <SkeletonAvatar size="sm" />
           <SkeletonAvatar size="default" />
           <SkeletonAvatar size="lg" />
@@ -47,7 +47,7 @@ export function ButtonSkeletons() {
     <div className="space-y-4">
       <div className="space-y-2">
         <h3 className="text-sm font-medium">Button Sizes</h3>
-        <div className="flex items-center gap-4">
+        <div className="flex flex-wrap items-center gap-4">
           <SkeletonButton size="sm" />
           <SkeletonButton size="default" />
           <SkeletonButton size="lg" />
@@ -63,11 +63,11 @@ export function CardSkeletons() {
     <div className="space-y-4">
       <div className="space-y-2">
         <h3 className="text-sm font-medium">Card Layouts</h3>
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2">
           <SkeletonCard />
           <SkeletonCard showImage={false} />
         </div>
-        <div className="grid gap-6 md:grid-cols-3 mt-4">
+        <div className="grid gap-4 sm:gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-4">
           <SkeletonCard showFooter={false} />
           <SkeletonCard showHeader={false} />
           <SkeletonCard showImage={false} showFooter={false} />
@@ -82,12 +82,12 @@ export function ProfileCardSkeleton() {
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-medium">Profile Card</h3>
-      <div className="rounded-lg border p-6 space-y-4">
-        <div className="flex items-center space-x-4">
+      <div className="rounded-lg border p-4 sm:p-6 space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-4">
           <SkeletonAvatar size="lg" />
-          <div className="space-y-2 flex-1">
-            <SkeletonText className="w-1/3" />
-            <SkeletonText className="w-1/2" size="sm" />
+          <div className="space-y-2 flex-1 w-full">
+            <SkeletonText className="w-full sm:w-1/3" />
+            <SkeletonText className="w-3/4 sm:w-1/2" size="sm" />
           </div>
         </div>
         <div className="space-y-2">
@@ -95,7 +95,7 @@ export function ProfileCardSkeleton() {
           <SkeletonText className="w-4/5" />
           <SkeletonText className="w-3/5" />
         </div>
-        <div className="flex justify-between gap-4">
+        <div className="flex flex-col sm:flex-row justify-between gap-4">
           <SkeletonButton size="sm" />
           <SkeletonButton size="sm" />
         </div>
@@ -109,14 +109,17 @@ export function ArticleListSkeleton() {
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-medium">Article List</h3>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {Array.from({ length: 3 }).map((_, i) => (
-          <div key={i} className="flex space-x-4">
-            <Skeleton className="w-16 h-16 rounded-lg" />
+          <div
+            key={i}
+            className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4"
+          >
+            <Skeleton className="w-full sm:w-16 h-32 sm:h-16 rounded-lg" />
             <div className="flex-1 space-y-2">
-              <SkeletonText className="w-3/4" />
-              <SkeletonText className="w-1/2" size="sm" />
-              <div className="flex items-center space-x-2">
+              <SkeletonText className="w-full sm:w-3/4" />
+              <SkeletonText className="w-4/5 sm:w-1/2" size="sm" />
+              <div className="flex flex-wrap items-center gap-2">
                 <SkeletonAvatar size="sm" />
                 <SkeletonText className="w-20" size="sm" />
                 <SkeletonText className="w-16" size="sm" />
@@ -165,36 +168,38 @@ export function DataTableSkeleton() {
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-medium">Data Table</h3>
-      <div className="rounded-md border">
-        {/* Header */}
-        <div className="border-b p-4">
-          <div className="grid grid-cols-4 gap-4 items-center">
-            <SkeletonText size="sm" />
-            <SkeletonText size="sm" />
-            <SkeletonText size="sm" />
-            <SkeletonText size="sm" />
-          </div>
-        </div>
-        {/* Rows */}
-        {Array.from({ length: 5 }).map((_, i) => (
-          <div key={i} className="border-b last:border-b-0 p-4">
+      <div className="rounded-md border overflow-x-auto">
+        <div className="min-w-[600px]">
+          {/* Header */}
+          <div className="border-b p-4">
             <div className="grid grid-cols-4 gap-4 items-center">
-              <div className="flex items-center space-x-2">
-                <SkeletonAvatar size="sm" />
-                <SkeletonText className="w-20" size="sm" />
-              </div>
-              <div className="flex justify-center">
-                <SkeletonText className="w-16" size="sm" />
-              </div>
-              <div className="flex justify-center">
-                <SkeletonText className="w-16" size="sm" />
-              </div>
-              <div className="flex justify-center">
-                <SkeletonButton size="sm" />
-              </div>
+              <SkeletonText size="sm" />
+              <SkeletonText size="sm" />
+              <SkeletonText size="sm" />
+              <SkeletonText size="sm" />
             </div>
           </div>
-        ))}
+          {/* Rows */}
+          {Array.from({ length: 5 }).map((_, i) => (
+            <div key={i} className="border-b last:border-b-0 p-4">
+              <div className="grid grid-cols-4 gap-4 items-center">
+                <div className="flex items-center space-x-2">
+                  <SkeletonAvatar size="sm" />
+                  <SkeletonText className="w-20" size="sm" />
+                </div>
+                <div className="flex justify-center">
+                  <SkeletonText className="w-16" size="sm" />
+                </div>
+                <div className="flex justify-center">
+                  <SkeletonText className="w-16" size="sm" />
+                </div>
+                <div className="flex justify-center">
+                  <SkeletonButton size="sm" />
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -205,11 +210,11 @@ export function BlogPostSkeleton() {
   return (
     <div className="space-y-4">
       <h3 className="text-sm font-medium">Blog Post</h3>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         {/* Header */}
-        <div className="space-y-4">
-          <SkeletonText className="w-4/5" size="xl" />
-          <div className="flex items-center space-x-4">
+        <div className="space-y-3 sm:space-y-4">
+          <SkeletonText className="w-full sm:w-4/5" size="xl" />
+          <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4">
             <SkeletonAvatar size="sm" />
             <div className="space-y-1">
               <SkeletonText className="w-24" size="sm" />
@@ -219,17 +224,17 @@ export function BlogPostSkeleton() {
         </div>
 
         {/* Featured Image */}
-        <SkeletonCard className="h-64" />
+        <SkeletonCard className="h-48 sm:h-64" />
 
         {/* Content */}
-        <div className="space-y-3">
+        <div className="space-y-2 sm:space-y-3">
           {Array.from({ length: 6 }).map((_, i) => (
             <SkeletonText key={i} className={i === 5 ? "w-3/4" : "w-full"} />
           ))}
         </div>
 
         {/* Tags */}
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {Array.from({ length: 3 }).map((_, i) => (
             <Skeleton key={i} className="h-6 w-16 rounded-full" />
           ))}
