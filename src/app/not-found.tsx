@@ -6,7 +6,7 @@ export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
   description:
     "Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.",
-  ogImage: "/banner.png",
+  ogImage: "/Banner.png",
   twitterCard: "summary_large_image",
   canonicalUrl: "https://hextaui.com",
 });
