@@ -28,12 +28,11 @@ export default function Layout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <body className="flex flex-col min-h-screen">
-        {" "}
-        <OptimizedBanner variant="rainbow">
+        {/* <OptimizedBanner variant="rainbow">
           <Link href="/docs/everything-by-hextaui/blocks">
             Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
           </Link>{" "}
-        </OptimizedBanner>
+        </OptimizedBanner> */}
         <RootProvider>{children}</RootProvider>
         <PerformanceMonitor />
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
