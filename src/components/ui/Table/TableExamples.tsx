@@ -449,8 +449,8 @@ export function ProductsTable() {
             row.status === "out-of-stock"
               ? "text-red-600"
               : row.status === "low-stock"
-              ? "text-yellow-600"
-              : "text-green-600"
+                ? "text-yellow-600"
+                : "text-green-600"
           }`}
         >
           {value}
@@ -605,8 +605,8 @@ export function MinimalTable() {
             value === "active"
               ? "bg-green-100 text-green-800"
               : value === "inactive"
-              ? "bg-gray-100 text-gray-800"
-              : "bg-yellow-100 text-yellow-800"
+                ? "bg-gray-100 text-gray-800"
+                : "bg-yellow-100 text-yellow-800"
           }`}
         >
           {value}
