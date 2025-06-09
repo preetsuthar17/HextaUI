@@ -15,6 +15,7 @@ export const source = loader({
       const data = file.data.data as {
         new: boolean;
         pro: boolean;
+        soon: boolean;
       };
       if (data.new)
         node.name = (
@@ -31,6 +32,15 @@ export const source = loader({
             {node.name}
             <span className="border-orange-600 border bg-orange-600 text-white text-xs py-0.2 px-2 rounded-md mx-[5px]">
               Pro
+            </span>
+          </>
+        );
+      else if (data.soon)
+        node.name = (
+          <>
+            {node.name}
+            <span className="border-yellow-600 border bg-yellow-600 text-white text-xs py-0.2 px-2 rounded-md mx-[5px]">
+              Soon
             </span>
           </>
         );
