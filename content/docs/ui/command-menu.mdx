@@ -581,6 +581,56 @@ npx hexta-ui@latest add command-menu
 
 ## Usage
 
+```tsx
+import * as React from "react";
+import {
+  CommandMenu,
+  CommandMenuTrigger,
+  CommandMenuContent,
+  CommandMenuInput,
+  CommandMenuList,
+  CommandMenuGroup,
+  CommandMenuItem,
+  useCommandMenuShortcut,
+} from "@/components/ui/command-menu";
+import { Button } from "@/components/ui/button";
+import { Search, Settings, User } from "lucide-react";
+```
+
+```tsx
+export const BasicCommandMenu = () => {
+  const [open, setOpen] = React.useState(false);
+
+  useCommandMenuShortcut(() => setOpen(true));
+
+  return (
+    <CommandMenu open={open} onOpenChange={setOpen}>
+      <CommandMenuTrigger asChild>
+        <Button variant="outline">
+          Open Command Menu <kbd>⌘K</kbd>
+        </Button>
+      </CommandMenuTrigger>
+      <CommandMenuContent>
+        <CommandMenuInput placeholder="Type a command or search..." />
+        <CommandMenuList>
+          <CommandMenuGroup heading="Suggestions">
+            <CommandMenuItem icon={<Search />} shortcut="⌘+F">
+              Search
+            </CommandMenuItem>
+            <CommandMenuItem icon={<Settings />} shortcut="⌘+,">
+              Settings
+            </CommandMenuItem>
+            <CommandMenuItem icon={<User />} shortcut="⌘+U">
+              Profile
+            </CommandMenuItem>
+          </CommandMenuGroup>
+        </CommandMenuList>
+      </CommandMenuContent>
+    </CommandMenu>
+  );
+};
+```
+
 ### OS Detection and Keyboard Shortcuts
 
 The component automatically detects the user's operating system and displays the appropriate modifier keys:
