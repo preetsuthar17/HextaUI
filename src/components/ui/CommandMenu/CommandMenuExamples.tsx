@@ -119,7 +119,7 @@ export const SearchCommandMenu = () => {
   ];
 
   const filteredResults = searchResults.filter((item) =>
-    item.name.toLowerCase().includes(searchValue.toLowerCase())
+    item.name.toLowerCase().includes(searchValue.toLowerCase()),
   );
 
   return (
@@ -354,7 +354,7 @@ export const ComplexCommandMenu = () => {
     return allItems.filter(
       (item) =>
         item.name.toLowerCase().includes(value.toLowerCase()) ||
-        item.type.toLowerCase().includes(value.toLowerCase())
+        item.type.toLowerCase().includes(value.toLowerCase()),
     );
   }, [value]);
 
