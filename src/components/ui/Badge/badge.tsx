@@ -31,11 +31,11 @@ const badgeVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface BadgeProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends React.HTMLAttributes<HTMLSpanElement>,
     VariantProps<typeof badgeVariants> {
   icon?: LucideIcon;
   iconPosition?: "left" | "right";
@@ -53,7 +53,10 @@ function Badge({
   const iconSize = size === "sm" ? 12 : size === "lg" ? 14 : 12;
 
   return (
-    <div className={cn(badgeVariants({ variant, size }), className)} {...props}>
+    <span
+      className={cn(badgeVariants({ variant, size }), className)}
+      {...props}
+    >
       {Icon && iconPosition === "left" && (
         <Icon size={iconSize} className="shrink-0" />
       )}
@@ -61,7 +64,7 @@ function Badge({
       {Icon && iconPosition === "right" && (
         <Icon size={iconSize} className="shrink-0" />
       )}
-    </div>
+    </span>
   );
 }
 
