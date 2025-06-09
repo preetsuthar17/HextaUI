@@ -3,6 +3,7 @@ import { docs } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { icons } from "lucide-react";
 import { createElement } from "react";
+import { Badge } from "@/components/ui/Badge";
 
 // See https://fumadocs.vercel.app/docs/headless/source-api for more info
 export const source = loader({
@@ -21,27 +22,27 @@ export const source = loader({
         node.name = (
           <>
             {node.name}
-            <span className="border-blue-600 border bg-blue-600 text-white text-xs py-0.2 px-2 rounded-md mx-[5px]">
+            <Badge size="sm" variant="secondary">
               New
-            </span>
+            </Badge>
           </>
         );
       else if (data.pro)
         node.name = (
           <>
             {node.name}
-            <span className="border-orange-600 border bg-orange-600 text-white text-xs py-0.2 px-2 rounded-md mx-[5px]">
+            <Badge size="sm" variant="secondary">
               Pro
-            </span>
+            </Badge>
           </>
         );
       else if (data.soon)
         node.name = (
           <>
             {node.name}
-            <span className="border-yellow-600 border bg-yellow-600 text-white text-xs py-0.2 px-2 rounded-md mx-[5px]">
+            <Badge size="sm" variant="secondary">
               Soon
-            </span>
+            </Badge>
           </>
         );
 
