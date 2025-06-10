@@ -91,7 +91,7 @@ const datePickerVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 interface DatePickerProps extends VariantProps<typeof datePickerVariants> {
@@ -135,7 +135,7 @@ export function DatePicker({
     // Set portal container on client side only
     if (typeof document !== "undefined") {
       setPortalContainer(
-        document.getElementById("portal-root") || document.body,
+        document.getElementById("portal-root") || document.body
       );
     }
   }, []);
@@ -285,7 +285,7 @@ export function DatePicker({
         <ChevronDown
           className={cn(
             "h-4 w-4 opacity-50 transition-transform duration-200",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </Button>
@@ -450,7 +450,7 @@ export function DateRangePicker({
         <ChevronDown
           className={cn(
             "h-4 w-4 opacity-50 transition-transform duration-200",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </button>
@@ -485,7 +485,7 @@ export function DateRangePicker({
               </motion.div>
             )}
           </AnimatePresence>,
-          document.getElementById("portal-root") || document.body,
+          document.getElementById("portal-root") || document.body
         )}
     </div>
   );
@@ -514,26 +514,6 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
 <DatePicker value={selectedDate} onChange={setSelectedDate} />
 <DateRangePicker value={selectedRange} onChange={setSelectedRange} />
 ```
-
-## Portal-Based Implementation
-
-The DatePicker components use a portal-based approach to render the calendar outside the normal DOM hierarchy. This provides several benefits:
-
-### Key Features
-
-- **No Clipping Issues**: Calendar appears on top regardless of parent container styles
-- **Fixed Positioning**: Calendar stays in the correct position relative to the trigger button
-- **Auto Width Matching**: Calendar automatically matches the width of the date picker button
-- **High Z-Index**: Ensures calendar appears above all other page content
-
-### How it Works
-
-1. Creates a `portal-root` container in the document body if it doesn't exist
-2. Calculates the position of the date picker trigger button using `getBoundingClientRect()`
-3. Renders the calendar using `ReactDOM.createPortal` with fixed positioning
-4. Handles click outside events and keyboard navigation properly
-
-This approach solves common issues with dropdowns being clipped by parent containers with `overflow: hidden` or conflicting z-index values.
 
 ## Examples
 
@@ -927,20 +907,3 @@ Great for hotel bookings, appointment scheduling, and reservation systems.
     },
   }}
 />
-
-## Features
-
-- **Portal-Based Rendering**: Calendar renders outside DOM hierarchy using `ReactDOM.createPortal` to avoid clipping issues
-- **Fixed Positioning**: Calendar stays on top of all other components with proper z-index management
-- **Width Matching**: Calendar automatically matches the width of the date picker trigger element
-- **Single & Range Selection**: Support for both single date and date range selection
-- **Keyboard Navigation**: Full keyboard support with arrow keys and Enter/Space
-- **Accessibility**: ARIA labels, focus management, and screen reader support
-- **Date Restrictions**: Min/max dates and custom disabled date functions
-- **Custom Formatting**: Flexible date formatting with locale support
-- **Responsive Design**: Mobile-optimized with touch-friendly interactions
-- **Body Scroll Lock**: Prevents page scrolling when calendar is open
-- **Animation**: Smooth open/close animations with Framer Motion
-- **Variants & Sizes**: Multiple visual variants and size options
-- **Form Integration**: Easy integration with form libraries
-- **Clipping Prevention**: Avoids issues with parent containers that have `overflow: hidden` or z-index restrictions
