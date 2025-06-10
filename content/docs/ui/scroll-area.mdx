@@ -1,0 +1,446 @@
+---
+title: Scroll Area
+description: A customizable scroll area component with smooth scrolling and accessible scrollbars.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  ScrollArea,
+  ScrollAreaBasic,
+  ScrollAreaVertical,
+  ScrollAreaHorizontal,
+  ScrollAreaBoth,
+  ScrollAreaTypes,
+  ScrollAreaAlways,
+  ScrollAreaAuto,
+  ScrollAreaScroll,
+  ScrollAreaHover,
+} from "@/components/ui/ScrollArea";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaBasic />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4">
+      <div className="space-y-4">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+          >
+            Item {i + 1}: This is a scrollable item with some content
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install @radix-ui/react-scroll-area class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/ScrollArea/scroll-area.tsx"
+"use client";
+
+import * as React from "react";
+import * as ScrollAreaPrimitive from "@radix-ui/react-scroll-area";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+
+const scrollAreaVariants = cva("relative overflow-hidden", {
+  variants: {
+    orientation: {
+      vertical: "h-full",
+      horizontal: "w-full",
+      both: "h-full w-full",
+    },
+  },
+  defaultVariants: {
+    orientation: "vertical",
+  },
+});
+
+const scrollBarVariants = cva("flex touch-none select-none transition-colors", {
+  variants: {
+    orientation: {
+      vertical: "h-full w-2.5 border-l border-l-transparent p-[1px]",
+      horizontal: "h-2.5 w-full border-t border-t-transparent p-[1px]",
+    },
+  },
+  defaultVariants: {
+    orientation: "vertical",
+  },
+});
+
+export interface ScrollAreaProps
+  extends React.ComponentPropsWithoutRef<typeof ScrollAreaPrimitive.Root>,
+    VariantProps<typeof scrollAreaVariants> {
+  scrollHideDelay?: number;
+  type?: "auto" | "always" | "scroll" | "hover";
+}
+
+const ScrollArea = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.Root>,
+  ScrollAreaProps
+>(
+  (
+    {
+      className,
+      children,
+      orientation,
+      scrollHideDelay = 600,
+      type = "hover",
+      ...props
+    },
+    ref,
+  ) => (
+    <ScrollAreaPrimitive.Root
+      ref={ref}
+      className={cn(scrollAreaVariants({ orientation }), className)}
+      {...props}
+    >
+      <ScrollAreaPrimitive.Viewport className="h-full w-full rounded-[inherit]">
+        {children}
+      </ScrollAreaPrimitive.Viewport>
+      <ScrollBar
+        orientation="vertical"
+        type={type}
+        scrollHideDelay={scrollHideDelay}
+      />
+      {(orientation === "horizontal" || orientation === "both") && (
+        <ScrollBar
+          orientation="horizontal"
+          type={type}
+          scrollHideDelay={scrollHideDelay}
+        />
+      )}
+      <ScrollAreaPrimitive.Corner />
+    </ScrollAreaPrimitive.Root>
+  ),
+);
+
+ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
+
+interface ScrollBarProps
+  extends React.ComponentPropsWithoutRef<
+    typeof ScrollAreaPrimitive.ScrollAreaScrollbar
+  > {
+  scrollHideDelay?: number;
+  type?: "auto" | "always" | "scroll" | "hover";
+}
+
+const ScrollBar = React.forwardRef<
+  React.ElementRef<typeof ScrollAreaPrimitive.ScrollAreaScrollbar>,
+  ScrollBarProps
+>(
+  (
+    { className, orientation = "vertical", scrollHideDelay, type, ...props },
+    ref,
+  ) => (
+    <ScrollAreaPrimitive.ScrollAreaScrollbar
+      ref={ref}
+      orientation={orientation}
+      className={cn(
+        scrollBarVariants({ orientation }),
+        "hover:bg-[hsl(var(--hu-accent))]",
+        className,
+      )}
+      scrollHideDelay={scrollHideDelay}
+      type={type}
+      {...props}
+    >
+      <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-foreground))]/30 transition-colors" />
+    </ScrollAreaPrimitive.ScrollAreaScrollbar>
+  ),
+);
+
+ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
+
+export { ScrollArea, ScrollBar, scrollAreaVariants };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add scroll-area
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { ScrollArea } from "@/components/ui/ScrollArea";
+```
+
+```tsx
+<ScrollArea className="h-72 w-full rounded-md border">
+  <div className="p-4">{/* Your scrollable content */}</div>
+</ScrollArea>
+```
+
+## Examples
+
+### Default
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaBasic />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4">
+      <div className="space-y-4">
+        {Array.from({ length: 50 }).map((_, i) => (
+          <div
+            key={i}
+            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+          >
+            Item {i + 1}: This is a scrollable item with some content
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### Vertical Scrolling (Default)
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaVertical />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea
+      orientation="vertical"
+      className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+    >
+      <div className="space-y-4">
+        {Array.from({ length: 30 }).map((_, i) => (
+          <div
+            key={i}
+            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+          >
+            Item {i + 1}: This is a scrollable item with some content
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### Horizontal Scrolling
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaHorizontal />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea
+      orientation="horizontal"
+      className="w-full rounded-md border border-[hsl(var(--hu-border))]"
+    >
+      <div className="flex space-x-4 p-4">
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div
+            key={i}
+            className="flex-shrink-0 w-32 h-24 p-2 rounded bg-[hsl(var(--hu-accent))] text-sm"
+          >
+            Card {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### Both Directions
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaBoth />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea
+      orientation="both"
+      className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))]"
+    >
+      <div className="p-4" style={{ width: "800px", height: "600px" }}>
+        <div className="grid grid-cols-8 gap-4">
+          {Array.from({ length: 64 }).map((_, i) => (
+            <div
+              key={i}
+              className="w-20 h-20 p-2 rounded bg-[hsl(var(--hu-accent))] text-xs flex items-center justify-center"
+            >
+              {i + 1}
+            </div>
+          ))}
+        </div>
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### Always Visible Scrollbar
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaAlways />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea type="always" className="h-48 w-full rounded-md border">
+      <div className="p-4">
+        {/* Content that requires scrolling */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div key={i} className="p-2 mb-2 bg-accent rounded">
+            Always visible item {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### Auto Hide Scrollbar
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaAuto />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea type="auto" className="h-48 w-full rounded-md border">
+      <div className="p-4">
+        {/* Content that may or may not need scrolling */}
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="p-2 mb-2 bg-accent rounded">
+            Auto hide item {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### On Scroll Scrollbar
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaScroll />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea type="scroll" className="h-48 w-full rounded-md border">
+      <div className="p-4">
+        {/* Scrollbar appears when scrolling */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div key={i} className="p-2 mb-2 bg-accent rounded">
+            On scroll item {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+### On Hover Scrollbar (Default)
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ScrollAreaHover />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ScrollArea type="hover" className="h-48 w-full rounded-md border">
+      <div className="p-4">
+        {/* Scrollbar appears on hover (default behavior) */}
+        {Array.from({ length: 20 }).map((_, i) => (
+          <div key={i} className="p-2 mb-2 bg-accent rounded">
+            On hover item {i + 1}
+          </div>
+        ))}
+      </div>
+    </ScrollArea>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    orientation: {
+      description: "The orientation of the scroll area",
+      type: '"vertical" | "horizontal" | "both"',
+      default: '"vertical"',
+    },
+    type: {
+      description: "Controls when the scrollbar is visible",
+      type: '"auto" | "always" | "scroll" | "hover"',
+      default: '"hover"',
+    },
+    scrollHideDelay: {
+      description: "Time in milliseconds before scrollbar hides",
+      type: "number",
+      default: "600",
+    },
+    className: {
+      description: "Additional CSS classes to apply",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "The content to be scrolled",
+      type: "React.ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

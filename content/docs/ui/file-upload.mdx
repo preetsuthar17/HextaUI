@@ -1,5 +1,434 @@
 ---
 title: File Upload
-description: File upload components allow users to select and upload files from their device.
-soon: true
+description: A versatile file upload component with drag and drop support, progress tracking, and customizable styling.
 ---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Badge } from "@/components/ui/Badge";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  FileUpload,
+  FileUploadBasic,
+  FileUploadVariants,
+  FileUploadWithCustomAccept,
+  FileUploadControlled,
+} from "@/components/ui/FileUpload";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FileUploadBasic />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <FileUpload
+      maxFiles={5}
+      maxSize={5 * 1024 * 1024}
+      onFilesChange={(files) => console.log("Files changed:", files)}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority lucide-react motion
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/FileUpload/file-upload.tsx"
+"use client";
+
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { motion, AnimatePresence } from "motion/react";
+import {
+  UploadCloud,
+  File as FileIcon,
+  X,
+  CheckCircle,
+  Loader,
+} from "lucide-react";
+
+const fileUploadVariants = cva(
+  "relative rounded-xl border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
+  {
+    variants: {
+      variant: {
+        default:
+          "border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] hover:border-[hsl(var(--hu-primary))]/30",
+        dashed:
+          "border-dashed border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] hover:border-[hsl(var(--hu-primary))]/50",
+        ghost:
+          "border-transparent bg-[hsl(var(--hu-accent))]/50 hover:bg-[hsl(var(--hu-accent))]",
+      },
+      size: {
+        sm: "p-4 min-h-[120px]",
+        default: "p-6 min-h-[160px]",
+        lg: "p-8 min-h-[200px]",
+      },
+    },
+    defaultVariants: {
+      variant: "dashed",
+      size: "default",
+    },
+  },
+);
+
+interface FileWithPreview {
+  id: string;
+  name: string;
+  size: number;
+  type: string;
+  progress: number;
+  status: "uploading" | "completed" | "error";
+  preview?: string;
+}
+
+export interface FileUploadProps
+  extends VariantProps<typeof fileUploadVariants> {
+  accept?: string;
+  multiple?: boolean;
+  maxFiles?: number;
+  maxSize?: number;
+  disabled?: boolean;
+  onFilesChange?: (files: FileWithPreview[]) => void;
+  className?: string;
+  children?: React.ReactNode;
+}
+
+const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
+  (
+    {
+      className,
+      variant,
+      size,
+      accept = "*/*",
+      multiple = true,
+      maxFiles = 10,
+      maxSize = 10 * 1024 * 1024,
+      disabled = false,
+      onFilesChange,
+      children,
+      ...props
+    },
+    ref,
+  ) => {
+    const [files, setFiles] = React.useState<FileWithPreview[]>([]);
+    const [isDragging, setIsDragging] = React.useState(false);
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const formatFileSize = (bytes: number): string => {
+      if (!bytes) return "0 Bytes";
+      const k = 1024;
+      const sizes = ["Bytes", "KB", "MB", "GB"];
+      const i = Math.floor(Math.log(bytes) / Math.log(k));
+      return `${(bytes / Math.pow(k, i)).toFixed(1)} ${sizes[i]}`;
+    };
+
+    const handleFiles = (fileList: FileList) => {
+      if (disabled) return;
+
+      const newFiles = Array.from(fileList)
+        .slice(0, maxFiles - files.length)
+        .map((file) => ({
+          id: `${Date.now()}-${Math.random()}`,
+          name: file.name,
+          size: file.size,
+          type: file.type,
+          progress: 0,
+          status: "uploading" as const,
+          preview: file.type.startsWith("image/")
+            ? URL.createObjectURL(file)
+            : undefined,
+        }));
+
+      const updatedFiles = [...files, ...newFiles];
+      setFiles(updatedFiles);
+      onFilesChange?.(updatedFiles);
+
+      // Simulate upload
+      newFiles.forEach((fileItem) => {
+        let progress = 0;
+        const interval = setInterval(() => {
+          progress += Math.random() * 15;
+          setFiles((prev) =>
+            prev.map((f) =>
+              f.id === fileItem.id
+                ? { ...f, progress: Math.min(progress, 100) }
+                : f,
+            ),
+          );
+          if (progress >= 100) {
+            clearInterval(interval);
+            setFiles((prev) =>
+              prev.map((f) =>
+                f.id === fileItem.id ? { ...f, status: "completed" } : f,
+              ),
+            );
+          }
+        }, 200);
+      });
+    };
+
+    const removeFile = (id: string) => {
+      const updatedFiles = files.filter((f) => f.id !== id);
+      setFiles(updatedFiles);
+      onFilesChange?.(updatedFiles);
+    };
+
+    const onDrop = (e: React.DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
+      handleFiles(e.dataTransfer.files);
+    };
+
+    const onDragOver = (e: React.DragEvent) => {
+      e.preventDefault();
+      if (!disabled) setIsDragging(true);
+    };
+
+    const onDragLeave = () => setIsDragging(false);
+
+    const onSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (e.target.files) handleFiles(e.target.files);
+    };
+
+    const openFileDialog = () => {
+      if (!disabled) inputRef.current?.click();
+    };
+
+    return (
+      <div ref={ref} className="w-full space-y-4" {...props}>
+        <div
+          onDragOver={onDragOver}
+          onDragLeave={onDragLeave}
+          onDrop={onDrop}
+          onClick={openFileDialog}
+          className={cn(
+            fileUploadVariants({ variant, size }),
+            isDragging &&
+              "border-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-primary))]/5",
+            disabled && "opacity-50 pointer-events-none",
+            "cursor-pointer",
+            className,
+          )}
+        >
+          <div className="flex flex-col items-center justify-center text-center space-y-3">
+            <UploadCloud className="w-12 h-12 text-[hsl(var(--hu-muted-foreground))]" />
+            <div className="space-y-1">
+              <h3 className="text-lg font-medium">
+                {isDragging ? "Drop files here" : "Upload files"}
+              </h3>
+              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                Drag and drop files here, or click to browse
+              </p>
+            </div>
+            {children}
+          </div>
+          <input
+            ref={inputRef}
+            type="file"
+            multiple={multiple}
+            accept={accept}
+            disabled={disabled}
+            className="sr-only"
+            onChange={onSelect}
+          />
+        </div>
+
+        {files.length > 0 && (
+          <div className="space-y-2">
+            <AnimatePresence>
+              {files.map((file) => (
+                <motion.div
+                  key={file.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  className="flex items-center gap-3 p-3 rounded-lg bg-[hsl(var(--hu-card))] border"
+                >
+                  <FileIcon className="w-8 h-8 text-[hsl(var(--hu-muted-foreground))]" />
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium truncate">{file.name}</p>
+                    <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                      {formatFileSize(file.size)}
+                    </p>
+                    {file.status === "uploading" && (
+                      <div className="w-full h-1 bg-[hsl(var(--hu-accent))] rounded-full mt-1">
+                        <motion.div
+                          initial={{ width: 0 }}
+                          animate={{ width: `${file.progress}%` }}
+                          className="h-full bg-[hsl(var(--hu-primary))] rounded-full"
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {file.status === "uploading" && (
+                      <Loader className="w-4 h-4 animate-spin" />
+                    )}
+                    {file.status === "completed" && (
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                    )}
+                    <button
+                      onClick={() => removeFile(file.id)}
+                      className="p-1 hover:bg-[hsl(var(--hu-accent))] rounded"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </div>
+        )}
+      </div>
+    );
+  },
+);
+
+FileUpload.displayName = "FileUpload";
+
+export { FileUpload, fileUploadVariants };
+export type { FileWithPreview };
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add file-upload
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { FileUpload } from "@/components/ui/FileUpload";
+```
+
+```tsx
+<FileUpload />
+```
+
+## Examples
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FileUploadVariants />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <FileUpload variant="default" />
+    <FileUpload variant="dashed" />
+    <FileUpload variant="ghost" />
+    ```
+  </Tab>
+</Tabs>
+
+### File Type Restrictions
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FileUploadWithCustomAccept />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <FileUpload accept="image/*">
+      <Badge variant="secondary" size="sm">
+        Images only
+      </Badge>
+    </FileUpload>
+    ```
+  </Tab>
+</Tabs>
+
+### Controlled
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FileUploadControlled />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    const [files, setFiles] = useState([]);
+
+    return (
+      <FileUpload
+        onFilesChange={setFiles}
+        maxFiles={5}
+      />
+    );
+    ```
+
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    variant: {
+      description: "The visual style variant",
+      type: '"default" | "dashed" | "ghost"',
+      default: '"dashed"',
+    },
+    size: {
+      description: "The size of the upload area",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+    accept: {
+      description: "Accepted file types",
+      type: "string",
+      default: '"*/*"',
+    },
+    multiple: {
+      description: "Allow multiple file selection",
+      type: "boolean",
+      default: "true",
+    },
+    maxFiles: {
+      description: "Maximum number of files",
+      type: "number",
+      default: "10",
+    },
+    maxSize: {
+      description: "Maximum file size in bytes",
+      type: "number",
+      default: "10 * 1024 * 1024",
+    },
+    disabled: {
+      description: "Disable the file upload",
+      type: "boolean",
+      default: "false",
+    },
+    onFilesChange: {
+      description: "Callback when files change",
+      type: "(files: FileWithPreview[]) => void",
+      default: "undefined",
+    },
+  }}
+/>

@@ -81,6 +81,29 @@ samp {
   --animate-accordion-down: accordion-down 0.3s ease-out;
   --animate-accordion-up: accordion-up 0.3s ease-out;
   --animate-shimmer: shimmer 1.5s infinite linear;
+
+  --animate-glow-slow: glow 2.5s ease-in-out infinite;
+  --animate-bounce-drop: bounceDrop 0.8s ease;
+}
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 16px rgba(59, 130, 246, 0.8);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 @keyframes accordion-down {
@@ -101,7 +124,6 @@ samp {
   }
 }
 
-/* Skeleton shimmer animation */
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
