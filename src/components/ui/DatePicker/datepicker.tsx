@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { CalendarIcon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "../button";
+import ReactDOM from "react-dom";
 
 const datePickerVariants = cva(
   "inline-flex h-9 w-full items-center justify-between rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm font-medium text-[hsl(var(--hu-foreground))] transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
@@ -63,6 +64,18 @@ export function DatePicker({
   const [isOpen, setIsOpen] = React.useState(false);
   const [focusedDate, setFocusedDate] = React.useState(value || new Date());
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [portalContainer, setPortalContainer] = React.useState<
+    Element | DocumentFragment | null
+  >(null);
+
+  React.useEffect(() => {
+    // Set portal container on client side only
+    if (typeof document !== "undefined") {
+      setPortalContainer(
+        document.getElementById("portal-root") || document.body
+      );
+    }
+  }, []);
 
   const defaultFormatDate = (date: Date) => {
     return date.toLocaleDateString(locale, {
@@ -92,38 +105,99 @@ export function DatePicker({
     }
   };
 
-  // Body scroll lock effect
   React.useEffect(() => {
-    if (isOpen) {
-      // Store original overflow
+    if (isOpen && typeof document !== "undefined") {
       const originalOverflow = document.body.style.overflow;
-      // Disable scrolling
       document.body.style.overflow = "hidden";
 
       return () => {
-        // Restore original overflow when component unmounts or closes
         document.body.style.overflow = originalOverflow;
       };
     }
   }, [isOpen]);
 
-  // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (typeof document === "undefined") return;
+
+      const target = event.target as Node;
+      const isClickInsideContainer =
+        containerRef.current && containerRef.current.contains(target);
+      const isClickInsideCalendar = document
+        .querySelector("#portal-root")
+        ?.contains(target);
+
+      if (!isClickInsideContainer && !isClickInsideCalendar) {
         setIsOpen(false);
       }
     };
 
-    if (isOpen) {
+    if (isOpen && typeof document !== "undefined") {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
     }
   }, [isOpen]);
+
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      const portalRoot = document.getElementById("portal-root");
+      if (!portalRoot) {
+        const newPortalRoot = document.createElement("div");
+        newPortalRoot.id = "portal-root";
+        newPortalRoot.style.position = "relative";
+        newPortalRoot.style.zIndex = "9999";
+        document.body.appendChild(newPortalRoot);
+      }
+    }
+  }, []);
+
+  const [calendarPosition, setCalendarPosition] = React.useState({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
+
+  React.useEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCalendarPosition({
+        top: rect.bottom + 8, // 8px margin
+        left: rect.left,
+        width: rect.width,
+      });
+    }
+  }, [isOpen]);
+
+  const calendarComponent = (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+          style={{
+            position: "fixed",
+            top: calendarPosition.top,
+            left: calendarPosition.left,
+            width: calendarPosition.width,
+          }}
+        >
+          <Calendar
+            selected={value}
+            onSelect={handleSelect}
+            minDate={minDate}
+            maxDate={maxDate}
+            disabled={disabledDates}
+            locale={locale}
+            alwaysOnTop={true}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 
   return (
     <div className="relative" ref={containerRef} {...props}>
@@ -153,27 +227,8 @@ export function DatePicker({
         />
       </Button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
-          >
-            <Calendar
-              selected={value}
-              onSelect={handleSelect}
-              minDate={minDate}
-              maxDate={maxDate}
-              disabled={disabledDates}
-              locale={locale}
-              alwaysOnTop={true}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {portalContainer &&
+        ReactDOM.createPortal(calendarComponent, portalContainer)}
     </div>
   );
 }
@@ -204,6 +259,11 @@ export function DateRangePicker({
 }: DateRangePickerProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const containerRef = React.useRef<HTMLDivElement>(null);
+  const [calendarPosition, setCalendarPosition] = React.useState({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
 
   const defaultFormatDate = (date: Date) => {
     return date.toLocaleDateString(locale, {
@@ -243,7 +303,7 @@ export function DateRangePicker({
 
   // Body scroll lock effect
   React.useEffect(() => {
-    if (isOpen) {
+    if (isOpen && typeof document !== "undefined") {
       // Store original overflow
       const originalOverflow = document.body.style.overflow;
       // Disable scrolling
@@ -259,18 +319,48 @@ export function DateRangePicker({
   // Close dropdown when clicking outside
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (
-        containerRef.current &&
-        !containerRef.current.contains(event.target as Node)
-      ) {
+      if (typeof document === "undefined") return;
+
+      const target = event.target as Node;
+      const isClickInsideContainer =
+        containerRef.current && containerRef.current.contains(target);
+      const isClickInsideCalendar = document
+        .querySelector("#portal-root")
+        ?.contains(target);
+
+      if (!isClickInsideContainer && !isClickInsideCalendar) {
         setIsOpen(false);
       }
     };
 
-    if (isOpen) {
+    if (isOpen && typeof document !== "undefined") {
       document.addEventListener("mousedown", handleClickOutside);
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      const portalRoot = document.getElementById("portal-root");
+      if (!portalRoot) {
+        const newPortalRoot = document.createElement("div");
+        newPortalRoot.id = "portal-root";
+        newPortalRoot.style.position = "relative";
+        newPortalRoot.style.zIndex = "9999";
+        document.body.appendChild(newPortalRoot);
+      }
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCalendarPosition({
+        top: rect.bottom + 8, // 8px margin
+        left: rect.left,
+        width: rect.width,
+      });
     }
   }, [isOpen]);
 
@@ -302,28 +392,38 @@ export function DateRangePicker({
         />
       </button>
 
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -10, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
-          >
-            <Calendar
-              mode="range"
-              selectedRange={value}
-              onSelectRange={handleSelect}
-              minDate={minDate}
-              maxDate={maxDate}
-              disabled={disabledDates}
-              locale={locale}
-              alwaysOnTop={true}
-            />
-          </motion.div>
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+                style={{
+                  position: "fixed",
+                  top: calendarPosition.top,
+                  left: calendarPosition.left,
+                  width: calendarPosition.width,
+                }}
+              >
+                <Calendar
+                  mode="range"
+                  selectedRange={value}
+                  onSelectRange={handleSelect}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  disabled={disabledDates}
+                  locale={locale}
+                  alwaysOnTop={true}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.getElementById("portal-root") || document.body
         )}
-      </AnimatePresence>
     </div>
   );
 }

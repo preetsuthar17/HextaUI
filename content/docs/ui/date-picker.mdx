@@ -55,7 +55,7 @@ import {
 Install following dependencies:
 
 ```package-install
-npm install class-variance-authority lucide-react motion
+npm install class-variance-authority lucide-react motion react-dom
 ```
 
 Copy and paste the following code into your project.
@@ -70,6 +70,7 @@ import { cn } from "@/lib/utils";
 import { CalendarIcon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { Button } from "../button";
+import ReactDOM from "react-dom";
 
 const datePickerVariants = cva(
   "inline-flex h-9 w-full items-center justify-between rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm font-medium text-[hsl(var(--hu-foreground))] transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
@@ -93,7 +94,404 @@ const datePickerVariants = cva(
   }
 );
 
-// ... component implementation
+interface DatePickerProps extends VariantProps<typeof datePickerVariants> {
+  value?: Date;
+  onChange?: (date: Date | undefined) => void;
+  placeholder?: string;
+  className?: string;
+  disabled?: boolean;
+  showIcon?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
+  disabledDates?: (date: Date) => boolean;
+  locale?: string;
+  formatDate?: (date: Date) => string;
+}
+
+export function DatePicker({
+  value,
+  onChange,
+  placeholder = "Pick a date",
+  className,
+  disabled = false,
+  showIcon = true,
+  minDate,
+  maxDate,
+  disabledDates,
+  locale = "en-US",
+  formatDate,
+  variant,
+  size,
+  ...props
+}: DatePickerProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [focusedDate, setFocusedDate] = React.useState(value || new Date());
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [portalContainer, setPortalContainer] = React.useState<
+    Element | DocumentFragment | null
+  >(null);
+
+  React.useEffect(() => {
+    // Set portal container on client side only
+    if (typeof document !== "undefined") {
+      setPortalContainer(
+        document.getElementById("portal-root") || document.body
+      );
+    }
+  }, []);
+
+  const defaultFormatDate = (date: Date) => {
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  const formatDateFn = formatDate || defaultFormatDate;
+
+  const handleSelect = (date: Date) => {
+    onChange?.(date);
+    setIsOpen(false);
+  };
+
+  const handleToggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleToggleOpen();
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  React.useEffect(() => {
+    if (isOpen && typeof document !== "undefined") {
+      const originalOverflow = document.body.style.overflow;
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (typeof document === "undefined") return;
+
+      const target = event.target as Node;
+      const isClickInsideContainer =
+        containerRef.current && containerRef.current.contains(target);
+      const isClickInsideCalendar = document
+        .querySelector("#portal-root")
+        ?.contains(target);
+
+      if (!isClickInsideContainer && !isClickInsideCalendar) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen && typeof document !== "undefined") {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      const portalRoot = document.getElementById("portal-root");
+      if (!portalRoot) {
+        const newPortalRoot = document.createElement("div");
+        newPortalRoot.id = "portal-root";
+        newPortalRoot.style.position = "relative";
+        newPortalRoot.style.zIndex = "9999";
+        document.body.appendChild(newPortalRoot);
+      }
+    }
+  }, []);
+
+  const [calendarPosition, setCalendarPosition] = React.useState({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
+
+  React.useEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCalendarPosition({
+        top: rect.bottom + 8, // 8px margin
+        left: rect.left,
+        width: rect.width,
+      });
+    }
+  }, [isOpen]);
+
+  const calendarComponent = (
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: -10, scale: 0.95 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -10, scale: 0.95 }}
+          transition={{ duration: 0.2 }}
+          className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+          style={{
+            position: "fixed",
+            top: calendarPosition.top,
+            left: calendarPosition.left,
+            width: calendarPosition.width,
+          }}
+        >
+          <Calendar
+            selected={value}
+            onSelect={handleSelect}
+            minDate={minDate}
+            maxDate={maxDate}
+            disabled={disabledDates}
+            locale={locale}
+            alwaysOnTop={true}
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
+  return (
+    <div className="relative" ref={containerRef} {...props}>
+      <Button
+        type="button"
+        onClick={handleToggleOpen}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+        className={cn(datePickerVariants({ variant, size }), className)}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label="Choose date"
+      >
+        <span className="flex items-center gap-2">
+          {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
+          <span
+            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
+          >
+            {value ? formatDateFn(value) : placeholder}
+          </span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 opacity-50 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </Button>
+
+      {portalContainer &&
+        ReactDOM.createPortal(calendarComponent, portalContainer)}
+    </div>
+  );
+}
+
+// Date Range Picker Component
+interface DateRangePickerProps
+  extends Omit<DatePickerProps, "value" | "onChange"> {
+  value?: { from: Date; to?: Date };
+  onChange?: (range: { from: Date; to?: Date } | undefined) => void;
+  placeholder?: string;
+}
+
+export function DateRangePicker({
+  value,
+  onChange,
+  placeholder = "Pick a date range",
+  className,
+  disabled = false,
+  showIcon = true,
+  minDate,
+  maxDate,
+  disabledDates,
+  locale = "en-US",
+  formatDate,
+  variant,
+  size,
+  ...props
+}: DateRangePickerProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+  const [calendarPosition, setCalendarPosition] = React.useState({
+    top: 0,
+    left: 0,
+    width: 0,
+  });
+
+  const defaultFormatDate = (date: Date) => {
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  const formatDateFn = formatDate || defaultFormatDate;
+
+  const handleSelect = (range: { from: Date; to?: Date }) => {
+    onChange?.(range);
+    if (range.from && range.to) {
+      setIsOpen(false);
+    }
+  };
+
+  const formatRange = (range: { from: Date; to?: Date }) => {
+    if (!range.from) return "";
+    if (!range.to) return formatDateFn(range.from);
+    return `${formatDateFn(range.from)} - ${formatDateFn(range.to)}`;
+  };
+
+  const handleToggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleToggleOpen();
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  // Body scroll lock effect
+  React.useEffect(() => {
+    if (isOpen && typeof document !== "undefined") {
+      // Store original overflow
+      const originalOverflow = document.body.style.overflow;
+      // Disable scrolling
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        // Restore original overflow when component unmounts or closes
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (typeof document === "undefined") return;
+
+      const target = event.target as Node;
+      const isClickInsideContainer =
+        containerRef.current && containerRef.current.contains(target);
+      const isClickInsideCalendar = document
+        .querySelector("#portal-root")
+        ?.contains(target);
+
+      if (!isClickInsideContainer && !isClickInsideCalendar) {
+        setIsOpen(false);
+      }
+    };
+
+    if (isOpen && typeof document !== "undefined") {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    if (typeof document !== "undefined") {
+      const portalRoot = document.getElementById("portal-root");
+      if (!portalRoot) {
+        const newPortalRoot = document.createElement("div");
+        newPortalRoot.id = "portal-root";
+        newPortalRoot.style.position = "relative";
+        newPortalRoot.style.zIndex = "9999";
+        document.body.appendChild(newPortalRoot);
+      }
+    }
+  }, []);
+
+  React.useEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      setCalendarPosition({
+        top: rect.bottom + 8, // 8px margin
+        left: rect.left,
+        width: rect.width,
+      });
+    }
+  }, [isOpen]);
+
+  return (
+    <div className="relative" ref={containerRef} {...props}>
+      <button
+        type="button"
+        onClick={handleToggleOpen}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+        className={cn(datePickerVariants({ variant, size }), className)}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label="Choose date range"
+      >
+        <span className="flex items-center gap-2">
+          {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
+          <span
+            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
+          >
+            {value ? formatRange(value) : placeholder}
+          </span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 opacity-50 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(
+          <AnimatePresence>
+            {isOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+                style={{
+                  position: "fixed",
+                  top: calendarPosition.top,
+                  left: calendarPosition.left,
+                  width: calendarPosition.width,
+                }}
+              >
+                <Calendar
+                  mode="range"
+                  selectedRange={value}
+                  onSelectRange={handleSelect}
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  disabled={disabledDates}
+                  locale={locale}
+                  alwaysOnTop={true}
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.getElementById("portal-root") || document.body
+        )}
+    </div>
+  );
+}
+
+export { datePickerVariants, type DatePickerProps, type DateRangePickerProps };
 ```
 
 </Tab>
@@ -116,6 +514,26 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
 <DatePicker value={selectedDate} onChange={setSelectedDate} />
 <DateRangePicker value={selectedRange} onChange={setSelectedRange} />
 ```
+
+## Portal-Based Implementation
+
+The DatePicker components use a portal-based approach to render the calendar outside the normal DOM hierarchy. This provides several benefits:
+
+### Key Features
+
+- **No Clipping Issues**: Calendar appears on top regardless of parent container styles
+- **Fixed Positioning**: Calendar stays in the correct position relative to the trigger button
+- **Auto Width Matching**: Calendar automatically matches the width of the date picker button
+- **High Z-Index**: Ensures calendar appears above all other page content
+
+### How it Works
+
+1. Creates a `portal-root` container in the document body if it doesn't exist
+2. Calculates the position of the date picker trigger button using `getBoundingClientRect()`
+3. Renders the calendar using `ReactDOM.createPortal` with fixed positioning
+4. Handles click outside events and keyboard navigation properly
+
+This approach solves common issues with dropdowns being clipped by parent containers with `overflow: hidden` or conflicting z-index values.
 
 ## Examples
 
@@ -512,6 +930,9 @@ Great for hotel bookings, appointment scheduling, and reservation systems.
 
 ## Features
 
+- **Portal-Based Rendering**: Calendar renders outside DOM hierarchy using `ReactDOM.createPortal` to avoid clipping issues
+- **Fixed Positioning**: Calendar stays on top of all other components with proper z-index management
+- **Width Matching**: Calendar automatically matches the width of the date picker trigger element
 - **Single & Range Selection**: Support for both single date and date range selection
 - **Keyboard Navigation**: Full keyboard support with arrow keys and Enter/Space
 - **Accessibility**: ARIA labels, focus management, and screen reader support
@@ -522,3 +943,4 @@ Great for hotel bookings, appointment scheduling, and reservation systems.
 - **Animation**: Smooth open/close animations with Framer Motion
 - **Variants & Sizes**: Multiple visual variants and size options
 - **Form Integration**: Easy integration with form libraries
+- **Clipping Prevention**: Avoids issues with parent containers that have `overflow: hidden` or z-index restrictions
