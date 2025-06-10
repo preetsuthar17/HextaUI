@@ -79,14 +79,33 @@ export function DatePicker({
     setIsOpen(false);
   };
 
+  const handleToggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      setIsOpen(!isOpen);
+      handleToggleOpen();
     } else if (event.key === "Escape") {
       setIsOpen(false);
     }
   };
+
+  // Body scroll lock effect
+  React.useEffect(() => {
+    if (isOpen) {
+      // Store original overflow
+      const originalOverflow = document.body.style.overflow;
+      // Disable scrolling
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        // Restore original overflow when component unmounts or closes
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   // Close dropdown when clicking outside
   React.useEffect(() => {
@@ -99,15 +118,18 @@ export function DatePicker({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
 
   return (
     <div className="relative" ref={containerRef} {...props}>
       <Button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggleOpen}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(datePickerVariants({ variant, size }), className)}
@@ -138,8 +160,7 @@ export function DatePicker({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-lg"
-            style={{ zIndex: 9999 }}
+            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
           >
             <Calendar
               selected={value}
@@ -193,26 +214,47 @@ export function DateRangePicker({
   };
 
   const formatDateFn = formatDate || defaultFormatDate;
+
   const handleSelect = (range: { from: Date; to?: Date }) => {
     onChange?.(range);
     if (range.from && range.to) {
       setIsOpen(false);
     }
   };
+
   const formatRange = (range: { from: Date; to?: Date }) => {
     if (!range.from) return "";
     if (!range.to) return formatDateFn(range.from);
     return `${formatDateFn(range.from)} - ${formatDateFn(range.to)}`;
   };
 
+  const handleToggleOpen = () => {
+    setIsOpen(!isOpen);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      setIsOpen(!isOpen);
+      handleToggleOpen();
     } else if (event.key === "Escape") {
       setIsOpen(false);
     }
   };
+
+  // Body scroll lock effect
+  React.useEffect(() => {
+    if (isOpen) {
+      // Store original overflow
+      const originalOverflow = document.body.style.overflow;
+      // Disable scrolling
+      document.body.style.overflow = "hidden";
+
+      return () => {
+        // Restore original overflow when component unmounts or closes
+        document.body.style.overflow = originalOverflow;
+      };
+    }
+  }, [isOpen]);
 
   // Close dropdown when clicking outside
   React.useEffect(() => {
@@ -225,15 +267,18 @@ export function DateRangePicker({
       }
     };
 
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isOpen]);
 
   return (
     <div className="relative" ref={containerRef} {...props}>
       <button
         type="button"
-        onClick={() => setIsOpen(!isOpen)}
+        onClick={handleToggleOpen}
         onKeyDown={handleKeyDown}
         disabled={disabled}
         className={cn(datePickerVariants({ variant, size }), className)}
@@ -264,8 +309,7 @@ export function DateRangePicker({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-lg"
-            style={{ zIndex: 9999 }}
+            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
           >
             <Calendar
               mode="range"

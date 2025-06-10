@@ -1,5 +1,524 @@
 ---
 title: Date Picker
-description: Date picker component for selecting dates.
-soon: true
+description: A flexible date picker component with single date and date range selection modes, built with accessibility and responsive design in mind.
 ---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
+import {
+  BasicDatePickerExample,
+  BasicDateRangePickerExample,
+  DatePickerVariantsExample,
+  DatePickerSizesExample,
+  DatePickerWithRestrictionsExample,
+  DatePickerWithoutIconExample,
+  DatePickerCustomFormatExample,
+  DateRangePickerVariantsExample,
+  DatePickerFormExample,
+  BookingDatePickerExample,
+  DatePickerDisabledExample,
+} from "@/components/ui/DatePicker";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <BasicDatePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function BasicDatePickerExample() {
+      const [date, setDate] = React.useState<Date>();
+
+      return (
+        <DatePicker
+          value={date}
+          onChange={setDate}
+          placeholder="Select a date"
+        />
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install class-variance-authority lucide-react motion
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/date-picker.tsx"
+"use client";
+
+import * as React from "react";
+import { Calendar } from "../Calendar/calendar";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { CalendarIcon, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Button } from "../button";
+
+const datePickerVariants = cva(
+  "inline-flex h-9 w-full items-center justify-between rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm font-medium text-[hsl(var(--hu-foreground))] transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "",
+        outline: "border-2",
+        ghost: "border-transparent hover:border-[hsl(var(--hu-border))]",
+      },
+      size: {
+        sm: "h-7 sm:h-8 px-2 text-xs",
+        default: "h-8 sm:h-9 px-2 sm:px-3 text-xs sm:text-sm",
+        lg: "h-9 sm:h-10 px-3 sm:px-4 text-sm sm:text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+// ... component implementation
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hextaui add date-picker
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
+```
+
+```tsx
+<DatePicker value={selectedDate} onChange={setSelectedDate} />
+<DateRangePicker value={selectedRange} onChange={setSelectedRange} />
+```
+
+## Examples
+
+### Date Range Picker
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <BasicDateRangePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function BasicDateRangePickerExample() {
+      const [range, setRange] = React.useState<{ from: Date; to?: Date }>();
+
+      return (
+        <DateRangePicker
+          value={range}
+          onChange={setRange}
+          placeholder="Select date range"
+        />
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DatePickerVariantsExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerVariantsExample() {
+      const [date, setDate] = React.useState<Date>();
+
+      return (
+        <div className="space-y-4 w-full max-w-sm">
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Default variant"
+            variant="default"
+          />
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Outline variant"
+            variant="outline"
+          />
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Ghost variant"
+            variant="ghost"
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DatePickerSizesExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerSizesExample() {
+      const [date, setDate] = React.useState<Date>();
+
+      return (
+        <div className="space-y-4 w-full max-w-sm">
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Small size"
+            size="sm"
+          />
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Default size"
+            size="default"
+          />
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Large size"
+            size="lg"
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Restrictions
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DatePickerWithRestrictionsExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerWithRestrictionsExample() {
+      const [date, setDate] = React.useState<Date>();
+
+      const disableWeekends = (date: Date) => {
+        return date.getDay() === 0 || date.getDay() === 6;
+      };
+
+      return (
+        <div className="space-y-4 w-full max-w-sm">
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Future dates only"
+            minDate={new Date()}
+          />
+          <DatePicker
+            value={date}
+            onChange={setDate}
+            placeholder="Weekdays only"
+            disabledDates={disableWeekends}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Custom Format
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="w-full max-w-sm">
+        <DatePickerCustomFormatExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerCustomFormatExample() {
+      const [date, setDate] = React.useState<Date>();
+
+      const customFormat = (date: Date) => {
+        return date.toLocaleDateString("en-US", {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        });
+      };
+
+      return (
+        <DatePicker
+          value={date}
+          onChange={setDate}
+          placeholder="Custom date format"
+          formatDate={customFormat}
+        />
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Form Integration
+
+Perfect for forms with complex date requirements.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DatePickerFormExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerFormExample() {
+      const [formData, setFormData] = React.useState({
+        birthDate: undefined as Date | undefined,
+        vacationRange: undefined as { from: Date; to?: Date } | undefined,
+      });
+
+      return (
+        <div className="space-y-6 w-full max-w-sm">
+          <DatePicker
+            value={formData.birthDate}
+            onChange={(date) => setFormData(prev => ({ ...prev, birthDate: date }))}
+            placeholder="Select birth date"
+            maxDate={new Date()}
+          />
+          <DateRangePicker
+            value={formData.vacationRange}
+            onChange={(range) => setFormData(prev => ({ ...prev, vacationRange: range }))}
+            placeholder="Select vacation dates"
+            minDate={new Date()}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Booking System
+
+Great for hotel bookings, appointment scheduling, and reservation systems.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <BookingDatePickerExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function BookingDatePickerExample() {
+      const [checkIn, setCheckIn] = React.useState<Date>();
+      const [checkOut, setCheckOut] = React.useState<Date>();
+
+      const bookedDates = [
+        new Date(2025, 5, 15),
+        new Date(2025, 5, 16),
+        new Date(2025, 5, 20),
+        new Date(2025, 5, 25),
+      ];
+
+      const isDateBooked = (date: Date) => {
+        return bookedDates.some(
+          (bookedDate) => date.toDateString() === bookedDate.toDateString()
+        );
+      };
+
+      const disableUnavailableDates = (date: Date) => {
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return date < today || isDateBooked(date);
+      };
+
+      return (
+        <div className="space-y-3">
+          <DatePicker
+            value={checkIn}
+            onChange={setCheckIn}
+            placeholder="Check-in date"
+            disabledDates={disableUnavailableDates}
+            minDate={new Date()}
+          />
+          <DatePicker
+            value={checkOut}
+            onChange={setCheckOut}
+            placeholder="Check-out date"
+            disabledDates={disableUnavailableDates}
+            minDate={checkIn ? new Date(checkIn.getTime() + 24 * 60 * 60 * 1000) : new Date()}
+          />
+        </div>
+      );
+    }
+    ```
+
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <DatePickerDisabledExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DatePickerDisabledExample() {
+      return (
+        <div className="space-y-4 w-full max-w-sm">
+          <DatePicker disabled placeholder="Disabled DatePicker" />
+          <DateRangePicker disabled placeholder="Disabled DateRangePicker" />
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## API Reference
+
+### DatePicker
+
+<TypeTable
+  type={{
+    value: {
+      description: "The selected date",
+      type: "Date | undefined",
+    },
+    onChange: {
+      description: "Callback when date is selected",
+      type: "(date: Date | undefined) => void",
+    },
+    placeholder: {
+      description: "Placeholder text when no date is selected",
+      type: "string",
+      default: '"Pick a date"',
+    },
+    disabled: {
+      description: "Whether the date picker is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    showIcon: {
+      description: "Whether to show the calendar icon",
+      type: "boolean",
+      default: "true",
+    },
+    minDate: {
+      description: "Minimum selectable date",
+      type: "Date",
+    },
+    maxDate: {
+      description: "Maximum selectable date",
+      type: "Date",
+    },
+    disabledDates: {
+      description: "Function to disable specific dates",
+      type: "(date: Date) => boolean",
+    },
+    locale: {
+      description: "Locale for date formatting",
+      type: "string",
+      default: '"en-US"',
+    },
+    formatDate: {
+      description: "Custom date formatting function",
+      type: "(date: Date) => string",
+    },
+    variant: {
+      description: "Visual variant of the date picker",
+      type: '"default" | "outline" | "ghost"',
+      default: '"default"',
+    },
+    size: {
+      description: "Size of the date picker",
+      type: '"sm" | "default" | "lg"',
+      default: '"default"',
+    },
+  }}
+/>
+
+### DateRangePicker
+
+<TypeTable
+  type={{
+    value: {
+      description: "The selected date range",
+      type: "{ from: Date; to?: Date } | undefined",
+    },
+    onChange: {
+      description: "Callback when date range is selected",
+      type: "(range: { from: Date; to?: Date } | undefined) => void",
+    },
+    placeholder: {
+      description: "Placeholder text when no range is selected",
+      type: "string",
+      default: '"Pick a date range"',
+    },
+  }}
+/>
+
+## Features
+
+- **Single & Range Selection**: Support for both single date and date range selection
+- **Keyboard Navigation**: Full keyboard support with arrow keys and Enter/Space
+- **Accessibility**: ARIA labels, focus management, and screen reader support
+- **Date Restrictions**: Min/max dates and custom disabled date functions
+- **Custom Formatting**: Flexible date formatting with locale support
+- **Responsive Design**: Mobile-optimized with touch-friendly interactions
+- **Body Scroll Lock**: Prevents page scrolling when calendar is open
+- **Animation**: Smooth open/close animations with Framer Motion
+- **Variants & Sizes**: Multiple visual variants and size options
+- **Form Integration**: Easy integration with form libraries
