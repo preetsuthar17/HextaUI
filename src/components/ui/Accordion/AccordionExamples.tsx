@@ -233,7 +233,7 @@ export function AccordionCustomStyling() {
         <Accordion
           type="single"
           collapsible
-          className="w-full rounded-xl overflow-hidden"
+          className="w-full rounded-[var(--radius)] overflow-hidden"
         >
           <AccordionItem value="item-1">
             <AccordionTrigger>Rounded accordion</AccordionTrigger>

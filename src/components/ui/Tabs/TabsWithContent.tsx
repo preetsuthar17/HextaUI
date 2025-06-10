@@ -19,7 +19,7 @@ export function TabsWithContent() {
         onValueChange={setActiveTab}
       />
 
-      <div className="mt-4 p-4 border border-[hsl(var(--hu-border))] rounded-xl bg-[hsl(var(--hu-background))]">
+      <div className="mt-4 p-4 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] bg-[hsl(var(--hu-background))]">
         <TabsContent value="overview" activeValue={activeTab}>
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">Overview</h3>

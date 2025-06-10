@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const skeletonVariants = cva(
-  "animate-pulse rounded-xl bg-[hsl(var(--hu-accent))]",
+  "animate-pulse rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]",
   {
     variants: {
       variant: {
@@ -27,7 +27,7 @@ const skeletonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface SkeletonProps
@@ -64,7 +64,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       style,
       ...props
     },
-    ref,
+    ref
   ) => {
     const customStyle = {
       width: typeof width === "number" ? `${width}px` : width,
@@ -81,13 +81,13 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           shimmer && "relative overflow-hidden",
           shimmer &&
             "before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent",
-          className,
+          className
         )}
         style={customStyle}
         {...props}
       />
     );
-  },
+  }
 );
 Skeleton.displayName = "Skeleton";
 
@@ -146,7 +146,7 @@ const SkeletonButton = React.forwardRef<
   return (
     <Skeleton
       ref={ref}
-      className={cn(selectedHeight, "w-20 rounded-xl", className)}
+      className={cn(selectedHeight, "w-20 rounded-[var(--radius)]", className)}
       {...props}
     />
   );
@@ -169,11 +169,14 @@ const SkeletonCard = React.forwardRef<
       showFooter = true,
       ...props
     },
-    ref,
+    ref
   ) => (
     <div
       ref={ref}
-      className={cn("rounded-xl border bg-card p-0 overflow-hidden", className)}
+      className={cn(
+        "rounded-[var(--radius)] border bg-card p-0 overflow-hidden",
+        className
+      )}
       {...props}
     >
       {showImage && (
@@ -199,7 +202,7 @@ const SkeletonCard = React.forwardRef<
         )}
       </div>
     </div>
-  ),
+  )
 );
 SkeletonCard.displayName = "SkeletonCard";
 

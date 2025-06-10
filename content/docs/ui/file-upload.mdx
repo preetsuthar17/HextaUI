@@ -62,7 +62,7 @@ import {
 } from "lucide-react";
 
 const fileUploadVariants = cva(
-  "relative rounded-xl border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
+  "relative rounded-[var(--radius)] border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
   {
     variants: {
       variant: {
@@ -83,7 +83,7 @@ const fileUploadVariants = cva(
       variant: "dashed",
       size: "default",
     },
-  },
+  }
 );
 
 interface FileWithPreview {
@@ -123,7 +123,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [files, setFiles] = React.useState<FileWithPreview[]>([]);
     const [isDragging, setIsDragging] = React.useState(false);
@@ -167,15 +167,15 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
             prev.map((f) =>
               f.id === fileItem.id
                 ? { ...f, progress: Math.min(progress, 100) }
-                : f,
-            ),
+                : f
+            )
           );
           if (progress >= 100) {
             clearInterval(interval);
             setFiles((prev) =>
               prev.map((f) =>
-                f.id === fileItem.id ? { ...f, status: "completed" } : f,
-              ),
+                f.id === fileItem.id ? { ...f, status: "completed" } : f
+              )
             );
           }
         }, 200);
@@ -222,7 +222,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
               "border-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-primary))]/5",
             disabled && "opacity-50 pointer-events-none",
             "cursor-pointer",
-            className,
+            className
           )}
         >
           <div className="flex flex-col items-center justify-center text-center space-y-3">
@@ -296,7 +296,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
 FileUpload.displayName = "FileUpload";

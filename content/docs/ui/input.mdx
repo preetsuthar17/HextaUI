@@ -51,7 +51,7 @@ import { cn } from "@/lib/utils";
 import { Eye, EyeOff, X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
+  "flex w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all",
   {
     variants: {
       variant: {
@@ -72,7 +72,7 @@ const inputVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface InputProps
@@ -100,11 +100,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       value,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || "",
+      props.defaultValue || ""
     );
 
     const inputVariant = error ? "destructive" : variant;
@@ -154,7 +154,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             inputVariants({ variant: inputVariant, size, className }),
             leftIcon && "pl-10",
-            (rightIcon || isPassword || showClearButton) && "pr-10",
+            (rightIcon || isPassword || showClearButton) && "pr-10"
           )}
           ref={ref}
           {...(isControlled
@@ -201,7 +201,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
 Input.displayName = "Input";
@@ -527,7 +527,7 @@ import { Search, User, Mail } from "lucide-react";
           <Button
             type="submit" 
             variant="default"
-            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
             size="lg"
           >
             Sign In
@@ -637,7 +637,7 @@ export function LoginForm() {
         variant="default"
         size="lg"
         type="submit"
-        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
       >
         Sign In
       </Button>
@@ -700,7 +700,7 @@ export function LoginForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
           >
             Create Account
           </Button>
@@ -727,7 +727,7 @@ const registrationSchema = z
       .max(20, "Username must be less than 20 characters")
       .regex(
         /^[a-zA-Z0-9_]+$/,
-        "Username can only contain letters, numbers, and underscores",
+        "Username can only contain letters, numbers, and underscores"
       ),
     email: z.string().email("Invalid email address"),
     password: z
@@ -738,7 +738,7 @@ const registrationSchema = z
       .regex(/[0-9]/, "Password must contain at least one number")
       .regex(
         /[^A-Za-z0-9]/,
-        "Password must contain at least one special character",
+        "Password must contain at least one special character"
       ),
     confirmPassword: z.string(),
   })
@@ -875,7 +875,7 @@ export function RegistrationForm() {
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-xl font-medium hover:opacity-90 transition-opacity"
+        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
       >
         Create Account
       </Button>

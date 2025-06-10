@@ -95,7 +95,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         className={cn(
           loaderVariants({ size, variant }),
           isMounted && "animate-spin",
-          className,
+          className
         )}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -120,7 +120,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         />
       </svg>
     );
-  },
+  }
 );
 
 Loader.displayName = "Loader";
@@ -310,21 +310,21 @@ import { Loader } from "@/components/ui/Loader";
     <PreviewContainer>
       <div className="space-y-4">
         <button
-          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
           disabled
         >
           <Loader size="sm" className="text-current" />
           <span>Loading...</span>
         </button>
         <button
-          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-secondary))]/90 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-secondary))]/90 transition-colors disabled:opacity-50"
           disabled
         >
           <Loader size="sm" className="text-current" />
           <span>Processing</span>
         </button>
         <button
-          className="flex items-center gap-2 px-4 py-2 border border-[hsl(var(--hu-border))] rounded-xl hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:opacity-50"
           disabled
         >
           <Loader size="sm" />
@@ -337,21 +337,21 @@ import { Loader } from "@/components/ui/Loader";
     ```tsx
     <div className="space-y-4">
       <button
-        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:bg-primary/90 transition-colors disabled:opacity-50"
+        className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-[var(--radius)] hover:bg-primary/90 transition-colors disabled:opacity-50"
         disabled
       >
         <Loader size="sm" className="text-current" />
         <span>Loading...</span>
       </button>
       <button
-        className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-xl hover:bg-secondary/90 transition-colors disabled:opacity-50"
+        className="flex items-center gap-2 px-4 py-2 bg-secondary text-secondary-foreground rounded-[var(--radius)] hover:bg-secondary/90 transition-colors disabled:opacity-50"
         disabled
       >
         <Loader size="sm" className="text-current" />
         <span>Processing</span>
       </button>
       <button
-        className="flex items-center gap-2 px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors disabled:opacity-50"
+        className="flex items-center gap-2 px-4 py-2 border border-border rounded-[var(--radius)] hover:bg-accent transition-colors disabled:opacity-50"
         disabled
       >
         <Loader size="sm" />

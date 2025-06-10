@@ -101,21 +101,21 @@ export function LoaderExamples() {
         <h3 className="text-lg font-semibold">Button Integration</h3>
         <div className="space-y-3">
           <button
-            className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
             disabled
           >
             <Loader size="sm" className="text-current" />
             <span>Loading...</span>
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-xl hover:bg-[hsl(var(--hu-secondary))]/90 transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-secondary))]/90 transition-colors disabled:opacity-50"
             disabled
           >
             <Loader size="sm" className="text-current" />
             <span>Processing</span>
           </button>
           <button
-            className="flex items-center gap-2 px-4 py-2 border border-[hsl(var(--hu-border))] rounded-xl hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:opacity-50"
+            className="flex items-center gap-2 px-4 py-2 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:opacity-50"
             disabled
           >
             <Loader size="sm" />

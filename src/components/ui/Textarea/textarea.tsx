@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 const textareaVariants = cva(
-  "flex min-h-[60px] w-full rounded-xl border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors",
+  "flex min-h-[60px] w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors",
   {
     variants: {
       variant: {
@@ -28,7 +28,7 @@ const textareaVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface TextareaProps
@@ -42,10 +42,10 @@ export interface TextareaProps
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     { className, variant, size, error, clearable, onClear, value, ...props },
-    ref,
+    ref
   ) => {
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || "",
+      props.defaultValue || ""
     );
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -61,7 +61,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       clearable && textareaValue && String(textareaValue).length > 0;
 
     const handleTextareaChange = (
-      e: React.ChangeEvent<HTMLTextAreaElement>,
+      e: React.ChangeEvent<HTMLTextAreaElement>
     ) => {
       if (!isControlled) {
         setInternalValue(e.target.value);
@@ -117,7 +117,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           className={cn(
             textareaVariants({ variant: textareaVariant, size, className }),
-            showClearButton && "pr-10",
+            showClearButton && "pr-10"
           )}
           ref={textareaRef}
           {...(isControlled
@@ -141,7 +141,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
 Textarea.displayName = "Textarea";

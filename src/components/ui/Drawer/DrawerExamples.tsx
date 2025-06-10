@@ -210,7 +210,7 @@ export function DrawerForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 border border-[hsl(var(--hu-border))] rounded-xl bg-[hsl(var(--hu-background))] text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+                className="w-full px-3 py-2 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] bg-[hsl(var(--hu-background))] text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
               />
             </div>
             <div className="flex items-center gap-2">

@@ -23,7 +23,7 @@ export function ToggleGroupExample() {
     setTextFormat((prev) =>
       prev.includes(format)
         ? prev.filter((f) => f !== format)
-        : [...prev, format],
+        : [...prev, format]
     );
   };
 
@@ -35,7 +35,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Multiple toggles can be active at once
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-xl w-fit border">
+        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -90,7 +90,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Only one alignment can be active at a time
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-xl w-fit border">
+        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -144,7 +144,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Toggle between different list types or none
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-xl w-fit border">
+        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -204,7 +204,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Complete text editor toolbar with grouped toggles
         </p>
-        <div className="flex gap-2 p-2 bg-[hsl(var(--hu-background))] rounded-xl w-fit border">
+        <div className="flex gap-2 p-2 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
           {" "}
           {/* Text formatting group */}
           <div className="flex gap-1">
