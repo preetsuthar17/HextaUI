@@ -7,6 +7,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
 import OptimizedBanner from "@/components/OptimizedBanner";
 import { PerformanceMonitor } from "@/components/PerformanceMonitor";
+import { Toaster } from "@/components/ui/Toast";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -34,6 +35,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           </Link>{" "}
         </OptimizedBanner> */}
         <RootProvider>{children}</RootProvider>
+        <Toaster />
         <PerformanceMonitor />
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
         <script

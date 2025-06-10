@@ -1,5 +1,336 @@
 ---
 title: Toast
-description: Toasts are used to display brief messages to the user, typically in response to an action or event.
-soon: true
+description: A flexible toast notification component built on top of Sonner with customizable styling and comprehensive functionality.
 ---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import {
+  ToastBasic,
+  ToastVariants,
+  ToastWithAction,
+  ToastWithCancel,
+  ToastLoading,
+  ToastPromise,
+  ToastCustomDuration,
+} from "@/components/ui/Toast";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastBasic />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { toast } from "@/components/ui/Toast";
+
+    <Button
+      onClick={() => {
+        toast("Hello World!", {
+          description: "This is a basic toast notification.",
+        });
+      }}
+    >
+      Show Toast
+    </Button>
+    ```
+
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install sonner class-variance-authority
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/Toast/toast.tsx"
+"use client";
+
+import * as React from "react";
+import { Toaster as Sonner } from "sonner";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const Toaster = ({ ...props }) => {
+  return (
+    <Sonner
+      className="toaster group"
+      toastOptions={{
+        classNames: {
+          toast:
+            "group toast group-[.toaster]:bg-[hsl(var(--hu-card))] group-[.toaster]:text-[hsl(var(--hu-foreground))] group-[.toaster]:border-[hsl(var(--hu-border))] group-[.toaster]:rounded-xl group-[.toaster]:p-4",
+          description:
+            "group-[.toast]:text-[hsl(var(--hu-muted-foreground))] group-[.toast]:text-sm",
+          actionButton:
+            "group-[.toast]:bg-[hsl(var(--hu-primary))] group-[.toast]:text-[hsl(var(--hu-primary-foreground))] group-[.toast]:rounded-xl group-[.toast]:px-3 group-[.toast]:py-1.5",
+          cancelButton:
+            "group-[.toast]:bg-[hsl(var(--hu-accent))] group-[.toast]:text-[hsl(var(--hu-accent-foreground))] group-[.toast]:rounded-xl group-[.toast]:px-3 group-[.toast]:py-1.5",
+        },
+      }}
+      {...props}
+    />
+  );
+};
+
+export { Toaster };
+```
+
+```tsx title="components/ui/Toast/use-toast.ts"
+import { toast as sonnerToast } from "sonner";
+
+const toast = (message, data) => {
+  return sonnerToast(message, data);
+};
+
+toast.success = (message, data) => sonnerToast.success(message, data);
+toast.error = (message, data) => sonnerToast.error(message, data);
+toast.warning = (message, data) => sonnerToast.warning(message, data);
+toast.info = (message, data) => sonnerToast.info(message, data);
+toast.loading = (message, data) => sonnerToast.loading(message, data);
+toast.dismiss = (id) => sonnerToast.dismiss(id);
+
+export { toast };
+```
+
+Add the `Toaster` component to your app layout:
+
+```tsx title="app/layout.tsx"
+import { Toaster } from "@/components/ui/Toast";
+
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <body>
+        {children}
+        <Toaster />
+      </body>
+    </html>
+  );
+}
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hexta-ui add toast
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { toast } from "@/components/ui/Toast";
+```
+
+```tsx
+toast("Hello World!");
+```
+
+## Examples
+
+### Variants
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastVariants />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx toast("Default toast"); toast.error("Error occurred");
+    toast.success("Success!"); toast.warning("Warning");
+    toast.info("Information"); ```
+  </Tab>
+</Tabs>
+
+### With Action
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastWithAction />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    toast("Event scheduled", {
+      description: "Your meeting is scheduled for tomorrow at 10 AM.",
+      action: {
+        label: "View",
+        onClick: () => {
+          toast("Viewing event details");
+        },
+      },
+    });
+    ```
+  </Tab>
+</Tabs>
+
+### With Cancel
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastWithCancel />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    toast("File will be deleted", {
+      description: "This action cannot be undone.",
+      cancel: {
+        label: "Cancel",
+        onClick: () => {
+          toast("Deletion cancelled");
+        },
+      },
+      action: {
+        label: "Delete",
+        onClick: () => {
+          toast.success("File deleted successfully");
+        },
+      },
+    });
+    ```
+  </Tab>
+</Tabs>
+
+### Loading State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastLoading />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    const loadingToast = toast.loading("Uploading file...");
+    
+    setTimeout(() => {
+      toast.dismiss(loadingToast);
+      toast.success("Upload complete!");
+    }, 2000);
+    ```
+  </Tab>
+</Tabs>
+
+### Promise
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastPromise />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    toast.promise(apiCall(), {
+      loading: "Saving data...",
+      success: "Data saved successfully",
+      error: "Failed to save data",
+    });
+    ```
+  </Tab>
+</Tabs>
+
+### Custom Duration
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ToastCustomDuration />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    toast("Quick message", { duration: 1000 });
+    toast("Persistent message", { duration: 10000 });
+    toast("Infinite message", { duration: Infinity });
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    title: {
+      description: "The toast title",
+      type: "string",
+      default: "undefined",
+    },
+    description: {
+      description: "The toast description",
+      type: "string",
+      default: "undefined",
+    },
+    action: {
+      description: "Action button configuration",
+      type: "{ label: string; onClick: () => void }",
+      default: "undefined",
+    },
+    cancel: {
+      description: "Cancel button configuration",
+      type: "{ label: string; onClick?: () => void }",
+      default: "undefined",
+    },
+    duration: {
+      description: "Duration in milliseconds (Infinity for no auto-dismiss)",
+      type: "number",
+      default: "4000",
+    },
+    id: {
+      description: "Unique identifier for the toast",
+      type: "string | number",
+      default: "undefined",
+    },
+  }}
+/>
+
+## API Reference
+
+### toast(message, options?)
+
+Displays a toast notification.
+
+### toast.success(message, options?)
+
+Displays a success toast with green styling.
+
+### toast.error(message, options?)
+
+Displays an error toast with red styling.
+
+### toast.warning(message, options?)
+
+Displays a warning toast with yellow styling.
+
+### toast.info(message, options?)
+
+Displays an info toast with blue styling.
+
+### toast.loading(message, options?)
+
+Displays a loading toast with a spinner.
+
+### toast.promise(promise, options)
+
+Handles promise states automatically, showing loading, success, or error toasts.
+
+### toast.dismiss(id?)
+
+Dismisses a specific toast by ID, or all toasts if no ID provided.
