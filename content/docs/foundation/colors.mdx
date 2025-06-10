@@ -4,4 +4,55 @@ description: Color palette that is used in every component of HextaUI consistent
 icon: Blend
 ---
 
-`Coming soon!`
+import ColorPalette from "@/components/ColorPalette";
+
+## Base Colors
+
+<ColorPalette
+  colors={[
+    { name: "Background", value: "hsl(var(--hu-background))" },
+    { name: "Foreground", value: "hsl(var(--hu-foreground))" },
+    { name: "Card", value: "hsl(var(--hu-card))" },
+    { name: "Card Foreground", value: "hsl(var(--hu-card-foreground))" },
+  ]}
+/>
+
+## Interactive Colors
+
+<ColorPalette
+  colors={[
+    { name: "Primary", value: "hsl(var(--hu-primary))" },
+    { name: "Primary Foreground", value: "hsl(var(--hu-primary-foreground))" },
+    { name: "Secondary", value: "hsl(var(--hu-secondary))" },
+    {
+      name: "Secondary Foreground",
+      value: "hsl(var(--hu-secondary-foreground))",
+    },
+    { name: "Accent", value: "hsl(var(--hu-accent))" },
+    { name: "Accent Foreground", value: "hsl(var(--hu-accent-foreground))" },
+  ]}
+/>
+
+## Utility Colors
+
+<ColorPalette
+  colors={[
+    { name: "Muted", value: "hsl(var(--hu-muted))" },
+    { name: "Muted Foreground", value: "hsl(var(--hu-muted-foreground))" },
+    { name: "Destructive", value: "hsl(var(--hu-destructive))" },
+    {
+      name: "Destructive Foreground",
+      value: "hsl(var(--hu-destructive-foreground))",
+    },
+  ]}
+/>
+
+## Form & Layout Colors
+
+<ColorPalette
+  colors={[
+    { name: "Border", value: "hsl(var(--hu-border))" },
+    { name: "Input", value: "hsl(var(--hu-input))" },
+    { name: "Ring", value: "hsl(var(--hu-ring))" },
+  ]}
+/>
