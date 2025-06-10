@@ -255,7 +255,7 @@ export function DatePickerFormExample() {
     if (formData.vacationRange?.from && formData.vacationRange?.to) {
       const diffTime = Math.abs(
         formData.vacationRange.to.getTime() -
-          formData.vacationRange.from.getTime()
+          formData.vacationRange.from.getTime(),
       );
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
     }
@@ -369,7 +369,7 @@ export function BookingDatePickerExample() {
 
   const isDateBooked = (date: Date) => {
     return bookedDates.some(
-      (bookedDate) => date.toDateString() === bookedDate.toDateString()
+      (bookedDate) => date.toDateString() === bookedDate.toDateString(),
     );
   };
 

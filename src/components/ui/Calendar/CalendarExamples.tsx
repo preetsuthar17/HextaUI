@@ -99,7 +99,7 @@ export function BookingCalendarExample() {
 
   const isDateBooked = (date: Date) => {
     return bookedDates.some(
-      (bookedDate) => date.toDateString() === bookedDate.toDateString()
+      (bookedDate) => date.toDateString() === bookedDate.toDateString(),
     );
   };
 
@@ -145,7 +145,7 @@ export function VacationPlannerExample() {
   const calculateDays = () => {
     if (vacationRange?.from && vacationRange?.to) {
       const diffTime = Math.abs(
-        vacationRange.to.getTime() - vacationRange.from.getTime()
+        vacationRange.to.getTime() - vacationRange.from.getTime(),
       );
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
       return diffDays;
@@ -254,7 +254,7 @@ export function EventCalendarExample() {
 
   const hasEvent = (date: Date) => {
     return events.some(
-      (event) => date.toDateString() === event.date.toDateString()
+      (event) => date.toDateString() === event.date.toDateString(),
     );
   };
 
@@ -265,7 +265,7 @@ export function EventCalendarExample() {
 
   const getEventForDate = (date: Date) => {
     return events.find(
-      (event) => date.toDateString() === event.date.toDateString()
+      (event) => date.toDateString() === event.date.toDateString(),
     );
   };
 
@@ -319,7 +319,7 @@ export function AgeRestrictedCalendarExample() {
     const eighteenYearsAgo = new Date(
       today.getFullYear() - 18,
       today.getMonth(),
-      today.getDate()
+      today.getDate(),
     );
     return date > eighteenYearsAgo;
   };

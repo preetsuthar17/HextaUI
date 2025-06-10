@@ -185,7 +185,7 @@ const accordionItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const accordionTriggerVariants = cva(
@@ -207,7 +207,7 @@ const accordionTriggerVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const accordionContentVariants = cva(
@@ -229,7 +229,7 @@ const accordionContentVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface AccordionProps extends VariantProps<typeof accordionVariants> {
@@ -315,7 +315,7 @@ const AccordionTrigger = React.forwardRef<
 >(
   (
     { className, children, variant, size, icon, hideChevron = false, ...props },
-    ref
+    ref,
   ) => (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -334,7 +334,7 @@ const AccordionTrigger = React.forwardRef<
         )}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  )
+  ),
 );
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 

@@ -37,7 +37,7 @@ export const PreviewContainer = ({
         key={key}
         className={cn(
           "border border-[hsl(var(--hu-border))] min-h-[30rem] rounded-[var(--radius)] p-4 flex items-center justify-center not-prose relative bg-[var(--hu-background)]",
-          className
+          className,
         )}
       >
         <div className="relative z-0 w-full h-full flex items-center justify-center">

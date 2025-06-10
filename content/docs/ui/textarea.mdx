@@ -82,7 +82,7 @@ const textareaVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface TextareaProps
@@ -106,10 +106,10 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       onChange,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || ""
+      props.defaultValue || "",
     );
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -154,7 +154,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
           onChange(e);
         }
       },
-      [isControlled, onChange]
+      [isControlled, onChange],
     );
 
     // Determine variant - if error is true, use destructive variant
@@ -165,7 +165,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           className={cn(
             textareaVariants({ variant: effectiveVariant, size }),
-            className
+            className,
           )}
           ref={textareaRef}
           value={textareaValue}
@@ -188,7 +188,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Textarea.displayName = "Textarea";

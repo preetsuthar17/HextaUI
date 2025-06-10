@@ -28,7 +28,7 @@ const textareaVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface TextareaProps
@@ -42,10 +42,10 @@ export interface TextareaProps
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
   (
     { className, variant, size, error, clearable, onClear, value, ...props },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || ""
+      props.defaultValue || "",
     );
     const textareaRef = React.useRef<HTMLTextAreaElement>(null);
 
@@ -61,7 +61,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
       clearable && textareaValue && String(textareaValue).length > 0;
 
     const handleTextareaChange = (
-      e: React.ChangeEvent<HTMLTextAreaElement>
+      e: React.ChangeEvent<HTMLTextAreaElement>,
     ) => {
       if (!isControlled) {
         setInternalValue(e.target.value);
@@ -117,7 +117,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           className={cn(
             textareaVariants({ variant: textareaVariant, size, className }),
-            showClearButton && "pr-10"
+            showClearButton && "pr-10",
           )}
           ref={textareaRef}
           {...(isControlled
@@ -141,7 +141,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Textarea.displayName = "Textarea";
