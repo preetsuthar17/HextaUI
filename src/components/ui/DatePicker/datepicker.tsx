@@ -1,0 +1,287 @@
+"use client";
+
+import * as React from "react";
+import { Calendar } from "../Calendar/calendar";
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/lib/utils";
+import { CalendarIcon, ChevronDown } from "lucide-react";
+import { motion, AnimatePresence } from "motion/react";
+import { Button } from "../button";
+
+const datePickerVariants = cva(
+  "inline-flex h-9 w-full items-center justify-between rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm font-medium text-[hsl(var(--hu-foreground))] transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
+  {
+    variants: {
+      variant: {
+        default: "",
+        outline: "border-2",
+        ghost: "border-transparent hover:border-[hsl(var(--hu-border))]",
+      },
+      size: {
+        sm: "h-7 sm:h-8 px-2 text-xs",
+        default: "h-8 sm:h-9 px-2 sm:px-3 text-xs sm:text-sm",
+        lg: "h-9 sm:h-10 px-3 sm:px-4 text-sm sm:text-base",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+interface DatePickerProps extends VariantProps<typeof datePickerVariants> {
+  value?: Date;
+  onChange?: (date: Date | undefined) => void;
+  placeholder?: string;
+  className?: string;
+  disabled?: boolean;
+  showIcon?: boolean;
+  minDate?: Date;
+  maxDate?: Date;
+  disabledDates?: (date: Date) => boolean;
+  locale?: string;
+  formatDate?: (date: Date) => string;
+}
+
+export function DatePicker({
+  value,
+  onChange,
+  placeholder = "Pick a date",
+  className,
+  disabled = false,
+  showIcon = true,
+  minDate,
+  maxDate,
+  disabledDates,
+  locale = "en-US",
+  formatDate,
+  variant,
+  size,
+  ...props
+}: DatePickerProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [focusedDate, setFocusedDate] = React.useState(value || new Date());
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const defaultFormatDate = (date: Date) => {
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  const formatDateFn = formatDate || defaultFormatDate;
+
+  const handleSelect = (date: Date) => {
+    onChange?.(date);
+    setIsOpen(false);
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={containerRef} {...props}>
+      <Button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+        className={cn(datePickerVariants({ variant, size }), className)}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label="Choose date"
+      >
+        <span className="flex items-center gap-2">
+          {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
+          <span
+            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
+          >
+            {value ? formatDateFn(value) : placeholder}
+          </span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 opacity-50 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </Button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-lg"
+            style={{ zIndex: 9999 }}
+          >
+            <Calendar
+              selected={value}
+              onSelect={handleSelect}
+              minDate={minDate}
+              maxDate={maxDate}
+              disabled={disabledDates}
+              locale={locale}
+              alwaysOnTop={true}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// Date Range Picker Component
+interface DateRangePickerProps
+  extends Omit<DatePickerProps, "value" | "onChange"> {
+  value?: { from: Date; to?: Date };
+  onChange?: (range: { from: Date; to?: Date } | undefined) => void;
+  placeholder?: string;
+}
+
+export function DateRangePicker({
+  value,
+  onChange,
+  placeholder = "Pick a date range",
+  className,
+  disabled = false,
+  showIcon = true,
+  minDate,
+  maxDate,
+  disabledDates,
+  locale = "en-US",
+  formatDate,
+  variant,
+  size,
+  ...props
+}: DateRangePickerProps) {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const containerRef = React.useRef<HTMLDivElement>(null);
+
+  const defaultFormatDate = (date: Date) => {
+    return date.toLocaleDateString(locale, {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+    });
+  };
+
+  const formatDateFn = formatDate || defaultFormatDate;
+  const handleSelect = (range: { from: Date; to?: Date }) => {
+    onChange?.(range);
+    if (range.from && range.to) {
+      setIsOpen(false);
+    }
+  };
+  const formatRange = (range: { from: Date; to?: Date }) => {
+    if (!range.from) return "";
+    if (!range.to) return formatDateFn(range.from);
+    return `${formatDateFn(range.from)} - ${formatDateFn(range.to)}`;
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      setIsOpen(!isOpen);
+    } else if (event.key === "Escape") {
+      setIsOpen(false);
+    }
+  };
+
+  // Close dropdown when clicking outside
+  React.useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <div className="relative" ref={containerRef} {...props}>
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        onKeyDown={handleKeyDown}
+        disabled={disabled}
+        className={cn(datePickerVariants({ variant, size }), className)}
+        aria-expanded={isOpen}
+        aria-haspopup="dialog"
+        aria-label="Choose date range"
+      >
+        <span className="flex items-center gap-2">
+          {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
+          <span
+            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
+          >
+            {value ? formatRange(value) : placeholder}
+          </span>
+        </span>
+        <ChevronDown
+          className={cn(
+            "h-4 w-4 opacity-50 transition-transform duration-200",
+            isOpen && "rotate-180"
+          )}
+        />
+      </button>
+
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="absolute top-full mt-2 z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-lg"
+            style={{ zIndex: 9999 }}
+          >
+            <Calendar
+              mode="range"
+              selectedRange={value}
+              onSelectRange={handleSelect}
+              minDate={minDate}
+              maxDate={maxDate}
+              disabled={disabledDates}
+              locale={locale}
+              alwaysOnTop={true}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+export { datePickerVariants, type DatePickerProps, type DateRangePickerProps };
