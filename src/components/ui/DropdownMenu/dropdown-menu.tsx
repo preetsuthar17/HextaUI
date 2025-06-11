@@ -23,24 +23,55 @@ const DropdownMenuRadioGroup = DropdownMenuPrimitive.RadioGroup;
 // Motion wrapper for animations
 const MotionContent = React.forwardRef<
   React.ElementRef<typeof motion.div>,
-  React.ComponentPropsWithoutRef<typeof motion.div>
->(({ children, ...props }, ref) => (
-  <motion.div
-    ref={ref}
-    initial={{ opacity: 0, scale: 0.95, y: -8 }}
-    animate={{ opacity: 1, scale: 1, y: 0 }}
-    exit={{ opacity: 0, scale: 0.95, y: -8 }}
-    transition={{
-      type: "spring",
-      stiffness: 400,
-      damping: 25,
-      duration: 0.2,
-    }}
-    {...props}
-  >
-    {children}
-  </motion.div>
-));
+  React.ComponentPropsWithoutRef<typeof motion.div> & {
+    side?: "top" | "right" | "bottom" | "left";
+  }
+>(({ children, side = "bottom", ...props }, ref) => {
+  // Dynamic animation based on dropdown side
+  const getInitialPosition = () => {
+    switch (side) {
+      case "top":
+        return { y: 8 };
+      case "right":
+        return { x: -8 };
+      case "left":
+        return { x: 8 };
+      default: // bottom
+        return { y: -8 };
+    }
+  };
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{
+        opacity: 0,
+        scale: 0.95,
+        ...getInitialPosition(),
+      }}
+      animate={{
+        opacity: 1,
+        scale: 1,
+        x: 0,
+        y: 0,
+      }}
+      exit={{
+        opacity: 0,
+        scale: 0.95,
+        ...getInitialPosition(),
+      }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.2,
+      }}
+      {...props}
+    >
+      {children}
+    </motion.div>
+  );
+});
 MotionContent.displayName = "MotionContent";
 
 const DropdownMenuSubTrigger = React.forwardRef<
@@ -59,7 +90,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
       "data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       inset && "pl-8",
-      className,
+      className
     )}
     {...props}
   >
@@ -80,20 +111,30 @@ DropdownMenuSubTrigger.displayName =
 const DropdownMenuSubContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.SubContent>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.SubContent>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <DropdownMenuPrimitive.SubContent
     ref={ref}
     className={cn(
       "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-lg",
-      "data-[state=open]:animate-in data-[state=closed]:animate-out",
-      "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-      "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
-      "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-      className,
+      className
     )}
+    asChild
     {...props}
-  />
+  >
+    <motion.div
+      initial={{ opacity: 0, scale: 0.95, x: -8 }}
+      animate={{ opacity: 1, scale: 1, x: 0 }}
+      exit={{ opacity: 0, scale: 0.95, x: -8 }}
+      transition={{
+        type: "spring",
+        stiffness: 400,
+        damping: 25,
+        duration: 0.15,
+      }}
+    >
+      {children}
+    </motion.div>
+  </DropdownMenuPrimitive.SubContent>
 ));
 DropdownMenuSubContent.displayName =
   DropdownMenuPrimitive.SubContent.displayName;
@@ -101,22 +142,22 @@ DropdownMenuSubContent.displayName =
 const DropdownMenuContent = React.forwardRef<
   React.ElementRef<typeof DropdownMenuPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DropdownMenuPrimitive.Content>
->(({ className, sideOffset = 4, ...props }, ref) => (
+>(({ className, sideOffset = 4, children, ...props }, ref) => (
   <DropdownMenuPrimitive.Portal>
-    <DropdownMenuPrimitive.Content
-      ref={ref}
-      sideOffset={sideOffset}
-      className={cn(
-        "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-xl",
-        "data-[state=open]:animate-in data-[state=closed]:animate-out",
-        "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-        "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95",
-        "data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2",
-        "data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
-        className,
-      )}
-      {...props}
-    />
+    <AnimatePresence>
+      <DropdownMenuPrimitive.Content
+        ref={ref}
+        sideOffset={sideOffset}
+        className={cn(
+          "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-xl",
+          className
+        )}
+        asChild
+        {...props}
+      >
+        <MotionContent>{children}</MotionContent>
+      </DropdownMenuPrimitive.Content>
+    </AnimatePresence>
   </DropdownMenuPrimitive.Portal>
 ));
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
@@ -135,7 +176,7 @@ const dropdownMenuItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const DropdownMenuItem = React.forwardRef<
@@ -148,7 +189,7 @@ const DropdownMenuItem = React.forwardRef<
 >(
   (
     { className, variant, inset, icon: Icon, shortcut, children, ...props },
-    ref,
+    ref
   ) => (
     <DropdownMenuPrimitive.Item
       ref={ref}
@@ -156,7 +197,7 @@ const DropdownMenuItem = React.forwardRef<
         dropdownMenuItemVariants({ variant }),
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         inset && "pl-8",
-        className,
+        className
       )}
       {...props}
     >
@@ -174,7 +215,7 @@ const DropdownMenuItem = React.forwardRef<
         )}
       </motion.div>
     </DropdownMenuPrimitive.Item>
-  ),
+  )
 );
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
@@ -192,7 +233,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className,
+      className
     )}
     checked={checked}
     {...props}
@@ -235,7 +276,7 @@ const DropdownMenuRadioItem = React.forwardRef<
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className,
+      className
     )}
     {...props}
   >
@@ -274,7 +315,7 @@ const DropdownMenuLabel = React.forwardRef<
     className={cn(
       "px-3 py-1.5 text-sm font-semibold text-[hsl(var(--hu-muted-foreground))] flex items-center gap-2",
       inset && "pl-8",
-      className,
+      className
     )}
     {...props}
   >
