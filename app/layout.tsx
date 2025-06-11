@@ -3,6 +3,7 @@ import { RootProvider } from "fumadocs-ui/provider";
 import { DM_Sans, Geist, Inter, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 import { Banner } from "fumadocs-ui/components/banner";
 import Link from "next/link";
@@ -24,6 +25,14 @@ export default function Layout({ children }: { children: ReactNode }) {
       className={`${dm_sans.className} ${jetbrains_mono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          data-website-id="YOUR_WEBSITE_ID"
+          data-domain="YOUR_DOMAIN.COM"
+          src="https://datafa.st/js/script.js"
+          strategy="afterInteractive"
+        />
+      </head>
       <body className="flex flex-col min-h-screen">
         {" "}
         <Banner variant="rainbow">
