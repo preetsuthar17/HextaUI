@@ -2,7 +2,7 @@ import Link from "next/link";
 
 import type { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
-import { DashboardBlock } from "@/components/blocks";
+import { DashboardBlock } from "@/components/blocks/Dashboard";
 
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Blocks",

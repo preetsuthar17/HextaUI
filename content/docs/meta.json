@@ -11,6 +11,8 @@
     "foundation/colors",
     "foundation/typography",
     "foundation/theming",
+    "---Blocks---",
+    "...blocks",
     "---UI---",
     "...ui"
   ]
