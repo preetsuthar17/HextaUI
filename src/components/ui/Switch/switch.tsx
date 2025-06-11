@@ -27,7 +27,7 @@ const switchVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const switchThumbVariants = cva(
@@ -50,7 +50,7 @@ const switchThumbVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface SwitchProps
@@ -78,7 +78,7 @@ const Switch = React.forwardRef<
       id,
       ...props
     },
-    ref
+    ref,
   ) => {
     const switchId = id || React.useId();
 
@@ -139,7 +139,7 @@ const Switch = React.forwardRef<
     }
 
     return switchElement;
-  }
+  },
 );
 
 Switch.displayName = SwitchPrimitive.Root.displayName;
