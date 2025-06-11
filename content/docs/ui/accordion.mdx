@@ -32,7 +32,9 @@ import {
       AccordionContent,
       AccordionItem,
       AccordionTrigger,
-    } from "@/components/ui/Accordion";    export function AccordionDemo() {
+    } from "@/components/ui/Accordion";   
+    
+    export function AccordionDemo() {
       return (
         <Accordion type="single" collapsible className="w-full max-w-2xl mx-auto">
           <AccordionItem value="item-1">
@@ -71,7 +73,7 @@ import {
 Install following dependencies:
 
 ```package-install
-bun add @radix-ui/react-accordion motion class-variance-authority lucide-react
+npm install @radix-ui/react-accordion motion class-variance-authority lucide-react
 ```
 
 Add required animation and keyframes to your CSS file or tailwind config file based on your Tailwind version.
@@ -185,7 +187,7 @@ const accordionItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const accordionTriggerVariants = cva(
@@ -207,7 +209,7 @@ const accordionTriggerVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const accordionContentVariants = cva(
@@ -229,7 +231,7 @@ const accordionContentVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface AccordionProps extends VariantProps<typeof accordionVariants> {
@@ -315,7 +317,7 @@ const AccordionTrigger = React.forwardRef<
 >(
   (
     { className, children, variant, size, icon, hideChevron = false, ...props },
-    ref,
+    ref
   ) => (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -334,7 +336,7 @@ const AccordionTrigger = React.forwardRef<
         )}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  ),
+  )
 );
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
