@@ -17,6 +17,7 @@ import {
   DismissibleAlertExamples,
   CustomStyledAlertExamples,
   RealWorldAlertExamples,
+  AlertWithCustomIconsExamples,
 } from "@/components/ui/Alert";
 
 <Tabs items={["Preview", "Code"]}>
@@ -124,6 +125,18 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       }, 150); // Match the exit animation duration
     };
 
+    // Extract motion-conflicting props
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onAnimationStart,
+      onAnimationEnd,
+      onAnimationIteration,
+      onTransitionEnd,
+      ...motionProps
+    } = props;
+
     return (
       <AnimatePresence>
         {isVisible && (
@@ -135,7 +148,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
             role="alert"
-            {...props}
+            {...motionProps}
           >
             <div className="flex">
               {Icon && (
@@ -189,8 +202,11 @@ npx hextaui add alert
 ## Usage
 
 ```tsx
-import { Alert } from "@/components/ui/Alert";
+import { Alert, AlertWithIcon } from "@/components/ui/Alert";
+import { Database, Rocket } from "lucide-react";
 ```
+
+### Basic Alert
 
 ```tsx
 <Alert variant="default">This is a default alert.</Alert>
@@ -198,6 +214,22 @@ import { Alert } from "@/components/ui/Alert";
 <Alert variant="warning">This is a warning alert.</Alert>
 <Alert variant="success">This is a success alert.</Alert>
 <Alert variant="info">This is an info alert.</Alert>
+```
+
+### Alert with Predefined Icons
+
+```tsx
+<AlertWithIcon iconName="Info" variant="info" title="Information">
+  This uses a predefined icon from the available icon set.
+</AlertWithIcon>
+```
+
+### Alert with Custom Icons
+
+```tsx
+<AlertWithIcon icon={Database} variant="warning" title="Database Alert">
+  This uses a custom Lucide icon component for maximum flexibility.
+</AlertWithIcon>
 ```
 
 ## Examples
@@ -275,24 +307,103 @@ import { Alert } from "@/components/ui/Alert";
   </Tab>
   <Tab value="Code">
     ```tsx
-    import { Info, CheckCircle, AlertTriangle, XCircle, Bell } from "lucide-react";
+    import { AlertWithIcon } from "@/components/ui/Alert";
+    import { Wifi, Database, Rocket, Coffee } from "lucide-react";
 
     <div className="space-y-4">
-      <Alert icon={Info} variant="info" title="New Features Available">
+      {/* Using predefined icon names */}
+      <AlertWithIcon
+        iconName="Info"
+        variant="info"
+        title="New Features Available"
+      >
         We've added new collaboration tools to help you work better with your team.
-      </Alert>
-      <Alert icon={CheckCircle} variant="success" title="Payment Successful">
+      </AlertWithIcon>
+      <AlertWithIcon
+        iconName="CheckCircle"
+        variant="success"
+        title="Payment Successful"
+      >
         Your subscription has been renewed for another year.
-      </Alert>
-      <Alert icon={AlertTriangle} variant="warning" title="Storage Almost Full">
-        You've used 95% of your storage space. Consider upgrading your plan.
-      </Alert>
-      <Alert icon={XCircle} variant="destructive" title="Action Failed">
-        Could not complete the requested action. Please try again later.
-      </Alert>
-      <Alert icon={Bell} variant="default" title="Reminder">
-        Your meeting with the design team starts in 15 minutes.
-      </Alert>
+      </AlertWithIcon>
+
+      {/* Using custom icon components */}
+      <AlertWithIcon
+        icon={Wifi}
+        variant="info"
+        title="Network Connected"
+      >
+        You are now connected to the secure network.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Database}
+        variant="warning"
+        title="Database Backup Required"
+      >
+        It's been 7 days since your last backup. Consider backing up your data.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Rocket}
+        variant="success"
+        title="Deployment Successful"
+      >
+        Your application has been deployed to production successfully.
+      </AlertWithIcon>
+    </div>
+    ```
+
+  </Tab>
+</Tabs>
+
+### With Custom Icons
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <AlertWithCustomIconsExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    import { AlertWithIcon } from "@/components/ui/Alert";
+    import { Code, Sparkles, TrendingUp, Lock, Calendar } from "lucide-react";
+
+    <div className="space-y-4">
+      <AlertWithIcon
+        icon={Code}
+        variant="info"
+        title="Code Review Ready"
+      >
+        Your pull request is ready for code review by the team.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Sparkles}
+        variant="success"
+        title="Feature Unlocked"
+      >
+        Congratulations! You've unlocked premium features.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={TrendingUp}
+        variant="info"
+        title="Performance Improved"
+      >
+        Your application performance has increased by 40% this month.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Lock}
+        variant="warning"
+        title="Security Alert"
+      >
+        We detected unusual login activity. Please verify your account.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Calendar}
+        variant="default"
+        title="Meeting Reminder"
+      >
+        Your team standup meeting starts in 15 minutes.
+      </AlertWithIcon>
     </div>
     ```
 
@@ -414,6 +525,8 @@ import { Alert } from "@/components/ui/Alert";
 
 ## Props
 
+### Alert Props
+
 <TypeTable
   type={{
     variant: {
@@ -453,3 +566,24 @@ import { Alert } from "@/components/ui/Alert";
     },
   }}
 />
+
+### AlertWithIcon Props
+
+The `AlertWithIcon` component extends all the base `Alert` props and adds icon-specific functionality:
+
+<TypeTable
+  type={{
+    iconName: {
+      description: "Predefined icon name from the available icon set",
+      type: '"AlertTriangle" | "CheckCircle" | "Info" | "X" | "AlertCircle" | "Shield" | "Bell" | "Star" | "Zap" | "Heart" | "Settings" | "User" | "Mail" | "Server" | "CreditCard" | "Trophy" | "HardDrive"',
+      default: "undefined",
+    },
+    icon: {
+      description: "Custom Lucide icon component to display",
+      type: "LucideIcon",
+      default: "undefined",
+    },
+  }}
+/>
+
+**Icon Priority:** When both `icon` and `iconName` are provided, the custom `icon` prop takes precedence over `iconName`.

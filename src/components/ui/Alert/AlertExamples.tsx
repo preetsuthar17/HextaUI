@@ -2,6 +2,18 @@
 
 import { Alert } from "./alert";
 import { AlertWithIcon } from "./AlertWithIcon";
+import {
+  Wifi,
+  Database,
+  Rocket,
+  Coffee,
+  Code,
+  Sparkles,
+  Heart,
+  TrendingUp,
+  Lock,
+  Calendar,
+} from "lucide-react";
 
 export function BasicAlertExamples() {
   return (
@@ -51,6 +63,7 @@ export function AlertWithTitleExamples() {
 export function AlertWithIconExamples() {
   return (
     <div className="space-y-4">
+      {/* Using predefined icon names */}
       <AlertWithIcon
         iconName="Info"
         variant="info"
@@ -73,15 +86,56 @@ export function AlertWithIconExamples() {
       >
         You've used 95% of your storage space. Consider upgrading your plan.
       </AlertWithIcon>
-      <AlertWithIcon
-        iconName="XCircle"
-        variant="destructive"
-        title="Action Failed"
-      >
+      <AlertWithIcon iconName="X" variant="destructive" title="Action Failed">
         Could not complete the requested action. Please try again later.
       </AlertWithIcon>
-      <AlertWithIcon iconName="Bell" variant="default" title="Reminder">
-        Your meeting with the design team starts in 15 minutes.
+
+      {/* Using custom icon components */}
+      <AlertWithIcon icon={Wifi} variant="info" title="Network Connected">
+        You are now connected to the secure network.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Database}
+        variant="warning"
+        title="Database Backup Required"
+      >
+        It's been 7 days since your last backup. Consider backing up your data.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={Rocket}
+        variant="success"
+        title="Deployment Successful"
+      >
+        Your application has been deployed to production successfully.
+      </AlertWithIcon>
+      <AlertWithIcon icon={Coffee} variant="default" title="Break Time">
+        You've been coding for 2 hours. Time for a coffee break!
+      </AlertWithIcon>
+    </div>
+  );
+}
+
+export function AlertWithCustomIconsExamples() {
+  return (
+    <div className="space-y-4">
+      <AlertWithIcon icon={Code} variant="info" title="Code Review Ready">
+        Your pull request is ready for code review by the team.
+      </AlertWithIcon>
+      <AlertWithIcon icon={Sparkles} variant="success" title="Feature Unlocked">
+        Congratulations! You've unlocked premium features.
+      </AlertWithIcon>
+      <AlertWithIcon
+        icon={TrendingUp}
+        variant="info"
+        title="Performance Improved"
+      >
+        Your application performance has increased by 40% this month.
+      </AlertWithIcon>
+      <AlertWithIcon icon={Lock} variant="warning" title="Security Alert">
+        We detected unusual login activity. Please verify your account.
+      </AlertWithIcon>
+      <AlertWithIcon icon={Calendar} variant="default" title="Meeting Reminder">
+        Your team standup meeting starts in 15 minutes.
       </AlertWithIcon>
     </div>
   );
@@ -120,6 +174,17 @@ export function DismissibleAlertExamples() {
         onDismiss={() => handleDismiss("Storage warning dismissed")}
       >
         Your storage is almost full. Consider upgrading your plan.
+      </AlertWithIcon>
+
+      {/* Custom icons with dismissible */}
+      <AlertWithIcon
+        icon={Heart}
+        variant="success"
+        title="Thank You!"
+        dismissible
+        onDismiss={() => handleDismiss("Thank you dismissed")}
+      >
+        Thank you for being an awesome user! Your feedback helps us improve.
       </AlertWithIcon>
     </div>
   );

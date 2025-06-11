@@ -4,6 +4,7 @@ export {
   BasicAlertExamples,
   AlertWithTitleExamples,
   AlertWithIconExamples,
+  AlertWithCustomIconsExamples,
   DismissibleAlertExamples,
   AlertSizesExamples,
   CustomStyledAlertExamples,

@@ -60,6 +60,18 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       }, 150); // Match the exit animation duration
     };
 
+    // Extract motion-conflicting props
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onAnimationStart,
+      onAnimationEnd,
+      onAnimationIteration,
+      onTransitionEnd,
+      ...motionProps
+    } = props;
+
     return (
       <AnimatePresence>
         {isVisible && (
@@ -71,7 +83,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
             exit={{ opacity: 0, y: -10, scale: 0.95 }}
             transition={{ duration: 0.15, ease: "easeOut" }}
             role="alert"
-            {...props}
+            {...motionProps}
           >
             <div className="flex">
               {Icon && (
