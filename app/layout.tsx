@@ -50,6 +50,12 @@ export default function Layout({ children }: { children: ReactNode }) {
           async
           src="//gc.zgo.at/count.js"
         ></script>
+        <script
+          defer
+          data-website-id="6849a988cb9728c2dd6b6de9"
+          data-domain="hextaui.com"
+          src="https://datafa.st/js/script.js">
+        </script>
       </body>
     </html>
   );
