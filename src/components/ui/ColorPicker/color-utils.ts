@@ -1,3 +1,4 @@
+"use client";
 /**
  * Enhanced color format utilities for the ColorPicker component
  * Provides conversion between different color formats including OKLCH and LAB
@@ -144,7 +145,7 @@ export function formatColorValue(color: Color, format: ColorFormat): string {
 
       if (alpha < 1) {
         return `oklch(${(L * 100).toFixed(1)}% ${C.toFixed(3)} ${H.toFixed(
-          1,
+          1
         )} / ${alpha.toFixed(2)})`;
       }
       return `oklch(${(L * 100).toFixed(1)}% ${C.toFixed(3)} ${H.toFixed(1)})`;
@@ -161,7 +162,7 @@ export function formatColorValue(color: Color, format: ColorFormat): string {
 
       if (alpha < 1) {
         return `lab(${L.toFixed(1)}% ${a.toFixed(1)} ${b_lab.toFixed(
-          1,
+          1
         )} / ${alpha.toFixed(2)})`;
       }
       return `lab(${L.toFixed(1)}% ${a.toFixed(1)} ${b_lab.toFixed(1)})`;
@@ -176,7 +177,7 @@ export function formatColorValue(color: Color, format: ColorFormat): string {
  */
 export function parseColorFromFormat(
   value: string,
-  format: ColorFormat,
+  format: ColorFormat
 ): Color | null {
   try {
     // For formats that react-aria-components supports directly
@@ -214,7 +215,7 @@ export function parseColorFromFormat(
 
         // Simplified conversion back to HSL
         return parseColor(
-          `hsla(${H}, ${Math.min(C * 100, 100)}%, ${L}%, ${alpha})`,
+          `hsla(${H}, ${Math.min(C * 100, 100)}%, ${L}%, ${alpha})`
         );
       }
     }
@@ -236,8 +237,8 @@ export function parseColorFromFormat(
         return parseColor(
           `hsla(${hue < 0 ? hue + 360 : hue}, ${Math.min(
             chroma,
-            100,
-          )}%, ${L}%, ${alpha})`,
+            100
+          )}%, ${L}%, ${alpha})`
         );
       }
     }
@@ -254,7 +255,7 @@ export function parseColorFromFormat(
  */
 export function isValidColorFormat(
   value: string,
-  format: ColorFormat,
+  format: ColorFormat
 ): boolean {
   const parsed = parseColorFromFormat(value, format);
   return parsed !== null;
