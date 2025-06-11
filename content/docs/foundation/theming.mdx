@@ -15,16 +15,15 @@ HextaUI uses two primary font families for its components:
 
 ```css title="app/globals.css"
 :root {
-  --hu-background: hsl(0, 0%, 100%);
-  --hu-foreground: hsl(0, 0%, 0%);
-
   --hu-font-geist: var(--font-geist);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
   --radius: 0.75rem;
 
-  /* Color palette */
-  --hu-card: 0, 0%, 100%;
+  --hu-background: 0, 0%, 100%;
+  --hu-foreground: 0, 0%, 14%;
+
+  --hu-card: 0, 0%, 99%;
   --hu-card-foreground: 0, 0%, 14%;
 
   --hu-primary: 0, 0%, 20%;
@@ -43,15 +42,17 @@ HextaUI uses two primary font families for its components:
   --hu-destructive-foreground: 0, 0%, 98%;
 
   --hu-border: 0, 0%, 92%;
-  --hu-input: 0, 0%, 92%;
+  --hu-input: 0, 0%, 100%;
   --hu-ring: 0, 0%, 71%;
+
+  --color-fd-background: hsl(var(--hu-background));
 }
 
 .dark {
   --hu-background: 0, 0%, 7%;
   --hu-foreground: 0, 0%, 100%;
 
-  --hu-card: 0, 0%, 8%;
+  --hu-card: 0, 0%, 9%;
   --hu-card-foreground: 0, 0%, 100%;
 
   --hu-primary: 0, 0%, 100%;
@@ -70,8 +71,11 @@ HextaUI uses two primary font families for its components:
   --hu-destructive-foreground: 0, 0%, 98%;
 
   --hu-border: 0, 0%, 100%, 10%;
-  --hu-input: 0, 0%, 100%, 15%;
+  --hu-input: 0, 0%, 100%, 5%;
   --hu-ring: 0, 0%, 56%;
+
+  --color-fd-background: hsl(var(--hu-background));
+  --color-fd-card: hsl(var(--hu-card));
 }
 ```
 
