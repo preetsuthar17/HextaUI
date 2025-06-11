@@ -19,7 +19,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         },
         {
           text: "Blocks",
-          url: "/docs/blocks",
+          url: "/blocks",
           secondary: false,
         },
       ]}
