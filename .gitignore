@@ -27,4 +27,4 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 
-NewComponentContext.mdx
+supabase_user_profiles.sql

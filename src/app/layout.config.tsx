@@ -9,6 +9,7 @@ import Image from "next/image";
  */
 export const baseOptions: BaseLayoutProps = {
   githubUrl: "https://github.com/preetsuthar17/HextaUI",
+
   nav: {
     title: (
       <>
@@ -17,5 +18,6 @@ export const baseOptions: BaseLayoutProps = {
       </>
     ),
   },
+
   // see https://fumadocs.dev/docs/ui/navigation/links
 };
