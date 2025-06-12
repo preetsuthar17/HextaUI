@@ -1,13 +1,12 @@
 import "./global.css";
-import "./banner-optimizations.css";
 import { RootProvider } from "fumadocs-ui/provider";
 import { Geist, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
-import OptimizedBanner from "@/components/OptimizedBanner";
-import { PerformanceMonitor } from "@/components/PerformanceMonitor";
 import { Toaster } from "@/components/ui/Toast";
+import { Banner } from "fumadocs-ui/components/banner";
+import Script from "next/script";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -28,21 +27,23 @@ export default function Layout({ children }: { children: ReactNode }) {
       className={`${geist.className} ${jetbrains_mono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <Script
+          defer
+          data-website-id="6849a988cb9728c2dd6b6de9"
+          data-domain="hextaui.com"
+          src="https://datafa.st/js/script.js"
+        />
+      </head>
       <body className="flex flex-col min-h-screen">
-        {/* <OptimizedBanner variant="rainbow">
-          <Link href="/docs/everything-by-hextaui/blocks">
+        <Banner variant="rainbow">
+          <Link href="https://pro.hextaui.com/blocks" target="_blank">
             Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
           </Link>{" "}
-        </OptimizedBanner> */}
+        </Banner>
         <RootProvider>{children}</RootProvider>
         <Toaster />
-        <PerformanceMonitor />
         <GoogleAnalytics gaId="G-MYXZQWL3V4" />
-        <script
-          data-goatcounter="https://hextui.goatcounter.com/count"
-          async
-          src="//gc.zgo.at/count.js"
-        ></script>
       </body>
     </html>
   );

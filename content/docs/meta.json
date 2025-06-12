@@ -6,13 +6,13 @@
     "getting-started/changelog",
     "getting-started/roadmap",
     "---Everything by HextaUI---",
-    "...everything-by-hextaui",
+    "everything-by-hextaui/base-components",
+    "[LayoutTemplate][Blocks](https://pro.hextaui.com/blocks)",
+    "[PanelLeftDashed][Templates](https://pro.hextaui.com/templates)",
     "---Foundation---",
     "foundation/colors",
     "foundation/typography",
     "foundation/theming",
-    "---Blocks---",
-    "...blocks",
     "---UI---",
     "...ui"
   ]
