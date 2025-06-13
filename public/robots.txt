@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://hextaui.com
+
+# Sitemaps
+Sitemap: https://hextaui.com/sitemap.xml
