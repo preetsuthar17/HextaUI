@@ -16,7 +16,7 @@ import {
   EyeDropperButton,
   ColorError,
   ColorGroup,
-} from "./color-picker";
+} from "../color-picker";
 import { parseColor } from "react-aria-components";
 
 interface ColorPickerWithPresetsProps {

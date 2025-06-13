@@ -1,8 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { DatePicker, DateRangePicker } from "./datepicker";
-import { Badge } from "../Badge";
+import { DatePicker, DateRangePicker } from "../datepicker";
+import { Badge } from "../badge";
 
 // Basic DatePicker Example
 export function BasicDatePickerExample() {

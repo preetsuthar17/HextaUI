@@ -1,4 +1,4 @@
-export { Checkbox, checkboxVariants, type CheckboxProps } from "./checkbox";
+export { Checkbox, checkboxVariants, type CheckboxProps } from "../checkbox";
 export {
   CheckboxBasic,
   CheckboxVariants,

@@ -11,7 +11,7 @@ import {
   MenuBarSub,
   MenuBarSubTrigger,
   MenuBarSubContent,
-} from "./menubar";
+} from "../menubar";
 import {
   File,
   Edit,

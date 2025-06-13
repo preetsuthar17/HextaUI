@@ -1,5 +1,5 @@
-export { DataTable } from "./table";
-export type { DataTableColumn, DataTableProps } from "./table";
+export { DataTable } from "../table";
+export type { DataTableColumn, DataTableProps } from "../table";
 export {
   BasicTable,
   AdvancedTable,

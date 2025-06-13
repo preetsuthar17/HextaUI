@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, type AlertProps } from "./alert";
+import { Alert, type AlertProps } from "../alert";
 import { type LucideIcon } from "lucide-react";
 import {
   AlertTriangle,

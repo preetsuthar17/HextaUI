@@ -10,7 +10,7 @@ export {
   DrawerTitle,
   DrawerDescription,
   DrawerCloseButton,
-} from "./drawer";
+} from "../drawer";
 export {
   DrawerBasic,
   DrawerSides,

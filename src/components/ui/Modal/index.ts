@@ -9,6 +9,6 @@ export {
   ModalFooter,
   ModalTitle,
   ModalDescription,
-} from "./modal";
+} from "../modal";
 
 export { ModalExamples } from "./ModalExamples";

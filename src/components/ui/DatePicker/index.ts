@@ -4,5 +4,5 @@ export {
   datePickerVariants,
   type DatePickerProps,
   type DateRangePickerProps,
-} from "./datepicker";
+} from "../datepicker";
 export * from "./DatePickerExamples";

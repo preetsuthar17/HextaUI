@@ -1,7 +1,7 @@
 "use client";
 
 import { toast as sonnerToast } from "sonner";
-import type { ToastProps } from "./toast";
+import type { ToastProps } from "../components/ui/toast";
 
 interface ToastFunction {
   (message: string, data?: ToastProps): string | number;

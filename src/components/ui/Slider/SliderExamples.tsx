@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Slider } from "./slider";
+import { Slider } from "../slider";
 import { Button } from "../button";
 
 export function BasicSlider() {

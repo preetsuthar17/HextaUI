@@ -3,6 +3,6 @@ export {
   calendarVariants,
   dayVariants,
   type CalendarProps,
-} from "./calendar";
+} from "../calendar";
 export { CalendarWithIcon, type IconName } from "./CalendarWithIcon";
 export * from "./CalendarExamples";

@@ -1,8 +1,8 @@
 "use client";
 
-import { FileUpload } from "./file-upload";
+import { FileUpload } from "../file-upload";
 import { useState } from "react";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 
 export function FileUploadBasic() {
   return (

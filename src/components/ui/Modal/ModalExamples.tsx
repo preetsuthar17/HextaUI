@@ -10,7 +10,7 @@ import {
   ModalDescription,
   ModalFooter,
   ModalClose,
-} from "./modal";
+} from "../modal";
 import { Label } from "../label";
 import { Input } from "../input";
 

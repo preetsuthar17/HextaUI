@@ -3,7 +3,7 @@ import { docs } from "@/.source";
 import { createMDXSource } from "fumadocs-mdx";
 import { icons } from "lucide-react";
 import { createElement } from "react";
-import { Badge } from "@/components/ui/Badge";
+import { Badge } from "@/components/ui/badge";
 
 // See https://fumadocs.vercel.app/docs/headless/source-api for more info
 export const source = loader({

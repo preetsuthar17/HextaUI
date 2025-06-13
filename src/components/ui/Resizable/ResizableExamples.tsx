@@ -4,7 +4,7 @@ import {
   ResizablePanelGroup,
   ResizablePanel,
   ResizableHandle,
-} from "./resizable";
+} from "../resizable";
 
 export function ResizableDemo() {
   return (

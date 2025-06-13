@@ -6,7 +6,7 @@ export {
   inputOTPVariants,
   inputOTPSlotVariants,
   type InputOTPProps,
-} from "./input-otp";
+} from "../input-otp";
 
 export {
   InputOTPExamples,

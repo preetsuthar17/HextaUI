@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert } from "./alert";
+import { Alert } from "../alert";
 import { AlertWithIcon } from "./AlertWithIcon";
 import {
   Wifi,

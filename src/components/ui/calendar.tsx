@@ -11,7 +11,7 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../Select";
+} from "./select";
 
 const calendarVariants = cva(
   "inline-block rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto",

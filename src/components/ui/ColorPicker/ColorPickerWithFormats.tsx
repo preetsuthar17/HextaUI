@@ -16,7 +16,7 @@ import {
   EyeDropperButton,
   ColorError,
   ColorGroup,
-} from "./color-picker";
+} from "../color-picker";
 import { parseColor, Color } from "react-aria-components";
 import {
   Select,
@@ -24,14 +24,14 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "../Select/select";
+} from "../select";
 import {
   type ColorFormat,
   formatLabels,
   formatColorValue,
   parseColorFromFormat,
   getFormatPlaceholder,
-} from "./color-utils";
+} from "../../../lib/color-utils";
 
 interface ColorPickerWithFormatsProps {
   value?: string;

@@ -1,4 +1,4 @@
-export { Progress } from "./progress";
+export { Progress } from "../progress";
 export {
   ProgressExamples,
   AnimatedProgressExample,

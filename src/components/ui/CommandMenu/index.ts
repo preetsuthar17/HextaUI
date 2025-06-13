@@ -13,4 +13,4 @@ export {
   CommandMenuClose,
   useCommandMenu,
   useCommandMenuShortcut,
-} from "./command-menu";
+} from "../command-menu";

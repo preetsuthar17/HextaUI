@@ -13,6 +13,6 @@ export {
   menubarContentVariants,
   menubarItemVariants,
   AnimatedMenuContainer,
-} from "./menubar";
+} from "../menubar";
 
 export { BasicMenuBarExample, SimpleMenuBarExample } from "./MenuBarExamples";

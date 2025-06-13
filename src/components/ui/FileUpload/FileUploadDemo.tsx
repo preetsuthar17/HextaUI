@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { FileUpload, FileWithPreview } from "./file-upload";
-import { Badge } from "@/components/ui/Badge";
+import { FileUpload, FileWithPreview } from "../file-upload";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,

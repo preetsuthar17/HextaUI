@@ -6,7 +6,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
   InputOTPSeparator,
-} from "./input-otp";
+} from "../input-otp";
 
 export function InputOTPExamples() {
   const [value, setValue] = useState("");

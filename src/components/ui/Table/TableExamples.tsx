@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import { DataTable, DataTableColumn } from "./table";
-import { Badge } from "@/components/ui/Badge";
+import { DataTable, DataTableColumn } from "../table";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar } from "@/components/ui/avatar";
 import {

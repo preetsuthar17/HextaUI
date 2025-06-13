@@ -12,7 +12,7 @@ import {
   CommandMenuItem,
   CommandMenuSeparator,
   useCommandMenuShortcut,
-} from "./command-menu";
+} from "../command-menu";
 import { Button } from "@/components/ui/button";
 import { Kbd } from "@/components/ui/kbd";
 import {

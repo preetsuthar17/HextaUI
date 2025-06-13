@@ -4,7 +4,7 @@ import { Geist, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
-import { Toaster } from "@/components/ui/Toast";
+import { Toaster } from "@/components/ui/toast";
 import { Banner } from "fumadocs-ui/components/banner";
 import Script from "next/script";
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { ScrollArea } from "./scroll-area";
-import { Badge } from "@/components/ui/Badge";
+import { ScrollArea } from "../scroll-area";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,

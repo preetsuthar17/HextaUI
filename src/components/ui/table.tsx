@@ -11,8 +11,8 @@ import {
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/Badge";
-import { Skeleton, SkeletonAvatar } from "@/components/ui/Skeleton";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton, SkeletonAvatar } from "@/components/ui/skeleton";
 
 export type DataTableColumn<T> = {
   key: keyof T;

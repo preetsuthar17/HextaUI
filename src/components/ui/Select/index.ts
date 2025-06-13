@@ -8,7 +8,7 @@ export {
   SelectTrigger,
   SelectValue,
   selectTriggerVariants,
-} from "./select";
+} from "../select";
 
 export {
   SelectWithIcon,

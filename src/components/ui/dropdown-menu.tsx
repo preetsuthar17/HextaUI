@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { Check, ChevronRight, Circle, type LucideIcon } from "lucide-react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Kbd } from "../kbd";
+import { Kbd } from "./kbd";
 
 const DropdownMenu = DropdownMenuPrimitive.Root;
 

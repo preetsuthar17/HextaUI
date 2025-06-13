@@ -7,7 +7,7 @@ import {
   SkeletonAvatar,
   SkeletonButton,
   SkeletonCard,
-} from "./skeleton";
+} from "../skeleton";
 
 // Basic Skeleton Examples
 export function BasicSkeleton() {

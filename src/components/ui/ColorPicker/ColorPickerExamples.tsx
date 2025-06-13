@@ -8,7 +8,7 @@ import {
   ColorSwatchPicker,
   ColorSwatchPickerItem,
   ColorSwatch,
-} from "./color-picker";
+} from "../color-picker";
 import { ColorPickerWithPresets } from "./ColorPickerWithPresets";
 import { ColorPickerWithFormats } from "./ColorPickerWithFormats";
 

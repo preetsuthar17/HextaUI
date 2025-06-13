@@ -6,4 +6,4 @@ export {
   SkeletonCard,
   skeletonVariants,
   type SkeletonProps,
-} from "./skeleton";
+} from "../skeleton";

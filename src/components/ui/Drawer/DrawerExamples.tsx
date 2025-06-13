@@ -12,8 +12,8 @@ import {
   DrawerTitle,
   DrawerTrigger,
   DrawerCloseButton,
-} from "./drawer";
-import { Badge } from "@/components/ui/Badge";
+} from "../drawer";
+import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { Input } from "../input";
 

@@ -3,14 +3,14 @@ export {
   AccordionItem,
   AccordionTrigger,
   AccordionContent,
-} from "./accordion";
+} from "../accordion";
 
 export type {
   AccordionProps,
   AccordionItemProps,
   AccordionTriggerProps,
   AccordionContentProps,
-} from "./accordion";
+} from "../accordion";
 
 export {
   AccordionDemo,

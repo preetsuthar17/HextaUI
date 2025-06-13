@@ -3,7 +3,7 @@ export {
   ResizablePanel,
   ResizableHandle,
   resizablePanelVariants,
-} from "./resizable";
+} from "../resizable";
 
 export {
   ResizableDemo,

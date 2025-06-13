@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Textarea } from "./textarea";
+import { Textarea } from "../textarea";
 import { Button } from "../button";
 import { Label } from "../label";
 

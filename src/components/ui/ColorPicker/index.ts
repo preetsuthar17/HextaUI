@@ -14,7 +14,7 @@ export {
   ColorError,
   ColorGroup,
   type ColorPickerProps,
-} from "./color-picker";
+} from "../color-picker";
 
 export { ColorPickerWithPresets } from "./ColorPickerWithPresets";
 
@@ -30,7 +30,7 @@ export {
   parseColorFromFormat,
   isValidColorFormat,
   getFormatPlaceholder,
-} from "./color-utils";
+} from "../../../lib/color-utils";
 
 export {
   BasicExample,

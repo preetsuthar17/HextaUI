@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import { toast } from "./use-toast";
+import { toast } from "../../../hooks/use-toast";
 
 export function ToastBasic() {
   return (

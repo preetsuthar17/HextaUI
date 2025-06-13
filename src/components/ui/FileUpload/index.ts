@@ -1,5 +1,5 @@
-export { FileUpload, fileUploadVariants } from "./file-upload";
-export type { FileUploadProps } from "./file-upload";
+export { FileUpload, fileUploadVariants } from "../file-upload";
+export type { FileUploadProps } from "../file-upload";
 export {
   FileUploadBasic,
   FileUploadVariants,

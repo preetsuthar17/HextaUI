@@ -11,7 +11,7 @@ export {
   type PaginationItemProps,
   type PaginationNavProps,
   type PaginationEllipsisProps,
-} from "./pagination";
+} from "../pagination";
 export {
   PaginationBasic,
   PaginationWithEllipsis,

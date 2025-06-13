@@ -1,4 +1,4 @@
-export { Switch, switchVariants, type SwitchProps } from "./switch";
+export { Switch, switchVariants, type SwitchProps } from "../switch";
 export {
   BasicSwitch,
   SwitchWithLabel,

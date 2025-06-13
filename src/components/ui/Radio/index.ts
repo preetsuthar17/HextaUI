@@ -5,6 +5,6 @@ export {
   radioVariants,
   type RadioGroupProps,
   type RadioItemProps,
-} from "./radio";
+} from "../radio";
 
 export * from "./RadioExamples";

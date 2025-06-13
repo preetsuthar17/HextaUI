@@ -15,7 +15,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
-} from "./dropdown-menu";
+} from "../dropdown-menu";
 import {
   User,
   Settings,
@@ -46,7 +46,7 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { Button } from "../button";
-import { Badge } from "../Badge";
+import { Badge } from "../badge";
 import { Avatar, AvatarImage, AvatarFallback } from "../avatar";
 
 // Example dropdown with various items
