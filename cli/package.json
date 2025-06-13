@@ -1,6 +1,6 @@
 {
   "name": "hextaui",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "type": "module",
   "main": "dist/index.js",
   "bin": {
@@ -14,7 +14,9 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "start": "node dist/index.js",
-    "prepublishOnly": "pnpm build"
+    "prepublishOnly": "pnpm build",
+    "format": "prettier --write . --ignore-path .gitignore",
+    "check": "tsc --noEmit && prettier --check . --ignore-path .gitignore"
   },
   "keywords": [
     "ui",
