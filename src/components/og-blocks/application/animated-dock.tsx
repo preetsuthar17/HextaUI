@@ -35,7 +35,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
         "mx-auto flex h-16 items-end gap-4 rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]  px-4 pb-3",
-        className
+        className,
       )}
     >
       {items.map((item, index) => (
