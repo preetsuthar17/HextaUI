@@ -4,6 +4,7 @@
   "description": "Blocks from HextaUI v1",
   "icon": "SquareMousePointer",
   "pages": [
+    "all-blocks",
     "---Animations---",
     "...animation",
     "---Application---",
