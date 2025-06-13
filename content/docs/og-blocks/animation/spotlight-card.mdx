@@ -1,0 +1,258 @@
+---
+title: Spotlight Card
+description: Create a spotlight effect on hover on a card component.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { SpotlightCard } from "@/components/og-blocks/animation/spotlight-card";
+import { FaBolt } from "react-icons/fa";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <SpotlightCard
+        className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+        spotlightColor="#ffffff30"
+        lightThemeSpotlightColor="#00000020"
+        darkThemeSpotlightColor="#ffffff30"
+      >
+        <div className="text-2xl font-bold flex items-center gap-2">
+          <FaBolt className="text-yellow-500" />
+          <span>Lighting Fast</span>
+        </div>
+        <div className="text-muted-foreground">
+          Optimized for performance with minimal bundle size. Build fast,
+          responsive websites without compromise.
+        </div>
+      </SpotlightCard>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    <SpotlightCard
+      className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+      spotlightColor="#ffffff30"
+      lightThemeSpotlightColor="#00000020"
+      darkThemeSpotlightColor="#ffffff30"
+    >
+      <div className="text-2xl font-bold flex items-center gap-2">
+        <FaBolt className="text-yellow-500" />
+        <span>Lighting Fast</span>
+      </div>
+      <div className="text-muted-foreground">
+        Optimized for performance with minimal bundle size. Build fast,
+        responsive websites without compromise.
+      </div>
+    </SpotlightCard>
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={0}>
+<Tab value="Manual">
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/spotlight-card.tsx"
+"use client";
+import { useRef, useState, useEffect } from "react";
+
+export const SpotlightCard = ({
+  children,
+  className = "",
+  spotlightColor = "#6300ff30",
+  lightThemeSpotlightColor,
+  darkThemeSpotlightColor,
+}: {
+  children: any;
+  className?: string;
+  spotlightColor?: string;
+  lightThemeSpotlightColor?: string;
+  darkThemeSpotlightColor?: string;
+}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [opacity, setOpacity] = useState(0);
+  const [currentTheme, setCurrentTheme] = useState<"light" | "dark">("dark");
+
+  useEffect(() => {
+    const detectTheme = () => {
+      if (!lightThemeSpotlightColor && !darkThemeSpotlightColor) return;
+
+      const isDarkClass =
+        document.documentElement.classList.contains("dark") ||
+        document.body.classList.contains("dark");
+
+      const computedStyle = getComputedStyle(document.documentElement);
+      const bgColor =
+        computedStyle.getPropertyValue("--background") ||
+        computedStyle.backgroundColor;
+
+      const isDarkMedia = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+
+      const isDark =
+        isDarkClass ||
+        bgColor.includes("0 0% 3.9%") ||
+        (!isDarkClass && isDarkMedia);
+
+      setCurrentTheme(isDark ? "dark" : "light");
+    };
+
+    detectTheme();
+
+    const observer = new MutationObserver(detectTheme);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "data-theme"],
+    });
+
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    mediaQuery.addEventListener("change", detectTheme);
+
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", detectTheme);
+    };
+  }, [lightThemeSpotlightColor, darkThemeSpotlightColor]);
+
+  const getSpotlightColor = () => {
+    if (currentTheme === "light" && lightThemeSpotlightColor) {
+      return lightThemeSpotlightColor;
+    }
+    if (currentTheme === "dark" && darkThemeSpotlightColor) {
+      return darkThemeSpotlightColor;
+    }
+    return spotlightColor;
+  };
+  const handleMouseMove = (e: { clientX: number; clientY: number }) => {
+    if (!divRef.current || isFocused) return;
+    const rect = divRef.current.getBoundingClientRect();
+    setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
+  };
+  const handleFocus = () => {
+    setIsFocused(true);
+    setOpacity(0.6);
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+    setOpacity(0);
+  };
+  const handleMouseEnter = () => {
+    setOpacity(0.6);
+  };
+  const handleMouseLeave = () => {
+    setOpacity(0);
+  };
+
+  return (
+    <div
+      ref={divRef}
+      onMouseMove={handleMouseMove}
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      className={`relative rounded-[var(--)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] overflow-hidden p-8 ${className}`}
+    >
+      {" "}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 ease-in-out"
+        style={{
+          opacity,
+          background: `radial-gradient(circle at ${position.x}px ${
+            position.y
+          }px, ${getSpotlightColor()}, transparent 80%)`,
+        }}
+      />
+      {children}
+    </div>
+  );
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx shadcn@latest add "https://21st.dev/r/hextaui/spotlight-card"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { SpotlightCard } from "@/components/ui/spotlight-card";
+```
+
+```tsx
+<SpotlightCard
+  className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+  spotlightColor="#ffffff30"
+  lightThemeSpotlightColor="#00000020"
+  darkThemeSpotlightColor="#ffffff30"
+>
+  <div className="text-2xl font-bold flex items-center gap-2">
+    <FaBolt className="text-yellow-500" />
+    <span>Lighting Fast</span>
+  </div>
+  <div className="text-muted-foreground">
+    Optimized for performance with minimal bundle size. Build fast, responsive
+    websites without compromise.
+  </div>
+</SpotlightCard>
+```
+
+<Callout title="Warning" type="warning">
+  Make sure to add `magic-card` class to the card component to enable the
+  spotlight effect. This class is essential for the animation to work correctly.
+</Callout>
+
+```tsx
+<SpotlightCard
+  className="magic-card" // [!code highlight]
+  spotlightColor="#ffffff30"
+  lightThemeSpotlightColor="#00000020"
+  darkThemeSpotlightColor="#ffffff30"
+>
+  {/** Card content*/}
+</SpotlightCard>
+```
+
+## Props
+
+<TypeTable
+  type={{
+    children: {
+      type: "ReactNode",
+      description: "Content to be displayed inside the card.",
+    },
+    className: {
+      type: "string",
+      description: "Additional CSS classes for styling the card.",
+      default: "",
+    },
+    spotlightColor: {
+      type: "string",
+      description: "Color of the spotlight effect.",
+      default: "#6300ff30",
+    },
+    lightThemeSpotlightColor: {
+      type: "string",
+      description:
+        "Spotlight color for light theme. Defaults to `#00000020` if not provided.",
+    },
+    darkThemeSpotlightColor: {
+      type: "string",
+      description:
+        "Spotlight color for dark theme. Defaults to `#ffffff30` if not provided.",
+    },
+  }}
+/>
