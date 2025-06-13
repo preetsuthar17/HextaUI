@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "title": "Original Blocks",
+  "description": "Blocks from HextaUI v1",
+  "icon": "SquareMousePointer",
+  "pages": [
+    "---Animations---",
+    "...animation",
+    "---Application---",
+    "...application",
+    "---Text---",
+    "...text"
+  ]
+}

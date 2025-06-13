@@ -1,0 +1,23 @@
+{
+  "title": "UI",
+  "description": "Base components and utilities",
+  "icon": "Boxes",
+  "root": true,
+  "pages": [
+    "---Getting Started---",
+    "getting-started/introduction",
+    "getting-started/installation",
+    "getting-started/changelog",
+    "getting-started/roadmap",
+    "---Everything by HextaUI---",
+    "everything-by-hextaui/base-components",
+    "[LayoutTemplate][Blocks](https://pro.hextaui.com/blocks)",
+    "[PanelLeftDashed][Templates](https://pro.hextaui.com/templates)",
+    "---Foundation---",
+    "foundation/colors",
+    "foundation/theming",
+    "foundation/components",
+    "---UI---",
+    "...components"
+  ]
+}

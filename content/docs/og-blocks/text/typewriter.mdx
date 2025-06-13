@@ -1,0 +1,174 @@
+---
+title: Typewriter
+description: A typewriter effect for text animations.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { Typewriter } from "@/components/og-blocks/text/Typewriter";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Typewriter text="HextaAI is typing..." />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Typewriter text="HextaAI is typing..." />
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
+<Tab value="Manual">
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/Typewriter.tsx"
+"use client";
+
+import { useEffect, useState } from "react";
+
+export interface TypewriterProps {
+  text: string | string[];
+  speed?: number;
+  cursor?: string;
+  loop?: boolean;
+  deleteSpeed?: number;
+  delay?: number;
+  className?: string;
+}
+
+export function Typewriter({
+  text,
+  speed = 100,
+  cursor = "|",
+  loop = false,
+  deleteSpeed = 50,
+  delay = 1500,
+  className,
+}: TypewriterProps) {
+  const [displayText, setDisplayText] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [textArrayIndex, setTextArrayIndex] = useState(0);
+
+  // Validate and process input text
+  const textArray = Array.isArray(text) ? text : [text];
+  const currentText = textArray[textArrayIndex] || "";
+
+  useEffect(() => {
+    if (!currentText) return;
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (currentIndex < currentText.length) {
+            setDisplayText((prev) => prev + currentText[currentIndex]);
+            setCurrentIndex((prev) => prev + 1);
+          } else if (loop) {
+            setTimeout(() => setIsDeleting(true), delay);
+          }
+        } else {
+          if (displayText.length > 0) {
+            setDisplayText((prev) => prev.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentIndex(0);
+            setTextArrayIndex((prev) => (prev + 1) % textArray.length);
+          }
+        }
+      },
+      isDeleting ? deleteSpeed : speed,
+    );
+
+    return () => clearTimeout(timeout);
+  }, [
+    currentIndex,
+    isDeleting,
+    currentText,
+    loop,
+    speed,
+    deleteSpeed,
+    delay,
+    displayText,
+    text,
+  ]);
+
+  return (
+    <span className={className}>
+      {displayText}
+      <span className="animate-pulse">{cursor}</span>
+    </span>
+  );
+}
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx shadcn@latest add "https://21st.dev/r/hextui/typewriter-text"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Typewriter } from "@/components/ui/Typewriter";
+```
+
+```tsx
+<Typewriter text="HextaAI is typing..." />
+```
+
+## Props
+
+<TypeTable
+  type={{
+    text: {
+      type: "string | string[]",
+      description:
+        "The text to display. Can be a single string or an array of strings for looping.",
+      default: '"HextaAI is typing..."',
+    },
+    speed: {
+      type: "number",
+      description: "Typing speed in milliseconds.",
+      default: "100",
+    },
+    cursor: {
+      type: "string",
+      description: "The cursor character to display.",
+      default: '"|"',
+    },
+    loop: {
+      type: "boolean",
+      description: "Whether to loop through the text array.",
+      default: "false",
+    },
+    deleteSpeed: {
+      type: "number",
+      description: "Speed of deleting characters in milliseconds.",
+      default: "50",
+    },
+    delay: {
+      type: "number",
+      description:
+        "Delay before starting to delete characters in milliseconds.",
+      default: "1500",
+    },
+    className: {
+      type: "string",
+      description: "Additional CSS classes for styling.",
+      default: '""',
+    },
+  }}
+/>

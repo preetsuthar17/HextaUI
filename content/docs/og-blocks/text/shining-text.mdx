@@ -1,0 +1,90 @@
+---
+title: Shining Text
+description: A shining text effect for captivating animations.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { ShiningText } from "@/components/og-blocks/text/ShiningText";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <ShiningText text="HextaAI is thinking..." />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <ShiningText text="HextaAI is thinking..." />
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
+<Tab value="Manual">
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/ShiningText.tsx"
+"use client";
+
+import { motion } from "motion/react";
+
+export function ShiningText({
+  text = "HextaAI is thinking...",
+}: {
+  text: string;
+}) {
+  return (
+    <motion.h1
+      className="bg-[linear-gradient(110deg,#404040,35%,#fff,50%,#404040,75%,#404040)] bg-[length:200%_100%] bg-clip-text text-base text-transparent"
+      initial={{ backgroundPosition: "200% 0" }}
+      animate={{ backgroundPosition: "-200% 0" }}
+      transition={{
+        repeat: Infinity,
+        duration: 2,
+        ease: "linear",
+      }}
+    >
+      {text}
+    </motion.h1>
+  );
+}
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx shadcn@latest add "https://21st.dev/r/hextui/shining-text"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { ShiningText } from "@/components/ui/ShiningText";
+```
+
+```tsx
+<ShiningText text="HextaAI is thinking..." />
+```
+
+## Props
+
+<TypeTable
+  type={{
+    text: {
+      type: "string",
+      description: "The text to display with the shining effect.",
+      default: "HextaAI is thinking...",
+    },
+  }}
+/>

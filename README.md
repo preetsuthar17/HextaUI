@@ -24,7 +24,6 @@ We welcome contributions! Please read our [Contribution Guidelines](https://hext
 
 Made with [contrib.rocks](https://contrib.rocks).
 
-
 ## 📜 License
 
 This project is licensed under the [MIT License](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE).
