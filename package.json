@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "next-sitemap",
     "dev": "next dev --turbo",
     "start": "next start",
-    "postinstall": "fumadocs-mdx && next-sitemap",
+    "postinstall": "fumadocs-mdx",
     "format": "prettier --write . --ignore-path .gitignore",
     "check": "tsc --noEmit && prettier --check . --ignore-path .gitignore"
   },
