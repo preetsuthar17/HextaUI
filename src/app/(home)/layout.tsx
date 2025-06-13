@@ -9,12 +9,12 @@ export default async function Layout({ children }: { children: ReactNode }) {
       links={[
         {
           text: "Docs",
-          url: "/docs/getting-started/introduction",
+          url: "/docs/ui/getting-started/introduction",
           secondary: false,
         },
         {
           text: "Components",
-          url: "/docs/components",
+          url: "/docs/ui/foundation/components",
           secondary: false,
         },
         {
