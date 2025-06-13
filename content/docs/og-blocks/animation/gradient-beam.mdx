@@ -1,0 +1,179 @@
+---
+title: Gradient Beam
+description: An animated line component with a moving gradient and optional logos at the endpoints.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { GradientBeam } from "@/components/og-blocks/animation/gradient-beam";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="flex items-center justify-center ">
+        <div className="flex items-center justify-center border border-[hsl(var(--hu-border))] rounded-[var(--radius)] w-10 h-10 font-medium">
+          A
+        </div>
+        <GradientBeam width={200} height={100} path="M0,50 Q150,0 300,50" />
+        <div className="flex items-center justify-center border border-[hsl(var(--hu-border))] rounded-[var(--radius)] w-10 h-10 font-medium">
+          B
+        </div>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="flex items-center justify-center ">
+      <div className="flex items-center justify-center border border-[hsl(var(--hu-border))] rounded-[var(--radius)] w-10 h-10 font-medium">
+        A
+      </div>
+      <GradientBeam width={200} height={100} path="M0,50 Q150,0 300,50" />
+      <div className="flex items-center justify-center border border-[hsl(var(--hu-border))] rounded-[var(--radius)] w-10 h-10 font-medium">
+        B
+      </div>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={0}>
+<Tab value="Manual">
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/gradient-beam.tsx"
+"use client";
+
+import React from "react";
+import { motion } from "motion/react";
+
+interface GradientBeamProps {
+  width: number;
+  height: number;
+  baseColor?: string;
+  gradientColors?: [string, string, string];
+  animationDuration?: number;
+  strokeWidth?: number;
+}
+
+export const GradientBeam: React.FC<GradientBeamProps> = ({
+  width,
+  height,
+  baseColor = "black",
+  gradientColors = ["#2EB9DF", "#2EB9DF", "#9E00FF"],
+  animationDuration = 2,
+  strokeWidth = 2,
+}) => {
+  const gradientId = `pulse-${Math.random().toString(36).substr(2, 9)}`;
+
+  return (
+    <div className="relative" style={{ width, height }}>
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${width} ${height}`}
+        fill="none"
+      >
+        <line
+          x1={0}
+          y1={height / 2}
+          x2={width}
+          y2={height / 2}
+          stroke={baseColor}
+          strokeOpacity="0.2"
+        />
+        <line
+          x1={0}
+          y1={height / 2}
+          x2={width}
+          y2={height / 2}
+          stroke={`url(#${gradientId})`}
+          strokeLinecap="round"
+          strokeWidth={strokeWidth}
+        />
+        <defs>
+          <motion.linearGradient
+            animate={{
+              x1: [0, width * 2],
+              x2: [0, width],
+            }}
+            transition={{
+              duration: animationDuration,
+              repeat: Infinity,
+              ease: "linear",
+            }}
+            id={gradientId}
+            gradientUnits="userSpaceOnUse"
+          >
+            <stop stopColor={gradientColors[0]} stopOpacity="0" />
+            <stop stopColor={gradientColors[1]} />
+            <stop offset="1" stopColor={gradientColors[2]} stopOpacity="0" />
+          </motion.linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx shadcn@latest add "https://21st.dev/r/hextaui/gradient-beam"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { GradientBeam } from "@/components/ui/gradient-beam";
+```
+
+```tsx
+<GradientBeam width={200} height={100} path="M0,50 Q150,0 300,50" />
+```
+
+## Props
+
+<TypeTable
+  type={{
+    width: {
+      type: "number",
+      description: "Width of the beam in pixels.",
+      default: "200",
+    },
+    height: {
+      type: "number",
+      description: "Height of the beam in pixels.",
+      default: "100",
+    },
+    baseColor: {
+      type: "string",
+      description: "Base color of the beam.",
+      default: '"black"',
+    },
+    gradientColors: {
+      type: "[string, string, string]",
+      description: "Colors for the gradient effect, from start to end.",
+      default: '["#2EB9DF", "#2EB9DF", "#9E00FF"]',
+    },
+    animationDuration: {
+      type: "number",
+      description: "Duration of the gradient animation in seconds.",
+      default: "2",
+    },
+    strokeWidth: {
+      type: "number",
+      description: "Width of the beam stroke in pixels.",
+      default: "2",
+    },
+  }}
+/>
