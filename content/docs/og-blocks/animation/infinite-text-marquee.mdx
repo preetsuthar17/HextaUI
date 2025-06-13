@@ -1,0 +1,237 @@
+---
+title: Infinite Text Marquee
+description: Awesome infinite text scrolling effect using motion
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+
+import { InfiniteTextMarquee } from "@/components/og-blocks/animation/infinite-text-marquee";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab name="Preview">
+    <PreviewContainer>
+      <InfiniteTextMarquee
+        text="HextaUI"
+        link="https://hextaui.com"
+        speed={20}
+        tooltipText="It is Amazing!! 🤩🔥"
+        fontSize="8rem"
+        textColor="bg-[hsl(var(--hu-foreground))]"
+        hoverColor="#1d4ed8"
+        showTooltip={true}
+      />
+    </PreviewContainer>
+  </Tab>
+  <Tab name="Code">
+    ```tsx
+    <InfiniteTextMarquee
+      text="HextaUI"
+      link="https://hextaui.com"
+      speed={20}
+      tooltipText="It is Amazing!! 🤩🔥"
+      fontSize="8rem"
+      textColor="bg-[hsl(var(--hu-foreground))]"
+      hoverColor="#1d4ed8"
+      showTooltip={true}
+    />
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
+<Tab value="Manual">
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/infinite-text-marquee.tsx"
+"use client";
+
+import * as React from "react";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+
+type InfiniteTextMarqueeProps = {
+  text?: string;
+  link?: string;
+  speed?: number;
+  showTooltip?: boolean;
+  tooltipText?: string;
+  fontSize?: string;
+  textColor?: string;
+  hoverColor?: string;
+};
+
+export const InfiniteTextMarquee: React.FC<InfiniteTextMarqueeProps> = ({
+  text = "Let's Get Started",
+  link = "/components",
+  speed = 30,
+  showTooltip = true,
+  tooltipText = "Time to Flex💪",
+  fontSize = "8rem",
+  textColor = "",
+  hoverColor = "",
+}) => {
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
+  const [rotation, setRotation] = useState(0);
+  const maxRotation = 8;
+
+  useEffect(() => {
+    if (!showTooltip) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      setCursorPosition({ x: e.clientX, y: e.clientY });
+
+      const midpoint = window.innerWidth / 2;
+      const distanceFromMidpoint = Math.abs(e.clientX - midpoint);
+      const rotation = (distanceFromMidpoint / midpoint) * maxRotation;
+
+      setRotation(e.clientX > midpoint ? rotation : -rotation);
+    };
+
+    window.addEventListener("mousemove", handleMouseMove);
+    return () => window.removeEventListener("mousemove", handleMouseMove);
+  }, [showTooltip]);
+
+  const repeatedText = Array(10).fill(text).join(" - ") + " -";
+
+  return (
+    <>
+      {showTooltip && (
+        <div
+          className={`following-tooltip fixed z-[99] transition-opacity duration-300 font-medium px-12 py-6 rounded-3xl text-nowrap
+            ${isHovered ? "opacity-100" : "opacity-0"}
+            bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]
+          `}
+          style={{
+            top: `${cursorPosition.y}px`,
+            left: `${cursorPosition.x}px`,
+            transform: `rotateZ(${rotation}deg) translate(-50%, -140%)`,
+          }}
+        >
+          <p>{tooltipText}</p>
+        </div>
+      )}
+
+      <main className="relative w-vw h-fit">
+        <motion.div
+          className="whitespace-nowrap"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          animate={{
+            x: [0, -1000],
+            transition: {
+              repeat: Infinity,
+              duration: speed,
+              ease: "linear",
+            },
+          }}
+        >
+          <Link href={link}>
+            <span
+              className={`cursor-pointer font-extrabold m-0 transition-all ${
+                textColor ? "" : "text-black dark:text-white"
+              }`}
+              style={{
+                fontSize,
+                color: textColor || undefined,
+              }}
+            >
+              <span className="hoverable-text">{repeatedText}</span>
+              <style jsx>{`
+                .hoverable-text:hover {
+                  color: ${hoverColor || "var(--tw-prose-links)"};
+                }
+              `}</style>
+            </span>
+          </Link>
+        </motion.div>
+      </main>
+    </>
+  );
+};
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx shadcn@latest add "https://21st.dev/r/hextaui/infinite-text-marquee"
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { InfiniteTextMarquee } from "@/components/ui/infinite-text-marquee";
+```
+
+```tsx
+<InfiniteTextMarquee
+  text="HextaUI"
+  link="https://hextaui.com"
+  speed={20}
+  tooltipText="It is Amazing!! 🤩🔥"
+  fontSize="8rem"
+  textColor="bg-[hsl(var(--hu-foreground))]"
+  hoverColor="#1d4ed8"
+  showTooltip={true}
+/>
+```
+
+## Props
+
+<TypeTable
+  type={{
+    text: {
+      type: "string",
+      description: "Text to display in the marquee.",
+      default: '"Let\'s Get Started"',
+    },
+    link: {
+      type: "string",
+      description: "Link to navigate when the text is clicked.",
+      default: '"/components"',
+    },
+    speed: {
+      type: "number",
+      description: "Speed of the marquee animation in seconds.",
+      default: "30",
+    },
+    showTooltip: {
+      type: "boolean",
+      description: "Whether to show the tooltip on hover.",
+      default: "true",
+    },
+    tooltipText: {
+      type: "string",
+      description: "Text to display in the tooltip.",
+      default: '"Time to Flex💪"',
+    },
+    fontSize: {
+      type: "string",
+      description: "Font size of the marquee text.",
+      default: '"8rem"',
+    },
+    textColor: {
+      type: "string",
+      description:
+        "Tailwind CSS class for the text color. Defaults to black in light mode and white in dark mode.",
+      default: "",
+    },
+    hoverColor: {
+      type: "string",
+      description:
+        "Tailwind CSS class for the hover color of the text. Defaults to `var(--tw-prose-links)`.",
+      default: "",
+    },
+  }}
+/>
