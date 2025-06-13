@@ -1,70 +1,3 @@
----
-title: Cursor
-description: An animated cursor component that follow the mouse pointer with smooth animations.
----
-
-import { PreviewContainer } from "@/components/PreviewContainer";
-
-import { TypeTable } from "fumadocs-ui/components/type-table";
-import { Tabs, Tab } from "fumadocs-ui/components/tabs";
-
-import {
-  Cursor,
-  CursorFollow,
-  CursorProvider,
-  CursorDemo,
-} from "@/components/og-blocks/animation/cursor";
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <CursorDemo />
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    export const CursorDemo = () => {
-        return (
-            <div className="max-w-sm rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))] overflow-hidden relative group">
-            <div className="p-6 flex flex-col gap-8">
-                <p className="text-4xl font-bold tracking-tight">
-                Ready to build something amazing?
-                </p>
-                <p className="text-primary/70 text-lg max-w-2xl">
-                Join thousands of developers who are already using HextaUI to create
-                stunning websites with less effort. Start building today!
-                </p>
-            </div>
-
-            <MouseTrackerProvider>
-                <Pointer>
-                <MousePointer2
-                    className="fill-blue-500 stroke-white/10 rotate-15"
-                    size={30}
-                />
-                </Pointer>
-                <PointerFollower align="bottom-right">
-                <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-[var(--radius)]">
-                    preett
-                </div>
-                </PointerFollower>
-            </MouseTrackerProvider>
-            </div>
-        );
-        };
-    ```
-
-  </Tab>
-</Tabs>
-
-## Installation
-
-<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
-<Tab value="Manual">
-
-Copy and paste the following code into your project.
-
-```tsx title="components/ui/ShiningText.tsx"
 "use client";
 
 import * as React from "react";
@@ -324,6 +257,38 @@ function PointerFollower({
   );
 }
 
+// DEMO USAGE
+
+export const CursorDemo = () => {
+  return (
+    <div className="max-w-sm rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))] overflow-hidden relative group">
+      <div className="p-6 flex flex-col gap-8">
+        <p className="text-4xl font-bold tracking-tight">
+          Ready to build something amazing?
+        </p>
+        <p className="text-primary/70 text-lg max-w-2xl">
+          Join thousands of developers who are already using HextaUI to create
+          stunning websites with less effort. Start building today!
+        </p>
+      </div>
+
+      <MouseTrackerProvider>
+        <Pointer>
+          <MousePointer2
+            className="fill-blue-500 stroke-white/10 rotate-15"
+            size={30}
+          />
+        </Pointer>
+        <PointerFollower align="bottom-right">
+          <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-[var(--radius)]">
+            preett
+          </div>
+        </PointerFollower>
+      </MouseTrackerProvider>
+    </div>
+  );
+};
+
 export {
   MouseTrackerProvider as CursorProvider,
   Pointer as Cursor,
@@ -334,37 +299,3 @@ export {
   type PointerProps as CursorProps,
   type PointerFollowerProps as CursorFollowProps,
 };
-```
-
-</Tab>
-<Tab value="CLI">
-
-```package-install
-npx shadcn@latest add "https://21st.dev/r/hextaui/cursor"
-```
-
-</Tab>
-</Tabs>
-
-## Usage
-
-```tsx
-import {
-  MouseTrackerProvider as CursorProvider,
-  Pointer as Cursor,
-  PointerFollower as CursorFollow,
-} from "@/components/ui/cursor";
-```
-
-```tsx
-<CursorProvider>
-  <Cursor>
-    <MousePointer2 className="fill-blue-500 stroke-white/10" size={30} />
-  </Cursor>
-  <CursorFollow align="bottom-right">
-    <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-md shadow-md">
-      HextaStudio
-    </div>
-  </CursorFollow>
-</CursorProvider>
-```
