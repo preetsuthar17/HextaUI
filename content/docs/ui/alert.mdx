@@ -29,21 +29,13 @@ import {
   <Tab value="Code">
     ```tsx
     <div className="space-y-4">
-      <Alert>
-        <strong>Default Alert:</strong> This is a basic alert message.
-      </Alert>
+      <Alert>This is a basic alert message.</Alert>
       <Alert variant="destructive">
-        <strong>Error:</strong> Something went wrong. Please try again.
+        Something went wrong. Please try again.
       </Alert>
-      <Alert variant="warning">
-        <strong>Warning:</strong> This action cannot be undone.
-      </Alert>
-      <Alert variant="success">
-        <strong>Success:</strong> Your changes have been saved.
-      </Alert>
-      <Alert variant="info">
-        <strong>Info:</strong> New features are now available.
-      </Alert>
+      <Alert variant="warning">This action cannot be undone.</Alert>
+      <Alert variant="success">Your changes have been saved.</Alert>
+      <Alert variant="info">New features are now available.</Alert>
     </div>
     ```
   </Tab>
@@ -51,7 +43,7 @@ import {
 
 ## Installation
 
-<Tabs items={["Manual", "CLI"]}>
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
 <Tab value="Manual">
 
 Install following dependencies:
@@ -189,11 +181,82 @@ Alert.displayName = "Alert";
 export { Alert, alertVariants };
 ```
 
+```tsx title="components/ui/AlertWithIcon.tsx"
+"use client";
+
+import { Alert, type AlertProps } from "../alert";
+import { type LucideIcon } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  Info,
+  X,
+  AlertCircle,
+  Shield,
+  Bell,
+  Star,
+  Zap,
+  Heart,
+  Settings,
+  User,
+  Mail,
+  Server,
+  CreditCard,
+  Trophy,
+  HardDrive,
+} from "lucide-react";
+
+// Map of icon names to actual components
+const iconMap = {
+  AlertTriangle,
+  CheckCircle,
+  Info,
+  X,
+  AlertCircle,
+  Shield,
+  Bell,
+  Star,
+  Zap,
+  Heart,
+  Settings,
+  User,
+  Mail,
+  Server,
+  CreditCard,
+  Trophy,
+  HardDrive,
+} as const;
+
+export type IconName = keyof typeof iconMap;
+
+interface AlertWithIconProps extends Omit<AlertProps, "icon"> {
+  iconName?: IconName;
+  icon?: LucideIcon;
+}
+
+export function AlertWithIcon({
+  iconName,
+  icon,
+  ...props
+}: AlertWithIconProps) {
+  // Priority: custom icon > iconName > no icon
+  let IconComponent: LucideIcon | undefined;
+
+  if (icon) {
+    IconComponent = icon;
+  } else if (iconName) {
+    IconComponent = iconMap[iconName];
+  }
+
+  return <Alert icon={IconComponent} {...props} />;
+}
+```
+
 </Tab>
 <Tab value="CLI">
 
 ```package-install
-npx hextaui add alert
+npx hextaui@latest add alert
 ```
 
 </Tab>
@@ -202,7 +265,7 @@ npx hextaui add alert
 ## Usage
 
 ```tsx
-import { Alert, AlertWithIcon } from "@/components/ui/Alert";
+import { Alert, AlertWithIcon } from "@/components/ui/alert";
 import { Database, Rocket } from "lucide-react";
 ```
 
