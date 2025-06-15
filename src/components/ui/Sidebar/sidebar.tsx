@@ -5,9 +5,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
-import { Button } from "../button";
-import { ScrollArea } from "../ScrollArea";
-import { Separator } from "../separator";
+import { Button } from "@/components/ui/button";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 
 const sidebarVariants = cva(
   "z-40 bg-[hsl(var(--hu-background))] border-r border-[hsl(var(--hu-border))] flex flex-col",
@@ -53,7 +53,7 @@ const sidebarHeaderVariants = cva(
 );
 
 const sidebarItemVariants = cva(
-  "relative flex items-center rounded-lg text-sm font-medium cursor-pointer group",
+  "relative flex items-center rounded-[var(--radius)] text-sm font-medium cursor-pointer group",
   {
     variants: {
       variant: {
@@ -473,7 +473,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Tooltip for collapsed state */}
       {collapsed && (
         <div
-          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-md border border-[hsl(var(--hu-border))] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
+          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-[var(--radius)] border border-[hsl(var(--hu-border))] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
           role="tooltip"
           id={`${itemId}-tooltip`}
         >
@@ -517,7 +517,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             level > 0 &&
               !collapsed &&
               "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
-            "group relative w-full text-left border-none bg-transparent",
+            "group relative w-full text-left border-none",
+            !isActive && "bg-transparent",
             className,
           )}
           onClick={handleClick}

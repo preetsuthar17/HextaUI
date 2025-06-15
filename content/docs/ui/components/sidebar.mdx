@@ -38,7 +38,7 @@ import {
       const [collapsed, setCollapsed] = useState(false);
 
       return (
-        <div className="relative h-96 w-full overflow-hidden rounded-lg border">
+        <div className="relative h-96 w-full overflow-hidden rounded-[var(--radius)] border">
           <Sidebar
             position="relative"
             collapsed={collapsed}
@@ -137,7 +137,7 @@ const sidebarHeaderVariants = cva(
 );
 
 const sidebarItemVariants = cva(
-  "relative flex items-center rounded-lg text-sm font-medium cursor-pointer group",
+  "relative flex items-center rounded-[var(--radius)] text-sm font-medium cursor-pointer group",
   {
     variants: {
       variant: {
@@ -601,7 +601,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             level > 0 &&
               !collapsed &&
               "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
-            "group relative w-full text-left border-none bg-transparent",
+            "group relative w-full text-left border-none",
+            !isActive && "bg-transparent",
             className,
           )}
           onClick={handleClick}
@@ -921,7 +922,8 @@ export function SidebarBasic() {
   const [collapsed, setCollapsed] = React.useState(false);
 
 return (
-<div className="relative h-screen w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+
+<div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
 <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -961,7 +963,8 @@ return (
 
 );
 }
-```
+
+````
 
   </Tab>
 </Tabs>
@@ -975,7 +978,7 @@ return (
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
-  ```tsx 
+  ```tsx
 "use client";
 
 import * as React from "react";
@@ -1009,7 +1012,7 @@ export function SidebarWithProfile() {
   const [collapsed, setCollapsed] = React.useState(false);
 
 return (
-<div className="relative h-screen w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+<div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
 <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -1061,6 +1064,7 @@ return (
 }
 
 ````
+
 </Tab>
 </Tabs>
 
@@ -1078,24 +1082,24 @@ return (
 
 import * as React from "react";
 import {
-Sidebar,
-SidebarBody,
-SidebarItem,
-SidebarContent,
-SidebarHeader,
-SidebarText,
+  Sidebar,
+  SidebarBody,
+  SidebarItem,
+  SidebarContent,
+  SidebarHeader,
+  SidebarText,
 } from "./sidebar";
 import { Button } from "../button";
 import { cn } from "@/lib/utils";
 import {
-Home,
-Folder,
-Users,
-BarChart3,
-CheckCircle,
-Archive,
-FileText,
-ChevronDown,
+  Home,
+  Folder,
+  Users,
+  BarChart3,
+  CheckCircle,
+  Archive,
+  FileText,
+  ChevronDown,
 } from "lucide-react";
 
 export function SidebarWithTeamSelector() {
@@ -1103,13 +1107,14 @@ const [collapsed, setCollapsed] = React.useState(false);
 const [selectedTeam, setSelectedTeam] = React.useState("HextaUI");
 
 const teams = [
-  { id: "Personal", name: "Personal", role: "Owner" },
-  { id: "HextaStudio", name: "HextaStudio", role: "Member" },
-  { id: "HextaUI", name: "HextaUI", role: "Admin" },
+{ id: "Personal", name: "Personal", role: "Owner" },
+{ id: "HextaStudio", name: "HextaStudio", role: "Member" },
+{ id: "HextaUI", name: "HextaUI", role: "Admin" },
 ];
 
 return (
-  <div className="relative h-screen w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+
+  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1130,6 +1135,7 @@ return (
         <SidebarItem id="analytics" label="Analytics" icon={BarChart3} />
       </SidebarBody>
     </Sidebar>
+
   </div>
 );
 }
@@ -1152,48 +1158,49 @@ return (
 
 import * as React from "react";
 import {
-Sidebar,
-SidebarBody,
-SidebarItem,
-SidebarContent,
-SidebarHeader,
-SidebarFooter,
-SidebarSeparator,
-SidebarText,
+  Sidebar,
+  SidebarBody,
+  SidebarItem,
+  SidebarContent,
+  SidebarHeader,
+  SidebarFooter,
+  SidebarSeparator,
+  SidebarText,
 } from "./sidebar";
 import { Badge } from "../badge";
 import { Button } from "../button";
 import { Avatar, AvatarImage, AvatarFallback } from "../avatar";
 import { cn } from "@/lib/utils";
 import {
-Home,
-Briefcase,
-Folder,
-CheckCircle,
-FileText,
-BarChart3,
-Users,
-Shield,
-Settings,
-HelpCircle,
-ChevronDown,
-User,
-Bell,
-Moon,
-LogOut,
+  Home,
+  Briefcase,
+  Folder,
+  CheckCircle,
+  FileText,
+  BarChart3,
+  Users,
+  Shield,
+  Settings,
+  HelpCircle,
+  ChevronDown,
+  User,
+  Bell,
+  Moon,
+  LogOut,
 } from "lucide-react";
 
 export function SidebarAdvanced() {
 const [collapsed, setCollapsed] = React.useState(false);
 
 const adminItems = [
-  { id: "admin", label: "Admin", icon: Shield },
-  { id: "settings", label: "Settings", icon: Settings },
-  { id: "help", label: "Help & Support", icon: HelpCircle },
+{ id: "admin", label: "Admin", icon: Shield },
+{ id: "settings", label: "Settings", icon: Settings },
+{ id: "help", label: "Help & Support", icon: HelpCircle },
 ];
 
 return (
-  <div className="relative h-screen w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+
+  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1242,6 +1249,7 @@ return (
         {/* Admin items and profile dropdown */}
       </SidebarFooter>
     </Sidebar>
+
   </div>
 );
 }
@@ -1264,28 +1272,23 @@ return (
 
 import * as React from "react";
 import {
-Sidebar,
-SidebarBody,
-SidebarItem,
-SidebarContent,
-SidebarHeader,
-SidebarText,
+  Sidebar,
+  SidebarBody,
+  SidebarItem,
+  SidebarContent,
+  SidebarHeader,
+  SidebarText,
 } from "./sidebar";
 import { Badge } from "../badge";
 import { Button } from "../button";
-import {
-Home,
-Search,
-Bell,
-User,
-Settings,
-} from "lucide-react";
+import { Home, Search, Bell, User, Settings } from "lucide-react";
 
 export function SidebarMobile() {
 const [collapsed, setCollapsed] = React.useState(true);
 
 return (
-  <div className="relative h-screen w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+
+  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1320,11 +1323,12 @@ return (
         <SidebarItem id="settings" label="Settings" icon={Settings} />
       </SidebarBody>
     </Sidebar>
+
   </div>
 );
 }
 
-  ```
+```
 
 </Tab>
 </Tabs>
@@ -1335,46 +1339,46 @@ return (
 
 <TypeTable
 type={{
-  collapsed: {
-    description: "Whether the sidebar is collapsed",
-    type: "boolean",
-    default: "false",
-  },
-  onCollapsedChange: {
-    description: "Callback when collapse state changes",
-    type: "(collapsed: boolean) => void",
-    default: "undefined",
-  },
-  collapsible: {
-    description: "Whether the sidebar can be collapsed",
-    type: "boolean",
-    default: "true",
-  },
-  variant: {
-    description: "Visual variant of the sidebar",
-    type: '"default" | "elevated" | "ghost"',
-    default: '"default"',
-  },
-  size: {
-    description: "Size of the sidebar when expanded",
-    type: '"sm" | "default" | "lg" | "xl"',
-    default: '"default"',
-  },
-  position: {
-    description: "Positioning mode of the sidebar",
-    type: '"fixed" | "relative"',
-    default: '"fixed"',
-  },
-  overlay: {
-    description: "Whether to show overlay on mobile",
-    type: "boolean",
-    default: "false",
-  },
-  children: {
-    description: "Content for the sidebar (SidebarHeader, SidebarBody, SidebarFooter)",
-    type: "React.ReactNode",
-    default: "undefined",
-  },
+collapsed: {
+  description: "Whether the sidebar is collapsed",
+  type: "boolean",
+  default: "false",
+},
+onCollapsedChange: {
+  description: "Callback when collapse state changes",
+  type: "(collapsed: boolean) => void",
+  default: "undefined",
+},
+collapsible: {
+  description: "Whether the sidebar can be collapsed",
+  type: "boolean",
+  default: "true",
+},
+variant: {
+  description: "Visual variant of the sidebar",
+  type: '"default" | "elevated" | "ghost"',
+  default: '"default"',
+},
+size: {
+  description: "Size of the sidebar when expanded",
+  type: '"sm" | "default" | "lg" | "xl"',
+  default: '"default"',
+},
+position: {
+  description: "Positioning mode of the sidebar",
+  type: '"fixed" | "relative"',
+  default: '"fixed"',
+},
+overlay: {
+  description: "Whether to show overlay on mobile",
+  type: "boolean",
+  default: "false",
+},
+children: {
+  description: "Content for the sidebar (SidebarHeader, SidebarBody, SidebarFooter)",
+  type: "React.ReactNode",
+  default: "undefined",
+},
 }}
 />
 
@@ -1382,41 +1386,41 @@ type={{
 
 <TypeTable
 type={{
-  id: {
-    description: "Unique identifier for the item",
-    type: "string",
-    default: "undefined",
-  },
-  label: {
-    description: "Display text for the item",
-    type: "string",
-    default: "undefined",
-  },
-  icon: {
-    description: "Icon component to display",
-    type: "LucideIcon",
-    default: "undefined",
-  },
-  href: {
-    description: "URL for navigation (optional)",
-    type: "string",
-    default: "undefined",
-  },
-  badge: {
-    description: "Badge component to display",
-    type: "React.ReactNode",
-    default: "undefined",
-  },
-  children: {
-    description: "Nested sidebar items",
-    type: "React.ReactNode",
-    default: "undefined",
-  },
-  onClick: {
-    description: "Click handler for the item",
-    type: "() => void",
-    default: "undefined",
-  },
+id: {
+  description: "Unique identifier for the item",
+  type: "string",
+  default: "undefined",
+},
+label: {
+  description: "Display text for the item",
+  type: "string",
+  default: "undefined",
+},
+icon: {
+  description: "Icon component to display",
+  type: "LucideIcon",
+  default: "undefined",
+},
+href: {
+  description: "URL for navigation (optional)",
+  type: "string",
+  default: "undefined",
+},
+badge: {
+  description: "Badge component to display",
+  type: "React.ReactNode",
+  default: "undefined",
+},
+children: {
+  description: "Nested sidebar items",
+  type: "React.ReactNode",
+  default: "undefined",
+},
+onClick: {
+  description: "Click handler for the item",
+  type: "() => void",
+  default: "undefined",
+},
 }}
 />
 
@@ -1424,26 +1428,26 @@ type={{
 
 <TypeTable
 type={{
-  sidebarCollapsed: {
-    description: "Whether the sidebar is collapsed (affects margin)",
-    type: "boolean",
-    default: "false",
-  },
-  position: {
-    description: "Positioning mode (should match sidebar position)",
-    type: '"fixed" | "relative"',
-    default: '"fixed"',
-  },
-  children: {
-    description: "Main content to display",
-    type: "React.ReactNode",
-    default: "undefined",
-  },
-  className: {
-    description: "Additional CSS classes",
-    type: "string",
-    default: "undefined",
-  },
+sidebarCollapsed: {
+  description: "Whether the sidebar is collapsed (affects margin)",
+  type: "boolean",
+  default: "false",
+},
+position: {
+  description: "Positioning mode (should match sidebar position)",
+  type: '"fixed" | "relative"',
+  default: '"fixed"',
+},
+children: {
+  description: "Main content to display",
+  type: "React.ReactNode",
+  default: "undefined",
+},
+className: {
+  description: "Additional CSS classes",
+  type: "string",
+  default: "undefined",
+},
 }}
 />
 
@@ -1451,21 +1455,21 @@ type={{
 
 <TypeTable
 type={{
-  children: {
-    description: "Text content to display",
-    type: "React.ReactNode",
-    default: "undefined",
-  },
-  className: {
-    description: "Additional CSS classes",
-    type: "string",
-    default: "undefined",
-  },
-  animation: {
-    description: "Whether to animate text visibility changes",
-    type: "boolean",
-    default: "true",
-  },
+children: {
+  description: "Text content to display",
+  type: "React.ReactNode",
+  default: "undefined",
+},
+className: {
+  description: "Additional CSS classes",
+  type: "string",
+  default: "undefined",
+},
+animation: {
+  description: "Whether to animate text visibility changes",
+  type: "boolean",
+  default: "true",
+},
 }}
 />
-````
+```

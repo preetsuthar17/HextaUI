@@ -51,7 +51,7 @@ export function SidebarBasic() {
   const [collapsed, setCollapsed] = React.useState(false);
 
   return (
-    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
       <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -87,13 +87,13 @@ export function SidebarBasic() {
             this content.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]">
               <h3 className="font-medium">Card 1</h3>
               <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
                 Some content here
               </p>
             </div>
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]">
               <h3 className="font-medium">Card 2</h3>
               <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
                 Some content here
@@ -111,7 +111,7 @@ export function SidebarWithProfile() {
   const [collapsed, setCollapsed] = React.useState(false);
 
   return (
-    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
       <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -210,11 +210,11 @@ export function SidebarWithProfile() {
             Welcome back! Here's your dashboard overview.
           </p>
           <div className="grid grid-cols-2 gap-4">
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]">
               <h3 className="font-medium">Projects</h3>
               <p className="text-2xl font-bold">12</p>
             </div>
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]">
               <h3 className="font-medium">Tasks</h3>
               <p className="text-2xl font-bold">24</p>
             </div>
@@ -237,7 +237,7 @@ export function SidebarWithTeamSelector() {
   ];
 
   return (
-    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
       <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -344,7 +344,7 @@ export function SidebarAdvanced() {
   ];
 
   return (
-    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
       <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -480,7 +480,7 @@ export function SidebarAdvanced() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
               <div className="flex items-center gap-2 mb-2">
                 <Folder size={16} />
                 <h3 className="font-medium">Projects</h3>
@@ -491,7 +491,7 @@ export function SidebarAdvanced() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
               <div className="flex items-center gap-2 mb-2">
                 <CheckCircle size={16} />
                 <h3 className="font-medium">Tasks</h3>
@@ -502,7 +502,7 @@ export function SidebarAdvanced() {
               </p>
             </div>
 
-            <div className="p-4 rounded-lg bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
+            <div className="p-4 rounded-[var(--radius)] bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]">
               <div className="flex items-center gap-2 mb-2">
                 <Users size={16} />
                 <h3 className="font-medium">Team</h3>
@@ -524,7 +524,7 @@ export function SidebarMobile() {
   const [collapsed, setCollapsed] = React.useState(true);
 
   return (
-    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-lg border border-[hsl(var(--hu-border))]">
+    <div className="relative h-[40rem] w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
       <Sidebar
         position="relative"
         collapsed={collapsed}
