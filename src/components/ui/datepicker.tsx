@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { Calendar } from "./calendar";
+import { Calendar } from "@/components/ui/calendar";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { CalendarIcon, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
-import { Button } from "./button";
+import { Button } from "@/components/ui/button";
 import ReactDOM from "react-dom";
 
 const datePickerVariants = cva(
@@ -28,7 +28,7 @@ const datePickerVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 interface DatePickerProps extends VariantProps<typeof datePickerVariants> {
@@ -72,7 +72,7 @@ export function DatePicker({
     // Set portal container on client side only
     if (typeof document !== "undefined") {
       setPortalContainer(
-        document.getElementById("portal-root") || document.body,
+        document.getElementById("portal-root") || document.body
       );
     }
   }, []);
@@ -222,7 +222,7 @@ export function DatePicker({
         <ChevronDown
           className={cn(
             "h-4 w-4 opacity-50 transition-transform duration-200",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </Button>
@@ -387,7 +387,7 @@ export function DateRangePicker({
         <ChevronDown
           className={cn(
             "h-4 w-4 opacity-50 transition-transform duration-200",
-            isOpen && "rotate-180",
+            isOpen && "rotate-180"
           )}
         />
       </button>
@@ -422,7 +422,7 @@ export function DateRangePicker({
               </motion.div>
             )}
           </AnimatePresence>,
-          document.getElementById("portal-root") || document.body,
+          document.getElementById("portal-root") || document.body
         )}
     </div>
   );

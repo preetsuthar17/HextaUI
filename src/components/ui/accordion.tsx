@@ -5,7 +5,6 @@ import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
 
 const accordionVariants = cva("w-full max-w-2xl", {
   variants: {
