@@ -125,6 +125,29 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+          </div>{" "}
+          <div className="flex flex-col items-start justify-center gap-4">
+            <p className="font-medium">Legal</p>
+            <ul className="flex flex-col items-start justify-center gap-3 text-sm">
+              <li>
+                <Link
+                  className="opacity-80 hover:opacity-100"
+                  href="https://pro.hextaui.com/privacy"
+                  target="_blank"
+                >
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="opacity-80 hover:opacity-100"
+                  href="https://pro.hextaui.com/terms"
+                  target="_blank"
+                >
+                  Terms of Service
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
         <div className="flex items-end justify-end relative">

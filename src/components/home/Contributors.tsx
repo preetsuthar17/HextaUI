@@ -81,7 +81,7 @@ const Contributors = () => {
       <section className="flex flex-col items-center justify-center gap-16 py-24 px-8 text-center w-full border-t">
         <div className="flex items-center justify-center gap-6 flex-col">
           <Badge variant="secondary" className="px-4 py-2">
-            <Users className="w-3 h-3 mr-2" />
+            <Users className="w-3 h-3" />
             Contributors
           </Badge>
           <h2 className="text-4xl font-medium">Our amazing contributors</h2>

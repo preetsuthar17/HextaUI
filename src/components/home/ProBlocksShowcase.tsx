@@ -136,7 +136,7 @@ const ProBlocksShowcase = () => {
       <section className="flex flex-col items-center justify-center gap-16 py-28 px-8 text-center w-full border-t">
         <div className="flex items-center justify-center gap-6 flex-col">
           <Badge variant="secondary">
-            <Crown className="w-3 h-3 mr-2" />
+            <Crown className="w-3 h-3" />
             Pro Blocks
           </Badge>
           <h2 className="text-4xl font-medium">

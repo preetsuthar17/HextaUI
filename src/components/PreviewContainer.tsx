@@ -28,10 +28,10 @@ export const PreviewContainer = ({
         className="absolute top-4 right-4 z-2 p-2 rounded-full hover:bg-[hsl(var(--hu-accent))] transition-colors"
         aria-label="Refresh preview"
       >
-        <RefreshCw
+        {/* <RefreshCw
           className="w-4 h-4 text-primary/70 transition-transform duration-300"
           style={{ transform: `rotate(${rotation}deg)` }}
-        />
+        /> */}
       </button>
       <div
         key={key}

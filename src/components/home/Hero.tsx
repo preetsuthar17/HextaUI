@@ -6,6 +6,8 @@ import { Button } from "../ui/button";
 import { Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
+import { VideoPlayer } from "../ui/VideoPlayer";
+
 import {
   Tooltip,
   TooltipContent,
@@ -42,7 +44,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center gap-8 px-10 h-[40rem] text-center py-28">
+      <section className="flex flex-col items-center justify-center gap-8 px-10 text-center py-28">
         <div className="flex items-center justify-center gap-4 flex-col">
           <Badge icon={Sparkles} className="rounded-full" variant={"secondary"}>
             Introducing HextaUI Blocks
@@ -126,6 +128,14 @@ const Hero = () => {
               </TooltipContent>
             </Tooltip>
           </TooltipProvider>
+        </div>
+        <div className="border rounded-[var(--radius))] overflow-hidden w-full ">
+          <VideoPlayer
+            src="/hextaui-v2-trailer.mp4"
+            poster="/Banner.png"
+            size={"full"}
+            className="w-full h-auto"
+          />
         </div>
       </section>
     </>
