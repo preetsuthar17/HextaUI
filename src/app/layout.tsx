@@ -44,7 +44,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <head>
         <Script
           defer
-          data-website-id="6849a988cb9728c2dd6b6de9"
+          data-website-id="684fc71e651ce35c939cb5ee"
           data-domain="hextaui.com"
           src="https://datafa.st/js/script.js"
         />
