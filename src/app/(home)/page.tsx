@@ -1,7 +1,14 @@
-import Link from "next/link";
-
 import type { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
+
+import Hero from "@/components/home/Hero";
+import Features from "@/components/home/Features";
+import Community from "@/components/home/Community";
+import Footer from "@/components/home/Footer";
+import ComponentShowcase from "@/components/home/ComponentShowcase";
+import ProBlocksShowcase from "@/components/home/ProBlocksShowcase";
+import Contributors from "@/components/home/Contributors";
+import WallOfLove from "@/components/home/WallOfLove";
 
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
@@ -14,18 +21,15 @@ export const metadata: Metadata = customMetaDataGenerator({
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col justify-center text-center">
-      <h1 className="mb-4 text-2xl font-bold">Hello World</h1>
-      <p className="text-fd-muted-foreground">
-        You can open{" "}
-        <Link
-          href="/docs/getting-started/introduction"
-          className="text-fd-foreground font-semibold underline"
-        >
-          /docs
-        </Link>{" "}
-        and see the documentation.
-      </p>
+    <main className="flex h-full flex-col justify-center text-center w-full max-w-5xl mx-auto border-l border-r">
+      <Hero />
+      <Features />
+      <ComponentShowcase />
+      <ProBlocksShowcase />
+      <Contributors />
+      <WallOfLove />
+      <Community />
+      <Footer />
     </main>
   );
 }
