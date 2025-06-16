@@ -144,7 +144,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
       title = "Select Time Range",
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalStartTime, setInternalStartTime] = React.useState(startTime);
     const [internalEndTime, setInternalEndTime] = React.useState(endTime);
@@ -154,7 +154,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
 
     const duration = React.useMemo(
       () => calculateDuration(internalStartTime, internalEndTime),
-      [internalStartTime, internalEndTime]
+      [internalStartTime, internalEndTime],
     );
 
     const handleStartTimeChange = (time: string) => {
@@ -170,7 +170,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
         onTimeChange?.(
           time,
           internalEndTime,
-          calculateDuration(time, internalEndTime)
+          calculateDuration(time, internalEndTime),
         );
       }
     };
@@ -181,7 +181,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
       onTimeChange?.(
         internalStartTime,
         time,
-        calculateDuration(internalStartTime, time)
+        calculateDuration(internalStartTime, time),
       );
     };
 
@@ -366,7 +366,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
         </Card>
       </div>
     );
-  }
+  },
 );
 
 TimeSelection.displayName = "TimeSelection";

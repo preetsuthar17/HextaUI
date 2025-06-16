@@ -59,7 +59,7 @@ const Avatar = React.forwardRef<
     <TooltipProvider>
       <Tooltip>
         <TooltipTrigger asChild>{avatar}</TooltipTrigger>
-        <TooltipContent {...tooltipProps} />
+        <TooltipContent size={"sm"} {...tooltipProps} />
       </Tooltip>
     </TooltipProvider>
   );

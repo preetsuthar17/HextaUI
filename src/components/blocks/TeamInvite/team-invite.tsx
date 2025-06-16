@@ -40,7 +40,7 @@ export interface TeamInviteProps {
   onInvite?: (email: string, permission: PermissionLevel) => void;
   onUpdateMemberPermission?: (
     memberId: string,
-    permission: PermissionLevel
+    permission: PermissionLevel,
   ) => void;
   onCancel?: () => void;
 }
@@ -112,7 +112,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
       onCancel,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [inviteEmail, setInviteEmail] = useState("");
     const [invitePermission, setInvitePermission] =
@@ -134,7 +134,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
 
     const handleUpdatePermission = (
       memberId: string,
-      permission: PermissionLevel
+      permission: PermissionLevel,
     ) => {
       onUpdateMemberPermission?.(memberId, permission);
     };
@@ -298,7 +298,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
                                 onValueChange={(value) =>
                                   handleUpdatePermission(
                                     member.id,
-                                    value as PermissionLevel
+                                    value as PermissionLevel,
                                   )
                                 }
                               >
@@ -360,7 +360,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
         </CardContent>
       </Card>
     );
-  }
+  },
 );
 
 TeamInvite.displayName = "TeamInvite";
