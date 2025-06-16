@@ -21,7 +21,7 @@ const datePickerVariants = cva(
       size: {
         sm: "h-7 sm:h-8 px-2 text-xs",
         default: "h-8 sm:h-9 px-2 sm:px-3 text-xs sm:text-sm",
-        lg: "h-9 sm:h-10 px-3 sm:px-4 text-sm sm:text-base",
+        lg: "h-12 sm:h-10 px-3 sm:px-4 text-sm",
       },
     },
     defaultVariants: {
