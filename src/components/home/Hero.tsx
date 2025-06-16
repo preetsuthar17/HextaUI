@@ -42,7 +42,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center gap-8 px-10 h-[40rem] text-center py-24">
+      <section className="flex flex-col items-center justify-center gap-8 px-10 h-[40rem] text-center py-28">
         <div className="flex items-center justify-center gap-4 flex-col">
           <Badge icon={Sparkles} className="rounded-full" variant={"secondary"}>
             Introducing HextaUI Blocks

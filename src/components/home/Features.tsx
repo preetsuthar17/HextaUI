@@ -59,7 +59,7 @@ const Features = () => {
   return (
     <>
       {" "}
-      <section className="flex flex-col items-center justify-center gap-16 py-24 p-8 text-center px-4 w-full border-t">
+      <section className="flex flex-col items-center justify-center gap-16 py-28 p-8 text-center px-4 w-full border-t">
         <div className="flex items-center justify-center gap-6 flex-col">
           <Badge variant="secondary" className="px-4 py-2">
             Features

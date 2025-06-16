@@ -40,7 +40,7 @@ const Community = () => {
       title: "Twitter",
       description: "Stay updated with latest releases, updates and features.",
       icon: <FaTwitter size={38} />,
-      link: "https://twitter.com/hextaui",
+      link: "https://twitter.com/preetsuthar17",
       linkText: "Follow @hextaui",
     },
     {
@@ -48,14 +48,14 @@ const Community = () => {
       description:
         "Report bugs, request features, and contribute to the project.",
       icon: <FaGithub size={38} />,
-      link: "https://github.com/preettttit/hextaui",
+      link: "https://github.com/preetsuthar17/HextaUI",
       linkText: "View Repository",
     },
     {
       title: "Discord",
       description: "Join our community for support and discussions.",
       icon: <FaDiscord size={38} />,
-      link: "https://discord.gg/hextaui",
+      link: "https://discord.gg/hG4dkbMcZf",
       linkText: "Join Discord",
     },
   ];
@@ -63,7 +63,7 @@ const Community = () => {
   return (
     <>
       {" "}
-      <section className="flex flex-col items-center justify-center gap-16 py-24 px-8 text-center w-full border-t">
+      <section className="flex flex-col items-center justify-center gap-16 py-28 px-8 text-center w-full border-t">
         <div className="flex items-center justify-center gap-6 flex-col">
           <Badge variant="secondary" className="px-4 py-2">
             Community
