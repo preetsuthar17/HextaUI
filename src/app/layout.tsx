@@ -51,8 +51,13 @@ export default function Layout({ children }: { children: ReactNode }) {
       </head>
       <body className="flex flex-col min-h-screen">
         <Banner variant="rainbow">
-          <Link href="https://pro.hextaui.com/blocks" target="_blank">
-            Build websites 10x faster with <u>HextaUI Blocks</u> 🎉
+          <Link
+            href="https://pro.hextaui.com/blocks"
+            className="font-medium"
+            target="_blank"
+          >
+            Build websites 10x faster with HextaUI Blocks —{" "}
+            <span className="underline">Learn more</span>
           </Link>{" "}
         </Banner>
         <RootProvider>{children}</RootProvider>
