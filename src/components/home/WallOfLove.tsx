@@ -3,9 +3,7 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import { Heart } from "lucide-react";
-import { TweetCard } from "./Tweet/TweetCard";
 import { ClientTweetCard } from "./Tweet/ClientTweetCard";
-import { FaTwitter } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 const tweets = [
@@ -31,7 +29,9 @@ const tweets = [
   "1793606675745878490",
   "1794994587213451321",
   "1787088566025122186",
-  "1934623769710248082"
+  "1934623769710248082",
+  "1934692332819108113",
+  "1934668017389969728",
 ];
 
 const useWindowSize = () => {
@@ -83,7 +83,7 @@ const WallOfLove = () => {
                     {tweets
                       .slice(
                         colIndex * TWEETS_PER_COLUMN,
-                        (colIndex + 1) * TWEETS_PER_COLUMN,
+                        (colIndex + 1) * TWEETS_PER_COLUMN
                       )
                       .map((tweetId) => (
                         <ClientTweetCard
