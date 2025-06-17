@@ -1,0 +1,645 @@
+---
+title: Marquee
+description: A smooth scrolling marquee component for displaying continuous content.
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import { Marquee } from "@/components/ui/marquee";
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Marquee>
+        <div className="flex gap-8 text-sm">
+          <span>React</span>
+          <span>•</span>
+          <span>Next.js</span>
+          <span>•</span>
+          <span>TypeScript</span>
+          <span>•</span>
+          <span>Tailwind CSS</span>
+          <span>•</span>
+        </div>
+      </Marquee>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Marquee>
+      <div className="flex gap-8 text-sm">
+        <span>React</span>
+        <span>•</span>
+        <span>Next.js</span>
+        <span>•</span>
+        <span>TypeScript</span>
+        <span>•</span>
+        <span>Tailwind CSS</span>
+        <span>•</span>
+      </div>
+    </Marquee>
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
+<Tab value="Manual">
+
+<Tabs items={["Tailwind v4", "Tailwind v3"]}>
+  <Tab value="Tailwind v4">
+    ```css title="app/global.css"
+    @theme {
+        --animate-marquee: marquee 30s linear infinite;
+        --animate-marqueeY: marqueeY 200s linear infinite;
+    }
+
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0%);
+        }
+        100% {
+            transform: translateX(calc(-100% - var(--gap)));
+        }
+    }
+    
+    @keyframes marqueeY {
+        0% {
+            transform: translateY(0%);
+        }
+        100% {
+            transform: translateY(calc(-100% - var(--gap)));
+        }
+    }
+
+    ```
+
+  </Tab>
+
+  <Tab value="Tailwind v3">
+    ```js title="tailwind.config.js"
+      module.exports = {
+        theme: {
+          extend: {
+            keyframes: {
+              "marquee": {
+                from: {
+                  transform: "translateX(0)",
+                },
+                to: {
+                  transform: "translateX(-100% - var(--gap)))",
+                },
+              },
+              "marqueeY": {
+                from: {
+                  transform: "translateY(0)",
+                },
+                to: {
+                  transform: "translateY(-100% - var(--gap)))",
+                },
+              },
+            }
+            animations: {
+                marquee: "marquee 30s linear infinite",
+                marqueeY: "marqueeY 200s linear infinite",
+              },
+            },
+          }
+        }
+      }
+    ```
+  </Tab>
+</Tabs>
+
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/marquee.tsx"
+"use client";
+
+import * as React from "react";
+import { cn } from "@/lib/utils";
+
+export interface MarqueeProps {
+  children: React.ReactNode;
+  direction?: "left" | "right" | "up" | "down";
+  speed?: "slow" | "normal" | "fast" | number;
+  pauseOnHover?: boolean;
+  repeat?: number;
+  gap?: string | number;
+  fade?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+  vertical?: boolean;
+  autoFill?: boolean;
+  "aria-label"?: string;
+}
+
+export const Marquee = React.forwardRef<HTMLDivElement, MarqueeProps>(
+  (
+    {
+      children,
+      direction = "left",
+      speed = "normal",
+      pauseOnHover = true,
+      repeat = 4,
+      gap = "1rem",
+      fade = true,
+      className,
+      style,
+      vertical = false,
+      autoFill = false,
+      "aria-label": ariaLabel,
+      ...props
+    },
+    ref
+  ) => {
+    const containerRef = React.useRef<HTMLDivElement>(null);
+    const [isClient, setIsClient] = React.useState(false);
+    const [containerWidth, setContainerWidth] = React.useState(0);
+    const [contentWidth, setContentWidth] = React.useState(0);
+
+    React.useEffect(() => {
+      setIsClient(true);
+    }, []);
+
+    React.useEffect(() => {
+      const container = containerRef.current;
+      if (!container || !isClient) return;
+
+      const resizeObserver = new ResizeObserver(() => {
+        setContainerWidth(container.offsetWidth);
+        const firstChild = container.firstElementChild as HTMLElement;
+        if (firstChild) {
+          setContentWidth(firstChild.scrollWidth);
+        }
+      });
+
+      resizeObserver.observe(container);
+      return () => resizeObserver.disconnect();
+    }, [isClient, children]);
+
+    const getSpeed = (): string => {
+      if (typeof speed === "number") {
+        return `${speed}s`;
+      }
+
+      const speeds = {
+        slow: "60s",
+        normal: "30s",
+        fast: "15s",
+      };
+      return speeds[speed];
+    };
+
+    const getAnimationName = (): string => {
+      if (vertical || direction === "up" || direction === "down") {
+        return "marqueeY";
+      }
+      return "marquee";
+    };
+
+    const getAnimationDirection = (): string => {
+      if (direction === "right" || direction === "down") {
+        return "reverse";
+      }
+      return "normal";
+    };
+
+    const calculateRepeat = (): number => {
+      if (!autoFill || !isClient) return repeat;
+
+      if (containerWidth && contentWidth) {
+        return Math.ceil(containerWidth / contentWidth) + 1;
+      }
+      return repeat;
+    };
+
+    const gapValue = typeof gap === "number" ? `${gap}px` : gap;
+
+    const containerStyles: React.CSSProperties = {
+      "--gap": gapValue,
+      "--duration": getSpeed(),
+      ...style,
+    } as React.CSSProperties;
+
+    const animationStyles: React.CSSProperties = {
+      animationName: getAnimationName(),
+      animationDuration: getSpeed(),
+      animationTimingFunction: "linear",
+      animationIterationCount: "infinite",
+      animationDirection: getAnimationDirection(),
+      animationPlayState: "running",
+    };
+
+    const fadeStyles = fade
+      ? vertical
+        ? {
+            maskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))",
+            WebkitMaskImage:
+              "linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))",
+          }
+        : {
+            maskImage:
+              "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))",
+            WebkitMaskImage:
+              "linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,1) 10%, rgba(0,0,0,1) 90%, rgba(0,0,0,0))",
+          }
+      : {};
+
+    const content = Array.from({ length: calculateRepeat() }, (_, i) => (
+      <div
+        key={i}
+        className={cn(
+          "flex shrink-0",
+          vertical ? "flex-col" : "flex-row",
+          "[gap:var(--gap)]"
+        )}
+        style={animationStyles}
+        aria-hidden={i > 0 ? "true" : undefined}
+      >
+        {children}
+      </div>
+    ));
+
+    return (
+      <div
+        ref={ref}
+        role="marquee"
+        aria-label={ariaLabel || "Scrolling content"}
+        aria-live="off"
+        className={cn(
+          "group flex overflow-hidden",
+          vertical ? "flex-col" : "flex-row",
+          pauseOnHover && "hover:[&>*]:pause-animation",
+          "motion-reduce:hover:[&>*]:pause-animation",
+          className
+        )}
+        style={{
+          ...containerStyles,
+          ...fadeStyles,
+        }}
+        {...props}
+      >
+        <div
+          ref={containerRef}
+          className={cn(
+            "flex",
+            vertical ? "flex-col" : "flex-row",
+            "[gap:var(--gap)]"
+          )}
+        >
+          {content}
+        </div>
+      </div>
+    );
+  }
+);
+
+Marquee.displayName = "Marquee";
+
+// Convenience components for common use cases
+export const MarqueeItem = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex shrink-0 items-center justify-center", className)}
+    {...props}
+  />
+));
+
+MarqueeItem.displayName = "MarqueeItem";
+
+export const MarqueeContent = React.forwardRef<
+  HTMLDivElement,
+  React.HTMLAttributes<HTMLDivElement>
+>(({ className, ...props }, ref) => (
+  <div
+    ref={ref}
+    className={cn("flex items-center gap-4", className)}
+    {...props}
+  />
+));
+
+MarqueeContent.displayName = "MarqueeContent";
+
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hextaui@latest add marquee
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { Marquee } from "@/components/ui/marquee";
+```
+
+```tsx
+<Marquee>
+  <div className="flex gap-4">
+    <span>Content 1</span>
+    <span>Content 2</span>
+    <span>Content 3</span>
+  </div>
+</Marquee>
+```
+
+## Examples
+
+### Brand Logos
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Marquee speed="normal">
+        <div className="flex items-center gap-8">
+          <div className="w-16 h-8 bg-gray-200 rounded flex items-center justify-center text-xs font-medium">
+            React
+          </div>
+          <div className="w-16 h-8 bg-blue-100 rounded flex items-center justify-center text-xs font-medium">
+            Next.js
+          </div>
+          <div className="w-16 h-8 bg-purple-100 rounded flex items-center justify-center text-xs font-medium">
+            Tailwind
+          </div>
+          <div className="w-16 h-8 bg-green-100 rounded flex items-center justify-center text-xs font-medium">
+            Node.js
+          </div>
+        </div>
+      </Marquee>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Marquee speed="normal">
+      <div className="flex items-center gap-8">
+        <img src="/logo1.svg" alt="Company 1" className="h-8" />
+        <img src="/logo2.svg" alt="Company 2" className="h-8" />
+        <img src="/logo3.svg" alt="Company 3" className="h-8" />
+        <img src="/logo4.svg" alt="Company 4" className="h-8" />
+      </div>
+    </Marquee>
+    ```
+  </Tab>
+</Tabs>
+
+### News Ticker
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="bg-red-600 text-white rounded-lg overflow-hidden">
+        <div className="bg-red-700 px-3 py-1">
+          <span className="font-bold text-sm">BREAKING</span>
+        </div>
+        <Marquee className="py-2">
+          <div className="flex gap-4 text-sm px-4">
+            <span>📈 Markets surge after tech announcement</span>
+            <span>•</span>
+            <span>🌍 Climate summit reaches agreement</span>
+            <span>•</span>
+            <span>🚀 New space mission launched</span>
+            <span>•</span>
+          </div>
+        </Marquee>
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="bg-red-600 text-white rounded-lg overflow-hidden">
+      <div className="bg-red-700 px-3 py-1">
+        <span className="font-bold text-sm">BREAKING</span>
+      </div>
+      <Marquee className="py-2">
+        <div className="flex gap-4 text-sm px-4">
+          <span>📈 Markets surge after tech announcement</span>
+          <span>•</span>
+          <span>🌍 Climate summit reaches agreement</span>
+          <span>•</span>
+          <span>🚀 New space mission launched</span>
+          <span>•</span>
+        </div>
+      </Marquee>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
+### Image Gallery
+
+<Tabs items={["Preview", "Code"]}>  <Tab value="Preview">
+    <PreviewContainer>
+      <Marquee speed="normal" className="py-4">
+        <div className="flex items-center gap-6">
+          <img 
+            src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=200&h=120&fit=crop&crop=center" 
+            alt="Modern office workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=200&h=120&fit=crop&crop=center" 
+            alt="Computer setup"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=200&h=120&fit=crop&crop=center" 
+            alt="Coffee and laptop"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=200&h=120&fit=crop&crop=center" 
+            alt="Tech workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=200&h=120&fit=crop&crop=center" 
+            alt="Technology concept"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=200&h=120&fit=crop&crop=center" 
+            alt="Developer workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+        </div>
+      </Marquee>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <Marquee speed="normal" className="py-4">
+        <div className="flex items-center gap-6">
+          <img 
+            src="https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=200&h=120&fit=crop&crop=center" 
+            alt="Modern office workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1515378960530-7c0da6231fb1?w=200&h=120&fit=crop&crop=center" 
+            alt="Computer setup"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1516259762381-22954d7d3ad2?w=200&h=120&fit=crop&crop=center" 
+            alt="Coffee and laptop"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?w=200&h=120&fit=crop&crop=center" 
+            alt="Tech workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=200&h=120&fit=crop&crop=center" 
+            alt="Technology concept"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+          <img 
+            src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=200&h=120&fit=crop&crop=center" 
+            alt="Developer workspace"
+            className="w-[20rem] h-auto object-cover rounded-lg"
+          />
+        </div>
+    </Marquee>
+    ```
+  </Tab>
+</Tabs>
+
+### User Marquee
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <Marquee speed="normal" className="py-4">        <div className="flex items-center gap-4">
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=John&backgroundColor=b6e3f4"
+              alt="John's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">John</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Sarah&backgroundColor=c084fc"
+              alt="Sarah's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Sarah</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Mike&backgroundColor=86efac"
+              alt="Mike's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Mike</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Emma&backgroundColor=fbbf24"
+              alt="Emma's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Emma</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Alex&backgroundColor=fb7185"
+              alt="Alex's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Alex</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Lisa&backgroundColor=a78bfa"
+              alt="Lisa's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Lisa</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=David&backgroundColor=34d399"
+              alt="David's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">David</span>
+          </div>
+          <div className="flex flex-col items-center gap-2">
+            <img 
+              src="https://api.dicebear.com/7.x/micah/svg?seed=Kate&backgroundColor=60a5fa"
+              alt="Kate's avatar"
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">Kate</span>
+          </div>
+        </div>
+      </Marquee>
+    </PreviewContainer>
+  </Tab>  <Tab value="Code">
+    ```tsx
+    <Marquee speed="normal" className="py-4">
+      <div className="flex items-center gap-4">
+        {['John', 'Sarah', 'Mike', 'Emma', 'Alex', 'Lisa', 'David', 'Kate'].map((name) => (
+          <div key={name} className="flex flex-col items-center gap-2">
+            <img 
+              src={`https://api.dicebear.com/7.x/micah/svg?seed=${name}`}
+              alt={`${name}'s avatar`}
+              className="w-12 h-12 rounded-full"
+            />
+            <span className="text-xs font-medium">{name}</span>
+          </div>
+        ))}
+      </div>
+    </Marquee>
+    ```
+  </Tab>
+</Tabs>
+
+## Props
+
+<TypeTable
+  type={{
+    direction: {
+      description: "The scrolling direction",
+      type: '"left" | "right"',
+      default: '"left"',
+    },
+    speed: {
+      description: "Animation speed",
+      type: '"slow" | "normal" | "fast"',
+      default: '"normal"',
+    },
+    pauseOnHover: {
+      description: "Pause animation on hover",
+      type: "boolean",
+      default: "true",
+    },
+    className: {
+      description: "Additional CSS classes",
+      type: "string",
+      default: "undefined",
+    },
+    children: {
+      description: "Content to scroll",
+      type: "ReactNode",
+      default: "undefined",
+    },
+  }}
+/>

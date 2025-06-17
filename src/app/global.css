@@ -152,6 +152,11 @@ samp {
   }
 }
 
+/* Marquee pause utility */
+.pause-animation {
+  animation-play-state: paused !important;
+}
+
 @keyframes shimmer {
   0% {
     transform: translateX(-100%);
