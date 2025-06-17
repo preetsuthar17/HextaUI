@@ -159,7 +159,10 @@ const ComponentShowcase = () => {
 
         <div className="flex items-center justify-center">
           <Button asChild variant="outline" className="group">
-            <a href="/docs/ui/components" className="flex items-center gap-2">
+            <a
+              href="/docs/ui/foundation/components"
+              className="flex items-center gap-2"
+            >
               View all components
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
