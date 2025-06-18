@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Sparkles } from "lucide-react";
+import { ArrowBigRight, Sparkles } from "lucide-react";
 import { useState, useEffect } from "react";
 
 import { VideoPlayer } from "../ui/VideoPlayer";
@@ -44,11 +44,15 @@ const Hero = () => {
 
   return (
     <>
-      <section className="flex flex-col items-center justify-center gap-8 px-10 text-center py-28">
-        <div className="flex items-center justify-center gap-4 flex-col">
-          <Badge icon={Sparkles} className="rounded-full" variant={"secondary"}>
-            Introducing HextaUI Blocks
-          </Badge>
+      <section className="relative flex flex-col items-center justify-center gap-12 px-10 text-center pt-32 pb-12">
+        <div
+          className="absolute top-0 bg-[hsl(var(--hu-accent))] w-fit p-4 px-6 rounded-b-2xl text-sm font-medium mx-6 cursor-pointer"
+          onClick={() => window.open("https://pro.hextaui.com", "_blank")}
+        >
+          <span className="opacity-80">
+            Build 10x faster with HextaUI Blocks —
+          </span>{" "}
+          Learn more
         </div>
         <div className="flex items-center justify-center gap-4 flex-col">
           <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tight ">
@@ -134,7 +138,7 @@ const Hero = () => {
             src="/hextaui-v2-trailer.mp4"
             poster="/Banner.png"
             size={"full"}
-            className="w-full h-auto"
+            className="w-full h-auto rounded-[var(--radius))]"
           />
         </div>
       </section>
