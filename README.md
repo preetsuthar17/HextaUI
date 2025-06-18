@@ -6,11 +6,11 @@
 
 ## Changelogs
 
-For detailed changes, please refer to our [Changelog](https://hextaui.com/docs/getting-started/changelog)
+For detailed changes, please refer to our [Changelog](https://hextaui.com/docs/ui/getting-started/changelog)
 
 ## Roadmap
 
-For upcoming features and improvements, check out our [Roadmap](https://hextaui.com/docs/getting-started/roadmap)
+For upcoming features and improvements, check out our [Roadmap](https://hextaui.com/docs/ui/getting-started/roadmap)
 
 ## Contributing
 
