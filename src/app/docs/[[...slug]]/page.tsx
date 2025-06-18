@@ -11,6 +11,7 @@ import { getMDXComponents } from "@/mdx-components";
 
 import { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
+import CarbonAds from "@/components/other/carbon";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -50,6 +51,7 @@ export default async function Page(props: {
     >
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
+      <CarbonAds format="cover" />
       <DocsBody>
         <MDX components={getMDXComponents()} />
       </DocsBody>

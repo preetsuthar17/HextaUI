@@ -22,6 +22,7 @@ import {
   SiLucide,
   SiTailwindcss,
 } from "react-icons/si";
+import CarbonAds from "../other/carbon";
 
 const Hero = () => {
   const [stars, setStars] = useState<number | null>(null);
@@ -141,6 +142,7 @@ const Hero = () => {
             className="w-full h-auto rounded-[var(--radius))]"
           />
         </div>
+        <CarbonAds format="cover" />
       </section>
     </>
   );
