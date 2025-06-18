@@ -30,7 +30,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);
@@ -79,7 +79,7 @@ const Hero = () => {
               </span>
               <span className="opacity-70">-</span>
               <span>
-                {stars && <span className="opacity-70">{stars || 0}</span>}
+                <span className="opacity-70">{stars ? stars : "000"}</span>
               </span>
             </Link>
           </Button>
