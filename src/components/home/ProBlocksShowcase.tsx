@@ -158,10 +158,6 @@ const ProBlocksShowcase = () => {
                   <Lock className="w-3 h-3 mr-1" />
                   Pro
                 </Badge>
-                <Badge variant="secondary" className="text-xs">
-                  <Clock className="w-3 h-3 mr-1" />
-                  Soon
-                </Badge>
               </div>
 
               <div className="p-6 space-y-4">
