@@ -9,7 +9,7 @@ import {
 
 const generateDiceBearAvatar = (seed: string) => {
   return `https://api.dicebear.com/7.x/open-peeps/svg?seed=${encodeURIComponent(
-    seed,
+    seed
   )}`;
 };
 
@@ -70,12 +70,12 @@ export function TeamInviteBlock() {
   };
   const handleUpdateMemberPermission = (
     memberId: string,
-    permission: PermissionLevel,
+    permission: PermissionLevel
   ) => {
     setMembers((prev) =>
       prev.map((member) =>
-        member.id === memberId ? { ...member, role: permission } : member,
-      ),
+        member.id === memberId ? { ...member, role: permission } : member
+      )
     );
   };
 
@@ -84,7 +84,7 @@ export function TeamInviteBlock() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center max-w-xl w-full p-8 ">
+    <div className="flex flex-col items-center justify-center max-w-xl w-full">
       <TeamInvite
         teamName="HextaUI"
         teamLogo="/Logo.png"
