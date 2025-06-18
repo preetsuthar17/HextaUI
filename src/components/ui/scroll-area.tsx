@@ -50,7 +50,7 @@ const ScrollArea = React.forwardRef<
       type = "hover",
       ...props
     },
-    ref,
+    ref
   ) => (
     <ScrollAreaPrimitive.Root
       ref={ref}
@@ -74,7 +74,7 @@ const ScrollArea = React.forwardRef<
       )}
       <ScrollAreaPrimitive.Corner />
     </ScrollAreaPrimitive.Root>
-  ),
+  )
 );
 
 ScrollArea.displayName = ScrollAreaPrimitive.Root.displayName;
@@ -93,23 +93,25 @@ const ScrollBar = React.forwardRef<
 >(
   (
     { className, orientation = "vertical", scrollHideDelay, type, ...props },
-    ref,
-  ) => (
-    <ScrollAreaPrimitive.ScrollAreaScrollbar
-      ref={ref}
-      orientation={orientation}
-      className={cn(
-        scrollBarVariants({ orientation }),
-        "hover:bg-[hsl(var(--hu-accent))]",
-        className,
-      )}
-      {...(scrollHideDelay && { scrollHideDelay })}
-      {...(type && { type })}
-      {...props}
-    >
-      <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-foreground))]/30 transition-colors" />
-    </ScrollAreaPrimitive.ScrollAreaScrollbar>
-  ),
+    ref
+  ) => {
+    return (
+      <ScrollAreaPrimitive.ScrollAreaScrollbar
+        ref={ref}
+        orientation={orientation}
+        className={cn(
+          scrollBarVariants({ orientation }),
+          "hover:bg-[hsl(var(--hu-accent))]",
+          className
+        )}
+        {...(scrollHideDelay && { scrollHideDelay })}
+        {...(type && { type })}
+        {...props}
+      >
+        <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-foreground))]/30 transition-colors" />
+      </ScrollAreaPrimitive.ScrollAreaScrollbar>
+    );
+  }
 );
 
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName;
