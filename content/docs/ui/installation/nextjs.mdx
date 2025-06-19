@@ -3,7 +3,7 @@ title: Next.js
 description: How to install and set up HextaUI in your Next.js project.
 ---
 
-## Create a Next.js project
+### Create a Next.js project
 
 To create a new Next.js project, you can use the following command:
 
@@ -11,9 +11,11 @@ To create a new Next.js project, you can use the following command:
 npx create-next-app@latest my-nextjs-app
 ```
 
+Make sure to enable `Typescript` and `Tailwind CSS` during the setup process. You can do this by selecting the appropriate options when prompted.
+
 Replace `my-nextjs-app` with your desired project name.
 
-## Install HextaUI
+### Install HextaUI
 
 To install HextaUI in your Next.js project, navigate to your project directory and run:
 
@@ -21,7 +23,7 @@ To install HextaUI in your Next.js project, navigate to your project directory a
 npm install hextaui@latest
 ```
 
-## Initialize HextaUI
+### Initialize HextaUI
 
 Run the `init` command to initialize HextaUI in your project:
 
@@ -29,7 +31,7 @@ Run the `init` command to initialize HextaUI in your project:
 npx hextaui@latest init
 ```
 
-## Add components
+### Add components
 
 You can now start using HextaUI components in your Next.js project.
 
@@ -46,7 +48,7 @@ export default function Home() {
   return (
     <main>
       <h1>Welcome to HextaUI with Next.js!</h1>
-      <Button>Click Me</Button> // [!code highlight]
+      <Button>Click Me!</Button> // [!code highlight]
     </main>
   );
 }

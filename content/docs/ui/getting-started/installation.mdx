@@ -5,13 +5,25 @@ icon: Package
 ---
 
 import { RiNextjsFill } from "react-icons/ri";
+import { SiVite } from "react-icons/si";
+import { SiAstro } from "react-icons/si";
 
-<Cards>
-  <Card
-    icon={<RiNextjsFill />}
-    href="/docs/ui/installation/nextjs"
-    title="Next.js"
-  >
-    Simple guide to install and set up HextaUI in your Next.js project.
-  </Card>
-</Cards>
+import { DocsInstallationCard } from "@/components/other/docs-installation-card.tsx"
+
+<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <DocsInstallationCard 
+        title="Next.js"
+        logo={<RiNextjsFill size={50} />}
+        url="/docs/ui/installation/nextjs"
+    />
+    <DocsInstallationCard 
+        title="Vite"
+        logo={<SiVite size={50} />}
+        url="/docs/ui/installation/vite"
+    />
+    <DocsInstallationCard 
+        title="Astro"
+        logo={<SiAstro size={50} />}
+        url="/docs/ui/installation/astro"
+    />
+</div>

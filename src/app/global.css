@@ -213,3 +213,10 @@ h2 {
   font-weight: 500;
   letter-spacing: -0.02rem;
 }
+
+.line {
+  padding: 4px 10px;
+  &::after {
+    padding: 4px 10px 4px 0;
+  }
+}
