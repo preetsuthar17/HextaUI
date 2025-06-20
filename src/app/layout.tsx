@@ -48,6 +48,17 @@ export default function Layout({ children }: { children: ReactNode }) {
           data-domain="hextaui.com"
           src="https://datafa.st/js/script.js"
         />
+        <script
+          data-name="BMC-Widget"
+          data-cfasync="false"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+          data-id="preetsuthar17"
+          data-description="Support me on Buy me a coffee!"
+          data-color="#FF813F"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="18"
+        ></script>
       </head>
       <body className="flex flex-col min-h-screen">
         <Banner variant="rainbow">
