@@ -11,13 +11,10 @@ export const source = loader({
   source: docs.toFumadocsSource(),
   pageTree: {
     attachFile(node, file) {
-      if (!file) return node;
+      if (!file?.data) return node;
 
-      const data = file.data.data as {
-        new: boolean;
-        pro: boolean;
-        soon: boolean;
-      };
+      const data = file.data;
+
       if (data.new)
         node.name = (
           <>
