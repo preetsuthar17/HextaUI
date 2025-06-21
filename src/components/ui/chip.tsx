@@ -31,7 +31,7 @@ const chipVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ChipProps
@@ -56,7 +56,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const iconSize = size === "sm" ? 12 : size === "lg" ? 14 : 12;
     const closeIconSize = size === "sm" ? 10 : size === "lg" ? 12 : 10;
@@ -83,7 +83,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
           <button
             type="button"
             onClick={handleDismiss}
-            className="ml-1 shrink-0 rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
+            className="shrink-0 rounded-full p-0.5 hover:bg-black/10 dark:hover:bg-white/10 transition-colors"
             aria-label="Remove"
           >
             <X size={closeIconSize} />
@@ -91,7 +91,7 @@ const Chip = React.forwardRef<HTMLDivElement, ChipProps>(
         )}
       </div>
     );
-  },
+  }
 );
 
 Chip.displayName = "Chip";
