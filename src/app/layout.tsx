@@ -53,6 +53,7 @@ export default function Layout({ children }: { children: ReactNode }) {
           data-cfasync="false"
           src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
           data-id="preetsuthar17"
+          data-message="Psst, here! If you like my work, consider buying me a coffee. ☕"
           data-description="Support me on Buy me a coffee!"
           data-color="#FF813F"
           data-position="Right"
