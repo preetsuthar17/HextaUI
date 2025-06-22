@@ -38,7 +38,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geist.className} ${jetbrains_mono.variable} ${dm_sans.variable} ${inter.variable}`}
+      className={`${geist.variable} ${jetbrains_mono.variable} ${dm_sans.variable} ${inter.className}`}
       suppressHydrationWarning
     >
       <head>
