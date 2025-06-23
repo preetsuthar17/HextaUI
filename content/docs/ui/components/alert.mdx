@@ -9,15 +9,15 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { Alert } from "@/components/ui/Alert";
-import { AlertWithIcon } from "@/components/ui/Alert";
 import {
   BasicAlertExamples,
   AlertWithTitleExamples,
   AlertWithIconExamples,
+  AlertWithCustomIconsExamples,
   DismissibleAlertExamples,
+  AlertSizesExamples,
   CustomStyledAlertExamples,
   RealWorldAlertExamples,
-  AlertWithCustomIconsExamples,
 } from "@/components/ui/Alert";
 
 <Tabs items={["Preview", "Code"]}>
@@ -64,7 +64,7 @@ import { type LucideIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 text-sm transition-colors",
+  "relative w-full rounded-lg border p-4 text-sm transition-colors shadow-md/2",
   {
     variants: {
       variant: {
@@ -82,7 +82,7 @@ const alertVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 export interface AlertProps
@@ -106,7 +106,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
 
@@ -173,83 +173,12 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         )}
       </AnimatePresence>
     );
-  },
+  }
 );
 
 Alert.displayName = "Alert";
 
 export { Alert, alertVariants };
-```
-
-```tsx title="components/ui/AlertWithIcon.tsx"
-"use client";
-
-import { Alert, type AlertProps } from "../alert";
-import { type LucideIcon } from "lucide-react";
-import {
-  AlertTriangle,
-  CheckCircle,
-  Info,
-  X,
-  AlertCircle,
-  Shield,
-  Bell,
-  Star,
-  Zap,
-  Heart,
-  Settings,
-  User,
-  Mail,
-  Server,
-  CreditCard,
-  Trophy,
-  HardDrive,
-} from "lucide-react";
-
-// Map of icon names to actual components
-const iconMap = {
-  AlertTriangle,
-  CheckCircle,
-  Info,
-  X,
-  AlertCircle,
-  Shield,
-  Bell,
-  Star,
-  Zap,
-  Heart,
-  Settings,
-  User,
-  Mail,
-  Server,
-  CreditCard,
-  Trophy,
-  HardDrive,
-} as const;
-
-export type IconName = keyof typeof iconMap;
-
-interface AlertWithIconProps extends Omit<AlertProps, "icon"> {
-  iconName?: IconName;
-  icon?: LucideIcon;
-}
-
-export function AlertWithIcon({
-  iconName,
-  icon,
-  ...props
-}: AlertWithIconProps) {
-  // Priority: custom icon > iconName > no icon
-  let IconComponent: LucideIcon | undefined;
-
-  if (icon) {
-    IconComponent = icon;
-  } else if (iconName) {
-    IconComponent = iconMap[iconName];
-  }
-
-  return <Alert icon={IconComponent} {...props} />;
-}
 ```
 
 </Tab>
@@ -265,7 +194,7 @@ npx hextaui@latest add alert
 ## Usage
 
 ```tsx
-import { Alert, AlertWithIcon } from "@/components/ui/alert";
+import { Alert } from "@/components/ui/alert";
 import { Database, Rocket } from "lucide-react";
 ```
 
@@ -279,20 +208,13 @@ import { Database, Rocket } from "lucide-react";
 <Alert variant="info">This is an info alert.</Alert>
 ```
 
-### Alert with Predefined Icons
+
+### Alert with Icons
 
 ```tsx
-<AlertWithIcon iconName="Info" variant="info" title="Information">
-  This uses a predefined icon from the available icon set.
-</AlertWithIcon>
-```
-
-### Alert with Custom Icons
-
-```tsx
-<AlertWithIcon icon={Database} variant="warning" title="Database Alert">
-  This uses a custom Lucide icon component for maximum flexibility.
-</AlertWithIcon>
+<Alert icon={Database} variant="warning" title="Database Alert">
+  This uses a Lucide icon component for maximum flexibility.
+</Alert>
 ```
 
 ## Examples
@@ -309,19 +231,19 @@ import { Database, Rocket } from "lucide-react";
     ```tsx
     <div className="space-y-4">
       <Alert>
-        <strong>Default Alert:</strong> This is a basic alert message.
+         This is a basic alert message.
       </Alert>
       <Alert variant="destructive">
-        <strong>Error:</strong> Something went wrong. Please try again.
+        Something went wrong. Please try again.
       </Alert>
       <Alert variant="warning">
-        <strong>Warning:</strong> This action cannot be undone.
+        This action cannot be undone.
       </Alert>
       <Alert variant="success">
-        <strong>Success:</strong> Your changes have been saved.
+        Your changes have been saved.
       </Alert>
       <Alert variant="info">
-        <strong>Info:</strong> New features are now available.
+        New features are now available.
       </Alert>
     </div>
     ```
@@ -367,51 +289,48 @@ import { Database, Rocket } from "lucide-react";
     <PreviewContainer>
       <AlertWithIconExamples />
     </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
+  </Tab>  <Tab value="Code">
     ```tsx
-    import { AlertWithIcon } from "@/components/ui/Alert";
-    import { Wifi, Database, Rocket, Coffee } from "lucide-react";
+    import { 
+      Info,
+      CheckCircle,
+      AlertTriangle,
+      X,
+      Wifi,
+      Database,
+      Rocket,
+      Coffee,
+    } from "lucide-react";
 
     <div className="space-y-4">
       {/* Using predefined icon names */}
-      <AlertWithIcon
-        iconName="Info"
-        variant="info"
-        title="New Features Available"
-      >
-        We've added new collaboration tools to help you work better with your team.
-      </AlertWithIcon>
-      <AlertWithIcon
-        iconName="CheckCircle"
-        variant="success"
-        title="Payment Successful"
-      >
+      <Alert icon={Info} variant="info" title="New Features Available">
+        We've added new collaboration tools to help you work better with your
+        team.
+      </Alert>
+      <Alert icon={CheckCircle} variant="success" title="Payment Successful">
         Your subscription has been renewed for another year.
-      </AlertWithIcon>
+      </Alert>
+      <Alert icon={AlertTriangle} variant="warning" title="Storage Almost Full">
+        You've used 95% of your storage space. Consider upgrading your plan.
+      </Alert>
+      <Alert icon={X} variant="destructive" title="Action Failed">
+        Could not complete the requested action. Please try again later.
+      </Alert>
 
       {/* Using custom icon components */}
-      <AlertWithIcon
-        icon={Wifi}
-        variant="info"
-        title="Network Connected"
-      >
+      <Alert icon={Wifi} variant="info" title="Network Connected">
         You are now connected to the secure network.
-      </AlertWithIcon>
-      <AlertWithIcon
-        icon={Database}
-        variant="warning"
-        title="Database Backup Required"
-      >
+      </Alert>
+      <Alert icon={Database} variant="warning" title="Database Backup Required">
         It's been 7 days since your last backup. Consider backing up your data.
-      </AlertWithIcon>
-      <AlertWithIcon
-        icon={Rocket}
-        variant="success"
-        title="Deployment Successful"
-      >
+      </Alert>
+      <Alert icon={Rocket} variant="success" title="Deployment Successful">
         Your application has been deployed to production successfully.
-      </AlertWithIcon>
+      </Alert>
+      <Alert icon={Coffee} variant="default" title="Break Time">
+        You've been coding for 2 hours. Time for a coffee break!
+      </Alert>
     </div>
     ```
 
@@ -425,48 +344,46 @@ import { Database, Rocket } from "lucide-react";
     <PreviewContainer>
       <AlertWithCustomIconsExamples />
     </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
+  </Tab>  <Tab value="Code">
     ```tsx
-    import { AlertWithIcon } from "@/components/ui/Alert";
     import { Code, Sparkles, TrendingUp, Lock, Calendar } from "lucide-react";
 
     <div className="space-y-4">
-      <AlertWithIcon
+      <Alert
         icon={Code}
         variant="info"
         title="Code Review Ready"
       >
         Your pull request is ready for code review by the team.
-      </AlertWithIcon>
-      <AlertWithIcon
+      </Alert>
+      <Alert
         icon={Sparkles}
         variant="success"
         title="Feature Unlocked"
       >
         Congratulations! You've unlocked premium features.
-      </AlertWithIcon>
-      <AlertWithIcon
+      </Alert>
+      <Alert
         icon={TrendingUp}
         variant="info"
         title="Performance Improved"
       >
         Your application performance has increased by 40% this month.
-      </AlertWithIcon>
-      <AlertWithIcon
+      </Alert>
+      <Alert
         icon={Lock}
         variant="warning"
         title="Security Alert"
       >
         We detected unusual login activity. Please verify your account.
-      </AlertWithIcon>
-      <AlertWithIcon
+      </Alert>
+      <Alert
         icon={Calendar}
         variant="default"
         title="Meeting Reminder"
       >
         Your team standup meeting starts in 15 minutes.
-      </AlertWithIcon>
+      </Alert>
     </div>
     ```
 
@@ -480,10 +397,13 @@ import { Database, Rocket } from "lucide-react";
     <PreviewContainer>
       <DismissibleAlertExamples />
     </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
+  </Tab>  <Tab value="Code">
     ```tsx
-    import { Bell, Trophy, HardDrive } from "lucide-react";
+    import { Bell, Trophy, HardDrive, Heart } from "lucide-react";
+
+    const handleDismiss = (message: string) => {
+      console.log(message);
+    };
 
     <div className="space-y-4">
       <Alert
@@ -491,7 +411,7 @@ import { Database, Rocket } from "lucide-react";
         variant="info"
         title="Notification"
         dismissible
-        onDismiss={() => console.log("Alert dismissed")}
+        onDismiss={() => handleDismiss("Alert dismissed")}
       >
         You have 3 new messages in your inbox.
       </Alert>
@@ -500,7 +420,7 @@ import { Database, Rocket } from "lucide-react";
         variant="success"
         title="Achievement Unlocked"
         dismissible
-        onDismiss={() => console.log("Achievement dismissed")}
+        onDismiss={() => handleDismiss("Achievement dismissed")}
       >
         Congratulations! You've completed 100 tasks this month.
       </Alert>
@@ -509,9 +429,20 @@ import { Database, Rocket } from "lucide-react";
         variant="warning"
         title="Storage Warning"
         dismissible
-        onDismiss={() => console.log("Storage warning dismissed")}
+        onDismiss={() => handleDismiss("Storage warning dismissed")}
       >
         Your storage is almost full. Consider upgrading your plan.
+      </Alert>
+
+      {/* Custom icons with dismissible */}
+      <Alert
+        icon={Heart}
+        variant="success"
+        title="Thank You!"
+        dismissible
+        onDismiss={() => handleDismiss("Thank you dismissed")}
+      >
+        Thank you for being an awesome user! Your feedback helps us improve.
       </Alert>
     </div>
     ```
@@ -526,21 +457,20 @@ import { Database, Rocket } from "lucide-react";
     <PreviewContainer>
       <CustomStyledAlertExamples />
     </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
+  </Tab>  <Tab value="Code">
     ```tsx
     <div className="space-y-4">
       <Alert className="rounded-xl border-2">
-        <strong>Rounded Alert:</strong> Custom border radius styling.
+        Custom border radius styling.
       </Alert>
       <Alert variant="info" className="border-dashed">
-        <strong>Dashed Border:</strong> Alert with dashed border style.
+        Alert with dashed border style.
       </Alert>
       <Alert variant="success" className="shadow-lg">
-        <strong>With Shadow:</strong> Alert with enhanced shadow.
+        Alert with enhanced shadow.
       </Alert>
       <Alert className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200 text-purple-800 dark:from-purple-950/20 dark:to-pink-950/20 dark:border-purple-800 dark:text-purple-200">
-        <strong>Gradient Background:</strong> Custom gradient styling.
+        Custom gradient styling.
       </Alert>
     </div>
     ```
@@ -586,6 +516,27 @@ import { Database, Rocket } from "lucide-react";
   </Tab>
 </Tabs>
 
+### Alert Sizes
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <AlertSizesExamples />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    <div className="space-y-4">
+      <Alert className="text-xs p-3">Compact alert for minimal space.</Alert>
+      <Alert>Standard size for most use cases.</Alert>
+      <Alert className="text-base p-5">
+        Prominent alert for important messages.
+      </Alert>
+    </div>
+    ```
+  </Tab>
+</Tabs>
+
 ## Props
 
 ### Alert Props
@@ -625,28 +576,6 @@ import { Database, Rocket } from "lucide-react";
     children: {
       description: "The content to display inside the alert",
       type: "ReactNode",
-      default: "undefined",
-    },
+      default: "undefined",    },
   }}
 />
-
-### AlertWithIcon Props
-
-The `AlertWithIcon` component extends all the base `Alert` props and adds icon-specific functionality:
-
-<TypeTable
-  type={{
-    iconName: {
-      description: "Predefined icon name from the available icon set",
-      type: '"AlertTriangle" | "CheckCircle" | "Info" | "X" | "AlertCircle" | "Shield" | "Bell" | "Star" | "Zap" | "Heart" | "Settings" | "User" | "Mail" | "Server" | "CreditCard" | "Trophy" | "HardDrive"',
-      default: "undefined",
-    },
-    icon: {
-      description: "Custom Lucide icon component to display",
-      type: "LucideIcon",
-      default: "undefined",
-    },
-  }}
-/>
-
-**Icon Priority:** When both `icon` and `iconName` are provided, the custom `icon` prop takes precedence over `iconName`.

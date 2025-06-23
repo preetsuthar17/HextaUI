@@ -7,7 +7,7 @@ import { type LucideIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 text-sm transition-colors",
+  "relative w-full rounded-lg border p-4 text-sm transition-colors shadow-md/2",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const alertVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 export interface AlertProps
@@ -49,7 +49,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
 
@@ -116,7 +116,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         )}
       </AnimatePresence>
     );
-  },
+  }
 );
 
 Alert.displayName = "Alert";
