@@ -146,7 +146,7 @@ const treeVariants = cva(
 );
 
 const treeItemVariants = cva(
-  "flex items-center py-2 px-3 cursor-pointer transition-all duration-200 relative group rounded-[var(--radius)] mx-1",
+  "flex items-center py-2 px-3 cursor-pointer transition-all duration-200 relative group rounded-[calc(var(--card-radius)-8px)]",
   {
     variants: {
       variant: {
