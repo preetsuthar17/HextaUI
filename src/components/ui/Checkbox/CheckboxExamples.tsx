@@ -81,7 +81,7 @@ export function CheckboxIndeterminate() {
 
   const handleItemChange = (id: number, checked: boolean) => {
     setItems(
-      items.map((item) => (item.id === id ? { ...item, checked } : item)),
+      items.map((item) => (item.id === id ? { ...item, checked } : item))
     );
   };
 
@@ -175,34 +175,6 @@ export function CheckboxGroup() {
           Selected: {selectedSkills.join(", ")}
         </p>
       )}
-    </div>
-  );
-}
-
-export function CheckboxAnimated() {
-  const [items, setItems] = useState([
-    { id: 1, label: "Animated checkbox 1", checked: false },
-    { id: 2, label: "Animated checkbox 2", checked: false },
-    { id: 3, label: "Animated checkbox 3", checked: false },
-  ]);
-
-  const handleChange = (id: number, checked: boolean) => {
-    setItems(
-      items.map((item) => (item.id === id ? { ...item, checked } : item)),
-    );
-  };
-
-  return (
-    <div className="flex flex-col gap-3">
-      {items.map((item) => (
-        <Checkbox
-          key={item.id}
-          label={item.label}
-          description="Watch the smooth animation when toggled"
-          checked={item.checked}
-          onCheckedChange={(checked) => handleChange(item.id, !!checked)}
-        />
-      ))}
     </div>
   );
 }
