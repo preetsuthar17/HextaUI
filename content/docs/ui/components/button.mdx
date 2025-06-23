@@ -15,7 +15,7 @@ import { Button } from "@/components/ui/button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap font-medium">
         <Button>Default</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>
@@ -27,7 +27,7 @@ import { Button } from "@/components/ui/button";
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="flex gap-4 flex-wrap">
+    <div className="flex gap-4 flex-wrap font-medium">
       <Button>Default</Button>
       <Button variant="secondary">Secondary</Button>
       <Button variant="outline">Outline</Button>
@@ -61,16 +61,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default:
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))] shadow-md/2",
         destructive:
-          "bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] hover:bg-[hsl(var(--hu-destructive))]/90 focus-visible:ring-[hsl(var(--hu-destructive))]",
+          "bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] hover:bg-[hsl(var(--hu-destructive))]/90 focus-visible:ring-[hsl(var(--hu-destructive))] shadow-md/2",
         outline:
-          "border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))] shadow-md/2",
         secondary:
           "bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] hover:bg-[hsl(var(--hu-secondary))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
         ghost:
@@ -89,8 +89,13 @@ const buttonVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
+
+export type CustomButtonProps = Omit<
+  ButtonProps,
+  keyof React.ComponentProps<"button">
+>;
 
 export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
@@ -115,20 +120,15 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled,
       ...props
     },
-    ref,
+    ref
   ) => {
     const Comp = asChild ? Slot : "button";
 
-    return (
-      <Comp
-        className={cn(buttonVariants({ variant, size, className }))}
-        ref={ref}
-        disabled={disabled || loading}
-        {...props}
-      >
+    const content = (
+      <>
         {loading && (
           <svg
-            className="animate-spin -ml-1 mr-2 h-4 w-4"
+            className="animate-spin h-4 w-4"
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -151,14 +151,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {leftIcon && !loading && leftIcon}
         {children}
         {rightIcon && !loading && rightIcon}
+      </>
+    );
+
+    return (
+      <Comp
+        className={cn(buttonVariants({ variant, size, className }))}
+        ref={ref}
+        disabled={disabled || loading}
+        {...props}
+      >
+        {asChild ? children : content}
       </Comp>
     );
-  },
+  }
 );
 
 Button.displayName = "Button";
 
 export { Button, buttonVariants };
+
 ```
 
 </Tab>
@@ -188,7 +200,7 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <Button>Click me</Button>
+      <Button className="font-medium">Click me</Button>
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
@@ -203,7 +215,7 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap font-medium">
         <Button variant="default">Default</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>
@@ -230,7 +242,7 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex items-end gap-4 flex-wrap">
+      <div className="flex items-end gap-4 flex-wrap font-medium">
         <Button size="sm">Small</Button>
         <Button size="default">Default</Button>
         <Button size="lg">Large</Button>
@@ -253,7 +265,7 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap font-medium">
         <Button leftIcon={<Download />}>Download</Button>
         <Button rightIcon={<ArrowRight />}>Continue</Button>
         <Button variant="outline" leftIcon={<Heart />}>
@@ -284,7 +296,7 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
+      <div className="flex gap-4 flex-wrap font-medium">
         <Button variant="outline" size="icon">
           <Settings />
         </Button>
@@ -317,8 +329,8 @@ import { Button } from "@/components/ui/Button";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <Button loading>Loading...</Button>
+      <div className="flex gap-4 flex-wrap font-medium">
+        <Button loading>Loading</Button>
         <Button variant="outline" loading>
           Please wait
         </Button>
@@ -330,7 +342,7 @@ import { Button } from "@/components/ui/Button";
   </Tab>
   <Tab value="Code">
     ```tsx
-    <Button loading>Loading...</Button>
+    <Button loading>Loading</Button>
     <Button variant="outline" loading>
       Please wait
     </Button>
@@ -348,7 +360,7 @@ You can use the `asChild` prop to make another component look like a button. Her
 <Tabs items={["Preview", "Code"]}>
 <Tab value="Preview">
 <PreviewContainer>
-  <div className="flex gap-4 flex-wrap">
+  <div className="flex gap-4 flex-wrap font-medium">
     <Button asChild>
       <a href="/login">Login</a>
     </Button>
