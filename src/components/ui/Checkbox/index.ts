@@ -7,5 +7,4 @@ export {
   CheckboxIndeterminate,
   CheckboxWithError,
   CheckboxGroup,
-  CheckboxAnimated,
 } from "./CheckboxExamples";
