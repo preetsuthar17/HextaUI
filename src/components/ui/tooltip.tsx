@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const tooltipVariants = cva(
-  "z-50 overflow-hidden rounded-lg border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] px-3 py-1.5 text-xs text-[hsl(var(--hu-card-foreground))] font-medium",
+  "z-50 overflow-hidden rounded-lg border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] px-3 py-1.5 text-xs text-[hsl(var(--hu-card-foreground))] shadow-md/2",
   {
     variants: {
       variant: {
@@ -29,7 +29,7 @@ const tooltipVariants = cva(
       variant: "default",
       size: "md",
     },
-  },
+  }
 );
 
 const Tooltip = TooltipPrimitive.Root;
@@ -67,7 +67,7 @@ const TooltipContent = React.forwardRef<
             type: "spring",
             stiffness: 300,
             damping: 20,
-            duration: 0.2,
+            duration: 0.1,
           }}
           className={cn(tooltipVariants({ variant, size }), className)}
         >
