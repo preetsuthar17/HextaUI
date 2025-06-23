@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 const textareaVariants = cva(
-  "flex min-h-[60px] w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[hsl(var(--hu-border))] hover:scrollbar-thumb-[hsl(var(--hu-muted-foreground))] scrollbar-corner-transparent",
+  "flex min-h-[60px] w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[hsl(var(--hu-border))] hover:scrollbar-thumb-[hsl(var(--hu-muted-foreground))] scrollbar-corner-transparent shadow-md/2",
   {
     variants: {
       variant: {
