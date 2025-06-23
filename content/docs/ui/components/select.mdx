@@ -87,7 +87,7 @@ import * as SelectPrimitive from "@radix-ui/react-select";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { type LucideIcon, ChevronDown, Check } from "lucide-react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion } from "motion/react";
 
 const selectTriggerVariants = cva(
   "flex h-9 w-full items-center justify-between gap-3 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm transition-all placeholder:text-[hsl(var(--hu-muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))]",
@@ -95,8 +95,8 @@ const selectTriggerVariants = cva(
     variants: {
       variant: {
         default:
-          "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
-        outline: "border-2 hover:border-[hsl(var(--hu-ring))]",
+          "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] shadow-md/2",
+        outline: "border-2 hover:border-[hsl(var(--hu-ring))] shadow-md/2",
         ghost:
           "border-transparent hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
       },
