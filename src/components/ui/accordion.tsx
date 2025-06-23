@@ -6,13 +6,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 
-const accordionVariants = cva("w-full max-w-2xl", {
+const accordionVariants = cva("w-full max-w-[var(--radius)]", {
   variants: {
     variant: {
       default:
-        "border border-[hsl(var(--hu-border))] rounded-2xl overflow-hidden",
+        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] overflow-hidden",
       ghost: "",
-      outline: "border border-[hsl(var(--hu-border))] rounded-2xl",
+      outline: "border border-[hsl(var(--hu-border))] rounded-[var(--radius)]",
     },
     size: {
       sm: "text-sm max-w-lg",
@@ -40,7 +40,7 @@ const accordionItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const accordionTriggerVariants = cva(
@@ -62,7 +62,7 @@ const accordionTriggerVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const accordionContentVariants = cva(
@@ -84,7 +84,7 @@ const accordionContentVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface AccordionProps extends VariantProps<typeof accordionVariants> {
@@ -170,7 +170,7 @@ const AccordionTrigger = React.forwardRef<
 >(
   (
     { className, children, variant, size, icon, hideChevron = false, ...props },
-    ref,
+    ref
   ) => (
     <AccordionPrimitive.Header className="flex">
       <AccordionPrimitive.Trigger
@@ -189,7 +189,7 @@ const AccordionTrigger = React.forwardRef<
         )}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-  ),
+  )
 );
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 
