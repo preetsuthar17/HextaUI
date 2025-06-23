@@ -9,7 +9,7 @@ export function BasicDatePickerExample() {
   const [date, setDate] = React.useState<Date>();
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-xs mx-auto">
       <DatePicker value={date} onChange={setDate} placeholder="Select a date" />
     </div>
   );
@@ -20,7 +20,7 @@ export function BasicDateRangePickerExample() {
   const [range, setRange] = React.useState<{ from: Date; to?: Date }>();
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-xs mx-auto">
       <DateRangePicker
         value={range}
         onChange={setRange}
@@ -35,7 +35,7 @@ export function DatePickerVariantsExample() {
   const [date, setDate] = React.useState<Date>();
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">Default</label>
         <DatePicker
@@ -72,7 +72,7 @@ export function DatePickerSizesExample() {
   const [date, setDate] = React.useState<Date>();
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">Small</label>
         <DatePicker
@@ -113,7 +113,7 @@ export function DatePickerWithRestrictionsExample() {
   };
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">
           Future dates only
@@ -155,7 +155,7 @@ export function DatePickerWithoutIconExample() {
   const [date, setDate] = React.useState<Date>();
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-xs">
       <DatePicker
         value={date}
         onChange={setDate}
@@ -180,7 +180,7 @@ export function DatePickerCustomFormatExample() {
   };
 
   return (
-    <div className="w-full max-w-sm">
+    <div className="w-full max-w-xs">
       <DatePicker
         value={date}
         onChange={setDate}
@@ -196,7 +196,7 @@ export function DateRangePickerVariantsExample() {
   const [range, setRange] = React.useState<{ from: Date; to?: Date }>();
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">Default</label>
         <DateRangePicker
@@ -255,7 +255,7 @@ export function DatePickerFormExample() {
     if (formData.vacationRange?.from && formData.vacationRange?.to) {
       const diffTime = Math.abs(
         formData.vacationRange.to.getTime() -
-          formData.vacationRange.from.getTime(),
+          formData.vacationRange.from.getTime()
       );
       return Math.ceil(diffTime / (1000 * 60 * 60 * 24)) + 1;
     }
@@ -263,7 +263,7 @@ export function DatePickerFormExample() {
   };
 
   return (
-    <div className="space-y-6 w-full max-w-sm">
+    <div className="space-y-6 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">Birth Date</label>
         <DatePicker
@@ -369,7 +369,7 @@ export function BookingDatePickerExample() {
 
   const isDateBooked = (date: Date) => {
     return bookedDates.some(
-      (bookedDate) => date.toDateString() === bookedDate.toDateString(),
+      (bookedDate) => date.toDateString() === bookedDate.toDateString()
     );
   };
 
@@ -388,7 +388,7 @@ export function BookingDatePickerExample() {
   };
 
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <h3 className="text-lg font-semibold mb-4">Hotel Booking</h3>
 
@@ -454,7 +454,7 @@ export function BookingDatePickerExample() {
 // Disabled State Example
 export function DatePickerDisabledExample() {
   return (
-    <div className="space-y-4 w-full max-w-sm">
+    <div className="space-y-4 w-full max-w-xs">
       <div>
         <label className="text-sm font-medium mb-2 block">
           Disabled DatePicker

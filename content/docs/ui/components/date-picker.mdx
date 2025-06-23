@@ -24,7 +24,7 @@ import {
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="w-full max-w-sm">
+      <div className=" mx-auto w-full max-w-sm">
         <BasicDatePickerExample />
       </div>
     </PreviewContainer>
@@ -77,9 +77,9 @@ const datePickerVariants = cva(
   {
     variants: {
       variant: {
-        default: "",
-        outline: "border-2",
-        ghost: "border-transparent hover:border-[hsl(var(--hu-border))]",
+        default: "  shadow-md/2",
+        outline: "border-2  shadow-md/2",
+        ghost: "border-transparent hover:border-[hsl(var(--hu-border))] shadow-none",
       },
       size: {
         sm: "h-7 sm:h-8 px-2 text-xs",
@@ -500,7 +500,6 @@ export function DateRangePicker({
 }
 
 export { datePickerVariants, type DatePickerProps, type DateRangePickerProps };
-
 ```
 
 </Tab>
@@ -531,9 +530,9 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="w-full max-w-sm">
+    <div className=" mx-auto max-w-sm w-full">
         <BasicDateRangePickerExample />
-      </div>
+    </div>
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
@@ -568,8 +567,8 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
       const [date, setDate] = React.useState<Date>();
 
       return (
-        <div className="space-y-4 w-full max-w-sm">
-          <DatePicker
+        <div className="space-y-4 ">
+          <DatePi mx-autocker
             value={date}
             onChange={setDate}
             placeholder="Default variant"
@@ -609,8 +608,8 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
       const [date, setDate] = React.useState<Date>();
 
       return (
-        <div className="space-y-4 w-full max-w-sm">
-          <DatePicker
+        <div className="space-y-4 ">
+          <DatePi mx-autocker
             value={date}
             onChange={setDate}
             placeholder="Small size"
@@ -654,8 +653,8 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
       };
 
       return (
-        <div className="space-y-4 w-full max-w-sm">
-          <DatePicker
+        <div className="space-y-4 ">
+          <DatePi mx-autocker
             value={date}
             onChange={setDate}
             placeholder="Future dates only"
@@ -680,7 +679,7 @@ import { DatePicker, DateRangePicker } from "@/components/ui/DatePicker";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
-      <div className="w-full max-w-sm">
+      <div className=" mx-auto">
         <DatePickerCustomFormatExample />
       </div>
     </PreviewContainer>
@@ -732,8 +731,8 @@ Perfect for forms with complex date requirements.
       });
 
       return (
-        <div className="space-y-6 w-full max-w-sm">
-          <DatePicker
+        <div className="space-y-6 ">
+          <DatePi mx-autocker
             value={formData.birthDate}
             onChange={(date) => setFormData(prev => ({ ...prev, birthDate: date }))}
             placeholder="Select birth date"
@@ -824,7 +823,7 @@ Great for hotel bookings, appointment scheduling, and reservation systems.
     ```tsx
     function DatePickerDisabledExample() {
       return (
-        <div className="space-y-4 w-full max-w-sm">
+        <div className="space-y-4  mx-auto">
           <DatePicker disabled placeholder="Disabled DatePicker" />
           <DateRangePicker disabled placeholder="Disabled DateRangePicker" />
         </div>
