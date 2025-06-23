@@ -24,7 +24,7 @@ const breadcrumbListVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 const breadcrumbItemVariants = cva("inline-flex items-center gap-1.5", {
@@ -37,7 +37,7 @@ const breadcrumbLinkVariants = cva(
   {
     variants: {},
     defaultVariants: {},
-  },
+  }
 );
 
 const breadcrumbPageVariants = cva(
@@ -53,7 +53,7 @@ const breadcrumbPageVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -90,7 +90,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       className={cn(breadcrumbVariants({}), className)}
       {...props}
     />
-  ),
+  )
 );
 Breadcrumb.displayName = "Breadcrumb";
 
@@ -101,7 +101,7 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, BreadcrumbListProps>(
       className={cn(breadcrumbListVariants({ size }), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbList.displayName = "BreadcrumbList";
 
@@ -112,7 +112,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
       className={cn(breadcrumbItemVariants({}), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
@@ -127,7 +127,7 @@ const BreadcrumbLink = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
         {...props}
       />
     );
-  },
+  }
 );
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
@@ -141,7 +141,7 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
       className={cn(breadcrumbPageVariants({ variant }), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
@@ -155,7 +155,7 @@ const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = ({
     aria-hidden="true"
     className={cn(
       "flex items-center [&>svg]:size-3.5 [&>svg]:shrink-0",
-      className,
+      className
     )}
     {...props}
   >

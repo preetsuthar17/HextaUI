@@ -20,17 +20,16 @@ import {
   BreadcrumbEllipsis,
 } from "@/components/ui/breadcrumb";
 
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
+<Tabs items={["Preview", "Code"]}>  <Tab value="Preview">
     <PreviewContainer>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="#">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+            <BreadcrumbLink href="#">Documentation</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -39,17 +38,16 @@ import {
         </BreadcrumbList>
       </Breadcrumb>
     </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
+  </Tab>  <Tab value="Code">
     ```tsx
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+          <BreadcrumbLink href="#">Documentation</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -101,7 +99,7 @@ const breadcrumbListVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 const breadcrumbItemVariants = cva("inline-flex items-center gap-1.5", {
@@ -114,7 +112,7 @@ const breadcrumbLinkVariants = cva(
   {
     variants: {},
     defaultVariants: {},
-  },
+  }
 );
 
 const breadcrumbPageVariants = cva(
@@ -130,7 +128,7 @@ const breadcrumbPageVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<"nav"> {
@@ -167,7 +165,7 @@ const Breadcrumb = React.forwardRef<HTMLElement, BreadcrumbProps>(
       className={cn(breadcrumbVariants({}), className)}
       {...props}
     />
-  ),
+  )
 );
 Breadcrumb.displayName = "Breadcrumb";
 
@@ -178,7 +176,7 @@ const BreadcrumbList = React.forwardRef<HTMLOListElement, BreadcrumbListProps>(
       className={cn(breadcrumbListVariants({ size }), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbList.displayName = "BreadcrumbList";
 
@@ -189,7 +187,7 @@ const BreadcrumbItem = React.forwardRef<HTMLLIElement, BreadcrumbItemProps>(
       className={cn(breadcrumbItemVariants({}), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbItem.displayName = "BreadcrumbItem";
 
@@ -204,7 +202,7 @@ const BreadcrumbLink = React.forwardRef<HTMLAnchorElement, BreadcrumbLinkProps>(
         {...props}
       />
     );
-  },
+  }
 );
 BreadcrumbLink.displayName = "BreadcrumbLink";
 
@@ -218,7 +216,7 @@ const BreadcrumbPage = React.forwardRef<HTMLSpanElement, BreadcrumbPageProps>(
       className={cn(breadcrumbPageVariants({ variant }), className)}
       {...props}
     />
-  ),
+  )
 );
 BreadcrumbPage.displayName = "BreadcrumbPage";
 
@@ -232,7 +230,7 @@ const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = ({
     aria-hidden="true"
     className={cn(
       "flex items-center [&>svg]:size-3.5 [&>svg]:shrink-0",
-      className,
+      className
     )}
     {...props}
   >
@@ -300,7 +298,7 @@ import {
 <Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
-      <BreadcrumbLink href="/">Home</BreadcrumbLink>
+      <BreadcrumbLink href="#">Home</BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
@@ -320,11 +318,11 @@ import {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="#">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+            <BreadcrumbLink href="#">Components</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -339,11 +337,11 @@ import {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/components">Components</BreadcrumbLink>
+          <BreadcrumbLink href="#">Components</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -358,18 +356,17 @@ import {
 ### With Custom Separator
 
 <Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
+  <Tab value="Preview">    <PreviewContainer>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="#">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <Slash />
           </BreadcrumbSeparator>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+            <BreadcrumbLink href="#">Products</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator>
             <Slash />
@@ -388,13 +385,12 @@ import {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <Slash />
-        </BreadcrumbSeparator>
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/products">Products</BreadcrumbLink>
+        </BreadcrumbSeparator>        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Products</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <Slash />
@@ -418,7 +414,7 @@ import {
         <Breadcrumb>
           <BreadcrumbList size="sm">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -430,7 +426,7 @@ import {
         <Breadcrumb>
           <BreadcrumbList size="default">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -442,7 +438,7 @@ import {
         <Breadcrumb>
           <BreadcrumbList size="lg">
             <BreadcrumbItem>
-              <BreadcrumbLink href="/">Home</BreadcrumbLink>
+              <BreadcrumbLink href="#">Home</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
@@ -458,7 +454,7 @@ import {
     <Breadcrumb>
       <BreadcrumbList size="sm">
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -470,7 +466,7 @@ import {
     <Breadcrumb>
       <BreadcrumbList size="default">
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -482,7 +478,7 @@ import {
     <Breadcrumb>
       <BreadcrumbList size="lg">
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -497,20 +493,19 @@ import {
 
 ### With Icons
 
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
+<Tabs items={["Preview", "Code"]}>  <Tab value="Preview">
     <PreviewContainer>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">
+            <BreadcrumbLink href="#">
               <Home className="h-4 w-4" />
               Home
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+            <BreadcrumbLink href="#">Documentation</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -527,14 +522,13 @@ import {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">
+          <BreadcrumbLink href="#">
             <Home className="h-4 w-4" />
             Home
           </BreadcrumbLink>
-        </BreadcrumbItem>
-        <BreadcrumbSeparator />
+        </BreadcrumbItem>        <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbLink href="/docs">Documentation</BreadcrumbLink>
+          <BreadcrumbLink href="#">Documentation</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -550,12 +544,11 @@ import {
 ### Collapsed with Ellipsis
 
 <Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
+  <Tab value="Preview">    <PreviewContainer>
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/">Home</BreadcrumbLink>
+            <BreadcrumbLink href="#">Home</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -563,7 +556,7 @@ import {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+            <BreadcrumbLink href="#">Components</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
@@ -578,15 +571,14 @@ import {
     <Breadcrumb>
       <BreadcrumbList>
         <BreadcrumbItem>
-          <BreadcrumbLink href="/">Home</BreadcrumbLink>
+          <BreadcrumbLink href="#">Home</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbEllipsis />
         </BreadcrumbItem>
-        <BreadcrumbSeparator />
-        <BreadcrumbItem>
-          <BreadcrumbLink href="/docs/components">Components</BreadcrumbLink>
+        <BreadcrumbSeparator />        <BreadcrumbItem>
+          <BreadcrumbLink href="#">Components</BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
@@ -609,13 +601,13 @@ You can use the `asChild` prop to make the breadcrumb link work with Next.js Lin
     <BreadcrumbList>
       <BreadcrumbItem>
         <BreadcrumbLink asChild>
-          <a href="/">Home</a>
+          <a href="#">Home</a>
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
       <BreadcrumbItem>
         <BreadcrumbLink asChild>
-          <a href="/products">Products</a>
+          <a href="#">Products</a>
         </BreadcrumbLink>
       </BreadcrumbItem>
       <BreadcrumbSeparator />
@@ -634,13 +626,13 @@ import Link from "next/link";
   <BreadcrumbList>
     <BreadcrumbItem>
       <BreadcrumbLink asChild>
-        <Link href="/">Home</Link>
+        <Link href="#">Home</Link>
       </BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
     <BreadcrumbItem>
       <BreadcrumbLink asChild>
-        <Link href="/products">Products</Link>
+        <Link href="#">Products</Link>
       </BreadcrumbLink>
     </BreadcrumbItem>
     <BreadcrumbSeparator />
