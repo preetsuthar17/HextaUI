@@ -84,13 +84,13 @@ const DropdownMenuSubTrigger = React.forwardRef<
   <DropdownMenuPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default gap-2 select-none items-center rounded-lg px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
+      "flex cursor-default gap-2 select-none items-center rounded-[var(--radius)] px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
       "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       inset && "pl-8",
-      className,
+      className
     )}
     {...props}
   >
@@ -116,7 +116,7 @@ const DropdownMenuSubContent = React.forwardRef<
     ref={ref}
     className={cn(
       "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-lg",
-      className,
+      className
     )}
     asChild
     {...props}
@@ -150,7 +150,7 @@ const DropdownMenuContent = React.forwardRef<
         sideOffset={sideOffset}
         className={cn(
           "z-50 min-w-[8rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1 text-[hsl(var(--hu-foreground))] shadow-xl",
-          className,
+          className
         )}
         asChild
         {...props}
@@ -163,7 +163,7 @@ const DropdownMenuContent = React.forwardRef<
 DropdownMenuContent.displayName = DropdownMenuPrimitive.Content.displayName;
 
 const dropdownMenuItemVariants = cva(
-  "relative flex cursor-default select-none items-center gap-2 rounded-lg px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
+  "relative flex cursor-default select-none items-center gap-2 rounded-[calc(var(--radius)-4px)] px-3 py-2.5 sm:py-2 text-sm outline-none transition-colors touch-manipulation",
   {
     variants: {
       variant: {
@@ -176,7 +176,7 @@ const dropdownMenuItemVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const DropdownMenuItem = React.forwardRef<
@@ -189,7 +189,7 @@ const DropdownMenuItem = React.forwardRef<
 >(
   (
     { className, variant, inset, icon: Icon, shortcut, children, ...props },
-    ref,
+    ref
   ) => (
     <DropdownMenuPrimitive.Item
       ref={ref}
@@ -197,7 +197,7 @@ const DropdownMenuItem = React.forwardRef<
         dropdownMenuItemVariants({ variant }),
         "data-disabled:pointer-events-none data-disabled:opacity-50",
         inset && "pl-8",
-        className,
+        className
       )}
       {...props}
     >
@@ -215,7 +215,7 @@ const DropdownMenuItem = React.forwardRef<
         )}
       </motion.div>
     </DropdownMenuPrimitive.Item>
-  ),
+  )
 );
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
@@ -228,12 +228,12 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-lg py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
       "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className,
+      className
     )}
     checked={checked}
     {...props}
@@ -271,12 +271,12 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-lg py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
       "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
       "focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))]",
       "active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
       "data-disabled:pointer-events-none data-disabled:opacity-50",
-      className,
+      className
     )}
     {...props}
   >
@@ -315,7 +315,7 @@ const DropdownMenuLabel = React.forwardRef<
     className={cn(
       "px-3 py-1.5 text-sm font-semibold text-[hsl(var(--hu-muted-foreground))] flex items-center gap-2",
       inset && "pl-8",
-      className,
+      className
     )}
     {...props}
   >
