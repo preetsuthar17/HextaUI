@@ -81,7 +81,7 @@ import { cn } from "@/lib/utils";
 import { Pipette } from "lucide-react";
 
 const colorPickerVariants = cva(
-  "flex flex-col gap-2 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-4 ",
+  "flex flex-col gap-2 rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-4 shadow-md/2",
   {
     variants: {
       size: {
@@ -93,7 +93,7 @@ const colorPickerVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 export interface ColorPickerProps
@@ -119,7 +119,7 @@ function ColorField({ className, ...props }: AriaColorFieldProps) {
   return (
     <AriaColorField
       className={composeRenderProps(className, (className) =>
-        cn("flex flex-col gap-2", className),
+        cn("flex flex-col gap-2", className)
       )}
       {...props}
     />
@@ -134,9 +134,9 @@ function ColorInput({
     <Input
       className={composeRenderProps(className, (className) =>
         cn(
-          "flex h-9 w-full rounded-md border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-1 text-sm text-[hsl(var(--hu-foreground))]  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
-          className,
-        ),
+          "flex h-9 w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-1 text-sm text-[hsl(var(--hu-foreground))]  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
+          className
+        )
       )}
       {...props}
     />
@@ -151,7 +151,7 @@ function ColorLabel({
     <Label
       className={cn(
         "text-sm font-medium leading-none text-[hsl(var(--hu-foreground))] peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        className,
+        className
       )}
       {...props}
     />
@@ -163,9 +163,9 @@ function ColorArea({ className, ...props }: AriaColorAreaProps) {
     <AriaColorArea
       className={composeRenderProps(className, (className) =>
         cn(
-          "h-[200px] w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-gradient-to-br from-white to-black",
-          className,
-        ),
+          "h-[200px] w-full rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-gradient-to-br from-white to-black",
+          className
+        )
       )}
       {...props}
     />
@@ -178,8 +178,8 @@ function ColorSlider({ className, ...props }: AriaColorSliderProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "flex h-8 w-full flex-col gap-2 items-center justify-center",
-          className,
-        ),
+          className
+        )
       )}
       {...props}
     />
@@ -192,8 +192,8 @@ function SliderTrack({ className, style, ...props }: AriaSliderTrackProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "relative h-3 w-full rounded-full border border-[hsl(var(--hu-border))]",
-          className,
-        ),
+          className
+        )
       )}
       style={({ defaultStyle }) => ({
         ...style,
@@ -214,8 +214,8 @@ function ColorThumb({ className, ...props }: AriaColorThumbProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "z-10 h-4 w-4 rounded-full border-2 border-white shadow-md ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-[hsl(var(--hu-ring))]",
-          className,
-        ),
+          className
+        )
       )}
       {...props}
     />
@@ -229,7 +229,7 @@ function ColorSwatchPicker({
   return (
     <AriaColorSwatchPicker
       className={composeRenderProps(className, (className) =>
-        cn("flex flex-wrap gap-2", className),
+        cn("flex flex-wrap gap-2", className)
       )}
       {...props}
     />
@@ -245,8 +245,8 @@ function ColorSwatchPickerItem({
       className={composeRenderProps(className, (className) =>
         cn(
           "group/swatch-item cursor-pointer rounded-[var(--radius)] p-1 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2",
-          className,
-        ),
+          className
+        )
       )}
       {...props}
     />
@@ -258,9 +258,9 @@ function ColorSwatch({ className, style, ...props }: AriaColorSwatchProps) {
     <AriaColorSwatch
       className={composeRenderProps(className, (className) =>
         cn(
-          "h-8 w-8 rounded-md border border-[hsl(var(--hu-border))] group-data-[selected]/swatch-item:ring-2 group-data-[selected]/swatch-item:ring-[hsl(var(--hu-ring))] group-data-[selected]/swatch-item:ring-offset-2",
-          className,
-        ),
+          "h-8 w-8 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] group-data-[selected]/swatch-item:ring-2 group-data-[selected]/swatch-item:ring-[hsl(var(--hu-ring))] group-data-[selected]/swatch-item:ring-offset-2",
+          className
+        )
       )}
       style={({ defaultStyle }) => ({
         ...style,
@@ -302,8 +302,8 @@ const EyeDropperButton = React.forwardRef<
       ref={ref}
       type="button"
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-md border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))]  hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:pointer-events-none disabled:opacity-50",
-        className,
+        "inline-flex h-9 w-9 items-center justify-center rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))]  hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:pointer-events-none disabled:opacity-50",
+        className
       )}
       onClick={handleEyeDropper}
       aria-label="Pick color from screen"
@@ -322,7 +322,7 @@ function ColorError({
   return (
     <FieldError
       className={composeRenderProps(className, (className) =>
-        cn("text-sm font-medium text-[hsl(var(--hu-destructive))]", className),
+        cn("text-sm font-medium text-[hsl(var(--hu-destructive))]", className)
       )}
       {...props}
     />
@@ -345,6 +345,7 @@ export {
   ColorError,
   Group as ColorGroup,
 };
+
 ```
 
 ```tsx title="components/ui/ColorPicker/ColorPickerWithFormats.tsx"
