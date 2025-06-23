@@ -124,7 +124,7 @@ const useTree = () => {
 
 // Tree variants
 const treeVariants = cva(
-  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)]",
+  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-md/2",
   {
     variants: {
       variant: {
@@ -443,7 +443,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           )}
 
           {/* Label */}
-          <span className="text-sm font-medium truncate flex-1 text-[hsl(var(--hu-foreground))]">
+          <span className="text-sm  truncate flex-1 text-[hsl(var(--hu-foreground))]">
             {label}
           </span>
         </motion.div>
@@ -565,7 +565,7 @@ import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree";
     <PreviewContainer>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div>
-          <h4 className="text-sm font-medium mb-2">Default</h4>
+          <h4 className="text-sm  mb-2">Default</h4>
           <TreeProvider variant="default" className="w-full">
             <Tree>
               <TreeItem nodeId="1" label="Folder" icon={<Folder />} hasChildren>
@@ -575,7 +575,7 @@ import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree";
           </TreeProvider>
         </div>
         <div>
-          <h4 className="text-sm font-medium mb-2">Outline</h4>
+          <h4 className="text-sm  mb-2">Outline</h4>
           <TreeProvider variant="outline" className="w-full">
             <Tree>
               <TreeItem nodeId="3" label="Folder" icon={<Folder />} hasChildren>
@@ -585,7 +585,7 @@ import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree";
           </TreeProvider>
         </div>
         <div>
-          <h4 className="text-sm font-medium mb-2">Ghost</h4>
+          <h4 className="text-sm  mb-2">Ghost</h4>
           <TreeProvider variant="ghost" className="w-full">
             <Tree>
               <TreeItem nodeId="5" label="Folder" icon={<Folder />} hasChildren>

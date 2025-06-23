@@ -35,7 +35,7 @@ const useTree = () => {
 
 // Tree variants
 const treeVariants = cva(
-  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)]",
+  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-md/2",
   {
     variants: {
       variant: {
@@ -361,7 +361,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           )}
 
           {/* Label */}
-          <span className="text-sm font-medium truncate flex-1 text-[hsl(var(--hu-foreground))]">
+          <span className="text-sm truncate flex-1 text-[hsl(var(--hu-foreground))]">
             {label}
           </span>
         </motion.div>
