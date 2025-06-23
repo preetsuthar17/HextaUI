@@ -78,7 +78,7 @@ Copy and paste the following code into your project:
         });
 
         const radioVariants = cva(
-          "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))]",
+          "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-md/2",
           {
             variants: {
               size: {
@@ -128,7 +128,7 @@ Copy and paste the following code into your project:
                     {label && (
                       <label
                         htmlFor={groupId}
-                        className="text-sm font-medium leading-none"
+                        className="text-sm  leading-none"
                       >
                         {label}
                       </label>
@@ -202,7 +202,7 @@ Copy and paste the following code into your project:
                     {label && (
                       <label
                         htmlFor={itemId}
-                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                        className="text-sm  leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                       >
                         {label}
                       </label>
@@ -331,7 +331,7 @@ import { RadioGroup, RadioItem } from "@/components/ui/Radio";
     ```tsx
     <div className="space-y-6">
       <div>
-        <h4 className="text-sm font-medium mb-3">Small</h4>
+        <h4 className="text-sm  mb-3">Small</h4>
         <RadioGroup defaultValue="small1">
           <RadioItem value="small1" label="Small option 1" size="sm" />
           <RadioItem value="small2" label="Small option 2" size="sm" />
@@ -339,7 +339,7 @@ import { RadioGroup, RadioItem } from "@/components/ui/Radio";
       </div>
 
       <div>
-        <h4 className="text-sm font-medium mb-3">Default</h4>
+        <h4 className="text-sm  mb-3">Default</h4>
         <RadioGroup defaultValue="default1">
           <RadioItem value="default1" label="Default option 1" />
           <RadioItem value="default2" label="Default option 2" />
@@ -347,7 +347,7 @@ import { RadioGroup, RadioItem } from "@/components/ui/Radio";
       </div>
 
       <div>
-        <h4 className="text-sm font-medium mb-3">Large</h4>
+        <h4 className="text-sm  mb-3">Large</h4>
         <RadioGroup defaultValue="large1">
           <RadioItem value="large1" label="Large option 1" size="lg" />
           <RadioItem value="large2" label="Large option 2" size="lg" />

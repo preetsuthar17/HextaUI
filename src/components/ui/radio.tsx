@@ -19,7 +19,7 @@ const radioGroupVariants = cva("grid gap-2", {
 });
 
 const radioVariants = cva(
-  "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))]",
+  "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-md/2",
   {
     variants: {
       size: {
@@ -31,7 +31,7 @@ const radioVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 interface RadioGroupProps
@@ -58,7 +58,7 @@ const RadioGroup = React.forwardRef<
 >(
   (
     { className, orientation, label, description, error, id, ...props },
-    ref,
+    ref
   ) => {
     const groupId = id || React.useId();
 
@@ -67,10 +67,7 @@ const RadioGroup = React.forwardRef<
         {(label || description) && (
           <div className="grid gap-1.5">
             {label && (
-              <label
-                htmlFor={groupId}
-                className="text-sm font-medium leading-none"
-              >
+              <label htmlFor={groupId} className="text-sm  leading-none">
                 {label}
               </label>
             )}
@@ -94,7 +91,7 @@ const RadioGroup = React.forwardRef<
         )}
       </div>
     );
-  },
+  }
 );
 
 RadioGroup.displayName = "RadioGroup";
@@ -143,7 +140,7 @@ const RadioItem = React.forwardRef<
             {label && (
               <label
                 htmlFor={itemId}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                className="text-sm  leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
               >
                 {label}
               </label>
