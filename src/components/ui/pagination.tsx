@@ -18,7 +18,7 @@ const paginationVariants = cva("flex items-center justify-center", {
 });
 
 const paginationItemVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ",
   {
     variants: {
       variant: {
@@ -45,11 +45,11 @@ const paginationItemVariants = cva(
       size: "default",
       state: "default",
     },
-  },
+  }
 );
 
 const paginationNavVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-[var(--radius)] px-3 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-[var(--radius)] px-3 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
   {
     variants: {
       size: {
@@ -61,7 +61,7 @@ const paginationNavVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 export interface PaginationProps
@@ -90,7 +90,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       ref={ref}
       {...props}
     />
-  ),
+  )
 );
 Pagination.displayName = "Pagination";
 
@@ -103,13 +103,13 @@ const PaginationItem = React.forwardRef<HTMLButtonElement, PaginationItemProps>(
           size,
           state: isActive ? "active" : state,
           className,
-        }),
+        })
       )}
       ref={ref}
       aria-current={isActive ? "page" : undefined}
       {...props}
     />
-  ),
+  )
 );
 PaginationItem.displayName = "PaginationItem";
 
@@ -138,7 +138,7 @@ const PaginationNext = React.forwardRef<HTMLButtonElement, PaginationNavProps>(
       {children || "Next"}
       <ChevronRight className="h-4 w-4" />
     </button>
-  ),
+  )
 );
 PaginationNext.displayName = "PaginationNext";
 
@@ -149,7 +149,7 @@ const PaginationEllipsis = React.forwardRef<
   <span
     className={cn(
       "inline-flex items-center justify-center h-9 w-9 text-[hsl(var(--hu-muted-foreground))]",
-      className,
+      className
     )}
     ref={ref}
     {...props}

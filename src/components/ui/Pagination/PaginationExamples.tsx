@@ -38,7 +38,7 @@ export function PaginationBasic() {
   const visiblePages = isMobile ? 3 : 5;
   const pages = Array.from(
     { length: Math.min(visiblePages, totalPages) },
-    (_, i) => i + 1,
+    (_, i) => i + 1
   );
 
   return (
@@ -163,7 +163,7 @@ export function PaginationWithEllipsis() {
             >
               {page}
             </PaginationItem>
-          ),
+          )
         )}
         <PaginationNext
           onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
@@ -266,7 +266,7 @@ export function PaginationMinimal() {
           disabled={currentPage === 1}
           size={isMobile ? "sm" : "default"}
         >
-          {isMobile ? "←" : "← Prev"}
+          {isMobile ? "←" : "Prev"}
         </PaginationPrevious>
         <div className="flex items-center px-2 sm:px-4">
           <span className="text-sm text-[hsl(var(--hu-muted-foreground))] whitespace-nowrap">
@@ -278,7 +278,7 @@ export function PaginationMinimal() {
           disabled={currentPage === totalPages}
           size={isMobile ? "sm" : "default"}
         >
-          {isMobile ? "→" : "Next →"}
+          {isMobile ? "→" : "Next"}
         </PaginationNext>
       </Pagination>
     </div>
@@ -341,11 +341,11 @@ export function PaginationWithInput() {
             value={inputPage}
             onChange={(e) => setInputPage(e.target.value)}
             onKeyPress={handleKeyPress}
-            className="w-16 h-8 px-2 text-sm border border-[hsl(var(--hu-border))] rounded-lg bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+            className="w-16 h-8 px-2 text-sm "
           />
           <Button
             onClick={handleGoToPage}
-            className="h-8 px-3 text-sm font-medium rounded-lg bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+            className="h-8 px-3 text-sm font-medium"
           >
             Go
           </Button>
@@ -401,18 +401,18 @@ export function PaginationWithInput() {
         <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
           Go to:
         </span>
-        <input
+        <Input
           type="number"
           min="1"
           max={totalPages}
           value={inputPage}
           onChange={(e) => setInputPage(e.target.value)}
           onKeyPress={handleKeyPress}
-          className="w-16 h-8 px-2 text-sm border border-[hsl(var(--hu-border))] rounded-lg bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+          className="w-16 h-8 px-2 text-sm"
         />
         <Button
           onClick={handleGoToPage}
-          className="h-8 px-3 text-sm font-medium rounded-lg bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+          className="h-8 px-3 text-sm font-medium"
         >
           Go
         </Button>

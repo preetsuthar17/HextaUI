@@ -119,7 +119,7 @@ const paginationVariants = cva("flex items-center justify-center", {
 });
 
 const paginationItemVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 ",
   {
     variants: {
       variant: {
@@ -138,7 +138,7 @@ const paginationItemVariants = cva(
       state: {
         default: "",
         active:
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90",
+          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 hover:text-[hsl(var(--hu-primary-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
       },
     },
     defaultVariants: {
@@ -146,11 +146,11 @@ const paginationItemVariants = cva(
       size: "default",
       state: "default",
     },
-  },
+  }
 );
 
 const paginationNavVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-[var(--radius)] px-3 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-[var(--radius)] px-3 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
   {
     variants: {
       size: {
@@ -162,7 +162,7 @@ const paginationNavVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 export interface PaginationProps
@@ -191,7 +191,7 @@ const Pagination = React.forwardRef<HTMLElement, PaginationProps>(
       ref={ref}
       {...props}
     />
-  ),
+  )
 );
 Pagination.displayName = "Pagination";
 
@@ -204,13 +204,13 @@ const PaginationItem = React.forwardRef<HTMLButtonElement, PaginationItemProps>(
           size,
           state: isActive ? "active" : state,
           className,
-        }),
+        })
       )}
       ref={ref}
       aria-current={isActive ? "page" : undefined}
       {...props}
     />
-  ),
+  )
 );
 PaginationItem.displayName = "PaginationItem";
 
@@ -239,7 +239,7 @@ const PaginationNext = React.forwardRef<HTMLButtonElement, PaginationNavProps>(
       {children || "Next"}
       <ChevronRight className="h-4 w-4" />
     </button>
-  ),
+  )
 );
 PaginationNext.displayName = "PaginationNext";
 
@@ -250,7 +250,7 @@ const PaginationEllipsis = React.forwardRef<
   <span
     className={cn(
       "inline-flex items-center justify-center h-9 w-9 text-[hsl(var(--hu-muted-foreground))]",
-      className,
+      className
     )}
     ref={ref}
     {...props}
@@ -271,6 +271,7 @@ export {
   paginationItemVariants,
   paginationNavVariants,
 };
+
 ```
 
 </Tab>
@@ -637,7 +638,7 @@ The responsive behavior is implemented using a custom `useMediaQuery` hook that 
             onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
             disabled={currentPage === 1}
           >
-            ← Prev
+            Prev
           </PaginationPrevious>
           <div className="flex items-center px-4">
             <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
@@ -648,7 +649,7 @@ The responsive behavior is implemented using a custom `useMediaQuery` hook that 
             onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
             disabled={currentPage === totalPages}
           >
-            Next →
+            Next
           </PaginationNext>
         </Pagination>
       );
@@ -668,76 +669,141 @@ The responsive behavior is implemented using a custom `useMediaQuery` hook that 
   </Tab>
   <Tab value="Code">
     ```tsx
-    function PaginationWithInput() {
-      const [currentPage, setCurrentPage] = React.useState(5);
-      const [inputPage, setInputPage] = React.useState("5");
-      const totalPages = 25;
+function PaginationWithInput() {
+  const [currentPage, setCurrentPage] = React.useState(5);
+  const [inputPage, setInputPage] = React.useState("5");
+  const totalPages = 25;
+  const isMobile = useMediaQuery("(max-width: 640px)");
+  const isTablet = useMediaQuery("(max-width: 768px)");
 
-      const handleGoToPage = () => {
-        const page = parseInt(inputPage);
-        if (page >= 1 && page <= totalPages) {
-          setCurrentPage(page);
-        }
-      };
-
-      const handleKeyPress = (e: React.KeyboardEvent) => {
-        if (e.key === "Enter") {
-          handleGoToPage();
-        }
-      };
-
-      return (
-        <div className="flex items-center gap-4">
-          <Pagination>
-            <PaginationPrevious
-              onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-              disabled={currentPage === 1}
-            />
-            <PaginationItem
-              onClick={() => setCurrentPage(1)}
-              isActive={currentPage === 1}
-            >
-              1
-            </PaginationItem>
-            {currentPage > 3 && <PaginationEllipsis />}
-            {currentPage > 2 && currentPage < totalPages && (
-              <PaginationItem isActive>
-                {currentPage}
-              </PaginationItem>
-            )}
-            {currentPage < totalPages - 2 && <PaginationEllipsis />}
-            <PaginationItem
-              onClick={() => setCurrentPage(totalPages)}
-              isActive={currentPage === totalPages}
-            >
-              {totalPages}
-            </PaginationItem>
-            <PaginationNext
-              onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-              disabled={currentPage === totalPages}
-            />
-          </Pagination>
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">Go to:</span>
-            <input
-              type="number"
-              min="1"
-              max={totalPages}
-              value={inputPage}
-              onChange={(e) => setInputPage(e.target.value)}
-              onKeyPress={handleKeyPress}
-              className="w-16 h-8 px-2 text-sm border border-[hsl(var(--hu-border))] rounded-lg bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
-            />
-            <button
-              onClick={handleGoToPage}
-              className="h-8 px-3 text-sm font-medium rounded-lg bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
-            >
-              Go
-            </button>
-          </div>
-        </div>
-      );
+  const handleGoToPage = () => {
+    const page = parseInt(inputPage);
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
     }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleGoToPage();
+    }
+  };
+
+  if (isMobile) {
+    // Mobile layout: Stack vertically
+    return (
+      <div className="flex flex-col gap-4 w-full">
+        <Pagination className="flex-wrap">
+          <PaginationPrevious
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            size="sm"
+          >
+            Prev
+          </PaginationPrevious>
+          <PaginationItem isActive size="sm">
+            {currentPage}
+          </PaginationItem>
+          <PaginationNext
+            onClick={() =>
+              setCurrentPage(Math.min(totalPages, currentPage + 1))
+            }
+            disabled={currentPage === totalPages}
+            size="sm"
+          >
+            Next
+          </PaginationNext>
+        </Pagination>
+        <div className="flex items-center justify-center gap-2">
+          <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            Go to:
+          </span>
+          <Input
+            type="number"
+            min="1"
+            max={totalPages}
+            value={inputPage}
+            onChange={(e) => setInputPage(e.target.value)}
+            onKeyPress={handleKeyPress}
+            className="w-16 h-8 px-2 text-sm "
+          />
+          <Button
+            onClick={handleGoToPage}
+            className="h-8 px-3 text-sm font-medium"
+          >
+            Go
+          </Button>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col items-center gap-4 w-full">
+      <div className="overflow-x-auto">
+        <Pagination className="flex-wrap min-w-fit">
+          <PaginationPrevious
+            onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+            disabled={currentPage === 1}
+            size={isTablet ? "sm" : "default"}
+          >
+            {isTablet ? "Prev" : "Previous"}
+          </PaginationPrevious>
+          <PaginationItem
+            onClick={() => setCurrentPage(1)}
+            isActive={currentPage === 1}
+            size={isTablet ? "sm" : "default"}
+          >
+            1
+          </PaginationItem>
+          {currentPage > 3 && <PaginationEllipsis />}
+          {currentPage > 2 && currentPage < totalPages && (
+            <PaginationItem isActive size={isTablet ? "sm" : "default"}>
+              {currentPage}
+            </PaginationItem>
+          )}
+          {currentPage < totalPages - 2 && <PaginationEllipsis />}
+          <PaginationItem
+            onClick={() => setCurrentPage(totalPages)}
+            isActive={currentPage === totalPages}
+            size={isTablet ? "sm" : "default"}
+          >
+            {totalPages}
+          </PaginationItem>
+          <PaginationNext
+            onClick={() =>
+              setCurrentPage(Math.min(totalPages, currentPage + 1))
+            }
+            disabled={currentPage === totalPages}
+            size={isTablet ? "sm" : "default"}
+          >
+            {isTablet ? "Next" : "Next"}
+          </PaginationNext>
+        </Pagination>
+      </div>
+      <div className="flex items-center gap-2 whitespace-nowrap">
+        <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+          Go to:
+        </span>
+        <Input
+          type="number"
+          min="1"
+          max={totalPages}
+          value={inputPage}
+          onChange={(e) => setInputPage(e.target.value)}
+          onKeyPress={handleKeyPress}
+          className="w-16 h-8 px-2 text-sm"
+        />
+        <Button
+          onClick={handleGoToPage}
+          className="h-8 px-3 text-sm font-medium"
+        >
+          Go
+        </Button>
+      </div>
+    </div>
+  );
+}
     ```
 
   </Tab>
