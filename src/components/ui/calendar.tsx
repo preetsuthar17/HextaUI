@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 
 const calendarVariants = cva(
-  "inline-block rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto",
+  "inline-block space-y-4 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto shadow-md/2",
   {
     variants: {
       size: {
@@ -23,7 +23,7 @@ const calendarVariants = cva(
         lg: "p-4 sm:p-5 text-base",
       },
       alwaysOnTop: {
-        true: "z-[9999]",
+        true: "z-9999",
         false: "z-10",
       },
     },
@@ -31,18 +31,18 @@ const calendarVariants = cva(
       size: "default",
       alwaysOnTop: true,
     },
-  },
+  }
 );
 
 const dayVariants = cva(
-  "inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-[var(--radius)] text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-[var(--radius)] text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
         default:
           "text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
         selected:
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))] font-semibold",
         today:
           "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))] font-semibold hover:bg-[hsl(var(--hu-accent))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
         outside:
@@ -66,7 +66,7 @@ const dayVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 interface CalendarProps extends VariantProps<typeof calendarVariants> {
@@ -142,7 +142,7 @@ function Calendar({
   const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
   const prevMonthDays = Array.from(
     { length: firstDayOfWeek },
-    (_, i) => prevMonthLastDay - firstDayOfWeek + i + 1,
+    (_, i) => prevMonthLastDay - firstDayOfWeek + i + 1
   );
 
   // Calculate next month days to show
@@ -262,7 +262,7 @@ function Calendar({
   };
   const getDayVariant = (
     day: number,
-    monthOffset: number = 0,
+    monthOffset: number = 0
   ):
     | "default"
     | "selected"
@@ -309,7 +309,7 @@ function Calendar({
     >
       {" "}
       {/* Header */}
-      <div className="flex items-center justify-between mb-3 sm:mb-4">
+      <div className="flex items-center justify-between">
         <button
           onClick={() => navigateMonth("prev")}
           className="inline-flex items-center justify-center rounded-[var(--radius)] p-1 sm:p-1.5 transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))]"
@@ -386,11 +386,11 @@ function Calendar({
         </button>
       </div>
       {/* Days of week header */}
-      <div className="grid grid-cols-7 gap-1 mb-2">
+      <div className="grid grid-cols-7 gap-1">
         {DAYS_OF_WEEK.map((day) => (
           <div
             key={day}
-            className="flex items-center justify-center h-7 sm:h-8 text-xs font-medium text-[hsl(var(--hu-muted-foreground))]"
+            className="flex items-center justify-center h-7 sm:h-8 text-xs text-[hsl(var(--hu-muted-foreground))]"
           >
             <span className="hidden sm:inline">{day}</span>
             <span className="sm:hidden">{day.slice(0, 1)}</span>
@@ -420,10 +420,10 @@ function Calendar({
                   key={`prev-${day}`}
                   onClick={() => handleDateClick(day, -1)}
                   className={cn(
-                    dayVariants({ variant: getDayVariant(day, -1), size }),
+                    dayVariants({ variant: getDayVariant(day, -1), size })
                   )}
                   disabled={isDateDisabled(
-                    new Date(currentYear, currentMonth - 1, day),
+                    new Date(currentYear, currentMonth - 1, day)
                   )}
                 >
                   {day}
@@ -436,10 +436,10 @@ function Calendar({
                 key={`current-${day}`}
                 onClick={() => handleDateClick(day)}
                 className={cn(
-                  dayVariants({ variant: getDayVariant(day), size }),
+                  dayVariants({ variant: getDayVariant(day), size })
                 )}
                 disabled={isDateDisabled(
-                  new Date(currentYear, currentMonth, day),
+                  new Date(currentYear, currentMonth, day)
                 )}
               >
                 {day}
@@ -453,10 +453,10 @@ function Calendar({
                   key={`next-${day}`}
                   onClick={() => handleDateClick(day, 1)}
                   className={cn(
-                    dayVariants({ variant: getDayVariant(day, 1), size }),
+                    dayVariants({ variant: getDayVariant(day, 1), size })
                   )}
                   disabled={isDateDisabled(
-                    new Date(currentYear, currentMonth + 1, day),
+                    new Date(currentYear, currentMonth + 1, day)
                   )}
                 >
                   {day}
