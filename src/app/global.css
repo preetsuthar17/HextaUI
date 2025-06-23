@@ -35,6 +35,7 @@
   --hu-ring: 0, 0%, 71%;
 
   --color-fd-background: hsl(var(--hu-background));
+  --color-fd-card: hsl(var(--hu-background));
 }
 
 .dark {
@@ -64,7 +65,7 @@
   --hu-ring: 0, 0%, 56%;
 
   --color-fd-background: hsl(var(--hu-background));
-  --color-fd-card: hsl(var(--hu-card));
+  --color-fd-card: hsl(var(--hu-background));
 }
 
 body,
@@ -203,6 +204,16 @@ samp {
 
 #nd-nav {
   box-shadow: none;
+}
+
+#nd-sidebar {
+  background-color: hsl(var(--hu-background)) !important;
+  border-right: 1px solid hsl(var(--hu-border)) !important;
+  border-top: 1px solid hsl(var(--hu-border)) !important;
+}
+
+#nd-subnav {
+  border-top: 1px solid hsl(var(--hu-border)) !important;
 }
 
 .fade-bottom {
