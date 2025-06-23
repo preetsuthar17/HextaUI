@@ -6,7 +6,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const toggleVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-sm font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 shadow-md/2",
   {
     variants: {
       variant: {
@@ -31,7 +31,7 @@ const toggleVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface ToggleProps
@@ -47,7 +47,7 @@ const Toggle = React.forwardRef<
 >(
   (
     { className, variant, size, leftIcon, rightIcon, children, ...props },
-    ref,
+    ref
   ) => (
     <TogglePrimitive.Root
       ref={ref}
@@ -58,7 +58,7 @@ const Toggle = React.forwardRef<
       {children}
       {rightIcon && rightIcon}
     </TogglePrimitive.Root>
-  ),
+  )
 );
 
 Toggle.displayName = TogglePrimitive.Root.displayName;
