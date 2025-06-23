@@ -105,7 +105,7 @@ const Progress = React.forwardRef<
       return (
         <div className="space-y-2">
           {label && (
-            <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+            <div className="text-sm  text-[hsl(var(--hu-foreground))]">
               {label}
             </div>
           )}
@@ -168,7 +168,7 @@ const Progress = React.forwardRef<
           </div>
           {showValue && (
             <motion.div
-              className="text-center text-xs font-medium text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+              className="text-center text-xs  text-[hsl(var(--hu-muted-foreground))] tabular-nums"
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
@@ -182,7 +182,7 @@ const Progress = React.forwardRef<
     return (
       <div className="space-y-2">
         {label && (
-          <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+          <div className="text-sm  text-[hsl(var(--hu-foreground))]">
             {label}
           </div>
         )}

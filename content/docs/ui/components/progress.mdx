@@ -171,7 +171,7 @@ const Progress = React.forwardRef<
       return (
         <div className="space-y-2">
           {label && (
-            <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+            <div className="text-sm  text-[hsl(var(--hu-foreground))]">
               {label}
             </div>
           )}
@@ -234,7 +234,7 @@ const Progress = React.forwardRef<
           </div>
           {showValue && (
             <motion.div
-              className="text-center text-xs font-medium text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+              className="text-center text-xs  text-[hsl(var(--hu-muted-foreground))] tabular-nums"
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
@@ -248,7 +248,7 @@ const Progress = React.forwardRef<
     return (
       <div className="space-y-2">
         {label && (
-          <div className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+          <div className="text-sm  text-[hsl(var(--hu-foreground))]">
             {label}
           </div>
         )}
@@ -563,7 +563,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
       <div className="space-y-8 w-full max-w-md">
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
-            <span className="font-medium">Uploading files...</span>
+            <span className="">Uploading files...</span>
             <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
               3 of 5
             </span>
@@ -572,7 +572,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
-            <span className="font-medium">Installing packages</span>
+            <span className="">Installing packages</span>
             <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
               85%
             </span>
@@ -581,8 +581,8 @@ import { Progress } from "@/components/ui/Progress/Progress";
         </div>
         <div className="space-y-3">
           <div className="flex justify-between items-center text-sm">
-            <span className="font-medium">Build failed</span>
-            <span className="text-[hsl(var(--hu-destructive))] text-xs font-medium">
+            <span className="">Build failed</span>
+            <span className="text-[hsl(var(--hu-destructive))] text-xs ">
               Error
             </span>
           </div>
@@ -596,22 +596,22 @@ import { Progress } from "@/components/ui/Progress/Progress";
     <div className="space-y-8 w-full max-w-md">
       <div className="space-y-3">
         <div className="flex justify-between items-center text-sm">
-          <span className="font-medium">Uploading files...</span>
+          <span className="">Uploading files...</span>
           <span className="text-muted-foreground text-xs">3 of 5</span>
         </div>
         <Progress value={60} className="w-full" />
       </div>
       <div className="space-y-3">
         <div className="flex justify-between items-center text-sm">
-          <span className="font-medium">Installing packages</span>
+          <span className="">Installing packages</span>
           <span className="text-muted-foreground text-xs">85%</span>
         </div>
         <Progress value={85} variant="secondary" className="w-full" />
       </div>
       <div className="space-y-3">
         <div className="flex justify-between items-center text-sm">
-          <span className="font-medium">Build failed</span>
-          <span className="text-destructive text-xs font-medium">Error</span>
+          <span className="">Build failed</span>
+          <span className="text-destructive text-xs ">Error</span>
         </div>
         <Progress value={45} variant="destructive" className="w-full" />
       </div>
@@ -646,7 +646,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
                 key={step}
                 className={`${
                   index <= currentStep
-                    ? "text-primary font-medium"
+                    ? "text-primary "
                     : "text-muted-foreground"
                 }`}
               >
@@ -781,7 +781,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold">Storage Usage</span>
-            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] font-medium">7.2 GB of 10 GB</span>
+            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] ">7.2 GB of 10 GB</span>
           </div>
           <Progress value={72} variant="secondary" className="w-full" />
         </div>
@@ -789,7 +789,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold">Download Progress</span>
-            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] font-medium">Downloading...</span>
+            <span className="text-xs text-[hsl(var(--hu-muted-foreground))] ">Downloading...</span>
           </div>
           <Progress value={45} showValue className="w-full" />
         </div>
@@ -814,7 +814,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold">Storage Usage</span>
-          <span className="text-xs text-muted-foreground font-medium">7.2 GB of 10 GB</span>
+          <span className="text-xs text-muted-foreground ">7.2 GB of 10 GB</span>
         </div>
         <Progress value={72} variant="secondary" className="w-full" />
       </div>
@@ -822,7 +822,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold">Download Progress</span>
-          <span className="text-xs text-muted-foreground font-medium">Downloading...</span>
+          <span className="text-xs text-muted-foreground ">Downloading...</span>
         </div>
         <Progress value={45} showValue className="w-full" />
       </div>
