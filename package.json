@@ -8,7 +8,7 @@
     "dev": "next dev --turbo",
     "start": "next start",
     "postinstall": "fumadocs-mdx",
-    "format": "prettier --write . --ignore-path .gitignore",
+    "format": "prettier --write . --ignore-path .gitignore --ignore-path .prettierignore",
     "check": "tsc --noEmit && prettier --check . --ignore-path .gitignore"
   },
   "dependencies": {
