@@ -58,58 +58,6 @@ export function InputOTPExamples() {
       </div>{" "}
       <div className="flex flex-col gap-4">
         <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
-          Different Sizes
-        </h3>
-        <div className="flex flex-col gap-6">
-          <div className="flex flex-col gap-3">
-            <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
-              Small
-            </div>
-            <div className="flex justify-center">
-              <InputOTP maxLength={4} otpSize="sm">
-                <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                </InputOTPGroup>
-              </InputOTP>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
-              Default
-            </div>
-            <div className="flex justify-center">
-              <InputOTP maxLength={4} otpSize="default">
-                <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                </InputOTPGroup>
-              </InputOTP>
-            </div>
-          </div>
-          <div className="flex flex-col gap-3">
-            <div className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center">
-              Large
-            </div>
-            <div className="flex justify-center">
-              <InputOTP maxLength={4} otpSize="lg">
-                <InputOTPGroup>
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                </InputOTPGroup>
-              </InputOTP>
-            </div>
-          </div>
-        </div>
-      </div>{" "}
-      <div className="flex flex-col gap-4">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
           Variants
         </h3>
         <div className="flex flex-col gap-4 items-center text-center">

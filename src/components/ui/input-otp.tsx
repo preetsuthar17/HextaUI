@@ -24,11 +24,11 @@ const inputOTPVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const inputOTPSlotVariants = cva(
-  "relative flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center border-y border-r border-input bg-[hsl(var(--hu-input))] text-xs sm:text-sm transition-all first:rounded-l-lg sm:first:rounded-l-xl first:border-l last:rounded-r-lg sm:last:rounded-r-xl focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "relative flex items-center justify-center border-y border-r border-input bg-[hsl(var(--hu-input))] text-xs sm:text-sm transition-all focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-l",
   {
     variants: {
       variant: {
@@ -48,13 +48,20 @@ const inputOTPSlotVariants = cva(
         filled:
           "bg-accent border-[hsl(var(--hu-border))] text-[hsl(var(--hu-accent-foreground))]",
       },
+      position: {
+        first: "border-l rounded-l-[var(--radius)]",
+        middle: "rounded-sm",
+        last: "rounded-r-[var(--radius)]",
+        single: "border-l rounded-[var(--radius)]",
+      },
     },
     defaultVariants: {
       variant: "default",
       size: "default",
       state: "default",
+      position: "middle",
     },
-  },
+  }
 );
 
 export interface InputOTPProps {
@@ -86,20 +93,20 @@ const InputOTP = React.forwardRef<
       children,
       ...props
     },
-    ref,
+    ref
   ) => (
     <OTPInput
       ref={ref}
       containerClassName={cn(
         inputOTPVariants({ variant, size: otpSize }),
-        containerClassName,
+        containerClassName
       )}
       className={cn("disabled:cursor-not-allowed", className)}
       {...props}
     >
       {children}
     </OTPInput>
-  ),
+  )
 );
 InputOTP.displayName = "InputOTP";
 
@@ -129,12 +136,23 @@ const InputOTPSlot = React.forwardRef<
 >(
   (
     { index, className, variant, otpSize, state, animated = true, ...props },
-    ref,
+    ref
   ) => {
     const inputOTPContext = React.useContext(OTPInputContext);
     const { char, hasFakeCaret, isActive } = inputOTPContext.slots[index];
 
     const currentState = isActive ? "active" : char ? "filled" : "default";
+
+    // Determine position based on index and total slots
+    const totalSlots = inputOTPContext.slots.length;
+    const position =
+      totalSlots === 1
+        ? "single"
+        : index === 0
+        ? "first"
+        : index === totalSlots - 1
+        ? "last"
+        : "middle";
 
     const slotContent = (
       <div
@@ -144,8 +162,9 @@ const InputOTPSlot = React.forwardRef<
             variant,
             size: otpSize,
             state: state || currentState,
+            position,
           }),
-          className,
+          className
         )}
         {...props}
       >
@@ -182,7 +201,7 @@ const InputOTPSlot = React.forwardRef<
         {slotContent}
       </motion.div>
     );
-  },
+  }
 );
 InputOTPSlot.displayName = "InputOTPSlot";
 
@@ -194,25 +213,16 @@ const InputOTPSeparator = React.forwardRef<
     ref={ref}
     role="separator"
     className={cn(
-      "flex items-center justify-center text-[hsl(var(--hu-muted-foreground))] px-1 sm:px-2",
+      "flex items-center justify-center text-[hsl(var(--hu-muted-foreground))]",
       size === "sm"
         ? "text-xs"
         : size === "lg"
-          ? "text-sm sm:text-base"
-          : "text-xs sm:text-sm",
+        ? "text-sm sm:text-base"
+        : "text-xs sm:text-sm"
     )}
     {...props}
   >
-    <svg
-      width="6"
-      height="6"
-      viewBox="0 0 8 8"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className="sm:w-2 sm:h-2"
-    >
-      <circle cx="4" cy="4" r="1" fill="currentColor" />
-    </svg>
+    -
   </div>
 ));
 InputOTPSeparator.displayName = "InputOTPSeparator";
