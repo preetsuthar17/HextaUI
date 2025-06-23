@@ -6,11 +6,10 @@
   --hu-font-geist: var(--font-geist);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
-  --radius: 0.5rem;
+  --radius: 0.8rem;
 
   --hu-background: 0, 0%, 100%;
   --hu-foreground: 0, 0%, 14%;
-
 
   --hu-card: 0, 0%, 99%;
   --hu-card-foreground: 0, 0%, 14%;
