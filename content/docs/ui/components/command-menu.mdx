@@ -137,6 +137,7 @@ import { motion } from "motion/react";
 import { Search, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Kbd } from "@/components/ui/kbd";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 // Utility function to detect OS and return appropriate modifier key
 const getModifierKey = () => {
@@ -155,6 +156,8 @@ interface CommandMenuContextType {
   setValue: (value: string) => void;
   selectedIndex: number;
   setSelectedIndex: (index: number) => void;
+  scrollType?: "auto" | "always" | "scroll" | "hover";
+  scrollHideDelay?: number;
 }
 
 const CommandMenuContext = React.createContext<
@@ -167,9 +170,26 @@ const CommandMenuProvider: React.FC<{
   setValue: (value: string) => void;
   selectedIndex: number;
   setSelectedIndex: (index: number) => void;
-}> = ({ children, value, setValue, selectedIndex, setSelectedIndex }) => (
+  scrollType?: "auto" | "always" | "scroll" | "hover";
+  scrollHideDelay?: number;
+}> = ({
+  children,
+  value,
+  setValue,
+  selectedIndex,
+  setSelectedIndex,
+  scrollType,
+  scrollHideDelay,
+}) => (
   <CommandMenuContext.Provider
-    value={{ value, setValue, selectedIndex, setSelectedIndex }}
+    value={{
+      value,
+      setValue,
+      selectedIndex,
+      setSelectedIndex,
+      scrollType,
+      scrollHideDelay,
+    }}
   >
     {children}
   </CommandMenuContext.Provider>
@@ -198,7 +218,7 @@ const CommandMenuTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "text-lg font-semibold leading-none tracking-tight text-[hsl(var(--hu-foreground))]",
-      className,
+      className
     )}
     {...props}
   />
@@ -226,7 +246,7 @@ const CommandMenuOverlay = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className,
+      className
     )}
     {...props}
   />
@@ -238,76 +258,92 @@ const CommandMenuContent = React.forwardRef<
   React.ElementRef<typeof DialogPrimitive.Content>,
   React.ComponentPropsWithoutRef<typeof DialogPrimitive.Content> & {
     showShortcut?: boolean;
+    scrollType?: "auto" | "always" | "scroll" | "hover";
+    scrollHideDelay?: number;
   }
->(({ className, children, showShortcut = true, ...props }, ref) => {
-  const [value, setValue] = React.useState("");
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+>(
+  (
+    {
+      className,
+      children,
+      showShortcut = true,
+      scrollType = "hover",
+      scrollHideDelay = 600,
+      ...props
+    },
+    ref
+  ) => {
+    const [value, setValue] = React.useState("");
+    const [selectedIndex, setSelectedIndex] = React.useState(0);
 
-  // Keyboard navigation
-  React.useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === "ArrowDown") {
-        e.preventDefault();
-        // Logic will be handled by CommandMenuList
-      } else if (e.key === "ArrowUp") {
-        e.preventDefault();
-        // Logic will be handled by CommandMenuList
-      } else if (e.key === "Enter") {
-        e.preventDefault();
-        // Logic will be handled by CommandMenuItem
-      }
-    };
+    // Keyboard navigation
+    React.useEffect(() => {
+      const handleKeyDown = (e: KeyboardEvent) => {
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          // Logic will be handled by CommandMenuList
+        } else if (e.key === "ArrowUp") {
+          e.preventDefault();
+          // Logic will be handled by CommandMenuList
+        } else if (e.key === "Enter") {
+          e.preventDefault();
+          // Logic will be handled by CommandMenuItem
+        }
+      };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, []);
+      document.addEventListener("keydown", handleKeyDown);
+      return () => document.removeEventListener("keydown", handleKeyDown);
+    }, []);
 
-  return (
-    <CommandMenuPortal>
-      <CommandMenuOverlay />
-      <DialogPrimitive.Content asChild ref={ref} {...props}>
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95, y: -20 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.95, y: -20 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className={cn(
-            "fixed left-[50%] top-[30%] z-50 w-[95%] max-w-2xl translate-x-[-50%] translate-y-[-50%]",
-            "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-2xl shadow-2xl",
-            "overflow-hidden",
-            className,
-          )}
-        >
-          <CommandMenuProvider
-            value={value}
-            setValue={setValue}
-            selectedIndex={selectedIndex}
-            setSelectedIndex={setSelectedIndex}
-          >
-            {/* Hidden title for accessibility - required by Radix UI */}
-            <VisuallyHidden.Root>
-              <CommandMenuTitle>Command Menu</CommandMenuTitle>
-            </VisuallyHidden.Root>
-
-            {children}
-
-            <CommandMenuClose className="absolute right-3 top-3 rounded-lg p-1.5 text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] transition-colors">
-              <X size={14} />
-              <span className="sr-only">Close</span>
-            </CommandMenuClose>
-
-            {showShortcut && (
-              <div className="absolute right-12 top-3 flex items-center justify-center gap-1 h-6.5">
-                <Kbd size="xs">{getModifierKey().symbol}</Kbd>
-                <Kbd size="xs">K</Kbd>
-              </div>
+    return (
+      <CommandMenuPortal>
+        <CommandMenuOverlay />
+        <DialogPrimitive.Content asChild ref={ref} {...props}>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: -20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: -20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className={cn(
+              "fixed left-[50%] top-[30%] z-50 w-[95%] max-w-2xl translate-x-[-50%] translate-y-[-50%]",
+              "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--card-radius)] shadow-lg",
+              "overflow-hidden",
+              className
             )}
-          </CommandMenuProvider>
-        </motion.div>
-      </DialogPrimitive.Content>
-    </CommandMenuPortal>
-  );
-});
+          >
+            {" "}
+            <CommandMenuProvider
+              value={value}
+              setValue={setValue}
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+              scrollType={scrollType}
+              scrollHideDelay={scrollHideDelay}
+            >
+              <VisuallyHidden.Root>
+                <CommandMenuTitle>Command Menu</CommandMenuTitle>
+              </VisuallyHidden.Root>
+
+              {children}
+
+              <CommandMenuClose className="absolute right-3 top-3 rounded-lg p-1.5 text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] transition-colors">
+                <X size={14} />
+                <span className="sr-only">Close</span>
+              </CommandMenuClose>
+
+              {showShortcut && (
+                <div className="absolute right-12 top-3 flex items-center justify-center gap-1 h-6.5">
+                  <Kbd size="xs">{getModifierKey().symbol}</Kbd>
+                  <Kbd size="xs">K</Kbd>
+                </div>
+              )}
+            </CommandMenuProvider>
+          </motion.div>
+        </DialogPrimitive.Content>
+      </CommandMenuPortal>
+    );
+  }
+);
 CommandMenuContent.displayName = "CommandMenuContent";
 
 // Input component for search
@@ -319,7 +355,7 @@ const CommandMenuInput = React.forwardRef<
 >(
   (
     { className, placeholder = "Type a command or search...", ...props },
-    ref,
+    ref
   ) => {
     const { value, setValue } = useCommandMenu();
 
@@ -332,25 +368,30 @@ const CommandMenuInput = React.forwardRef<
           onChange={(e) => setValue(e.target.value)}
           className={cn(
             "flex h-12 w-full rounded-none border-0 bg-transparent py-3 text-sm outline-none placeholder:text-[hsl(var(--hu-muted-foreground))] disabled:cursor-not-allowed disabled:opacity-50",
-            className,
+            className
           )}
           placeholder={placeholder}
           {...props}
         />
       </div>
     );
-  },
+  }
 );
 CommandMenuInput.displayName = "CommandMenuInput";
 
-// List container for command items
+// List container for command items with scroll area
 const CommandMenuList = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
     maxHeight?: string;
   }
 >(({ className, children, maxHeight = "300px", ...props }, ref) => {
-  const { selectedIndex, setSelectedIndex } = useCommandMenu();
+  const {
+    selectedIndex,
+    setSelectedIndex,
+    scrollType = "hover",
+    scrollHideDelay = 600,
+  } = useCommandMenu();
 
   // Handle keyboard navigation
   React.useEffect(() => {
@@ -360,10 +401,30 @@ const CommandMenuList = React.forwardRef<
 
       if (e.key === "ArrowDown") {
         e.preventDefault();
-        setSelectedIndex(Math.min(selectedIndex + 1, maxIndex));
+        const newIndex = Math.min(selectedIndex + 1, maxIndex);
+        setSelectedIndex(newIndex);
+
+        // Scroll selected item into view
+        const selectedItem = items[newIndex] as HTMLElement;
+        if (selectedItem) {
+          selectedItem.scrollIntoView({
+            block: "nearest",
+            behavior: "smooth",
+          });
+        }
       } else if (e.key === "ArrowUp") {
         e.preventDefault();
-        setSelectedIndex(Math.max(selectedIndex - 1, 0));
+        const newIndex = Math.max(selectedIndex - 1, 0);
+        setSelectedIndex(newIndex);
+
+        // Scroll selected item into view
+        const selectedItem = items[newIndex] as HTMLElement;
+        if (selectedItem) {
+          selectedItem.scrollIntoView({
+            block: "nearest",
+            behavior: "smooth",
+          });
+        }
       }
     };
 
@@ -372,13 +433,15 @@ const CommandMenuList = React.forwardRef<
   }, [selectedIndex, setSelectedIndex]);
 
   return (
-    <div
-      ref={ref}
-      className={cn("max-h-[300px] overflow-y-auto p-1", className)}
-      style={{ maxHeight }}
-      {...props}
-    >
-      {children}
+    <div ref={ref} className="p-1" {...props}>
+      <ScrollArea
+        className={cn("w-full", className)}
+        style={{ height: maxHeight }}
+        type={scrollType}
+        scrollHideDelay={scrollHideDelay}
+      >
+        <div className="space-y-1 p-1">{children}</div>
+      </ScrollArea>
     </div>
   );
 });
@@ -424,7 +487,7 @@ const CommandMenuItem = React.forwardRef<
       index = 0,
       ...props
     },
-    ref,
+    ref
   ) => {
     const { selectedIndex, setSelectedIndex } = useCommandMenu();
     const isSelected = selectedIndex === index;
@@ -453,21 +516,19 @@ const CommandMenuItem = React.forwardRef<
         ref={ref}
         data-command-item
         className={cn(
-          "relative flex cursor-default select-none items-center rounded-[var(--radius)] px-2 py-2 text-sm outline-none transition-colors",
+          "relative flex cursor-default select-none items-center rounded-[var(--radius)] px-2 py-2 text-sm outline-none transition-colors gap-2",
           "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
           isSelected &&
             "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]",
           disabled && "pointer-events-none opacity-50",
-          className,
+          className
         )}
         onClick={handleSelect}
         onMouseEnter={() => setSelectedIndex(index)}
         {...props}
       >
         {icon && (
-          <div className="mr-2 h-4 w-4 flex items-center justify-center">
-            {icon}
-          </div>
+          <div className="h-4 w-4 flex items-center justify-center">{icon}</div>
         )}
 
         <div className="flex-1">{children}</div>
@@ -485,14 +546,14 @@ const CommandMenuItem = React.forwardRef<
                   {key === "cmd" || key === "⌘"
                     ? getModifierKey().symbol
                     : key === "shift"
-                      ? "⇧"
-                      : key === "alt"
-                        ? "⌥"
-                        : key === "ctrl"
-                          ? getModifierKey().key === "cmd"
-                            ? "⌃"
-                            : "Ctrl"
-                          : key}
+                    ? "⇧"
+                    : key === "alt"
+                    ? "⌥"
+                    : key === "ctrl"
+                    ? getModifierKey().key === "cmd"
+                      ? "⌃"
+                      : "Ctrl"
+                    : key}
                 </Kbd>
               </React.Fragment>
             ))}
@@ -500,7 +561,7 @@ const CommandMenuItem = React.forwardRef<
         )}
       </div>
     );
-  },
+  }
 );
 CommandMenuItem.displayName = "CommandMenuItem";
 
@@ -526,7 +587,7 @@ const CommandMenuEmpty = React.forwardRef<
     ref={ref}
     className={cn(
       "py-6 text-center text-sm text-[hsl(var(--hu-muted-foreground))]",
-      className,
+      className
     )}
     {...props}
   >
@@ -565,6 +626,7 @@ export {
   CommandMenuClose,
   useCommandMenu,
 };
+
 ```
 
 </Tab>
