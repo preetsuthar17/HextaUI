@@ -89,7 +89,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative rounded-[var(--radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden",
+  "relative rounded-[var(--card-radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden",
   {
     variants: {
       variant: {
@@ -266,7 +266,7 @@ import {
         </CardContent>
         <CardFooter>
           <Button className="w-full">
-            <Settings className="mr-2 h-4 w-4" />
+            <Settings className="h-4 w-4" />
             Settings
           </Button>
         </CardFooter>
@@ -295,7 +295,7 @@ import {
       </CardContent>
       <CardFooter>
         <Button className="w-full">
-          <Settings className="mr-2 h-4 w-4" />
+          <Settings className="h-4 w-4" />
           Settings
         </Button>
       </CardFooter>
@@ -339,16 +339,6 @@ import {
             <p className="text-sm">Ghost card with no border or shadow.</p>
           </CardContent>
         </Card>
-        
-        <Card variant="elevated" className="w-full">
-          <CardHeader>
-            <CardTitle>Elevated Card</CardTitle>
-            <CardDescription>Card with enhanced shadow</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm">Elevated card with larger shadow effect.</p>
-          </CardContent>
-        </Card>
       </div>
     </PreviewContainer>
   </Tab>
@@ -384,15 +374,6 @@ import {
       </CardContent>
     </Card>
 
-    <Card variant="elevated">
-      <CardHeader>
-        <CardTitle>Elevated Card</CardTitle>
-        <CardDescription>Card with enhanced shadow</CardDescription>
-      </CardHeader>
-      <CardContent>
-        <p>Elevated card with larger shadow effect.</p>
-      </CardContent>
-    </Card>
     ```
 
   </Tab>

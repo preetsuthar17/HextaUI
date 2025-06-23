@@ -5,13 +5,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative rounded-[var(--radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden",
+  "relative rounded-[var(--card-radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden shadow-md/2",
   {
     variants: {
       variant: {
         default: "border border-[hsl(var(--hu-border))]",
-        outline:
-          "border-2 border-[hsl(var(--hu-border))]  hover:border-[hsl(var(--hu-primary))]/30",
+        outline: "border-2 border-[hsl(var(--hu-border))]",
         ghost: "border-transparent hover:bg-[hsl(var(--hu-accent))] ",
       },
       size: {
