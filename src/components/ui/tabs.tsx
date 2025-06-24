@@ -26,7 +26,7 @@ const tabsVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const tabTriggerVariants = cva(
@@ -51,12 +51,12 @@ const tabTriggerVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface TabItem {
   id: string;
-  label: string;
+  label?: string;
   icon?: React.ReactNode;
 }
 
@@ -83,10 +83,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
       indicatorColor = "hsl(var(--hu-accent))",
       ...props
     },
-    ref,
+    ref
   ) => {
     const [activeValue, setActiveValue] = React.useState(
-      value || defaultValue || items[0]?.id,
+      value || defaultValue || items[0]?.id
     );
     const [activeTabBounds, setActiveTabBounds] = React.useState({
       left: 0,
@@ -103,7 +103,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
     React.useEffect(() => {
       const activeIndex = items.findIndex(
-        (item: TabItem) => item.id === activeValue,
+        (item: TabItem) => item.id === activeValue
       );
       const activeTab = tabRefs.current[activeIndex];
 
@@ -138,7 +138,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
             "absolute z-10",
             variant === "underline"
               ? "bottom-0 h-0.5 rounded-none"
-              : "top-1 bottom-1 rounded-md",
+              : "top-1 bottom-1 rounded-md"
           )}
           style={{
             backgroundColor:
@@ -169,22 +169,20 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
               }}
               className={cn(
                 tabTriggerVariants({ variant, size }),
-                "relative z-20 text-[hsl(var(--hu-muted-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))]",
+                "relative z-20 text-[hsl(var(--hu-muted-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))] gap-2"
               )}
               data-state={isActive ? "active" : "inactive"}
               onClick={() => handleTabClick(item.id)}
               type="button"
             >
-              {item.icon && (
-                <span className="mr-2 [&_svg]:size-4">{item.icon}</span>
-              )}
+              {item.icon && <span className="[&_svg]:size-4">{item.icon}</span>}
               {item.label}
             </button>
           );
         })}
       </div>
     );
-  },
+  }
 );
 
 Tabs.displayName = "Tabs";
@@ -216,7 +214,7 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         ref={ref}
         className={cn(
           "ring-offset-[hsl(var(--hu-background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2",
-          className,
+          className
         )}
         initial={{ opacity: 0, y: 4 }}
         animate={{ opacity: 1, y: 0 }}
@@ -227,7 +225,7 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
         {children}
       </motion.div>
     );
-  },
+  }
 );
 
 TabsContent.displayName = "TabsContent";
