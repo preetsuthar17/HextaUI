@@ -4,7 +4,6 @@
 
 :root {
   --hu-font-geist: var(--font-geist);
-  --hu-font-inter: var(--font-inter);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
   --radius: 0.8rem;
@@ -13,10 +12,10 @@
   --hu-background: 0, 0%, 100%;
   --hu-foreground: 0, 0%, 14%;
 
-  --hu-card: 0, 0%, 100%;
+  --hu-card: 0, 0%, 99%;
   --hu-card-foreground: 0, 0%, 14%;
 
-  --hu-primary: 0, 0%, 20%;
+  --hu-primary: 235, 100%, 60%;
   --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 97%;
@@ -25,7 +24,7 @@
   --hu-muted: 0, 0%, 97%;
   --hu-muted-foreground: 0, 0%, 56%;
 
-  --hu-accent: 0, 0%, 97%;
+  --hu-accent: 0, 0%, 96%;
   --hu-accent-foreground: 0, 0%, 20%;
 
   --hu-destructive: 9, 96%, 47%;
@@ -36,17 +35,18 @@
   --hu-ring: 0, 0%, 71%;
 
   --color-fd-background: hsl(var(--hu-background));
+  --color-fd-card: hsl(var(--hu-background));
 }
 
 .dark {
   --hu-background: 0, 0%, 7%;
   --hu-foreground: 0, 0%, 100%;
 
-  --hu-card: 0, 0%, 7%;
+  --hu-card: 0, 0%, 9%;
   --hu-card-foreground: 0, 0%, 100%;
 
-  --hu-primary: 0, 0%, 100%;
-  --hu-primary-foreground: 0, 0%, 20%;
+  --hu-primary: 235, 100%, 60%;
+  --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 15%;
   --hu-secondary-foreground: 0, 0%, 100%;
