@@ -1,6 +1,6 @@
 # 🌟 Build Stunning Websites Effortlessly
 
-**HextaUI** provides modern, responsive, and customizable UI components for Next.js. Copy, adapt, and personalize them to build beautiful web interfaces with ease.
+**HextaUI** provides modern, responsive, and customizable UI components. Copy, adapt, and personalize them to build beautiful web interfaces with ease.
 
 ![Repobeats analytics image](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg)
 

@@ -60,8 +60,8 @@ const Hero = () => {
             Build stunning websites effortlessly
           </h1>
           <p className="max-sm:text-sm">
-            Modern, responsive, and customizable UI components for Next.js.
-            Copy, adapt, and personalize them.
+            Modern, responsive, and customizable UI components. Copy, adapt, and
+            personalize them.
           </p>
         </div>
         <div className="flex items-center justify-center gap-4 flex-wrap">

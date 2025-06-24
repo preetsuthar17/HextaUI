@@ -5,7 +5,7 @@ import Link from "next/link";
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
   description:
-    "Modern, responsive, customizable UI components for Next.js. Copy, adapt, and personalize them.",
+    "Modern, responsive, customizable UI components. Copy, adapt, and personalize them.",
   ogImage: "/Banner.png",
   twitterCard: "summary_large_image",
   canonicalUrl: "https://hextaui.com",
