@@ -19,7 +19,7 @@ const radioGroupVariants = cva("grid gap-2", {
 });
 
 const radioVariants = cva(
-  "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-md/2",
+  "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-sm/2",
   {
     variants: {
       size: {

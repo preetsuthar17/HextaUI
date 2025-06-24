@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 
 const calendarVariants = cva(
-  "inline-block space-y-4 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto shadow-md/2",
+  "inline-block space-y-4 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto shadow-sm/2",
   {
     variants: {
       size: {

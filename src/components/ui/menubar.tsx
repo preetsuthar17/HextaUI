@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { type LucideIcon } from "lucide-react";
 
 const menubarVariants = cva(
-  "flex items-center rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] transition-all overflow-x-auto scrollbar-hide w-full max-w-full shadow-md/2",
+  "flex items-center rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] transition-all overflow-x-auto scrollbar-hide w-full max-w-full shadow-sm/2",
   {
     variants: {
       variant: {

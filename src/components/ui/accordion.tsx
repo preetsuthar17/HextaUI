@@ -10,10 +10,10 @@ const accordionVariants = cva("w-full max-w-[var(--radius)]", {
   variants: {
     variant: {
       default:
-        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] overflow-hidden shadow-md/2",
+        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] overflow-hidden shadow-sm/2",
       ghost: "",
       outline:
-        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-md/2",
+        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-sm/2",
     },
     size: {
       sm: "text-sm max-w-lg",

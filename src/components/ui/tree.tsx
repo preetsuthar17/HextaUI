@@ -35,7 +35,7 @@ const useTree = () => {
 
 // Tree variants
 const treeVariants = cva(
-  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-md/2",
+  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-sm/2",
   {
     variants: {
       variant: {
