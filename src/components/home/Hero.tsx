@@ -56,7 +56,7 @@ const Hero = () => {
           Learn more
         </div>
         <div className="flex items-center justify-center gap-4 flex-col">
-          <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tight ">
+          <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tigher">
             Build stunning websites effortlessly
           </h1>
           <p className="max-sm:text-sm">

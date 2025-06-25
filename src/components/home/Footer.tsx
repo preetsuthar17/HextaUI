@@ -124,6 +124,15 @@ const Footer = () => {
                   Contact us
                 </Link>
               </li>
+              <li>
+                <Link
+                  className="opacity-80 hover:opacity-100"
+                  href="/llms.txt"
+                  target="_blank"
+                >
+                  llms.txt
+                </Link>
+              </li>
             </ul>
           </div>{" "}
           <div className="flex flex-col items-start justify-center gap-4">
