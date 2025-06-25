@@ -1,0 +1,82 @@
+# https://hextaui.com llms.txt
+
+> HextaUI is a modern, customizable UI component library for building responsive web interfaces with Next.js, Vite, and Astro. It offers accessible, production-ready components and animations to accelerate website development.
+
+- [HextaUI Main Page](https://hextaui.com): Create stunning websites quickly with customizable UI components.
+- [HextaUI Introduction](https://hextaui.com/docs/ui/getting-started/introduction): Build modern websites with HextaUI’s customizable UI components and design system.
+- [HextaUI Showcase](https://hextaui.com/showcase): Discover HextaUI blocks for faster website building.
+- [HextaUI Sponsors](https://hextaui.com/sponsors): Find sponsors and support for HextaUI projects.
+- [HextaUI Sitemap](https://hextaui.com/docs/sitemap): Comprehensive sitemap for navigating the HextaUI website.
+
+- [HextaUI Installation Guide - Next.js](https://hextaui.com/docs/ui/installation/nextjs): Install and set up HextaUI in Next.js projects.
+- [HextaUI Installation Guide](https://hextaui.com/docs/installation): Learn to install HextaUI in your Next.js project quickly.
+- [HextaUI Installation Guide - Vite](https://hextaui.com/docs/ui/installation/vite): Set up HextaUI in Vite projects.
+- [HextaUI Installation Guide - Astro](https://hextaui.com/docs/ui/installation/astro): Set up HextaUI in Astro projects.
+- [HextaUI Roadmap](https://hextaui.com/docs/ui/getting-started/roadmap): Explore HextaUI’s development timeline, achievements, and future plans.
+- [HextaUI Changelog](https://hextaui.com/docs/ui/getting-started/changelog): Latest updates and improvements for the HextaUI project.
+
+- [HextaUI Theming Guide](https://hextaui.com/docs/ui/foundation/theming): Customize component appearance with themes and CSS variables.
+- [HextaUI Color Palette](https://hextaui.com/docs/ui/foundation/colors): Consistent color palette for HextaUI components.
+- [HextaUI Components Overview](https://hextaui.com/docs/ui/foundation/components): Extensive library of HextaUI UI components.
+- [HextaUI Base Components](https://hextaui.com/docs/ui/everything-by-hextaui/base-components): Modular, customizable base components for web development.
+
+- [Accordion](https://hextaui.com/docs/ui/components/accordion): Interactive component for organizing collapsible content.
+- [Alert](https://hextaui.com/docs/ui/components/alert): Versatile component for notifications and messages.
+- [Avatar](https://hextaui.com/docs/ui/components/avatar): Customizable component for user representation.
+- [Badge](https://hextaui.com/docs/ui/components/badge): Component for displaying statuses and labels.
+- [Breadcrumb](https://hextaui.com/docs/ui/components/breadcrumb): Guide for implementing breadcrumb navigation.
+- [Button](https://hextaui.com/docs/ui/components/button): Various button styles, states, and usage examples.
+- [Calendar](https://hextaui.com/docs/ui/components/calendar): Comprehensive component for date selection.
+- [Card](https://hextaui.com/docs/ui/components/card): Flexible component for displaying content.
+- [Checkbox](https://hextaui.com/docs/ui/components/checkbox): Customizable component with various states.
+- [Chip](https://hextaui.com/docs/ui/components/chip): Interactive component for status, categories, and filters.
+- [Color Picker](https://hextaui.com/docs/ui/components/color-picker): Component with multiple input methods.
+- [Command Menu](https://hextaui.com/docs/ui/components/command-menu): Palette for quick actions and navigation.
+- [Date Picker](https://hextaui.com/docs/ui/components/date-picker): Flexible component for single and range date selection.
+- [Drawer](https://hextaui.com/docs/ui/components/drawer): Customizable component with smooth animations.
+- [Dropdown Menu](https://hextaui.com/docs/ui/components/dropdown-menu): Accessible component for dropdown navigation.
+- [File Upload](https://hextaui.com/docs/ui/components/file-upload): Component with drag-and-drop support.
+- [Input](https://hextaui.com/docs/ui/components/input): Component with password toggle and validation.
+- [Input OTP](https://hextaui.com/docs/ui/components/input-otp): Customizable one-time password input.
+- [Kbd](https://hextaui.com/docs/ui/components/kbd): Component for displaying keyboard shortcuts.
+- [Label](https://hextaui.com/docs/ui/components/label): Form label component with accessibility features.
+- [Loader](https://hextaui.com/docs/ui/components/loader): Elegant loading spinner with various sizes.
+- [Marquee](https://hextaui.com/docs/ui/components/marquee): Smooth scrolling component for continuous content.
+- [Menubar](https://hextaui.com/docs/ui/components/menubar): Horizontal menu bar for navigation and actions.
+- [Modal](https://hextaui.com/docs/ui/components/modal): Accessible component with smooth animations.
+- [Navigation Menu](https://hextaui.com/docs/ui/components/navigation-menu): Component for efficient website navigation.
+- [Pagination](https://hextaui.com/docs/ui/components/pagination): Controls for navigating multiple pages.
+- [Progress](https://hextaui.com/docs/ui/components/progress): Component for tracking loading and completion.
+- [Radio](https://hextaui.com/docs/ui/components/radio): Customizable radio group with flexible layouts.
+- [Resizable](https://hextaui.com/docs/ui/components/resizable): Component for resizable panel groups.
+- [Scroll Area](https://hextaui.com/docs/ui/components/scroll-area): Customizable component with smooth scrolling.
+- [Select](https://hextaui.com/docs/ui/components/select): Component with icons and animations support.
+- [Separator](https://hextaui.com/docs/ui/components/separator): Component for visually dividing content.
+- [Sidebar](https://hextaui.com/docs/ui/components/sidebar): Customizable component for web applications.
+- [Skeleton](https://hextaui.com/docs/ui/components/skeleton): Component to enhance loading states.
+- [Slider](https://hextaui.com/docs/ui/components/slider): Component for numeric value selection.
+- [Switch](https://hextaui.com/docs/ui/components/switch): Component for toggling between states.
+- [Table](https://hextaui.com/docs/ui/components/table): Feature-rich data table with sorting and filtering.
+- [Tabs](https://hextaui.com/docs/ui/components/tabs): Modern, animated component for content sections.
+- [Tag Input](https://hextaui.com/docs/ui/components/tag-input): Flexible component for managing multiple tags.
+- [Textarea](https://hextaui.com/docs/ui/components/textarea): Multi-line text input with auto-resizing.
+- [Toast](https://hextaui.com/docs/ui/components/toast): Customizable notifications for web applications.
+- [Toggle](https://hextaui.com/docs/ui/components/toggle): Component for on/off states with variants.
+- [Tooltip](https://hextaui.com/docs/ui/components/tooltip): Component for contextual information.
+- [Tree](https://hextaui.com/docs/ui/components/tree): Flexible component with collapsible nodes.
+- [Video Player](https://hextaui.com/docs/ui/components/video-player): Customizable player with controls and shortcuts.
+
+- [HextaUI Blocks Overview](https://hextaui.com/docs/og-blocks/all-blocks): Reusable and customizable blocks for projects.
+- [Animated Cursor](https://hextaui.com/docs/og-blocks/animation/cursor): Smooth mouse pointer tracking animation.
+- [Animated Dock](https://hextaui.com/docs/og-blocks/application/animated-dock): Animated docks with hover effects for icons.
+- [Animated Underline](https://hextaui.com/docs/og-blocks/text/animated-underline): Animated underline effects for text.
+- [Confetti Animation](https://hextaui.com/docs/animation/confetti): Interactive confetti animations.
+- [Expandable Tabs](https://hextaui.com/docs/og-blocks/application/expandable-tabs): Tabs with smooth transitions.
+- [Gradient Beam](https://hextaui.com/docs/og-blocks/animation/gradient-beam): Animated gradient beam effect.
+- [Infinite Text Marquee](https://hextaui.com/docs/og-blocks/animation/infinite-text-marquee): Infinite text scrolling effect.
+- [Particle Animation](https://hextaui.com/docs/og-blocks/animation/particle): Interactive particle animations.
+- [Post Card](https://hextaui.com/docs/og-blocks/application/post-card): Social media-style post card component.
+- [Shining Text](https://hextaui.com/docs/og-blocks/text/shining-text): Captivating shining text animations.
+- [Spotlight Card](https://hextaui.com/docs/og-blocks/animation/spotlight-card): Hover spotlight effect for cards.
+- [Staggered Blur](https://hextaui.com/docs/og-blocks/text/blurred-stagger): Staggered blur effects for text.
+- [Typewriter Text](https://hextaui.com/docs/og-blocks/text/typewriter): Typewriter text animation effect.
