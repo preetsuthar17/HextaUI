@@ -33,16 +33,16 @@ interface FileWithPreview {
 }
 
 const fileUploadVariants = cva(
-  "relative rounded-[var(--card-radius)] border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
+  "relative rounded-card border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
   {
     variants: {
       variant: {
         default:
-          "border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] hover:border-[hsl(var(--hu-primary))]/30 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border-border bg-card hover:border-primary/30 focus-visible:ring-ring",
         dashed:
-          "border-dashed border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] hover:border-[hsl(var(--hu-primary))]/50 hover:bg-[hsl(var(--hu-accent))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border-dashed border-border bg-background hover:border-primary/50 hover:bg-accent focus-visible:ring-ring",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))]/50 hover:bg-[hsl(var(--hu-accent))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border-transparent bg-accent/50 hover:bg-accent focus-visible:ring-ring",
       },
       size: {
         sm: "p-4 min-h-[120px]",
@@ -51,8 +51,7 @@ const fileUploadVariants = cva(
       },
       state: {
         idle: "",
-        dragging:
-          "border-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-primary))]/5 scale-[1.02]",
+        dragging: "border-primary bg-primary/5 scale-[1.02]",
         disabled: "opacity-50 pointer-events-none",
       },
     },
@@ -65,13 +64,12 @@ const fileUploadVariants = cva(
 );
 
 const fileItemVariants = cva(
-  "flex items-start gap-3 p-4 rounded-[var(--radius)] transition-all duration-200",
+  "flex items-start gap-3 p-4 rounded-ele transition-all duration-200",
   {
     variants: {
       variant: {
-        default:
-          "bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]",
-        ghost: "bg-[hsl(var(--hu-accent))] hover:bg-[hsl(var(--hu-accent))]/80",
+        default: "bg-card border border-border",
+        ghost: "bg-accent hover:bg-accent/80",
       },
     },
     defaultVariants: {
@@ -297,35 +295,33 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                 className={cn(
                   "w-12 h-12 transition-colors",
                   isDragging
-                    ? "text-[hsl(var(--hu-primary))]"
-                    : "text-[hsl(var(--hu-muted-foreground))] group-hover:text-[hsl(var(--hu-foreground))]"
+                    ? "text-primary"
+                    : "text-muted-foreground group-hover:text-foreground"
                 )}
               />
             </motion.div>
 
             <div className="space-y-1">
-              <h3 className="text-lg font-medium text-[hsl(var(--hu-foreground))]">
+              <h3 className="text-lg font-medium text-foreground">
                 {isDragging
                   ? "Drop files here"
                   : files.length
                   ? "Add more files"
                   : "Upload files"}
               </h3>
-              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              <p className="text-sm text-muted-foreground">
                 {isDragging ? (
-                  <span className="text-[hsl(var(--hu-primary))] font-medium">
+                  <span className="text-primary font-medium">
                     Release to upload
                   </span>
                 ) : (
                   <>
                     Drag and drop files here, or{" "}
-                    <span className="text-[hsl(var(--hu-primary))] font-medium">
-                      browse
-                    </span>
+                    <span className="text-primary font-medium">browse</span>
                   </>
                 )}
               </p>
-              <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+              <p className="text-xs text-muted-foreground">
                 Max {maxFiles} files, up to {formatFileSize(maxSize)} each
               </p>
             </div>
@@ -349,13 +345,13 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
         {files.length > 0 && (
           <div className="space-y-3">
             <div className="flex items-center justify-between">
-              <h4 className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+              <h4 className="text-sm font-medium text-foreground">
                 Files ({files.length})
               </h4>
               {files.length > 1 && (
                 <button
                   onClick={clearAll}
-                  className="text-xs text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-destructive))] transition-colors"
+                  className="text-xs text-muted-foreground hover:text-destructive transition-colors"
                 >
                   Clear all
                 </button>
@@ -389,16 +385,16 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                               <img
                                 src={file.preview}
                                 alt={file.name}
-                                className="w-10 h-10 rounded-md object-cover border border-[hsl(var(--hu-border))]"
+                                className="w-10 h-10 rounded-md object-cover border border-border"
                               />
                             ) : (
-                              <div className="w-10 h-10 rounded-md bg-[hsl(var(--hu-accent))] flex items-center justify-center">
-                                <IconComponent className="w-5 h-5 text-[hsl(var(--hu-muted-foreground))]" />
+                              <div className="w-10 h-10 rounded-md bg-accent flex items-center justify-center">
+                                <IconComponent className="w-5 h-5 text-muted-foreground" />
                               </div>
                             )}
                             {file.status === "completed" && (
                               <div className="absolute -top-1 -right-1">
-                                <CheckCircle className="w-4 h-4 text-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-background))] rounded-full" />
+                                <CheckCircle className="w-4 h-4 text-primary bg-background rounded-full" />
                               </div>
                             )}
                           </div>
@@ -406,29 +402,29 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                           {/* File Info */}
                           <div className="flex-1 min-w-0 space-y-1">
                             <div className="flex items-center justify-between gap-2">
-                              <p className="text-sm font-medium text-[hsl(var(--hu-foreground))] truncate">
+                              <p className="text-sm font-medium text-foreground truncate">
                                 {file.name}
                               </p>
                               <button
                                 onClick={() => removeFile(file.id)}
-                                className="flex-shrink-0 p-1 hover:bg-[hsl(var(--hu-accent))] rounded-md transition-colors"
+                                className="flex-shrink-0 p-1 hover:bg-accent rounded-md transition-colors"
                                 aria-label={`Remove ${file.name}`}
                               >
-                                <X className="w-4 h-4 text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-destructive))]" />
+                                <X className="w-4 h-4 text-muted-foreground hover:text-destructive" />
                               </button>
                             </div>
 
                             <div className="flex items-center justify-between gap-2">
-                              <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                              <p className="text-xs text-muted-foreground">
                                 {formatFileSize(file.size)}
                               </p>
                               <div className="flex items-center gap-2">
                                 {file.status === "uploading" && (
                                   <>
-                                    <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                                    <span className="text-xs text-muted-foreground">
                                       {Math.round(file.progress)}%
                                     </span>
-                                    <Loader className="w-3 h-3 animate-spin text-[hsl(var(--hu-primary))]" />
+                                    <Loader className="w-3 h-3 animate-spin text-primary" />
                                   </>
                                 )}
                                 {file.status === "completed" && (
@@ -446,12 +442,12 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
 
                             {/* Progress Bar */}
                             {file.status === "uploading" && (
-                              <div className="w-full h-1.5 bg-[hsl(var(--hu-accent))] rounded-full overflow-hidden">
+                              <div className="w-full h-1.5 bg-accent rounded-full overflow-hidden">
                                 <motion.div
                                   initial={{ width: 0 }}
                                   animate={{ width: `${file.progress}%` }}
                                   transition={{ duration: 0.3 }}
-                                  className="h-full bg-[hsl(var(--hu-primary))] rounded-full"
+                                  className="h-full bg-primary rounded-full"
                                 />
                               </div>
                             )}

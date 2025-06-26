@@ -142,7 +142,7 @@ const ProBlocksShowcase = () => {
           <h2 className="text-4xl font-medium">
             Ready-made blocks for faster development
           </h2>
-          <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
             Professional blocks and templates to build modern web applications
             in minutes.
           </p>
@@ -162,11 +162,11 @@ const ProBlocksShowcase = () => {
 
               <div className="p-6 space-y-4">
                 <div className="text-left space-y-2">
-                  <div className="text-xs text-[hsl(var(--hu-muted-foreground))] uppercase tracking-wide font-medium">
+                  <div className="text-xs text-muted-foreground uppercase tracking-wide font-medium">
                     {block.category}
                   </div>
                   <h3 className="font-medium text-lg">{block.title}</h3>
-                  <p className="text-sm text-[hsl(var(--hu-muted-foreground))] leading-relaxed">
+                  <p className="text-sm text-muted-foreground leading-relaxed">
                     {block.description}
                   </p>
                 </div>
@@ -197,7 +197,7 @@ const ProBlocksShowcase = () => {
               <TeamInviteBlock />
             </div>
 
-            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-[hsl(var(--hu-background))] dark:from-[hsl(var(--hu-background))] to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-background dark:from-background to-transparent pointer-events-none"></div>
           </div>
         </div>
         <div className="flex flex-col items-center gap-4">
@@ -225,7 +225,7 @@ const ProBlocksShowcase = () => {
             </Button>
           </div>
         </div>
-        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm text-muted-foreground">
           Skip the design phase and ship your product faster with
           production-ready blocks.
         </p>

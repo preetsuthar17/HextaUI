@@ -10,13 +10,13 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
 const sidebarVariants = cva(
-  "z-40 bg-[hsl(var(--hu-background))] border-r border-[hsl(var(--hu-border))] flex flex-col",
+  "z-40 bg-background border-r border-border flex flex-col",
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-background))]",
-        elevated: "bg-[hsl(var(--hu-card))] shadow-lg",
-        ghost: "bg-[hsl(var(--hu-background))]/95 backdrop-blur-sm",
+        default: "bg-background",
+        elevated: "bg-card shadow-lg",
+        ghost: "bg-background/95 backdrop-blur-sm",
       },
       size: {
         sm: "w-12",
@@ -34,11 +34,11 @@ const sidebarVariants = cva(
       size: "default",
       position: "fixed",
     },
-  },
+  }
 );
 
 const sidebarHeaderVariants = cva(
-  "flex items-center border-b border-[hsl(var(--hu-border))] min-h-[3.5rem]",
+  "flex items-center border-b border-border min-h-[3.5rem]",
   {
     variants: {
       collapsed: {
@@ -49,20 +49,17 @@ const sidebarHeaderVariants = cva(
     defaultVariants: {
       collapsed: false,
     },
-  },
+  }
 );
 
 const sidebarItemVariants = cva(
-  "relative flex items-center rounded-[var(--radius)] text-sm font-medium cursor-pointer group",
+  "relative flex items-center rounded-ele text-sm font-medium cursor-pointer group",
   {
     variants: {
       variant: {
-        default:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]",
-        active:
-          "text-[hsl(var(--hu-primary-foreground))] bg-[hsl(var(--hu-primary))] hover:bg-[hsl(var(--hu-primary))]/90",
-        ghost:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]/50",
+        default: "text-muted-foreground hover:text-foreground hover:bg-accent",
+        active: "text-primary-foreground bg-primary hover:bg-primary/90",
+        ghost: "text-muted-foreground hover:text-foreground hover:bg-accent/50",
       },
       collapsed: {
         true: "w-10 h-10 justify-center px-0 py-0",
@@ -73,7 +70,7 @@ const sidebarItemVariants = cva(
       variant: "default",
       collapsed: false,
     },
-  },
+  }
 );
 
 export interface SidebarProps
@@ -121,7 +118,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [internalCollapsed, setInternalCollapsed] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState<string>();
@@ -185,7 +182,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       const updateFocusableElements = () => {
         if (sidebarRef.current) {
           const elements = sidebarRef.current.querySelectorAll(
-            'button, a, [tabindex]:not([tabindex="-1"])',
+            'button, a, [tabindex]:not([tabindex="-1"])'
           ) as NodeListOf<HTMLElement>;
           focusableElementsRef.current = Array.from(elements);
         }
@@ -200,13 +197,13 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
     // Extract header, body and footer from children
     const headerChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarHeader,
+      (child) => React.isValidElement(child) && child.type === SidebarHeader
     );
     const bodyChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarBody,
+      (child) => React.isValidElement(child) && child.type === SidebarBody
     );
     const footerChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarFooter,
+      (child) => React.isValidElement(child) && child.type === SidebarFooter
     );
 
     const sidebarContent = (
@@ -235,17 +232,17 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
               size: collapsed ? "sm" : size,
               position,
             }),
-            className,
+            className
           )}
           initial={false}
           animate={{
             width: collapsed
               ? 57
               : size === "lg"
-                ? 288
-                : size === "xl"
-                  ? 320
-                  : 256,
+              ? 288
+              : size === "xl"
+              ? 320
+              : 256,
           }}
           transition={{
             duration: 0.25,
@@ -320,8 +317,8 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           {footerChild && (
             <div
               className={cn(
-                "border-t border-[hsl(var(--hu-border))]",
-                collapsed ? "p-2" : "p-3",
+                "border-t border-border",
+                collapsed ? "p-2" : "p-3"
               )}
             >
               {footerChild}
@@ -354,7 +351,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     }
 
     return sidebarContent;
-  },
+  }
 );
 
 Sidebar.displayName = "Sidebar";
@@ -443,7 +440,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       <div
         className={cn(
           "flex items-center justify-center shrink-0",
-          collapsed ? "w-10 h-10" : "w-4 h-4 ml-0",
+          collapsed ? "w-10 h-10" : "w-4 h-4 ml-0"
         )}
         aria-hidden="true"
       >
@@ -462,7 +459,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
               size={14}
               className={cn(
                 "shrink-0 transition-transform duration-200",
-                expanded && "rotate-90",
+                expanded && "rotate-90"
               )}
               aria-hidden="true"
             />
@@ -473,7 +470,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Tooltip for collapsed state */}
       {collapsed && (
         <div
-          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-[var(--radius)] border border-[hsl(var(--hu-border))] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
+          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-ele border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
           role="tooltip"
           id={`${itemId}-tooltip`}
         >
@@ -495,9 +492,9 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
+              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative no-underline",
-            className,
+            className
           )}
           onClick={onClick}
           role="menuitem"
@@ -516,10 +513,10 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
+              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative w-full text-left border-none",
             !isActive && "bg-transparent",
-            className,
+            className
           )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
@@ -547,7 +544,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             className="overflow-hidden"
           >
             <ul
-              className="space-y-1 py-1 ml-2 border-l border-[hsl(var(--hu-border))]/50 pl-2 list-none"
+              className="space-y-1 py-1 ml-2 border-l border-border/50 pl-2 list-none"
               role="menu"
               aria-label={`${label} submenu`}
             >
@@ -558,7 +555,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
                     {
                       level: level + 1,
                       ...(child.props as SidebarItemProps),
-                    },
+                    }
                   );
                 }
                 return child;

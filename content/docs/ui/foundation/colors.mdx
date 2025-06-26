@@ -10,10 +10,10 @@ import ColorPalette from "@/components/ColorPalette";
 
 <ColorPalette
   colors={[
-    { name: "Background", value: "hsl(var(--hu-background))" },
-    { name: "Foreground", value: "hsl(var(--hu-foreground))" },
-    { name: "Card", value: "hsl(var(--hu-card))" },
-    { name: "Card Foreground", value: "hsl(var(--hu-card-foreground))" },
+    { name: "Background", usage:"bg-background" ,value: "hsl(var(--hu-background))" },
+    { name: "Foreground", usage:"text-foreground" ,value: "hsl(var(--hu-foreground))" },
+    { name: "Card", usage:"bg-card" ,value: "hsl(var(--hu-card))" },
+    { name: "Card Foreground", usage:"text-card-foreground" ,value: "hsl(var(--hu-card-foreground))" },
   ]}
 />
 
@@ -21,15 +21,15 @@ import ColorPalette from "@/components/ColorPalette";
 
 <ColorPalette
   colors={[
-    { name: "Primary", value: "hsl(var(--hu-primary))" },
-    { name: "Primary Foreground", value: "hsl(var(--hu-primary-foreground))" },
-    { name: "Secondary", value: "hsl(var(--hu-secondary))" },
+    { name: "Primary", usage:"bg-primary" ,value: "hsl(var(--hu-primary))" },
+    { name: "Primary Foreground", usage:"text-primary-foreground" ,value: "hsl(var(--hu-primary-foreground))" },
+    { name: "Secondary", usage:"bg-secondary" ,value: "hsl(var(--hu-secondary))" },
     {
       name: "Secondary Foreground",
-      value: "hsl(var(--hu-secondary-foreground))",
+      usage:"text-secondary-foreground" ,value: "hsl(var(--hu-secondary-foreground))",
     },
-    { name: "Accent", value: "hsl(var(--hu-accent))" },
-    { name: "Accent Foreground", value: "hsl(var(--hu-accent-foreground))" },
+    { name: "Accent", usage:"bg-accent" ,value: "hsl(var(--hu-accent))" },
+    { name: "Accent Foreground", usage:"text-accent-foreground" ,value: "hsl(var(--hu-accent-foreground))" },
   ]}
 />
 
@@ -37,11 +37,12 @@ import ColorPalette from "@/components/ColorPalette";
 
 <ColorPalette
   colors={[
-    { name: "Muted", value: "hsl(var(--hu-muted))" },
-    { name: "Muted Foreground", value: "hsl(var(--hu-muted-foreground))" },
-    { name: "Destructive", value: "hsl(var(--hu-destructive))" },
+    { name: "Muted", usage:"bg-muted" ,value: "hsl(var(--hu-muted))" },
+    { name: "Muted Foreground", usage:"text-muted-foreground" ,value: "hsl(var(--hu-muted-foreground))" },
+    { name: "Destructive", usage:"bg-destructive" ,value: "hsl(var(--hu-destructive))" },
     {
       name: "Destructive Foreground",
+      usage:"text-destructive-foreground",
       value: "hsl(var(--hu-destructive-foreground))",
     },
   ]}
@@ -51,8 +52,8 @@ import ColorPalette from "@/components/ColorPalette";
 
 <ColorPalette
   colors={[
-    { name: "Border", value: "hsl(var(--hu-border))" },
-    { name: "Input", value: "hsl(var(--hu-input))" },
-    { name: "Ring", value: "hsl(var(--hu-ring))" },
+    { name: "Border", usage:"border-border" ,value: "hsl(var(--hu-border))" },
+    { name: "Input", usage:"input-input" ,value: "hsl(var(--hu-input))" },
+    { name: "Ring", usage:"ring-ring" ,value: "hsl(var(--hu-ring))" },
   ]}
 />

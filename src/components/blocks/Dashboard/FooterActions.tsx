@@ -29,7 +29,7 @@ export function FooterActions({
   handleSettingsChange,
 }: FooterActionsProps) {
   return (
-    <div className="flex flex-col gap-3 pt-4 border-t border-[hsl(var(--hu-border))] sm:flex-row sm:items-center">
+    <div className="flex flex-col gap-3 pt-4 border-t border-border sm:flex-row sm:items-center">
       <Button className="w-full sm:w-auto group">
         <Plus className="h-4 w-4 mr-2 group-hover:rotate-90 transition-transform" />
         Add New Item

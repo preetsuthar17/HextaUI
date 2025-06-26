@@ -51,15 +51,15 @@ import { cn } from "@/lib/utils";
 import { Eye, EyeOff, X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-sm/2",
+  "flex w-full rounded-ele border border-border bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-sm/2",
   {
     variants: {
       variant: {
-        default: "border-[hsl(var(--hu-border))]",
+        default: "border-border",
         destructive:
-          "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
+          "border-destructive focus-visible:ring-destructive",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-[hsl(var(--hu-border))]",
+          "border-transparent bg-accent focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-border",
       },
       size: {
         default: "h-9 px-3 py-2",
@@ -144,7 +144,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative w-full">
         {leftIcon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0 z-10">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0 z-10">
             {leftIcon}
           </div>
         )}
@@ -169,7 +169,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
             {/* Custom right icon */}
             {rightIcon && (
-              <div className="text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0">
+              <div className="text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0">
                 {rightIcon}
               </div>
             )}
@@ -179,7 +179,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <button
                 type="button"
                 onClick={handleClear}
-                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                className="text-muted-foreground hover:text-foreground transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
                 tabIndex={-1}
               >
                 <X />
@@ -191,7 +191,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                className="text-muted-foreground hover:text-foreground transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
                 tabIndex={-1}
               >
                 {showPassword ? <EyeOff /> : <Eye />}
@@ -527,7 +527,7 @@ import { Search, User, Mail } from "lucide-react";
           <Button
             type="submit" 
             variant="default"
-            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
+            className="w-full bg-[hsl(var(--hu-primary))] text-primary-foreground py-2 px-4 rounded-ele font-medium hover:opacity-90 transition-opacity"
             size="lg"
           >
             Sign In
@@ -606,7 +606,7 @@ export function LoginForm() {
           size="lg"
         />
         {errors.email && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.email}
           </p>
         )}
@@ -627,7 +627,7 @@ export function LoginForm() {
           size="lg"
         />
         {errors.password && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.password}
           </p>
         )}
@@ -637,7 +637,7 @@ export function LoginForm() {
         variant="default"
         size="lg"
         type="submit"
-        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
+        className="w-full bg-[hsl(var(--hu-primary))] text-primary-foreground py-2 px-4 rounded-ele font-medium hover:opacity-90 transition-opacity"
       >
         Sign In
       </Button>
@@ -700,7 +700,7 @@ export function LoginForm() {
           <Button
             type="submit"
             size="lg"
-            className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
+            className="w-full bg-[hsl(var(--hu-primary))] text-primary-foreground py-2 px-4 rounded-ele font-medium hover:opacity-90 transition-opacity"
           >
             Create Account
           </Button>
@@ -802,7 +802,7 @@ export function RegistrationForm() {
           size="lg"
         />
         {errors.username && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.username}
           </p>
         )}
@@ -824,7 +824,7 @@ export function RegistrationForm() {
           size="lg"
         />
         {errors.email && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.email}
           </p>
         )}
@@ -845,7 +845,7 @@ export function RegistrationForm() {
           size="lg"
         />
         {errors.password && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.password}
           </p>
         )}
@@ -866,7 +866,7 @@ export function RegistrationForm() {
           size="lg"
         />
         {errors.confirmPassword && (
-          <p className="text-[hsl(var(--hu-destructive))] text-xs mt-1">
+          <p className="text-destructive text-xs mt-1">
             {errors.confirmPassword}
           </p>
         )}
@@ -875,7 +875,7 @@ export function RegistrationForm() {
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] py-2 px-4 rounded-[var(--radius)] font-medium hover:opacity-90 transition-opacity"
+        className="w-full bg-[hsl(var(--hu-primary))] text-primary-foreground py-2 px-4 rounded-ele font-medium hover:opacity-90 transition-opacity"
       >
         Create Account
       </Button>

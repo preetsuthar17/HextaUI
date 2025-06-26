@@ -10,13 +10,13 @@ import { Button } from "@/components/ui/button";
 import ReactDOM from "react-dom";
 
 const datePickerVariants = cva(
-  "inline-flex h-9 w-full items-center justify-between rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm font-medium text-[hsl(var(--hu-foreground))] transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))]",
+  "inline-flex h-9 w-full items-center justify-between rounded-ele border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 border border-border bg-[hsl(var(--hu-input))]",
   {
     variants: {
       variant: {
         default: "  shadow-sm/2",
         outline: "border-2  shadow-sm/2",
-        ghost: "border-transparent hover:border-[hsl(var(--hu-border))]",
+        ghost: "border-transparent hover:border-border",
       },
       size: {
         sm: "h-7 sm:h-8 px-2 text-xs",
@@ -180,7 +180,7 @@ export function DatePicker({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+          className="z-[9999] rounded-ele border border-border bg-background shadow-xl"
           data-datepicker-calendar="true"
           style={{
             position: "fixed",
@@ -217,9 +217,7 @@ export function DatePicker({
       >
         <span className="flex items-center gap-2">
           {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
-          <span
-            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
-          >
+          <span className={cn(!value && "text-muted-foreground")}>
             {value ? formatDateFn(value) : placeholder}
           </span>
         </span>
@@ -385,9 +383,7 @@ export function DateRangePicker({
       >
         <span className="flex items-center gap-2">
           {showIcon && <CalendarIcon className="h-4 w-4 opacity-50" />}
-          <span
-            className={cn(!value && "text-[hsl(var(--hu-muted-foreground))]")}
-          >
+          <span className={cn(!value && "text-muted-foreground")}>
             {value ? formatRange(value) : placeholder}
           </span>
         </span>
@@ -408,7 +404,7 @@ export function DateRangePicker({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="z-[9999] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] shadow-xl"
+                className="z-[9999] rounded-ele border border-border bg-background shadow-xl"
                 data-datepicker-calendar="true"
                 style={{
                   position: "fixed",

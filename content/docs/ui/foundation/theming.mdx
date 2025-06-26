@@ -4,21 +4,41 @@ description: How to customize the look and feel of HextaUI components using them
 icon: Palette
 ---
 
-### Font Family
-
-HextaUI uses two primary font families for its components:
-
-- **Geist**: A versatile sans-serif font for body text and UI elements.
-- **JetBrains Mono**: A monospaced font for code blocks and technical content.
-
 ### Variables
 
 ```css title="app/globals.css"
-:root {
-  --hu-font-geist: var(--font-geist);
-  --hu-font-jetbrains: var(--font-jetbrains-mono);
+@theme {
+  --radius-ele: var(--radius); /* Element radius */
+  --radius-card: var(--card-radius); /* Card radius */
 
-  --radius: 0.75rem;
+  --color-background: hsl(var(--hu-background));
+  --color-foreground: hsl(var(--hu-foreground));
+
+  --color-card: hsl(var(--hu-card));
+  --color-card-foreground: hsl(var(--hu-card-foreground));
+
+  --color-primary: hsl(var(--hu-primary));
+  --color-primary-foreground: hsl(var(--hu-primary-foreground));
+
+  --color-accent: hsl(var(--hu-accent));
+  --color-accent-foreground: hsl(var(--hu-accent-foreground));
+
+  --color-secondary: hsl(var(--hu-secondary));
+  --color-secondary-foreground: hsl(var(--hu-secondary-foreground));
+
+  --color-muted: hsl(var(--hu-muted));
+  --color-muted-foreground: hsl(var(--hu-muted-foreground));
+
+  --color-destructive: hsl(var(--hu-destructive));
+  --color-destructive-foreground: hsl(var(--hu-destructive-foreground));
+
+  --color-border: hsl(var(--hu-border));
+  --color-input: hsl(var(--hu-input));
+  --color-ring: hsl(var(--hu-ring));
+}
+
+:root {
+  --radius: 0.8rem;
   --card-radius: 1rem;
 
   --hu-background: 0, 0%, 100%;
@@ -27,7 +47,7 @@ HextaUI uses two primary font families for its components:
   --hu-card: 0, 0%, 99%;
   --hu-card-foreground: 0, 0%, 14%;
 
-  --hu-primary: 0, 0%, 20%;
+  --hu-primary: 235, 100%, 60%;
   --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 97%;
@@ -54,8 +74,8 @@ HextaUI uses two primary font families for its components:
   --hu-card: 0, 0%, 9%;
   --hu-card-foreground: 0, 0%, 100%;
 
-  --hu-primary: 0, 0%, 100%;
-  --hu-primary-foreground: 0, 0%, 20%;
+  --hu-primary: 235, 100%, 60%;
+  --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 15%;
   --hu-secondary-foreground: 0, 0%, 100%;

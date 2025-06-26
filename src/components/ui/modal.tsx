@@ -39,12 +39,12 @@ const ModalContent = React.forwardRef<
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 w-[95%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] p-6 shadow-lg",
+          "fixed left-[50%] top-[50%] z-50 w-[95%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-background border border-border p-6 shadow-lg",
           className
         )}
       >
         {children}
-        <ModalClose className="absolute right-4 top-4 rounded-lg p-1.5 mx-2 text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] transition-colors">
+        <ModalClose className="absolute right-4 top-4 rounded-lg p-1.5 mx-2 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
           <X size={16} />
           <span className="sr-only">Close</span>
         </ModalClose>
@@ -89,7 +89,7 @@ const ModalTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight text-[hsl(var(--hu-foreground))]",
+      "text-lg font-semibold leading-none tracking-tight text-foreground",
       className
     )}
     {...props}
@@ -103,7 +103,7 @@ const ModalDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-[hsl(var(--hu-muted-foreground))]", className)}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 ));

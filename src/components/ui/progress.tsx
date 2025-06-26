@@ -7,16 +7,15 @@ import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 
 const progressVariants = cva(
-  "relative overflow-hidden rounded-full bg-[hsl(var(--hu-secondary))]",
+  "relative overflow-hidden rounded-full bg-secondary",
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-secondary))]",
-        primary: "bg-[hsl(var(--hu-primary))]/10",
-        secondary: "bg-[hsl(var(--hu-secondary))]",
-        destructive: "bg-[hsl(var(--hu-destructive))]/10",
-        outline:
-          "bg-[hsl(var(--hu-accent))] border border-[hsl(var(--hu-border))]",
+        default: "bg-secondary",
+        primary: "bg-primary/10",
+        secondary: "bg-secondary",
+        destructive: "bg-destructive/10",
+        outline: "bg-accent border border-border",
       },
       size: {
         sm: "h-1.5",
@@ -28,7 +27,7 @@ const progressVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const progressIndicatorVariants = cva(
@@ -36,17 +35,17 @@ const progressIndicatorVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-primary))]",
-        primary: "bg-[hsl(var(--hu-primary))]",
-        secondary: "bg-[hsl(var(--hu-foreground))]",
-        destructive: "bg-[hsl(var(--hu-destructive))]",
-        outline: "bg-[hsl(var(--hu-primary))]",
+        default: "bg-primary",
+        primary: "bg-primary",
+        secondary: "bg-foreground",
+        destructive: "bg-destructive",
+        outline: "bg-primary",
       },
     },
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 const circularProgressVariants = cva(
@@ -62,7 +61,7 @@ const circularProgressVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  },
+  }
 );
 
 export interface ProgressProps
@@ -93,7 +92,7 @@ const Progress = React.forwardRef<
       label,
       ...props
     },
-    ref,
+    ref
   ) => {
     const progress = Math.min(Math.max(value, 0), 100);
     if (type === "circular") {
@@ -104,11 +103,7 @@ const Progress = React.forwardRef<
 
       return (
         <div className="space-y-2">
-          {label && (
-            <div className="text-sm  text-[hsl(var(--hu-foreground))]">
-              {label}
-            </div>
-          )}
+          {label && <div className="text-sm  text-foreground">{label}</div>}
           <div className={cn(circularProgressVariants({ size }), className)}>
             <svg
               width={circleSize}
@@ -134,10 +129,10 @@ const Progress = React.forwardRef<
                   variant === "destructive"
                     ? "hsl(var(--hu-destructive))"
                     : variant === "secondary"
-                      ? "hsl(var(--hu-secondary-foreground))"
-                      : variant === "outline"
-                        ? "hsl(var(--hu-foreground))"
-                        : "hsl(var(--hu-primary))"
+                    ? "hsl(var(--hu-secondary-foreground))"
+                    : variant === "outline"
+                    ? "hsl(var(--hu-foreground))"
+                    : "hsl(var(--hu-primary))"
                 }
                 strokeWidth={strokeWidth || 8}
                 fill="transparent"
@@ -168,7 +163,7 @@ const Progress = React.forwardRef<
           </div>
           {showValue && (
             <motion.div
-              className="text-center text-xs  text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+              className="text-center text-xs  text-muted-foreground tabular-nums"
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
@@ -181,11 +176,7 @@ const Progress = React.forwardRef<
     }
     return (
       <div className="space-y-2">
-        {label && (
-          <div className="text-sm  text-[hsl(var(--hu-foreground))]">
-            {label}
-          </div>
-        )}
+        {label && <div className="text-sm  text-foreground">{label}</div>}
         <ProgressPrimitive.Root
           ref={ref}
           className={cn(progressVariants({ variant, size }), className)}
@@ -207,7 +198,7 @@ const Progress = React.forwardRef<
         </ProgressPrimitive.Root>
         {showValue && (
           <motion.div
-            className="text-right text-xs font-semibold text-[hsl(var(--hu-muted-foreground))] tabular-nums"
+            className="text-right text-xs font-semibold text-muted-foreground tabular-nums"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}
@@ -217,7 +208,7 @@ const Progress = React.forwardRef<
         )}
       </div>
     );
-  },
+  }
 );
 
 Progress.displayName = ProgressPrimitive.Root.displayName;

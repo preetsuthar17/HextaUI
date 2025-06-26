@@ -34,8 +34,8 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "mx-auto flex h-16 items-end gap-4 rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]  px-4 pb-3",
-        className,
+        "mx-auto flex h-16 items-end gap-4 rounded-ele bg-card border border-border  px-4 pb-3",
+        className
       )}
     >
       {items.map((item, index) => (
@@ -43,7 +43,7 @@ export const AnimatedDock = ({ className, items }: AnimatedDockProps) => {
           <Link
             href={item.link}
             target={item.target}
-            className="grow flex items-center justify-center w-full h-full text-[hsl(var(--hu-primary-foreground))]"
+            className="grow flex items-center justify-center w-full h-full text-primary-foreground"
           >
             {item.Icon}
           </Link>
@@ -84,7 +84,7 @@ export const DockItem = ({ mouseX, children }: DockItemProps) => {
     <motion.div
       ref={ref}
       style={{ width }}
-      className="aspect-square w-10 rounded-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] flex items-center justify-center"
+      className="aspect-square w-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center"
     >
       <motion.div
         style={{ scale: iconSpring }}

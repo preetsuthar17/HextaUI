@@ -287,13 +287,13 @@ export function AdvancedTable() {
       render: (value, row) => (
         <div className="flex items-center gap-3">
           <Avatar className="h-8 w-8">
-            <div className="flex items-center justify-center w-full h-full bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] text-xs font-medium">
+            <div className="flex items-center justify-center w-full h-full bg-primary text-primary-foreground text-xs font-medium">
               {value.charAt(0)}
             </div>
           </Avatar>
           <div>
             <div className="font-medium">{value}</div>
-            <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+            <div className="text-xs text-muted-foreground">
               {row.department}
             </div>
           </div>
@@ -306,11 +306,11 @@ export function AdvancedTable() {
       render: (value, row) => (
         <div className="space-y-1">
           <div className="flex items-center gap-2 text-sm">
-            <Mail className="h-3 w-3 text-[hsl(var(--hu-muted-foreground))]" />
+            <Mail className="h-3 w-3 text-muted-foreground" />
             {value}
           </div>
           {row.phone && (
-            <div className="flex items-center gap-2 text-xs text-[hsl(var(--hu-muted-foreground))]">
+            <div className="flex items-center gap-2 text-xs text-muted-foreground">
               <Phone className="h-3 w-3" />
               {row.phone}
             </div>
@@ -425,9 +425,7 @@ export function ProductsTable() {
       render: (value, row) => (
         <div>
           <div className="font-medium">{value}</div>
-          <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
-            {row.category}
-          </div>
+          <div className="text-xs text-muted-foreground">{row.category}</div>
         </div>
       ),
     },
@@ -449,8 +447,8 @@ export function ProductsTable() {
             row.status === "out-of-stock"
               ? "text-red-600"
               : row.status === "low-stock"
-                ? "text-yellow-600"
-                : "text-green-600"
+              ? "text-yellow-600"
+              : "text-green-600"
           }`}
         >
           {value}
@@ -605,8 +603,8 @@ export function MinimalTable() {
             value === "active"
               ? "bg-green-100 text-green-800"
               : value === "inactive"
-                ? "bg-gray-100 text-gray-800"
-                : "bg-yellow-100 text-yellow-800"
+              ? "bg-gray-100 text-gray-800"
+              : "bg-yellow-100 text-yellow-800"
           }`}
         >
           {value}

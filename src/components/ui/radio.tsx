@@ -19,7 +19,7 @@ const radioGroupVariants = cva("grid gap-2", {
 });
 
 const radioVariants = cva(
-  "aspect-square rounded-full border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-sm/2",
+  "aspect-square rounded-full border border-border text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary shadow-sm/2",
   {
     variants: {
       size: {
@@ -72,9 +72,7 @@ const RadioGroup = React.forwardRef<
               </label>
             )}
             {description && (
-              <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
-                {description}
-              </p>
+              <p className="text-xs text-muted-foreground">{description}</p>
             )}
           </div>
         )}
@@ -86,9 +84,7 @@ const RadioGroup = React.forwardRef<
           {...props}
         />
 
-        {error && (
-          <p className="text-xs text-[hsl(var(--hu-destructive))]">{error}</p>
-        )}
+        {error && <p className="text-xs text-destructive">{error}</p>}
       </div>
     );
   }
@@ -117,7 +113,7 @@ const RadioItem = React.forwardRef<
               <AnimatePresence>
                 <motion.div
                   key="dot"
-                  className="rounded-full bg-[hsl(var(--hu-primary))]"
+                  className="rounded-full bg-primary"
                   style={{
                     width: dotSize,
                     height: dotSize,
@@ -146,7 +142,7 @@ const RadioItem = React.forwardRef<
               </label>
             )}
             {description && (
-              <p className="text-xs text-[hsl(var(--hu-muted-foreground))] peer-disabled:opacity-70">
+              <p className="text-xs text-muted-foreground peer-disabled:opacity-70">
                 {description}
               </p>
             )}

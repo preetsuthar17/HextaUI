@@ -62,16 +62,16 @@ import {
 } from "lucide-react";
 
 const fileUploadVariants = cva(
-  "relative rounded-[var(--card-radius)] border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
+  "relative rounded-card border transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group w-full",
   {
     variants: {
       variant: {
         default:
-          "border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] hover:border-[hsl(var(--hu-primary))]/30",
+          "border-border bg-card hover:border-[hsl(var(--hu-primary))]/30",
         dashed:
-          "border-dashed border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] hover:border-[hsl(var(--hu-primary))]/50",
+          "border-dashed border-border bg-background hover:border-[hsl(var(--hu-primary))]/50",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))]/50 hover:bg-[hsl(var(--hu-accent))]",
+          "border-transparent bg-accent/50 hover:bg-accent",
       },
       size: {
         sm: "p-4 min-h-[120px]",
@@ -226,12 +226,12 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           )}
         >
           <div className="flex flex-col items-center justify-center text-center space-y-3">
-            <UploadCloud className="w-12 h-12 text-[hsl(var(--hu-muted-foreground))]" />
+            <UploadCloud className="w-12 h-12 text-muted-foreground" />
             <div className="space-y-1">
               <h3 className="text-lg font-medium">
                 {isDragging ? "Drop files here" : "Upload files"}
               </h3>
-              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              <p className="text-sm text-muted-foreground">
                 Drag and drop files here, or click to browse
               </p>
             </div>
@@ -257,16 +257,16 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
-                  className="flex items-center gap-3 p-3 rounded-lg bg-[hsl(var(--hu-card))] border"
+                  className="flex items-center gap-3 p-3 rounded-lg bg-card border"
                 >
-                  <FileIcon className="w-8 h-8 text-[hsl(var(--hu-muted-foreground))]" />
+                  <FileIcon className="w-8 h-8 text-muted-foreground" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium truncate">{file.name}</p>
-                    <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    <p className="text-xs text-muted-foreground">
                       {formatFileSize(file.size)}
                     </p>
                     {file.status === "uploading" && (
-                      <div className="w-full h-1 bg-[hsl(var(--hu-accent))] rounded-full mt-1">
+                      <div className="w-full h-1 bg-accent rounded-full mt-1">
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${file.progress}%` }}
@@ -284,7 +284,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     )}
                     <button
                       onClick={() => removeFile(file.id)}
-                      className="p-1 hover:bg-[hsl(var(--hu-accent))] rounded"
+                      className="p-1 hover:bg-accent rounded"
                     >
                       <X className="w-4 h-4" />
                     </button>

@@ -40,7 +40,7 @@ export interface TeamInviteProps {
   onInvite?: (email: string, permission: PermissionLevel) => void;
   onUpdateMemberPermission?: (
     memberId: string,
-    permission: PermissionLevel,
+    permission: PermissionLevel
   ) => void;
   onCancel?: () => void;
 }
@@ -112,7 +112,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
       onCancel,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [inviteEmail, setInviteEmail] = useState("");
     const [invitePermission, setInvitePermission] =
@@ -134,7 +134,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
 
     const handleUpdatePermission = (
       memberId: string,
-      permission: PermissionLevel,
+      permission: PermissionLevel
     ) => {
       onUpdateMemberPermission?.(memberId, permission);
     };
@@ -155,7 +155,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
             <div className="flex-shrink-0">
               <Avatar size="lg">
                 <AvatarImage src={teamLogo} alt={teamName} />
-                <AvatarFallback className="bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))]">
+                <AvatarFallback className="bg-[hsl(var(--hu-primary))] text-primary-foreground">
                   {getInitials(teamName)}
                 </AvatarFallback>
               </Avatar>
@@ -164,7 +164,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
               <CardTitle className="text-lg font-semibold truncate">
                 {teamName}
               </CardTitle>
-              <p className="text-sm text-[hsl(var(--hu-muted-foreground))] flex items-center gap-1">
+              <p className="text-sm text-muted-foreground flex items-center gap-1">
                 <Users size={14} />
                 {totalMembers} {totalMembers === 1 ? "member" : "members"}
               </p>
@@ -255,7 +255,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: -10 }}
                           transition={{ duration: 0.2 }}
-                          className="flex items-center gap-3 p-2 rounded-[var(--radius)] hover:bg-[hsl(var(--hu-accent))] transition-colors"
+                          className="flex items-center gap-3 p-2 rounded-ele hover:bg-accent transition-colors"
                         >
                           <Avatar size="sm">
                             <AvatarImage
@@ -281,7 +281,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
                                 </Badge>
                               )}
                             </div>
-                            <p className="text-xs text-[hsl(var(--hu-muted-foreground))] truncate">
+                            <p className="text-xs text-muted-foreground truncate">
                               {member.email}
                             </p>
                           </div>
@@ -298,7 +298,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
                                 onValueChange={(value) =>
                                   handleUpdatePermission(
                                     member.id,
-                                    value as PermissionLevel,
+                                    value as PermissionLevel
                                   )
                                 }
                               >
@@ -324,7 +324,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
                                             <p className="font-medium">
                                               {option.label}
                                             </p>
-                                            <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                                            <p className="text-xs text-muted-foreground">
                                               {option.description}
                                             </p>
                                           </div>
@@ -360,7 +360,7 @@ const TeamInvite = React.forwardRef<HTMLDivElement, TeamInviteProps>(
         </CardContent>
       </Card>
     );
-  },
+  }
 );
 
 TeamInvite.displayName = "TeamInvite";

@@ -87,7 +87,7 @@ const CommandMenuTitle = React.forwardRef<
   <DialogPrimitive.Title
     ref={ref}
     className={cn(
-      "text-lg font-semibold leading-none tracking-tight text-[hsl(var(--hu-foreground))]",
+      "text-lg font-semibold leading-none tracking-tight text-foreground",
       className
     )}
     {...props}
@@ -101,7 +101,7 @@ const CommandMenuDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <DialogPrimitive.Description
     ref={ref}
-    className={cn("text-sm text-[hsl(var(--hu-muted-foreground))]", className)}
+    className={cn("text-sm text-muted-foreground", className)}
     {...props}
   />
 ));
@@ -176,7 +176,7 @@ const CommandMenuContent = React.forwardRef<
             transition={{ duration: 0.2, ease: "easeOut" }}
             className={cn(
               "fixed left-[50%] top-[30%] z-50 w-[95%] max-w-2xl translate-x-[-50%] translate-y-[-50%]",
-              "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--card-radius)] shadow-lg",
+              "bg-background border border-border rounded-card shadow-lg",
               "overflow-hidden",
               className
             )}
@@ -196,7 +196,7 @@ const CommandMenuContent = React.forwardRef<
 
               {children}
 
-              <CommandMenuClose className="absolute right-3 top-3 rounded-lg p-1.5 text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] transition-colors">
+              <CommandMenuClose className="absolute right-3 top-3 rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
                 <X size={14} />
                 <span className="sr-only">Close</span>
               </CommandMenuClose>
@@ -230,14 +230,14 @@ const CommandMenuInput = React.forwardRef<
     const { value, setValue } = useCommandMenu();
 
     return (
-      <div className="flex items-center border-b border-[hsl(var(--hu-border))] px-3 py-0">
-        <Search className="mr-3 h-4 w-4 shrink-0 text-[hsl(var(--hu-muted-foreground))]" />
+      <div className="flex items-center border-b border-border px-3 py-0">
+        <Search className="mr-3 h-4 w-4 shrink-0 text-muted-foreground" />
         <input
           ref={ref}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           className={cn(
-            "flex h-12 w-full rounded-none border-0 bg-transparent py-3 text-sm outline-none placeholder:text-[hsl(var(--hu-muted-foreground))] disabled:cursor-not-allowed disabled:opacity-50",
+            "flex h-12 w-full rounded-none border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
             className
           )}
           placeholder={placeholder}
@@ -326,7 +326,7 @@ const CommandMenuGroup = React.forwardRef<
 >(({ className, children, heading, ...props }, ref) => (
   <div ref={ref} className={cn("", className)} {...props}>
     {heading && (
-      <div className="px-2 py-1.5 text-xs font-medium text-[hsl(var(--hu-muted-foreground))] uppercase tracking-wider">
+      <div className="px-2 py-1.5 text-xs font-medium text-muted-foreground uppercase tracking-wider">
         {heading}
       </div>
     )}
@@ -386,10 +386,9 @@ const CommandMenuItem = React.forwardRef<
         ref={ref}
         data-command-item
         className={cn(
-          "relative flex cursor-default select-none items-center rounded-[var(--radius)] px-2 py-2 text-sm outline-none transition-colors gap-2",
-          "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
-          isSelected &&
-            "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]",
+          "relative flex cursor-default select-none items-center rounded-ele px-2 py-2 text-sm outline-none transition-colors gap-2",
+          "hover:bg-accent hover:text-accent-foreground",
+          isSelected && "bg-accent text-accent-foreground",
           disabled && "pointer-events-none opacity-50",
           className
         )}
@@ -408,9 +407,7 @@ const CommandMenuItem = React.forwardRef<
             {shortcut.split("+").map((key, i) => (
               <React.Fragment key={key}>
                 {i > 0 && (
-                  <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
-                    +
-                  </span>
+                  <span className="text-muted-foreground text-xs">+</span>
                 )}
                 <Kbd size="xs">
                   {key === "cmd" || key === "⌘"
@@ -442,7 +439,7 @@ const CommandMenuSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-[hsl(var(--hu-border))]", className)}
+    className={cn("-mx-1 my-1 h-px bg-border", className)}
     {...props}
   />
 ));
@@ -455,10 +452,7 @@ const CommandMenuEmpty = React.forwardRef<
 >(({ className, children = "No results found.", ...props }, ref) => (
   <div
     ref={ref}
-    className={cn(
-      "py-6 text-center text-sm text-[hsl(var(--hu-muted-foreground))]",
-      className
-    )}
+    className={cn("py-6 text-center text-sm text-muted-foreground", className)}
     {...props}
   >
     {children}

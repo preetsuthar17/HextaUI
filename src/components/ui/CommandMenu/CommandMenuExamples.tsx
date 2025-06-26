@@ -119,7 +119,7 @@ export const SearchCommandMenu = () => {
   ];
 
   const filteredResults = searchResults.filter((item) =>
-    item.name.toLowerCase().includes(searchValue.toLowerCase()),
+    item.name.toLowerCase().includes(searchValue.toLowerCase())
   );
 
   return (
@@ -156,7 +156,7 @@ export const SearchCommandMenu = () => {
                   >
                     <div className="flex flex-col">
                       <span>{item.name}</span>
-                      <span className="text-xs text-[hsl(var(--hu-muted-foreground))] capitalize">
+                      <span className="text-xs text-muted-foreground capitalize">
                         {item.type}
                       </span>
                     </div>
@@ -354,7 +354,7 @@ export const ComplexCommandMenu = () => {
     return allItems.filter(
       (item) =>
         item.name.toLowerCase().includes(value.toLowerCase()) ||
-        item.type.toLowerCase().includes(value.toLowerCase()),
+        item.type.toLowerCase().includes(value.toLowerCase())
     );
   }, [value]);
 
@@ -390,7 +390,7 @@ export const ComplexCommandMenu = () => {
         <Button className="gap-2">
           <Search size={16} />
           Command Palette
-          <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-muted))] px-1.5 font-mono text-[10px] font-medium opacity-100 ml-auto flex">
+          <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 ml-auto flex">
             ⌘K
           </kbd>
         </Button>

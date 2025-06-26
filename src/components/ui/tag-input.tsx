@@ -8,13 +8,12 @@ import { Chip } from "@/components/ui/chip";
 import { X } from "lucide-react";
 
 const tagInputVariants = cva(
-  "min-h-9 w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] transition-all focus-within:outline-none focus-within:ring-2 focus-within:ring-[hsl(var(--hu-ring))] focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "min-h-9 w-full rounded-ele border border-border bg-input px-3 py-2 text-sm ring-offset-background transition-all focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-[hsl(var(--hu-border))]",
-        destructive:
-          "border-[hsl(var(--hu-destructive))] focus-within:ring-[hsl(var(--hu-destructive))]",
+        default: "border-border",
+        destructive: "border-destructive focus-within:ring-destructive",
       },
       size: {
         sm: "min-h-8 px-2 py-1 text-xs",
@@ -201,7 +200,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
               onKeyDown={handleKeyDown}
               placeholder={tags.length === 0 ? placeholder : ""}
               disabled={disabled || (maxTags ? tags.length >= maxTags : false)}
-              className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-[hsl(var(--hu-muted-foreground))] disabled:cursor-not-allowed"
+              className="flex-1 min-w-[120px] bg-transparent outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed"
               {...props}
             />
           </div>
@@ -211,10 +210,10 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
             type="button"
             onClick={handleClearAll}
             disabled={disabled}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-[hsl(var(--hu-accent))] transition-colors disabled:pointer-events-none disabled:opacity-50"
+            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-accent transition-colors disabled:pointer-events-none disabled:opacity-50"
             aria-label="Clear all tags"
           >
-            <X size={14} className="text-[hsl(var(--hu-muted-foreground))]" />
+            <X size={14} className="text-muted-foreground" />
           </button>
         )}
       </div>

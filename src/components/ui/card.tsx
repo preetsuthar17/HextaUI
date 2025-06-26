@@ -5,13 +5,13 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative rounded-[var(--card-radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden shadow-sm/2",
+  "relative rounded-card bg-card text-card-foreground transition-all duration-300 ease-out overflow-hidden shadow-sm/2",
   {
     variants: {
       variant: {
-        default: "border border-[hsl(var(--hu-border))]",
-        outline: "border-2 border-[hsl(var(--hu-border))]",
-        ghost: "border-transparent hover:bg-[hsl(var(--hu-accent))] ",
+        default: "border border-border",
+        outline: "border-2 border-border",
+        ghost: "border-transparent hover:bg-accent ",
       },
       size: {
         sm: "p-4",
@@ -61,7 +61,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight tracking-tight text-[hsl(var(--hu-foreground))]",
+      "text-xl font-semibold leading-tight tracking-tight text-foreground",
       className
     )}
     {...props}
@@ -75,10 +75,7 @@ const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn(
-      "text-sm text-[hsl(var(--hu-muted-foreground))] leading-relaxed",
-      className
-    )}
+    className={cn("text-sm text-muted-foreground leading-relaxed", className)}
     {...props}
   />
 ));

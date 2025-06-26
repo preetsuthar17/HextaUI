@@ -128,7 +128,7 @@ export function CheckboxWithError() {
       />
       <Button
         onClick={handleSubmit}
-        className="px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-md hover:bg-[hsl(var(--hu-primary))]/80 transition-colors"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition-colors"
       >
         Submit
       </Button>
@@ -171,7 +171,7 @@ export function CheckboxGroup() {
         ))}
       </div>
       {selectedSkills.length > 0 && (
-        <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-xs text-muted-foreground">
           Selected: {selectedSkills.join(", ")}
         </p>
       )}

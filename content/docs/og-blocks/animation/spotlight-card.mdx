@@ -14,7 +14,7 @@ import { FaBolt } from "react-icons/fa";
   <Tab value="Preview">
     <PreviewContainer>
       <SpotlightCard
-        className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+        className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-ele bg-card border border-border"
         spotlightColor="#ffffff30"
         lightThemeSpotlightColor="#00000020"
         darkThemeSpotlightColor="#ffffff30"
@@ -32,7 +32,7 @@ import { FaBolt } from "react-icons/fa";
   </Tab>
   <Tab value="Code">
     <SpotlightCard
-      className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+      className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-ele bg-card border border-border"
       spotlightColor="#ffffff30"
       lightThemeSpotlightColor="#00000020"
       darkThemeSpotlightColor="#ffffff30"
@@ -158,7 +158,7 @@ export const SpotlightCard = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-[var(--)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] overflow-hidden p-8 ${className}`}
+      className={`relative rounded-[var(--)] border border-border bg-card overflow-hidden p-8 ${className}`}
     >
       {" "}
       <div
@@ -194,7 +194,7 @@ import { SpotlightCard } from "@/components/ui/spotlight-card";
 
 ```tsx
 <SpotlightCard
-  className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))]"
+  className="magic-card flex flex-col gap-4 max-w-[30rem] rounded-ele bg-card border border-border"
   spotlightColor="#ffffff30"
   lightThemeSpotlightColor="#00000020"
   darkThemeSpotlightColor="#ffffff30"

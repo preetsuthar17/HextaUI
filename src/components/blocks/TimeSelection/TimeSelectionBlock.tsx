@@ -13,7 +13,7 @@ export default function TimeSelectionBlock() {
   const handleApply = (
     startTime: string,
     endTime: string,
-    duration: number,
+    duration: number
   ) => {
     setSelectedTime({ start: startTime, end: endTime, duration });
     // In a real app, you might save this to a backend or local state
@@ -26,8 +26,8 @@ export default function TimeSelectionBlock() {
       parseInt(hour) === 0
         ? 12
         : parseInt(hour) > 12
-          ? parseInt(hour) - 12
-          : parseInt(hour);
+        ? parseInt(hour) - 12
+        : parseInt(hour);
     const ampm = parseInt(hour) < 12 ? "AM" : "PM";
     return `${hour12}:${minute} ${ampm}`;
   };
@@ -61,13 +61,13 @@ export default function TimeSelectionBlock() {
       />
 
       {selectedTime.start && selectedTime.end && (
-        <div className="p-4 bg-[hsl(var(--hu-accent))] rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+        <div className="p-4 bg-accent rounded-ele border border-border">
           <h4 className="font-medium mb-2">Selected Time Range:</h4>
-          <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             From {formatTime(selectedTime.start)} to{" "}
             {formatTime(selectedTime.end)}
           </p>
-          <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             Duration: {formatDuration(selectedTime.duration)}
           </p>
         </div>

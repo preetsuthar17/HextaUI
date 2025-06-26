@@ -22,7 +22,7 @@ const ComponentShowcase = () => {
             Components
           </Badge>
           <h2 className="text-4xl font-medium">50+ components ready to use</h2>
-          <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
             Copy and paste components built with Radix UI, Tailwind CSS, and
             TypeScript.
           </p>
@@ -71,15 +71,13 @@ const ComponentShowcase = () => {
             <h3 className="font-medium text-left">Progress & Sliders</h3>
             <div className="space-y-4">
               <div className="space-y-2">
-                <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                <div className="text-sm text-muted-foreground">
                   Progress: 65%
                 </div>
                 <Progress value={65} className="w-full" />
               </div>
               <div className="space-y-2">
-                <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
-                  Slider
-                </div>
+                <div className="text-sm text-muted-foreground">Slider</div>
                 <Slider
                   defaultValue={[50]}
                   max={100}
@@ -145,12 +143,12 @@ const ComponentShowcase = () => {
             <div className="space-y-4">
               <div className="p-3 border rounded-md">
                 <div className="text-sm font-medium">Card Content</div>
-                <div className="text-xs text-[hsl(var(--hu-muted-foreground))] mt-1">
+                <div className="text-xs text-muted-foreground mt-1">
                   This is a card component
                 </div>
               </div>
               <Separator />
-              <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              <div className="text-sm text-muted-foreground">
                 Separator above
               </div>
             </div>
@@ -169,7 +167,7 @@ const ComponentShowcase = () => {
           </Button>
         </div>
 
-        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm text-muted-foreground">
           All components are accessible, customizable, and production-ready.
         </p>
       </section>

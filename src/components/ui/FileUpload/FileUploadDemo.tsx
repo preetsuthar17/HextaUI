@@ -121,7 +121,7 @@ export function FileUploadDemo() {
 
           {/* Status Display */}
           {files.length > 0 && (
-            <div className="p-4 bg-[hsl(var(--hu-accent))] rounded-lg max-w-2xl">
+            <div className="p-4 bg-accent rounded-lg max-w-2xl">
               <p className="text-sm font-medium">
                 Status: {files.length} file(s) selected
               </p>

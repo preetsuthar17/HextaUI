@@ -6,15 +6,14 @@ import { cn } from "@/lib/utils";
 import { X } from "lucide-react";
 
 const textareaVariants = cva(
-  "flex min-h-[60px] w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors scrollbar-thin scrollbar-track-transparent scrollbar-thumb-[hsl(var(--hu-border))] hover:scrollbar-thumb-[hsl(var(--hu-muted-foreground))] scrollbar-corner-transparent shadow-sm/2",
+  "flex min-h-[60px] w-full rounded-ele border border-border bg-input px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 resize-vertical transition-colors scrollbar-thin scrollbar-track-transparent scrollbar-thumb-border hover:scrollbar-thumb-muted-foreground scrollbar-corner-transparent shadow-sm/2",
   {
     variants: {
       variant: {
-        default: "border-[hsl(var(--hu-border))]",
-        destructive:
-          "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
+        default: "border-border",
+        destructive: "border-destructive focus-visible:ring-destructive",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-[hsl(var(--hu-border))]",
+          "border-transparent bg-accent focus-visible:bg-input focus-visible:border-border",
       },
       size: {
         default: "min-h-[80px] px-3 py-2",
@@ -136,7 +135,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             <button
               type="button"
               onClick={handleClear}
-              className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+              className="text-muted-foreground hover:text-foreground transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
               tabIndex={-1}
             >
               <X />

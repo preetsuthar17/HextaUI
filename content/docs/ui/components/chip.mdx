@@ -69,15 +69,15 @@ const chipVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/80 focus-visible:ring-[hsl(var(--hu-ring))] shadow-sm/2",
+          "border-transparent bg-[hsl(var(--hu-primary))] text-primary-foreground hover:bg-[hsl(var(--hu-primary))]/80 focus-visible:ring-ring shadow-sm/2",
         secondary:
-          "border-transparent bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] hover:bg-[hsl(var(--hu-secondary))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 focus-visible:ring-ring",
         destructive:
-          "border-transparent bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] hover:bg-[hsl(var(--hu-destructive))]/80 focus-visible:ring-[hsl(var(--hu-destructive))] shadow-sm/2",
+          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80 focus-visible:ring-destructive shadow-sm/2",
         outline:
-          "border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))] shadow-sm/2",
+          "border-border text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring shadow-sm/2",
         ghost:
-          "border-transparent text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "border-transparent text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
       },
       size: {
         sm: "h-6 px-2 gap-1 text-sm",

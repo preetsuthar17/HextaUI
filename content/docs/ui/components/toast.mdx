@@ -70,13 +70,13 @@ const Toaster = ({ ...props }) => {
       toastOptions={{
         classNames: {
           toast:
-            "group toast group-[.toaster]:bg-[hsl(var(--hu-card))] group-[.toaster]:text-[hsl(var(--hu-foreground))] group-[.toaster]:border-[hsl(var(--hu-border))] group-[.toaster]:rounded-[var(--radius)] group-[.toaster]:p-4",
+            "group toast group-[.toaster]:bg-card group-[.toaster]:text-foreground group-[.toaster]:border-border group-[.toaster]:rounded-ele group-[.toaster]:p-4",
           description:
-            "group-[.toast]:text-[hsl(var(--hu-muted-foreground))] group-[.toast]:text-sm",
+            "group-[.toast]:text-muted-foreground group-[.toast]:text-sm",
           actionButton:
-            "group-[.toast]:bg-[hsl(var(--hu-primary))] group-[.toast]:text-[hsl(var(--hu-primary-foreground))] group-[.toast]:rounded-[var(--radius)] group-[.toast]:px-3 group-[.toast]:py-1.5",
+            "group-[.toast]:bg-[hsl(var(--hu-primary))] group-[.toast]:text-primary-foreground group-[.toast]:rounded-ele group-[.toast]:px-3 group-[.toast]:py-1.5",
           cancelButton:
-            "group-[.toast]:bg-[hsl(var(--hu-accent))] group-[.toast]:text-[hsl(var(--hu-accent-foreground))] group-[.toast]:rounded-[var(--radius)] group-[.toast]:px-3 group-[.toast]:py-1.5",
+            "group-[.toast]:bg-accent group-[.toast]:text-accent-foreground group-[.toast]:rounded-ele group-[.toast]:px-3 group-[.toast]:py-1.5",
         },
       }}
       {...props}

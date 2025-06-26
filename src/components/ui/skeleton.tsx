@@ -4,31 +4,28 @@ import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
-const skeletonVariants = cva(
-  "animate-pulse rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]",
-  {
-    variants: {
-      variant: {
-        default: "bg-[hsl(var(--hu-accent))]",
-        secondary: "bg-[hsl(var(--hu-accent))]/20",
-        text: "bg-[hsl(var(--hu-accent))] rounded-md",
-        circle: "rounded-full",
-        avatar: "rounded-full bg-[hsl(var(--hu-accent))]",
-      },
-      size: {
-        sm: "h-4",
-        default: "h-6",
-        lg: "h-8",
-        xl: "h-10",
-        "2xl": "h-12",
-      },
+const skeletonVariants = cva("animate-pulse rounded-ele bg-accent", {
+  variants: {
+    variant: {
+      default: "bg-accent",
+      secondary: "bg-accent/20",
+      text: "bg-accent rounded-md",
+      circle: "rounded-full",
+      avatar: "rounded-full bg-accent",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    size: {
+      sm: "h-4",
+      default: "h-6",
+      lg: "h-8",
+      xl: "h-10",
+      "2xl": "h-12",
     },
   },
-);
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
 export interface SkeletonProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -64,7 +61,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
       style,
       ...props
     },
-    ref,
+    ref
   ) => {
     const customStyle = {
       width: typeof width === "number" ? `${width}px` : width,
@@ -81,13 +78,13 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           shimmer && "relative overflow-hidden",
           shimmer &&
             "before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent",
-          className,
+          className
         )}
         style={customStyle}
         {...props}
       />
     );
-  },
+  }
 );
 Skeleton.displayName = "Skeleton";
 
@@ -146,7 +143,7 @@ const SkeletonButton = React.forwardRef<
   return (
     <Skeleton
       ref={ref}
-      className={cn(selectedHeight, "w-20 rounded-[var(--radius)]", className)}
+      className={cn(selectedHeight, "w-20 rounded-ele", className)}
       {...props}
     />
   );
@@ -169,13 +166,13 @@ const SkeletonCard = React.forwardRef<
       showFooter = true,
       ...props
     },
-    ref,
+    ref
   ) => (
     <div
       ref={ref}
       className={cn(
-        "rounded-[var(--radius)] border bg-card p-0 overflow-hidden",
-        className,
+        "rounded-ele border bg-card p-0 overflow-hidden",
+        className
       )}
       {...props}
     >
@@ -202,7 +199,7 @@ const SkeletonCard = React.forwardRef<
         )}
       </div>
     </div>
-  ),
+  )
 );
 SkeletonCard.displayName = "SkeletonCard";
 

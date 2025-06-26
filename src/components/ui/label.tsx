@@ -9,9 +9,9 @@ const labelVariants = cva(
   {
     variants: {
       variant: {
-        default: "text-[hsl(var(--hu-foreground))]",
-        destructive: "text-[hsl(var(--hu-destructive))]",
-        muted: "text-[hsl(var(--hu-muted-foreground))]",
+        default: "text-foreground",
+        destructive: "text-destructive",
+        muted: "text-muted-foreground",
       },
       size: {
         default: "text-sm",
@@ -23,7 +23,7 @@ const labelVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface LabelProps
@@ -36,7 +36,7 @@ export interface LabelProps
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (
     { className, variant, size, required, optional, children, ...props },
-    ref,
+    ref
   ) => {
     return (
       <label
@@ -46,21 +46,18 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
         {required && (
-          <span
-            className="text-[hsl(var(--hu-destructive))] ml-1"
-            aria-label="required"
-          >
+          <span className="text-destructive ml-1" aria-label="required">
             *
           </span>
         )}
         {optional && !required && (
-          <span className="text-[hsl(var(--hu-muted-foreground))] ml-1 font-normal">
+          <span className="text-muted-foreground ml-1 font-normal">
             (optional)
           </span>
         )}
       </label>
     );
-  },
+  }
 );
 
 Label.displayName = "Label";

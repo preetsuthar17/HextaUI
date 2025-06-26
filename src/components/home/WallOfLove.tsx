@@ -66,7 +66,7 @@ const WallOfLove = () => {
           Wall of Love
         </Badge>
         <h2 className="text-4xl font-medium">Loved by developers worldwide</h2>
-        <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
           See what developers and designers are saying about HextaUI.
         </p>
       </div>
@@ -98,7 +98,7 @@ const WallOfLove = () => {
         ))}
       </div>
 
-      <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+      <p className="text-sm text-muted-foreground">
         Join thousands of developers who trust HextaUI for their projects.
       </p>
     </section>

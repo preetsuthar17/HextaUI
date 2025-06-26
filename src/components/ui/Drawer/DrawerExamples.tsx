@@ -32,7 +32,7 @@ export function DrawerBasic() {
             </DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               This is the content of the drawer. You can put any content here.
             </p>
           </div>
@@ -166,7 +166,7 @@ export function DrawerWithCloseButton() {
             </DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               You can close this drawer by clicking the X button or the Cancel
               button below.
             </p>
@@ -210,14 +210,14 @@ export function DrawerForm() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="w-full px-3 py-2 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] bg-[hsl(var(--hu-background))] text-sm focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))]"
+                className="w-full px-3 py-2 border border-border rounded-ele bg-background text-sm focus:outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
             <div className="flex items-center gap-2">
               <Badge variant="secondary" size="sm">
                 Pro tip
               </Badge>
-              <span className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+              <span className="text-xs text-muted-foreground">
                 You can unsubscribe at any time
               </span>
             </div>
@@ -257,7 +257,7 @@ export function DrawerWithContent() {
               <Separator />
               <div className="space-y-2">
                 <span className="text-sm font-medium">Features</span>
-                <ul className="text-sm text-[hsl(var(--hu-muted-foreground))] space-y-1">
+                <ul className="text-sm text-muted-foreground space-y-1">
                   <li>• High-quality materials</li>
                   <li>• 30-day money back guarantee</li>
                   <li>• Free shipping worldwide</li>
@@ -267,7 +267,7 @@ export function DrawerWithContent() {
               <Separator />
               <div className="space-y-2">
                 <span className="text-sm font-medium">Description</span>
-                <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                <p className="text-sm text-muted-foreground">
                   This is a premium product designed with attention to detail
                   and built to last. Perfect for everyday use with a modern
                   aesthetic.

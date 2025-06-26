@@ -42,8 +42,8 @@ export function StatsGrid({ stats }: StatsGridProps) {
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-4">
-              <div className="p-2 bg-[hsl(var(--hu-muted))] rounded-lg">
-                <Icon className="h-5 w-5 text-[hsl(var(--hu-muted-foreground))]" />
+              <div className="p-2 bg-muted rounded-lg">
+                <Icon className="h-5 w-5 text-muted-foreground" />
               </div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -65,7 +65,7 @@ export function StatsGrid({ stats }: StatsGridProps) {
 
             {/* Content */}
             <div className="space-y-2">
-              <p className="text-sm font-medium text-[hsl(var(--hu-muted-foreground))]">
+              <p className="text-sm font-medium text-muted-foreground">
                 {stat.title}
               </p>
               <p className="text-2xl font-bold">{stat.value}</p>
@@ -80,7 +80,7 @@ export function StatsGrid({ stats }: StatsGridProps) {
                   <TrendIcon className="h-3 w-3" />
                   <span>{Math.abs(stat.change)}%</span>
                 </div>
-                <span className="text-[hsl(var(--hu-muted-foreground))] text-xs">
+                <span className="text-muted-foreground text-xs">
                   vs last month
                 </span>
               </div>

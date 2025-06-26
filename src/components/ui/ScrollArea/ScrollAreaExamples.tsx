@@ -13,12 +13,12 @@ import {
 export function ScrollAreaBasic() {
   return (
     <div className="w-full max-w-sm">
-      <ScrollArea className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4">
+      <ScrollArea className="h-72 w-full rounded-md border border-border p-4">
         <div className="space-y-4">
           {Array.from({ length: 50 }).map((_, i) => (
             <div
               key={i}
-              className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+              className="text-sm text-foreground p-2 rounded bg-accent"
             >
               Item {i + 1}: This is a scrollable item with some content
             </div>
@@ -31,7 +31,7 @@ export function ScrollAreaBasic() {
 
 export function ScrollAreaVertical() {
   const tags = Array.from({ length: 50 }).map(
-    (_, i, a) => `v1.2.0-beta.${a.length - i}`,
+    (_, i, a) => `v1.2.0-beta.${a.length - i}`
   );
 
   return (
@@ -49,7 +49,7 @@ export function ScrollAreaVertical() {
               {tags.map((tag) => (
                 <div
                   key={tag}
-                  className="text-sm text-[hsl(var(--hu-foreground))] p-3 rounded-md bg-[hsl(var(--hu-accent))] hover:bg-[hsl(var(--hu-accent))]/80 transition-colors"
+                  className="text-sm text-foreground p-3 rounded-md bg-accent hover:bg-accent/80 transition-colors"
                 >
                   {tag}
                 </div>
@@ -88,20 +88,20 @@ export function ScrollAreaHorizontal() {
         <CardContent>
           <ScrollArea
             orientation="horizontal"
-            className="w-full whitespace-nowrap rounded-md border border-[hsl(var(--hu-border))]"
+            className="w-full whitespace-nowrap rounded-md border border-border"
           >
             <div className="flex w-max space-x-4 p-4">
               {artworks.map((artwork) => (
                 <figure key={artwork.art} className="shrink-0">
                   <div className="overflow-hidden rounded-md">
-                    <div className="h-[150px] w-[200px] bg-gradient-to-br from-[hsl(var(--hu-primary))]/20 to-[hsl(var(--hu-accent))] flex items-center justify-center">
-                      <span className="text-xs text-[hsl(var(--hu-muted-foreground))] text-center p-2">
+                    <div className="h-[150px] w-[200px] bg-gradient-to-br from-primary/20 to-accent flex items-center justify-center">
+                      <span className="text-xs text-muted-foreground text-center p-2">
                         {artwork.art}
                       </span>
                     </div>
                   </div>
-                  <figcaption className="pt-2 text-xs text-[hsl(var(--hu-muted-foreground))]">
-                    <span className="font-semibold text-[hsl(var(--hu-foreground))]">
+                  <figcaption className="pt-2 text-xs text-muted-foreground">
+                    <span className="font-semibold text-foreground">
                       {artwork.artist}
                     </span>
                   </figcaption>
@@ -128,59 +128,56 @@ export function ScrollAreaBoth() {
         <CardContent>
           <ScrollArea
             orientation="both"
-            className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))]"
+            className="h-72 w-full rounded-md border border-border"
           >
             <div className="p-4">
               <table className="w-full">
                 <thead>
-                  <tr className="border-b border-[hsl(var(--hu-border))]">
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                  <tr className="border-b border-border">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Name
                     </th>
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Email
                     </th>
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Role
                     </th>
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Department
                     </th>
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Status
                     </th>
-                    <th className="text-left p-2 font-medium text-[hsl(var(--hu-foreground))] min-w-[150px]">
+                    <th className="text-left p-2 font-medium text-foreground min-w-[150px]">
                       Actions
                     </th>
                   </tr>
                 </thead>
                 <tbody>
                   {Array.from({ length: 100 }).map((_, i) => (
-                    <tr
-                      key={i}
-                      className="border-b border-[hsl(var(--hu-border))]/50"
-                    >
-                      <td className="p-2 text-sm text-[hsl(var(--hu-foreground))]">
+                    <tr key={i} className="border-b border-border/50">
+                      <td className="p-2 text-sm text-foreground">
                         User {i + 1}
                       </td>
-                      <td className="p-2 text-sm text-[hsl(var(--hu-muted-foreground))]">
+                      <td className="p-2 text-sm text-muted-foreground">
                         user{i + 1}@example.com
                       </td>
-                      <td className="p-2 text-sm text-[hsl(var(--hu-foreground))]">
+                      <td className="p-2 text-sm text-foreground">
                         {i % 3 === 0
                           ? "Admin"
                           : i % 2 === 0
-                            ? "Editor"
-                            : "Viewer"}
+                          ? "Editor"
+                          : "Viewer"}
                       </td>
-                      <td className="p-2 text-sm text-[hsl(var(--hu-foreground))]">
+                      <td className="p-2 text-sm text-foreground">
                         {i % 4 === 0
                           ? "Engineering"
                           : i % 3 === 0
-                            ? "Design"
-                            : i % 2 === 0
-                              ? "Marketing"
-                              : "Sales"}
+                          ? "Design"
+                          : i % 2 === 0
+                          ? "Marketing"
+                          : "Sales"}
                       </td>
                       <td className="p-2">
                         <Badge
@@ -191,7 +188,7 @@ export function ScrollAreaBoth() {
                         </Badge>
                       </td>
                       <td className="p-2 text-sm">
-                        <button className="text-[hsl(var(--hu-primary))] hover:underline">
+                        <button className="text-primary hover:underline">
                           Edit
                         </button>
                       </td>
@@ -221,13 +218,13 @@ export function ScrollAreaTypes() {
           <CardContent>
             <ScrollArea
               type="always"
-              className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+              className="h-48 w-full rounded-md border border-border p-4"
             >
               <div className="space-y-2">
                 {Array.from({ length: 20 }).map((_, i) => (
                   <div
                     key={i}
-                    className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                    className="text-sm text-foreground p-2 rounded bg-accent"
                   >
                     Always visible item {i + 1}
                   </div>
@@ -247,13 +244,13 @@ export function ScrollAreaTypes() {
           <CardContent>
             <ScrollArea
               type="auto"
-              className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+              className="h-48 w-full rounded-md border border-border p-4"
             >
               <div className="space-y-2">
                 {Array.from({ length: 5 }).map((_, i) => (
                   <div
                     key={i}
-                    className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                    className="text-sm text-foreground p-2 rounded bg-accent"
                   >
                     Auto hide item {i + 1}
                   </div>
@@ -273,13 +270,13 @@ export function ScrollAreaTypes() {
           <CardContent>
             <ScrollArea
               type="scroll"
-              className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+              className="h-48 w-full rounded-md border border-border p-4"
             >
               <div className="space-y-2">
                 {Array.from({ length: 20 }).map((_, i) => (
                   <div
                     key={i}
-                    className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                    className="text-sm text-foreground p-2 rounded bg-accent"
                   >
                     On scroll item {i + 1}
                   </div>
@@ -299,13 +296,13 @@ export function ScrollAreaTypes() {
           <CardContent>
             <ScrollArea
               type="hover"
-              className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+              className="h-48 w-full rounded-md border border-border p-4"
             >
               <div className="space-y-2">
                 {Array.from({ length: 20 }).map((_, i) => (
                   <div
                     key={i}
-                    className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                    className="text-sm text-foreground p-2 rounded bg-accent"
                   >
                     On hover item {i + 1}
                   </div>
@@ -332,13 +329,13 @@ export function ScrollAreaAlways() {
         <CardContent>
           <ScrollArea
             type="always"
-            className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+            className="h-48 w-full rounded-md border border-border p-4"
           >
             <div className="space-y-2">
               {Array.from({ length: 20 }).map((_, i) => (
                 <div
                   key={i}
-                  className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                  className="text-sm text-foreground p-2 rounded bg-accent"
                 >
                   Always visible item {i + 1}
                 </div>
@@ -364,13 +361,13 @@ export function ScrollAreaAuto() {
         <CardContent>
           <ScrollArea
             type="auto"
-            className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+            className="h-48 w-full rounded-md border border-border p-4"
           >
             <div className="space-y-2">
               {Array.from({ length: 5 }).map((_, i) => (
                 <div
                   key={i}
-                  className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                  className="text-sm text-foreground p-2 rounded bg-accent"
                 >
                   Auto hide item {i + 1} (No scrollbar needed)
                 </div>
@@ -396,13 +393,13 @@ export function ScrollAreaScroll() {
         <CardContent>
           <ScrollArea
             type="scroll"
-            className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+            className="h-48 w-full rounded-md border border-border p-4"
           >
             <div className="space-y-2">
               {Array.from({ length: 20 }).map((_, i) => (
                 <div
                   key={i}
-                  className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                  className="text-sm text-foreground p-2 rounded bg-accent"
                 >
                   On scroll item {i + 1}
                 </div>
@@ -428,13 +425,13 @@ export function ScrollAreaHover() {
         <CardContent>
           <ScrollArea
             type="hover"
-            className="h-48 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+            className="h-48 w-full rounded-md border border-border p-4"
           >
             <div className="space-y-2">
               {Array.from({ length: 20 }).map((_, i) => (
                 <div
                   key={i}
-                  className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+                  className="text-sm text-foreground p-2 rounded bg-accent"
                 >
                   On hover item {i + 1}
                 </div>

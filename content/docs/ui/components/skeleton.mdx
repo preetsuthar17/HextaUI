@@ -104,15 +104,15 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const skeletonVariants = cva(
-  "animate-pulse rounded-[var(--radius)] bg-[hsl(var(--hu-accent))]",
+  "animate-pulse rounded-card bg-accent",
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-accent))]",
-        secondary: "bg-[hsl(var(--hu-accent))]/20",
-        text: "bg-[hsl(var(--hu-accent))] rounded-md",
+        default: "bg-accent",
+        secondary: "bg-accent/20",
+        text: "bg-accent rounded-md",
         circle: "rounded-full",
-        avatar: "rounded-full bg-[hsl(var(--hu-accent))]",
+        avatar: "rounded-full bg-accent",
       },
       size: {
         sm: "h-4",
@@ -245,7 +245,7 @@ const SkeletonButton = React.forwardRef<
   return (
     <Skeleton
       ref={ref}
-      className={cn(selectedHeight, "w-20 rounded-[var(--radius)]", className)}
+      className={cn(selectedHeight, "w-20 rounded-card", className)}
       {...props}
     />
   );
@@ -273,7 +273,7 @@ const SkeletonCard = React.forwardRef<
     <div
       ref={ref}
       className={cn(
-        "rounded-[var(--radius)] border bg-card p-0 overflow-hidden",
+        "rounded-card border bg-card p-0 overflow-hidden",
         className,
       )}
       {...props}

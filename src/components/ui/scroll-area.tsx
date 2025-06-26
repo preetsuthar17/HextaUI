@@ -101,14 +101,14 @@ const ScrollBar = React.forwardRef<
         orientation={orientation}
         className={cn(
           scrollBarVariants({ orientation }),
-          "hover:bg-[hsl(var(--hu-accent))]",
+          "hover:bg-accent",
           className
         )}
         {...(scrollHideDelay && { scrollHideDelay })}
         {...(type && { type })}
         {...props}
       >
-        <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-foreground))]/30 transition-colors" />
+        <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border hover:bg-foreground/30 transition-colors" />
       </ScrollAreaPrimitive.ScrollAreaScrollbar>
     );
   }

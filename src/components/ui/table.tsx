@@ -70,7 +70,7 @@ export function DataTable<T extends Record<string, any>>({
   }>({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>(
-    {},
+    {}
   );
 
   // Filter data based on search and column filters
@@ -83,7 +83,7 @@ export function DataTable<T extends Record<string, any>>({
         columns.some((column) => {
           const value = row[column.key];
           return value?.toString().toLowerCase().includes(search.toLowerCase());
-        }),
+        })
       );
     }
 
@@ -193,9 +193,9 @@ export function DataTable<T extends Record<string, any>>({
     return (
       <div
         className={cn(
-          "w-full bg-[hsl(var(--hu-card))] rounded-[var(--radius)] overflow-hidden",
-          bordered && "border border-[hsl(var(--hu-border))]",
-          className,
+          "w-full bg-card rounded-ele overflow-hidden",
+          bordered && "border border-border",
+          className
         )}
       >
         <div className="p-6">
@@ -207,14 +207,14 @@ export function DataTable<T extends Record<string, any>>({
           )}
 
           {/* Table skeleton */}
-          <div className="border border-[hsl(var(--hu-border))] rounded-[var(--radius)] overflow-hidden">
+          <div className="border border-border rounded-ele overflow-hidden">
             {/* Header skeleton */}
             <div
               className={cn(
-                "bg-[hsl(var(--hu-muted))]/20",
+                "bg-muted/20",
                 size === "sm" && "p-3",
                 size === "default" && "p-4",
-                size === "lg" && "p-6",
+                size === "lg" && "p-6"
               )}
             >
               <div className="flex gap-4">
@@ -224,7 +224,7 @@ export function DataTable<T extends Record<string, any>>({
                     className={cn(
                       "flex-1",
                       index === 0 && "min-w-48",
-                      index === columns.length - 1 && "max-w-24",
+                      index === columns.length - 1 && "max-w-24"
                     )}
                   >
                     <Skeleton className="h-4 w-3/4" />
@@ -238,10 +238,10 @@ export function DataTable<T extends Record<string, any>>({
               <div
                 key={rowIndex}
                 className={cn(
-                  "border-t border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))]",
+                  "border-t border-border bg-card",
                   size === "sm" && "p-3",
                   size === "default" && "p-4",
-                  size === "lg" && "p-6",
+                  size === "lg" && "p-6"
                 )}
               >
                 <div className="flex gap-4">
@@ -251,7 +251,7 @@ export function DataTable<T extends Record<string, any>>({
                       className={cn(
                         "flex-1",
                         colIndex === 0 && "min-w-48",
-                        colIndex === columns.length - 1 && "max-w-24",
+                        colIndex === columns.length - 1 && "max-w-24"
                       )}
                     >
                       {colIndex === 0 ? (
@@ -266,7 +266,7 @@ export function DataTable<T extends Record<string, any>>({
                       ) : colIndex === columns.length - 1 ? (
                         // Last column - often actions
                         <div className="flex justify-end">
-                          <Skeleton className="h-8 w-8 rounded-[var(--radius)]" />
+                          <Skeleton className="h-8 w-8 rounded-ele" />
                         </div>
                       ) : (
                         // Middle columns
@@ -274,7 +274,7 @@ export function DataTable<T extends Record<string, any>>({
                           <Skeleton
                             className={cn(
                               "h-4",
-                              rowIndex % 2 === 0 ? "w-3/4" : "w-1/2",
+                              rowIndex % 2 === 0 ? "w-3/4" : "w-1/2"
                             )}
                           />
                           {rowIndex % 3 === 0 && (
@@ -294,11 +294,11 @@ export function DataTable<T extends Record<string, any>>({
             <div className="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4">
               <Skeleton className="h-4 w-48" />
               <div className="flex items-center gap-2">
-                <Skeleton className="h-9 w-20 rounded-[var(--radius)]" />
-                <Skeleton className="h-9 w-9 rounded-[var(--radius)]" />
-                <Skeleton className="h-9 w-9 rounded-[var(--radius)]" />
-                <Skeleton className="h-9 w-9 rounded-[var(--radius)]" />
-                <Skeleton className="h-9 w-16 rounded-[var(--radius)]" />
+                <Skeleton className="h-9 w-20 rounded-ele" />
+                <Skeleton className="h-9 w-9 rounded-ele" />
+                <Skeleton className="h-9 w-9 rounded-ele" />
+                <Skeleton className="h-9 w-9 rounded-ele" />
+                <Skeleton className="h-9 w-16 rounded-ele" />
               </div>
             </div>
           )}
@@ -310,10 +310,10 @@ export function DataTable<T extends Record<string, any>>({
   return (
     <div
       className={cn(
-        "w-full bg-[hsl(var(--hu-card))] rounded-[var(--radius)] overflow-hidden",
-        bordered && "border border-[hsl(var(--hu-border))]",
+        "w-full bg-card rounded-ele overflow-hidden",
+        bordered && "border border-border",
         variant === "minimal" && "bg-transparent border-none",
-        className,
+        className
       )}
     >
       {/* Search and Filters */}
@@ -338,7 +338,7 @@ export function DataTable<T extends Record<string, any>>({
           </div>
           {Object.keys(columnFilters).length > 0 && (
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              <span className="text-sm text-muted-foreground">
                 Active filters:
               </span>
               {Object.entries(columnFilters).map(([key, value]) => (
@@ -360,19 +360,17 @@ export function DataTable<T extends Record<string, any>>({
       <div
         className={cn(
           "overflow-hidden",
-          variant === "bordered" &&
-            "border border-[hsl(var(--hu-border))] rounded-[var(--radius)]",
+          variant === "bordered" && "border border-border rounded-ele",
           variant === "minimal" && "border-none",
-          !searchable && variant !== "minimal" && "rounded-[var(--radius)]",
+          !searchable && variant !== "minimal" && "rounded-ele"
         )}
       >
         <div className="overflow-x-auto">
           <table className="w-full min-w-full">
             <thead
               className={cn(
-                "bg-[hsl(var(--hu-muted))]/20",
-                variant === "minimal" &&
-                  "bg-transparent border-b border-[hsl(var(--hu-border))]",
+                "bg-muted/20",
+                variant === "minimal" && "bg-transparent border-b border-border"
               )}
             >
               <tr>
@@ -380,15 +378,15 @@ export function DataTable<T extends Record<string, any>>({
                   <th
                     key={String(column.key)}
                     className={cn(
-                      "text-left font-semibold text-[hsl(var(--hu-foreground))]",
+                      "text-left font-semibold text-foreground",
                       size === "sm" && "px-3 py-2 text-xs",
                       size === "default" && "px-4 py-3 text-sm",
                       size === "lg" && "px-6 py-4 text-base",
                       column.sortable &&
-                        "cursor-pointer hover:bg-[hsl(var(--hu-muted))]/30 hover:rounded-[var(--radius)] transition-colors",
+                        "cursor-pointer hover:bg-muted/30 hover:rounded-ele transition-colors",
                       column.align === "center" && "text-center",
                       column.align === "right" && "text-right",
-                      column.width && `w-[${column.width}]`,
+                      column.width && `w-[${column.width}]`
                     )}
                     onClick={() => column.sortable && handleSort(column.key)}
                     style={column.width ? { width: column.width } : undefined}
@@ -397,7 +395,7 @@ export function DataTable<T extends Record<string, any>>({
                       className={cn(
                         "flex items-center gap-2",
                         column.align === "center" && "justify-center",
-                        column.align === "right" && "justify-end",
+                        column.align === "right" && "justify-end"
                       )}
                     >
                       <span>{column.header}</span>
@@ -408,8 +406,8 @@ export function DataTable<T extends Record<string, any>>({
                               "h-3 w-3 transition-colors",
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "asc"
-                                ? "text-[hsl(var(--hu-primary))]"
-                                : "text-[hsl(var(--hu-muted-foreground))]/40",
+                                ? "text-primary"
+                                : "text-muted-foreground/40"
                             )}
                           />
                           <ChevronDown
@@ -417,15 +415,15 @@ export function DataTable<T extends Record<string, any>>({
                               "h-3 w-3 -mt-1 transition-colors",
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "desc"
-                                ? "text-[hsl(var(--hu-primary))]"
-                                : "text-[hsl(var(--hu-muted-foreground))]/40",
+                                ? "text-primary"
+                                : "text-muted-foreground/40"
                             )}
                           />
                         </div>
                       )}
                       {column.filterable && (
                         <div className="relative">
-                          <Filter className="h-3 w-3 text-[hsl(var(--hu-muted-foreground))]/50" />
+                          <Filter className="h-3 w-3 text-muted-foreground/50" />
                         </div>
                       )}
                     </div>
@@ -438,7 +436,7 @@ export function DataTable<T extends Record<string, any>>({
                           onChange={(e) =>
                             handleColumnFilter(
                               String(column.key),
-                              e.target.value,
+                              e.target.value
                             )
                           }
                           onClick={(e) => e.stopPropagation()}
@@ -451,16 +449,16 @@ export function DataTable<T extends Record<string, any>>({
                 ))}
               </tr>
             </thead>
-            <tbody className="bg-[hsl(var(--hu-card))]">
+            <tbody className="bg-card">
               {paginatedData.length === 0 ? (
                 <tr>
                   <td
                     colSpan={columns.length}
                     className={cn(
-                      "text-center text-[hsl(var(--hu-muted-foreground))] bg-[hsl(var(--hu-card))]",
+                      "text-center text-muted-foreground bg-card",
                       size === "sm" && "px-3 py-8",
                       size === "default" && "px-4 py-12",
-                      size === "lg" && "px-6 py-16",
+                      size === "lg" && "px-6 py-16"
                     )}
                   >
                     <div className="flex flex-col items-center space-y-3">
@@ -477,13 +475,11 @@ export function DataTable<T extends Record<string, any>>({
                   <tr
                     key={index}
                     className={cn(
-                      "border-t border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] transition-colors",
-                      striped &&
-                        index % 2 === 0 &&
-                        "bg-[hsl(var(--hu-muted))]/10",
-                      hoverable && "hover:bg-[hsl(var(--hu-muted))]/20",
+                      "border-t border-border bg-card transition-colors",
+                      striped && index % 2 === 0 && "bg-muted/10",
+                      hoverable && "hover:bg-muted/20",
                       onRowClick && "cursor-pointer",
-                      "group",
+                      "group"
                     )}
                     onClick={() => onRowClick?.(row, index)}
                   >
@@ -491,12 +487,12 @@ export function DataTable<T extends Record<string, any>>({
                       <td
                         key={String(column.key)}
                         className={cn(
-                          "text-[hsl(var(--hu-foreground))]",
+                          "text-foreground",
                           size === "sm" && "px-3 py-2 text-xs",
                           size === "default" && "px-4 py-3 text-sm",
                           size === "lg" && "px-6 py-4 text-base",
                           column.align === "center" && "text-center",
-                          column.align === "right" && "text-right",
+                          column.align === "right" && "text-right"
                         )}
                       >
                         {column.render
@@ -514,8 +510,8 @@ export function DataTable<T extends Record<string, any>>({
 
       {/* Pagination */}
       {showPagination && totalPages > 1 && (
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 pt-4 bg-[hsl(var(--hu-card))] border-t border-[hsl(var(--hu-border))]">
-          <div className="text-sm text-[hsl(var(--hu-muted-foreground))] order-2 sm:order-1">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 pt-4 bg-card border-t border-border">
+          <div className="text-sm text-muted-foreground order-2 sm:order-1">
             Showing {(currentPage - 1) * itemsPerPage + 1} to{" "}
             {Math.min(currentPage * itemsPerPage, sortedData.length)} of{" "}
             {sortedData.length} results

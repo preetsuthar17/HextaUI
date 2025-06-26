@@ -25,7 +25,7 @@ const sliderVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const sliderTrackVariants = cva(
@@ -33,9 +33,9 @@ const sliderTrackVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-muted))]",
-        destructive: "bg-[hsl(var(--hu-destructive))]/20",
-        ghost: "bg-[hsl(var(--hu-accent))]",
+        default: "bg-muted",
+        destructive: "bg-destructive/20",
+        ghost: "bg-accent",
       },
       size: {
         sm: "h-1.5",
@@ -48,15 +48,15 @@ const sliderTrackVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 const sliderRangeVariants = cva("absolute h-full rounded-full", {
   variants: {
     variant: {
-      default: "bg-[hsl(var(--hu-primary))]",
-      destructive: "bg-[hsl(var(--hu-destructive))]",
-      ghost: "bg-[hsl(var(--hu-foreground))]",
+      default: "bg-primary",
+      destructive: "bg-destructive",
+      ghost: "bg-foreground",
     },
   },
   defaultVariants: {
@@ -65,16 +65,13 @@ const sliderRangeVariants = cva("absolute h-full rounded-full", {
 });
 
 const sliderThumbVariants = cva(
-  "block rounded-full border-2 bg-[hsl(var(--hu-background))] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-md",
+  "block rounded-full border-2 bg-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-md",
   {
     variants: {
       variant: {
-        default:
-          "border-[hsl(var(--hu-primary))] hover:border-[hsl(var(--hu-primary))]/80",
-        destructive:
-          "border-[hsl(var(--hu-destructive))] hover:border-[hsl(var(--hu-destructive))]/80",
-        ghost:
-          "border-[hsl(var(--hu-foreground))] hover:border-[hsl(var(--hu-foreground))]/80",
+        default: "border-primary hover:border-primary/80",
+        destructive: "border-destructive hover:border-destructive/80",
+        ghost: "border-foreground hover:border-foreground/80",
       },
       size: {
         sm: "h-3 w-3",
@@ -87,7 +84,7 @@ const sliderThumbVariants = cva(
       variant: "default",
       size: "default",
     },
-  },
+  }
 );
 
 export interface SliderProps
@@ -130,10 +127,10 @@ const Slider = React.forwardRef<
       orientation = "horizontal",
       ...props
     },
-    ref,
+    ref
   ) => {
     const [internalValue, setInternalValue] = React.useState<number[]>(
-      defaultValue || value || [min],
+      defaultValue || value || [min]
     );
 
     const currentValue = value || internalValue;
@@ -146,7 +143,7 @@ const Slider = React.forwardRef<
         }
         onValueChange?.(newValue);
       },
-      [value, onValueChange],
+      [value, onValueChange]
     );
 
     const sliderId = React.useId();
@@ -158,7 +155,7 @@ const Slider = React.forwardRef<
         id={sliderId}
         className={cn(
           sliderVariants({ variant: effectiveVariant, size }),
-          className,
+          className
         )}
         value={currentValue}
         onValueChange={handleValueChange}
@@ -172,7 +169,7 @@ const Slider = React.forwardRef<
       >
         <SliderPrimitive.Track
           className={cn(
-            sliderTrackVariants({ variant: effectiveVariant, size }),
+            sliderTrackVariants({ variant: effectiveVariant, size })
           )}
         >
           <SliderPrimitive.Range
@@ -183,7 +180,7 @@ const Slider = React.forwardRef<
           <SliderPrimitive.Thumb
             key={index}
             className={cn(
-              sliderThumbVariants({ variant: effectiveVariant, size }),
+              sliderThumbVariants({ variant: effectiveVariant, size })
             )}
           />
         ))}
@@ -205,7 +202,7 @@ const Slider = React.forwardRef<
                 </label>
               )}
               {showValue && (
-                <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                <span className="text-sm text-muted-foreground">
                   {currentValue.length === 1
                     ? formatValue(currentValue[0])
                     : currentValue.map(formatValue).join(" - ")}
@@ -220,7 +217,7 @@ const Slider = React.forwardRef<
 
             {/* Min/Max labels */}
             {showMinMax && (
-              <div className="flex justify-between text-xs text-[hsl(var(--hu-muted-foreground))]">
+              <div className="flex justify-between text-xs text-muted-foreground">
                 <span>{formatValue(min)}</span>
                 <span>{formatValue(max)}</span>
               </div>
@@ -231,17 +228,12 @@ const Slider = React.forwardRef<
           {(description || error) && (
             <div className="space-y-1">
               {description && (
-                <p
-                  id={descriptionId}
-                  className="text-sm text-[hsl(var(--hu-muted-foreground))]"
-                >
+                <p id={descriptionId} className="text-sm text-muted-foreground">
                   {description}
                 </p>
               )}
               {error && typeof error === "string" && (
-                <p className="text-sm text-[hsl(var(--hu-destructive))]">
-                  {error}
-                </p>
+                <p className="text-sm text-destructive">{error}</p>
               )}
             </div>
           )}
@@ -250,7 +242,7 @@ const Slider = React.forwardRef<
     }
 
     return sliderElement;
-  },
+  }
 );
 
 Slider.displayName = SliderPrimitive.Root.displayName;

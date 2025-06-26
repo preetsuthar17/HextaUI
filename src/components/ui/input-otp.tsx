@@ -28,13 +28,13 @@ const inputOTPVariants = cva(
 );
 
 const inputOTPSlotVariants = cva(
-  "relative flex items-center justify-center border-y border-r border-input bg-[hsl(var(--hu-input))] text-xs sm:text-sm transition-all focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-l shadow-sm/2",
+  "relative flex items-center justify-center border-y border-r border-input bg-input text-xs sm:text-sm transition-all focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-l shadow-sm/2",
   {
     variants: {
       variant: {
-        default: "border-input text-[hsl(var(--hu-foreground))]",
+        default: "border-input text-foreground",
         destructive:
-          "border-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-destructive-foreground))] focus-within:ring-[hsl(var(--hu-ring))]",
+          "border-destructive text-destructive-foreground focus-within:ring-ring",
       },
       size: {
         sm: "h-6 w-6 sm:h-8 sm:w-8 text-xs",
@@ -43,16 +43,14 @@ const inputOTPSlotVariants = cva(
       },
       state: {
         default: "",
-        active:
-          "border-primary ring-2 ring-[hsl(var(--hu-ring))] ring-offset-2",
-        filled:
-          "bg-accent border-[hsl(var(--hu-border))] text-[hsl(var(--hu-accent-foreground))]",
+        active: "border-primary ring-2 ring-ring ring-offset-2",
+        filled: "bg-accent border-border text-accent-foreground",
       },
       position: {
-        first: "border-l rounded-l-[var(--radius)]",
+        first: "border-l rounded-l-ele",
         middle: "rounded-sm",
-        last: "rounded-r-[var(--radius)]",
-        single: "border-l rounded-[var(--radius)]",
+        last: "rounded-r-ele",
+        single: "border-l rounded-ele",
       },
     },
     defaultVariants: {
@@ -172,7 +170,7 @@ const InputOTPSlot = React.forwardRef<
         {hasFakeCaret && (
           <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
             <motion.div
-              className="h-3 w-px sm:h-4 sm:w-px bg-[hsl(var(--hu-foreground))]"
+              className="h-3 w-px sm:h-4 sm:w-px bg-foreground"
               initial={{ opacity: 0 }}
               animate={{ opacity: [0, 1, 0] }}
               transition={{
@@ -213,7 +211,7 @@ const InputOTPSeparator = React.forwardRef<
     ref={ref}
     role="separator"
     className={cn(
-      "flex items-center justify-center text-[hsl(var(--hu-muted-foreground))]",
+      "flex items-center justify-center text-muted-foreground",
       size === "sm"
         ? "text-xs"
         : size === "lg"

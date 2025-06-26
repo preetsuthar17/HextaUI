@@ -19,11 +19,11 @@ export function TabsWithContent() {
         onValueChange={setActiveTab}
       />
 
-      <div className="mt-4 p-4 border border-[hsl(var(--hu-border))] rounded-[var(--radius)] bg-[hsl(var(--hu-background))]">
+      <div className="mt-4 p-4 border border-border rounded-ele bg-background">
         <TabsContent value="overview" activeValue={activeTab}>
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">Overview</h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Welcome to your dashboard overview. Here you can see a summary of
               your most important metrics and recent activity.
             </p>
@@ -33,7 +33,7 @@ export function TabsWithContent() {
         <TabsContent value="analytics" activeValue={activeTab}>
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">Analytics</h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Detailed analytics and insights about your performance, user
               engagement, and growth metrics.
             </p>
@@ -43,7 +43,7 @@ export function TabsWithContent() {
         <TabsContent value="settings" activeValue={activeTab}>
           <div className="flex flex-col">
             <h3 className="text-lg font-semibold">Settings</h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Configure your preferences, manage your account, and customize
               your experience.
             </p>

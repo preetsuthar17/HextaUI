@@ -34,7 +34,7 @@ export const SpotlightCard = ({
         computedStyle.backgroundColor;
 
       const isDarkMedia = window.matchMedia(
-        "(prefers-color-scheme: dark)",
+        "(prefers-color-scheme: dark)"
       ).matches;
 
       const isDark =
@@ -99,7 +99,7 @@ export const SpotlightCard = ({
       onBlur={handleBlur}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className={`relative rounded-[var(--)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] overflow-hidden p-8 ${className}`}
+      className={`relative rounded-[var(--)] border border-border bg-card overflow-hidden p-8 ${className}`}
     >
       {" "}
       <div

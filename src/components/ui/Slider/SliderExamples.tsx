@@ -254,7 +254,7 @@ export function FormExample() {
 
       <Button
         type="submit"
-        className="w-full px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-primary))]/90 transition-colors"
+        className="w-full px-4 py-2 bg-primary text-primary-foreground rounded-ele hover:bg-primary/90 transition-colors"
       >
         Save Settings
       </Button>

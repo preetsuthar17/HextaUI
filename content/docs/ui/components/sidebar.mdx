@@ -38,7 +38,7 @@ import {
       const [collapsed, setCollapsed] = useState(false);
 
       return (
-        <div className="relative h-96 w-full overflow-hidden rounded-[var(--radius)] border">
+        <div className="relative h-96 w-full overflow-hidden rounded-ele border">
           <Sidebar
             position="relative"
             collapsed={collapsed}
@@ -94,13 +94,13 @@ import { ScrollArea } from "../ScrollArea";
 import { Separator } from "../separator";
 
 const sidebarVariants = cva(
-  "z-40 bg-[hsl(var(--hu-background))] border-r border-[hsl(var(--hu-border))] flex flex-col",
+  "z-40 bg-background border-r border-border flex flex-col",
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-background))]",
-        elevated: "bg-[hsl(var(--hu-card))] shadow-lg",
-        ghost: "bg-[hsl(var(--hu-background))]/95 backdrop-blur-sm",
+        default: "bg-background",
+        elevated: "bg-card shadow-lg",
+        ghost: "bg-background/95 backdrop-blur-sm",
       },
       size: {
         sm: "w-12",
@@ -122,7 +122,7 @@ const sidebarVariants = cva(
 );
 
 const sidebarHeaderVariants = cva(
-  "flex items-center border-b border-[hsl(var(--hu-border))] min-h-[3.5rem]",
+  "flex items-center border-b border-border min-h-[3.5rem]",
   {
     variants: {
       collapsed: {
@@ -137,16 +137,16 @@ const sidebarHeaderVariants = cva(
 );
 
 const sidebarItemVariants = cva(
-  "relative flex items-center rounded-[var(--radius)] text-sm font-medium cursor-pointer group",
+  "relative flex items-center rounded-ele text-sm font-medium cursor-pointer group",
   {
     variants: {
       variant: {
         default:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]",
+          "text-muted-foreground hover:text-foreground hover:bg-accent",
         active:
-          "text-[hsl(var(--hu-primary-foreground))] bg-[hsl(var(--hu-primary))] hover:bg-[hsl(var(--hu-primary))]/90",
+          "text-primary-foreground bg-[hsl(var(--hu-primary))] hover:bg-[hsl(var(--hu-primary))]/90",
         ghost:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]/50",
+          "text-muted-foreground hover:text-foreground hover:bg-accent/50",
       },
       collapsed: {
         true: "w-10 h-10 justify-center px-0 py-0",
@@ -404,7 +404,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           {footerChild && (
             <div
               className={cn(
-                "border-t border-[hsl(var(--hu-border))]",
+                "border-t border-border",
                 collapsed ? "p-2" : "p-3",
               )}
             >
@@ -557,7 +557,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Tooltip for collapsed state */}
       {collapsed && (
         <div
-          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-md border border-[hsl(var(--hu-border))] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
+          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-md border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
           role="tooltip"
           id={`${itemId}-tooltip`}
         >
@@ -579,7 +579,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
+              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative no-underline",
             className,
           )}
@@ -600,7 +600,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-[hsl(var(--hu-border))] pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-[hsl(var(--hu-border))] before:-translate-y-1/2",
+              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative w-full text-left border-none",
             !isActive && "bg-transparent",
             className,
@@ -631,7 +631,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             className="overflow-hidden"
           >
             <ul
-              className="space-y-1 py-1 ml-2 border-l border-[hsl(var(--hu-border))]/50 pl-2 list-none"
+              className="space-y-1 py-1 ml-2 border-l border-border/50 pl-2 list-none"
               role="menu"
               aria-label={`${label} submenu`}
             >
@@ -923,7 +923,7 @@ export function SidebarBasic() {
 
 return (
 
-<div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+<div className="relative h-screen w-full flex overflow-hidden rounded-ele border border-border">
 <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -931,7 +931,7 @@ return (
       >
 <SidebarHeader>
 <img
-            className="rounded-[var(--radius)] bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] shrink-0"
+            className="rounded-ele bg-background border border-border shrink-0"
             src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
             width={35}
             height={35}
@@ -954,7 +954,7 @@ return (
       >
         <div className="space-y-4">
           <h1 className="text-2xl font-bold">Welcome to HextaUI</h1>
-          <p className="text-[hsl(var(--hu-muted-foreground))]">
+          <p className="text-muted-foreground">
             This is the main content area. The sidebar will affect the width of this content.
           </p>
         </div>
@@ -1012,7 +1012,7 @@ export function SidebarWithProfile() {
   const [collapsed, setCollapsed] = React.useState(false);
 
 return (
-<div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+<div className="relative h-screen w-full flex overflow-hidden rounded-ele border border-border">
 <Sidebar
         position="relative"
         collapsed={collapsed}
@@ -1020,7 +1020,7 @@ return (
       >
 <SidebarHeader>
 <img
-            className="rounded-[var(--radius)] bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] shrink-0"
+            className="rounded-ele bg-background border border-border shrink-0"
             src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
             width={35}
             height={35}
@@ -1114,7 +1114,7 @@ const teams = [
 
 return (
 
-  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+  <div className="relative h-screen w-full flex overflow-hidden rounded-ele border border-border">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1200,7 +1200,7 @@ const adminItems = [
 
 return (
 
-  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+  <div className="relative h-screen w-full flex overflow-hidden rounded-ele border border-border">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1208,7 +1208,7 @@ return (
     >
       <SidebarHeader>
         <img
-          className="rounded-[var(--radius)] bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] shrink-0"
+          className="rounded-ele bg-background border border-border shrink-0"
           src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
           width={35}
           height={35}
@@ -1288,7 +1288,7 @@ const [collapsed, setCollapsed] = React.useState(true);
 
 return (
 
-  <div className="relative h-screen w-full flex overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))]">
+  <div className="relative h-screen w-full flex overflow-hidden rounded-ele border border-border">
     <Sidebar
       position="relative"
       collapsed={collapsed}
@@ -1298,7 +1298,7 @@ return (
     >
       <SidebarHeader>
         <img
-          className="rounded-[var(--radius)] bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] shrink-0"
+          className="rounded-ele bg-background border border-border shrink-0"
           src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
           width={35}
           height={35}

@@ -29,12 +29,12 @@ import {
   </Tab>
   <Tab value="Code">
     ```tsx
-    <ScrollArea className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4">
+    <ScrollArea className="h-72 w-full rounded-md border border-border p-4">
       <div className="space-y-4">
         {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
-            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+            className="text-sm text-foreground p-2 rounded bg-accent"
           >
             Item {i + 1}: This is a scrollable item with some content
           </div>
@@ -162,14 +162,14 @@ const ScrollBar = React.forwardRef<
         orientation={orientation}
         className={cn(
           scrollBarVariants({ orientation }),
-          "hover:bg-[hsl(var(--hu-accent))]",
+          "hover:bg-accent",
           className
         )}
         {...(scrollHideDelay && { scrollHideDelay })}
         {...(type && { type })}
         {...props}
       >
-        <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-foreground))]/30 transition-colors" />
+        <ScrollAreaPrimitive.ScrollAreaThumb className="relative flex-1 rounded-full bg-border hover:bg-foreground/30 transition-colors" />
       </ScrollAreaPrimitive.ScrollAreaScrollbar>
     );
   }
@@ -214,12 +214,12 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
   </Tab>
   <Tab value="Code">
     ```tsx
-    <ScrollArea className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4">
+    <ScrollArea className="h-72 w-full rounded-md border border-border p-4">
       <div className="space-y-4">
         {Array.from({ length: 50 }).map((_, i) => (
           <div
             key={i}
-            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+            className="text-sm text-foreground p-2 rounded bg-accent"
           >
             Item {i + 1}: This is a scrollable item with some content
           </div>
@@ -242,13 +242,13 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
     ```tsx
     <ScrollArea
       orientation="vertical"
-      className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))] p-4"
+      className="h-72 w-full rounded-md border border-border p-4"
     >
       <div className="space-y-4">
         {Array.from({ length: 30 }).map((_, i) => (
           <div
             key={i}
-            className="text-sm text-[hsl(var(--hu-foreground))] p-2 rounded bg-[hsl(var(--hu-accent))]"
+            className="text-sm text-foreground p-2 rounded bg-accent"
           >
             Item {i + 1}: This is a scrollable item with some content
           </div>
@@ -271,13 +271,13 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
     ```tsx
     <ScrollArea
       orientation="horizontal"
-      className="w-full rounded-md border border-[hsl(var(--hu-border))]"
+      className="w-full rounded-md border border-border"
     >
       <div className="flex space-x-4 p-4">
         {Array.from({ length: 20 }).map((_, i) => (
           <div
             key={i}
-            className="flex-shrink-0 w-32 h-24 p-2 rounded bg-[hsl(var(--hu-accent))] text-sm"
+            className="flex-shrink-0 w-32 h-24 p-2 rounded bg-accent text-sm"
           >
             Card {i + 1}
           </div>
@@ -300,14 +300,14 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
     ```tsx
     <ScrollArea
       orientation="both"
-      className="h-72 w-full rounded-md border border-[hsl(var(--hu-border))]"
+      className="h-72 w-full rounded-md border border-border"
     >
       <div className="p-4" style={{ width: "800px", height: "600px" }}>
         <div className="grid grid-cols-8 gap-4">
           {Array.from({ length: 64 }).map((_, i) => (
             <div
               key={i}
-              className="w-20 h-20 p-2 rounded bg-[hsl(var(--hu-accent))] text-xs flex items-center justify-center"
+              className="w-20 h-20 p-2 rounded bg-accent text-xs flex items-center justify-center"
             >
               {i + 1}
             </div>

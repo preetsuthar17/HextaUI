@@ -23,11 +23,11 @@ const paginationItemVariants = cva(
     variants: {
       variant: {
         default:
-          "rounded-[var(--radius)] h-9 w-9 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "rounded-ele h-9 w-9 text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
         outline:
-          "rounded-[var(--radius)] h-9 w-9 border border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "rounded-ele h-9 w-9 border border-border text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
         ghost:
-          "rounded-[var(--radius)] h-9 w-9 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "rounded-ele h-9 w-9 text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
       },
       size: {
         default: "h-9 w-9",
@@ -37,7 +37,7 @@ const paginationItemVariants = cva(
       state: {
         default: "",
         active:
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 hover:text-[hsl(var(--hu-primary-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-primary text-primary-foreground hover:bg-primary/90 hover:text-primary-foreground focus-visible:ring-ring",
       },
     },
     defaultVariants: {
@@ -49,7 +49,7 @@ const paginationItemVariants = cva(
 );
 
 const paginationNavVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-[var(--radius)] px-3 text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 rounded-ele px-3 text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
   {
     variants: {
       size: {
@@ -148,7 +148,7 @@ const PaginationEllipsis = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <span
     className={cn(
-      "inline-flex items-center justify-center h-9 w-9 text-[hsl(var(--hu-muted-foreground))]",
+      "inline-flex items-center justify-center h-9 w-9 text-muted-foreground",
       className
     )}
     ref={ref}

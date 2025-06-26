@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 
 const videoPlayerVariants = cva(
-  "relative w-full bg-black rounded-[var(--card-radius)] overflow-hidden group",
+  "relative w-full bg-black rounded-card overflow-hidden group",
   {
     variants: {
       size: {

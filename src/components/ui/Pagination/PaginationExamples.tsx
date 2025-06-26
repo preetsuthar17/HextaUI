@@ -192,7 +192,7 @@ export function PaginationCompact() {
         >
           {isMobile ? "←" : "Prev"}
         </PaginationPrevious>
-        <span className="text-sm text-[hsl(var(--hu-muted-foreground))] px-2 whitespace-nowrap">
+        <span className="text-sm text-muted-foreground px-2 whitespace-nowrap">
           Page {currentPage} of {totalPages}
         </span>
         <PaginationNext
@@ -269,7 +269,7 @@ export function PaginationMinimal() {
           {isMobile ? "←" : "Prev"}
         </PaginationPrevious>
         <div className="flex items-center px-2 sm:px-4">
-          <span className="text-sm text-[hsl(var(--hu-muted-foreground))] whitespace-nowrap">
+          <span className="text-sm text-muted-foreground whitespace-nowrap">
             {currentPage} / {totalPages}
           </span>
         </div>
@@ -331,9 +331,7 @@ export function PaginationWithInput() {
           </PaginationNext>
         </Pagination>
         <div className="flex items-center justify-center gap-2">
-          <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
-            Go to:
-          </span>
+          <span className="text-sm text-muted-foreground">Go to:</span>
           <Input
             type="number"
             min="1"
@@ -398,9 +396,7 @@ export function PaginationWithInput() {
         </Pagination>
       </div>
       <div className="flex items-center gap-2 whitespace-nowrap">
-        <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
-          Go to:
-        </span>
+        <span className="text-sm text-muted-foreground">Go to:</span>
         <Input
           type="number"
           min="1"

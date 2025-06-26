@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full shadow-sm/2 bg-[hsl(var(--hu-background))]",
+  "relative flex shrink-0 overflow-hidden rounded-full shadow-sm/2 bg-background",
   {
     variants: {
       size: {
@@ -85,7 +85,7 @@ const AvatarFallback = React.forwardRef<
   <AvatarPrimitive.Fallback
     ref={ref}
     className={cn(
-      "flex h-full w-full items-center justify-center rounded-full bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] font-medium",
+      "flex h-full w-full items-center justify-center rounded-full bg-muted text-muted-foreground font-medium",
       className
     )}
     {...props}
@@ -130,7 +130,7 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
               key: index,
               size,
               className: cn(
-                "border-2 border-[hsl(var(--hu-background))]",
+                "border-2 border-background",
                 (child.props as any)?.className
               ),
             } as any);
@@ -138,11 +138,8 @@ const AvatarGroup = React.forwardRef<HTMLDivElement, AvatarGroupProps>(
           return child;
         })}
         {remainingCount > 0 && (
-          <Avatar
-            size={size}
-            className="border-2 border-[hsl(var(--hu-background))]"
-          >
-            <AvatarFallback className="bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] font-semibold">
+          <Avatar size={size} className="border-2 border-background">
+            <AvatarFallback className="bg-secondary text-secondary-foreground font-semibold">
               +{remainingCount}
             </AvatarFallback>
           </Avatar>

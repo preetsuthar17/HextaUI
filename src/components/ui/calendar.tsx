@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/select";
 
 const calendarVariants = cva(
-  "inline-block space-y-4 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] relative w-full max-w-sm mx-auto shadow-sm/2",
+  "inline-block space-y-4 rounded-ele border border-border bg-background relative w-full max-w-sm mx-auto shadow-sm/2",
   {
     variants: {
       size: {
@@ -35,26 +35,25 @@ const calendarVariants = cva(
 );
 
 const dayVariants = cva(
-  "inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-[var(--radius)] text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
+  "inline-flex h-8 w-8 sm:h-9 sm:w-9 items-center justify-center rounded-ele text-sm transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 cursor-pointer",
   {
     variants: {
       variant: {
         default:
-          "text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
+          "text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
         selected:
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))] font-semibold",
+          "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring font-semibold",
         today:
-          "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))] font-semibold hover:bg-[hsl(var(--hu-accent))]/80 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-accent text-accent-foreground font-semibold hover:bg-accent/80 focus-visible:ring-ring",
         outside:
-          "text-[hsl(var(--hu-muted-foreground))] opacity-50 hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:ring-[hsl(var(--hu-ring))]",
-        disabled:
-          "text-[hsl(var(--hu-muted-foreground))] opacity-30 cursor-not-allowed",
+          "text-muted-foreground opacity-50 hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
+        disabled: "text-muted-foreground opacity-30 cursor-not-allowed",
         "range-start":
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-r-none hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-primary text-primary-foreground rounded-r-none hover:bg-primary/90 focus-visible:ring-ring",
         "range-end":
-          "bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-l-none hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-primary text-primary-foreground rounded-l-none hover:bg-primary/90 focus-visible:ring-ring",
         "range-middle":
-          "bg-[hsl(var(--hu-primary))]/20 text-[hsl(var(--hu-foreground))] rounded-none hover:bg-[hsl(var(--hu-primary))]/30 focus-visible:ring-[hsl(var(--hu-ring))]",
+          "bg-primary/20 text-foreground rounded-none hover:bg-primary/30 focus-visible:ring-ring",
       },
       size: {
         sm: "h-6 w-6 sm:h-7 sm:w-7 text-xs",
@@ -312,7 +311,7 @@ function Calendar({
       <div className="flex items-center justify-between">
         <button
           onClick={() => navigateMonth("prev")}
-          className="inline-flex items-center justify-center rounded-[var(--radius)] p-1 sm:p-1.5 transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))]"
+          className="inline-flex items-center justify-center rounded-ele p-1 sm:p-1.5 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           disabled={isAnimating}
         >
           <ChevronLeft className="h-4 w-4" />
@@ -365,7 +364,7 @@ function Calendar({
               key={`${currentMonth}-${currentYear}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-base sm:text-lg font-semibold text-[hsl(var(--hu-foreground))] text-center px-2"
+              className="text-base sm:text-lg font-semibold text-foreground text-center px-2"
             >
               <span className="hidden sm:inline">
                 {MONTHS[currentMonth]} {currentYear}
@@ -379,7 +378,7 @@ function Calendar({
 
         <button
           onClick={() => navigateMonth("next")}
-          className="inline-flex items-center justify-center rounded-[var(--radius)] p-1 sm:p-1.5 transition-colors hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))]"
+          className="inline-flex items-center justify-center rounded-ele p-1 sm:p-1.5 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           disabled={isAnimating}
         >
           <ChevronRight className="h-4 w-4" />
@@ -390,7 +389,7 @@ function Calendar({
         {DAYS_OF_WEEK.map((day) => (
           <div
             key={day}
-            className="flex items-center justify-center h-7 sm:h-8 text-xs text-[hsl(var(--hu-muted-foreground))]"
+            className="flex items-center justify-center h-7 sm:h-8 text-xs text-muted-foreground"
           >
             <span className="hidden sm:inline">{day}</span>
             <span className="sm:hidden">{day.slice(0, 1)}</span>

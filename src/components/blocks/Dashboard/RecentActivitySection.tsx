@@ -43,7 +43,7 @@ interface ActivityItem {
 interface RecentActivitySectionProps {
   filteredActivities: ActivityItem[];
   getStatusBadge: (
-    status: ActivityItem["status"],
+    status: ActivityItem["status"]
   ) => "default" | "destructive" | "secondary" | "outline" | "ghost";
 }
 
@@ -52,14 +52,14 @@ export function RecentActivitySection({
   getStatusBadge,
 }: RecentActivitySectionProps) {
   return (
-    <Card className="lg:col-span-2 border border-[hsl(var(--hu-border))]/50 hover:border-[hsl(var(--hu-border))] transition-colors duration-200 bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] p-0">
+    <Card className="lg:col-span-2 border border-border/50 hover:border-border transition-colors duration-200 bg-card text-card-foreground p-0">
       <div className="p-4 sm:p-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between mb-6">
           <div className="space-y-1">
-            <h3 className="text-xl font-semibold text-[hsl(var(--hu-foreground))]">
+            <h3 className="text-xl font-semibold text-foreground">
               Recent Activity
             </h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Latest updates and events from your system
             </p>
           </div>
@@ -91,7 +91,7 @@ export function RecentActivitySection({
           {filteredActivities.map((activity) => (
             <div
               key={activity.id}
-              className="group p-4 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] hover:border-[hsl(var(--hu-border))]/80 bg-[hsl(var(--hu-background))] hover:bg-[hsl(var(--hu-accent))]/50 transition-colors duration-200"
+              className="group p-4 rounded-ele border border-border hover:border-border/80 bg-background hover:bg-accent/50 transition-colors duration-200"
             >
               <div className="flex items-start gap-3">
                 {/* Simple Avatar */}
@@ -112,7 +112,7 @@ export function RecentActivitySection({
                   <div className="flex items-start justify-between gap-2">
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-2 mb-1">
-                        <h4 className="font-medium text-sm text-[hsl(var(--hu-foreground))] truncate">
+                        <h4 className="font-medium text-sm text-foreground truncate">
                           {activity.title}
                         </h4>
                         {activity.badge && (
@@ -124,7 +124,7 @@ export function RecentActivitySection({
                           </Badge>
                         )}
                       </div>
-                      <p className="text-sm text-[hsl(var(--hu-muted-foreground))] line-clamp-2">
+                      <p className="text-sm text-muted-foreground line-clamp-2">
                         {activity.description}
                       </p>
                     </div>
@@ -171,7 +171,7 @@ export function RecentActivitySection({
                   </div>
 
                   {/* Simple Footer */}
-                  <div className="flex items-center justify-between mt-2 text-xs text-[hsl(var(--hu-muted-foreground))]">
+                  <div className="flex items-center justify-between mt-2 text-xs text-muted-foreground">
                     <div className="flex items-center gap-2">
                       <span>{activity.time}</span>
                       {activity.user && (
@@ -186,10 +186,10 @@ export function RecentActivitySection({
                         activity.status === "success"
                           ? "bg-green-500"
                           : activity.status === "warning"
-                            ? "bg-yellow-500"
-                            : activity.status === "error"
-                              ? "bg-red-500"
-                              : "bg-blue-500"
+                          ? "bg-yellow-500"
+                          : activity.status === "error"
+                          ? "bg-red-500"
+                          : "bg-blue-500"
                       }`}
                     />
                   </div>
@@ -200,13 +200,13 @@ export function RecentActivitySection({
         </div>{" "}
         {filteredActivities.length === 0 && (
           <div className="text-center py-12">
-            <div className="w-12 h-12 bg-[hsl(var(--hu-muted))] rounded-[var(--radius)] flex items-center justify-center mx-auto mb-4">
-              <Activity className="h-6 w-6 text-[hsl(var(--hu-muted-foreground))]" />
+            <div className="w-12 h-12 bg-muted rounded-ele flex items-center justify-center mx-auto mb-4">
+              <Activity className="h-6 w-6 text-muted-foreground" />
             </div>
-            <h3 className="text-lg font-medium text-[hsl(var(--hu-foreground))] mb-2">
+            <h3 className="text-lg font-medium text-foreground mb-2">
               No activities found
             </h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               No activities match your current filters.
             </p>
           </div>

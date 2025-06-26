@@ -8,14 +8,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { type LucideIcon } from "lucide-react";
 
 const menubarVariants = cva(
-  "flex items-center rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] transition-all overflow-x-auto scrollbar-hide w-full max-w-full shadow-sm/2",
+  "flex items-center rounded-card border border-border bg-background transition-all overflow-x-auto scrollbar-hide w-full max-w-full shadow-sm/2",
   {
     variants: {
       variant: {
-        default:
-          "bg-[hsl(var(--hu-background))] border-[hsl(var(--hu-border))]",
-        outline:
-          "border-2 border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))]",
+        default: "bg-background border-border",
+        outline: "border-2 border-border bg-background",
         ghost: "border-transparent bg-transparent shadow-none",
       },
       size: {
@@ -32,14 +30,14 @@ const menubarVariants = cva(
 );
 
 const menubarTriggerVariants = cva(
-  "flex cursor-default select-none items-center rounded-[calc(var(--card-radius)-5px)] outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 whitespace-nowrap",
+  "flex cursor-default select-none items-center rounded-[calc(var(--card-radius)-5px)] outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:shrink-0 whitespace-nowrap",
   {
     variants: {
       variant: {
         default:
-          "text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))] data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))] active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+          "text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground active:bg-accent active:text-accent-foreground",
         ghost:
-          "text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]/50 hover:text-[hsl(var(--hu-accent-foreground))] focus:bg-[hsl(var(--hu-accent))]/50 focus:text-[hsl(var(--hu-accent-foreground))] data-[state=open]:bg-[hsl(var(--hu-accent))]/50 data-[state=open]:text-[hsl(var(--hu-accent-foreground))]",
+          "text-foreground hover:bg-accent/50 hover:text-accent-foreground focus:bg-accent/50 focus:text-accent-foreground data-[state=open]:bg-accent/50 data-[state=open]:text-accent-foreground",
       },
       size: {
         sm: "px-2.5 py-1.5 text-xs gap-1 min-h-[2rem] [&_svg]:size-3 sm:px-3 sm:py-2 sm:text-sm sm:gap-1.5 sm:[&_svg]:size-4",
@@ -56,14 +54,12 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-  "z-50 min-w-[12rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1.5 sm:p-2 text-[hsl(var(--hu-foreground))] shadow-xl mt-2",
+  "z-50 min-w-[12rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-card border border-border bg-background p-1.5 sm:p-2 text-foreground shadow-xl mt-2",
   {
     variants: {
       variant: {
-        default:
-          "bg-[hsl(var(--hu-background))] border-[hsl(var(--hu-border))]",
-        accent:
-          "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))] border-[hsl(var(--hu-accent))]",
+        default: "bg-background border-border",
+        accent: "bg-accent text-accent-foreground border-accent",
       },
     },
     defaultVariants: {
@@ -73,14 +69,14 @@ const menubarContentVariants = cva(
 );
 
 const menubarItemVariants = cva(
-  "relative flex cursor-default select-none items-center gap-2 rounded-[calc(var(--card-radius)-5px)] px-2.5 py-2 sm:px-3 sm:py-2.5 text-sm outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] sm:min-h-auto",
+  "relative flex cursor-default select-none items-center gap-2 rounded-[calc(var(--card-radius)-5px)] px-2.5 py-2 sm:px-3 sm:py-2.5 text-sm outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] sm:min-h-auto",
   {
     variants: {
       variant: {
         default:
-          "text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))] active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))]",
+          "text-foreground hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground active:bg-accent active:text-accent-foreground",
         destructive:
-          "text-[hsl(var(--hu-destructive))] hover:bg-[hsl(var(--hu-destructive))] hover:text-[hsl(var(--hu-destructive-foreground))] focus:bg-[hsl(var(--hu-destructive))] focus:text-[hsl(var(--hu-destructive-foreground))] active:bg-[hsl(var(--hu-destructive))] active:text-[hsl(var(--hu-destructive-foreground))]",
+          "text-destructive hover:bg-destructive hover:text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground active:bg-destructive active:text-destructive-foreground",
       },
       inset: {
         true: "pl-6 sm:pl-8",
@@ -224,7 +220,7 @@ const MenuBarSubTrigger = React.forwardRef<
   <MenubarPrimitive.SubTrigger
     ref={ref}
     className={cn(
-      "flex cursor-default select-none items-center gap-2 rounded-[var(--radius)] px-2.5 py-2 sm:px-3 sm:py-2.5 text-sm outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))] data-[state=open]:bg-[hsl(var(--hu-accent))] data-[state=open]:text-[hsl(var(--hu-accent-foreground))] active:bg-[hsl(var(--hu-accent))] active:text-[hsl(var(--hu-accent-foreground))] [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] sm:min-h-auto",
+      "flex cursor-default select-none items-center gap-2 rounded-ele px-2.5 py-2 sm:px-3 sm:py-2.5 text-sm outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground active:bg-accent active:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] sm:min-h-auto",
       inset && "pl-6 sm:pl-8",
       className
     )}
@@ -267,7 +263,7 @@ const MenuBarSubContent = React.forwardRef<
   <MenubarPrimitive.SubContent
     ref={ref}
     className={cn(
-      "z-50 min-w-[10rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-1.5 sm:p-2 text-[hsl(var(--hu-foreground))] shadow-xl ",
+      "z-50 min-w-[10rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-ele border border-border bg-background p-1.5 sm:p-2 text-foreground shadow-xl ",
       className
     )}
     asChild
@@ -401,7 +397,7 @@ const MenuBarItem = React.forwardRef<
         <span className="flex-1 truncate">{children}</span>
         {shortcut && (
           <motion.span
-            className="ml-auto text-xs tracking-widest text-[hsl(var(--hu-muted-foreground))] font-mono hidden sm:inline"
+            className="ml-auto text-xs tracking-widest text-muted-foreground font-mono hidden sm:inline"
             initial={{ opacity: 0.6 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.15 }}
@@ -421,7 +417,7 @@ const MenuBarSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <MenubarPrimitive.Separator
     ref={ref}
-    className={cn("my-2 h-px bg-[hsl(var(--hu-border))] mx-1", className)}
+    className={cn("my-2 h-px bg-border mx-1", className)}
     {...props}
   />
 ));

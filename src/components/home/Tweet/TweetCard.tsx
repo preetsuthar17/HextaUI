@@ -70,7 +70,7 @@ export const TweetSkeleton = ({
   <div
     className={cn(
       "flex size-full max-h-max min-w-72 flex-col gap-2 rounded-lg border p-4",
-      className,
+      className
     )}
     {...props}
   >
@@ -92,7 +92,7 @@ export const TweetNotFound = ({
   <div
     className={cn(
       "flex size-full flex-col items-center justify-center gap-2 rounded-lg border p-4",
-      className,
+      className
     )}
     {...props}
   >
@@ -188,7 +188,7 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
           loop
           muted
           playsInline
-          className="rounded-[var(--radius)] border"
+          className="rounded-ele border"
         >
           <source src={tweet.video.variants[0].src} type="video/mp4" />
           Your browser does not support the video tag.
@@ -241,7 +241,7 @@ export const MagicTweet = ({
     <div
       className={cn(
         "relative flex size-full max-w-lg flex-col gap-2 overflow-hidden rounded-lg border p-4 backdrop-blur-md pb-6 my-[0.5rem] h-auto",
-        className,
+        className
       )}
       {...props}
     >

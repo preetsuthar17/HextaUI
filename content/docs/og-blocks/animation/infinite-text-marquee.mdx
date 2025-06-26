@@ -19,7 +19,7 @@ import { InfiniteTextMarquee } from "@/components/og-blocks/animation/infinite-t
         speed={20}
         tooltipText="It is Amazing!! 🤩🔥"
         fontSize="8rem"
-        textColor="bg-[hsl(var(--hu-foreground))]"
+        textColor="bg-foreground"
         hoverColor="#1d4ed8"
         showTooltip={true}
       />
@@ -33,7 +33,7 @@ import { InfiniteTextMarquee } from "@/components/og-blocks/animation/infinite-t
       speed={20}
       tooltipText="It is Amazing!! 🤩🔥"
       fontSize="8rem"
-      textColor="bg-[hsl(var(--hu-foreground))]"
+      textColor="bg-foreground"
       hoverColor="#1d4ed8"
       showTooltip={true}
     />
@@ -107,7 +107,7 @@ export const InfiniteTextMarquee: React.FC<InfiniteTextMarqueeProps> = ({
         <div
           className={`following-tooltip fixed z-[99] transition-opacity duration-300 font-medium px-12 py-6 rounded-3xl text-nowrap
             ${isHovered ? "opacity-100" : "opacity-0"}
-            bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]
+            bg-accent text-accent-foreground
           `}
           style={{
             top: `${cursorPosition.y}px`,
@@ -181,7 +181,7 @@ import { InfiniteTextMarquee } from "@/components/ui/infinite-text-marquee";
   speed={20}
   tooltipText="It is Amazing!! 🤩🔥"
   fontSize="8rem"
-  textColor="bg-[hsl(var(--hu-foreground))]"
+  textColor="bg-foreground"
   hoverColor="#1d4ed8"
   showTooltip={true}
 />

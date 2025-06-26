@@ -3,7 +3,7 @@
 import React from "react";
 
 interface ColorPaletteProps {
-  colors: Array<{ name: string; value: string }>;
+  colors: Array<{ name: string; value: string; usage: string }>;
 }
 
 const ColorPalette: React.FC<ColorPaletteProps> = ({ colors }) => {
@@ -12,16 +12,16 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({ colors }) => {
       {colors.map((color) => (
         <div
           key={color.name}
-          className="flex flex-col gap-2 items-start  bg-[hsl(var(--hu-accent))]/10 p-4 
-          rounded-[var(--radius)]  border border-[hsl(var(--hu-border))] "
+          className="flex flex-col gap-2 items-start  bg-accent/10 p-4
+          rounded-ele  border border-border "
         >
           <div
-            className="w-full h-32 border border-[hsl(var(--hu-border))] rounded-[var(--radius)]"
+            className="w-full h-32 border border-border rounded-ele"
             style={{ backgroundColor: color.value }}
           ></div>
           <div>
             <strong className="block">{color.name}</strong>
-            <span className="text-gray-600 text-sm">{color.value}</span>
+            <span className="text-gray-600 text-sm">{color.usage}</span>
           </div>
         </div>
       ))}

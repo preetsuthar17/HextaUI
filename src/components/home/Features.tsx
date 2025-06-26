@@ -15,9 +15,7 @@ const FeatureCard = ({
     <div className="flex items-center justify-center flex-col gap-4 p-4">
       <div className="icon">{icon}</div>
       <h3 className="font-medium">{title}</h3>
-      <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
-        {description}
-      </p>
+      <p className="text-sm text-muted-foreground">{description}</p>
     </div>
   );
 };
@@ -65,7 +63,7 @@ const Features = () => {
             Features
           </Badge>{" "}
           <h2 className="text-4xl font-medium">Why use HextaUI?</h2>
-          <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
             50+ components ready to copy and paste into your project.
           </p>
         </div>{" "}
@@ -79,25 +77,25 @@ const Features = () => {
               />
               {/* Faded bottom border */}
               {index < features.length - 1 && (
-                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[hsl(var(--hu-border))] to-transparent sm:hidden" />
+                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-border to-transparent sm:hidden" />
               )}
               {index < features.length - 2 && (
-                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[hsl(var(--hu-border))] to-transparent hidden sm:block lg:hidden" />
+                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-border to-transparent hidden sm:block lg:hidden" />
               )}
               {index < 3 && (
-                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-[hsl(var(--hu-border))] to-transparent hidden lg:block" />
+                <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-gradient-to-r from-transparent via-border to-transparent hidden lg:block" />
               )}
               {/* Faded right border */}
               {index % 2 === 0 && index < features.length - 1 && (
-                <div className="absolute right-0 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-transparent via-[hsl(var(--hu-border))] to-transparent hidden sm:block lg:hidden" />
+                <div className="absolute right-0 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-transparent via-border to-transparent hidden sm:block lg:hidden" />
               )}
               {index % 3 !== 2 && (
-                <div className="absolute right-0 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-transparent via-[hsl(var(--hu-border))] to-transparent hidden lg:block" />
+                <div className="absolute right-0 top-4 bottom-4 w-[1.5px] bg-gradient-to-b from-transparent via-border to-transparent hidden lg:block" />
               )}{" "}
             </div>
           ))}
         </div>
-        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm text-muted-foreground">
           Copy components, customize them, and ship your product faster.
         </p>
       </section>

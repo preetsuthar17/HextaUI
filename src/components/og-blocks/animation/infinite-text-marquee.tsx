@@ -56,7 +56,7 @@ export const InfiniteTextMarquee: React.FC<InfiniteTextMarqueeProps> = ({
         <div
           className={`following-tooltip fixed z-[99] transition-opacity duration-300 font-medium px-12 py-6 rounded-3xl text-nowrap
             ${isHovered ? "opacity-100" : "opacity-0"}
-            bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]
+            bg-accent text-accent-foreground
           `}
           style={{
             top: `${cursorPosition.y}px`,

@@ -102,9 +102,9 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
       {
         variants: {
           variant: {
-            default: "bg-[hsl(var(--hu-muted))]",
-            destructive: "bg-[hsl(var(--hu-destructive))]/20",
-            ghost: "bg-[hsl(var(--hu-accent))]",
+            default: "bg-muted",
+            destructive: "bg-destructive/20",
+            ghost: "bg-accent",
           },
           size: {
             sm: "h-1.5",
@@ -126,8 +126,8 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
         variants: {
           variant: {
             default: "bg-[hsl(var(--hu-primary))]",
-            destructive: "bg-[hsl(var(--hu-destructive))]",
-            ghost: "bg-[hsl(var(--hu-foreground))]",
+            destructive: "bg-destructive",
+            ghost: "bg-foreground",
           },
         },
         defaultVariants: {
@@ -137,13 +137,13 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
     );
 
     const sliderThumbVariants = cva(
-      "block rounded-full border-2 bg-[hsl(var(--hu-background))] transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-md",
+      "block rounded-full border-2 bg-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:shadow-md",
       {
         variants: {
           variant: {
             default: "border-[hsl(var(--hu-primary))] hover:border-[hsl(var(--hu-primary))]/80",
-            destructive: "border-[hsl(var(--hu-destructive))] hover:border-[hsl(var(--hu-destructive))]/80",
-            ghost: "border-[hsl(var(--hu-foreground))] hover:border-[hsl(var(--hu-foreground))]/80",
+            destructive: "border-destructive hover:border-destructive/80",
+            ghost: "border-foreground hover:border-foreground/80",
           },
           size: {
             sm: "h-3 w-3",
@@ -264,7 +264,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
                     </label>
                   )}
                   {showValue && (
-                    <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                    <span className="text-sm text-muted-foreground">
                       {currentValue.length === 1
                         ? formatValue(currentValue[0])
                         : currentValue.map(formatValue).join(" - ")}
@@ -279,7 +279,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 
                 {/* Min/Max labels */}
                 {showMinMax && (
-                  <div className="flex justify-between text-xs text-[hsl(var(--hu-muted-foreground))]">
+                  <div className="flex justify-between text-xs text-muted-foreground">
                     <span>{formatValue(min)}</span>
                     <span>{formatValue(max)}</span>
                   </div>
@@ -292,13 +292,13 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
                   {description && (
                     <p
                       id={descriptionId}
-                      className="text-sm text-[hsl(var(--hu-muted-foreground))]"
+                      className="text-sm text-muted-foreground"
                     >
                       {description}
                     </p>
                   )}
                   {error && typeof error === "string" && (
-                    <p className="text-sm text-[hsl(var(--hu-destructive))]">
+                    <p className="text-sm text-destructive">
                       {error}
                     </p>
                   )}
@@ -681,7 +681,7 @@ import { Slider } from "@/components/ui/Slider";
 
           <Button
             type="submit"
-            className="w-full px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-[var(--radius)] hover:bg-[hsl(var(--hu-primary))]/90 transition-colors"
+            className="w-full px-4 py-2 bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-ele hover:bg-[hsl(var(--hu-primary))]/90 transition-colors"
           >
             Save Settings
           </Button>

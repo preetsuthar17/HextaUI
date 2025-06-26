@@ -25,7 +25,7 @@ export const PreviewContainer = ({
     <div className="relative overflow-hidden">
       <button
         onClick={handleRefresh}
-        className="absolute top-4 right-4 z-2 p-2 rounded-full hover:bg-[hsl(var(--hu-accent))] transition-colors"
+        className="absolute top-4 right-4 z-2 p-2 rounded-full hover:bg-accent transition-colors"
         aria-label="Refresh preview"
       >
         {/* <RefreshCw
@@ -36,8 +36,8 @@ export const PreviewContainer = ({
       <div
         key={key}
         className={cn(
-          "border border-[hsl(var(--hu-border))] min-h-[30rem] rounded-[var(--radius)] p-4 flex items-center justify-center not-prose relative bg-[var(--hu-background)]",
-          className,
+          "border border-border min-h-[30rem] rounded-ele p-4 flex items-center justify-center not-prose relative bg-[var(--hu-background)]",
+          className
         )}
       >
         <div className="relative z-0 w-full h-full flex items-center justify-center">

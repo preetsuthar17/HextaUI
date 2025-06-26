@@ -47,7 +47,7 @@ const Contributors = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors?per_page=12",
+          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors?per_page=12"
         );
 
         if (!response.ok) {
@@ -60,13 +60,13 @@ const Contributors = () => {
           .filter((contributor: Contributor) => contributor.type === "User")
           .sort(
             (a: Contributor, b: Contributor) =>
-              b.contributions - a.contributions,
+              b.contributions - a.contributions
           );
 
         setContributors(filteredContributors);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "Failed to load contributors",
+          err instanceof Error ? err.message : "Failed to load contributors"
         );
       } finally {
         setLoading(false);
@@ -85,7 +85,7 @@ const Contributors = () => {
             Contributors
           </Badge>
           <h2 className="text-4xl font-medium">Our amazing contributors</h2>
-          <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
             Unable to load contributors. Please try again later.
           </p>
         </div>
@@ -100,7 +100,7 @@ const Contributors = () => {
           Contributors
         </Badge>
         <h2 className="text-4xl font-medium">Our amazing contributors</h2>
-        <p className="max-w-2xl mx-auto max-sm:text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
           Thanks to these wonderful people who have contributed to HextaUI.
         </p>
       </div>{" "}
@@ -108,7 +108,7 @@ const Contributors = () => {
         <div className="-space-x-6 flex gap-4 flex-wrap items-center justify-center max-w-5xl w-full">
           {Array.from({ length: 12 }).map((_, index) => (
             <div key={index} className="animate-pulse">
-              <div className="h-12 w-12 bg-[hsl(var(--hu-muted))] rounded-full"></div>
+              <div className="h-12 w-12 bg-muted rounded-full"></div>
             </div>
           ))}
         </div>
@@ -120,7 +120,7 @@ const Contributors = () => {
         </div>
       )}
       <div className="flex flex-col items-center gap-4">
-        <div className="flex items-center gap-2 text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <Heart className="h-4 w-4 text-red-500" />
           <span>Thank you for your contributions!</span>
         </div>
@@ -138,7 +138,7 @@ const Contributors = () => {
           </a>
         </Button>
       </div>
-      <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+      <p className="text-sm text-muted-foreground">
         Want to contribute? Check out our{" "}
         <a
           href="https://github.com/preetsuthar17/HextaUI"

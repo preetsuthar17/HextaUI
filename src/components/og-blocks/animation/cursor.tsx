@@ -136,7 +136,7 @@ function Pointer({
           data-role="custom-pointer"
           className={cx(
             "pointer-events-none z-[9999] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className,
+            className
           )}
           style={{ top: springY, left: springX, ...style }}
           initial={{ scale: 0, opacity: 0 }}
@@ -241,7 +241,7 @@ function PointerFollower({
           data-role="pointer-follower"
           className={cx(
             "pointer-events-none z-[9998] absolute transform -translate-x-1/2 -translate-y-1/2",
-            className,
+            className
           )}
           style={{ top: springY, left: springX, ...style }}
           initial={{ scale: 0, opacity: 0 }}
@@ -261,7 +261,7 @@ function PointerFollower({
 
 export const CursorDemo = () => {
   return (
-    <div className="max-w-sm rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))] overflow-hidden relative group">
+    <div className="max-w-sm rounded-ele bg-card border border-border overflow-hidden relative group">
       <div className="p-6 flex flex-col gap-8">
         <p className="text-4xl font-bold tracking-tight">
           Ready to build something amazing?
@@ -280,7 +280,7 @@ export const CursorDemo = () => {
           />
         </Pointer>
         <PointerFollower align="bottom-right">
-          <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-[var(--radius)]">
+          <div className="bg-blue-500 text-white border border-white/10 text-xs px-3 py-1 rounded-ele">
             preett
           </div>
         </PointerFollower>

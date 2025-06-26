@@ -55,7 +55,7 @@ import { Bell, Settings, User, Calendar, Mail, Phone } from "lucide-react";
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm text-muted-foreground">
           Experience the perfect blend of aesthetics and functionality with our
           comprehensive component library.
         </p>
@@ -89,14 +89,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative rounded-[var(--card-radius)] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))] transition-all duration-300 ease-out overflow-hidden",
+  "relative rounded-card bg-card text-card-foreground transition-all duration-300 ease-out overflow-hidden",
   {
     variants: {
       variant: {
-        default: "border border-[hsl(var(--hu-border))]",
+        default: "border border-border",
         outline:
-          "border-2 border-[hsl(var(--hu-border))]  hover:border-[hsl(var(--hu-primary))]/30",
-        ghost: "border-transparent hover:bg-[hsl(var(--hu-accent))] ",
+          "border-2 border-border  hover:border-[hsl(var(--hu-primary))]/30",
+        ghost: "border-transparent hover:bg-accent ",
       },
       size: {
         sm: "p-4",
@@ -146,7 +146,7 @@ const CardTitle = React.forwardRef<
   <h3
     ref={ref}
     className={cn(
-      "text-xl font-semibold leading-tight tracking-tight text-[hsl(var(--hu-foreground))]",
+      "text-xl font-semibold leading-tight tracking-tight text-foreground",
       className
     )}
     {...props}
@@ -161,7 +161,7 @@ const CardDescription = React.forwardRef<
   <p
     ref={ref}
     className={cn(
-      "text-sm text-[hsl(var(--hu-muted-foreground))] leading-relaxed",
+      "text-sm text-muted-foreground leading-relaxed",
       className
     )}
     {...props}
@@ -252,13 +252,13 @@ import {
           <CardDescription>You have 3 unread messages.</CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="flex items-center space-x-4 rounded-2xl border border-[hsl(var(--hu-border))] p-4">
+          <div className="flex items-center space-x-4 rounded-2xl border border-border p-4">
             <Bell className="h-4 w-4" />
             <div className="flex-1 space-y-1">
               <p className="text-sm font-medium leading-none">
                 Push Notifications
               </p>
-              <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+              <p className="text-sm text-muted-foreground">
                 Send notifications to device.
               </p>
             </div>
@@ -281,13 +281,13 @@ import {
         <CardDescription>You have 3 unread messages.</CardDescription>
       </CardHeader>
       <CardContent>
-        <div className="flex items-center space-x-4 rounded-md border border-[hsl(var(--hu-border))] p-4">
+        <div className="flex items-center space-x-4 rounded-md border border-border p-4">
           <Bell className="h-4 w-4" />
           <div className="flex-1 space-y-1">
             <p className="text-sm font-medium leading-none">
               Push Notifications
             </p>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               Send notifications to device.
             </p>
           </div>
@@ -460,23 +460,23 @@ import {
     <PreviewContainer>
       <Card className="w-full max-w-sm space-y-6">
         <CardHeader className="text-center pb-2">
-          <div className="w-20 h-20 rounded-full bg-[hsl(var(--hu-accent))] mx-auto mb-4 flex items-center justify-center">
-            <User className="h-10 w-10 text-[hsl(var(--hu-accent-foreground))]" />
+          <div className="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+            <User className="h-10 w-10 text-accent-foreground" />
           </div>
           <CardTitle>John Doe</CardTitle>
           <CardDescription>Software Engineer at HextaUI</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center space-x-2">
-            <Mail className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <Mail className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm">john@example.com</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Phone className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <Phone className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm">+1 (555) 123-4567</span>
           </div>
           <div className="flex items-center space-x-2">
-            <Calendar className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+            <Calendar className="h-4 w-4 text-muted-foreground" />
             <span className="text-sm">Joined January 2024</span>
           </div>
         </CardContent>
@@ -493,23 +493,23 @@ import {
     ```tsx
     <Card className="w-full max-w-sm space-y-6">
       <CardHeader className="text-center pb-2">
-        <div className="w-20 h-20 rounded-full bg-[hsl(var(--hu-accent))] mx-auto mb-4 flex items-center justify-center">
-          <User className="h-10 w-10 text-[hsl(var(--hu-accent-foreground))]" />
+        <div className="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+          <User className="h-10 w-10 text-accent-foreground" />
         </div>
         <CardTitle>John Doe</CardTitle>
         <CardDescription>Software Engineer at HextaUI</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="flex items-center space-x-2">
-          <Mail className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <Mail className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm">john@example.com</span>
         </div>
         <div className="flex items-center space-x-2">
-          <Phone className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <Phone className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm">+1 (555) 123-4567</span>
         </div>
         <div className="flex items-center space-x-2">
-          <Calendar className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+          <Calendar className="h-4 w-4 text-muted-foreground" />
           <span className="text-sm">Joined January 2024</span>
         </div>
       </CardContent>
@@ -612,7 +612,7 @@ import {
         <CardContent>
           <div className="text-center space-y-2">
             <h3 className="text-lg font-semibold">Welcome!</h3>
-            <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+            <p className="text-sm text-muted-foreground">
               This is a simple card without header or footer.
             </p>
             <Button className="mt-4">Get Started</Button>
@@ -627,7 +627,7 @@ import {
       <CardContent>
         <div className="text-center space-y-2">
           <h3 className="text-lg font-semibold">Welcome!</h3>
-          <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+          <p className="text-sm text-muted-foreground">
             This is a simple card without header or footer.
           </p>
           <Button className="mt-4">Get Started</Button>

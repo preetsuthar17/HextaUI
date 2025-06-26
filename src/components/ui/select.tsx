@@ -8,15 +8,14 @@ import { type LucideIcon, ChevronDown, Check } from "lucide-react";
 import { motion } from "motion/react";
 
 const selectTriggerVariants = cva(
-  "flex h-9 w-full items-center justify-between gap-3 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-2 text-sm transition-all placeholder:text-[hsl(var(--hu-muted-foreground))] focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))]",
+  "flex h-9 w-full items-center justify-between gap-3 rounded-ele border border-border bg-background px-3 py-2 text-sm transition-all placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border border-border bg-input",
   {
     variants: {
       variant: {
-        default:
-          "hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] shadow-sm/2",
-        outline: "border-2 hover:border-[hsl(var(--hu-ring))] shadow-sm/2",
+        default: "hover:bg-accent hover:text-accent-foreground shadow-sm/2",
+        outline: "border-2 hover:border-ring shadow-sm/2",
         ghost:
-          "border-transparent hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))]",
+          "border-transparent hover:bg-accent hover:text-accent-foreground",
       },
       size: {
         sm: "h-8 p-2 text-xs gap-2",
@@ -32,7 +31,7 @@ const selectTriggerVariants = cva(
 );
 
 const selectContentVariants = cva(
-  "relative z-50 max-h-[300px] min-w-[8rem] overflow-hidden rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))] shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
+  "relative z-50 max-h-[300px] min-w-[8rem] overflow-hidden rounded-ele border border-border bg-background text-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 data-[side=bottom]:slide-in-from-top-2 data-[side=left]:slide-in-from-right-2 data-[side=right]:slide-in-from-left-2 data-[side=top]:slide-in-from-bottom-2",
   {
     variants: {
       position: {
@@ -62,9 +61,7 @@ const SelectValue = React.forwardRef<
     className={cn("text-sm select-none", className)}
     placeholder={
       placeholder && (
-        <span className="text-[hsl(var(--hu-muted-foreground))] select-none">
-          {placeholder}
-        </span>
+        <span className="text-muted-foreground select-none">{placeholder}</span>
       )
     }
     {...props}
@@ -97,12 +94,7 @@ const SelectTrigger = React.forwardRef<
       {...props}
     >
       <div className="flex items-center gap-2 flex-1 min-w-0">
-        {Icon && (
-          <Icon
-            size={16}
-            className="shrink-0 text-[hsl(var(--hu-muted-foreground))]"
-          />
-        )}
+        {Icon && <Icon size={16} className="shrink-0 text-muted-foreground" />}
         <span className="truncate">{children}</span>
       </div>{" "}
       <SelectPrimitive.Icon asChild>
@@ -140,7 +132,7 @@ const SelectContent = React.forwardRef<
       >
         <SelectPrimitive.Viewport
           className={cn(
-            "p-2 max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-[hsl(var(--hu-border))] scrollbar-track-transparent",
+            "p-2 max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent",
             position === "popper" &&
               "h-fit w-full min-w-[var(--radix-select-trigger-width)]"
           )}
@@ -160,7 +152,7 @@ const SelectLabel = React.forwardRef<
   <SelectPrimitive.Label
     ref={ref}
     className={cn(
-      "px-3 py-2 text-xs font-semibold text-[hsl(var(--hu-muted-foreground))]",
+      "px-3 py-2 text-xs font-semibold text-muted-foreground",
       className
     )}
     {...props}
@@ -180,7 +172,7 @@ const SelectItem = React.forwardRef<
   <SelectPrimitive.Item
     ref={ref}
     className={cn(
-      "relative flex w-full cursor-default select-none items-center rounded-lg py-2 pl-3 pr-8 text-sm outline-none focus:bg-[hsl(var(--hu-accent))] focus:text-[hsl(var(--hu-accent-foreground))] data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:text-[hsl(var(--hu-muted-foreground))]",
+      "relative flex w-full cursor-default select-none items-center rounded-lg py-2 pl-3 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:text-muted-foreground",
       className
     )}
     {...props}
@@ -214,7 +206,7 @@ const SelectSeparator = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <SelectPrimitive.Separator
     ref={ref}
-    className={cn("-mx-1 my-1 h-px bg-[hsl(var(--hu-muted))]", className)}
+    className={cn("-mx-1 my-1 h-px bg-muted", className)}
     {...props}
   />
 ));

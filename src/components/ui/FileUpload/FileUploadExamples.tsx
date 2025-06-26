@@ -76,7 +76,7 @@ export function FileUploadControlled() {
         size="default"
       />
       {files.length > 0 && (
-        <div className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <div className="text-sm text-muted-foreground">
           {files.length} file(s) selected
         </div>
       )}
@@ -141,7 +141,7 @@ export function FileUploadWithScrollArea() {
         onFilesChange={setFiles}
         size="default"
       />
-      <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+      <div className="text-xs text-muted-foreground">
         Upload multiple files to see the scroll area in action (scrollable after
         3 files)
       </div>

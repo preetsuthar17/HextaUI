@@ -6,15 +6,14 @@ import { cn } from "@/lib/utils";
 import { Eye, EyeOff, X } from "lucide-react";
 
 const inputVariants = cva(
-  "flex w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-[hsl(var(--hu-background))] file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-sm/2",
+  "flex w-full rounded-ele border border-border bg-input px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 transition-all shadow-sm/2",
   {
     variants: {
       variant: {
-        default: "border-[hsl(var(--hu-border))]",
-        destructive:
-          "border-[hsl(var(--hu-destructive))] focus-visible:ring-[hsl(var(--hu-destructive))]",
+        default: "border-border",
+        destructive: "border-destructive focus-visible:ring-destructive",
         ghost:
-          "border-transparent bg-[hsl(var(--hu-accent))] focus-visible:bg-[hsl(var(--hu-input))] focus-visible:border-[hsl(var(--hu-border))]",
+          "border-transparent bg-accent focus-visible:bg-input focus-visible:border-border",
       },
       size: {
         default: "h-9 px-3 py-2",
@@ -133,7 +132,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="relative w-full">
         {leftIcon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0 z-10">
+          <div className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0 z-10">
             {leftIcon}
           </div>
         )}{" "}
@@ -156,7 +155,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
             {/* Custom right icon */}
             {rightIcon && (
-              <div className="text-[hsl(var(--hu-muted-foreground))] [&_svg]:size-4 [&_svg]:shrink-0">
+              <div className="text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0">
                 {rightIcon}
               </div>
             )}
@@ -166,7 +165,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <button
                 type="button"
                 onClick={handleClear}
-                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                className="text-muted-foreground hover:text-foreground transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
                 tabIndex={-1}
               >
                 <X />
@@ -178,7 +177,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               <button
                 type="button"
                 onClick={togglePasswordVisibility}
-                className="text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
+                className="text-muted-foreground hover:text-foreground transition-colors [&_svg]:size-4 [&_svg]:shrink-0"
                 tabIndex={-1}
               >
                 {showPassword ? <EyeOff /> : <Eye />}

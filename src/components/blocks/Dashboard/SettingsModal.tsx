@@ -67,7 +67,7 @@ export function SettingsModal({
             <div className="flex items-center justify-between">
               <div className="space-y-1">
                 <label className="text-sm font-medium">Auto-refresh</label>
-                <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                <p className="text-xs text-muted-foreground">
                   Automatically refresh dashboard data
                 </p>
               </div>
@@ -82,7 +82,7 @@ export function SettingsModal({
             <div className="flex items-center justify-between">
               <div className="space-y-1">
                 <label className="text-sm font-medium">Notifications</label>
-                <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                <p className="text-xs text-muted-foreground">
                   Show system notifications
                 </p>
               </div>

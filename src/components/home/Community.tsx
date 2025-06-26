@@ -19,14 +19,12 @@ const CommunityCard = ({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block p-8   border border-[hsl(var(--hu-border))] rounded-[var(--radius)] transition-all duration-200 group hover:bg-[hsl(var(--hu-accent))]"
+      className="block p-8   border border-border rounded-ele transition-all duration-200 group hover:bg-accent"
     >
       <div className="flex flex-col items-center text-center space-y-4">
-        <div className="transition-colors text-[hsl(var(--hu-muted-foreground))]">
-          {icon}
-        </div>
+        <div className="transition-colors text-muted-foreground">{icon}</div>
         <h3 className="text-lg font-medium">{title}</h3>
-        <p className="text-sm  leading-relaxed text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm  leading-relaxed text-muted-foreground">
           {description}
         </p>
       </div>
@@ -85,7 +83,7 @@ const Community = () => {
             />
           ))}
         </div>
-        <p className="text-sm  max-w-md text-[hsl(var(--hu-muted-foreground))]">
+        <p className="text-sm  max-w-md text-muted-foreground">
           Get help, share feedback, and stay updated with the latest releases.
         </p>
       </section>

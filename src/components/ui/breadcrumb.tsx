@@ -12,7 +12,7 @@ const breadcrumbVariants = cva("", {
 });
 
 const breadcrumbListVariants = cva(
-  "flex flex-wrap items-center gap-1.5 break-words text-sm text-[hsl(var(--hu-muted-foreground))]",
+  "flex flex-wrap items-center gap-1.5 break-words text-sm text-muted-foreground",
   {
     variants: {
       size: {
@@ -33,28 +33,25 @@ const breadcrumbItemVariants = cva("inline-flex items-center gap-1.5", {
 });
 
 const breadcrumbLinkVariants = cva(
-  "transition-colors hover:text-[hsl(var(--hu-foreground))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 rounded-sm flex items-center gap-1",
+  "transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm flex items-center gap-1",
   {
     variants: {},
     defaultVariants: {},
   }
 );
 
-const breadcrumbPageVariants = cva(
-  "font-normal text-[hsl(var(--hu-foreground))]",
-  {
-    variants: {
-      variant: {
-        default: "",
-        highlighted: "font-medium",
-        muted: "text-[hsl(var(--hu-muted-foreground))]",
-      },
+const breadcrumbPageVariants = cva("font-normal text-foreground", {
+  variants: {
+    variant: {
+      default: "",
+      highlighted: "font-medium",
+      muted: "text-muted-foreground",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 export interface BreadcrumbProps extends React.ComponentPropsWithoutRef<"nav"> {
   separator?: React.ReactNode;

@@ -5,18 +5,16 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const kbdVariants = cva(
-  "inline-flex items-center justify-center font-mono text-xs bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] border border-[hsl(var(--hu-border))] rounded-md border-b-3 transition-all duration-75 cursor-pointer select-none active:translate-y-[1px] active:border-b-[1px]  hover:bg-[hsl(var(--hu-muted))]/80 shadow-sm/2",
+  "inline-flex items-center justify-center font-mono text-xs bg-muted text-muted-foreground border border-border rounded-md border-b-3 transition-all duration-75 cursor-pointer select-none active:translate-y-[1px] active:border-b-[1px]  hover:bg-muted/80 shadow-sm/2",
   {
     variants: {
       variant: {
-        default:
-          "bg-[hsl(var(--hu-muted))] text-[hsl(var(--hu-muted-foreground))] border-[hsl(var(--hu-border))]",
-        outline:
-          "bg-transparent border-[hsl(var(--hu-border))] text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))]",
+        default: "bg-muted text-muted-foreground border-border",
+        outline: "bg-transparent border-border text-foreground hover:bg-accent",
         solid:
-          "bg-[hsl(var(--hu-foreground))] text-[hsl(var(--hu-background))] border-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-foreground))]/90",
+          "bg-foreground text-background border-foreground hover:bg-foreground/90",
         secondary:
-          "bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] border-[hsl(var(--hu-border))] hover:bg-[hsl(var(--hu-secondary))]/80",
+          "bg-secondary text-secondary-foreground border-border hover:bg-secondary/80",
       },
       size: {
         xs: "h-5 px-1.5 text-[10px] min-w-[1.25rem]",
@@ -58,9 +56,7 @@ const Kbd = React.forwardRef<HTMLElement, KbdProps>(
                 {key}
               </kbd>
               {index < keys.length - 1 && (
-                <span className="text-[hsl(var(--hu-muted-foreground))] text-xs px-1">
-                  +
-                </span>
+                <span className="text-muted-foreground text-xs px-1">+</span>
               )}
             </React.Fragment>
           ))}

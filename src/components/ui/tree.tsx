@@ -35,7 +35,7 @@ const useTree = () => {
 
 // Tree variants
 const treeVariants = cva(
-  "w-full bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-sm/2",
+  "w-full bg-background border border-border rounded-ele shadow-sm/2",
   {
     variants: {
       variant: {
@@ -62,12 +62,12 @@ const treeItemVariants = cva(
     variants: {
       variant: {
         default:
-          "hover:bg-[hsl(var(--hu-accent))] focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:outline-none",
-        ghost: "hover:bg-[hsl(var(--hu-accent))]/50",
-        subtle: "hover:bg-[hsl(var(--hu-muted))]/50",
+          "hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none",
+        ghost: "hover:bg-accent/50",
+        subtle: "hover:bg-muted/50",
       },
       selected: {
-        true: "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]",
+        true: "bg-accent text-accent-foreground",
         false: "",
       },
     },
@@ -308,7 +308,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
               {currentPath.map((isLastInPath, pathIndex) => (
                 <div
                   key={pathIndex}
-                  className="absolute top-0 bottom-0 border-l border-[hsl(var(--hu-border))]/40"
+                  className="absolute top-0 bottom-0 border-l border-border/40"
                   style={{
                     left: pathIndex * indent + 12,
                     display:
@@ -319,7 +319,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
                 />
               ))}
               <div
-                className="absolute top-1/2 border-t border-[hsl(var(--hu-border))]/40"
+                className="absolute top-1/2 border-t border-border/40"
                 style={{
                   left: (level - 1) * indent + 12,
                   width: indent - 4,
@@ -328,7 +328,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
               />
               {isLast && (
                 <div
-                  className="absolute top-0 border-l border-[hsl(var(--hu-border))]/40"
+                  className="absolute top-0 border-l border-border/40"
                   style={{
                     left: (level - 1) * indent + 12,
                     height: "50%",
@@ -345,14 +345,14 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             {hasChildren && (
-              <ChevronRight className="h-3 w-3 text-[hsl(var(--hu-muted-foreground))]" />
+              <ChevronRight className="h-3 w-3 text-muted-foreground" />
             )}
           </motion.div>
 
           {/* Node Icon */}
           {showIcons && (
             <motion.div
-              className="flex items-center justify-center w-4 h-4 mr-2 text-[hsl(var(--hu-muted-foreground))]"
+              className="flex items-center justify-center w-4 h-4 mr-2 text-muted-foreground"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.15 }}
             >
@@ -361,7 +361,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           )}
 
           {/* Label */}
-          <span className="text-sm truncate flex-1 text-[hsl(var(--hu-foreground))]">
+          <span className="text-sm truncate flex-1 text-foreground">
             {label}
           </span>
         </motion.div>

@@ -11,10 +11,9 @@ const alertVariants = cva(
   {
     variants: {
       variant: {
-        default:
-          "border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))]",
+        default: "border-border bg-card text-card-foreground",
         destructive:
-          "border-[hsl(var(--hu-destructive))] bg-[hsl(var(--hu-destructive))]/10 text-[hsl(var(--hu-destructive))] [&>svg]:text-[hsl(var(--hu-destructive))]",
+          "border-destructive bg-destructive/10 text-destructive [&>svg]:text-destructive",
         warning:
           "border-amber-200 bg-amber-50 text-amber-800 dark:border-amber-700 dark:bg-amber-950/30 dark:text-amber-200 [&>svg]:text-amber-600 dark:[&>svg]:text-amber-400",
         success:
@@ -103,7 +102,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
                 <div className="flex-shrink-0 ml-3">
                   <button
                     type="button"
-                    className="inline-flex rounded-md p-1.5 transition-colors hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[hsl(var(--hu-ring))]"
+                    className="inline-flex rounded-md p-1.5 transition-colors hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"
                     onClick={handleDismiss}
                     aria-label="Dismiss alert"
                   >

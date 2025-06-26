@@ -144,7 +144,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
       title = "Select Time Range",
       ...props
     },
-    ref,
+    ref
   ) => {
     const [internalStartTime, setInternalStartTime] = React.useState(startTime);
     const [internalEndTime, setInternalEndTime] = React.useState(endTime);
@@ -154,7 +154,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
 
     const duration = React.useMemo(
       () => calculateDuration(internalStartTime, internalEndTime),
-      [internalStartTime, internalEndTime],
+      [internalStartTime, internalEndTime]
     );
 
     const handleStartTimeChange = (time: string) => {
@@ -170,7 +170,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
         onTimeChange?.(
           time,
           internalEndTime,
-          calculateDuration(time, internalEndTime),
+          calculateDuration(time, internalEndTime)
         );
       }
     };
@@ -181,7 +181,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
       onTimeChange?.(
         internalStartTime,
         time,
-        calculateDuration(internalStartTime, time),
+        calculateDuration(internalStartTime, time)
       );
     };
 
@@ -222,7 +222,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
         <Card>
           <CardHeader>
             <CardTitle className="text-lg font-semibold flex items-center gap-2 ">
-              <Clock className="h-5 w-5 text-[hsl(var(--hu-primary))]" />
+              <Clock className="h-5 w-5 text-primary" />
               {title}
             </CardTitle>
           </CardHeader>
@@ -311,20 +311,20 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
                   animate={{ opacity: 1, height: "auto" }}
                   exit={{ opacity: 0, height: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="p-3 bg-[hsl(var(--hu-accent))] rounded-[var(--radius)] border border-[hsl(var(--hu-border))] flex flex-col gap-2 overflow-hidden"
+                  className="p-3 bg-accent rounded-ele border border-border flex flex-col gap-2 overflow-hidden"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <Calendar className="h-4 w-4 text-[hsl(var(--hu-muted-foreground))]" />
+                      <Calendar className="h-4 w-4 text-muted-foreground" />
                       <span className="text-sm font-medium">Duration</span>
                     </div>
-                    <span className="text-sm font-semibold text-[hsl(var(--hu-primary))]">
+                    <span className="text-sm font-semibold text-primary">
                       {formatDuration(duration)}
                     </span>
                   </div>
 
                   {duration > 0 && (
-                    <div className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                    <div className="text-xs text-muted-foreground">
                       From{" "}
                       {
                         timeOptions.find((t) => t.value === internalStartTime)
@@ -366,7 +366,7 @@ const TimeSelection = React.forwardRef<HTMLDivElement, TimeSelectionProps>(
         </Card>
       </div>
     );
-  },
+  }
 );
 
 TimeSelection.displayName = "TimeSelection";

@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
 const checkboxVariants = cva(
-  "peer shrink-0 rounded-sm border border-[hsl(var(--hu-border))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[hsl(var(--hu-primary))] data-[state=checked]:text-[hsl(var(--hu-primary-foreground))] data-[state=checked]:border-[hsl(var(--hu-primary))] data-[state=indeterminate]:bg-[hsl(var(--hu-primary))] data-[state=indeterminate]:text-[hsl(var(--hu-primary-foreground))] data-[state=indeterminate]:border-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-foreground))]  focus-visible:ring-offset-[hsl(var(--hu-background))] focus-visible:ring-offset-2 transition-colors shadow-sm/2",
+  "peer shrink-0 rounded-sm border border-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary bg-accent text-foreground  focus-visible:ring-offset-background focus-visible:ring-offset-2 transition-colors shadow-sm/2",
   {
     variants: {
       size: {
@@ -121,7 +121,7 @@ const CheckboxRoot = React.forwardRef<
               </label>
             )}
             {description && (
-              <p className="text-xs text-[hsl(var(--hu-muted-foreground))] peer-disabled:opacity-70">
+              <p className="text-xs text-muted-foreground peer-disabled:opacity-70">
                 {description}
               </p>
             )}
@@ -129,11 +129,7 @@ const CheckboxRoot = React.forwardRef<
         )}
       </div>
 
-      {error && (
-        <p className="text-xs text-[hsl(var(--hu-destructive))] ml-6">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-xs text-destructive ml-6">{error}</p>}
     </div>
   );
 });

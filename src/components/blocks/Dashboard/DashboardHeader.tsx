@@ -92,19 +92,17 @@ export function DashboardHeader({
   return (
     <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <div className="space-y-1">
-        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-[hsl(var(--hu-foreground))]">
+        <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           {title}
         </h2>
-        <p className="text-sm text-[hsl(var(--hu-muted-foreground))]">
-          {subtitle}
-        </p>
+        <p className="text-sm text-muted-foreground">{subtitle}</p>
       </div>
 
       {/* Enhanced Controls */}
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-start">
         {/* Search Bar */}
         <div className="relative w-full sm:min-w-[200px] sm:max-w-[300px]">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[hsl(var(--hu-muted-foreground))]" />
+          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             placeholder="Search activities..."
             value={searchQuery}
@@ -178,7 +176,7 @@ export function DashboardHeader({
                     <Badge
                       variant="destructive"
                       size="sm"
-                      className="absolute -top-2 -right-2 h-5 w-5 rounded-[var(--radius)] p-0 text-[10px] flex items-center justify-center"
+                      className="absolute -top-2 -right-2 h-5 w-5 rounded-ele p-0 text-[10px] flex items-center justify-center"
                     >
                       {unreadCount}
                     </Badge>
@@ -217,10 +215,10 @@ export function DashboardHeader({
                           {notification.type}
                         </Badge>
                       </div>
-                      <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                      <p className="text-xs text-muted-foreground">
                         {notification.message}
                       </p>
-                      <p className="text-xs text-[hsl(var(--hu-muted-foreground))]">
+                      <p className="text-xs text-muted-foreground">
                         {notification.time}
                       </p>
                     </DropdownMenuItem>

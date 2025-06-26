@@ -23,7 +23,7 @@ export function ToggleGroupExample() {
     setTextFormat((prev) =>
       prev.includes(format)
         ? prev.filter((f) => f !== format)
-        : [...prev, format],
+        : [...prev, format]
     );
   };
 
@@ -35,7 +35,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Multiple toggles can be active at once
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
+        <div className="flex gap-1 p-1 bg-background rounded-ele w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -44,7 +44,7 @@ export function ToggleGroupExample() {
             aria-label="Toggle bold"
             className={
               textFormat.includes("bold")
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
+                ? "bg-accent text-accent-foreground"
                 : ""
             }
           >
@@ -58,7 +58,7 @@ export function ToggleGroupExample() {
             aria-label="Toggle italic"
             className={
               textFormat.includes("italic")
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
+                ? "bg-accent text-accent-foreground"
                 : ""
             }
           >
@@ -72,7 +72,7 @@ export function ToggleGroupExample() {
             aria-label="Toggle underline"
             className={
               textFormat.includes("underline")
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
+                ? "bg-accent text-accent-foreground"
                 : ""
             }
           >
@@ -90,7 +90,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Only one alignment can be active at a time
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
+        <div className="flex gap-1 p-1 bg-background rounded-ele w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -98,9 +98,7 @@ export function ToggleGroupExample() {
             onPressedChange={() => setAlignment("left")}
             aria-label="Align left"
             className={
-              alignment === "left"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              alignment === "left" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <AlignLeft />
@@ -112,9 +110,7 @@ export function ToggleGroupExample() {
             onPressedChange={() => setAlignment("center")}
             aria-label="Align center"
             className={
-              alignment === "center"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              alignment === "center" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <AlignCenter />
@@ -126,9 +122,7 @@ export function ToggleGroupExample() {
             onPressedChange={() => setAlignment("right")}
             aria-label="Align right"
             className={
-              alignment === "right"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              alignment === "right" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <AlignRight />
@@ -144,7 +138,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Toggle between different list types or none
         </p>{" "}
-        <div className="flex gap-1 p-1 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
+        <div className="flex gap-1 p-1 bg-background rounded-ele w-fit border">
           <Toggle
             variant="ghost"
             size="icon"
@@ -154,9 +148,7 @@ export function ToggleGroupExample() {
             }
             aria-label="Bullet list"
             className={
-              listType === "bullet"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              listType === "bullet" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <List />
@@ -170,9 +162,7 @@ export function ToggleGroupExample() {
             }
             aria-label="Numbered list"
             className={
-              listType === "numbered"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              listType === "numbered" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <ListOrdered />
@@ -186,9 +176,7 @@ export function ToggleGroupExample() {
             }
             aria-label="Quote"
             className={
-              listType === "quote"
-                ? "bg-[hsl(var(--hu-accent))] text-[hsl(var(--hu-accent-foreground))]"
-                : ""
+              listType === "quote" ? "bg-accent text-accent-foreground" : ""
             }
           >
             <Quote />
@@ -204,7 +192,7 @@ export function ToggleGroupExample() {
         <p className="text-xs text-muted-foreground">
           Complete text editor toolbar with grouped toggles
         </p>
-        <div className="flex gap-2 p-2 bg-[hsl(var(--hu-background))] rounded-[var(--radius)] w-fit border">
+        <div className="flex gap-2 p-2 bg-background rounded-ele w-fit border">
           {" "}
           {/* Text formatting group */}
           <div className="flex gap-1">
@@ -237,8 +225,7 @@ export function ToggleGroupExample() {
             </Toggle>
           </div>
           {/* Separator */}
-          <div className="w-px h-6 bg-[hsl(var(--hu-border))]" />{" "}
-          {/* Alignment group */}
+          <div className="w-px h-6 bg-border" /> {/* Alignment group */}
           <div className="flex gap-1">
             <Toggle
               variant="ghost"
@@ -269,8 +256,7 @@ export function ToggleGroupExample() {
             </Toggle>
           </div>
           {/* Separator */}
-          <div className="w-px h-6 bg-[hsl(var(--hu-border))]" />{" "}
-          {/* List type group */}
+          <div className="w-px h-6 bg-border" /> {/* List type group */}
           <div className="flex gap-1">
             <Toggle
               variant="ghost"

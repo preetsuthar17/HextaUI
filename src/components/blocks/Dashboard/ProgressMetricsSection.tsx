@@ -54,11 +54,9 @@ export function ProgressMetricsSection({
   handleSettingsChange,
 }: ProgressMetricsSectionProps) {
   return (
-    <Card className="p-4 sm:p-6 flex flex-col grow bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))]">
+    <Card className="p-4 sm:p-6 flex flex-col grow bg-card text-card-foreground">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-[hsl(var(--hu-foreground))]">
-          Key Metrics
-        </h3>
+        <h3 className="text-lg font-semibold text-foreground">Key Metrics</h3>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm">
@@ -81,11 +79,11 @@ export function ProgressMetricsSection({
         {progressMetrics.map((metric) => (
           <div key={metric.id} className="space-y-2 group">
             <div className="flex justify-between items-center">
-              <span className="text-sm font-medium text-[hsl(var(--hu-foreground))]">
+              <span className="text-sm font-medium text-foreground">
                 {metric.label}
               </span>
               <div className="flex items-center gap-2">
-                <span className="text-sm text-[hsl(var(--hu-muted-foreground))]">
+                <span className="text-sm text-muted-foreground">
                   {formatProgress(metric.value, metric.target)}%
                 </span>
                 {metric.trend && (
@@ -113,7 +111,7 @@ export function ProgressMetricsSection({
               variant={metric.color}
               className="h-2 transition-all"
             />
-            <div className="flex justify-between text-xs text-[hsl(var(--hu-muted-foreground))]">
+            <div className="flex justify-between text-xs text-muted-foreground">
               <span>
                 {metric.value} / {metric.target}
               </span>
@@ -123,7 +121,7 @@ export function ProgressMetricsSection({
       </div>
 
       {/* Settings Toggle */}
-      <div className="mt-4 pt-4 border-t border-[hsl(var(--hu-border))]">
+      <div className="mt-4 pt-4 border-t border-border">
         <div className="flex items-center justify-between">
           <span className="text-sm font-medium">Auto-refresh metrics</span>
           <Switch

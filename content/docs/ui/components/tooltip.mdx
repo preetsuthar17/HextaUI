@@ -91,17 +91,17 @@ import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const tooltipVariants = cva(
-  "z-50 overflow-hidden rounded-lg border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-card-background))] px-3 py-1.5 text-xs text-[hsl(var(--hu-card-foreground))] shadow-sm/2",
+  "z-50 overflow-hidden rounded-lg border border-border bg-[hsl(var(--hu-card-background))] px-3 py-1.5 text-xs text-card-foreground shadow-sm/2",
   {
     variants: {
       variant: {
         default:
-          "bg-[hsl(var(--hu-card-background))] text-[hsl(var(--hu-card-foreground))]",
-        dark: "bg-[hsl(var(--hu-foreground))] text-[hsl(var(--hu-background))] border-[hsl(var(--hu-foreground))]",
+          "bg-[hsl(var(--hu-card-background))] text-card-foreground",
+        dark: "bg-foreground text-background border-foreground",
         light:
-          "bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))] border-[hsl(var(--hu-border))]",
+          "bg-background text-foreground border-border",
         destructive:
-          "bg-[hsl(var(--hu-destructive))] text-[hsl(var(--hu-primary-foreground))] border-[hsl(var(--hu-destructive))]",
+          "bg-destructive text-primary-foreground border-destructive",
       },
       size: {
         sm: "px-2 py-1 text-xs",
@@ -470,10 +470,10 @@ import {
                   and how it works.
                 </div>
                 <div className="flex gap-1">
-                  <span className="text-xs bg-[hsl(var(--hu-secondary))] px-1.5 py-0.5 rounded">
+                  <span className="text-xs bg-secondary px-1.5 py-0.5 rounded">
                     New
                   </span>
-                  <span className="text-xs bg-[hsl(var(--hu-accent))] px-1.5 py-0.5 rounded">
+                  <span className="text-xs bg-accent px-1.5 py-0.5 rounded">
                     Beta
                   </span>
                 </div>
@@ -487,7 +487,7 @@ import {
             <TooltipContent>
               <div className="flex items-center gap-1">
                 <span>Save file</span>
-                <Kbd className="px-1 py-0.5 text-xs bg-[hsl(var(--hu-secondary))] rounded">
+                <Kbd className="px-1 py-0.5 text-xs bg-secondary rounded">
                   Ctrl+S
                 </Kbd>
               </div>
@@ -513,10 +513,10 @@ import {
                 and how it works.
               </div>
               <div className="flex gap-1">
-                <span className="text-xs bg-[hsl(var(--hu-secondary))] px-1.5 py-0.5 rounded">
+                <span className="text-xs bg-secondary px-1.5 py-0.5 rounded">
                   New
                 </span>
-                <span className="text-xs bg-[hsl(var(--hu-accent))] px-1.5 py-0.5 rounded">
+                <span className="text-xs bg-accent px-1.5 py-0.5 rounded">
                   Beta
                 </span>
               </div>
@@ -530,7 +530,7 @@ import {
           <TooltipContent>
             <div className="flex items-center gap-1">
               <span>Save file</span>
-              <Kbd className="px-1 py-0.5 text-xs bg-[hsl(var(--hu-secondary))] rounded">
+              <Kbd className="px-1 py-0.5 text-xs bg-secondary rounded">
                 Ctrl+S
               </Kbd>
             </div>

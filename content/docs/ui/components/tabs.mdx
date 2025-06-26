@@ -73,10 +73,10 @@ const tabsVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-[hsl(var(--hu-background))] border border-[hsl(var(--hu-border))]",
+          "bg-background border border-border",
         ghost: "bg-transparent",
         underline:
-          "bg-transparent border-b border-[hsl(var(--hu-border))] rounded-none",
+          "bg-transparent border-b border-border rounded-none",
       },
       size: {
         sm: "h-9 p-1",
@@ -92,16 +92,16 @@ const tabsVariants = cva(
 );
 
 const tabTriggerVariants = cva(
-  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 flex-1",
+  "relative inline-flex items-center justify-center whitespace-nowrap rounded-md px-3 py-1.5 text-sm font-medium transition-all duration-300 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 flex-1",
   {
     variants: {
       variant: {
         default:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))]",
+          "text-muted-foreground hover:text-foreground data-[state=active]:text-primary-foreground",
         ghost:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] hover:bg-[hsl(var(--hu-accent))] data-[state=active]:text-[hsl(var(--hu-primary-foreground))] data-[state=active]:bg-transparent",
+          "text-muted-foreground hover:text-foreground hover:bg-accent data-[state=active]:text-primary-foreground data-[state=active]:bg-transparent",
         underline:
-          "text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))] rounded-none",
+          "text-muted-foreground hover:text-foreground data-[state=active]:text-accent-foreground rounded-none",
       },
       size: {
         sm: "px-2.5 py-1 text-xs",
@@ -231,7 +231,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
               }}
               className={cn(
                 tabTriggerVariants({ variant, size }),
-                "relative z-20 text-[hsl(var(--hu-muted-foreground))] data-[state=active]:text-[hsl(var(--hu-accent-foreground))] gap-2"
+                "relative z-20 text-muted-foreground data-[state=active]:text-accent-foreground gap-2"
               )}
               data-state={isActive ? "active" : "inactive"}
               onClick={() => handleTabClick(item.id)}
@@ -275,7 +275,7 @@ const TabsContent = React.forwardRef<HTMLDivElement, TabsContentProps>(
       <motion.div
         ref={ref}
         className={cn(
-          "ring-offset-[hsl(var(--hu-background))] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2",
+          "ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           className
         )}
         initial={{ opacity: 0, y: 4 }}
@@ -573,7 +573,7 @@ export default function MyComponent() {
             onValueChange={setActiveTab}
           />
 
-          <div className="mt-4 p-4 border rounded-[var(--radius)]">
+          <div className="mt-4 p-4 border rounded-ele">
             <TabsContent value="overview" activeValue={activeTab}>
               <div className="space-y-2">
                 <h3 className="text-lg font-semibold">Overview</h3>

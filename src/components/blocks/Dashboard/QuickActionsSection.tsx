@@ -28,11 +28,9 @@ export function QuickActionsSection({
   quickActions,
 }: QuickActionsSectionProps) {
   return (
-    <Card className="p-4 sm:p-6 grow bg-[hsl(var(--hu-card))] text-[hsl(var(--hu-card-foreground))]">
+    <Card className="p-4 sm:p-6 grow bg-card text-card-foreground">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-semibold text-[hsl(var(--hu-foreground))]">
-          Quick Actions
-        </h3>
+        <h3 className="text-lg font-semibold text-foreground">Quick Actions</h3>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Button variant="ghost" size="sm">

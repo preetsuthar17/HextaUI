@@ -14,10 +14,10 @@ const loaderVariants = cva("inline-block", {
       xl: "h-8 w-8",
     },
     variant: {
-      default: "text-[hsl(var(--hu-foreground))]",
-      primary: "text-[hsl(var(--hu-primary))]",
-      secondary: "text-[hsl(var(--hu-secondary-foreground))]",
-      muted: "text-[hsl(var(--hu-muted-foreground))]",
+      default: "text-foreground",
+      primary: "text-primary",
+      secondary: "text-secondary-foreground",
+      muted: "text-muted-foreground",
     },
   },
   defaultVariants: {
@@ -44,7 +44,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         className={cn(
           loaderVariants({ size, variant }),
           isMounted && "animate-spin",
-          className,
+          className
         )}
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
@@ -69,7 +69,7 @@ const Loader = React.forwardRef<SVGSVGElement, LoaderProps>(
         />
       </svg>
     );
-  },
+  }
 );
 
 Loader.displayName = "Loader";

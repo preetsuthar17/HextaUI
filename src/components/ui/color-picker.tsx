@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils";
 import { Pipette } from "lucide-react";
 
 const colorPickerVariants = cva(
-  "flex flex-col gap-2 rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] p-4 shadow-sm/2",
+  "flex flex-col gap-2 rounded-card border border-border bg-background p-4 shadow-sm/2",
   {
     variants: {
       size: {
@@ -86,7 +86,7 @@ function ColorInput({
     <Input
       className={composeRenderProps(className, (className) =>
         cn(
-          "flex h-9 w-full rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] px-3 py-1 text-sm text-[hsl(var(--hu-foreground))]  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[hsl(var(--hu-muted-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:cursor-not-allowed disabled:opacity-50",
+          "flex h-9 w-full rounded-ele border border-border bg-background px-3 py-1 text-sm text-foreground  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
           className
         )
       )}
@@ -102,7 +102,7 @@ function ColorLabel({
   return (
     <Label
       className={cn(
-        "text-sm font-medium leading-none text-[hsl(var(--hu-foreground))] peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
+        "text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
         className
       )}
       {...props}
@@ -115,7 +115,7 @@ function ColorArea({ className, ...props }: AriaColorAreaProps) {
     <AriaColorArea
       className={composeRenderProps(className, (className) =>
         cn(
-          "h-[200px] w-full rounded-[var(--card-radius)] border border-[hsl(var(--hu-border))] bg-gradient-to-br from-white to-black",
+          "h-[200px] w-full rounded-card border border-border bg-gradient-to-br from-white to-black",
           className
         )
       )}
@@ -142,10 +142,7 @@ function SliderTrack({ className, style, ...props }: AriaSliderTrackProps) {
   return (
     <AriaSliderTrack
       className={composeRenderProps(className, (className) =>
-        cn(
-          "relative h-3 w-full rounded-full border border-[hsl(var(--hu-border))]",
-          className
-        )
+        cn("relative h-3 w-full rounded-full border border-border", className)
       )}
       style={({ defaultStyle }) => ({
         ...style,
@@ -165,7 +162,7 @@ function ColorThumb({ className, ...props }: AriaColorThumbProps) {
     <AriaColorThumb
       className={composeRenderProps(className, (className) =>
         cn(
-          "z-10 h-4 w-4 rounded-full border-2 border-white shadow-md ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-[hsl(var(--hu-ring))]",
+          "z-10 h-4 w-4 rounded-full border-2 border-white shadow-md ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
           className
         )
       )}
@@ -196,7 +193,7 @@ function ColorSwatchPickerItem({
     <AriaColorSwatchPickerItem
       className={composeRenderProps(className, (className) =>
         cn(
-          "group/swatch-item cursor-pointer rounded-[var(--radius)] p-1 focus:outline-none focus:ring-2 focus:ring-[hsl(var(--hu-ring))] focus:ring-offset-2",
+          "group/swatch-item cursor-pointer rounded-ele p-1 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
           className
         )
       )}
@@ -210,7 +207,7 @@ function ColorSwatch({ className, style, ...props }: AriaColorSwatchProps) {
     <AriaColorSwatch
       className={composeRenderProps(className, (className) =>
         cn(
-          "h-8 w-8 rounded-[var(--radius)] border border-[hsl(var(--hu-border))] group-data-[selected]/swatch-item:ring-2 group-data-[selected]/swatch-item:ring-[hsl(var(--hu-ring))] group-data-[selected]/swatch-item:ring-offset-2",
+          "h-8 w-8 rounded-ele border border-border group-data-[selected]/swatch-item:ring-2 group-data-[selected]/swatch-item:ring-ring group-data-[selected]/swatch-item:ring-offset-2",
           className
         )
       )}
@@ -254,7 +251,7 @@ const EyeDropperButton = React.forwardRef<
       ref={ref}
       type="button"
       className={cn(
-        "inline-flex h-9 w-9 items-center justify-center rounded-[var(--radius)] border border-[hsl(var(--hu-border))] bg-[hsl(var(--hu-background))] text-[hsl(var(--hu-foreground))]  hover:bg-[hsl(var(--hu-accent))] hover:text-[hsl(var(--hu-accent-foreground))] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[hsl(var(--hu-ring))] disabled:pointer-events-none disabled:opacity-50",
+        "inline-flex h-9 w-9 items-center justify-center rounded-ele border border-border bg-background text-foreground  hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
         className
       )}
       onClick={handleEyeDropper}
@@ -274,7 +271,7 @@ function ColorError({
   return (
     <FieldError
       className={composeRenderProps(className, (className) =>
-        cn("text-sm font-medium text-[hsl(var(--hu-destructive))]", className)
+        cn("text-sm font-medium text-destructive", className)
       )}
       {...props}
     />

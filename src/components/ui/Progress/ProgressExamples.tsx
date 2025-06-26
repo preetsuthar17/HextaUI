@@ -13,14 +13,14 @@ export function ProgressExamples() {
   return (
     <div className="space-y-8">
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+        <h3 className="text-sm font-semibold text-foreground">
           Basic Progress
         </h3>
         <Progress value={progress} label="Loading..." className="w-full" />
       </div>
 
       <div className="space-y-3">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+        <h3 className="text-sm font-semibold text-foreground">
           With Value Display
         </h3>
         <Progress
@@ -32,7 +32,7 @@ export function ProgressExamples() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+        <h3 className="text-sm font-semibold text-foreground">
           Different Sizes
         </h3>
         <div className="space-y-4">
@@ -58,9 +58,7 @@ export function ProgressExamples() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
-          Variants
-        </h3>
+        <h3 className="text-sm font-semibold text-foreground">Variants</h3>
         <div className="space-y-4">
           <Progress
             value={progress}
@@ -96,7 +94,7 @@ export function ProgressExamples() {
       </div>
 
       <div className="space-y-4">
-        <h3 className="text-sm font-semibold text-[hsl(var(--hu-foreground))]">
+        <h3 className="text-sm font-semibold text-foreground">
           Circular Progress
         </h3>
         <div className="flex gap-6 items-center">
@@ -187,9 +185,7 @@ export function ProgressWithSteps() {
             <span
               key={step}
               className={`transition-colors ${
-                index <= currentStep
-                  ? "text-[hsl(var(--hu-primary))]"
-                  : "text-[hsl(var(--hu-muted-foreground))]"
+                index <= currentStep ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {step}
@@ -204,7 +200,7 @@ export function ProgressWithSteps() {
           showValue
           className="w-full"
         />{" "}
-        <div className="text-center text-xs text-[hsl(var(--hu-muted-foreground))]">
+        <div className="text-center text-xs text-muted-foreground">
           {steps[currentStep]}
         </div>
       </div>
@@ -213,7 +209,7 @@ export function ProgressWithSteps() {
         <button
           onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
           disabled={currentStep === 0}
-          className="px-4 py-2 text-sm font-medium bg-[hsl(var(--hu-secondary))] text-[hsl(var(--hu-secondary-foreground))] rounded-md transition-opacity disabled:opacity-50 hover:bg-[hsl(var(--hu-secondary))]/80"
+          className="px-4 py-2 text-sm font-medium bg-secondary text-secondary-foreground rounded-md transition-opacity disabled:opacity-50 hover:bg-secondary/80"
         >
           Previous
         </button>
@@ -222,7 +218,7 @@ export function ProgressWithSteps() {
             setCurrentStep(Math.min(steps.length - 1, currentStep + 1))
           }
           disabled={currentStep === steps.length - 1}
-          className="px-4 py-2 text-sm font-medium bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-md transition-opacity disabled:opacity-50 hover:bg-[hsl(var(--hu-primary))]/80"
+          className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md transition-opacity disabled:opacity-50 hover:bg-primary/80"
         >
           Next
         </button>

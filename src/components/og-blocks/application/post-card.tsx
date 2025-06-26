@@ -23,7 +23,7 @@ export const PostCard: React.FC = () => {
   };
 
   return (
-    <div className="m-4 max-w-[30rem] w-full rounded-[var(--radius)] bg-[hsl(var(--hu-card))] border border-[hsl(var(--hu-border))] p-4 flex flex-col gap-4">
+    <div className="m-4 max-w-[30rem] w-full rounded-ele bg-card border border-border p-4 flex flex-col gap-4">
       {/* Header */}
       <div className="flex items-center justify-between gap-4 card-header">
         <div className="flex items-center gap-4">
@@ -72,7 +72,7 @@ export const PostCard: React.FC = () => {
       <div className="flex justify-evenly gap-2">
         <button
           onClick={handleLike}
-          className="flex grow items-center justify-center gap-3 rounded-[var(--radius)] px-4 py-2 transition hover:bg-[hsl(var(--hu-accent))]"
+          className="flex grow items-center justify-center gap-3 rounded-ele px-4 py-2 transition hover:bg-accent"
         >
           {liked ? <FaHeart color="red" /> : <FaRegHeart />}
           <span className="inline font-medium opacity-90 text-[14px] transition hover:opacity-100 max-sm:hidden">
@@ -82,7 +82,7 @@ export const PostCard: React.FC = () => {
 
         <button
           onClick={handleBookmark}
-          className="flex grow items-center justify-center gap-3 rounded-[var(--radius)] px-4 py-2 transition hover:bg-[hsl(var(--hu-accent))]"
+          className="flex grow items-center justify-center gap-3 rounded-ele px-4 py-2 transition hover:bg-accent"
         >
           {bookmarked ? <FaBookmark color="#00bfff" /> : <FaRegBookmark />}
           <span className="inline font-medium opacity-90 text-[14px] transition hover:opacity-100 max-sm:hidden">
@@ -90,7 +90,7 @@ export const PostCard: React.FC = () => {
           </span>
         </button>
 
-        <button className="flex grow items-center justify-center gap-3 rounded-[var(--radius)] px-4 py-2 transition hover:bg-[hsl(var(--hu-accent))]">
+        <button className="flex grow items-center justify-center gap-3 rounded-ele px-4 py-2 transition hover:bg-accent">
           <FaRegPaperPlane />
           <span className="inline font-medium opacity-90 text-[14px] transition hover:opacity-100 max-sm:hidden">
             Share

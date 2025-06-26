@@ -121,7 +121,7 @@ export function ControlledSwitch() {
         </div>
       </div>
 
-      <div className="text-xs text-[hsl(var(--hu-muted-foreground))] space-y-1">
+      <div className="text-xs text-muted-foreground space-y-1">
         <p>Notifications: {notifications ? "Enabled" : "Disabled"}</p>
         <p>Dark Mode: {darkMode ? "Enabled" : "Disabled"}</p>
         <p>Auto Save: {autoSave ? "Enabled" : "Disabled"}</p>
@@ -150,7 +150,7 @@ export function SwitchWithError() {
 
       <button
         onClick={handleSubmit}
-        className="px-4 py-2 bg-[hsl(var(--hu-primary))] text-[hsl(var(--hu-primary-foreground))] rounded-lg text-sm font-medium hover:bg-[hsl(var(--hu-primary))]/90 transition-colors"
+        className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-colors"
       >
         Submit
       </button>

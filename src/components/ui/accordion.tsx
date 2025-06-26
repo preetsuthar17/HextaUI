@@ -6,14 +6,12 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { ChevronDown } from "lucide-react";
 
-const accordionVariants = cva("w-full max-w-[var(--radius)]", {
+const accordionVariants = cva("w-full max-w-xl", {
   variants: {
     variant: {
-      default:
-        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] overflow-hidden shadow-sm/2",
+      default: "border border-border rounded-card overflow-hidden shadow-sm/2",
       ghost: "",
-      outline:
-        "border border-[hsl(var(--hu-border))] rounded-[var(--radius)] shadow-sm/2",
+      outline: "border border-border rounded-card shadow-sm/2",
     },
     size: {
       sm: "text-sm max-w-lg",
@@ -27,25 +25,21 @@ const accordionVariants = cva("w-full max-w-[var(--radius)]", {
   },
 });
 
-const accordionItemVariants = cva(
-  "border-b border-[hsl(var(--hu-border))] last:border-b-0",
-  {
-    variants: {
-      variant: {
-        default: "",
-        ghost:
-          "border-b border-[hsl(var(--hu-border))] last:border-b-0 mb-2 last:mb-0",
-        outline: "",
-      },
+const accordionItemVariants = cva("border-b border-border last:border-b-0", {
+  variants: {
+    variant: {
+      default: "",
+      ghost: "border-b border-border last:border-b-0 mb-2 last:mb-0",
+      outline: "",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 const accordionTriggerVariants = cva(
-  "flex flex-1 items-center justify-between py-4 px-6 text-left font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[hsl(var(--hu-ring))] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group",
+  "flex flex-1 items-center justify-between py-4 px-6 text-left font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group",
   {
     variants: {
       variant: {
@@ -66,27 +60,24 @@ const accordionTriggerVariants = cva(
   }
 );
 
-const accordionContentVariants = cva(
-  "px-6 pb-4 pt-0 text-[hsl(var(--hu-muted-foreground))]",
-  {
-    variants: {
-      variant: {
-        default: "",
-        ghost: "px-0",
-        outline: "",
-      },
-      size: {
-        sm: "px-4 pb-3 text-sm",
-        default: "px-6 pb-4",
-        lg: "px-6 pb-5",
-      },
+const accordionContentVariants = cva("px-6 pb-4 pt-0 text-muted-foreground", {
+  variants: {
+    variant: {
+      default: "",
+      ghost: "px-0",
+      outline: "",
     },
-    defaultVariants: {
-      variant: "default",
-      size: "default",
+    size: {
+      sm: "px-4 pb-3 text-sm",
+      default: "px-6 pb-4",
+      lg: "px-6 pb-5",
     },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
 export interface AccordionProps extends VariantProps<typeof accordionVariants> {
   className?: string;

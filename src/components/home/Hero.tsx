@@ -47,7 +47,7 @@ const Hero = () => {
     <>
       <section className="relative flex flex-col items-center justify-center gap-12 px-10 text-center pt-32 pb-12">
         <div
-          className="absolute top-0 bg-[hsl(var(--hu-accent))] w-fit p-4 px-6 rounded-b-2xl text-sm font-medium mx-6 cursor-pointer"
+          className="absolute top-0 bg-accent w-fit p-4 px-6 rounded-b-2xl text-sm font-medium mx-6 cursor-pointer"
           onClick={() => window.open("https://pro.hextaui.com", "_blank")}
         >
           <span className="opacity-80">
@@ -89,7 +89,7 @@ const Hero = () => {
             </Link>
           </Button>
         </div>
-        <div className="flex items-center justify-center gap-3 text-sm text-[hsl(var(--hu-muted-foreground))]">
+        <div className="flex items-center justify-center gap-3 text-sm text-muted-foreground">
           Built with{" "}
           <TooltipProvider>
             <Tooltip>

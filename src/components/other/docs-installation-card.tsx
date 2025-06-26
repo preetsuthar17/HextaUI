@@ -18,7 +18,7 @@ export const DocsInstallationCard = ({
   return (
     <>
       <Link
-        className="flex items-center justify-center flex-col gap-2 not-prose text-[hsl(var(--hu-muted-foreground))] hover:text-[hsl(var(--hu-foreground))] transition-colors duration-200 ease-in-out p-6 cursor-pointer bg-[hsl(var(--hu-card))] rounded-[var(--radius)]"
+        className="flex items-center justify-center flex-col gap-2 not-prose text-muted-foreground hover:text-foreground transition-colors duration-200 ease-in-out p-6 cursor-pointer bg-card rounded-ele"
         href={url}
         onClick={() => {
           window?.datafast({ goal });
