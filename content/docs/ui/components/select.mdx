@@ -90,7 +90,7 @@ import { type LucideIcon, ChevronDown, Check } from "lucide-react";
 import { motion } from "motion/react";
 
 const selectTriggerVariants = cva(
-  "flex h-9 w-full items-center justify-between gap-3 rounded-ele border border-border bg-background px-3 py-2 text-sm transition-all placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border border-border bg-[hsl(var(--hu-input))]",
+  "flex h-9 w-full items-center justify-between gap-3 rounded-ele border border-border bg-background px-3 py-2 text-sm transition-all placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1 border border-border bg-input",
   {
     variants: {
       variant: {
@@ -362,7 +362,7 @@ import {
         <SelectWithIcon />
       </div>
     </PreviewContainer>
-  </Tab>  
+  </Tab>
   <Tab value="Code">
     ```tsx
     import { User } from "lucide-react";
@@ -395,7 +395,7 @@ import {
     <PreviewContainer>
       <div className="max-w-sm">
         <SelectWithGroups />
-      </div>    
+      </div>
     </PreviewContainer>
   </Tab>
   <Tab value="Code">

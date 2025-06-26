@@ -10,7 +10,7 @@ import { TypeTable } from "fumadocs-ui/components/type-table";
 import { Tabs, Tab } from "fumadocs-ui/components/tabs";
 
 import { TagInput } from "@/components/ui/tag-input";
-import { 
+import {
   BasicTagInputExample,
   PrefilledTagInputExample,
   VariantsExample,
@@ -34,7 +34,7 @@ import {
   <Tab value="Code">
     ```tsx
     const [tags, setTags] = useState(["React", "Next.js", "TypeScript"]);
-    
+
     <TagInput
       tags={tags}
       onTagsChange={setTags}
@@ -68,7 +68,7 @@ import { Chip } from "./chip";
 import { X } from "lucide-react";
 
 const tagInputVariants = cva(
-  "min-h-9 w-full rounded-ele border border-border bg-[hsl(var(--hu-input))] px-3 py-2 text-sm ring-offset-background transition-all focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+  "min-h-9 w-full rounded-ele border border-border bg-input px-3 py-2 text-sm ring-offset-background transition-all focus-within:outline-none focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
   {
     variants: {
       variant: {
@@ -163,7 +163,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
-      
+
       if (separator instanceof RegExp) {
         const parts = value.split(separator);
         if (parts.length > 1) {
@@ -177,7 +177,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
         setInputValue(parts[parts.length - 1]);
         return;
       }
-      
+
       setInputValue(value);
     };
 
@@ -305,7 +305,7 @@ const [tags, setTags] = useState<string[]>([]);
   <Tab value="Code">
     ```tsx
     const [tags, setTags] = useState<string[]>([]);
-    
+
     <TagInput
       tags={tags}
       onTagsChange={setTags}
@@ -328,12 +328,12 @@ const [tags, setTags] = useState<string[]>([]);
   <Tab value="Code">
     ```tsx
     const [tags, setTags] = useState([
-      "JavaScript", 
-      "React", 
-      "TypeScript", 
+      "JavaScript",
+      "React",
+      "TypeScript",
       "Next.js"
     ]);
-    
+
     <TagInput
       tags={tags}
       onTagsChange={setTags}
@@ -358,7 +358,7 @@ const [tags, setTags] = useState<string[]>([]);
       onTagsChange={setTags}
       variant="default"
     />
-    
+
     // Error state
     <TagInput
       tags={tags}
@@ -463,7 +463,7 @@ const [tags, setTags] = useState<string[]>([]);
       onTagsChange={setTags}
       separator=","
     />
-    
+
     // Space or comma separator (regex)
     <TagInput
       tags={tags}
