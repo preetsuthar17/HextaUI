@@ -84,13 +84,13 @@ const toggleVariants = cva(
     variants: {
       variant: {
         default:
-          "border border-border text-foreground hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-[hsl(var(--hu-primary))] data-[state=on]:text-primary-foreground focus-visible:ring-ring",
+          "border border-border text-foreground hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-primary data-[state=on]:text-primary-foreground focus-visible:ring-ring",
         outline:
-          "border border-border text-foreground hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground data-[state=on]:border-[hsl(var(--hu-primary))] focus-visible:ring-ring",
+          "border border-border text-foreground hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground data-[state=on]:border-primary focus-visible:ring-ring",
         ghost:
           "text-foreground hover:bg-accent hover:text-accent-foreground data-[state=on]:bg-accent data-[state=on]:text-accent-foreground focus-visible:ring-ring",
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80 data-[state=on]:bg-[hsl(var(--hu-primary))] data-[state=on]:text-primary-foreground focus-visible:ring-ring",
+          "bg-secondary text-secondary-foreground hover:bg-secondary/80 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground focus-visible:ring-ring",
       },
       size: {
         default: "h-9 px-4 py-2",

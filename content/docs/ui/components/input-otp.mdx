@@ -597,7 +597,7 @@ import {
                 )}
 
                 {isComplete && (
-                <div className="text-sm text-[hsl(var(--hu-primary))] font-medium">
+                <div className="text-sm text-primary font-medium">
                     ✓ Verification successful!
                 </div>
                 )}
@@ -610,7 +610,7 @@ import {
             </div>
             <div className="flex flex-col gap-2">
                 <button
-                className="text-sm text-[hsl(var(--hu-primary))] hover:underline"
+                className="text-sm text-primary hover:underline"
                 onClick={() => {
                     setValue("");
                     setIsComplete(false);
@@ -770,7 +770,7 @@ import {
 
           <div className="text-center">
             <button
-              className="px-4 py-2 text-sm font-medium bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-md hover:bg-[hsl(var(--hu-primary))]/80 transition-colors disabled:opacity-50"
+              className="px-4 py-2 text-sm font-medium bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition-colors disabled:opacity-50"
               disabled={!values.some((v) => v.length === 4)}
             >
               Verify backup code

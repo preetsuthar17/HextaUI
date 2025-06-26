@@ -78,7 +78,7 @@ const progressVariants = cva(
     variants: {
       variant: {
         default: "bg-secondary",
-        primary: "bg-[hsl(var(--hu-primary))]/10",
+        primary: "bg-primary/10",
         secondary: "bg-secondary",
         destructive: "bg-destructive/10",
         outline:
@@ -102,11 +102,11 @@ const progressIndicatorVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-[hsl(var(--hu-primary))]",
-        primary: "bg-[hsl(var(--hu-primary))]",
+        default: "bg-primary",
+        primary: "bg-primary",
         secondary: "bg-foreground",
         destructive: "bg-destructive",
-        outline: "bg-[hsl(var(--hu-primary))]",
+        outline: "bg-primary",
       },
     },
     defaultVariants: {
@@ -777,7 +777,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
             4 of 5 sections completed
           </div>
         </div>
-        
+
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-sm font-semibold">Storage Usage</span>
@@ -810,7 +810,7 @@ import { Progress } from "@/components/ui/Progress/Progress";
           4 of 5 sections completed
         </div>
       </div>
-      
+
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <span className="text-sm font-semibold">Storage Usage</span>

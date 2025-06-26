@@ -434,7 +434,7 @@ export function DataTable<T extends Record<string, any>>({
                               "h-3 w-3 transition-colors",
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "asc"
-                                ? "text-[hsl(var(--hu-primary))]"
+                                ? "text-primary"
                                 : "text-muted-foreground/40",
                             )}
                           />
@@ -443,7 +443,7 @@ export function DataTable<T extends Record<string, any>>({
                               "h-3 w-3 -mt-1 transition-colors",
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "desc"
-                                ? "text-[hsl(var(--hu-primary))]"
+                                ? "text-primary"
                                 : "text-muted-foreground/40",
                             )}
                           />
@@ -659,7 +659,7 @@ const columns: DataTableColumn<User>[] = [
         render: (value, row) => (
           <div className="flex items-center gap-3">
             <Avatar className="h-8 w-8">
-              <div className="flex items-center justify-center w-full h-full bg-[hsl(var(--hu-primary))] text-primary-foreground text-xs font-medium">
+              <div className="flex items-center justify-center w-full h-full bg-primary text-primary-foreground text-xs font-medium">
                 {value.charAt(0)}
               </div>
             </Avatar>

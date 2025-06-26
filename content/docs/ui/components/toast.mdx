@@ -74,7 +74,7 @@ const Toaster = ({ ...props }) => {
           description:
             "group-[.toast]:text-muted-foreground group-[.toast]:text-sm",
           actionButton:
-            "group-[.toast]:bg-[hsl(var(--hu-primary))] group-[.toast]:text-primary-foreground group-[.toast]:rounded-ele group-[.toast]:px-3 group-[.toast]:py-1.5",
+            "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground group-[.toast]:rounded-ele group-[.toast]:px-3 group-[.toast]:py-1.5",
           cancelButton:
             "group-[.toast]:bg-accent group-[.toast]:text-accent-foreground group-[.toast]:rounded-ele group-[.toast]:px-3 group-[.toast]:py-1.5",
         },
@@ -221,7 +221,7 @@ toast("Hello World!");
   <Tab value="Code">
     ```tsx
     const loadingToast = toast.loading("Uploading file...");
-    
+
     setTimeout(() => {
       toast.dismiss(loadingToast);
       toast.success("Upload complete!");

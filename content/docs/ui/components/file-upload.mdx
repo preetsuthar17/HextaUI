@@ -67,9 +67,9 @@ const fileUploadVariants = cva(
     variants: {
       variant: {
         default:
-          "border-border bg-card hover:border-[hsl(var(--hu-primary))]/30",
+          "border-border bg-card hover:border-primary/30",
         dashed:
-          "border-dashed border-border bg-background hover:border-[hsl(var(--hu-primary))]/50",
+          "border-dashed border-border bg-background hover:border-primary/50",
         ghost:
           "border-transparent bg-accent/50 hover:bg-accent",
       },
@@ -219,7 +219,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
           className={cn(
             fileUploadVariants({ variant, size }),
             isDragging &&
-              "border-[hsl(var(--hu-primary))] bg-[hsl(var(--hu-primary))]/5",
+              "border-primary bg-primary/5",
             disabled && "opacity-50 pointer-events-none",
             "cursor-pointer",
             className,
@@ -270,7 +270,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                         <motion.div
                           initial={{ width: 0 }}
                           animate={{ width: `${file.progress}%` }}
-                          className="h-full bg-[hsl(var(--hu-primary))] rounded-full"
+                          className="h-full bg-primary rounded-full"
                         />
                       </div>
                     )}

@@ -78,7 +78,7 @@ Copy and paste the following code into your project:
         });
 
         const radioVariants = cva(
-          "aspect-square rounded-full border border-border text-[hsl(var(--hu-primary))] focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-[hsl(var(--hu-primary))] shadow-sm/2",
+          "aspect-square rounded-full border border-border text-primary focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:border-primary shadow-sm/2",
           {
             variants: {
               size: {
@@ -179,7 +179,7 @@ Copy and paste the following code into your project:
                       <AnimatePresence>
                         <motion.div
                           key="dot"
-                          className="rounded-full bg-[hsl(var(--hu-primary))]"
+                          className="rounded-full bg-primary"
                           style={{
                             width: dotSize,
                             height: dotSize,

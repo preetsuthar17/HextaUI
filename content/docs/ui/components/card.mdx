@@ -95,7 +95,7 @@ const cardVariants = cva(
       variant: {
         default: "border border-border",
         outline:
-          "border-2 border-border  hover:border-[hsl(var(--hu-primary))]/30",
+          "border-2 border-border  hover:border-primary/30",
         ghost: "border-transparent hover:bg-accent ",
       },
       size: {
@@ -319,7 +319,7 @@ import {
             <p className="text-sm">Default card content with standard border.</p>
           </CardContent>
         </Card>
-        
+
         <Card variant="outline" className="w-full">
           <CardHeader>
             <CardTitle>Outline Card</CardTitle>
@@ -329,7 +329,7 @@ import {
             <p className="text-sm">Outline card with emphasized border.</p>
           </CardContent>
         </Card>
-        
+
         <Card variant="ghost" className="w-full">
           <CardHeader>
             <CardTitle>Ghost Card</CardTitle>
@@ -394,7 +394,7 @@ import {
             <p className="text-sm">Small card with reduced padding.</p>
           </CardContent>
         </Card>
-        
+
         <Card size="default" className="w-full">
           <CardHeader>
             <CardTitle>Default Card</CardTitle>
@@ -404,7 +404,7 @@ import {
             <p className="text-sm">Default card with standard padding.</p>
           </CardContent>
         </Card>
-        
+
         <Card size="lg" className="w-full">
           <CardHeader>
             <CardTitle>Large Card</CardTitle>

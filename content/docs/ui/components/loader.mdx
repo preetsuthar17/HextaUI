@@ -66,7 +66,7 @@ const loaderVariants = cva("inline-block", {
     },
     variant: {
       default: "text-foreground",
-      primary: "text-[hsl(var(--hu-primary))]",
+      primary: "text-primary",
       secondary: "text-secondary-foreground",
       muted: "text-muted-foreground",
     },
@@ -310,7 +310,7 @@ import { Loader } from "@/components/ui/Loader";
     <PreviewContainer>
       <div className="space-y-4">
         <button
-          className="flex items-center gap-2 px-4 py-2 bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-ele hover:bg-[hsl(var(--hu-primary))]/90 transition-colors disabled:opacity-50"
+          className="flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-ele hover:bg-primary/90 transition-colors disabled:opacity-50"
           disabled
         >
           <Loader size="sm" className="text-current" />

@@ -101,7 +101,7 @@ const dayVariants = cva(
         default:
           "text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
         selected:
-          "bg-[hsl(var(--hu-primary))] text-primary-foreground hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-ring font-semibold",
+          "bg-primary text-primary-foreground hover:bg-primary/90 focus-visible:ring-ring font-semibold",
         today:
           "bg-accent text-accent-foreground font-semibold hover:bg-accent/80 focus-visible:ring-ring",
         outside:
@@ -109,11 +109,11 @@ const dayVariants = cva(
         disabled:
           "text-muted-foreground opacity-30 cursor-not-allowed",
         "range-start":
-          "bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-r-none hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-ring",
+          "bg-primary text-primary-foreground rounded-r-none hover:bg-primary/90 focus-visible:ring-ring",
         "range-end":
-          "bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-l-none hover:bg-[hsl(var(--hu-primary))]/90 focus-visible:ring-ring",
+          "bg-primary text-primary-foreground rounded-l-none hover:bg-primary/90 focus-visible:ring-ring",
         "range-middle":
-          "bg-[hsl(var(--hu-primary))]/20 text-foreground rounded-none hover:bg-[hsl(var(--hu-primary))]/30 focus-visible:ring-ring",
+          "bg-primary/20 text-foreground rounded-none hover:bg-primary/30 focus-visible:ring-ring",
       },
       size: {
         sm: "h-6 w-6 sm:h-7 sm:w-7 text-xs",
@@ -629,7 +629,7 @@ import { Calendar } from "@/components/ui/Calendar";
       </div>
     </PreviewContainer>
   </Tab>
-  <Tab value="Code">    
+  <Tab value="Code">
   ```tsx
     function CalendarRangeExample() {
       const [range, setRange] = React.useState<{ from: Date; to?: Date }>();
@@ -728,7 +728,7 @@ Perfect for reservation systems, hotels, or appointment booking.
     ```tsx
     function BookingCalendarExample() {
       const [selectedDate, setSelectedDate] = React.useState<Date>();
-      
+
       // Mock booked dates (in a real app, this would come from your API)
       const bookedDates = [
         new Date(2025, 5, 15), // June 15, 2025
@@ -922,7 +922,7 @@ Show only dates with events and allow selection of event dates.
     ```tsx
     function EventCalendarExample() {
       const [eventDate, setEventDate] = React.useState<Date>();
-      
+
       // Mock events data
       const events = [
         { date: new Date(2025, 5, 12), title: "Team Meeting" },

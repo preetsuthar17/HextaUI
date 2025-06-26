@@ -67,7 +67,7 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "motion/react";
 
 const checkboxVariants = cva(
-  "peer shrink-0 rounded-sm border border-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-[hsl(var(--hu-primary))] data-[state=checked]:text-primary-foreground data-[state=checked]:border-[hsl(var(--hu-primary))] data-[state=indeterminate]:bg-[hsl(var(--hu-primary))] data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-[hsl(var(--hu-primary))] bg-accent text-foreground  focus-visible:ring-offset-background focus-visible:ring-offset-2 transition-colors shadow-sm/2",
+  "peer shrink-0 rounded-sm border border-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary bg-accent text-foreground  focus-visible:ring-offset-background focus-visible:ring-offset-2 transition-colors shadow-sm/2",
   {
     variants: {
       size: {
@@ -405,7 +405,7 @@ import { Checkbox } from "@/components/ui/Checkbox";
           />
           <Button
             onClick={handleSubmit}
-            className="px-4 py-2 bg-[hsl(var(--hu-primary))] text-primary-foreground rounded-md hover:bg-[hsl(var(--hu-primary))]/80 transition-colors"
+            className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition-colors"
           >
             Submit
           </Button>
