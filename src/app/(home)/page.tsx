@@ -10,6 +10,7 @@ import ProBlocksShowcase from "@/components/home/ProBlocksShowcase";
 import Contributors from "@/components/home/Contributors";
 import WallOfLove from "@/components/home/WallOfLove";
 import Pricing from "../../components/home/Pricing";
+import Sponsors from "@/components/home/Sponsors";
 
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
@@ -29,6 +30,7 @@ export default function HomePage() {
       <Pricing />
       <WallOfLove />
       <Features />
+      <Sponsors />
       <Contributors />
       <Community />
       <Footer />

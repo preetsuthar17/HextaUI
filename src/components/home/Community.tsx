@@ -19,7 +19,7 @@ const CommunityCard = ({
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block p-8   border border-border rounded-ele transition-all duration-200 group hover:bg-accent"
+      className="block p-8 border border-border rounded-ele transition-all duration-200 group hover:bg-accent"
     >
       <div className="flex flex-col items-center text-center space-y-4">
         <div className="transition-colors text-muted-foreground">{icon}</div>

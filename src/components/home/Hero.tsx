@@ -47,7 +47,7 @@ const Hero = () => {
     <>
       <section className="relative flex flex-col items-center justify-center gap-12 px-10 text-center py-16 pt-24">
         <div className="flex items-center justify-center gap-4 flex-col">
-          <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tigher">
+          <h1 className="text-6xl max-sm:text-4xl font-medium">
             Build stunning websites effortlessly
           </h1>
           <p className="max-sm:text-sm">
