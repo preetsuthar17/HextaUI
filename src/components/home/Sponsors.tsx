@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Badge } from "@/components/ui/badge";
+import TrackedLink from "../other/TrackedLink";
 
 const sponsors = [
   {
@@ -9,6 +10,7 @@ const sponsors = [
     url: "https://shadcnblocks.com",
     logo: "https://shadcnblocks.com/favicon.ico",
     alt: "Shadcn blocks Logo",
+    goal: "sponsor_shadcnblocks_click",
   },
 ];
 
@@ -26,7 +28,8 @@ const Sponsors = () => {
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl w-full items-center justify-center">
         {sponsors.map((sponsor, idx) => (
-          <a
+          <TrackedLink
+            goal={sponsor.goal}
             key={idx}
             href={sponsor.url}
             target="_blank"
@@ -42,7 +45,7 @@ const Sponsors = () => {
             <span className="font-medium text-lg text-foreground">
               {sponsor.name}
             </span>
-          </a>
+          </TrackedLink>
         ))}
       </div>
       <p className="text-sm text-muted-foreground mx-auto flex gap-1 flex-wrap items-center justify-center">
