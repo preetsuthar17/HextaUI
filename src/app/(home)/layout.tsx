@@ -18,6 +18,7 @@ import {
   NavbarMenuTrigger,
 } from "fumadocs-ui/layouts/home/navbar";
 import { Zap, Palette, Kanban, Book, ComponentIcon } from "lucide-react";
+import TrackedLink from "@/components/other/TrackedLink";
 
 export default async function Layout({ children }: { children: ReactNode }) {
   return (
@@ -142,9 +143,11 @@ export default async function Layout({ children }: { children: ReactNode }) {
               <Tooltip>
                 <TooltipTrigger>
                   <Button variant="secondary" className="rounded-full" asChild>
-                    <Link
+                    <TrackedLink
                       href="https://shadcnblocks.com/?ref=hextaui"
                       className="font-medium"
+                      target="_blank"
+                      goal="shadcnblocks_clicked_sponsor_from_sponsors"
                     >
                       <Image
                         src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
@@ -153,7 +156,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
                         height={17}
                       />
                       shadcnblocks.com
-                    </Link>
+                    </TrackedLink>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>

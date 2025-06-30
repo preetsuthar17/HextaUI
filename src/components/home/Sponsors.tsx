@@ -1,7 +1,8 @@
+"use client";
+
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 
-// Example sponsors data. Replace with your actual sponsors.
 const sponsors = [
   {
     name: "Shadcn blocks",
@@ -49,6 +50,11 @@ const Sponsors = () => {
         <a
           href="https://github.com/sponsors/preetsuthar17"
           className="underline hover:no-underline"
+          onClick={() => {
+            if (typeof window !== "undefined" && window?.datafast) {
+              window.datafast("shadcnblocks_clicked_sponsor_from_sponsors");
+            }
+          }}
         >
           Sponsor us on Github
         </a>
