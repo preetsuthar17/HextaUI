@@ -77,14 +77,14 @@ export default function DashboardBlock({
             .includes(searchQuery.toLowerCase()) ||
           (activity.user?.name || "")
             .toLowerCase()
-            .includes(searchQuery.toLowerCase())
+            .includes(searchQuery.toLowerCase()),
       );
     }
 
     // Filter by type
     if (selectedFilter !== "all") {
       filtered = filtered.filter(
-        (activity) => activity.status === selectedFilter
+        (activity) => activity.status === selectedFilter,
       );
     }
 
@@ -92,7 +92,7 @@ export default function DashboardBlock({
   }, [activities, searchQuery, selectedFilter]); // Utility functions
   const getStatusBadge = React.useCallback(
     (
-      status: ActivityItem["status"]
+      status: ActivityItem["status"],
     ): "default" | "destructive" | "secondary" | "outline" | "ghost" => {
       switch (status) {
         case "success":
@@ -106,14 +106,14 @@ export default function DashboardBlock({
           return "default";
       }
     },
-    []
+    [],
   );
 
   const formatProgress = React.useCallback(
     (value: number, target: number): number => {
       return Math.round((value / target) * 100);
     },
-    []
+    [],
   );
 
   // Event handlers
@@ -138,7 +138,7 @@ export default function DashboardBlock({
     (key: keyof DashboardSettings, value: any) => {
       setSettings((prev) => ({ ...prev, [key]: value }));
     },
-    []
+    [],
   );
 
   return (

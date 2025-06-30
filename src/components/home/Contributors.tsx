@@ -47,7 +47,7 @@ const Contributors = () => {
       try {
         setLoading(true);
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors?per_page=12"
+          "https://api.github.com/repos/preetsuthar17/HextaUI/contributors?per_page=12",
         );
 
         if (!response.ok) {
@@ -60,13 +60,13 @@ const Contributors = () => {
           .filter((contributor: Contributor) => contributor.type === "User")
           .sort(
             (a: Contributor, b: Contributor) =>
-              b.contributions - a.contributions
+              b.contributions - a.contributions,
           );
 
         setContributors(filteredContributors);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : "Failed to load contributors"
+          err instanceof Error ? err.message : "Failed to load contributors",
         );
       } finally {
         setLoading(false);

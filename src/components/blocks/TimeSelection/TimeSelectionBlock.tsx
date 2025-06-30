@@ -13,7 +13,7 @@ export default function TimeSelectionBlock() {
   const handleApply = (
     startTime: string,
     endTime: string,
-    duration: number
+    duration: number,
   ) => {
     setSelectedTime({ start: startTime, end: endTime, duration });
     // In a real app, you might save this to a backend or local state
@@ -26,8 +26,8 @@ export default function TimeSelectionBlock() {
       parseInt(hour) === 0
         ? 12
         : parseInt(hour) > 12
-        ? parseInt(hour) - 12
-        : parseInt(hour);
+          ? parseInt(hour) - 12
+          : parseInt(hour);
     const ampm = parseInt(hour) < 12 ? "AM" : "PM";
     return `${hour12}:${minute} ${ampm}`;
   };

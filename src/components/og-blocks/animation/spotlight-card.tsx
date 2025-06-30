@@ -34,7 +34,7 @@ export const SpotlightCard = ({
         computedStyle.backgroundColor;
 
       const isDarkMedia = window.matchMedia(
-        "(prefers-color-scheme: dark)"
+        "(prefers-color-scheme: dark)",
       ).matches;
 
       const isDark =

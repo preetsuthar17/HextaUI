@@ -29,7 +29,7 @@ const videoPlayerVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export interface VideoPlayerProps
@@ -53,7 +53,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
       autoHide = true,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [currentTime, setCurrentTime] = React.useState(0);
@@ -130,7 +130,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
       if (videoRef.current) {
         videoRef.current.currentTime = Math.max(
           0,
-          Math.min(duration, currentTime + seconds)
+          Math.min(duration, currentTime + seconds),
         );
       }
     };
@@ -209,7 +209,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
       return () => {
         document.removeEventListener(
           "fullscreenchange",
-          handleFullscreenChange
+          handleFullscreenChange,
         );
       };
     }, []);
@@ -280,7 +280,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
             <div
               className={cn(
                 "absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300",
-                !isPlaying || showControlsState ? "opacity-100" : "opacity-0"
+                !isPlaying || showControlsState ? "opacity-100" : "opacity-0",
               )}
             >
               {" "}
@@ -304,7 +304,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
               className={cn(
                 "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent ",
                 "transition-opacity duration-300 pointer-events-none",
-                showControlsState ? "opacity-100" : "opacity-0"
+                showControlsState ? "opacity-100" : "opacity-0",
               )}
             >
               <div className="p-4 space-y-3 pointer-events-auto">
@@ -445,7 +445,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 VideoPlayer.displayName = "VideoPlayer";

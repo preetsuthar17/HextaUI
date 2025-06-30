@@ -34,7 +34,7 @@ const sidebarVariants = cva(
       size: "default",
       position: "fixed",
     },
-  }
+  },
 );
 
 const sidebarHeaderVariants = cva(
@@ -49,7 +49,7 @@ const sidebarHeaderVariants = cva(
     defaultVariants: {
       collapsed: false,
     },
-  }
+  },
 );
 
 const sidebarItemVariants = cva(
@@ -70,7 +70,7 @@ const sidebarItemVariants = cva(
       variant: "default",
       collapsed: false,
     },
-  }
+  },
 );
 
 export interface SidebarProps
@@ -118,7 +118,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalCollapsed, setInternalCollapsed] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState<string>();
@@ -182,7 +182,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       const updateFocusableElements = () => {
         if (sidebarRef.current) {
           const elements = sidebarRef.current.querySelectorAll(
-            'button, a, [tabindex]:not([tabindex="-1"])'
+            'button, a, [tabindex]:not([tabindex="-1"])',
           ) as NodeListOf<HTMLElement>;
           focusableElementsRef.current = Array.from(elements);
         }
@@ -197,13 +197,13 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
     // Extract header, body and footer from children
     const headerChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarHeader
+      (child) => React.isValidElement(child) && child.type === SidebarHeader,
     );
     const bodyChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarBody
+      (child) => React.isValidElement(child) && child.type === SidebarBody,
     );
     const footerChild = React.Children.toArray(children).find(
-      (child) => React.isValidElement(child) && child.type === SidebarFooter
+      (child) => React.isValidElement(child) && child.type === SidebarFooter,
     );
 
     const sidebarContent = (
@@ -232,17 +232,17 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
               size: collapsed ? "sm" : size,
               position,
             }),
-            className
+            className,
           )}
           initial={false}
           animate={{
             width: collapsed
               ? 57
               : size === "lg"
-              ? 288
-              : size === "xl"
-              ? 320
-              : 256,
+                ? 288
+                : size === "xl"
+                  ? 320
+                  : 256,
           }}
           transition={{
             duration: 0.25,
@@ -318,7 +318,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             <div
               className={cn(
                 "border-t border-border",
-                collapsed ? "p-2" : "p-3"
+                collapsed ? "p-2" : "p-3",
               )}
             >
               {footerChild}
@@ -351,7 +351,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     }
 
     return sidebarContent;
-  }
+  },
 );
 
 Sidebar.displayName = "Sidebar";
@@ -440,7 +440,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       <div
         className={cn(
           "flex items-center justify-center shrink-0",
-          collapsed ? "w-10 h-10" : "w-4 h-4 ml-0"
+          collapsed ? "w-10 h-10" : "w-4 h-4 ml-0",
         )}
         aria-hidden="true"
       >
@@ -459,7 +459,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
               size={14}
               className={cn(
                 "shrink-0 transition-transform duration-200",
-                expanded && "rotate-90"
+                expanded && "rotate-90",
               )}
               aria-hidden="true"
             />
@@ -494,7 +494,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
               !collapsed &&
               "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative no-underline",
-            className
+            className,
           )}
           onClick={onClick}
           role="menuitem"
@@ -516,7 +516,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
               "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative w-full text-left border-none",
             !isActive && "bg-transparent",
-            className
+            className,
           )}
           onClick={handleClick}
           onKeyDown={handleKeyDown}
@@ -555,7 +555,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
                     {
                       level: level + 1,
                       ...(child.props as SidebarItemProps),
-                    }
+                    },
                   );
                 }
                 return child;

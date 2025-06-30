@@ -31,7 +31,7 @@ export function ScrollAreaBasic() {
 
 export function ScrollAreaVertical() {
   const tags = Array.from({ length: 50 }).map(
-    (_, i, a) => `v1.2.0-beta.${a.length - i}`
+    (_, i, a) => `v1.2.0-beta.${a.length - i}`,
   );
 
   return (
@@ -167,17 +167,17 @@ export function ScrollAreaBoth() {
                         {i % 3 === 0
                           ? "Admin"
                           : i % 2 === 0
-                          ? "Editor"
-                          : "Viewer"}
+                            ? "Editor"
+                            : "Viewer"}
                       </td>
                       <td className="p-2 text-sm text-foreground">
                         {i % 4 === 0
                           ? "Engineering"
                           : i % 3 === 0
-                          ? "Design"
-                          : i % 2 === 0
-                          ? "Marketing"
-                          : "Sales"}
+                            ? "Design"
+                            : i % 2 === 0
+                              ? "Marketing"
+                              : "Sales"}
                       </td>
                       <td className="p-2">
                         <Badge

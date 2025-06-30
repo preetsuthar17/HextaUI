@@ -21,7 +21,7 @@ export function BasicTimeSelectionExample() {
     alert(
       `Time range applied: ${start} - ${end} (${Math.floor(dur / 60)}h ${
         dur % 60
-      }m)`
+      }m)`,
     );
   };
 

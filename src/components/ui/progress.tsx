@@ -27,7 +27,7 @@ const progressVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const progressIndicatorVariants = cva(
@@ -45,7 +45,7 @@ const progressIndicatorVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 const circularProgressVariants = cva(
@@ -61,7 +61,7 @@ const circularProgressVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export interface ProgressProps
@@ -92,7 +92,7 @@ const Progress = React.forwardRef<
       label,
       ...props
     },
-    ref
+    ref,
   ) => {
     const progress = Math.min(Math.max(value, 0), 100);
     if (type === "circular") {
@@ -129,10 +129,10 @@ const Progress = React.forwardRef<
                   variant === "destructive"
                     ? "hsl(var(--hu-destructive))"
                     : variant === "secondary"
-                    ? "hsl(var(--hu-secondary-foreground))"
-                    : variant === "outline"
-                    ? "hsl(var(--hu-foreground))"
-                    : "hsl(var(--hu-primary))"
+                      ? "hsl(var(--hu-secondary-foreground))"
+                      : variant === "outline"
+                        ? "hsl(var(--hu-foreground))"
+                        : "hsl(var(--hu-primary))"
                 }
                 strokeWidth={strokeWidth || 8}
                 fill="transparent"
@@ -208,7 +208,7 @@ const Progress = React.forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 
 Progress.displayName = ProgressPrimitive.Root.displayName;

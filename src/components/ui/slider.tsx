@@ -25,7 +25,7 @@ const sliderVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const sliderTrackVariants = cva(
@@ -48,7 +48,7 @@ const sliderTrackVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const sliderRangeVariants = cva("absolute h-full rounded-full", {
@@ -84,7 +84,7 @@ const sliderThumbVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface SliderProps
@@ -127,10 +127,10 @@ const Slider = React.forwardRef<
       orientation = "horizontal",
       ...props
     },
-    ref
+    ref,
   ) => {
     const [internalValue, setInternalValue] = React.useState<number[]>(
-      defaultValue || value || [min]
+      defaultValue || value || [min],
     );
 
     const currentValue = value || internalValue;
@@ -143,7 +143,7 @@ const Slider = React.forwardRef<
         }
         onValueChange?.(newValue);
       },
-      [value, onValueChange]
+      [value, onValueChange],
     );
 
     const sliderId = React.useId();
@@ -155,7 +155,7 @@ const Slider = React.forwardRef<
         id={sliderId}
         className={cn(
           sliderVariants({ variant: effectiveVariant, size }),
-          className
+          className,
         )}
         value={currentValue}
         onValueChange={handleValueChange}
@@ -169,7 +169,7 @@ const Slider = React.forwardRef<
       >
         <SliderPrimitive.Track
           className={cn(
-            sliderTrackVariants({ variant: effectiveVariant, size })
+            sliderTrackVariants({ variant: effectiveVariant, size }),
           )}
         >
           <SliderPrimitive.Range
@@ -180,7 +180,7 @@ const Slider = React.forwardRef<
           <SliderPrimitive.Thumb
             key={index}
             className={cn(
-              sliderThumbVariants({ variant: effectiveVariant, size })
+              sliderThumbVariants({ variant: effectiveVariant, size }),
             )}
           />
         ))}
@@ -242,7 +242,7 @@ const Slider = React.forwardRef<
     }
 
     return sliderElement;
-  }
+  },
 );
 
 Slider.displayName = SliderPrimitive.Root.displayName;

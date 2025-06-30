@@ -70,7 +70,7 @@ export function DataTable<T extends Record<string, any>>({
   }>({ key: null, direction: "asc" });
   const [currentPage, setCurrentPage] = useState(1);
   const [columnFilters, setColumnFilters] = useState<Record<string, string>>(
-    {}
+    {},
   );
 
   // Filter data based on search and column filters
@@ -83,7 +83,7 @@ export function DataTable<T extends Record<string, any>>({
         columns.some((column) => {
           const value = row[column.key];
           return value?.toString().toLowerCase().includes(search.toLowerCase());
-        })
+        }),
       );
     }
 
@@ -195,7 +195,7 @@ export function DataTable<T extends Record<string, any>>({
         className={cn(
           "w-full bg-card rounded-ele overflow-hidden",
           bordered && "border border-border",
-          className
+          className,
         )}
       >
         <div className="p-6">
@@ -214,7 +214,7 @@ export function DataTable<T extends Record<string, any>>({
                 "bg-muted/20",
                 size === "sm" && "p-3",
                 size === "default" && "p-4",
-                size === "lg" && "p-6"
+                size === "lg" && "p-6",
               )}
             >
               <div className="flex gap-4">
@@ -224,7 +224,7 @@ export function DataTable<T extends Record<string, any>>({
                     className={cn(
                       "flex-1",
                       index === 0 && "min-w-48",
-                      index === columns.length - 1 && "max-w-24"
+                      index === columns.length - 1 && "max-w-24",
                     )}
                   >
                     <Skeleton className="h-4 w-3/4" />
@@ -241,7 +241,7 @@ export function DataTable<T extends Record<string, any>>({
                   "border-t border-border bg-card",
                   size === "sm" && "p-3",
                   size === "default" && "p-4",
-                  size === "lg" && "p-6"
+                  size === "lg" && "p-6",
                 )}
               >
                 <div className="flex gap-4">
@@ -251,7 +251,7 @@ export function DataTable<T extends Record<string, any>>({
                       className={cn(
                         "flex-1",
                         colIndex === 0 && "min-w-48",
-                        colIndex === columns.length - 1 && "max-w-24"
+                        colIndex === columns.length - 1 && "max-w-24",
                       )}
                     >
                       {colIndex === 0 ? (
@@ -274,7 +274,7 @@ export function DataTable<T extends Record<string, any>>({
                           <Skeleton
                             className={cn(
                               "h-4",
-                              rowIndex % 2 === 0 ? "w-3/4" : "w-1/2"
+                              rowIndex % 2 === 0 ? "w-3/4" : "w-1/2",
                             )}
                           />
                           {rowIndex % 3 === 0 && (
@@ -313,7 +313,7 @@ export function DataTable<T extends Record<string, any>>({
         "w-full bg-card rounded-ele overflow-hidden",
         bordered && "border border-border",
         variant === "minimal" && "bg-transparent border-none",
-        className
+        className,
       )}
     >
       {/* Search and Filters */}
@@ -362,7 +362,7 @@ export function DataTable<T extends Record<string, any>>({
           "overflow-hidden",
           variant === "bordered" && "border border-border rounded-ele",
           variant === "minimal" && "border-none",
-          !searchable && variant !== "minimal" && "rounded-ele"
+          !searchable && variant !== "minimal" && "rounded-ele",
         )}
       >
         <div className="overflow-x-auto">
@@ -370,7 +370,8 @@ export function DataTable<T extends Record<string, any>>({
             <thead
               className={cn(
                 "bg-muted/20",
-                variant === "minimal" && "bg-transparent border-b border-border"
+                variant === "minimal" &&
+                  "bg-transparent border-b border-border",
               )}
             >
               <tr>
@@ -386,7 +387,7 @@ export function DataTable<T extends Record<string, any>>({
                         "cursor-pointer hover:bg-muted/30 hover:rounded-ele transition-colors",
                       column.align === "center" && "text-center",
                       column.align === "right" && "text-right",
-                      column.width && `w-[${column.width}]`
+                      column.width && `w-[${column.width}]`,
                     )}
                     onClick={() => column.sortable && handleSort(column.key)}
                     style={column.width ? { width: column.width } : undefined}
@@ -395,7 +396,7 @@ export function DataTable<T extends Record<string, any>>({
                       className={cn(
                         "flex items-center gap-2",
                         column.align === "center" && "justify-center",
-                        column.align === "right" && "justify-end"
+                        column.align === "right" && "justify-end",
                       )}
                     >
                       <span>{column.header}</span>
@@ -407,7 +408,7 @@ export function DataTable<T extends Record<string, any>>({
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "asc"
                                 ? "text-primary"
-                                : "text-muted-foreground/40"
+                                : "text-muted-foreground/40",
                             )}
                           />
                           <ChevronDown
@@ -416,7 +417,7 @@ export function DataTable<T extends Record<string, any>>({
                               sortConfig.key === column.key &&
                                 sortConfig.direction === "desc"
                                 ? "text-primary"
-                                : "text-muted-foreground/40"
+                                : "text-muted-foreground/40",
                             )}
                           />
                         </div>
@@ -436,7 +437,7 @@ export function DataTable<T extends Record<string, any>>({
                           onChange={(e) =>
                             handleColumnFilter(
                               String(column.key),
-                              e.target.value
+                              e.target.value,
                             )
                           }
                           onClick={(e) => e.stopPropagation()}
@@ -458,7 +459,7 @@ export function DataTable<T extends Record<string, any>>({
                       "text-center text-muted-foreground bg-card",
                       size === "sm" && "px-3 py-8",
                       size === "default" && "px-4 py-12",
-                      size === "lg" && "px-6 py-16"
+                      size === "lg" && "px-6 py-16",
                     )}
                   >
                     <div className="flex flex-col items-center space-y-3">
@@ -479,7 +480,7 @@ export function DataTable<T extends Record<string, any>>({
                       striped && index % 2 === 0 && "bg-muted/10",
                       hoverable && "hover:bg-muted/20",
                       onRowClick && "cursor-pointer",
-                      "group"
+                      "group",
                     )}
                     onClick={() => onRowClick?.(row, index)}
                   >
@@ -492,7 +493,7 @@ export function DataTable<T extends Record<string, any>>({
                           size === "default" && "px-4 py-3 text-sm",
                           size === "lg" && "px-6 py-4 text-base",
                           column.align === "center" && "text-center",
-                          column.align === "right" && "text-right"
+                          column.align === "right" && "text-right",
                         )}
                       >
                         {column.render

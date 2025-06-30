@@ -67,7 +67,7 @@ const separatorWithTextVariants = cva(
     defaultVariants: {
       orientation: "horizontal",
     },
-  }
+  },
 );
 
 export type CustomSeparatorProps = Omit<
@@ -88,7 +88,7 @@ const Separator = React.forwardRef<
 >(
   (
     { className, orientation = "horizontal", size, children, ...props },
-    ref
+    ref,
   ) => {
     // If children are provided, render separator with text
     if (children) {
@@ -101,7 +101,7 @@ const Separator = React.forwardRef<
               <div
                 className={cn(
                   separatorVariants({ orientation, size }),
-                  "flex-1"
+                  "flex-1",
                 )}
               />
               <span className="px-3 text-sm text-muted-foreground bg-background">
@@ -110,7 +110,7 @@ const Separator = React.forwardRef<
               <div
                 className={cn(
                   separatorVariants({ orientation, size }),
-                  "flex-1"
+                  "flex-1",
                 )}
               />
             </>
@@ -119,7 +119,7 @@ const Separator = React.forwardRef<
               <div
                 className={cn(
                   separatorVariants({ orientation, size }),
-                  "flex-1"
+                  "flex-1",
                 )}
               />
               <span className="py-3 text-sm text-muted-foreground bg-background writing-mode-vertical-rl">
@@ -128,7 +128,7 @@ const Separator = React.forwardRef<
               <div
                 className={cn(
                   separatorVariants({ orientation, size }),
-                  "flex-1"
+                  "flex-1",
                 )}
               />
             </>
@@ -147,7 +147,7 @@ const Separator = React.forwardRef<
         {...props}
       />
     );
-  }
+  },
 );
 Separator.displayName = SeparatorPrimitive.Root.displayName;
 

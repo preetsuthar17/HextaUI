@@ -27,7 +27,7 @@ const selectTriggerVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const selectContentVariants = cva(
@@ -43,7 +43,7 @@ const selectContentVariants = cva(
     defaultVariants: {
       position: "popper",
     },
-  }
+  },
 );
 
 const Select = SelectPrimitive.Root;
@@ -82,14 +82,14 @@ const SelectTrigger = React.forwardRef<
 >(
   (
     { className, children, variant, size, icon: Icon, placeholder, ...props },
-    ref
+    ref,
   ) => (
     <SelectPrimitive.Trigger
       ref={ref}
       className={cn(
         "group",
         selectTriggerVariants({ variant, size }),
-        className
+        className,
       )}
       {...props}
     >
@@ -104,7 +104,7 @@ const SelectTrigger = React.forwardRef<
         />
       </SelectPrimitive.Icon>
     </SelectPrimitive.Trigger>
-  )
+  ),
 );
 SelectTrigger.displayName = SelectPrimitive.Trigger.displayName;
 
@@ -134,7 +134,7 @@ const SelectContent = React.forwardRef<
           className={cn(
             "p-2 max-h-[280px] overflow-y-auto scrollbar-thin scrollbar-thumb-border scrollbar-track-transparent",
             position === "popper" &&
-              "h-fit w-full min-w-[var(--radix-select-trigger-width)]"
+              "h-fit w-full min-w-[var(--radix-select-trigger-width)]",
           )}
         >
           {children}
@@ -153,7 +153,7 @@ const SelectLabel = React.forwardRef<
     ref={ref}
     className={cn(
       "px-3 py-2 text-xs font-semibold text-muted-foreground",
-      className
+      className,
     )}
     {...props}
   />
@@ -173,7 +173,7 @@ const SelectItem = React.forwardRef<
     ref={ref}
     className={cn(
       "relative flex w-full cursor-default select-none items-center rounded-lg py-2 pl-3 pr-8 text-sm outline-none focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 data-[disabled]:text-muted-foreground",
-      className
+      className,
     )}
     {...props}
   >

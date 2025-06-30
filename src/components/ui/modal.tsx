@@ -40,7 +40,7 @@ const ModalContent = React.forwardRef<
         transition={{ duration: 0.2 }}
         className={cn(
           "fixed left-[50%] top-[50%] z-50 w-[95%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-background border border-border p-6 shadow-lg",
-          className
+          className,
         )}
       >
         {children}
@@ -61,7 +61,7 @@ const ModalHeader = ({
   <div
     className={cn(
       "flex flex-col space-y-2 text-center sm:text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -75,7 +75,7 @@ const ModalFooter = ({
   <div
     className={cn(
       "flex flex-col-reverse sm:flex-row sm:justify-end sm:space-x-2 gap-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -90,7 +90,7 @@ const ModalTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "text-lg font-semibold leading-none tracking-tight text-foreground",
-      className
+      className,
     )}
     {...props}
   />

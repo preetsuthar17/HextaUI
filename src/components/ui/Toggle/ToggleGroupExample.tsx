@@ -23,7 +23,7 @@ export function ToggleGroupExample() {
     setTextFormat((prev) =>
       prev.includes(format)
         ? prev.filter((f) => f !== format)
-        : [...prev, format]
+        : [...prev, format],
     );
   };
 

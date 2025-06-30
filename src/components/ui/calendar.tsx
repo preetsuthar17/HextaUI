@@ -31,7 +31,7 @@ const calendarVariants = cva(
       size: "default",
       alwaysOnTop: true,
     },
-  }
+  },
 );
 
 const dayVariants = cva(
@@ -65,7 +65,7 @@ const dayVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 interface CalendarProps extends VariantProps<typeof calendarVariants> {
@@ -141,7 +141,7 @@ function Calendar({
   const prevMonthLastDay = new Date(currentYear, currentMonth, 0).getDate();
   const prevMonthDays = Array.from(
     { length: firstDayOfWeek },
-    (_, i) => prevMonthLastDay - firstDayOfWeek + i + 1
+    (_, i) => prevMonthLastDay - firstDayOfWeek + i + 1,
   );
 
   // Calculate next month days to show
@@ -261,7 +261,7 @@ function Calendar({
   };
   const getDayVariant = (
     day: number,
-    monthOffset: number = 0
+    monthOffset: number = 0,
   ):
     | "default"
     | "selected"
@@ -419,10 +419,10 @@ function Calendar({
                   key={`prev-${day}`}
                   onClick={() => handleDateClick(day, -1)}
                   className={cn(
-                    dayVariants({ variant: getDayVariant(day, -1), size })
+                    dayVariants({ variant: getDayVariant(day, -1), size }),
                   )}
                   disabled={isDateDisabled(
-                    new Date(currentYear, currentMonth - 1, day)
+                    new Date(currentYear, currentMonth - 1, day),
                   )}
                 >
                   {day}
@@ -435,10 +435,10 @@ function Calendar({
                 key={`current-${day}`}
                 onClick={() => handleDateClick(day)}
                 className={cn(
-                  dayVariants({ variant: getDayVariant(day), size })
+                  dayVariants({ variant: getDayVariant(day), size }),
                 )}
                 disabled={isDateDisabled(
-                  new Date(currentYear, currentMonth, day)
+                  new Date(currentYear, currentMonth, day),
                 )}
               >
                 {day}
@@ -452,10 +452,10 @@ function Calendar({
                   key={`next-${day}`}
                   onClick={() => handleDateClick(day, 1)}
                   className={cn(
-                    dayVariants({ variant: getDayVariant(day, 1), size })
+                    dayVariants({ variant: getDayVariant(day, 1), size }),
                   )}
                   disabled={isDateDisabled(
-                    new Date(currentYear, currentMonth + 1, day)
+                    new Date(currentYear, currentMonth + 1, day),
                   )}
                 >
                   {day}

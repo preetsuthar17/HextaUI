@@ -45,7 +45,7 @@ const colorPickerVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 export interface ColorPickerProps
@@ -71,7 +71,7 @@ function ColorField({ className, ...props }: AriaColorFieldProps) {
   return (
     <AriaColorField
       className={composeRenderProps(className, (className) =>
-        cn("flex flex-col gap-2", className)
+        cn("flex flex-col gap-2", className),
       )}
       {...props}
     />
@@ -87,8 +87,8 @@ function ColorInput({
       className={composeRenderProps(className, (className) =>
         cn(
           "flex h-9 w-full rounded-ele border border-border bg-background px-3 py-1 text-sm text-foreground  transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
-          className
-        )
+          className,
+        ),
       )}
       {...props}
     />
@@ -103,7 +103,7 @@ function ColorLabel({
     <Label
       className={cn(
         "text-sm font-medium leading-none text-foreground peer-disabled:cursor-not-allowed peer-disabled:opacity-70",
-        className
+        className,
       )}
       {...props}
     />
@@ -116,8 +116,8 @@ function ColorArea({ className, ...props }: AriaColorAreaProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "h-[200px] w-full rounded-card border border-border bg-gradient-to-br from-white to-black",
-          className
-        )
+          className,
+        ),
       )}
       {...props}
     />
@@ -130,8 +130,8 @@ function ColorSlider({ className, ...props }: AriaColorSliderProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "flex h-8 w-full flex-col gap-2 items-center justify-center",
-          className
-        )
+          className,
+        ),
       )}
       {...props}
     />
@@ -142,7 +142,7 @@ function SliderTrack({ className, style, ...props }: AriaSliderTrackProps) {
   return (
     <AriaSliderTrack
       className={composeRenderProps(className, (className) =>
-        cn("relative h-3 w-full rounded-full border border-border", className)
+        cn("relative h-3 w-full rounded-full border border-border", className),
       )}
       style={({ defaultStyle }) => ({
         ...style,
@@ -163,8 +163,8 @@ function ColorThumb({ className, ...props }: AriaColorThumbProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "z-10 h-4 w-4 rounded-full border-2 border-white shadow-md ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
-          className
-        )
+          className,
+        ),
       )}
       {...props}
     />
@@ -178,7 +178,7 @@ function ColorSwatchPicker({
   return (
     <AriaColorSwatchPicker
       className={composeRenderProps(className, (className) =>
-        cn("flex flex-wrap gap-2", className)
+        cn("flex flex-wrap gap-2", className),
       )}
       {...props}
     />
@@ -194,8 +194,8 @@ function ColorSwatchPickerItem({
       className={composeRenderProps(className, (className) =>
         cn(
           "group/swatch-item cursor-pointer rounded-ele p-1 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-          className
-        )
+          className,
+        ),
       )}
       {...props}
     />
@@ -208,8 +208,8 @@ function ColorSwatch({ className, style, ...props }: AriaColorSwatchProps) {
       className={composeRenderProps(className, (className) =>
         cn(
           "h-8 w-8 rounded-ele border border-border group-data-[selected]/swatch-item:ring-2 group-data-[selected]/swatch-item:ring-ring group-data-[selected]/swatch-item:ring-offset-2",
-          className
-        )
+          className,
+        ),
       )}
       style={({ defaultStyle }) => ({
         ...style,
@@ -252,7 +252,7 @@ const EyeDropperButton = React.forwardRef<
       type="button"
       className={cn(
         "inline-flex h-9 w-9 items-center justify-center rounded-ele border border-border bg-background text-foreground  hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50",
-        className
+        className,
       )}
       onClick={handleEyeDropper}
       aria-label="Pick color from screen"
@@ -271,7 +271,7 @@ function ColorError({
   return (
     <FieldError
       className={composeRenderProps(className, (className) =>
-        cn("text-sm font-medium text-destructive", className)
+        cn("text-sm font-medium text-destructive", className),
       )}
       {...props}
     />

@@ -43,7 +43,7 @@ interface ActivityItem {
 interface RecentActivitySectionProps {
   filteredActivities: ActivityItem[];
   getStatusBadge: (
-    status: ActivityItem["status"]
+    status: ActivityItem["status"],
   ) => "default" | "destructive" | "secondary" | "outline" | "ghost";
 }
 
@@ -186,10 +186,10 @@ export function RecentActivitySection({
                         activity.status === "success"
                           ? "bg-green-500"
                           : activity.status === "warning"
-                          ? "bg-yellow-500"
-                          : activity.status === "error"
-                          ? "bg-red-500"
-                          : "bg-blue-500"
+                            ? "bg-yellow-500"
+                            : activity.status === "error"
+                              ? "bg-red-500"
+                              : "bg-blue-500"
                       }`}
                     />
                   </div>

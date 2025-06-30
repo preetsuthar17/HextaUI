@@ -19,7 +19,7 @@ const checkboxVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 interface CheckboxProps
@@ -114,7 +114,7 @@ const CheckboxRoot = React.forwardRef<
               <label
                 htmlFor={checkboxId}
                 className={cn(
-                  "text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                  "text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer",
                 )}
               >
                 {label}

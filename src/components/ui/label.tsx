@@ -23,7 +23,7 @@ const labelVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface LabelProps
@@ -36,7 +36,7 @@ export interface LabelProps
 const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
   (
     { className, variant, size, required, optional, children, ...props },
-    ref
+    ref,
   ) => {
     return (
       <label
@@ -57,7 +57,7 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
         )}
       </label>
     );
-  }
+  },
 );
 
 Label.displayName = "Label";

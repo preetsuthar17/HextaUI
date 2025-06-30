@@ -26,7 +26,7 @@ const inputVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 export interface InputProps
@@ -54,11 +54,11 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       value,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [showPassword, setShowPassword] = React.useState(false);
     const [internalValue, setInternalValue] = React.useState(
-      props.defaultValue || ""
+      props.defaultValue || "",
     );
     const inputRef = React.useRef<HTMLInputElement>(null);
 
@@ -141,7 +141,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           className={cn(
             inputVariants({ variant: inputVariant, size, className }),
             leftIcon && "pl-10",
-            rightIcon || isPassword || showClearButton
+            rightIcon || isPassword || showClearButton,
           )}
           ref={inputRef}
           {...(isControlled
@@ -187,7 +187,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         )}
       </div>
     );
-  }
+  },
 );
 
 Input.displayName = "Input";

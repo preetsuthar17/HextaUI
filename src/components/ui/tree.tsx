@@ -53,7 +53,7 @@ const treeVariants = cva(
       variant: "default",
       size: "default",
     },
-  }
+  },
 );
 
 const treeItemVariants = cva(
@@ -75,7 +75,7 @@ const treeItemVariants = cva(
       variant: "default",
       selected: false,
     },
-  }
+  },
 );
 
 // Provider Props
@@ -116,10 +116,10 @@ const TreeProvider = React.forwardRef<HTMLDivElement, TreeProviderProps>(
       indent = 20,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [expandedIds, setExpandedIds] = React.useState<Set<string>>(
-      new Set(defaultExpandedIds)
+      new Set(defaultExpandedIds),
     );
     const [internalSelectedIds, setInternalSelectedIds] =
       React.useState<string[]>(selectedIds);
@@ -137,7 +137,7 @@ const TreeProvider = React.forwardRef<HTMLDivElement, TreeProviderProps>(
           return newSet;
         });
       },
-      [onNodeExpand]
+      [onNodeExpand],
     );
 
     const handleSelection = React.useCallback(
@@ -164,7 +164,7 @@ const TreeProvider = React.forwardRef<HTMLDivElement, TreeProviderProps>(
         currentSelectedIds,
         isControlled,
         onSelectionChange,
-      ]
+      ],
     );
 
     const contextValue: TreeContextType = {
@@ -196,7 +196,7 @@ const TreeProvider = React.forwardRef<HTMLDivElement, TreeProviderProps>(
         </motion.div>
       </TreeContext.Provider>
     );
-  }
+  },
 );
 
 TreeProvider.displayName = "TreeProvider";
@@ -216,7 +216,7 @@ const Tree = React.forwardRef<HTMLDivElement, TreeProps>(
         {children}
       </Comp>
     );
-  }
+  },
 );
 
 Tree.displayName = "Tree";
@@ -255,7 +255,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
       onClick,
       ...props
     },
-    ref
+    ref,
   ) => {
     const {
       expandedIds,
@@ -296,7 +296,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
       <div className="select-none">
         <motion.div
           className={cn(
-            treeItemVariants({ variant, selected: isSelected, className })
+            treeItemVariants({ variant, selected: isSelected, className }),
           )}
           style={{ paddingLeft: level * indent + 8 }}
           onClick={handleClick}
@@ -395,7 +395,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
         </AnimatePresence>
       </div>
     );
-  }
+  },
 );
 
 TreeItem.displayName = "TreeItem";

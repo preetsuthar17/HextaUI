@@ -24,7 +24,7 @@ const alertVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  }
+  },
 );
 
 export interface AlertProps
@@ -48,7 +48,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isVisible, setIsVisible] = React.useState(true);
 
@@ -115,7 +115,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
         )}
       </AnimatePresence>
     );
-  }
+  },
 );
 
 Alert.displayName = "Alert";

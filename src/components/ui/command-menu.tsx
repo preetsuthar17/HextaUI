@@ -88,7 +88,7 @@ const CommandMenuTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "text-lg font-semibold leading-none tracking-tight text-foreground",
-      className
+      className,
     )}
     {...props}
   />
@@ -116,7 +116,7 @@ const CommandMenuOverlay = React.forwardRef<
     ref={ref}
     className={cn(
       "fixed inset-0 z-50 bg-black/50 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -141,7 +141,7 @@ const CommandMenuContent = React.forwardRef<
       scrollHideDelay = 600,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [value, setValue] = React.useState("");
     const [selectedIndex, setSelectedIndex] = React.useState(0);
@@ -178,7 +178,7 @@ const CommandMenuContent = React.forwardRef<
               "fixed left-[50%] top-[30%] z-50 w-[95%] max-w-2xl translate-x-[-50%] translate-y-[-50%]",
               "bg-background border border-border rounded-card shadow-lg",
               "overflow-hidden",
-              className
+              className,
             )}
           >
             {" "}
@@ -212,7 +212,7 @@ const CommandMenuContent = React.forwardRef<
         </DialogPrimitive.Content>
       </CommandMenuPortal>
     );
-  }
+  },
 );
 CommandMenuContent.displayName = "CommandMenuContent";
 
@@ -225,7 +225,7 @@ const CommandMenuInput = React.forwardRef<
 >(
   (
     { className, placeholder = "Type a command or search...", ...props },
-    ref
+    ref,
   ) => {
     const { value, setValue } = useCommandMenu();
 
@@ -238,14 +238,14 @@ const CommandMenuInput = React.forwardRef<
           onChange={(e) => setValue(e.target.value)}
           className={cn(
             "flex h-12 w-full rounded-none border-0 bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
-            className
+            className,
           )}
           placeholder={placeholder}
           {...props}
         />
       </div>
     );
-  }
+  },
 );
 CommandMenuInput.displayName = "CommandMenuInput";
 
@@ -357,7 +357,7 @@ const CommandMenuItem = React.forwardRef<
       index = 0,
       ...props
     },
-    ref
+    ref,
   ) => {
     const { selectedIndex, setSelectedIndex } = useCommandMenu();
     const isSelected = selectedIndex === index;
@@ -390,7 +390,7 @@ const CommandMenuItem = React.forwardRef<
           "hover:bg-accent hover:text-accent-foreground",
           isSelected && "bg-accent text-accent-foreground",
           disabled && "pointer-events-none opacity-50",
-          className
+          className,
         )}
         onClick={handleSelect}
         onMouseEnter={() => setSelectedIndex(index)}
@@ -413,14 +413,14 @@ const CommandMenuItem = React.forwardRef<
                   {key === "cmd" || key === "⌘"
                     ? getModifierKey().symbol
                     : key === "shift"
-                    ? "⇧"
-                    : key === "alt"
-                    ? "⌥"
-                    : key === "ctrl"
-                    ? getModifierKey().key === "cmd"
-                      ? "⌃"
-                      : "Ctrl"
-                    : key}
+                      ? "⇧"
+                      : key === "alt"
+                        ? "⌥"
+                        : key === "ctrl"
+                          ? getModifierKey().key === "cmd"
+                            ? "⌃"
+                            : "Ctrl"
+                          : key}
                 </Kbd>
               </React.Fragment>
             ))}
@@ -428,7 +428,7 @@ const CommandMenuItem = React.forwardRef<
         )}
       </div>
     );
-  }
+  },
 );
 CommandMenuItem.displayName = "CommandMenuItem";
 

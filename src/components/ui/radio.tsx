@@ -31,7 +31,7 @@ const radioVariants = cva(
     defaultVariants: {
       size: "default",
     },
-  }
+  },
 );
 
 interface RadioGroupProps
@@ -58,7 +58,7 @@ const RadioGroup = React.forwardRef<
 >(
   (
     { className, orientation, label, description, error, id, ...props },
-    ref
+    ref,
   ) => {
     const groupId = id || React.useId();
 
@@ -87,7 +87,7 @@ const RadioGroup = React.forwardRef<
         {error && <p className="text-xs text-destructive">{error}</p>}
       </div>
     );
-  }
+  },
 );
 
 RadioGroup.displayName = "RadioGroup";
