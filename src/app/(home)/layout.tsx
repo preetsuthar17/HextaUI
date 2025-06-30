@@ -147,7 +147,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
                       href="https://shadcnblocks.com/?ref=hextaui"
                       className="font-medium"
                       target="_blank"
-                      goal="sponsor_shadcnblocks_header_click"
+                      goal="sponsor_shadcnblocks_click"
                     >
                       <Image
                         src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
