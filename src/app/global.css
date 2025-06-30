@@ -241,12 +241,10 @@ samp {
 }
 
 #nd-nav nav {
-  display: flex;
   gap: 0.4rem;
 }
 
 #nd-nav nav ul {
-  display: flex;
   gap: 0.4rem;
 }
 
