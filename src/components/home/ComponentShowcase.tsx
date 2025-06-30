@@ -21,7 +21,9 @@ const ComponentShowcase = () => {
           <Badge variant="secondary" className="px-4 py-2">
             Components
           </Badge>
-          <h2 className="text-4xl font-medium">50+ components ready to use</h2>
+          <h2 className="text-4xl font-medium">
+            100+ ready to use components & blocks
+          </h2>
           <p className="max-w-2xl mx-auto max-sm:text-sm text-muted-foreground">
             Copy and paste components built with Radix UI, Tailwind CSS, and
             TypeScript.

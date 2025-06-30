@@ -45,16 +45,7 @@ const Hero = () => {
 
   return (
     <>
-      <section className="relative flex flex-col items-center justify-center gap-12 px-10 text-center pt-32 pb-12">
-        <div
-          className="absolute top-0 bg-accent w-fit p-4 px-6 rounded-b-2xl text-sm font-medium mx-6 cursor-pointer"
-          onClick={() => window.open("https://pro.hextaui.com", "_blank")}
-        >
-          <span className="opacity-80">
-            Build 10x faster with HextaUI Blocks —
-          </span>{" "}
-          Learn more
-        </div>
+      <section className="relative flex flex-col items-center justify-center gap-12 px-10 text-center py-16 pt-24">
         <div className="flex items-center justify-center gap-4 flex-col">
           <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tigher">
             Build stunning websites effortlessly
@@ -137,7 +128,7 @@ const Hero = () => {
         <div className="border rounded-[var(--radius))] overflow-hidden w-full ">
           <VideoPlayer
             src="/hextaui-v2-trailer.mp4"
-            poster="/Banner.png"
+            poster="/hero-thumbnail.png"
             size={"full"}
             className="w-full h-auto rounded-[var(--radius))]"
           />

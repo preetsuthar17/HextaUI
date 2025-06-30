@@ -28,7 +28,7 @@ const ProBlocksShowcase = () => {
       description:
         "Complete auth flows with social login, password reset, and validation.",
       preview: (
-        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/20 dark:to-indigo-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-blue-950/20 dark:to-indigo-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="space-y-2 w-full max-w-xs">
             <div className="h-2 bg-blue-200 dark:bg-blue-800 rounded w-1/3"></div>
             <div className="h-8 bg-white dark:bg-gray-800 rounded border"></div>
@@ -44,7 +44,7 @@ const ProBlocksShowcase = () => {
       description:
         "Modern dashboard with charts, metrics, and real-time data visualization.",
       preview: (
-        <div className="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-950/20 dark:to-pink-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-purple-50 to-pink-100 dark:from-purple-950/20 dark:to-pink-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="grid grid-cols-2 gap-2 w-full">
             <div className="h-12 bg-white dark:bg-gray-800 rounded border flex items-end p-1">
               <div className="bg-purple-500 h-8 w-2 rounded mr-1"></div>
@@ -66,7 +66,7 @@ const ProBlocksShowcase = () => {
       description:
         "Beautiful product showcases with cart, wishlist, and quick view features.",
       preview: (
-        <div className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950/20 dark:to-emerald-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-green-50 to-emerald-100 dark:from-green-950/20 dark:to-emerald-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="space-y-2 w-full">
             <div className="h-16 bg-white dark:bg-gray-800 rounded border"></div>
             <div className="flex justify-between items-center">
@@ -83,7 +83,7 @@ const ProBlocksShowcase = () => {
       description:
         "Conversion-optimized hero sections with CTAs and social proof.",
       preview: (
-        <div className="bg-gradient-to-br from-orange-50 to-red-100 dark:from-orange-950/20 dark:to-red-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-orange-50 to-red-100 dark:from-orange-950/20 dark:to-red-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="space-y-2 w-full text-center">
             <div className="h-2 bg-orange-200 dark:bg-orange-800 rounded w-3/4 mx-auto"></div>
             <div className="h-1 bg-orange-200 dark:bg-orange-800 rounded w-1/2 mx-auto"></div>
@@ -101,7 +101,7 @@ const ProBlocksShowcase = () => {
       description:
         "Multi-step forms with validation, file uploads, and success states.",
       preview: (
-        <div className="bg-gradient-to-br from-teal-50 to-cyan-100 dark:from-teal-950/20 dark:to-cyan-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-teal-50 to-cyan-100 dark:from-teal-950/20 dark:to-cyan-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="space-y-1 w-full">
             <div className="h-6 bg-white dark:bg-gray-800 rounded border"></div>
             <div className="h-6 bg-white dark:bg-gray-800 rounded border"></div>
@@ -117,7 +117,7 @@ const ProBlocksShowcase = () => {
       description:
         "Responsive navigation with collapsible menus and user profiles.",
       preview: (
-        <div className="bg-gradient-to-br from-violet-50 to-purple-100 dark:from-violet-950/20 dark:to-purple-950/20 p-4 rounded-lg h-32 flex items-center justify-center">
+        <div className="bg-gradient-to-br from-violet-50 to-purple-100 dark:from-violet-950/20 dark:to-purple-950/20 p-4 rounded-lg h-36 flex items-center justify-center">
           <div className="flex gap-2 w-full h-full">
             <div className="w-8 bg-white dark:bg-gray-800 rounded border space-y-1 p-1">
               <div className="h-2 bg-violet-200 dark:bg-violet-800 rounded"></div>
@@ -181,19 +181,19 @@ const ProBlocksShowcase = () => {
         </div>
         <div className="mx-auto w-full flex flex-col gap-6 relative not-prose text-left">
           <div className="columns-1 md:columns-2 gap-6 space-y-6 overflow-hidden relative">
-            <div className="break-inside-avoid mb-6 not-prose text-left">
+            <div className="break-inside-avoid mb-6 not-prose text-left p-0">
               <TimeSelectionBlock />
             </div>
 
-            <div className="break-inside-avoid mb-6 not-prose text-left">
+            <div className="break-inside-avoid mb-6 not-prose text-left p-0">
               <BasicTimeSelectionExample />
             </div>
 
-            <div className="break-inside-avoid mb-6 not-prose text-left">
+            <div className="break-inside-avoid mb-6 not-prose text-left p-0">
               <DisabledQuickSelectExample />
             </div>
 
-            <div className="break-inside-avoid mb-6 not-prose text-left">
+            <div className="break-inside-avoid mb-6 not-prose text-left p-0">
               <TeamInviteBlock />
             </div>
 

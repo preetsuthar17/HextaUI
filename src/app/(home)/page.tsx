@@ -9,6 +9,7 @@ import ComponentShowcase from "@/components/home/ComponentShowcase";
 import ProBlocksShowcase from "@/components/home/ProBlocksShowcase";
 import Contributors from "@/components/home/Contributors";
 import WallOfLove from "@/components/home/WallOfLove";
+import Pricing from "../../components/home/Pricing";
 
 export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
@@ -23,11 +24,12 @@ export default function HomePage() {
   return (
     <main className="flex h-full flex-col justify-center text-center w-full max-w-5xl mx-auto border-l border-r">
       <Hero />
-      <Features />
       <ComponentShowcase />
       <ProBlocksShowcase />
-      <Contributors />
+      <Pricing />
       <WallOfLove />
+      <Features />
+      <Contributors />
       <Community />
       <Footer />
     </main>

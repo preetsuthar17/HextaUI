@@ -21,13 +21,13 @@ export function BasicTimeSelectionExample() {
     alert(
       `Time range applied: ${start} - ${end} (${Math.floor(dur / 60)}h ${
         dur % 60
-      }m)`,
+      }m)`
     );
   };
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-6">
-      <Card variant={"default"}>
+      <Card variant={"default"} className="space-y-3">
         <CardContent>
           <TimeSelection
             startTime={startTime}
