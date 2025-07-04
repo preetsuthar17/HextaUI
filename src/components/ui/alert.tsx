@@ -90,7 +90,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
                   <Icon className="h-4 w-4 mt-0.5" />
                 </div>
               )}
-              <div className={cn("flex-1", Icon && "ml-3")}>
+              <div className={cn("flex-1", Icon && "ms-3")}>
                 {title && <h3 className="text-sm font-medium mb-1">{title}</h3>}
                 <div
                   className={cn("text-sm", title && "text-muted-foreground")}
@@ -99,7 +99,7 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
                 </div>
               </div>
               {dismissible && (
-                <div className="flex-shrink-0 ml-3">
+                <div className="flex-shrink-0 ms-3">
                   <button
                     type="button"
                     className="inline-flex rounded-md p-1.5 transition-colors hover:bg-black/5 dark:hover:bg-white/5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ring"

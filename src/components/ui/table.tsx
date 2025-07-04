@@ -379,14 +379,14 @@ export function DataTable<T extends Record<string, any>>({
                   <th
                     key={String(column.key)}
                     className={cn(
-                      "text-left font-semibold text-foreground",
+                      "text-start font-semibold text-foreground",
                       size === "sm" && "px-3 py-2 text-xs",
                       size === "default" && "px-4 py-3 text-sm",
                       size === "lg" && "px-6 py-4 text-base",
                       column.sortable &&
                         "cursor-pointer hover:bg-muted/30 hover:rounded-ele transition-colors",
                       column.align === "center" && "text-center",
-                      column.align === "right" && "text-right",
+                      column.align === "right" && "text-end",
                       column.width && `w-[${column.width}]`,
                     )}
                     onClick={() => column.sortable && handleSort(column.key)}
@@ -493,7 +493,7 @@ export function DataTable<T extends Record<string, any>>({
                           size === "default" && "px-4 py-3 text-sm",
                           size === "lg" && "px-6 py-4 text-base",
                           column.align === "center" && "text-center",
-                          column.align === "right" && "text-right",
+                          column.align === "right" && "text-end",
                         )}
                       >
                         {column.render

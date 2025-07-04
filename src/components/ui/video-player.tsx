@@ -289,9 +289,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                 className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 group"
               >
                 {isPlaying ? (
-                  <Pause className="w-6 h-6 ml-0.5" />
+                  <Pause className="w-6 h-6 ms-0.5" />
                 ) : (
-                  <Play className="w-6 h-6 ml-1" />
+                  <Play className="w-6 h-6 ms-1" />
                 )}
               </button>
             </div>
@@ -347,7 +347,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                     {isPlaying ? (
                       <Pause className="w-4 h-4" />
                     ) : (
-                      <Play className="w-4 h-4 ml-0.5" />
+                      <Play className="w-4 h-4 ms-0.5" />
                     )}
                   </button>
 

@@ -129,7 +129,7 @@ const CheckboxRoot = React.forwardRef<
         )}
       </div>
 
-      {error && <p className="text-xs text-destructive ml-6">{error}</p>}
+      {error && <p className="text-xs text-destructive ms-6">{error}</p>}
     </div>
   );
 });

@@ -12,8 +12,8 @@ import {
   Minimize,
   SkipBack,
   SkipForward,
-  Settings,
 } from "lucide-react";
+import { useDirection } from "@radix-ui/react-direction";
 
 const videoPlayerVariants = cva(
   "relative w-full bg-black rounded-card overflow-hidden group",
@@ -55,6 +55,8 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
     },
     ref,
   ) => {
+    const direction = useDirection()
+
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [currentTime, setCurrentTime] = React.useState(0);
     const [duration, setDuration] = React.useState(0);
@@ -292,9 +294,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                 className="w-16 h-16 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 flex items-center justify-center text-white hover:bg-white/30 transition-all duration-200 pointer-events-auto"
               >
                 {isPlaying ? (
-                  <Pause className="w-6 h-6 ml-0.5" />
+                  <Pause className="w-6 h-6 ms-0.5" />
                 ) : (
-                  <Play className="w-6 h-6 ml-1" />
+                  <Play className="w-6 h-6 ms-1 rtl:rotate-180" />
                 )}
               </button>
             </div>
@@ -302,7 +304,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
             {/* Controls Bar */}
             <div
               className={cn(
-                "absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent ",
+                "absolute bottom-0 start-0 end-0 bg-gradient-to-t from-black/80 to-transparent ",
                 "transition-opacity duration-300 pointer-events-none",
                 showControlsState ? "opacity-100" : "opacity-0",
               )}
@@ -331,7 +333,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                         [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-200
                         group-hover/progress:[&::-webkit-slider-thumb]:scale-125"
                       style={{
-                        background: `linear-gradient(to right, #ffffff 0%, #ffffff ${
+                        background: `linear-gradient(to ${direction === 'ltr' ? 'right' : 'left'}, #ffffff 0%, #ffffff ${
                           (currentTime / duration) * 100
                         }%, rgba(255,255,255,0.3) ${
                           (currentTime / duration) * 100
@@ -355,7 +357,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       className="p-2 text-white hover:bg-white/20 rounded-md transition-colors"
                     >
-                      <SkipBack className="w-4 h-4" />
+                      <SkipBack className="w-4 h-4 rtl:rotate-180" />
                     </button>
                     <button
                       onClick={(e) => {
@@ -367,7 +369,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       {isPlaying ? (
                         <Pause className="w-4 h-4" />
                       ) : (
-                        <Play className="w-4 h-4 ml-0.5" />
+                        <Play className="w-4 h-4 ms-0.5 rtl:rotate-180" />
                       )}
                     </button>{" "}
                     <button
@@ -377,7 +379,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       className="p-2 text-white hover:bg-white/20 rounded-md transition-colors"
                     >
-                      <SkipForward className="w-4 h-4" />
+                      <SkipForward className="w-4 h-4 rtl:rotate-180" />
                     </button>
                     <div className="flex items-center gap-2 group/volume">
                       {" "}
