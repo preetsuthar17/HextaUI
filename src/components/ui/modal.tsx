@@ -44,7 +44,7 @@ const ModalContent = React.forwardRef<
         )}
       >
         {children}
-        <ModalClose className="absolute right-4 top-4 rounded-lg p-1.5 mx-2 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
+        <ModalClose className="absolute end-4 top-4 rounded-lg p-1.5 mx-2 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
           <X size={16} />
           <span className="sr-only">Close</span>
         </ModalClose>
@@ -60,7 +60,7 @@ const ModalHeader = ({
 }: React.HTMLAttributes<HTMLDivElement>) => (
   <div
     className={cn(
-      "flex flex-col space-y-2 text-center sm:text-left",
+      "flex flex-col space-y-2 text-center sm:text-start",
       className,
     )}
     {...props}

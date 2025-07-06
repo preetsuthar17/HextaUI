@@ -298,19 +298,19 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           className={cn(
             treeItemVariants({ variant, selected: isSelected, className }),
           )}
-          style={{ paddingLeft: level * indent + 8 }}
+          style={{ paddingInlineStart: level * indent + 8 }}
           onClick={handleClick}
           whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
         >
           {/* Tree Lines */}
           {showLines && level > 0 && (
-            <div className="absolute left-0 top-0 bottom-0 pointer-events-none">
+            <div className="absolute start-0 top-0 bottom-0 pointer-events-none">
               {currentPath.map((isLastInPath, pathIndex) => (
                 <div
                   key={pathIndex}
-                  className="absolute top-0 bottom-0 border-l border-border/40"
+                  className="absolute top-0 bottom-0 border-s border-border/40"
                   style={{
-                    left: pathIndex * indent + 12,
+                    insetInlineStart: pathIndex * indent + 12,
                     display:
                       pathIndex === currentPath.length - 1 && isLastInPath
                         ? "none"
@@ -321,16 +321,16 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
               <div
                 className="absolute top-1/2 border-t border-border/40"
                 style={{
-                  left: (level - 1) * indent + 12,
+                  insetInlineStart: (level - 1) * indent + 12,
                   width: indent - 4,
                   transform: "translateY(-1px)",
                 }}
               />
               {isLast && (
                 <div
-                  className="absolute top-0 border-l border-border/40"
+                  className="absolute top-0 border-s border-border/40"
                   style={{
-                    left: (level - 1) * indent + 12,
+                    insetInlineStart: (level - 1) * indent + 12,
                     height: "50%",
                   }}
                 />
@@ -340,19 +340,19 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
 
           {/* Expand Icon */}
           <motion.div
-            className="flex items-center justify-center w-4 h-4 mr-1"
+            className="flex items-center justify-center w-4 h-4 me-1"
             animate={{ rotate: hasChildren && isExpanded ? 90 : 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             {hasChildren && (
-              <ChevronRight className="h-3 w-3 text-muted-foreground" />
+              <ChevronRight className="h-3 w-3 text-muted-foreground rtl:rotate-180" />
             )}
           </motion.div>
 
           {/* Node Icon */}
           {showIcons && (
             <motion.div
-              className="flex items-center justify-center w-4 h-4 mr-2 text-muted-foreground"
+              className="flex items-center justify-center w-4 h-4 me-2 text-muted-foreground"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.15 }}
             >

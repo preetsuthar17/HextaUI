@@ -1,0 +1,87 @@
+---
+title: RTL Setup
+description: Support RTL direction for components.
+icon: Languages
+---
+
+Many applications need to support both Left-to-Right (LTR) and Right-to-Left (RTL) layouts to accommodate different language audiences, such as Arabic or Persian.
+
+HextaUI uses `@radix-ui/react-direction` to easily toggle layout direction using React context. This guide walks you through installation, usage, and integration inside your components.
+
+### Installation
+
+```sh
+pnpm add @radix-ui/react-direction
+# or
+npm install @radix-ui/react-direction
+# or
+yarn add @radix-ui/react-direction
+```
+
+### Usage Example
+
+```tsx
+"use client";
+
+import { useState } from "react";
+import { DirectionProvider } from "@radix-ui/react-direction";
+
+interface PreviewContainerProps {
+  children: React.ReactNode;
+  className?: string;
+}
+
+export const Layout = ({ children }) => {
+  const [direction, setDirection] = useState<"ltr" | "rtl">("ltr");
+
+  const toggleDirection = () =>
+    setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr"));
+
+  return (
+    <DirectionProvider dir={direction}>
+      <div dir={direction}>
+        <header>
+            <button onClick={toggleDirection}>
+                {direction}
+            </button>
+        </header>
+        <div>
+            {children}
+        </div>
+      </div>
+    </DirectionProvider>
+  );
+};
+```
+
+### Tips for RTL Support
+
+#### Logical TailwindCSS Utilities
+
+Replace directional utility classes (`left-`, `right-`, `ml-`, etc.) with logical CSS equivalents. This ensures the layout automatically adjusts based on the `dir` attribute (`ltr` or `rtl`), without needing extra logic. Conversion reference is down
+
+| LTR Class                  | RTL-Friendly Alternative  |
+| -------------------------- | ------------------------- |
+| `ml-` / `mr-`              | `ms-` / `me-`             |
+| `pl-` / `pr-`              | `ps-` / `pe-`             |
+| `border-l` / `border-r`    | `border-s` / `border-e`   |
+| `rounded-l` / `rounded-r`  | `rounded-s` / `rounded-e` |
+| `text-left` / `text-right` | `text-start` / `text-end` |
+| `left-` / `right-`         | `start-` / `end-`         |
+
+#### `rtl`: Prefix for Direction-Specific Styles
+
+Tailwind allows you to scope styles to specific directions using the `rtl`: and `ltr`: prefixes.
+
+```tsx
+// Example: Flip an icon in RTL
+<ChevronRightIcon className="size-4 rtl:rotate-180" />
+```
+
+- In LTR: ➡️
+
+- In RTL: ⬅️ (rotated automatically)
+
+#### Detect Direction in JS
+
+Sometimes, CSS alone is not enough—like changing logic, labels, or interaction patterns based on the current direction. For these cases, use the `useDirection()` hook from `@radix-ui/react-direction` to access the current direction ("ltr" or "rtl").

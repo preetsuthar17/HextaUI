@@ -4,6 +4,7 @@ import * as React from "react";
 import { motion } from "motion/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
+import { useDirection } from "@radix-ui/react-direction";
 
 const tabsVariants = cva(
   "relative inline-flex items-center justify-center rounded-lg transition-all duration-300 w-full",
@@ -60,7 +61,7 @@ export interface TabItem {
 
 export interface TabsProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    VariantProps<typeof tabsVariants> {
+  VariantProps<typeof tabsVariants> {
   items: TabItem[];
   defaultValue?: string;
   value?: string;
@@ -83,11 +84,12 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     },
     ref,
   ) => {
+    const direction = useDirection()
     const [activeValue, setActiveValue] = React.useState(
       value || defaultValue || items[0]?.id,
     );
     const [activeTabBounds, setActiveTabBounds] = React.useState({
-      left: 0,
+      start: 0,
       width: 0,
     });
 
@@ -111,17 +113,25 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
         if (containerRect) {
           setActiveTabBounds({
-            left: tabRect.left - containerRect.left,
+            start: direction === "ltr" ? tabRect.left - containerRect.left : containerRect.right - tabRect.right,
             width: tabRect.width,
           });
         }
       }
-    }, [activeValue, items]);
+    }, [activeValue, items, direction]);
 
     const handleTabClick = (tabId: string) => {
       setActiveValue(tabId);
       onValueChange?.(tabId);
     };
+
+    const animate = direction === 'ltr' ? {
+      left: activeTabBounds.start,
+      width: activeTabBounds.width,
+    } : {
+      right: activeTabBounds.start,
+      width: activeTabBounds.width,
+    }
 
     return (
       <div
@@ -145,10 +155,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
                 : indicatorColor,
           }}
           initial={false}
-          animate={{
-            left: activeTabBounds.left,
-            width: activeTabBounds.width,
-          }}
+          animate={animate}
           transition={{
             type: "spring",
             stiffness: 400,

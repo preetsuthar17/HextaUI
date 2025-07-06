@@ -196,13 +196,13 @@ const CommandMenuContent = React.forwardRef<
 
               {children}
 
-              <CommandMenuClose className="absolute right-3 top-3 rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
+              <CommandMenuClose className="absolute end-3 top-3 rounded-lg p-1.5 text-muted-foreground hover:text-foreground hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring transition-colors">
                 <X size={14} />
                 <span className="sr-only">Close</span>
               </CommandMenuClose>
 
               {showShortcut && (
-                <div className="absolute right-12 top-3 flex items-center justify-center gap-1 h-6.5">
+                <div className="absolute end-12 top-3 flex items-center justify-center gap-1 h-6.5">
                   <Kbd size="xs">{getModifierKey().symbol}</Kbd>
                   <Kbd size="xs">K</Kbd>
                 </div>
@@ -231,7 +231,7 @@ const CommandMenuInput = React.forwardRef<
 
     return (
       <div className="flex items-center border-b border-border px-3 py-0">
-        <Search className="mr-3 h-4 w-4 shrink-0 text-muted-foreground" />
+        <Search className="me-3 h-4 w-4 shrink-0 text-muted-foreground" />
         <input
           ref={ref}
           value={value}
@@ -403,7 +403,7 @@ const CommandMenuItem = React.forwardRef<
         <div className="flex-1">{children}</div>
 
         {shortcut && (
-          <div className="ml-auto flex items-center gap-1">
+          <div className="ms-auto flex items-center gap-1">
             {shortcut.split("+").map((key, i) => (
               <React.Fragment key={key}>
                 {i > 0 && (
