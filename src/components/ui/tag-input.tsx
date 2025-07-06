@@ -210,7 +210,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
             type="button"
             onClick={handleClearAll}
             disabled={disabled}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-accent transition-colors disabled:pointer-events-none disabled:opacity-50"
+            className="absolute end-2 top-1/2 -translate-y-1/2 rounded-full p-1 hover:bg-accent transition-colors disabled:pointer-events-none disabled:opacity-50"
             aria-label="Clear all tags"
           >
             <X size={14} className="text-muted-foreground" />

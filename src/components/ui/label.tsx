@@ -46,12 +46,12 @@ const Label = React.forwardRef<HTMLLabelElement, LabelProps>(
       >
         {children}
         {required && (
-          <span className="text-destructive ml-1" aria-label="required">
+          <span className="text-destructive ms-1" aria-label="required">
             *
           </span>
         )}
         {optional && !required && (
-          <span className="text-muted-foreground ml-1 font-normal">
+          <span className="text-muted-foreground ms-1 font-normal">
             (optional)
           </span>
         )}

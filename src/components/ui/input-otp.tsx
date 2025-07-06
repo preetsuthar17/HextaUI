@@ -28,7 +28,7 @@ const inputOTPVariants = cva(
 );
 
 const inputOTPSlotVariants = cva(
-  "relative flex items-center justify-center border-y border-r border-border bg-input text-xs sm:text-sm transition-all focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-l shadow-sm/2",
+  "relative flex items-center justify-center border-y border-e border-border bg-input text-xs sm:text-sm transition-all focus-within:z-10 focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 border-s shadow-sm/2",
   {
     variants: {
       variant: {
@@ -47,10 +47,10 @@ const inputOTPSlotVariants = cva(
         filled: "bg-accent border-border text-accent-foreground",
       },
       position: {
-        first: "border-l rounded-l-ele",
+        first: "border-s rounded-s-ele",
         middle: "rounded-sm",
-        last: "rounded-r-ele",
-        single: "border-l rounded-ele",
+        last: "rounded-e-ele",
+        single: "border-s rounded-ele",
       },
     },
     defaultVariants: {

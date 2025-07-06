@@ -116,7 +116,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         <textarea
           className={cn(
             textareaVariants({ variant: textareaVariant, size, className }),
-            showClearButton && "pr-10",
+            showClearButton && "pe-10",
           )}
           style={{
             scrollbarWidth: "thin",
@@ -131,7 +131,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
         />
         {/* Clear button */}
         {showClearButton && (
-          <div className="absolute right-3 top-3 flex items-center gap-1 z-10">
+          <div className="absolute end-3 top-3 flex items-center gap-1 z-10">
             <button
               type="button"
               onClick={handleClear}
