@@ -31,7 +31,7 @@ export default function AskAIButton({ slug }: { slug?: string[] }) {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger>
+      <DropdownMenuTrigger asChild>
         <Button variant={"secondary"}>
           <MessageCircleIcon className="size-3.5" />
           Ask AI about this page
