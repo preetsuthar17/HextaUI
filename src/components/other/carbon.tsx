@@ -33,7 +33,7 @@ const CarbonAds = ({ format }: { format: string }) => {
     }
   }, [pathname]);
 
-  return <div id="carbon-container"></div>;
+  return <div id="carbon-container" className="my-10"></div>;
 };
 
 export default CarbonAds;

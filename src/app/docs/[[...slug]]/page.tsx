@@ -6,12 +6,12 @@ import {
   DocsTitle,
 } from "fumadocs-ui/page";
 import { notFound } from "next/navigation";
-import { createRelativeLink } from "fumadocs-ui/mdx";
 import { getMDXComponents } from "@/mdx-components";
 
-import { Metadata } from "next";
 import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
+import AskChatGPTButton from "@/components/other/AskChatGPTButton";
 import CarbonAds from "@/components/other/carbon";
+import CopyMarkdownButton from "@/components/other/CopyMarkdownButton";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -50,7 +50,13 @@ export default async function Page(props: {
       }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
-      <DocsDescription>{page.data.description}</DocsDescription>
+      <DocsDescription className="mb-0">
+        {page.data.description}
+      </DocsDescription>
+      <div className="flex gap-2">
+        <CopyMarkdownButton slug={page.slugs} />
+        <AskChatGPTButton slug={page.slugs} />
+      </div>
       <CarbonAds format="cover" />
       <DocsBody>
         <MDX components={getMDXComponents()} />
