@@ -50,6 +50,14 @@ const Footer = () => {
               <li>
                 <Link
                   className="opacity-80 hover:opacity-100"
+                  href="/docs/ui/getting-started/rtl-setup"
+                >
+                  RTL Setup
+                </Link>
+              </li>
+              <li>
+                <Link
+                  className="opacity-80 hover:opacity-100"
                   href="/docs/ui/getting-started/roadmap "
                 >
                   Roadmap
