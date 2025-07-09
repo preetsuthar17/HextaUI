@@ -101,7 +101,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     >
       {Icon && <Icon size={16} className="shrink-0" />}
       <span className="flex-1">{children}</span>
-      <ChevronRight className="ms-auto h-4 w-4 rtl:rotate-180" />
+      <ChevronRight className="ms-auto h-4 w-4 rtl:-scale-x-100" />
     </motion.div>
   </DropdownMenuPrimitive.SubTrigger>
 ));

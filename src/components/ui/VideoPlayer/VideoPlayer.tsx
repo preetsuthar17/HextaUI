@@ -55,7 +55,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
     },
     ref,
   ) => {
-    const direction = useDirection()
+    const dir = useDirection()
 
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [currentTime, setCurrentTime] = React.useState(0);
@@ -296,7 +296,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                 {isPlaying ? (
                   <Pause className="w-6 h-6 ms-0.5" />
                 ) : (
-                  <Play className="w-6 h-6 ms-1 rtl:rotate-180" />
+                  <Play className="w-6 h-6 ms-1 rtl:-scale-x-100" />
                 )}
               </button>
             </div>
@@ -333,7 +333,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                         [&::-webkit-slider-thumb]:transition-all [&::-webkit-slider-thumb]:duration-200
                         group-hover/progress:[&::-webkit-slider-thumb]:scale-125"
                       style={{
-                        background: `linear-gradient(to ${direction === 'ltr' ? 'right' : 'left'}, #ffffff 0%, #ffffff ${
+                        background: `linear-gradient(to ${dir=== 'ltr' ? 'right' : 'left'}, #ffffff 0%, #ffffff ${
                           (currentTime / duration) * 100
                         }%, rgba(255,255,255,0.3) ${
                           (currentTime / duration) * 100
@@ -357,7 +357,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       className="p-2 text-white hover:bg-white/20 rounded-md transition-colors"
                     >
-                      <SkipBack className="w-4 h-4 rtl:rotate-180" />
+                      <SkipBack className="w-4 h-4 rtl:-scale-x-100" />
                     </button>
                     <button
                       onClick={(e) => {
@@ -369,7 +369,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       {isPlaying ? (
                         <Pause className="w-4 h-4" />
                       ) : (
-                        <Play className="w-4 h-4 ms-0.5 rtl:rotate-180" />
+                        <Play className="w-4 h-4 ms-0.5 rtl:-scale-x-100" />
                       )}
                     </button>{" "}
                     <button
@@ -379,7 +379,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       className="p-2 text-white hover:bg-white/20 rounded-md transition-colors"
                     >
-                      <SkipForward className="w-4 h-4 rtl:rotate-180" />
+                      <SkipForward className="w-4 h-4 rtl:-scale-x-100" />
                     </button>
                     <div className="flex items-center gap-2 group/volume">
                       {" "}

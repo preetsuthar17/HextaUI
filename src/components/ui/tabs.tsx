@@ -84,7 +84,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     },
     ref,
   ) => {
-    const direction = useDirection()
+    const dir = useDirection()
     const [activeValue, setActiveValue] = React.useState(
       value || defaultValue || items[0]?.id,
     );
@@ -113,23 +113,21 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
         if (containerRect) {
           setActiveTabBounds({
-            start: direction === "ltr" ? tabRect.left - containerRect.left : containerRect.right - tabRect.right,
+            start: dir === "ltr" ? tabRect.left - containerRect.left : containerRect.right - tabRect.right,
             width: tabRect.width,
           });
         }
       }
-    }, [activeValue, items, direction]);
+    }, [activeValue, items, dir]);
 
     const handleTabClick = (tabId: string) => {
       setActiveValue(tabId);
       onValueChange?.(tabId);
     };
 
-    const animate = direction === 'ltr' ? {
-      left: activeTabBounds.start,
-      width: activeTabBounds.width,
-    } : {
-      right: activeTabBounds.start,
+    const animate = {
+      left: dir === 'ltr' ? activeTabBounds.start : 'unset',
+      right: dir === 'ltr' ? 'unset' : activeTabBounds.start,
       width: activeTabBounds.width,
     }
 
