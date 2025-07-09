@@ -345,7 +345,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
             {hasChildren && (
-              <ChevronRight className="h-3 w-3 text-muted-foreground rtl:rotate-180" />
+              <ChevronRight className="h-3 w-3 text-muted-foreground rtl:-scale-x-100" />
             )}
           </motion.div>
 

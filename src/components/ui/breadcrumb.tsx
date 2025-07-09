@@ -156,7 +156,7 @@ const BreadcrumbSeparator: React.FC<BreadcrumbSeparatorProps> = ({
     )}
     {...props}
   >
-    {children ?? <ChevronRight className="rtl:rotate-180" />}
+    {children ?? <ChevronRight className="rtl:-scale-x-100" />}
   </li>
 );
 BreadcrumbSeparator.displayName = "BreadcrumbSeparator";

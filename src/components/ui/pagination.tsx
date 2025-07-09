@@ -122,7 +122,7 @@ const PaginationPrevious = React.forwardRef<
     ref={ref}
     {...props}
   >
-    <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+    <ChevronLeft className="h-4 w-4 rtl:-scale-x-100" />
     {children || "Previous"}
   </button>
 ));
@@ -136,7 +136,7 @@ const PaginationNext = React.forwardRef<HTMLButtonElement, PaginationNavProps>(
       {...props}
     >
       {children || "Next"}
-      <ChevronRight className="h-4 w-4 rtl:rotate-180" />
+      <ChevronRight className="h-4 w-4 rtl:-scale-x-100" />
     </button>
   ),
 );
