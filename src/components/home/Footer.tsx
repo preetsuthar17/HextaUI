@@ -150,6 +150,15 @@ const Footer = () => {
                   llms-full.txt
                 </Link>
               </li>
+              <li>
+                <Link
+                  className="opacity-80 hover:opacity-100"
+                  href="https://ikiform.com"
+                  target="_blank"
+                >
+                  Ikiform
+                </Link>
+              </li>
             </ul>
           </div>{" "}
           <div className="flex flex-col items-start justify-center gap-4">
