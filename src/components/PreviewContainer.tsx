@@ -3,7 +3,8 @@
 import { cn } from "@/lib/utils";
 import { RefreshCw } from "lucide-react";
 import { useState } from "react";
-import { DirectionProvider } from '@radix-ui/react-direction'
+import { DirectionProvider } from "@radix-ui/react-direction";
+import { Button } from "./ui/button";
 
 interface PreviewContainerProps {
   children: React.ReactNode;
@@ -23,7 +24,8 @@ export const PreviewContainer = ({
     setRotation((prev) => prev + 360);
   };
 
-  const handleDirection = () => setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr"))
+  const handleDirection = () =>
+    setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr"));
 
   return (
     <DirectionProvider dir={direction}>
@@ -38,20 +40,24 @@ export const PreviewContainer = ({
             style={{ transform: `rotate(${rotation}deg)` }}
           /> */}
         </button>
-        <button
+        <Button
+          variant={"secondary"}
           onClick={handleDirection}
-          className="absolute top-4 right-4 z-2 py-0 px-3 rounded-full hover:bg-accent transition-colors"
+          className="absolute top-4 right-4 z-2 py-0 px-3"
         >
           {direction}
-        </button>
+        </Button>
         <div
           key={key}
           className={cn(
             "border border-border min-h-[30rem] rounded-ele p-4 flex items-center justify-center not-prose relative bg-[var(--hu-background)]",
-            className,
+            className
           )}
         >
-          <div className="relative z-0 w-full h-full flex items-center justify-center" dir={direction}>
+          <div
+            className="relative z-0 w-full h-full flex items-center justify-center"
+            dir={direction}
+          >
             {children}
           </div>
         </div>
