@@ -42,12 +42,10 @@ export default function Layout({ children }: { children: ReactNode }) {
       suppressHydrationWarning
     >
       <head>
-        <Script
+        <script
           defer
-          data-website-id="684fc71e651ce35c939cb5ee"
-          data-domain="hextaui.com"
-          src="https://datafa.st/js/script.js"
-        />
+          src="https://assets.onedollarstats.com/stonks.js"
+        ></script>
         <script
           data-name="BMC-Widget"
           data-cfasync="false"
