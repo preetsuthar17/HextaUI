@@ -314,7 +314,7 @@ function Calendar({
           className="inline-flex items-center justify-center rounded-ele p-1 sm:p-1.5 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           disabled={isAnimating}
         >
-          <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+          <ChevronLeft className="h-4 w-4 rtl:-scale-x-100" />
         </button>
 
         <div className="flex items-center gap-1 sm:gap-2 min-w-0 flex-1 justify-center">
@@ -381,7 +381,7 @@ function Calendar({
           className="inline-flex items-center justify-center rounded-ele p-1 sm:p-1.5 transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           disabled={isAnimating}
         >
-          <ChevronRight className="h-4 w-4 rtl:rotate-180" />
+          <ChevronRight className="h-4 w-4 rtl:-scale-x-100" />
         </button>
       </div>
       {/* Days of week header */}

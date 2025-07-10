@@ -1,14 +1,17 @@
 ---
 title: RTL Setup
-description: Support RTL direction for components.
+description: How to implement Right-to-Left (RTL) language support for your components.
 icon: Languages
+new: true
 ---
 
-Many applications need to support both Left-to-Right (LTR) and Right-to-Left (RTL) layouts to accommodate different language audiences, such as Arabic or Persian.
+Many applications need to support both Left-to-Right (LTR) and Right-to-Left (RTL) layouts to accommodate global audiences, particularly for languages like Arabic, or Persian.
 
-HextaUI uses `@radix-ui/react-direction` to easily toggle layout direction using React context. This guide walks you through installation, usage, and integration inside your components.
+HextaUI uses `@radix-ui/react-direction` to make this process seamless. This guide will walk you through setting up the direction provider, applying RTL-friendly styles, and handling direction-specific logic in your components.
 
-### Installation
+### 1. Provider Setup
+
+First, install the Radix Direction package. This provides the core context provider and hook for managing layout direction.
 
 ```sh
 pnpm add @radix-ui/react-direction
@@ -18,7 +21,7 @@ npm install @radix-ui/react-direction
 yarn add @radix-ui/react-direction
 ```
 
-### Usage Example
+Next, wrap your application or layout with the `DirectionProvider`. This component provides the direction ("ltr" or "rtl") to all its children via React context.
 
 ```tsx
 "use client";
@@ -26,62 +29,128 @@ yarn add @radix-ui/react-direction
 import { useState } from "react";
 import { DirectionProvider } from "@radix-ui/react-direction";
 
-interface PreviewContainerProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
 export const Layout = ({ children }) => {
   const [direction, setDirection] = useState<"ltr" | "rtl">("ltr");
 
-  const toggleDirection = () =>
+  const toggleDirection = () => {
     setDirection((prev) => (prev === "ltr" ? "rtl" : "ltr"));
+  };
 
   return (
+    // 1. Radix's provider makes the direction available via React context.
     <DirectionProvider dir={direction}>
+      {/* 2. The `dir` attribute on a DOM element tells the browser and CSS how to render content. */}
       <div dir={direction}>
-        <header>
-            <button onClick={toggleDirection}>
-                {direction}
-            </button>
+        <header className="p-4 border-b">
+          <button
+            onClick={toggleDirection}
+            className="px-3 py-1 border rounded"
+          >
+            Toggle to {direction === "ltr" ? "RTL" : "LTR"}
+          </button>
         </header>
-        <div>
-            {children}
-        </div>
+        <main className="p-4">
+          {children}
+        </main>
       </div>
     </DirectionProvider>
   );
 };
 ```
 
-### Tips for RTL Support
+### 2. Implementing RTL Styles
 
-#### Logical TailwindCSS Utilities
+With the `dir` attribute set, you can now use modern CSS techniques to create layouts that automatically adapt to the direction.
 
-Replace directional utility classes (`left-`, `right-`, `ml-`, etc.) with logical CSS equivalents. This ensures the layout automatically adjusts based on the `dir` attribute (`ltr` or `rtl`), without needing extra logic. Conversion reference is down
+#### Method A: Logical Properties (The Easy Way)
 
-| LTR Class                  | RTL-Friendly Alternative  |
-| -------------------------- | ------------------------- |
-| `ml-` / `mr-`              | `ms-` / `me-`             |
-| `pl-` / `pr-`              | `ps-` / `pe-`             |
-| `border-l` / `border-r`    | `border-s` / `border-e`   |
-| `rounded-l` / `rounded-r`  | `rounded-s` / `rounded-e` |
-| `text-left` / `text-right` | `text-start` / `text-end` |
-| `left-` / `right-`         | `start-` / `end-`         |
+The best practice is to use **logical properties** in TailwindCSS. Instead of specifying `left` or `right`, you use `start` and `end`. The browser then correctly interprets these based on the `dir` attribute.
 
-#### `rtl`: Prefix for Direction-Specific Styles
+| Directional Class (`ltr`-only) | Logical Alternative (Adapts to `ltr`/`rtl`) |
+| ------------------------------ | ------------------------------------------- |
+| `ml-` / `mr-`                  | `ms-` (margin-start) / `me-` (margin-end)    |
+| `pl-` / `pr-`                  | `ps-` (padding-start) / `pe-` (padding-end)  |
+| `border-l` / `border-r`        | `border-s` / `border-e`                     |
+| `rounded-l` / `rounded-r`      | `rounded-s` / `rounded-e`                   |
+| `text-left` / `text-right`     | `text-start` / `text-end`                   |
+| `left-` / `right-`             | `start-` / `end-`                           |
 
-Tailwind allows you to scope styles to specific directions using the `rtl`: and `ltr`: prefixes.
+#### Method B: Directional Variants (`rtl:` and `ltr:`)
+
+For CSS properties that don't have a logical equivalent (like `transform` or `rotate`), Tailwind provides `rtl:` and `ltr:` variants. Use these to apply styles only for a specific direction.
+
+This is perfect for flipping icons or adjusting complex animations.
 
 ```tsx
-// Example: Flip an icon in RTL
-<ChevronRightIcon className="size-4 rtl:rotate-180" />
+// Example: An icon that should always point "forward".
+import { ChevronRightIcon } from '@heroicons/react/20/solid';
+
+<ChevronRightIcon className="size-4 rtl:-scale-x-100" />
 ```
 
-- In LTR: ➡️
+- In LTR mode, the icon points right: ➡️
+- In RTL mode, the `rtl:-scale-x-100` class activates, flipping it to point left: ⬅️
 
-- In RTL: ⬅️ (rotated automatically)
+Here is another practical example from a **Switch** component, where a "thumb" element needs to slide in opposite directions based on the layout.
 
-#### Detect Direction in JS
+```tsx
+// A thumb element inside a Switch component
+<div
+  className="h-4 w-4 rounded-full bg-white shadow transition-transform
+             data-[state=checked]:translate-x-4
+             rtl:data-[state=checked]:-translate-x-4
+             data-[state=unchecked]:translate-x-0"
+/>
+```
 
-Sometimes, CSS alone is not enough—like changing logic, labels, or interaction patterns based on the current direction. For these cases, use the `useDirection()` hook from `@radix-ui/react-direction` to access the current direction ("ltr" or "rtl").
+Let's break down how the directional logic works here:
+
+*   **`data-[state=checked]:translate-x-4`**: This is the default LTR behavior. When the component's `data-state` is "checked", the thumb moves 4 units to the right.
+*   **`rtl:data-[state=checked]:-translate-x-4`**: This is the RTL override. When the `dir` is "rtl", this class activates and applies a *negative* `translate-x`, moving the thumb 4 units to the left instead.
+*   **`data-[state=unchecked]:translate-x-0`**: When the state is "unchecked", the thumb returns to its starting position (no translation) in both LTR and RTL.
+
+### 3. Handling Direction in JavaScript
+
+Sometimes CSS isn't enough. You may need to change component logic, render different elements, or adjust animation parameters based on the direction. For these cases, use the `useDirection` hook from `@radix-ui/react-direction`.
+
+This approach is necessary because many JavaScript animation libraries, including Framer Motion, do not support CSS logical properties like `marginInlineStart` directly in their animation APIs. They require explicit physical properties (`marginLeft`, `marginRight`).
+
+The `useDirection` hook bridges this gap. It allows you to programmatically provide the correct physical property to the animation function, ensuring your motion logic is perfectly synchronized with the layout direction.
+
+Consider a main content area that needs to animate its margin to make space for a collapsible sidebar. The `margin` that needs to be animated (`marginLeft` vs. `marginRight`) depends entirely on the layout direction.
+
+```tsx
+import { useDirection } from '@radix-ui/react-direction';
+import { motion } from 'framer-motion';
+
+export const MainContent = ({ isSidebarCollapsed, children }) => {
+  const direction = useDirection();
+  const sidebarWidth = isSidebarCollapsed ? '4rem' : '16rem'; // e.g., 64px or 256px
+
+  // 1. Determine the animation properties based on the current direction.
+  const animateProps = direction === 'rtl'
+    // In RTL, the sidebar is on the right, so we animate `marginRight`.
+    ? { marginRight: sidebarWidth, marginLeft: 0 }
+    // In LTR, the sidebar is on the left, so we animate `marginLeft`.
+    : { marginLeft: sidebarWidth, marginRight: 0 };
+
+  return (
+    // 2. Pass the dynamic props to the motion component.
+    <motion.main
+      className="flex-1"
+      initial={false}
+      animate={animateProps}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
+      {children}
+    </motion.main>
+  );
+};
+```
+
+In this example:
+
+*   We get the current direction (`"ltr"` or `"rtl"`) using the `useDirection` hook.
+*   We use a ternary operator to dynamically create the `animateProps` object.
+*   If the direction is `rtl`, we apply the animated margin to the `marginRight` property.
+*   If the direction is `ltr`, we apply it to `marginLeft`.

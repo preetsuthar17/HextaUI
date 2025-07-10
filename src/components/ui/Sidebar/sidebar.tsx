@@ -273,7 +273,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                     aria-controls={sidebarId}
                     aria-expanded={false}
                   >
-                    <ChevronRight className="rtl:rotate-180" size={16} />
+                    <ChevronRight className="rtl:-scale-x-100" size={16} />
                   </Button>
                 )
               ) : (
@@ -303,7 +303,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                       aria-controls={sidebarId}
                       aria-expanded={true}
                     >
-                      <ChevronLeft className="rtl:rotate-180" size={16} />
+                      <ChevronLeft className="rtl:-scale-x-100" size={16} />
                     </Button>
                   )}
                 </>
@@ -459,7 +459,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             <ChevronRight
               size={14}
               className={cn(
-                "shrink-0 transition-transform duration-200 rtl:rotate-180",
+                "shrink-0 transition-transform duration-200 rtl:-scale-x-100",
                 expanded && "rotate-90",
               )}
               aria-hidden="true"
@@ -593,8 +593,8 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
     );
   }
 
-  const mainAnimate = dir === 'rtl' ? {  marginRight: sidebarCollapsed ? 48 : 256 } : {  marginLeft: sidebarCollapsed ? 48 : 256 }
-  const divAnimate = dir === 'rtl' ? { marginRight: 0 } : { marginLeft: 0 }
+  const mainAnimate = dir === 'rtl' ? {  marginRight: sidebarCollapsed ? 48 : 256, marginLeft: 'unset' } : {  marginRight: 'unset', marginLeft: sidebarCollapsed ? 48 : 256 }
+  const divAnimate = dir === 'rtl' ? { marginRight: 0, marginLeft: 'unset' } : { marginRight: 'unset', marginLeft: 0 }
 
   return (
     <motion.main
