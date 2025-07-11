@@ -43,13 +43,13 @@
   --radius: 0.8rem;
   --card-radius: 1rem;
 
-  --hu-background: 0, 0%, 100%;
-  --hu-foreground: 0, 0%, 14%;
+  --hu-background: 48, 33%, 99%;
+  --hu-foreground: 0, 0%, 10%;
 
   --hu-card: 0, 0%, 99%;
   --hu-card-foreground: 0, 0%, 14%;
 
-  --hu-primary: 235, 100%, 60%;
+  --hu-primary: 15, 63%, 60%;
   --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 97%;
@@ -79,7 +79,7 @@
   --hu-card: 0, 0%, 9%;
   --hu-card-foreground: 0, 0%, 100%;
 
-  --hu-primary: 235, 100%, 60%;
+  --hu-primary: 15, 63%, 60%;
   --hu-primary-foreground: 0, 0%, 98%;
 
   --hu-secondary: 0, 0%, 15%;

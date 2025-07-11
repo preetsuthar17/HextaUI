@@ -28,3 +28,5 @@ yarn-error.log*
 next-env.d.ts
 
 supabase_user_profiles.sql
+
+/.cursor
