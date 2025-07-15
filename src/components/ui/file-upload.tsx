@@ -18,7 +18,7 @@ import {
   Archive,
 } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
-import { ScrollArea } from "@/components/ui/ScrollArea";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface FileWithPreview {
   id: string;
