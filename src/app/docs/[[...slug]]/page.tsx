@@ -12,6 +12,7 @@ import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
 import AskChatGPTButton from "@/components/other/AskChatGPTButton";
 import CarbonAds from "@/components/other/carbon";
 import CopyMarkdownButton from "@/components/other/CopyMarkdownButton";
+import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -54,8 +55,11 @@ export default async function Page(props: {
         {page.data.description}
       </DocsDescription>
       <div className="flex gap-2">
-        <CopyMarkdownButton slug={page.slugs} />
-        <AskChatGPTButton slug={page.slugs} />
+        <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
+        <ViewOptions
+          markdownUrl={`${page.url}.mdx`}
+          githubUrl={`https://github.com/preetsuthar17/hextaui/blob/dev/apps/docs/content/docs/${page.path}`}
+        />
       </div>
       <CarbonAds format="cover" />
       <DocsBody>

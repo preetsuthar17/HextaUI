@@ -8,6 +8,14 @@ const config = {
   images: {
     domains: ["i.imgur.com", "www.ikiform.com"],
   },
+  async rewrites() {
+    return [
+      {
+        source: "/docs/:path*.mdx",
+        destination: "/llms.mdx/:path*",
+      },
+    ];
+  },
 };
 
 export default withMDX(config);
