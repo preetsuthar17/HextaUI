@@ -13,7 +13,7 @@ export const baseOptions: BaseLayoutProps = {
   nav: {
     title: (
       <>
-        <Image src="/Logo.png" alt="HextaUI" width={17} height={17} />
+        <Image src="https://5xfmztgsig.ufs.sh/f/ZzCwT4wrsqrVtobqq9xNxCS7Zb4WiHRBPtFmL5aoKp6vgMA2" alt="HextaUI" width={17} height={17} />
         HextaUI
       </>
     ),

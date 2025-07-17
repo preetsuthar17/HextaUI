@@ -6,4 +6,4 @@ Allow: /
 Host: https://hextaui.com
 
 # Sitemaps
-Sitemap: https://hextaui.com/sitemap.xml
+Sitemap: https://hextaui.com/sitemap-0.xml

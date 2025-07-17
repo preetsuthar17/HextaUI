@@ -6,7 +6,7 @@ export const metadata: Metadata = customMetaDataGenerator({
   title: "Build stunning websites effortlessly",
   description:
     "Modern, responsive, customizable UI components. Copy, adapt, and personalize them.",
-  ogImage: "/Banner.png",
+  ogImage: "https://5xfmztgsig.ufs.sh/f/ZzCwT4wrsqrVmq9mO6tz0X6izIUFr2K3BjZsywEuengRkcYo",
   twitterCard: "summary_large_image",
   canonicalUrl: "https://hextaui.com",
 });

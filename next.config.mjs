@@ -6,7 +6,7 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: false,
   images: {
-    domains: ["i.imgur.com", "www.ikiform.com"],
+    domains: ["i.imgur.com", "www.ikiform.com", "5xfmztgsig.ufs.sh"],
   },
   async rewrites() {
     return [

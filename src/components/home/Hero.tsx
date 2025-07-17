@@ -31,7 +31,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI",
+          "https://api.github.com/repos/preetsuthar17/HextaUI"
         );
         const data = await response.json();
         setStars(data.stargazers_count);
@@ -139,8 +139,8 @@ const Hero = () => {
         </div>
         <div className="border rounded-[var(--radius))] overflow-hidden w-full ">
           <VideoPlayer
-            src="/hextaui-v2-trailer.mp4"
-            poster="/hero-thumbnail.png"
+            src="https://5xfmztgsig.ufs.sh/f/ZzCwT4wrsqrVAxvzLGNbFLIwa6jGOv4xSYBbUiV8flqz3KPy"
+            poster="https://5xfmztgsig.ufs.sh/f/ZzCwT4wrsqrV9FceSLIpSmnpVdxc0kOoYPTae1HtKsCWgXhl"
             size={"full"}
             className="w-full h-auto rounded-[var(--radius))]"
           />

@@ -59,7 +59,7 @@ export default async function Layout({ children }: { children: ReactNode }) {
                 >
                   <div className="-mx-3 -mt-3">
                     <Image
-                      src="/Banner.png"
+                      src="https://5xfmztgsig.ufs.sh/f/ZzCwT4wrsqrVmq9mO6tz0X6izIUFr2K3BjZsywEuengRkcYo"
                       width={500}
                       height={200}
                       layout="responsive"
