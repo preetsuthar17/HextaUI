@@ -3,16 +3,9 @@
 import React from "react";
 import { Badge } from "@/components/ui/badge";
 import TrackedLink from "../other/TrackedLink";
+import { Button } from "../ui/button";
 
-const sponsors = [
-  {
-    name: "Shadcn blocks",
-    url: "https://shadcnblocks.com",
-    logo: "https://shadcnblocks.com/favicon.ico",
-    alt: "Shadcn blocks Logo",
-    goal: "sponsor_shadcnblocks_click",
-  },
-];
+const sponsors: any[] = [];
 
 const Sponsors = () => {
   return (
@@ -26,27 +19,42 @@ const Sponsors = () => {
           Thanks to our amazing sponsors for supporting HextaUI.
         </p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-4xl w-full items-center justify-center">
-        {sponsors.map((sponsor, idx) => (
-          <TrackedLink
-            goal={sponsor.goal}
-            key={idx}
-            href={sponsor.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-8 border border-border rounded-ele transition-all duration-200 group hover:bg-accent flex flex-col items-center justify-center"
-          >
-            <img
-              src={sponsor.logo}
-              alt={sponsor.alt}
-              className="h-12 w-auto object-contain mb-2"
-              style={{ maxWidth: 120 }}
-            />
-            <span className="font-medium text-lg text-foreground">
-              {sponsor.name}
-            </span>
-          </TrackedLink>
-        ))}
+      <div className="flex gap-8 max-w-4xl w-full items-center justify-center">
+        {sponsors.length === 0 ? (
+          <Button size="xl" variant="secondary" asChild className="px-8 py-6">
+            <a
+              href="https://github.com/sponsors/preetsuthar17"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex justify-center"
+            >
+              Be the first one to sponsor! 🥳
+            </a>
+          </Button>
+        ) : (
+          <>
+            {sponsors.map((sponsor, idx) => (
+              <TrackedLink
+                goal={sponsor.goal}
+                key={idx}
+                href={sponsor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-8 border border-border rounded-ele transition-all duration-200 group hover:bg-accent flex flex-col items-center justify-center"
+              >
+                <img
+                  src={sponsor.logo}
+                  alt={sponsor.alt}
+                  className="h-12 w-auto object-contain mb-2"
+                  style={{ maxWidth: 120 }}
+                />
+                <span className="font-medium text-lg text-foreground">
+                  {sponsor.name}
+                </span>
+              </TrackedLink>
+            ))}
+          </>
+        )}
       </div>
       <p className="text-sm text-muted-foreground mx-auto flex gap-1 flex-wrap items-center justify-center">
         If you want to support HextaUI,

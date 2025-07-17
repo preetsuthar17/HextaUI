@@ -144,23 +144,23 @@ export default async function Layout({ children }: { children: ReactNode }) {
                 <TooltipTrigger>
                   <Button variant="secondary" className="rounded-full" asChild>
                     <TrackedLink
-                      href="https://shadcnblocks.com/?ref=hextaui"
+                      href="https://ikiform.com/?ref=hextaui"
                       className="font-medium"
                       target="_blank"
-                      goal="sponsor_shadcnblocks_click"
+                      goal="sponsor_ikiform_click"
                     >
                       <Image
-                        src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
-                        alt="shadcnblocks.com"
+                        src="https://www.ikiform.com/favicon.ico"
+                        alt="ikiform.com"
                         width={17}
                         height={17}
                       />
-                      shadcnblocks.com
+                      Ikiform.com
                     </TrackedLink>
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>600+ ready made shadcn blocks</p>
+                  <p>ai-native, open-source alternative to google form</p>
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
