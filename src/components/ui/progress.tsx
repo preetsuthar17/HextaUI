@@ -95,7 +95,7 @@ const Progress = React.forwardRef<
     },
     ref,
   ) => {
-    const dir = useDirection()
+    const dir = useDirection();
     const progress = Math.min(Math.max(value, 0), 100);
     if (type === "circular") {
       const circleSize = size === "sm" ? 48 : size === "lg" ? 80 : 64;
@@ -189,8 +189,12 @@ const Progress = React.forwardRef<
             asChild
           >
             <motion.div
-              initial={{ transform: `translateX(${dir === "ltr" ? -100 : 100}%)` }}
-              animate={{ transform: `translateX(${dir === 'ltr' ? -(100 - progress) : (100 - progress)}%)` }}
+              initial={{
+                transform: `translateX(${dir === "ltr" ? -100 : 100}%)`,
+              }}
+              animate={{
+                transform: `translateX(${dir === "ltr" ? -(100 - progress) : 100 - progress}%)`,
+              }}
               transition={{
                 duration: animated ? 1.2 : 0,
                 ease: "easeInOut",

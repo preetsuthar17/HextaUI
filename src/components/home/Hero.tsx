@@ -31,7 +31,7 @@ const Hero = () => {
     const fetchStars = async () => {
       try {
         const response = await fetch(
-          "https://api.github.com/repos/preetsuthar17/HextaUI"
+          "https://api.github.com/repos/preetsuthar17/HextaUI",
         );
         const data = await response.json();
         setStars(data.stargazers_count);

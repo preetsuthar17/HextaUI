@@ -5,7 +5,7 @@ export async function GET() {
   if (!GITHUB_TOKEN) {
     return NextResponse.json(
       { error: "Missing GitHub token" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 
@@ -46,7 +46,7 @@ export async function GET() {
   if (!response.ok) {
     return NextResponse.json(
       { error: "Failed to fetch sponsors" },
-      { status: 500 }
+      { status: 500 },
     );
   }
 

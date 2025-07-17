@@ -583,7 +583,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   className,
   position = "fixed",
 }) => {
-  const dir = useDirection()
+  const dir = useDirection();
 
   if (position === "relative") {
     return (
@@ -593,8 +593,14 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
     );
   }
 
-  const mainAnimate = dir === 'rtl' ? {  marginRight: sidebarCollapsed ? 48 : 256, marginLeft: 'unset' } : {  marginRight: 'unset', marginLeft: sidebarCollapsed ? 48 : 256 }
-  const divAnimate = dir === 'rtl' ? { marginRight: 0, marginLeft: 'unset' } : { marginRight: 'unset', marginLeft: 0 }
+  const mainAnimate =
+    dir === "rtl"
+      ? { marginRight: sidebarCollapsed ? 48 : 256, marginLeft: "unset" }
+      : { marginRight: "unset", marginLeft: sidebarCollapsed ? 48 : 256 };
+  const divAnimate =
+    dir === "rtl"
+      ? { marginRight: 0, marginLeft: "unset" }
+      : { marginRight: "unset", marginLeft: 0 };
 
   return (
     <motion.main
@@ -608,11 +614,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       role="main"
     >
       <div className="md:hidden">
-        <motion.div
-          animate={divAnimate}
-        >
-          {children}
-        </motion.div>
+        <motion.div animate={divAnimate}>{children}</motion.div>
       </div>
       <div className="hidden md:block">{children}</div>
     </motion.main>

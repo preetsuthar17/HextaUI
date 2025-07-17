@@ -61,7 +61,7 @@ export interface TabItem {
 
 export interface TabsProps
   extends React.HTMLAttributes<HTMLDivElement>,
-  VariantProps<typeof tabsVariants> {
+    VariantProps<typeof tabsVariants> {
   items: TabItem[];
   defaultValue?: string;
   value?: string;
@@ -84,7 +84,7 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     },
     ref,
   ) => {
-    const dir = useDirection()
+    const dir = useDirection();
     const [activeValue, setActiveValue] = React.useState(
       value || defaultValue || items[0]?.id,
     );
@@ -113,7 +113,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
 
         if (containerRect) {
           setActiveTabBounds({
-            start: dir === "ltr" ? tabRect.left - containerRect.left : containerRect.right - tabRect.right,
+            start:
+              dir === "ltr"
+                ? tabRect.left - containerRect.left
+                : containerRect.right - tabRect.right,
             width: tabRect.width,
           });
         }
@@ -126,10 +129,10 @@ const Tabs = React.forwardRef<HTMLDivElement, TabsProps>(
     };
 
     const animate = {
-      left: dir === 'ltr' ? activeTabBounds.start : 'unset',
-      right: dir === 'ltr' ? 'unset' : activeTabBounds.start,
+      left: dir === "ltr" ? activeTabBounds.start : "unset",
+      right: dir === "ltr" ? "unset" : activeTabBounds.start,
       width: activeTabBounds.width,
-    }
+    };
 
     return (
       <div
