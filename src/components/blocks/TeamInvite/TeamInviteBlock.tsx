@@ -8,8 +8,8 @@ import {
 } from "./team-invite";
 
 const generateDiceBearAvatar = (seed: string) => {
-  return `https://api.dicebear.com/7.x/open-peeps/svg?seed=${encodeURIComponent(
-    seed,
+  return `https://api.dicebear.com/9.x/glass/svg?seed=${encodeURIComponent(
+    seed
   )}`;
 };
 
@@ -70,12 +70,12 @@ export function TeamInviteBlock() {
   };
   const handleUpdateMemberPermission = (
     memberId: string,
-    permission: PermissionLevel,
+    permission: PermissionLevel
   ) => {
     setMembers((prev) =>
       prev.map((member) =>
-        member.id === memberId ? { ...member, role: permission } : member,
-      ),
+        member.id === memberId ? { ...member, role: permission } : member
+      )
     );
   };
 

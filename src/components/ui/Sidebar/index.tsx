@@ -60,7 +60,7 @@ export function SidebarBasic() {
         <SidebarHeader>
           <img
             className="rounded-ele bg-background border border-border shrink-0"
-            src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
+            src="https://api.dicebear.com/9.x/glass/svg?seed=Sara"
             width={35}
             height={35}
           />
@@ -116,7 +116,7 @@ export function SidebarWithProfile() {
         <SidebarHeader>
           <img
             className="rounded-ele bg-background border border-border shrink-0"
-            src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
+            src="https://api.dicebear.com/9.x/glass/svg?seed=Sara"
             width={35}
             height={35}
           />
@@ -158,11 +158,11 @@ export function SidebarWithProfile() {
                   "w-full gap-2",
                   collapsed
                     ? "h-10 w-10 p-0 justify-center"
-                    : "justify-start p-2",
+                    : "justify-start p-2"
                 )}
               >
                 <Avatar className="h-6 w-6 shrink-0">
-                  <AvatarImage src="https://api.dicebear.com/9.x/micah/svg?seed=Sara" />
+                  <AvatarImage src="https://api.dicebear.com/9.x/glass/svg?seed=Sara" />
                   <AvatarFallback>MI</AvatarFallback>
                 </Avatar>
                 {!collapsed && (
@@ -248,7 +248,7 @@ export function SidebarWithTeamSelector() {
                   "w-full gap-2",
                   collapsed
                     ? "h-10 w-10 p-0 justify-center"
-                    : "justify-start p-2",
+                    : "justify-start p-2"
                 )}
               >
                 <div className="h-6 w-6 rounded-md bg-primary flex items-center justify-center text-primary-foreground text-xs font-bold shrink-0">
@@ -349,7 +349,7 @@ export function SidebarAdvanced() {
         <SidebarHeader>
           <img
             className="rounded-ele bg-background border border-border shrink-0"
-            src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
+            src="https://api.dicebear.com/9.x/glass/svg?seed=Sara"
             width={35}
             height={35}
           />
@@ -390,7 +390,7 @@ export function SidebarAdvanced() {
             className={cn(
               collapsed
                 ? "flex flex-col items-center"
-                : "flex flex-col items-start",
+                : "flex flex-col items-start"
             )}
           >
             {adminItems.map((item) => {
@@ -404,7 +404,7 @@ export function SidebarAdvanced() {
                     "w-full gap-2",
                     collapsed
                       ? "h-8 w-8 p-0 justify-center"
-                      : "justify-start px-3",
+                      : "justify-start px-3"
                   )}
                 >
                   {Icon && <Icon size={16} className="shrink-0" />}
@@ -422,11 +422,11 @@ export function SidebarAdvanced() {
                   "w-full gap-2",
                   collapsed
                     ? "h-10 w-10 p-0 justify-center"
-                    : "justify-start p-2",
+                    : "justify-start p-2"
                 )}
               >
                 <Avatar className="h-8 w-8 shrink-0">
-                  <AvatarImage src="https://api.dicebear.com/9.x/micah/svg?seed=Sara" />
+                  <AvatarImage src="https://api.dicebear.com/9.x/glass/svg?seed=Sara" />
                   <AvatarFallback>MI</AvatarFallback>
                 </Avatar>
                 {!collapsed && (
@@ -525,7 +525,7 @@ export function SidebarMobile() {
         <SidebarHeader>
           <img
             className="rounded-ele bg-background border border-border shrink-0"
-            src="https://api.dicebear.com/9.x/micah/svg?seed=Sara"
+            src="https://api.dicebear.com/9.x/glass/svg?seed=Sara"
             width={35}
             height={35}
           />
