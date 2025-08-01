@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
+import { useDirection } from "@radix-ui/react-direction";
 
 const sidebarVariants = cva(
   "z-40 bg-background border-e border-border flex flex-col",
@@ -582,6 +583,8 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   className,
   position = "fixed",
 }) => {
+  const dir = useDirection()
+
   if (position === "relative") {
     return (
       <main className={cn("flex-1", className)} role="main">
@@ -589,13 +592,15 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
       </main>
     );
   }
+
+  const mainAnimate = dir === 'rtl' ? {  marginRight: sidebarCollapsed ? 48 : 256 } : {  marginLeft: sidebarCollapsed ? 48 : 256 }
+  const divAnimate = dir === 'rtl' ? { marginRight: 0 } : { marginLeft: 0 }
+
   return (
     <motion.main
       className={cn("flex-1", className)}
       initial={false}
-      animate={{
-        marginLeft: sidebarCollapsed ? 48 : 256,
-      }}
+      animate={mainAnimate}
       transition={{
         duration: 0.25,
         ease: [0.4, 0, 0.2, 1],
@@ -604,9 +609,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
     >
       <div className="md:hidden">
         <motion.div
-          animate={{
-            marginLeft: 0,
-          }}
+          animate={divAnimate}
         >
           {children}
         </motion.div>
