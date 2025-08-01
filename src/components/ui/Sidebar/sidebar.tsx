@@ -272,7 +272,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                     aria-controls={sidebarId}
                     aria-expanded={false}
                   >
-                    <ChevronRight size={16} />
+                    <ChevronRight className="rtl:rotate-180" size={16} />
                   </Button>
                 )
               ) : (
@@ -302,7 +302,7 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                       aria-controls={sidebarId}
                       aria-expanded={true}
                     >
-                      <ChevronLeft size={16} />
+                      <ChevronLeft className="rtl:rotate-180" size={16} />
                     </Button>
                   )}
                 </>
@@ -458,7 +458,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             <ChevronRight
               size={14}
               className={cn(
-                "shrink-0 transition-transform duration-200",
+                "shrink-0 transition-transform duration-200 rtl:rotate-180",
                 expanded && "rotate-90",
               )}
               aria-hidden="true"

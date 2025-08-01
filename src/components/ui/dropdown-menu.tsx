@@ -101,7 +101,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     >
       {Icon && <Icon size={16} className="shrink-0" />}
       <span className="flex-1">{children}</span>
-      <ChevronRight className="ms-auto h-4 w-4" />
+      <ChevronRight className="ms-auto h-4 w-4 rtl:rotate-180" />
     </motion.div>
   </DropdownMenuPrimitive.SubTrigger>
 ));
@@ -238,7 +238,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
     checked={checked}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <motion.div
           initial={{ scale: 0 }}
@@ -280,7 +280,7 @@ const DropdownMenuRadioItem = React.forwardRef<
     )}
     {...props}
   >
-    <span className="absolute left-2 flex h-3.5 w-3.5 items-center justify-center">
+    <span className="absolute start-2 flex h-3.5 w-3.5 items-center justify-center">
       <DropdownMenuPrimitive.ItemIndicator>
         <motion.div
           initial={{ scale: 0 }}
