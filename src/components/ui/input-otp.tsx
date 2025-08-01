@@ -47,9 +47,9 @@ const inputOTPSlotVariants = cva(
         filled: "bg-accent border-border text-accent-foreground",
       },
       position: {
-        first: "border-s rounded-l-ele",
+        first: "border-s rounded-s-ele",
         middle: "rounded-sm",
-        last: "rounded-r-ele",
+        last: "rounded-e-ele",
         single: "border-s rounded-ele",
       },
     },
