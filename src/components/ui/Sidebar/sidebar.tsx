@@ -10,7 +10,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
 const sidebarVariants = cva(
-  "z-40 bg-background border-r border-border flex flex-col",
+  "z-40 bg-background border-e border-border flex flex-col",
   {
     variants: {
       variant: {
@@ -25,7 +25,7 @@ const sidebarVariants = cva(
         xl: "w-80",
       },
       position: {
-        fixed: "fixed top-0 left-0 h-screen",
+        fixed: "fixed top-0 start-0 h-screen",
         relative: "relative h-full",
       },
     },
@@ -440,7 +440,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       <div
         className={cn(
           "flex items-center justify-center shrink-0",
-          collapsed ? "w-10 h-10" : "w-4 h-4 ml-0",
+          collapsed ? "w-10 h-10" : "w-4 h-4 ms-0",
         )}
         aria-hidden="true"
       >
@@ -448,11 +448,11 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       </div>
 
       {/* Text - simple conditional rendering, no animation */}
-      {!collapsed && <span className="ml-3 truncate flex-1">{label}</span>}
+      {!collapsed && <span className="ms-3 truncate flex-1">{label}</span>}
 
       {/* Badge and chevron */}
       {!collapsed && (badge || hasChildren) && (
-        <div className="flex items-center gap-2 ml-2">
+        <div className="flex items-center gap-2 ms-2">
           {badge}
           {hasChildren && (
             <ChevronRight
@@ -470,7 +470,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       {/* Tooltip for collapsed state */}
       {collapsed && (
         <div
-          className="absolute left-full ml-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-ele border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
+          className="absolute start-full ms-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-ele border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
           role="tooltip"
           id={`${itemId}-tooltip`}
         >
@@ -492,7 +492,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
+              "ms-0 border-border ps-3 relative before:absolute before:start-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
             "group relative no-underline",
             className,
           )}
@@ -513,8 +513,8 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             }),
             level > 0 &&
               !collapsed &&
-              "ml-0 border-border pl-3 relative before:absolute before:left-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
-            "group relative w-full text-left border-none",
+              "ms-0 border-border ps-3 relative before:absolute before:start-[-2px] before:top-1/2 before:w-3 before:h-[1px] before:bg-border before:-translate-y-1/2",
+            "group relative w-full text-start border-none",
             !isActive && "bg-transparent",
             className,
           )}
@@ -544,7 +544,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
             className="overflow-hidden"
           >
             <ul
-              className="space-y-1 py-1 ml-2 border-l border-border/50 pl-2 list-none"
+              className="space-y-1 py-1 ms-2 border-s border-border/50 ps-2 list-none"
               role="menu"
               aria-label={`${label} submenu`}
             >
