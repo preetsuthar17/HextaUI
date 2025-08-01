@@ -198,7 +198,7 @@ const Progress = React.forwardRef<
         </ProgressPrimitive.Root>
         {showValue && (
           <motion.div
-            className="text-right text-xs font-semibold text-muted-foreground tabular-nums"
+            className="text-end text-xs font-semibold text-muted-foreground tabular-nums"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: animated ? 0.3 : 0, duration: 0.2 }}

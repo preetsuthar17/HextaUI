@@ -140,7 +140,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           type={actualType}
           className={cn(
             inputVariants({ variant: inputVariant, size, className }),
-            leftIcon && "pl-10",
+            leftIcon && "ps-10",
             rightIcon || isPassword || showClearButton,
           )}
           ref={inputRef}
@@ -152,7 +152,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         />
         {/* Right side icons container */}
         {(rightIcon || isPassword || showClearButton) && (
-          <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
+          <div className="absolute end-3 top-1/2 -translate-y-1/2 flex items-center gap-1 z-10">
             {/* Custom right icon */}
             {rightIcon && (
               <div className="text-muted-foreground [&_svg]:size-4 [&_svg]:shrink-0">

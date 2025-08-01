@@ -10,12 +10,12 @@ const resizablePanelVariants = cva("relative", {
   variants: {
     border: {
       none: "",
-      left: "border-l",
-      right: "border-r",
+      left: "border-s",
+      right: "border-e",
       top: "border-t",
       bottom: "border-b",
       all: "border",
-      vertical: "border-l border-r",
+      vertical: "border-s border-e",
       horizontal: "border-t border-b",
     },
   },

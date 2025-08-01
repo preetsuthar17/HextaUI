@@ -366,7 +366,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                     files.length > 3 ? "h-64" : "h-auto",
                   )}
                 >
-                  <div className="space-y-2 pr-3">
+                  <div className="space-y-2 pe-3">
                     {files.map((file) => {
                       const IconComponent = getFileIcon(file.type);
                       return (
@@ -393,7 +393,7 @@ const FileUpload = React.forwardRef<HTMLDivElement, FileUploadProps>(
                               </div>
                             )}
                             {file.status === "completed" && (
-                              <div className="absolute -top-1 -right-1">
+                              <div className="absolute -top-1 -end-1">
                                 <CheckCircle className="w-4 h-4 text-primary bg-background rounded-full" />
                               </div>
                             )}

@@ -89,7 +89,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
       "focus:bg-accent focus:text-accent-foreground",
       "data-[state=open]:bg-accent data-[state=open]:text-accent-foreground",
       "active:bg-accent active:text-accent-foreground",
-      inset && "pl-8",
+      inset && "ps-8",
       className,
     )}
     {...props}
@@ -101,7 +101,7 @@ const DropdownMenuSubTrigger = React.forwardRef<
     >
       {Icon && <Icon size={16} className="shrink-0" />}
       <span className="flex-1">{children}</span>
-      <ChevronRight className="ml-auto h-4 w-4" />
+      <ChevronRight className="ms-auto h-4 w-4" />
     </motion.div>
   </DropdownMenuPrimitive.SubTrigger>
 ));
@@ -196,7 +196,7 @@ const DropdownMenuItem = React.forwardRef<
       className={cn(
         dropdownMenuItemVariants({ variant }),
         "data-disabled:pointer-events-none data-disabled:opacity-50",
-        inset && "pl-8",
+        inset && "ps-8",
         className,
       )}
       {...props}
@@ -209,7 +209,7 @@ const DropdownMenuItem = React.forwardRef<
         {Icon && <Icon size={16} className="shrink-0" />}
         <span className="flex-1 text-sm">{children}</span>
         {shortcut && (
-          <Kbd size="xs" className="ml-auto text-xs tracking-widest opacity-60">
+          <Kbd size="xs" className="ms-auto text-xs tracking-widest opacity-60">
             {shortcut}
           </Kbd>
         )}
@@ -228,7 +228,7 @@ const DropdownMenuCheckboxItem = React.forwardRef<
   <DropdownMenuPrimitive.CheckboxItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 ps-8 pe-3 text-sm outline-none transition-colors touch-manipulation",
       "hover:bg-accent hover:text-accent-foreground",
       "focus:bg-accent focus:text-accent-foreground",
       "active:bg-accent active:text-accent-foreground",
@@ -271,7 +271,7 @@ const DropdownMenuRadioItem = React.forwardRef<
   <DropdownMenuPrimitive.RadioItem
     ref={ref}
     className={cn(
-      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 pl-8 pr-3 text-sm outline-none transition-colors touch-manipulation",
+      "relative flex cursor-default select-none items-center rounded-[calc(var(--radius)-4px)] py-2.5 sm:py-2 ps-8 pe-3 text-sm outline-none transition-colors touch-manipulation",
       "hover:bg-accent hover:text-accent-foreground",
       "focus:bg-accent focus:text-accent-foreground",
       "active:bg-accent active:text-accent-foreground",
@@ -314,7 +314,7 @@ const DropdownMenuLabel = React.forwardRef<
     ref={ref}
     className={cn(
       "px-3 py-1.5 text-sm font-semibold text-muted-foreground flex items-center gap-2",
-      inset && "pl-8",
+      inset && "ps-8",
       className,
     )}
     {...props}
@@ -343,7 +343,7 @@ const DropdownMenuShortcut = ({
 }: React.HTMLAttributes<HTMLSpanElement>) => {
   return (
     <span
-      className={cn("ml-auto text-xs tracking-widest opacity-60", className)}
+      className={cn("ms-auto text-xs tracking-widest opacity-60", className)}
       {...props}
     />
   );

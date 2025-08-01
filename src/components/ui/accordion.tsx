@@ -39,7 +39,7 @@ const accordionItemVariants = cva("border-b border-border last:border-b-0", {
 });
 
 const accordionTriggerVariants = cva(
-  "flex flex-1 items-center justify-between py-4 px-6 text-left font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group",
+  "flex flex-1 items-center justify-between py-4 px-6 text-start font-medium transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 group",
   {
     variants: {
       variant: {
@@ -172,7 +172,7 @@ const AccordionTrigger = React.forwardRef<
       >
         <div className="flex items-center gap-2">
           {icon && <span className="shrink-0">{icon}</span>}
-          <span className="text-left group-hover:underline transition-all duration-200">
+          <span className="text-start group-hover:underline transition-all duration-200">
             {children}
           </span>
         </div>

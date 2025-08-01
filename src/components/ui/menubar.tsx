@@ -79,7 +79,7 @@ const menubarItemVariants = cva(
           "text-destructive hover:bg-destructive hover:text-destructive-foreground focus:bg-destructive focus:text-destructive-foreground active:bg-destructive active:text-destructive-foreground",
       },
       inset: {
-        true: "pl-6 sm:pl-8",
+        true: "ps-6 sm:ps-8",
         false: "",
       },
     },
@@ -221,7 +221,7 @@ const MenuBarSubTrigger = React.forwardRef<
     ref={ref}
     className={cn(
       "flex cursor-default select-none items-center gap-2 rounded-ele px-2.5 py-2 sm:px-3 sm:py-2.5 text-sm outline-none transition-all touch-manipulation focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground data-[state=open]:bg-accent data-[state=open]:text-accent-foreground active:bg-accent active:text-accent-foreground [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 min-h-[44px] sm:min-h-auto",
-      inset && "pl-6 sm:pl-8",
+      inset && "ps-6 sm:ps-8",
       className,
     )}
     {...props}
@@ -239,7 +239,7 @@ const MenuBarSubTrigger = React.forwardRef<
       )}
       <span className="flex-1 truncate">{children}</span>
       <svg
-        className="ml-auto h-3.5 w-3.5 sm:h-4 sm:w-4"
+        className="ms-auto h-3.5 w-3.5 sm:h-4 sm:w-4"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -397,7 +397,7 @@ const MenuBarItem = React.forwardRef<
         <span className="flex-1 truncate">{children}</span>
         {shortcut && (
           <motion.span
-            className="ml-auto text-xs tracking-widest text-muted-foreground font-mono hidden sm:inline"
+            className="ms-auto text-xs tracking-widest text-muted-foreground font-mono hidden sm:inline"
             initial={{ opacity: 0.6 }}
             whileHover={{ opacity: 1 }}
             transition={{ duration: 0.15 }}

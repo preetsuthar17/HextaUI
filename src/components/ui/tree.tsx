@@ -308,7 +308,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
               {currentPath.map((isLastInPath, pathIndex) => (
                 <div
                   key={pathIndex}
-                  className="absolute top-0 bottom-0 border-l border-border/40"
+                  className="absolute top-0 bottom-0 border-s border-border/40"
                   style={{
                     left: pathIndex * indent + 12,
                     display:
@@ -328,7 +328,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
               />
               {isLast && (
                 <div
-                  className="absolute top-0 border-l border-border/40"
+                  className="absolute top-0 border-s border-border/40"
                   style={{
                     left: (level - 1) * indent + 12,
                     height: "50%",
@@ -340,7 +340,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
 
           {/* Expand Icon */}
           <motion.div
-            className="flex items-center justify-center w-4 h-4 mr-1"
+            className="flex items-center justify-center w-4 h-4 me-1"
             animate={{ rotate: hasChildren && isExpanded ? 90 : 0 }}
             transition={{ duration: 0.2, ease: "easeInOut" }}
           >
@@ -352,7 +352,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           {/* Node Icon */}
           {showIcons && (
             <motion.div
-              className="flex items-center justify-center w-4 h-4 mr-2 text-muted-foreground"
+              className="flex items-center justify-center w-4 h-4 me-2 text-muted-foreground"
               whileHover={{ scale: 1.1 }}
               transition={{ duration: 0.15 }}
             >
