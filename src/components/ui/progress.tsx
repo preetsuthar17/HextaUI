@@ -5,6 +5,7 @@ import * as ProgressPrimitive from "@radix-ui/react-progress";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
+import { useDirection } from "@radix-ui/react-direction";
 
 const progressVariants = cva(
   "relative overflow-hidden rounded-full bg-secondary",
@@ -94,6 +95,7 @@ const Progress = React.forwardRef<
     },
     ref,
   ) => {
+    const direction = useDirection()
     const progress = Math.min(Math.max(value, 0), 100);
     if (type === "circular") {
       const circleSize = size === "sm" ? 48 : size === "lg" ? 80 : 64;
@@ -187,8 +189,8 @@ const Progress = React.forwardRef<
             asChild
           >
             <motion.div
-              initial={{ transform: "translateX(-100%)" }}
-              animate={{ transform: `translateX(-${100 - progress}%)` }}
+              initial={{ transform: `translateX(${direction === "ltr" ? -100 : 100}%)` }}
+              animate={{ transform: `translateX(${direction === 'ltr' ? -(100 - progress) : (100 - progress)}%)` }}
               transition={{
                 duration: animated ? 1.2 : 0,
                 ease: "easeInOut",
