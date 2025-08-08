@@ -1,0 +1,590 @@
+---
+title: Time Picker
+description: A flexible time picker component with 12-hour format, AM/PM selection, and optional current time button, designed for easy time selection in forms and applications.
+new: true
+---
+
+import { PreviewContainer } from "@/components/PreviewContainer";
+import { TypeTable } from "fumadocs-ui/components/type-table";
+import { Tabs, Tab } from "fumadocs-ui/components/tabs";
+import {
+  TimePicker,
+  BasicTimePickerExample,
+  TimePickerWithoutButtonExample,
+  DisabledTimePickerExample,
+  ErrorTimePickerExample,
+  CustomStyledTimePickerExample,
+  AppointmentTimePickerExample,
+  FormTimePickerExample,
+} from "@/components/ui/time-picker";
+
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <BasicTimePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function BasicTimePickerExample() {
+      const [time, setTime] = React.useState<string>();
+
+      return <TimePicker value={time} onChange={setTime} />;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## Installation
+
+<Tabs items={["Manual", "CLI"]} defaultIndex={1}>
+<Tab value="Manual">
+
+Install following dependencies:
+
+```package-install
+npm install lucide-react
+```
+
+Copy and paste the following code into your project.
+
+```tsx title="components/ui/time-picker.tsx"
+"use client";
+import * as React from "react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Button } from "./button";
+
+export interface TimePickerProps {
+  value?: string;
+  onChange?: (value: string) => void;
+  disabled?: boolean;
+  error?: boolean;
+  className?: string;
+  showCurrentTimeButton?: boolean;
+}
+
+export const TimePicker: React.FC<TimePickerProps> = ({
+  value,
+  onChange,
+  disabled,
+  error,
+  className,
+  showCurrentTimeButton = true,
+}) => {
+  const getDefaultTime = React.useCallback(() => {
+    const now = new Date();
+    let h = now.getHours();
+    const m = now.getMinutes();
+    const ap = h >= 12 ? "PM" : "AM";
+    h = h % 12;
+    if (h === 0) h = 12;
+    return {
+      hour: String(h).padStart(2, "0"),
+      minute: String(m).padStart(2, "0"),
+      amPm: ap,
+    };
+  }, []);
+
+  const [hour, setHour] = React.useState<string>("");
+  const [minute, setMinute] = React.useState<string>("");
+  const [amPm, setAmPm] = React.useState<string>("AM");
+
+  const handleSetCurrentTime = React.useCallback(() => {
+    const def = getDefaultTime();
+    setHour(def.hour);
+    setMinute(def.minute);
+    setAmPm(def.amPm);
+    if (onChange) {
+      const newValue = `${def.hour}:${def.minute} ${def.amPm}`;
+      onChange(newValue);
+    }
+  }, [getDefaultTime, onChange]);
+
+  React.useEffect(() => {
+    if (!value) {
+      const def = getDefaultTime();
+      setHour(def.hour);
+      setMinute(def.minute);
+      setAmPm(def.amPm);
+      if (onChange) {
+        const newValue = `${def.hour}:${def.minute} ${def.amPm}`;
+        onChange(newValue);
+      }
+    } else if (
+      typeof value === "string" &&
+      value.match(/^\d{1,2}:\d{2} (AM|PM)$/)
+    ) {
+      const [hm, ap] = value.split(" ");
+      const [h, m] = hm.split(":");
+      setHour(h);
+      setMinute(m);
+      setAmPm(ap);
+    }
+  }, []);
+
+  const handleChange = React.useCallback(
+    (h: string, m: string, ap: string) => {
+      setHour(h);
+      setMinute(m);
+      setAmPm(ap);
+      if (h && m && ap && onChange) {
+        const newValue = `${h}:${m} ${ap}`;
+        if (newValue !== value) {
+          onChange(newValue);
+        }
+      }
+    },
+    [onChange, value]
+  );
+
+  return (
+    <div
+      className={
+        className ??
+        "flex w-full flex-col items-center gap-2" +
+          (error ? "rounded border border-red-500 p-2" : "")
+      }
+    >
+      <div className="flex w-full items-left gap-2 justify-center">
+        <div className="w-16">
+          <Select
+            disabled={disabled}
+            onValueChange={React.useCallback(
+              (val: string) => handleChange(val, minute, amPm),
+              [minute, amPm, handleChange]
+            )}
+            value={hour}
+          >
+            <SelectTrigger size="sm">
+              <SelectValue placeholder="HH" />
+            </SelectTrigger>
+            <SelectContent>
+              {Array.from({ length: 12 }, (_, i) =>
+                String(i + 1).padStart(2, "0")
+              ).map((h) => (
+                <SelectItem key={h} value={h}>
+                  {h}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <span>:</span>
+        <div className="w-16">
+          <Select
+            disabled={disabled}
+            onValueChange={React.useCallback(
+              (val: string) => handleChange(hour, val, amPm),
+              [hour, amPm, handleChange]
+            )}
+            value={minute}
+          >
+            <SelectTrigger size="sm">
+              <SelectValue placeholder="MM" />
+            </SelectTrigger>
+            <SelectContent>
+              {Array.from({ length: 60 }, (_, i) =>
+                String(i).padStart(2, "0")
+              ).map((m) => (
+                <SelectItem key={m} value={m}>
+                  {m}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        </div>
+        <div className="w-16">
+          <Select
+            disabled={disabled}
+            onValueChange={React.useCallback(
+              (val: string) => handleChange(hour, minute, val),
+              [hour, minute, handleChange]
+            )}
+            value={amPm}
+          >
+            <SelectTrigger size="sm">
+              <SelectValue placeholder="AM/PM" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="AM">AM</SelectItem>
+              <SelectItem value="PM">PM</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
+      {showCurrentTimeButton && (
+        <Button
+          variant={"outline"}
+          size={"sm"}
+          disabled={disabled}
+          onClick={handleSetCurrentTime}
+        >
+          Set Current Time
+        </Button>
+      )}
+    </div>
+  );
+};
+
+// Example Components for Documentation
+export function BasicTimePickerExample() {
+  const [time, setTime] = React.useState<string>();
+
+  return <TimePicker value={time} onChange={setTime} />;
+}
+
+export function TimePickerWithoutButtonExample() {
+  const [time, setTime] = React.useState<string>();
+
+  return (
+    <TimePicker value={time} onChange={setTime} showCurrentTimeButton={false} />
+  );
+}
+
+export function DisabledTimePickerExample() {
+  const [time, setTime] = React.useState<string>("02:30 PM");
+
+  return <TimePicker value={time} onChange={setTime} disabled />;
+}
+
+export function ErrorTimePickerExample() {
+  const [time, setTime] = React.useState<string>();
+
+  return <TimePicker value={time} onChange={setTime} error />;
+}
+
+export function CustomStyledTimePickerExample() {
+  const [time, setTime] = React.useState<string>();
+
+  return (
+    <TimePicker
+      value={time}
+      onChange={setTime}
+      className="flex w-full flex-col items-center gap-2 rounded-lg border-2 border-dashed border-primary/50 p-4"
+    />
+  );
+}
+
+export function AppointmentTimePickerExample() {
+  const [appointmentTime, setAppointmentTime] = React.useState<string>();
+
+  const handleTimeChange = (time: string) => {
+    setAppointmentTime(time);
+    console.log("Appointment scheduled for:", time);
+  };
+
+  return (
+    <div className="flex flex-col gap-2 items-center justify-center text-center">
+      <label className="text-sm font-medium">Select Appointment Time</label>
+      <TimePicker value={appointmentTime} onChange={handleTimeChange} />
+      {appointmentTime && (
+        <p className="text-sm text-muted-foreground">
+          Selected: {appointmentTime}
+        </p>
+      )}
+    </div>
+  );
+}
+
+export function FormTimePickerExample() {
+  const [formData, setFormData] = React.useState({
+    startTime: undefined as string | undefined,
+    endTime: undefined as string | undefined,
+  });
+
+  return (
+    <div className="flex flex-col gap-4 max-w-sm  items-center justify-center text-center">
+      <div>
+        <label className="text-sm font-medium">Start Time</label>
+        <TimePicker
+          value={formData.startTime}
+          onChange={(time) =>
+            setFormData((prev) => ({ ...prev, startTime: time }))
+          }
+        />
+      </div>
+      <div>
+        <label className="text-sm font-medium">End Time</label>
+        <TimePicker
+          value={formData.endTime}
+          onChange={(time) =>
+            setFormData((prev) => ({ ...prev, endTime: time }))
+          }
+        />
+      </div>
+      {formData.startTime && formData.endTime && (
+        <div className="rounded-md bg-muted p-3 text-sm">
+          <p>Meeting scheduled:</p>
+          <p>
+            {formData.startTime} - {formData.endTime}
+          </p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+```
+
+</Tab>
+<Tab value="CLI">
+
+```package-install
+npx hextaui@latest add time-picker
+```
+
+</Tab>
+</Tabs>
+
+## Usage
+
+```tsx
+import { TimePicker } from "@/components/ui/time-picker";
+```
+
+```tsx
+<TimePicker value={selectedTime} onChange={setSelectedTime} />
+```
+
+## Examples
+
+### Without Current Time Button
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <TimePickerWithoutButtonExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function TimePickerWithoutButtonExample() {
+      const [time, setTime] = React.useState<string>();
+
+      return (
+        <TimePicker
+          value={time}
+          onChange={setTime}
+          showCurrentTimeButton={false}
+        />
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Disabled State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <DisabledTimePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function DisabledTimePickerExample() {
+      const [time, setTime] = React.useState<string>("02:30 PM");
+
+      return <TimePicker value={time} onChange={setTime} disabled />;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Error State
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <ErrorTimePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function ErrorTimePickerExample() {
+      const [time, setTime] = React.useState<string>();
+
+      return <TimePicker value={time} onChange={setTime} error />;
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Custom Styling
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <CustomStyledTimePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function CustomStyledTimePickerExample() {
+      const [time, setTime] = React.useState<string>();
+
+      return (
+        <TimePicker
+          value={time}
+          onChange={setTime}
+          className="flex w-full flex-col items-center gap-2 rounded-lg border-2 border-dashed border-primary/50 p-4"
+        />
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Appointment Scheduling
+
+Perfect for appointment booking and scheduling systems.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <div className="mx-auto w-full max-w-sm">
+        <AppointmentTimePickerExample />
+      </div>
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function AppointmentTimePickerExample() {
+      const [appointmentTime, setAppointmentTime] = React.useState<string>();
+
+      const handleTimeChange = (time: string) => {
+        setAppointmentTime(time);
+        console.log("Appointment scheduled for:", time);
+      };
+
+      return (
+        <div className="space-y-2">
+          <label className="text-sm font-medium">Select Appointment Time</label>
+          <TimePicker value={appointmentTime} onChange={handleTimeChange} />
+          {appointmentTime && (
+            <p className="text-sm text-muted-foreground">
+              Selected: {appointmentTime}
+            </p>
+          )}
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+### Form Integration
+
+Great for forms requiring time input like meeting schedulers and event planners.
+
+<Tabs items={["Preview", "Code"]}>
+  <Tab value="Preview">
+    <PreviewContainer>
+      <FormTimePickerExample />
+    </PreviewContainer>
+  </Tab>
+  <Tab value="Code">
+    ```tsx
+    function FormTimePickerExample() {
+      const [formData, setFormData] = React.useState({
+        startTime: undefined as string | undefined,
+        endTime: undefined as string | undefined,
+      });
+
+      return (
+        <div className="space-y-4 max-w-sm">
+          <div>
+            <label className="text-sm font-medium">Start Time</label>
+            <TimePicker
+              value={formData.startTime}
+              onChange={(time) =>
+                setFormData((prev) => ({ ...prev, startTime: time }))
+              }
+            />
+          </div>
+          <div>
+            <label className="text-sm font-medium">End Time</label>
+            <TimePicker
+              value={formData.endTime}
+              onChange={(time) =>
+                setFormData((prev) => ({ ...prev, endTime: time }))
+              }
+            />
+          </div>
+          {formData.startTime && formData.endTime && (
+            <div className="rounded-md bg-muted p-3 text-sm">
+              <p>Meeting scheduled:</p>
+              <p>
+                {formData.startTime} - {formData.endTime}
+              </p>
+            </div>
+          )}
+        </div>
+      );
+    }
+    ```
+  </Tab>
+</Tabs>
+
+## API Reference
+
+### TimePicker
+
+<TypeTable
+  type={{
+    value: {
+      description: "The selected time in HH:MM AM/PM format",
+      type: "string | undefined",
+    },
+    onChange: {
+      description: "Callback when time is selected",
+      type: "(value: string) => void",
+    },
+    disabled: {
+      description: "Whether the time picker is disabled",
+      type: "boolean",
+      default: "false",
+    },
+    error: {
+      description: "Whether to show error styling",
+      type: "boolean",
+      default: "false",
+    },
+    className: {
+      description: "Custom CSS class for styling",
+      type: "string",
+    },
+    showCurrentTimeButton: {
+      description: "Whether to show the 'Set Current Time' button",
+      type: "boolean",
+      default: "true",
+    },
+  }}
+/>
+
+## Time Format
+
+The component uses the format `HH:MM AM/PM` where:
+- `HH` is the hour (01-12)
+- `MM` is the minute (00-59)
+- `AM/PM` indicates morning or afternoon
+
+Examples: `09:30 AM`, `02:15 PM`, `11:45 PM`
