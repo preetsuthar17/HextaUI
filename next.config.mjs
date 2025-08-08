@@ -6,7 +6,20 @@ const withMDX = createMDX();
 const config = {
   reactStrictMode: false,
   images: {
-    domains: ["i.imgur.com", "www.ikiform.com", "5xfmztgsig.ufs.sh"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "i.imgur.com",
+      },
+      {
+        protocol: "https",
+        hostname: "www.ikiform.com",
+      },
+      {
+        protocol: "https",
+        hostname: "5xfmztgsig.ufs.sh",
+      },
+    ],
   },
   async rewrites() {
     return [
