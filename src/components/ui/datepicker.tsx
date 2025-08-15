@@ -14,8 +14,8 @@ const datePickerVariants = cva(
   {
     variants: {
       variant: {
-        default: "  shadow-sm/2",
-        outline: "border-2  shadow-sm/2",
+        default: "  ",
+        outline: "border-2  ",
         ghost: "border-transparent hover:border-border",
       },
       size: {
@@ -180,7 +180,7 @@ export function DatePicker({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.95 }}
           transition={{ duration: 0.2 }}
-          className="z-[9999] rounded-ele border border-border bg-background shadow-xl"
+          className="z-[9999] rounded-ele border border-border bg-background "
           data-datepicker-calendar="true"
           style={{
             position: "fixed",
@@ -404,7 +404,7 @@ export function DateRangePicker({
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2 }}
-                className="z-[9999] rounded-ele border border-border bg-background shadow-xl"
+                className="z-[9999] rounded-ele border border-border bg-background "
                 data-datepicker-calendar="true"
                 style={{
                   position: "fixed",

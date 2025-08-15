@@ -1,12 +1,11 @@
 import "./global.css";
 import { RootProvider } from "fumadocs-ui/provider";
-import { DM_Sans, Geist, Inter, JetBrains_Mono } from "next/font/google";
+import { Geist, JetBrains_Mono } from "next/font/google";
 import type { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Link from "next/link";
 import { Toaster } from "@/components/ui/toast";
 import { Banner } from "fumadocs-ui/components/banner";
-import Script from "next/script";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -14,19 +13,6 @@ const geist = Geist({
   weight: ["400", "500", "600", "700"],
 });
 
-const dm_sans = DM_Sans({
-  subsets: ["latin"],
-  variable: "--font-dm-sans",
-  weight: ["100", "200", "300", "400", "500", "700", "800", "900"],
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  display: "swap",
-});
 
 const jetbrains_mono = JetBrains_Mono({
   subsets: ["latin"],
@@ -38,7 +24,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <html
       lang="en"
-      className={`${geist.variable} ${jetbrains_mono.variable} ${dm_sans.variable} ${inter.className}`}
+      className={`${geist.className} ${jetbrains_mono.variable}`}
       suppressHydrationWarning
     >
       <head>

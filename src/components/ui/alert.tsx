@@ -7,7 +7,7 @@ import { type LucideIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 text-sm transition-colors shadow-sm/2",
+  "relative w-full rounded-lg border p-4 text-sm transition-colors ",
   {
     variants: {
       variant: {

@@ -64,7 +64,7 @@ import { type LucideIcon, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 
 const alertVariants = cva(
-  "relative w-full rounded-lg border p-4 text-sm transition-colors shadow-sm/2",
+  "relative w-full rounded-lg border p-4 text-sm transition-colors ",
   {
     variants: {
       variant: {
@@ -466,7 +466,7 @@ import { Database, Rocket } from "lucide-react";
       <Alert variant="info" className="border-dashed">
         Alert with dashed border style.
       </Alert>
-      <Alert variant="success" className="shadow-lg">
+      <Alert variant="success" className="">
         Alert with enhanced shadow.
       </Alert>
       <Alert className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200 text-purple-800 dark:from-purple-950/20 dark:to-pink-950/20 dark:border-purple-800 dark:text-purple-200">

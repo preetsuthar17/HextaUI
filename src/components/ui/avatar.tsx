@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/tooltip";
 
 const avatarVariants = cva(
-  "relative flex shrink-0 overflow-hidden rounded-full shadow-sm/2 bg-background",
+  "relative flex shrink-0 overflow-hidden rounded-full  bg-background",
   {
     variants: {
       size: {

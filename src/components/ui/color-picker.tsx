@@ -33,7 +33,7 @@ import { cn } from "@/lib/utils";
 import { Pipette } from "lucide-react";
 
 const colorPickerVariants = cva(
-  "flex flex-col gap-2 rounded-card border border-border bg-background p-4 shadow-sm/2",
+  "flex flex-col gap-2 rounded-card border border-border bg-background p-4 ",
   {
     variants: {
       size: {
@@ -162,7 +162,7 @@ function ColorThumb({ className, ...props }: AriaColorThumbProps) {
     <AriaColorThumb
       className={composeRenderProps(className, (className) =>
         cn(
-          "z-10 h-4 w-4 rounded-full border-2 border-white shadow-md ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
+          "z-10 h-4 w-4 rounded-full border-2 border-white  ring-1 ring-black/10 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 data-[focus-visible]:ring-2 data-[focus-visible]:ring-ring",
           className,
         ),
       )}

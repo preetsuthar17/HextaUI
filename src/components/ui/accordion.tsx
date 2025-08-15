@@ -9,9 +9,9 @@ import { ChevronDown } from "lucide-react";
 const accordionVariants = cva("w-full max-w-xl", {
   variants: {
     variant: {
-      default: "border border-border rounded-card overflow-hidden shadow-sm/2",
+      default: "border border-border rounded-card overflow-hidden ",
       ghost: "",
-      outline: "border border-border rounded-card shadow-sm/2",
+      outline: "border border-border rounded-card ",
     },
     size: {
       sm: "text-sm max-w-lg",

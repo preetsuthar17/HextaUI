@@ -36,68 +36,56 @@
   --color-ring: hsl(var(--hu-ring));
 }
 
+
 :root {
   --hu-font-geist: var(--font-geist);
   --hu-font-jetbrains: var(--font-jetbrains-mono);
 
-  --radius: 0.8rem;
-  --card-radius: 1rem;
-
-  --hu-background: 48, 33%, 99%;
-  --hu-foreground: 0, 0%, 10%;
-
-  --hu-card: 0, 0%, 99%;
-  --hu-card-foreground: 0, 0%, 14%;
-
-  --hu-primary: 15, 63%, 60%;
+  --radius: 9px;
+  --card-radius: 14px;
+  --hu-background: 0, 0%, 100%;
+  --hu-foreground: 0, 0%, 5%;
+  --hu-card: 0, 0%, 98%;
+  --hu-card-foreground: 0, 0%, 5%;
+  --hu-primary: 0, 0%, 15%;
   --hu-primary-foreground: 0, 0%, 98%;
-
-  --hu-secondary: 0, 0%, 97%;
-  --hu-secondary-foreground: 0, 0%, 20%;
-
-  --hu-muted: 0, 0%, 97%;
-  --hu-muted-foreground: 0, 0%, 56%;
-
-  --hu-accent: 0, 0%, 96%;
-  --hu-accent-foreground: 0, 0%, 20%;
-
-  --hu-destructive: 9, 96%, 47%;
+  --hu-secondary: 0, 0%, 92%;
+  --hu-secondary-foreground: 0, 0%, 15%;
+  --hu-muted: 0, 0%, 94%;
+  --hu-muted-foreground: 0, 0%, 40%;
+  --hu-accent: 0, 0%, 94%;
+  --hu-accent-foreground: 0, 0%, 15%;
+  --hu-destructive: 0, 70%, 45%;
   --hu-destructive-foreground: 0, 0%, 98%;
-
-  --hu-border: 0, 0%, 92%;
+  --hu-border: 0, 0%, 85%;
   --hu-input: 0, 0%, 100%;
-  --hu-ring: 0, 0%, 71%;
+  --hu-ring: 0 0% 3.9%;
 
+  
   --color-fd-background: hsl(var(--hu-background));
   --color-fd-card: hsl(var(--hu-background));
 }
 
 .dark {
-  --hu-background: 0, 0%, 7%;
-  --hu-foreground: 0, 0%, 100%;
+  --hu-background: 0, 0%, 8%;
+  --hu-foreground: 0, 0%, 95%;
+  --hu-card: 0, 0%, 8%;
+  --hu-card-foreground: 0, 0%, 95%;
+  --hu-primary: 0, 0%, 100%;
+  --hu-primary-foreground: 0, 0%, 10%;
+  --hu-secondary: 0, 0%, 18%;
+  --hu-secondary-foreground: 0, 0%, 95%;
+  --hu-muted: 0, 0%, 16%;
+  --hu-muted-foreground: 0, 0%, 65%;
+  --hu-accent: 0, 0%, 10%;
+  --hu-accent-foreground: 0, 0%, 95%;
+  --hu-destructive: 0, 65%, 55%;
+  --hu-destructive-foreground: 0, 0%, 95%;
+  --hu-border: 0, 0%, 25%;
+  --hu-input: 0, 0%, 12%;
+  --hu-ring: 0, 0%, 50%;
 
-  --hu-card: 0, 0%, 9%;
-  --hu-card-foreground: 0, 0%, 100%;
-
-  --hu-primary: 15, 63%, 60%;
-  --hu-primary-foreground: 0, 0%, 98%;
-
-  --hu-secondary: 0, 0%, 15%;
-  --hu-secondary-foreground: 0, 0%, 100%;
-
-  --hu-muted: 0, 0%, 15%;
-  --hu-muted-foreground: 0, 0%, 71%;
-
-  --hu-accent: 0, 0%, 15%;
-  --hu-accent-foreground: 0, 0%, 100%;
-
-  --hu-destructive: 0, 84%, 50%;
-  --hu-destructive-foreground: 0, 0%, 98%;
-
-  --hu-border: 0, 0%, 100%, 10%;
-  --hu-input: 0, 0%, 100%, 5%;
-  --hu-ring: 0, 0%, 56%;
-
+  
   --color-fd-background: hsl(var(--hu-background));
   --color-fd-card: hsl(var(--hu-background));
 }
@@ -262,9 +250,7 @@ samp {
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
 }
 
-h1 {
-  letter-spacing: -2px;
-}
+
 h2 {
   font-weight: 500;
   letter-spacing: -1px;

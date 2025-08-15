@@ -38,7 +38,7 @@ export function StatsGrid({ stats }: StatsGridProps) {
         return (
           <Card
             key={stat.id}
-            className="p-6 hover:shadow-sm transition-shadow duration-200"
+            className="p-6 hover: transition-shadow duration-200"
           >
             {/* Header */}
             <div className="flex items-center justify-between mb-4">

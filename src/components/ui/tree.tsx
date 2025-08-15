@@ -35,7 +35,7 @@ const useTree = () => {
 
 // Tree variants
 const treeVariants = cva(
-  "w-full bg-background border border-border rounded-ele shadow-sm/2",
+  "w-full bg-background border border-border rounded-ele ",
   {
     variants: {
       variant: {

@@ -638,7 +638,7 @@ export function PhoneInput({
           onValueChange={handleCountryChange}
           disabled={disabled}
         >
-          <SelectTrigger className="h-auto border-none bg-transparent p-0 shadow-none focus:ring-0 focus-visible:ring-transparent focus-visible:border-transparent focus-visible:outline-transparent active:ring-transparent active:border-transparent active:outline-transparent focus:ring-transparent focus:border-transparent focus:outline-transparent">
+          <SelectTrigger className="h-auto border-none bg-transparent p-0  focus:ring-0 focus-visible:ring-transparent focus-visible:border-transparent focus-visible:outline-transparent active:ring-transparent active:border-transparent active:outline-transparent focus:ring-transparent focus:border-transparent focus:outline-transparent">
             <SelectValue>
               <div className="flex items-center gap-1">
                 {showFlag && (
@@ -673,7 +673,7 @@ export function PhoneInput({
         placeholder={effectivePlaceholder}
         disabled={disabled}
         className={cn(
-          "border-none bg-transparent p-0 shadow-none focus-visible:ring-transparent focus-visible:border-transparent focus-visible:outline-transparent",
+          "border-none bg-transparent p-0  focus-visible:ring-transparent focus-visible:border-transparent focus-visible:outline-transparent",
           showValidation &&
             phoneNumber.length > 0 &&
             (isValid ? "text-green-600" : "text-red-600"),

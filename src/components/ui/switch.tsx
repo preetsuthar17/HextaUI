@@ -31,7 +31,7 @@ const switchVariants = cva(
 );
 
 const switchThumbVariants = cva(
-  "pointer-events-none block rounded-full bg-background shadow-lg ring-0 transition-transform",
+  "pointer-events-none block rounded-full bg-background  ring-0 transition-transform",
   {
     variants: {
       variant: {

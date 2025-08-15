@@ -38,7 +38,7 @@ const Pricing = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl w-full justify-between">
         {/* Free Plan Card */}
         <div className="max-w-lg mx-auto lg:mx-0 w-full">
-          <div className="p-8 text-left border border-border rounded-ele bg-background/80 shadow-md/2 flex flex-col h-full justify-between">
+          <div className="p-8 text-left border border-border rounded-ele bg-background/80  flex flex-col h-full justify-between">
             {/* Plan Name */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-foreground mb-2">
@@ -82,7 +82,7 @@ const Pricing = () => {
         </div>
         {/* Pro Plan Card */}
         <div className="max-w-lg mx-auto lg:mx-0 w-full">
-          <div className="p-8 text-left border border-border rounded-ele bg-background/80 shadow-md/2 flex flex-col h-full justify-between">
+          <div className="p-8 text-left border border-border rounded-card bg-background/80  flex flex-col h-full justify-between">
             {/* Plan Name */}
             <div className="mb-6">
               <h3 className="text-xl font-semibold text-foreground mb-2">
@@ -129,19 +129,7 @@ const Pricing = () => {
               <span>•</span>
               <span>Secure payment</span>
             </div>
-            {/* Social Impact */}
-            {/* <div className="mt-6 p-4 bg-muted/30 rounded-lg border">
-              <div className="flex items-center gap-2 mb-2">
-                <span className="text-sm font-medium text-foreground">
-                  💝 Social Impact
-                </span>
-              </div>
-              <p className="text-xs text-muted-foreground leading-relaxed">
-                2%-5% of monthly revenue from HextaUI goes to homeless people
-                and charity organizations, helping make a positive difference in
-                our communities.
-              </p>
-            </div> */}
+          
           </div>
         </div>
       </div>

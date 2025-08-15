@@ -39,7 +39,7 @@ const ModalContent = React.forwardRef<
         exit={{ opacity: 0, scale: 0.95 }}
         transition={{ duration: 0.2 }}
         className={cn(
-          "fixed left-[50%] top-[50%] z-50 w-[95%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-background border border-border p-6 shadow-lg",
+          "fixed left-[50%] top-[50%] z-50 w-[95%] max-w-lg translate-x-[-50%] translate-y-[-50%] rounded-2xl bg-background border border-border p-6 ",
           className,
         )}
       >

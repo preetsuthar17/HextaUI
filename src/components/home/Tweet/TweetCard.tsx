@@ -203,7 +203,7 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
               src={photo.url}
               title={"Photo by " + tweet.user.name}
               alt={tweet.text}
-              className="h-64 w-5/6 shrink-0 snap-center snap-always rounded-xl border object-cover shadow-sm"
+              className="h-64 w-5/6 shrink-0 snap-center snap-always rounded-xl border object-cover "
             />
           ))}
           <div className="shrink-0 snap-center sm:w-2" />
@@ -218,7 +218,7 @@ export const TweetMedia = ({ tweet }: { tweet: EnrichedTweet }) => {
               // @ts-ignore
               tweet.card.binding_values.thumbnail_image_large.image_value.url
             }
-            className="h-64 rounded-xl border object-cover shadow-sm"
+            className="h-64 rounded-xl border object-cover "
             alt={tweet.text}
           />
         )}

@@ -59,7 +59,7 @@ const Hero = () => {
           </Badge>
         </div>
         <div className="flex items-center justify-center gap-4 flex-col">
-          <h1 className="text-6xl max-sm:text-4xl font-medium">
+          <h1 className="text-6xl max-sm:text-4xl font-medium tracking-tighter">
             Build stunning websites effortlessly
           </h1>
           <p className="max-sm:text-sm">
@@ -68,7 +68,7 @@ const Hero = () => {
           </p>
         </div>
         <div className="flex items-center justify-center gap-4 flex-wrap">
-          <Button asChild className="shadow-md grow  h-12" size={"lg"}>
+          <Button asChild className=" grow  h-12" size={"lg"}>
             <Link
               href="/docs/ui/getting-started/introduction"
               className="font-normal"
@@ -83,7 +83,7 @@ const Hero = () => {
             >
               <span className="flex items-center gap-2">
                 <FaGithub />
-                Github
+                GitHub
               </span>
               <span className="opacity-70">-</span>
               <span>

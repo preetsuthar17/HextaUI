@@ -188,7 +188,7 @@ export function CustomStyledAlertExamples() {
       <Alert variant="info" className="border-dashed">
         Alert with dashed border style.
       </Alert>
-      <Alert variant="success" className="shadow-lg">
+      <Alert variant="success" className="">
         Alert with enhanced shadow.
       </Alert>
       <Alert className="bg-gradient-to-r from-purple-50 to-pink-50 border-purple-200 text-purple-800 dark:from-purple-950/20 dark:to-pink-950/20 dark:border-purple-800 dark:text-purple-200">

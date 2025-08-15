@@ -88,7 +88,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { type LucideIcon } from "lucide-react";
 
 const menubarVariants = cva(
-  "flex items-center rounded-card border border-border bg-background transition-all overflow-x-auto scrollbar-hide w-full max-w-full shadow-sm/2",
+  "flex items-center rounded-card border border-border bg-background transition-all overflow-x-auto scrollbar-hide w-full max-w-full ",
   {
     variants: {
       variant: {
@@ -96,7 +96,7 @@ const menubarVariants = cva(
           "bg-background border-border",
         outline:
           "border-2 border-border bg-background",
-        ghost: "border-transparent bg-transparent shadow-none",
+        ghost: "border-transparent bg-transparent ",
       },
       size: {
         sm: "p-1.5 gap-1 sm:p-2 sm:gap-1",
@@ -136,7 +136,7 @@ const menubarTriggerVariants = cva(
 );
 
 const menubarContentVariants = cva(
-  "z-50 min-w-[12rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-card border border-border bg-background p-1.5 sm:p-2 text-foreground shadow-xl mt-2",
+  "z-50 min-w-[12rem] max-w-[95vw] sm:max-w-[350px] overflow-hidden rounded-card border border-border bg-background p-1.5 sm:p-2 text-foreground  mt-2",
   {
     variants: {
       variant: {
@@ -347,7 +347,7 @@ const MenuBarSubContent = React.forwardRef<
   <MenubarPrimitive.SubContent
     ref={ref}
     className={cn(
-      "z-50 min-w-[10rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-ele border border-border bg-background p-1.5 sm:p-2 text-foreground shadow-xl ",
+      "z-50 min-w-[10rem] max-w-[95vw] sm:max-w-[280px] overflow-hidden rounded-ele border border-border bg-background p-1.5 sm:p-2 text-foreground  ",
       className
     )}
     asChild

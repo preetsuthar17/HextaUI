@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 const tooltipVariants = cva(
-  "z-50 overflow-hidden rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-card-foreground shadow-sm/2",
+  "z-50 overflow-hidden rounded-lg border border-border bg-card px-3 py-1.5 text-xs text-card-foreground ",
   {
     variants: {
       variant: {
