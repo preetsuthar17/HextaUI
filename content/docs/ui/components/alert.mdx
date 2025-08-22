@@ -29,13 +29,21 @@ import {
   <Tab value="Code">
     ```tsx
     <div className="space-y-4">
-      <Alert>This is a basic alert message.</Alert>
-      <Alert variant="destructive">
-        Something went wrong. Please try again.
+      <Alert icon={Code} variant="info" title="Code Review Ready">
+        Your pull request is ready for code review by the team.
       </Alert>
-      <Alert variant="warning">This action cannot be undone.</Alert>
-      <Alert variant="success">Your changes have been saved.</Alert>
-      <Alert variant="info">New features are now available.</Alert>
+      <Alert icon={Sparkles} variant="success" title="Feature Unlocked">
+        Congratulations! You've unlocked premium features.
+      </Alert>
+      <Alert icon={TrendingUp} variant="info" title="Performance Improved">
+        Your application performance has increased by 40% this month.
+      </Alert>
+      <Alert icon={Lock} variant="warning" title="Security Alert">
+        We detected unusual login activity. Please verify your account.
+      </Alert>
+      <Alert icon={Calendar} variant="default" title="Meeting Reminder">
+        Your team standup meeting starts in 15 minutes.
+      </Alert>
     </div>
     ```
   </Tab>
@@ -198,11 +206,23 @@ import { Alert } from "@/components/ui/alert";
 ```
 
 ```tsx
-<Alert variant="default">This is a default alert.</Alert>
-<Alert variant="destructive">This is a destructive alert.</Alert>
-<Alert variant="warning">This is a warning alert.</Alert>
-<Alert variant="success">This is a success alert.</Alert>
-<Alert variant="info">This is an info alert.</Alert>
+<div className="space-y-4">
+  <Alert icon={Code} variant="info" title="Code Review Ready">
+    Your pull request is ready for code review by the team.
+  </Alert>
+  <Alert icon={Sparkles} variant="success" title="Feature Unlocked">
+    Congratulations! You've unlocked premium features.
+  </Alert>
+  <Alert icon={TrendingUp} variant="info" title="Performance Improved">
+    Your application performance has increased by 40% this month.
+  </Alert>
+  <Alert icon={Lock} variant="warning" title="Security Alert">
+    We detected unusual login activity. Please verify your account.
+  </Alert>
+  <Alert icon={Calendar} variant="default" title="Meeting Reminder">
+    Your team standup meeting starts in 15 minutes.
+  </Alert>
+</div>
 ```
 
 ## Props
