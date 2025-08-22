@@ -14,11 +14,4 @@ export type {
 
 export {
   AccordionDemo,
-  AccordionMultiple,
-  AccordionVariants,
-  AccordionSizes,
-  AccordionWithIcons,
-  AccordionCustomStyling,
-  AccordionFAQ,
-  AccordionNested,
 } from "./AccordionExamples";
