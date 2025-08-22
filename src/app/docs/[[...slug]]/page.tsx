@@ -12,7 +12,10 @@ import { customMetaDataGenerator } from "@/lib/customMetaDataGenerator";
 import AskChatGPTButton from "@/components/other/AskChatGPTButton";
 import CarbonAds from "@/components/other/carbon";
 import CopyMarkdownButton from "@/components/other/CopyMarkdownButton";
-import { LLMCopyButton, ViewOptions } from "@/components/ai/page-actions";
+import { UnifiedCopyOpenButton  } from "@/components/ai/page-actions";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
 
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
@@ -20,6 +23,12 @@ export default async function Page(props: {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
+
+  
+  const doc = page.data
+
+  const links = doc.links
+
 
   const MDX = page.data.body;
 
@@ -50,17 +59,36 @@ export default async function Page(props: {
         className: "max-sm:pb-16",
       }}
     >
-      <DocsTitle>{page.data.title}</DocsTitle>
+      <DocsTitle className="flex items-center gap-2 justify-between w-full">{page.data.title} <div className="flex gap-2">
+        <UnifiedCopyOpenButton 
+         markdownUrl={`${page.url}.mdx`} 
+         githubUrl={`https://github.com/preetsuthar17/hextaui/blob/dev/apps/docs/content/docs/${page.path}`} 
+         />
+      </div></DocsTitle>
       <DocsDescription className="mb-0">
         {page.data.description}
       </DocsDescription>
-      <div className="flex gap-2">
-        <LLMCopyButton markdownUrl={`${page.url}.mdx`} />
-        <ViewOptions
-          markdownUrl={`${page.url}.mdx`}
-          githubUrl={`https://github.com/preetsuthar17/hextaui/blob/dev/apps/docs/content/docs/${page.path}`}
-        />
-      </div>
+        {links ? (
+          <div>
+            <div className="flex items-center gap-2">  
+              {links?.doc && (
+                <Badge variant="outline" className="flex items-center gap-2">
+                  <Link href={links.doc} target="_blank" className="flex items-center gap-1" rel="noreferrer">
+                    Docs <ArrowUpRight size={12}/>
+                  </Link>
+                </Badge>
+              )}  
+              {links?.api && (
+                <Badge variant="outline" className="flex items-center gap-2">
+                  <Link href={links.api} target="_blank" className="flex items-center gap-1" rel="noreferrer">
+                    API Reference <ArrowUpRight size={12}/>
+                  </Link>
+                </Badge>
+              )}
+            </div>
+          </div>
+        ) : null}
+      
       <CarbonAds format="cover" />
       <DocsBody>
         <MDX components={getMDXComponents()} />
@@ -79,6 +107,7 @@ export async function generateMetadata(props: {
   const params = await props.params;
   const page = source.getPage(params.slug);
   if (!page) notFound();
+
 
   return customMetaDataGenerator({
     title: page.data.title,

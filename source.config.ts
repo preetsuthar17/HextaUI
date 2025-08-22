@@ -15,7 +15,14 @@ export const docs = defineDocs({
       new: z.boolean().default(false),
       pro: z.boolean().default(false),
       soon: z.boolean().default(false),
+      links: z
+      .object({
+        doc: z.string().optional(),
+        api: z.string().optional(),
+      })
+      .optional(),
     }),
+
   },
   meta: {
     schema: metaSchema,
