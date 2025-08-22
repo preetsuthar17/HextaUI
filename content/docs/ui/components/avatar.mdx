@@ -1,6 +1,9 @@
 ---
 title: Avatar
 description: An image element with a fallback for representing the user.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/avatar
+  api: https://www.radix-ui.com/docs/primitives/components/avatar#api-reference
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
@@ -18,6 +21,7 @@ import {
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
+    <div className="flex items-center gap-6 justify-center flex-wrap">
       <div className="flex gap-4 flex-wrap items-center">
         <Avatar>
           <AvatarImage
@@ -37,6 +41,32 @@ import {
           <AvatarFallback>JD</AvatarFallback>
         </Avatar>
       </div>
+      <div>
+        <AvatarGroup  spacing="tight">
+            <Avatar>
+              <AvatarImage
+                src="https://github.com/preetsuthar17.png"
+                alt="@preetsuthar17"
+              />
+              <AvatarFallback>PS</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
+              <AvatarFallback>VC</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>JD</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>AB</AvatarFallback>
+            </Avatar>
+            <Avatar>
+              <AvatarFallback>XY</AvatarFallback>
+            </Avatar>
+        </AvatarGroup>
+      </div>
+    </div>
+
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
@@ -276,503 +306,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/Avatar";
   <AvatarFallback>PS</AvatarFallback>
 </Avatar>
 ```
-
-## Examples
-
-### Default
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <Avatar>
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <Avatar>
-      <AvatarImage
-        src="https://github.com/preetsuthar17.png"
-        alt="@preetsuthar17"
-      />
-      <AvatarFallback>PS</AvatarFallback>
-    </Avatar>
-    ```
-  </Tab>
-</Tabs>
-
-### Sizes
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap items-center">
-        <Avatar size="xs">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar size="sm">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar size="md">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar size="lg">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar size="xl">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar size="2xl">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap items-center">
-      <Avatar size="xs">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar size="sm">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar size="md">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar size="lg">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar size="xl">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar size="2xl">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Fallback Only
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap items-center">
-        <Avatar>
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-        <Avatar>
-          <AvatarFallback>VC</AvatarFallback>
-        </Avatar>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap items-center">
-      <Avatar>
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar>
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-      <Avatar>
-        <AvatarFallback>VC</AvatarFallback>
-      </Avatar>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Avatar Group
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex flex-col gap-6">
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium">Default Group (max 3)</h4>
-          <AvatarGroup>
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/preetsuthar17.png"
-                alt="@preetsuthar17"
-              />
-              <AvatarFallback>PS</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>AB</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>XY</AvatarFallback>
-            </Avatar>
-          </AvatarGroup>
-        </div>
-
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium">Large Group (max 5)</h4>
-          <AvatarGroup max={5} size="lg">
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/preetsuthar17.png"
-                alt="@preetsuthar17"
-              />
-              <AvatarFallback>PS</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>AB</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>XY</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>MN</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>QR</AvatarFallback>
-            </Avatar>
-          </AvatarGroup>
-        </div>
-      </div>
-    </PreviewContainer>
-
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex flex-col gap-6">
-      <div className="space-y-2">
-        <h4 className="text-sm font-medium">Default Group (max 3)</h4>
-        <AvatarGroup>
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/preetsuthar17.png"
-              alt="@preetsuthar17"
-            />
-            <AvatarFallback>PS</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>AB</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>XY</AvatarFallback>
-          </Avatar>
-        </AvatarGroup>
-      </div>
-
-      <div className="space-y-2">
-        <h4 className="text-sm font-medium">Large Group (max 5)</h4>
-        <AvatarGroup max={5} size="lg">
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/preetsuthar17.png"
-              alt="@preetsuthar17"
-            />
-            <AvatarFallback>PS</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>AB</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>XY</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>MN</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>QR</AvatarFallback>
-          </Avatar>
-        </AvatarGroup>
-      </div>
-    </div>
-    ```
-
-  </Tab>
-</Tabs>
-
-### Group Spacing
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex flex-col gap-6">
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium">Tight Spacing</h4>
-          <AvatarGroup spacing="tight">
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/preetsuthar17.png"
-                alt="@preetsuthar17"
-              />
-              <AvatarFallback>PS</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-          </AvatarGroup>
-        </div>
-
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium">Normal Spacing</h4>
-          <AvatarGroup spacing="normal">
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/preetsuthar17.png"
-                alt="@preetsuthar17"
-              />
-              <AvatarFallback>PS</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-          </AvatarGroup>
-        </div>
-
-        <div className="space-y-2">
-          <h4 className="text-sm font-medium">Loose Spacing</h4>
-          <AvatarGroup spacing="loose">
-            <Avatar>
-              <AvatarImage
-                src="https://github.com/preetsuthar17.png"
-                alt="@preetsuthar17"
-              />
-              <AvatarFallback>PS</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-              <AvatarFallback>VC</AvatarFallback>
-            </Avatar>
-            <Avatar>
-              <AvatarFallback>JD</AvatarFallback>
-            </Avatar>
-          </AvatarGroup>
-        </div>
-      </div>
-    </PreviewContainer>
-
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex flex-col gap-6">
-      <div className="space-y-2">
-        <h4 className="text-sm font-medium">Tight Spacing</h4>
-        <AvatarGroup spacing="tight">
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/preetsuthar17.png"
-              alt="@preetsuthar17"
-            />
-            <AvatarFallback>PS</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-        </AvatarGroup>
-      </div>
-
-      <div className="space-y-2">
-        <h4 className="text-sm font-medium">Normal Spacing</h4>
-        <AvatarGroup spacing="normal">
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/preetsuthar17.png"
-              alt="@preetsuthar17"
-            />
-            <AvatarFallback>PS</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-        </AvatarGroup>
-      </div>
-
-      <div className="space-y-2">
-        <h4 className="text-sm font-medium">Loose Spacing</h4>
-        <AvatarGroup spacing="loose">
-          <Avatar>
-            <AvatarImage
-              src="https://github.com/preetsuthar17.png"
-              alt="@preetsuthar17"
-            />
-            <AvatarFallback>PS</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-            <AvatarFallback>VC</AvatarFallback>
-          </Avatar>
-          <Avatar>
-            <AvatarFallback>JD</AvatarFallback>
-          </Avatar>
-        </AvatarGroup>
-      </div>
-    </div>
-    ```
-
-  </Tab>
-</Tabs>
-
-### Avatar with Tooltip
-
-> **Note:** The [Tooltip component](/docs/ui/tooltip) is required to use the tooltip functionality with Avatar.
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <AvatarGroup spacing="tight">
-        <Avatar tooltip="preetsuthar17">
-          <AvatarImage
-            src="https://github.com/preetsuthar17.png"
-            alt="@preetsuthar17"
-          />
-          <AvatarFallback>PS</AvatarFallback>
-        </Avatar>
-        <Avatar tooltip={{ children: "fuma-nama", variant: "dark" }}>
-          <AvatarImage
-            src="https://github.com/fuma-nama.png"
-            alt="@fuma-nama"
-          />
-          <AvatarFallback>VC</AvatarFallback>
-        </Avatar>
-        <Avatar tooltip="John Doe" size="lg">
-          <AvatarFallback>JD</AvatarFallback>
-        </Avatar>
-        <Avatar
-          tooltip={{ children: "Admin User", variant: "destructive" }}
-          size="sm"
-        >
-          <AvatarFallback>AU</AvatarFallback>
-        </Avatar>
-      </AvatarGroup>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap items-center">
-      <Avatar tooltip="preetsuthar17">
-        <AvatarImage
-          src="https://github.com/preetsuthar17.png"
-          alt="@preetsuthar17"
-        />
-        <AvatarFallback>PS</AvatarFallback>
-      </Avatar>
-      <Avatar tooltip={{ children: "fuma-nama", variant: "dark" }}>
-        <AvatarImage src="https://github.com/fuma-nama.png" alt="@fuma-nama" />
-        <AvatarFallback>VC</AvatarFallback>
-      </Avatar>
-      <Avatar tooltip="John Doe" size="lg">
-        <AvatarFallback>JD</AvatarFallback>
-      </Avatar>
-      <Avatar
-        tooltip={{ children: "Admin User", variant: "destructive" }}
-        size="sm"
-      >
-        <AvatarFallback>AU</AvatarFallback>
-      </Avatar>
-    </div>
-    ```
-  </Tab>
-</Tabs>
 
 ## Props
 
