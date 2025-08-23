@@ -387,12 +387,11 @@ export const ComplexCommandMenu = () => {
   return (
     <CommandMenu open={open} onOpenChange={setOpen}>
       <CommandMenuTrigger asChild>
-        <Button className="gap-2">
+        <Button className="gap-2" variant="outline">
           <Search size={16} />
           Command Palette
-          <kbd className="pointer-events-none h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 ml-auto flex">
-            ⌘K
-          </kbd>
+          <Kbd size="xs">{getModifierKey().symbol}</Kbd>
+          <Kbd size="xs">K</Kbd>
         </Button>
       </CommandMenuTrigger>
       <CommandMenuContent>
