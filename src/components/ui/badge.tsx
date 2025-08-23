@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { type LucideIcon } from "lucide-react";
 
 const badgeVariants = cva(
-  "flex items-center justify-center gap-1.5 rounded-[calc(var(--radius)-4px)] border text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 w-fit",
+  "flex items-center justify-center gap-1.5 rounded-ele border text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 w-fit",
   {
     variants: {
       variant: {

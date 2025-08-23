@@ -14,6 +14,7 @@ import { BadgeWithIcon } from "@/components/ui/Badge";
 <Tabs items={["Preview", "Code"]}>
   <Tab value="Preview">
     <PreviewContainer>
+    <div className="flex flex-col gap-6">
       <div className="flex gap-4 flex-wrap">
         <Badge>Default</Badge>
         <Badge variant="secondary">Secondary</Badge>
@@ -21,16 +22,39 @@ import { BadgeWithIcon } from "@/components/ui/Badge";
         <Badge variant="ghost">Ghost</Badge>
         <Badge variant="destructive">Destructive</Badge>
       </div>
+       <div className="flex gap-4 flex-wrap items-center">
+        <Badge variant="outline" size="sm">
+          1
+        </Badge>
+        <Badge variant="secondary">99+</Badge>
+        <Badge variant="destructive" size="icon" className="rounded-full">
+          5
+        </Badge>
+        <Badge variant="default">New</Badge>
+      </div>
+    </div>
     </PreviewContainer>
   </Tab>
   <Tab value="Code">
     ```tsx
-    <div className="flex gap-4 flex-wrap">
-      <Badge>Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="outline">Outline</Badge>
-      <Badge variant="ghost">Ghost</Badge>
-      <Badge variant="destructive">Destructive</Badge>
+   <div className="flex flex-col gap-6">
+      <div className="flex gap-4 flex-wrap">
+        <Badge>Default</Badge>
+        <Badge variant="secondary">Secondary</Badge>
+        <Badge variant="outline">Outline</Badge>
+        <Badge variant="ghost">Ghost</Badge>
+        <Badge variant="destructive">Destructive</Badge>
+      </div>
+       <div className="flex gap-4 flex-wrap items-center">
+        <Badge variant="outline" size="sm">
+          1
+        </Badge>
+        <Badge variant="secondary">99+</Badge>
+        <Badge variant="destructive" size="icon" className="rounded-full">
+          5
+        </Badge>
+        <Badge variant="default">New</Badge>
+      </div>
     </div>
     ```
   </Tab>
@@ -148,345 +172,6 @@ import { Badge } from "@/components/ui/Badge/Badge";
 <Badge variant="ghost">Ghost</Badge>
 <Badge variant="destructive">Destructive</Badge>
 ```
-
-## Examples
-
-### Variants
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <Badge variant="default">Default</Badge>
-        <Badge variant="secondary">Secondary</Badge>
-        <Badge variant="outline">Outline</Badge>
-        <Badge variant="ghost">Ghost</Badge>
-        <Badge variant="destructive">Destructive</Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap">
-      <Badge variant="default">Default</Badge>
-      <Badge variant="secondary">Secondary</Badge>
-      <Badge variant="outline">Outline</Badge>
-      <Badge variant="ghost">Ghost</Badge>
-      <Badge variant="destructive">Destructive</Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Sizes
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap items-center">
-        <Badge size="sm">Small</Badge>
-        <Badge size="default">Default</Badge>
-        <Badge size="lg">Large</Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap items-center">
-      <Badge size="sm">Small</Badge>
-      <Badge size="default">Default</Badge>
-      <Badge size="lg">Large</Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Status Indicators
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <Badge variant="ghost">Draft</Badge>
-        <Badge variant="secondary">In Progress</Badge>
-        <Badge variant="default">Completed</Badge>
-        <Badge variant="destructive">Cancelled</Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap">
-      <Badge variant="ghost">Draft</Badge>
-      <Badge variant="secondary">In Progress</Badge>
-      <Badge variant="default">Completed</Badge>
-      <Badge variant="destructive">Cancelled</Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Numbers and Counts
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap items-center">
-        <Badge variant="outline" size="sm">
-          1
-        </Badge>
-        <Badge variant="secondary">99+</Badge>
-        <Badge variant="destructive" size="icon" className="rounded-full">
-          5
-        </Badge>
-        <Badge variant="default">New</Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap items-center">
-      <Badge variant="outline" size="sm">
-        1
-      </Badge>
-        <Badge variant="secondary">99+</Badge>
-        <Badge variant="destructive" size="icon" className="rounded-full">
-        5
-      </Badge>
-      <Badge variant="default">New</Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Custom Styling
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <Badge className="rounded-full">Rounded</Badge>
-        <Badge className="uppercase tracking-wider" size="sm">
-          Premium
-        </Badge>
-        <Badge variant="outline" className="border-dashed">
-          Dashed
-        </Badge>
-        <Badge className="font-bold">Bold</Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap">
-      <Badge className="rounded-full">Rounded</Badge>
-      <Badge className="uppercase tracking-wider" size="sm">
-        Premium
-      </Badge>
-      <Badge variant="outline" className="border-dashed">
-        Dashed
-      </Badge>
-      <Badge className="font-bold">Bold</Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### With Icons
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <BadgeWithIcon iconName="Star" variant="default">
-          Featured
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="CheckCircle" variant="secondary" iconPosition="left">
-          Verified
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="AlertTriangle" variant="destructive">
-          Warning
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="Zap" variant="outline">
-          Premium
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="ArrowRight" variant="ghost" iconPosition="right">
-          Continue
-        </BadgeWithIcon>
-      </div>
-    </PreviewContainer>
-  </Tab><Tab value="Code">
-    ```tsx
-    import { Star, CheckCircle, AlertTriangle, Zap, ArrowRight } from "lucide-react";
-
-    <div className="flex gap-4 flex-wrap">
-      <Badge icon={Star} variant="default">
-        Featured
-      </Badge>
-      <Badge icon={CheckCircle} variant="secondary" iconPosition="left">
-        Verified
-      </Badge>
-      <Badge icon={AlertTriangle} variant="destructive">
-        Warning
-      </Badge>
-      <Badge icon={Zap} variant="outline">
-        Premium
-      </Badge>
-      <Badge icon={ArrowRight} variant="ghost" iconPosition="right">
-        Continue
-      </Badge>
-    </div>
-    ```
-
-  </Tab>
-</Tabs>
-
-### Icon Sizes
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap items-center">
-        <BadgeWithIcon iconName="Heart" variant="default" size="sm">
-          Small
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="Heart" variant="secondary" size="default">
-          Default
-        </BadgeWithIcon>
-        <BadgeWithIcon iconName="Heart" variant="outline" size="lg">
-          Large
-        </BadgeWithIcon>
-      </div>
-    </PreviewContainer>
-  </Tab>  <Tab value="Code">
-    ```tsx
-    import { Heart } from "lucide-react";
-
-    <div className="flex gap-4 flex-wrap items-center">
-      <Badge icon={Heart} variant="default" size="sm">
-        Small
-      </Badge>
-      <Badge icon={Heart} variant="secondary" size="default">
-        Default
-      </Badge>
-      <Badge icon={Heart} variant="outline" size="lg">
-        Large
-      </Badge>
-    </div>
-    ```
-
-  </Tab>
-</Tabs>
-
-### Interactive Badges
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="flex gap-4 flex-wrap">
-        <Badge className="cursor-pointer">Clickable</Badge>
-        <Badge
-          variant="outline"
-          className="cursor-pointer hover:border-red-500 hover:text-red-500"
-        >
-          Remove
-        </Badge>
-        <Badge variant="secondary" className="cursor-pointer" tabIndex={0}>
-          Focusable
-        </Badge>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="flex gap-4 flex-wrap">
-      <Badge className="cursor-pointer" onClick={() => alert("Badge clicked!")}>
-        Clickable
-      </Badge>
-      <Badge
-        variant="outline"
-        className="cursor-pointer hover:border-red-500 hover:text-red-500"
-      >
-        Remove
-      </Badge>
-      <Badge variant="secondary" className="cursor-pointer" tabIndex={0}>
-        Focusable
-      </Badge>
-    </div>
-    ```
-  </Tab>
-</Tabs>
-
-### Real-world Examples
-
-<Tabs items={["Preview", "Code"]}>
-  <Tab value="Preview">
-    <PreviewContainer>
-      <div className="space-y-4">
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Article:</span>
-          <Badge variant="default">Published</Badge>
-          <Badge variant="secondary" size="sm">
-            React
-          </Badge>
-          <Badge variant="outline" size="sm">
-            Tutorial
-          </Badge>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm">User:</span>
-          <Badge variant="secondary">Premium</Badge>
-          <Badge variant="ghost" size="sm">
-            Admin
-          </Badge>
-        </div>
-        <div className="flex items-center gap-2">
-          <span className="text-sm">Issue:</span>
-          <Badge variant="destructive">Critical</Badge>
-          <Badge variant="outline" size="sm">
-            Bug
-          </Badge>
-          <Badge variant="ghost" size="sm">
-            P1
-          </Badge>
-        </div>
-      </div>
-    </PreviewContainer>
-  </Tab>
-  <Tab value="Code">
-    ```tsx
-    <div className="space-y-4">
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Article:</span>
-        <Badge variant="default">Published</Badge>
-        <Badge variant="secondary" size="sm">
-          React
-        </Badge>
-        <Badge variant="outline" size="sm">
-          Tutorial
-        </Badge>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm">User:</span>
-        <Badge variant="secondary">Premium</Badge>
-        <Badge variant="ghost" size="sm">
-          Admin
-        </Badge>
-      </div>
-      <div className="flex items-center gap-2">
-        <span className="text-sm">Issue:</span>
-        <Badge variant="destructive">Critical</Badge>
-        <Badge variant="outline" size="sm">
-          Bug
-        </Badge>
-        <Badge variant="ghost" size="sm">
-          P1
-        </Badge>
-      </div>
-    </div>
-    ```
-  </Tab>
-</Tabs>
 
 ## Props
 
