@@ -5,7 +5,7 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const cardVariants = cva(
-  "relative rounded-card bg-card text-card-foreground transition-all duration-300 ease-out overflow-hidden ",
+  "relative rounded-card bg-card text-card-foreground transition-all duration-300 ease-out overflow-hidden",
   {
     variants: {
       variant: {
@@ -48,7 +48,7 @@ const CardHeader = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <div
     ref={ref}
-    className={cn("flex flex-col space-y-2", className)}
+    className={cn("flex flex-col gap-2", className)}
     {...props}
   />
 ));
@@ -85,7 +85,7 @@ const CardContent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
 >(({ className, ...props }, ref) => (
-  <div ref={ref} className={cn("space-y-4", className)} {...props} />
+  <div ref={ref} className={cn("flex flex-col gap-4", className)} {...props} />
 ));
 CardContent.displayName = "CardContent";
 
