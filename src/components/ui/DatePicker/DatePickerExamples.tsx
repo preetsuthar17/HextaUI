@@ -180,7 +180,7 @@ export function DatePickerCustomFormatExample() {
   };
 
   return (
-    <div className="w-full max-w-xs">
+    <div className="w-[20rem]">
       <DatePicker
         value={date}
         onChange={setDate}
