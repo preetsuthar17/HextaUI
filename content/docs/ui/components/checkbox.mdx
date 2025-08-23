@@ -1,6 +1,9 @@
 ---
 title: Checkbox
 description: A customizable checkbox component with smooth animations and multiple states.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/checkbox
+  api: https://www.radix-ui.com/docs/primitives/components/checkbox#api-reference
 ---
 
 import { PreviewContainer } from "@/components/PreviewContainer";
@@ -64,7 +67,6 @@ import * as React from "react";
 import * as CheckboxPrimitive from "@radix-ui/react-checkbox";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { motion, AnimatePresence } from "motion/react";
 
 const checkboxVariants = cva(
   "peer shrink-0 rounded-sm border border-border focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=checked]:text-primary-foreground data-[state=checked]:border-primary data-[state=indeterminate]:bg-primary data-[state=indeterminate]:text-primary-foreground data-[state=indeterminate]:border-primary bg-accent text-foreground  focus-visible:ring-offset-background focus-visible:ring-offset-2 transition-colors ",
@@ -93,13 +95,9 @@ interface CheckboxProps
 const CheckboxRoot = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
->(({ className, size, label, description, error, id, ...props }, ref) => {
+>(({ className, size, label, description, error, id, disabled, ...props }, ref) => {
   const checkboxId = id || React.useId();
   const iconSize = size === "sm" ? 10 : size === "lg" ? 14 : 12;
-
-  // Custom SVG check path for drawing animation
-  const checkPath = "M3 6l3 3 6-6";
-  const minusPath = "M3 6h8";
 
   return (
     <div className="flex flex-col gap-1">
@@ -108,62 +106,41 @@ const CheckboxRoot = React.forwardRef<
           ref={ref}
           id={checkboxId}
           className={cn(checkboxVariants({ size }), className)}
+          disabled={disabled}
           {...props}
         >
           <CheckboxPrimitive.Indicator asChild>
             <div className="flex items-center justify-center text-current">
-              <AnimatePresence mode="wait">
-                {props.checked === "indeterminate" ? (
-                  <motion.svg
-                    key="indeterminate"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.1 }}
-                  >
-                    <motion.path
-                      d={minusPath}
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{ duration: 0.3, ease: "easeInOut" }}
-                    />
-                  </motion.svg>
-                ) : (
-                  <motion.svg
-                    key="check"
-                    width={iconSize}
-                    height={iconSize}
-                    viewBox="0 0 14 14"
-                    fill="none"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.1 }}
-                  >
-                    <motion.path
-                      d={checkPath}
-                      stroke="currentColor"
-                      strokeWidth={2}
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      initial={{ pathLength: 0 }}
-                      animate={{ pathLength: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        ease: "easeInOut",
-                        delay: 0.1,
-                      }}
-                    />
-                  </motion.svg>
-                )}
-              </AnimatePresence>
+              {props.checked === "indeterminate" ? (
+                <svg
+                  width={iconSize}
+                  height={iconSize}
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path
+                    d="M3 6h8"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                  />
+                </svg>
+              ) : (
+                <svg
+                  width={iconSize}
+                  height={iconSize}
+                  viewBox="0 0 14 14"
+                  fill="none"
+                >
+                  <path
+                    d="M3 6l3 3 6-6"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              )}
             </div>
           </CheckboxPrimitive.Indicator>
         </CheckboxPrimitive.Root>
@@ -174,14 +151,19 @@ const CheckboxRoot = React.forwardRef<
               <label
                 htmlFor={checkboxId}
                 className={cn(
-                  "text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer",
+                  "text-sm leading-none cursor-pointer",
+                  disabled && "opacity-70 cursor-not-allowed"
                 )}
+                aria-disabled={disabled ? true : undefined}
               >
                 {label}
               </label>
             )}
             {description && (
-              <p className="text-xs text-muted-foreground peer-disabled:opacity-70">
+              <p className={cn(
+                "text-xs text-muted-foreground",
+                disabled && "opacity-70"
+              )}>
                 {description}
               </p>
             )}
@@ -189,18 +171,13 @@ const CheckboxRoot = React.forwardRef<
         )}
       </div>
 
-      {error && (
-        <p className="text-xs text-destructive ml-6">
-          {error}
-        </p>
-      )}
+      {error && <p className="text-xs text-destructive ms-6">{error}</p>}
     </div>
   );
 });
 
 CheckboxRoot.displayName = "Checkbox";
 
-// Simple wrapper that maintains the same API
 const Checkbox = React.forwardRef<
   React.ElementRef<typeof CheckboxPrimitive.Root>,
   CheckboxProps
