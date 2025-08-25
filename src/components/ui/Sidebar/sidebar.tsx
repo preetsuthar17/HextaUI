@@ -4,7 +4,7 @@ import * as React from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight, type LucideIcon } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
@@ -91,9 +91,13 @@ const SidebarContext = React.createContext<{
   activeItem?: string;
   onItemClick?: (item: { id: string; label: string; href?: string }) => void;
   sidebarId: string;
+  labelsVisible: boolean;
+  iconsCentered: boolean;
 }>({
   collapsed: false,
   sidebarId: "",
+  labelsVisible: false,
+  iconsCentered: false,
 });
 
 const useSidebar = () => {
@@ -122,6 +126,8 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     ref,
   ) => {
     const [internalCollapsed, setInternalCollapsed] = React.useState(false);
+    const [labelsVisible, setLabelsVisible] = React.useState(false);
+    const [iconsCentered, setIconsCentered] = React.useState(false);
     const [activeItem, setActiveItem] = React.useState<string>();
     const sidebarRef = React.useRef<HTMLDivElement>(null);
     const sidebarId = React.useId();
@@ -130,12 +136,36 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
     React.useImperativeHandle(ref, () => sidebarRef.current!);
 
+    const collapseTimersRef = React.useRef<number[]>([]);
+
+    const clearCollapseTimers = () => {
+      collapseTimersRef.current.forEach((t) => window.clearTimeout(t));
+      collapseTimersRef.current = [];
+    };
+
     const handleToggleCollapse = () => {
-      const newCollapsed = !collapsed;
-      if (onCollapsedChange) {
-        onCollapsedChange(newCollapsed);
+      const nextCollapsed = !collapsed;
+      clearCollapseTimers();
+      if (nextCollapsed) {
+        setIconsCentered(true);
+        setLabelsVisible(true);
+        if (onCollapsedChange) {
+          onCollapsedChange(true);
+        } else {
+          setInternalCollapsed(true);
+        }
+        const t = window.setTimeout(() => {
+          setLabelsVisible(false);
+        }, 150);
+        collapseTimersRef.current.push(t);
       } else {
-        setInternalCollapsed(newCollapsed);
+        setIconsCentered(false);
+        setLabelsVisible(true);
+        if (onCollapsedChange) {
+          onCollapsedChange(false);
+        } else {
+          setInternalCollapsed(false);
+        }
       }
     };
 
@@ -147,7 +177,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       setActiveItem(item.id);
     };
 
-    // Auto-collapse on mobile
     React.useEffect(() => {
       const handleResize = () => {
         if (window.innerWidth < 768 && !collapsed) {
@@ -161,7 +190,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       return () => window.removeEventListener("resize", handleResize);
     }, [collapsed]);
 
-    // Keyboard navigation support
     React.useEffect(() => {
       const handleKeyDown = (event: KeyboardEvent) => {
         if (event.key === "Escape" && overlay && !collapsed) {
@@ -175,11 +203,9 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
       }
     }, [overlay, collapsed, onOverlayClick]);
 
-    // Focus management for better keyboard navigation accessibility
     const focusableElementsRef = React.useRef<HTMLElement[]>([]);
 
     React.useEffect(() => {
-      // Update focusable elements when sidebar state changes
       const updateFocusableElements = () => {
         if (sidebarRef.current) {
           const elements = sidebarRef.current.querySelectorAll(
@@ -191,12 +217,10 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
       updateFocusableElements();
 
-      // Re-scan when collapsed state changes
       const timeoutId = setTimeout(updateFocusableElements, 300);
       return () => clearTimeout(timeoutId);
     }, [collapsed]);
 
-    // Extract header, body and footer from children
     const headerChild = React.Children.toArray(children).find(
       (child) => React.isValidElement(child) && child.type === SidebarHeader,
     );
@@ -214,6 +238,8 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           activeItem,
           onItemClick: handleItemClick,
           sidebarId,
+          labelsVisible,
+          iconsCentered,
         }}
       >
         {" "}
@@ -262,7 +288,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
           {(headerChild || collapsible) && (
             <div className={cn(sidebarHeaderVariants({ collapsed }))}>
               {collapsed ? (
-                // Show only toggle button when collapsed
                 collapsible && (
                   <Button
                     variant="ghost"
@@ -277,7 +302,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
                   </Button>
                 )
               ) : (
-                // Show header content and toggle button when expanded
                 <>
                   <AnimatePresence mode="wait">
                     {headerChild && (
@@ -311,10 +335,8 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
             </div>
           )}
 
-          {/* Body */}
           {bodyChild}
 
-          {/* Footer */}
           {footerChild && (
             <div
               className={cn(
@@ -331,7 +353,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
     if (overlay) {
       return (
         <>
-          {/* Overlay */}
           <AnimatePresence>
             {!collapsed && (
               <motion.div
@@ -357,7 +378,6 @@ const Sidebar = React.forwardRef<HTMLDivElement, SidebarProps>(
 
 Sidebar.displayName = "Sidebar";
 
-// SidebarBody component
 interface SidebarBodyProps {
   children: React.ReactNode;
   className?: string;
@@ -379,11 +399,12 @@ const SidebarBody: React.FC<SidebarBodyProps> = ({ children, className }) => {
   );
 };
 
-// SidebarItem component
+type SidebarIcon = React.ElementType | React.ReactNode;
+
 interface SidebarItemProps {
   id: string;
   label: string;
-  icon?: LucideIcon;
+  icon?: SidebarIcon;
   href?: string;
   badge?: React.ReactNode;
   children?: React.ReactNode;
@@ -403,7 +424,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   onClick,
   className,
 }) => {
-  const { collapsed, activeItem, onItemClick } = useSidebar();
+  const { collapsed, activeItem, onItemClick, labelsVisible, iconsCentered } = useSidebar();
   const [expanded, setExpanded] = React.useState(false);
   const isActive = activeItem === id;
   const hasChildren = React.Children.count(children) > 0;
@@ -437,22 +458,28 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
 
   const ItemContent = (
     <>
-      {/* Static icon positioned always in the center-left area */}
       <div
         className={cn(
-          "flex items-center justify-center shrink-0",
-          collapsed ? "w-10 h-10" : "w-4 h-4 ms-0",
+          "flex items-center justify-center shrink-0 transition-all",
+          collapsed && iconsCentered ? "w-10 h-10" : "w-4 h-4 ms-0",
         )}
         aria-hidden="true"
       >
-        {Icon && <Icon size={16} />}
+        {Icon && (
+          React.isValidElement(Icon)
+            ? Icon
+            : (() => {
+                const Comp = Icon as React.ElementType;
+                return <Comp size={16} />;
+              })()
+        )}
       </div>
 
-      {/* Text - simple conditional rendering, no animation */}
-      {!collapsed && <span className="ms-3 truncate flex-1">{label}</span>}
+      {(!collapsed || labelsVisible) && (
+        <span className={cn("ms-3 truncate flex-1 transition-opacity", collapsed && !labelsVisible ? "opacity-0" : "opacity-100")}>{label}</span>
+      )}
 
-      {/* Badge and chevron */}
-      {!collapsed && (badge || hasChildren) && (
+      {(!collapsed || labelsVisible) && (badge || hasChildren) && (
         <div className="flex items-center gap-2 ms-2">
           {badge}
           {hasChildren && (
@@ -468,8 +495,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
         </div>
       )}
 
-      {/* Tooltip for collapsed state */}
-      {collapsed && (
+      {collapsed && !labelsVisible && (
         <div
           className="absolute start-full ms-2 px-2 py-1 bg-[hsl(var(--hu-popover))] text-[hsl(var(--hu-popover-foreground))] text-xs rounded-ele border border-border opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50"
           role="tooltip"
@@ -569,7 +595,6 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
   );
 };
 
-// Sidebar content wrapper for responsive behavior
 export interface SidebarContentProps {
   children: React.ReactNode;
   sidebarCollapsed?: boolean;
@@ -621,7 +646,7 @@ const SidebarContent: React.FC<SidebarContentProps> = ({
   );
 };
 
-// Utility components
+
 const SidebarHeader: React.FC<{
   children: React.ReactNode;
   className?: string;
