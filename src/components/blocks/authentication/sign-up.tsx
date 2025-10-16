@@ -3,6 +3,7 @@
 import { CheckCircle, Eye, EyeOff, Lock, Mail, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Button } from "@/components/ui/button";
 import {
@@ -14,7 +15,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Input } from "@/components/ui/input";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+} from "@/components/ui/input-group";
 import { Label } from "@/components/ui/label";
 import { Spinner } from "@/components/ui/spinner";
 
@@ -103,18 +109,10 @@ function FormField({
       <Label htmlFor={id}>
         {label} <span className="text-destructive">*</span>
       </Label>
-      <div className="relative">
-        {icon && (
-          <div className="-translate-y-1/2 absolute top-1/2 left-3 size-4 text-muted-foreground">
-            {icon}
-          </div>
-        )}
-        <Input
+      <InputGroup aria-invalid={error ? true : undefined}>
+        <InputGroupInput
           aria-describedby={error ? `${id}-error` : undefined}
           autoComplete={autoComplete}
-          className={`${icon ? "pl-10" : ""} ${showPasswordToggle ? "pr-10" : ""} ${
-            error ? "border-destructive" : ""
-          }`}
           disabled={disabled}
           id={id}
           onChange={(e) => onChange(e.target.value)}
@@ -122,29 +120,31 @@ function FormField({
           type={type}
           value={value}
         />
-        {showPasswordToggle && (
-          <Button
-            aria-label={showPassword ? "Hide password" : "Show password"}
-            className="absolute top-0 right-0 h-full px-3 py-0 hover:bg-transparent"
-            disabled={disabled}
-            onClick={onTogglePassword}
-            size="icon"
-            type="button"
-            variant="ghost"
-          >
-            {showPassword ? (
-              <EyeOff className="size-4" />
-            ) : (
-              <Eye className="size-4" />
-            )}
-          </Button>
-        )}
-      </div>
-      {error && (
+        {icon ? (
+          <InputGroupAddon align="inline-start">{icon}</InputGroupAddon>
+        ) : null}
+        {showPasswordToggle ? (
+          <InputGroupAddon align="inline-end">
+            <InputGroupButton
+              aria-label={showPassword ? "Hide password" : "Show password"}
+              onClick={onTogglePassword}
+              size="icon-xs"
+              variant="ghost"
+            >
+              {showPassword ? (
+                <EyeOff className="size-4" />
+              ) : (
+                <Eye className="size-4" />
+              )}
+            </InputGroupButton>
+          </InputGroupAddon>
+        ) : null}
+      </InputGroup>
+      {error ? (
         <p className="text-destructive text-sm" id={`${id}-error`}>
           {error}
         </p>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -157,7 +157,7 @@ function SuccessState({ onReset }: { onReset: () => void }) {
           <div className="flex size-12 items-center justify-center rounded-full bg-green-100 dark:bg-green-900/20">
             <CheckCircle className="size-6 text-green-600 dark:text-green-400" />
           </div>
-          <CardTitle className="text-center font-bold text-2xl text-green-700 dark:text-green-400">
+          <CardTitle className="text-center font-semibold text-2xl text-green-700 tracking-tight dark:text-green-400">
             Account created!
           </CardTitle>
           <CardDescription className="text-center text-muted-foreground">
@@ -243,7 +243,9 @@ export default function SignUpBlock() {
   return (
     <Card className="mx-auto w-full max-w-md gap-8 shadow-none">
       <CardHeader className="text-center">
-        <CardTitle className="font-bold text-2xl">Create Account</CardTitle>
+        <CardTitle className="font-bold text-2xl tracking-tight">
+          Create Account
+        </CardTitle>
         <CardDescription>
           Enter your information to create a new account
         </CardDescription>
@@ -376,6 +378,7 @@ export default function SignUpBlock() {
             </div>
           </div>
         </CardContent>
+
         <CardFooter className="flex flex-col gap-4">
           <Button className="w-full" disabled={isLoading} type="submit">
             {isLoading ? (
@@ -393,7 +396,7 @@ export default function SignUpBlock() {
               Already have an account?{" "}
               <Link
                 className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
-                href="#"
+                href="/sign-in"
               >
                 Sign In
               </Link>
