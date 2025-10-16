@@ -9,22 +9,22 @@ export default function Home() {
   return (
     <div className="font-sans">
       <main
-        className="min-h-screen px-4 py-10 flex items-center justify-center bg-background"
+        className="flex min-h-screen items-center justify-center bg-background px-4 py-10"
         id="main-content"
       >
         <section
-          className="w-full max-w-4xl grid grid-cols-1 md:grid-cols-2 gap-4"
           aria-label="Authentication Area"
+          className="grid w-full max-w-4xl grid-cols-1 gap-4 md:grid-cols-2"
         >
           <div className="flex flex-col gap-4">
-              <SignUpBlock />
-              <SignInBlock />
-              <AuthWithSocialBlock />
-            </div>
+            <SignUpBlock />
+            <SignInBlock />
+            <AuthWithSocialBlock />
+          </div>
           <div className="flex flex-col gap-4">
-              <PasswordResetBlock />
-              <PasswordUpdateBlock />
-              <TwoFactorAuthBlock />
+            <PasswordResetBlock />
+            <PasswordUpdateBlock />
+            <TwoFactorAuthBlock />
           </div>
         </section>
       </main>
