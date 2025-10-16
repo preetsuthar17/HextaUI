@@ -1,72 +1,46 @@
-"use client";
+import * as React from "react"
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
 
-import * as React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/lib/utils";
-import { type LucideIcon } from "lucide-react";
+import { cn } from "@/lib/utils"
 
 const badgeVariants = cva(
-  "flex items-center justify-center gap-1.5 rounded-ele border text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 w-fit",
+  "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
   {
     variants: {
       variant: {
         default:
-          "border-transparent bg-primary text-primary-foreground hover:bg-primary/80 focus-visible:ring-ring ",
+          "border-transparent bg-primary text-primary-foreground [a&]:hover:bg-primary/90",
         secondary:
-          "border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80 focus-visible:ring-ring",
+          "border-transparent bg-secondary text-secondary-foreground [a&]:hover:bg-secondary/90",
         destructive:
-          "border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80 focus-visible:ring-destructive ",
+          "border-transparent bg-destructive text-white [a&]:hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:focus-visible:ring-destructive/40 dark:bg-destructive/60",
         outline:
-          "border-border text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring ",
-        ghost:
-          "border-transparent text-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring",
-      },
-      size: {
-        sm: "h-5 px-2",
-        default: "h-6 px-2.5",
-        lg: "h-7 px-3 text-sm",
-        icon: "h-6 w-6 p-0",
+          "text-foreground [a&]:hover:bg-accent [a&]:hover:text-accent-foreground",
       },
     },
     defaultVariants: {
       variant: "default",
-      size: "default",
     },
-  },
-);
-
-export interface BadgeProps
-  extends React.HTMLAttributes<HTMLSpanElement>,
-    VariantProps<typeof badgeVariants> {
-  icon?: LucideIcon;
-  iconPosition?: "left" | "right";
-}
+  }
+)
 
 function Badge({
   className,
   variant,
-  size,
-  icon: Icon,
-  iconPosition = "left",
-  children,
+  asChild = false,
   ...props
-}: BadgeProps) {
-  const iconSize = size === "sm" ? 12 : size === "lg" ? 14 : 12;
+}: React.ComponentProps<"span"> &
+  VariantProps<typeof badgeVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "span"
 
   return (
-    <span
-      className={cn(badgeVariants({ variant, size }), className)}
+    <Comp
+      data-slot="badge"
+      className={cn(badgeVariants({ variant }), className)}
       {...props}
-    >
-      {Icon && iconPosition === "left" && (
-        <Icon size={iconSize} className="shrink-0" />
-      )}
-      {children}
-      {Icon && iconPosition === "right" && (
-        <Icon size={iconSize} className="shrink-0" />
-      )}
-    </span>
-  );
+    />
+  )
 }
 
-export { Badge, badgeVariants };
+export { Badge, badgeVariants }
