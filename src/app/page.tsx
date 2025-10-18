@@ -8,12 +8,17 @@ import MessageConversation from "@/components/blocks/messaging/message-conversat
 import MessageInput from "@/components/blocks/messaging/message-input";
 import MessagingBlock from "@/components/blocks/messaging/messaging-block";
 import PeopleList from "@/components/blocks/messaging/people-list";
+import GeneralSettings from "@/components/blocks/settings/general-settings";
+import NotificationSettings from "@/components/blocks/settings/notification-settings";
+import ProfileSettings from "@/components/blocks/settings/profile-settings";
+
+import { Separator } from "@/components/ui/separator";
 
 export default function Home() {
   return (
     <div className="font-sans">
       <main
-        className="flex flex-col items-center justify-center gap-12 bg-background px-4 py-10"
+        className="flex flex-col items-center justify-center gap-24 bg-background px-4 py-10"
         id="main-content"
       >
         <section
@@ -31,17 +36,27 @@ export default function Home() {
             <TwoFactorAuthBlock />
           </div>
         </section>
+        <Separator />
         <section
           aria-label="Messaging Area"
-          className="grid w-full max-w-4xl grid-rows-1 gap-4 md:grid-rows-2"
+          className="grid w-full max-w-4xl grid-rows-1 gap-4"
         >
           <div className="flex flex-col gap-4">
             <MessageInput />
             <PeopleList />
-            <MessageConversation />
-          </div>
-          <div className="flex flex-col gap-4">
+            <MessageConversation className="h-fit" />
             <MessagingBlock />
+          </div>
+        </section>
+        <Separator />
+        <section
+          aria-label="Settings Area"
+          className="grid w-full max-w-4xl grid-rows-1 gap-12"
+        >
+          <div className="flex flex-col gap-12">
+            <ProfileSettings />
+            <GeneralSettings />
+            <NotificationSettings />
           </div>
         </section>
       </main>
