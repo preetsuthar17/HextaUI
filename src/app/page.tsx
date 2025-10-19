@@ -8,7 +8,10 @@ import MessageConversation from "@/components/blocks/messaging/message-conversat
 import MessageInput from "@/components/blocks/messaging/message-input";
 import MessagingBlock from "@/components/blocks/messaging/messaging-block";
 import PeopleList from "@/components/blocks/messaging/people-list";
+import ApiSettings from "@/components/blocks/settings/api-settings";
 import GeneralSettings from "@/components/blocks/settings/general-settings";
+import IntegrationsSettings from "@/components/blocks/settings/integrations-settings";
+import NotificationSettings from "@/components/blocks/settings/notification-settings";
 import ProfileSettings from "@/components/blocks/settings/profile-settings";
 
 import { Separator } from "@/components/ui/separator";
@@ -55,6 +58,9 @@ export default function Home() {
           <div className="flex flex-col gap-12">
             <ProfileSettings />
             <GeneralSettings />
+            <NotificationSettings />
+            <ApiSettings />
+            <IntegrationsSettings />
           </div>
         </section>
       </main>
