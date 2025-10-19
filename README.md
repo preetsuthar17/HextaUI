@@ -1,39 +1,36 @@
-# 🌟 Build Stunning Websites Effortlessly
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-**HextaUI** provides modern, responsive, and customizable UI components. Copy, adapt, and personalize them to build beautiful web interfaces with ease.
+## Getting Started
 
-![Repobeats analytics image](https://repobeats.axiom.co/api/embed/5cd513309dd1bc807edd35a7da0044e27506ed5e.svg)
+First, run the development server:
 
-## Changelogs
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-For detailed changes, please refer to our [Changelog](https://hextaui.com/docs/ui/getting-started/changelog)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Roadmap
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-For upcoming features and improvements, check out our [Roadmap](https://hextaui.com/docs/ui/getting-started/roadmap)
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Contributing
+## Learn More
 
-We welcome contributions! Please read our [Contribution Guidelines](https://hextaui.com/docs/getting-started/contributing)
+To learn more about Next.js, take a look at the following resources:
 
-## Contributors
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-<a href="https://github.com/preetsuthar17/hextaui/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=preetsuthar17/hextaui" />
-</a>
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-Made with [contrib.rocks](https://contrib.rocks).
+## Deploy on Vercel
 
-## 📜 License
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-This project is licensed under the [MIT License](https://github.com/preetsuthar17/HextaUI/blob/master/LICENSE).
-
-## ⭐ Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=preetsuthar17/HextaUI&type=Date)](https://star-history.com/#preetsuthar17/HextaUI&Date)
-
-## GitAds Sponsored
-
-[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=preetsuthar17/hextaui@github)](https://gitads.dev/v1/ad-track?source=preetsuthar17/hextaui@github)
-
-<!-- GitAds-Verify: 792PHUGPEJW7IBUPHP4KQV182HP3YZCB -->
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
