@@ -140,7 +140,7 @@ const ConditionalField = ({
     <div
       aria-hidden="false"
       aria-label="Additional settings"
-      className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5"
+      className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5"
       role="region"
     >
       {children}

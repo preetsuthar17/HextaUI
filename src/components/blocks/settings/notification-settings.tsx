@@ -381,7 +381,7 @@ export default function NotificationSettings({
             />
 
             <ConditionalField condition={notificationData.email.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="email-frequency">Email Frequency</Label>
                   <p
@@ -535,7 +535,7 @@ export default function NotificationSettings({
                 notificationData.push.mobile || notificationData.push.desktop
               }
             >
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-col gap-6">
                   <SwitchField
                     checked={notificationData.push.marketing}
@@ -607,7 +607,7 @@ export default function NotificationSettings({
             />
 
             <ConditionalField condition={notificationData.inApp.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-col gap-6">
                   <SwitchField
                     checked={notificationData.inApp.comments}
@@ -735,7 +735,7 @@ export default function NotificationSettings({
             />
 
             <ConditionalField condition={notificationData.quietHours.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-wrap gap-4">
                   <div className="flex w-full grow flex-col gap-3 sm:w-auto">
                     <Label htmlFor="quietStart">Start Time</Label>

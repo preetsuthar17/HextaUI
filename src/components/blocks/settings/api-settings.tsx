@@ -672,7 +672,7 @@ export default function ApiSettings({
             />
 
             <ConditionalField condition={apiData.keys.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="maxKeys">Maximum Keys</Label>
                   <Input
@@ -743,7 +743,7 @@ export default function ApiSettings({
                 />
 
                 <ConditionalField condition={apiData.keys.rotationEnabled}>
-                  <div className="ml-3flex flex-col gap-3">
+                  <div className="ml-3 flex flex-col gap-3">
                     <Label htmlFor="rotationInterval">Rotation Interval</Label>
                     <Select
                       onValueChange={(value) =>
@@ -807,7 +807,7 @@ export default function ApiSettings({
             />
 
             <ConditionalField condition={apiData.rateLimits.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-3">
                     <Label htmlFor="requestsPerMinute">
@@ -949,7 +949,7 @@ export default function ApiSettings({
             />
 
             <ConditionalField condition={apiData.webhooks.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div className="flex flex-col gap-3">
                     <Label htmlFor="maxEndpoints">Maximum Endpoints</Label>
@@ -1091,7 +1091,7 @@ export default function ApiSettings({
             />
 
             <ConditionalField condition={apiData.sdk.enabled}>
-              <div className="ml-3flex flex-col gap-6 border-muted border-l-2 pl-5">
+              <div className="ml-3 flex flex-col gap-6 border-muted border-l-2 pl-5">
                 <div className="flex flex-col gap-3">
                   <Label htmlFor="supportedLanguages">
                     Supported Languages
