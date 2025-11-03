@@ -20,7 +20,6 @@ function ContextMenuTrigger({
     <ContextMenuPrimitive.Trigger
       data-slot="context-menu-trigger"
       className={cn("touch-manipulation", className)}
-      type="button"
       {...props}
     />
   )
