@@ -92,7 +92,6 @@ const Field = React.forwardRef<
   return (
     <div
       aria-disabled={(props as any)["data-disabled"] ? true : undefined}
-      aria-invalid={(props as any)["data-invalid"] ? true : undefined}
       className={cn(fieldVariants({ orientation }), className)}
       data-orientation={orientation}
       data-slot="field"

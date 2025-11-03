@@ -14,7 +14,6 @@ const InputGroup = React.forwardRef<
   return (
     <div
       aria-disabled={(props as any)["data-disabled"] ? true : undefined}
-      aria-invalid={(props as any)["aria-invalid"] ? true : undefined}
       className={cn(
         "group/input-group relative flex w-full touch-manipulation items-center rounded-md border border-input shadow-xs outline-none transition-[color,box-shadow] dark:bg-input/30",
         "h-9 min-w-0 has-[>textarea]:h-auto",
