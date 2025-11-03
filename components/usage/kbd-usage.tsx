@@ -1,4 +1,4 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { Kbd, KbdGroup } from "@/components/ui/kbd";
 
 export function KbdDemo() {
   return (
@@ -15,5 +15,5 @@ export function KbdDemo() {
         <Kbd>B</Kbd>
       </KbdGroup>
     </div>
-  )
+  );
 }

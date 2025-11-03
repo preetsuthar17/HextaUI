@@ -1,6 +1,5 @@
-"use client"
+"use client";
 
-import * as React from "react"
 import {
   ArchiveIcon,
   ArrowLeftIcon,
@@ -11,10 +10,11 @@ import {
   MoreHorizontalIcon,
   TagIcon,
   Trash2Icon,
-} from "lucide-react"
+} from "lucide-react";
+import * as React from "react";
 
-import { Button } from "@/components/ui/button"
-import { ButtonGroup } from "@/components/ui/button-group"
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,15 +27,15 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 
 export function ButtonGroupDemo() {
-  const [label, setLabel] = React.useState("personal")
+  const [label, setLabel] = React.useState("personal");
 
   return (
     <ButtonGroup>
       <ButtonGroup className="hidden sm:flex">
-        <Button variant="outline" size="icon" aria-label="Go Back">
+        <Button aria-label="Go Back" size="icon" variant="outline">
           <ArrowLeftIcon />
         </Button>
       </ButtonGroup>
@@ -47,7 +47,7 @@ export function ButtonGroupDemo() {
         <Button variant="outline">Snooze</Button>
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="outline" size="icon" aria-label="More Options">
+            <Button aria-label="More Options" size="icon" variant="outline">
               <MoreHorizontalIcon />
             </Button>
           </DropdownMenuTrigger>
@@ -83,8 +83,8 @@ export function ButtonGroupDemo() {
                 </DropdownMenuSubTrigger>
                 <DropdownMenuSubContent>
                   <DropdownMenuRadioGroup
-                    value={label}
                     onValueChange={setLabel}
+                    value={label}
                   >
                     <DropdownMenuRadioItem value="personal">
                       Personal
@@ -110,5 +110,5 @@ export function ButtonGroupDemo() {
         </DropdownMenu>
       </ButtonGroup>
     </ButtonGroup>
-  )
+  );
 }

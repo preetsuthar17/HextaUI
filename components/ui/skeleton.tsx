@@ -1,21 +1,21 @@
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 const Skeleton = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
   function Skeleton({ className, ...props }, ref) {
     return (
       <div
-        ref={ref}
-        data-slot="skeleton"
+        aria-hidden="true"
         className={cn(
-          "bg-accent animate-pulse motion-reduce:animate-none rounded-md",
+          "animate-pulse rounded-md bg-accent motion-reduce:animate-none",
           className
         )}
-        aria-hidden="true"
+        data-slot="skeleton"
+        ref={ref}
         {...props}
       />
-    )
+    );
   }
-)
+);
 
-export { Skeleton }
+export { Skeleton };

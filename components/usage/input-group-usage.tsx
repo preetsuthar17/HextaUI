@@ -1,12 +1,12 @@
-import { IconCheck, IconInfoCircle, IconPlus } from "@tabler/icons-react"
-import { ArrowUpIcon, Search } from "lucide-react"
+import { IconCheck, IconInfoCircle, IconPlus } from "@tabler/icons-react";
+import { ArrowUpIcon, Search } from "lucide-react";
 
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
 import {
   InputGroup,
   InputGroupAddon,
@@ -14,13 +14,13 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/components/ui/input-group"
-import { Separator } from "@/components/ui/separator"
+} from "@/components/ui/input-group";
+import { Separator } from "@/components/ui/separator";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"
+} from "@/components/ui/tooltip";
 
 export function InputGroupDemo() {
   return (
@@ -33,7 +33,7 @@ export function InputGroupDemo() {
         <InputGroupAddon align="inline-end">12 results</InputGroupAddon>
       </InputGroup>
       <InputGroup>
-        <InputGroupInput placeholder="example.com" className="pl-1!" />
+        <InputGroupInput className="pl-1!" placeholder="example.com" />
         <InputGroupAddon>
           <InputGroupText>https://</InputGroupText>
         </InputGroupAddon>
@@ -52,9 +52,9 @@ export function InputGroupDemo() {
         <InputGroupTextarea placeholder="Ask, Search or Chat..." />
         <InputGroupAddon align="block-end">
           <InputGroupButton
-            variant="outline"
             className="rounded-full"
             size="icon-xs"
+            variant="outline"
           >
             <IconPlus />
           </InputGroupButton>
@@ -63,9 +63,9 @@ export function InputGroupDemo() {
               <InputGroupButton variant="ghost">Auto</InputGroupButton>
             </DropdownMenuTrigger>
             <DropdownMenuContent
-              side="top"
               align="start"
               className="[--radius:0.95rem]"
+              side="top"
             >
               <DropdownMenuItem>Auto</DropdownMenuItem>
               <DropdownMenuItem>Agent</DropdownMenuItem>
@@ -73,12 +73,12 @@ export function InputGroupDemo() {
             </DropdownMenuContent>
           </DropdownMenu>
           <InputGroupText className="ml-auto">52% used</InputGroupText>
-          <Separator orientation="vertical" className="h-4!" />
+          <Separator className="h-4!" orientation="vertical" />
           <InputGroupButton
-            variant="default"
             className="rounded-full"
-            size="icon-xs"
             disabled
+            size="icon-xs"
+            variant="default"
           >
             <ArrowUpIcon />
             <span className="sr-only">Send</span>
@@ -88,11 +88,11 @@ export function InputGroupDemo() {
       <InputGroup>
         <InputGroupInput placeholder="@shadcn" />
         <InputGroupAddon align="inline-end">
-          <div className="bg-primary text-primary-foreground flex size-4 items-center justify-center rounded-full">
+          <div className="flex size-4 items-center justify-center rounded-full bg-primary text-primary-foreground">
             <IconCheck className="size-3" />
           </div>
         </InputGroupAddon>
       </InputGroup>
     </div>
-  )
+  );
 }

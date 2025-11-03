@@ -1,54 +1,55 @@
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 const Empty = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
   function Empty({ className, ...props }, ref) {
     return (
       <div
-        ref={ref}
+        className={cn(
+          "flex min-w-0 flex-1 touch-manipulation flex-col items-center justify-center gap-6 text-balance rounded-lg border-dashed p-6 text-center md:p-12",
+          className
+        )}
         data-slot="empty"
-        className={cn(
-          "flex min-w-0 flex-1 flex-col items-center justify-center gap-6 rounded-lg border-dashed p-6 text-center text-balance md:p-12 touch-manipulation",
-          className
-        )}
-        {...props}
-      />
-    )
-  }
-)
-
-const EmptyHeader = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  function EmptyHeader({ className, ...props }, ref) {
-    return (
-      <div
         ref={ref}
-        data-slot="empty-header"
-        className={cn(
-          "flex max-w-sm flex-col items-center gap-2 text-center",
-          className
-        )}
         {...props}
       />
-    )
+    );
   }
-)
+);
+
+const EmptyHeader = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<"div">
+>(function EmptyHeader({ className, ...props }, ref) {
+  return (
+    <div
+      className={cn(
+        "flex max-w-sm flex-col items-center gap-2 text-center",
+        className
+      )}
+      data-slot="empty-header"
+      ref={ref}
+      {...props}
+    />
+  );
+});
 
 const emptyMediaVariants = cva(
-  "flex shrink-0 items-center justify-center mb-2 [&_svg]:pointer-events-none [&_svg]:shrink-0",
+  "mb-2 flex shrink-0 items-center justify-center [&_svg]:pointer-events-none [&_svg]:shrink-0",
   {
     variants: {
       variant: {
         default: "bg-transparent",
-        icon: "bg-muted text-foreground flex size-10 shrink-0 items-center justify-center rounded-lg [&_svg:not([class*='size-'])]:size-6",
+        icon: "flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-foreground [&_svg:not([class*='size-'])]:size-6",
       },
     },
     defaultVariants: {
       variant: "default",
     },
   }
-)
+);
 
 const EmptyMedia = React.forwardRef<
   HTMLDivElement,
@@ -56,27 +57,28 @@ const EmptyMedia = React.forwardRef<
 >(function EmptyMedia({ className, variant = "default", ...props }, ref) {
   return (
     <div
-      ref={ref}
+      className={cn(emptyMediaVariants({ variant }), className)}
       data-slot="empty-icon"
       data-variant={variant}
-      className={cn(emptyMediaVariants({ variant }), className)}
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
-const EmptyTitle = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
-  function EmptyTitle({ className, ...props }, ref) {
-    return (
-      <div
-        ref={ref}
-        data-slot="empty-title"
-        className={cn("text-lg font-medium tracking-tight", className)}
-        {...props}
-      />
-    )
-  }
-)
+const EmptyTitle = React.forwardRef<
+  HTMLDivElement,
+  React.ComponentProps<"div">
+>(function EmptyTitle({ className, ...props }, ref) {
+  return (
+    <div
+      className={cn("font-medium text-lg tracking-tight", className)}
+      data-slot="empty-title"
+      ref={ref}
+      {...props}
+    />
+  );
+});
 
 const EmptyDescription = React.forwardRef<
   HTMLDivElement,
@@ -84,16 +86,16 @@ const EmptyDescription = React.forwardRef<
 >(function EmptyDescription({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="empty-description"
       className={cn(
-          "text-muted-foreground [&>a:hover]:text-primary text-sm/relaxed [&>a]:underline [&>a]:underline-offset-4 tabular-nums",
+        "text-muted-foreground text-sm/relaxed tabular-nums [&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
         className
       )}
+      data-slot="empty-description"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const EmptyContent = React.forwardRef<
   HTMLDivElement,
@@ -101,16 +103,16 @@ const EmptyContent = React.forwardRef<
 >(function EmptyContent({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="empty-content"
       className={cn(
-          "flex w-full max-w-sm min-w-0 flex-col items-center gap-4 text-sm text-balance tabular-nums",
+        "flex w-full min-w-0 max-w-sm flex-col items-center gap-4 text-balance text-sm tabular-nums",
         className
       )}
+      data-slot="empty-content"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 export {
   Empty,
@@ -119,4 +121,4 @@ export {
   EmptyDescription,
   EmptyContent,
   EmptyMedia,
-}
+};

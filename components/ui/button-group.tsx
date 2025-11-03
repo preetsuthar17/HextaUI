@@ -1,12 +1,11 @@
-import { Slot } from "@radix-ui/react-slot"
-import * as React from "react"
-import { cva, type VariantProps } from "class-variance-authority"
-
-import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
 const buttonGroupVariants = cva(
-  "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2 touch-manipulation",
+  "flex w-fit touch-manipulation items-stretch has-[>[data-slot=button-group]]:gap-2 [&>*]:focus-visible:relative [&>*]:focus-visible:z-10 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1",
   {
     variants: {
       orientation: {
@@ -20,7 +19,7 @@ const buttonGroupVariants = cva(
       orientation: "horizontal",
     },
   }
-)
+);
 
 const ButtonGroup = React.forwardRef<
   HTMLDivElement,
@@ -28,33 +27,33 @@ const ButtonGroup = React.forwardRef<
 >(function ButtonGroup({ className, orientation, ...props }, ref) {
   return (
     <div
+      className={cn(buttonGroupVariants({ orientation }), className)}
+      data-orientation={orientation}
+      data-slot="button-group"
       ref={ref}
       role="group"
-      data-slot="button-group"
-      data-orientation={orientation}
-      className={cn(buttonGroupVariants({ orientation }), className)}
       {...props}
     />
-  )
-})
+  );
+});
 
 const ButtonGroupText = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> & { asChild?: boolean }
 >(function ButtonGroupText({ className, asChild = false, ...props }, ref) {
-  const Comp = asChild ? Slot : "div"
+  const Comp = asChild ? Slot : "div";
 
   return (
     <Comp
-      ref={ref}
       className={cn(
-        "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs min-h-9 touch-manipulation [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 focus-visible:rounded",
+        "flex min-h-9 touch-manipulation items-center gap-2 rounded-md border bg-muted px-4 font-medium text-sm shadow-xs focus-visible:rounded focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50 [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none",
         className
       )}
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 function ButtonGroupSeparator({
   className,
@@ -63,15 +62,15 @@ function ButtonGroupSeparator({
 }: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
-      data-slot="button-group-separator"
-      orientation={orientation}
       className={cn(
-        "bg-input relative m-0! self-stretch data-[orientation=vertical]:h-auto",
+        "relative m-0! self-stretch bg-input data-[orientation=vertical]:h-auto",
         className
       )}
+      data-slot="button-group-separator"
+      orientation={orientation}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -79,4 +78,4 @@ export {
   ButtonGroupSeparator,
   ButtonGroupText,
   buttonGroupVariants,
-}
+};

@@ -12,9 +12,9 @@ import { ContextMenuDemo } from "@/components/usage/context-menu-usage";
 import { DialogDemo } from "@/components/usage/dialog-usage";
 import { DropdownMenuDemo } from "@/components/usage/dropdown-menu-usage";
 import { EmptyDemo } from "@/components/usage/empty-usage";
-import { InputDemo } from "@/components/usage/input-usage";
 import { InputGroupDemo } from "@/components/usage/input-group-usage";
 import { InputOTPDemo } from "@/components/usage/input-otp-usage";
+import { InputDemo } from "@/components/usage/input-usage";
 import { KbdDemo } from "@/components/usage/kbd-usage";
 import { LabelDemo } from "@/components/usage/label-usage";
 import { NativeSelectDemo } from "@/components/usage/native-select-usage";
@@ -31,53 +31,55 @@ import { SliderDemo } from "@/components/usage/slider-usage";
 import { SonnerDemo } from "@/components/usage/sonner-usage";
 import { SpinnerDemo } from "@/components/usage/spinner-usage";
 import { SwitchDemo } from "@/components/usage/switch-usage";
-import { TabsDemo } from "@/components/usage/tabs-usage";
 import { TableDemo } from "@/components/usage/table-usage";
+import { TabsDemo } from "@/components/usage/tabs-usage";
 import { TextareaDemo } from "@/components/usage/textarea-usage";
-import { ToggleDemo } from "@/components/usage/toggle-usage";
 import { ToggleGroupSpacing } from "@/components/usage/toggle-group-usage";
+import { ToggleDemo } from "@/components/usage/toggle-usage";
 import { TooltipDemo } from "@/components/usage/tooltip-usage";
 
 export default function Home() {
-  return <div className="font-sans max-w-4xl mx-auto px-4 flex flex-col gap-12">
-    <AccordionDemo />
-    <AlertDialogDemo/>
-    <AlertDemo/>
-    <AspectRatioDemo/>
-    <AvatarDemo/>
-    <ButtonDemo/>
-    <CalendarDemo/>
-    <CarouselDemo/>
-    <CheckboxDemo/>
-    <CollapsibleDemo/>
-    <ContextMenuDemo/>
-    <DialogDemo/>
-    <DropdownMenuDemo/>
-    <EmptyDemo/>
-    <InputDemo/>
-    <InputGroupDemo/>
-    <InputOTPDemo/>
-    <KbdDemo/>
-    <LabelDemo/>
-    <NativeSelectDemo/>
-    <PaginationDemo/>
-    <ProgressDemo/>
-    <RadioGroupDemo/>
-    <ResizableDemo/>
-    <ScrollAreaDemo/>
-    <SelectDemo/>
-    <SeparatorDemo/>
-    <SheetDemo/>
-    <SkeletonDemo/>
-    <SliderDemo/>
-    <SonnerDemo/>
-    <SpinnerDemo/>
-    <SwitchDemo/>
-    <TabsDemo/>
-    <TableDemo/>
-    <TextareaDemo/>
-    <ToggleDemo/>
-    <ToggleGroupSpacing/>
-      <TooltipDemo/>
-  </div>;
+  return (
+    <div className="mx-auto flex max-w-4xl flex-col gap-12 px-4 font-sans">
+      <AccordionDemo />
+      <AlertDialogDemo />
+      <AlertDemo />
+      <AspectRatioDemo />
+      <AvatarDemo />
+      <ButtonDemo />
+      <CalendarDemo />
+      <CarouselDemo />
+      <CheckboxDemo />
+      <CollapsibleDemo />
+      <ContextMenuDemo />
+      <DialogDemo />
+      <DropdownMenuDemo />
+      <EmptyDemo />
+      <InputDemo />
+      <InputGroupDemo />
+      <InputOTPDemo />
+      <KbdDemo />
+      <LabelDemo />
+      <NativeSelectDemo />
+      <PaginationDemo />
+      <ProgressDemo />
+      <RadioGroupDemo />
+      <ResizableDemo />
+      <ScrollAreaDemo />
+      <SelectDemo />
+      <SeparatorDemo />
+      <SheetDemo />
+      <SkeletonDemo />
+      <SliderDemo />
+      <SonnerDemo />
+      <SpinnerDemo />
+      <SwitchDemo />
+      <TabsDemo />
+      <TableDemo />
+      <TextareaDemo />
+      <ToggleDemo />
+      <ToggleGroupSpacing />
+      <TooltipDemo />
+    </div>
+  );
 }

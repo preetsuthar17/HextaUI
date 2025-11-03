@@ -1,7 +1,7 @@
 import {
   NativeSelect,
   NativeSelectOption,
-} from "@/components/ui/native-select"
+} from "@/components/ui/native-select";
 
 export function NativeSelectDemo() {
   return (
@@ -12,5 +12,5 @@ export function NativeSelectDemo() {
       <NativeSelectOption value="done">Done</NativeSelectOption>
       <NativeSelectOption value="cancelled">Cancelled</NativeSelectOption>
     </NativeSelect>
-  )
+  );
 }

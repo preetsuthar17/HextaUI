@@ -1,7 +1,7 @@
-import { IconFolderCode } from "@tabler/icons-react"
-import { ArrowUpRightIcon } from "lucide-react"
+import { IconFolderCode } from "@tabler/icons-react";
+import { ArrowUpRightIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -9,7 +9,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"
+} from "@/components/ui/empty";
 
 export function EmptyDemo() {
   return (
@@ -31,15 +31,15 @@ export function EmptyDemo() {
         </div>
       </EmptyContent>
       <Button
-        variant="link"
         asChild
         className="text-muted-foreground"
         size="sm"
+        variant="link"
       >
         <a href="#">
           Learn More <ArrowUpRightIcon />
         </a>
       </Button>
     </Empty>
-  )
+  );
 }

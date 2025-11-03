@@ -1,6 +1,6 @@
-import { AlertCircleIcon, BadgeCheckIcon, CheckIcon } from "lucide-react"
+import { BadgeCheckIcon } from "lucide-react";
 
-import { Badge } from "@/components/ui/badge"
+import { Badge } from "@/components/ui/badge";
 
 export function BadgeDemo() {
   return (
@@ -13,8 +13,8 @@ export function BadgeDemo() {
       </div>
       <div className="flex w-full flex-wrap gap-2">
         <Badge
-          variant="secondary"
           className="bg-blue-500 text-white dark:bg-blue-600"
+          variant="secondary"
         >
           <BadgeCheckIcon />
           Verified
@@ -36,5 +36,5 @@ export function BadgeDemo() {
         </Badge>
       </div>
     </div>
-  )
+  );
 }

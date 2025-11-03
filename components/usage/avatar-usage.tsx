@@ -1,43 +1,39 @@
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from "@/components/ui/avatar"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 export function AvatarDemo() {
   return (
     <div className="flex flex-row flex-wrap items-center gap-12">
       <Avatar>
-        <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+        <AvatarImage alt="@shadcn" src="https://github.com/shadcn.png" />
         <AvatarFallback>CN</AvatarFallback>
       </Avatar>
       <Avatar className="rounded-lg">
         <AvatarImage
-          src="https://github.com/evilrabbit.png"
           alt="@evilrabbit"
+          src="https://github.com/evilrabbit.png"
         />
         <AvatarFallback>ER</AvatarFallback>
       </Avatar>
-      <div className="*:data-[slot=avatar]:ring-background flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:grayscale">
+      <div className="-space-x-2 flex *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
         <Avatar>
-          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarImage alt="@shadcn" src="https://github.com/shadcn.png" />
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <Avatar>
           <AvatarImage
-            src="https://github.com/maxleiter.png"
             alt="@maxleiter"
+            src="https://github.com/maxleiter.png"
           />
           <AvatarFallback>LR</AvatarFallback>
         </Avatar>
         <Avatar>
           <AvatarImage
-            src="https://github.com/evilrabbit.png"
             alt="@evilrabbit"
+            src="https://github.com/evilrabbit.png"
           />
           <AvatarFallback>ER</AvatarFallback>
         </Avatar>
       </div>
     </div>
-  )
+  );
 }

@@ -1,24 +1,26 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
-const Table = React.forwardRef<
-  HTMLTableElement,
-  React.ComponentProps<"table">
->(function Table({ className, ...props }, ref) {
-  return (
-    <div data-slot="table-wrapper" className="relative w-full overflow-auto touch-manipulation">
-      <table
-        ref={ref}
-        data-slot="table"
-        className={cn("w-full caption-bottom text-sm", className)}
-        {...props}
-      />
-    </div>
-  )
-})
+const Table = React.forwardRef<HTMLTableElement, React.ComponentProps<"table">>(
+  function Table({ className, ...props }, ref) {
+    return (
+      <div
+        className="relative w-full touch-manipulation overflow-auto"
+        data-slot="table-wrapper"
+      >
+        <table
+          className={cn("w-full caption-bottom text-sm", className)}
+          data-slot="table"
+          ref={ref}
+          {...props}
+        />
+      </div>
+    );
+  }
+);
 
 const TableHeader = React.forwardRef<
   HTMLTableSectionElement,
@@ -26,13 +28,13 @@ const TableHeader = React.forwardRef<
 >(function TableHeader({ className, ...props }, ref) {
   return (
     <thead
-      ref={ref}
+      className={cn("tabular-nums [&_tr]:border-b", className)}
       data-slot="table-header"
-      className={cn("[&_tr]:border-b tabular-nums", className)}
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const TableBody = React.forwardRef<
   HTMLTableSectionElement,
@@ -40,13 +42,13 @@ const TableBody = React.forwardRef<
 >(function TableBody({ className, ...props }, ref) {
   return (
     <tbody
-      ref={ref}
-      data-slot="table-body"
       className={cn("[&_tr:last-child]:border-0", className)}
+      data-slot="table-body"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const TableFooter = React.forwardRef<
   HTMLTableSectionElement,
@@ -54,13 +56,16 @@ const TableFooter = React.forwardRef<
 >(function TableFooter({ className, ...props }, ref) {
   return (
     <tfoot
-      ref={ref}
+      className={cn(
+        "bg-muted/50 font-medium text-foreground tabular-nums",
+        className
+      )}
       data-slot="table-footer"
-      className={cn("bg-muted/50 font-medium text-foreground tabular-nums", className)}
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const TableRow = React.forwardRef<
   HTMLTableRowElement,
@@ -68,16 +73,16 @@ const TableRow = React.forwardRef<
 >(function TableRow({ className, ...props }, ref) {
   return (
     <tr
-      ref={ref}
-      data-slot="table-row"
       className={cn(
-        "border-b transition-colors motion-safe:duration-200 hover:bg-muted/50 data-[state=selected]:bg-muted",
+        "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted motion-safe:duration-200",
         className
       )}
+      data-slot="table-row"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const TableHead = React.forwardRef<
   HTMLTableCellElement,
@@ -85,17 +90,17 @@ const TableHead = React.forwardRef<
 >(function TableHead({ className, ...props }, ref) {
   return (
     <th
-      ref={ref}
-      data-slot="table-head"
       className={cn(
-        "text-muted-foreground h-10 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0",
+        "h-10 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0",
         className
       )}
+      data-slot="table-head"
+      ref={ref}
       scope={(props as any).scope ?? "col"}
       {...props}
     />
-  )
-})
+  );
+});
 
 const TableCell = React.forwardRef<
   HTMLTableCellElement,
@@ -103,13 +108,13 @@ const TableCell = React.forwardRef<
 >(function TableCell({ className, ...props }, ref) {
   return (
     <td
-      ref={ref}
-      data-slot="table-cell"
       className={cn("p-4 align-middle tabular-nums", className)}
+      data-slot="table-cell"
+      ref={ref}
       {...props}
     />
-  )}
-)
+  );
+});
 
 const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
@@ -117,15 +122,15 @@ const TableCaption = React.forwardRef<
 >(function TableCaption({ className, ...props }, ref) {
   return (
     <caption
-      ref={ref}
-      data-slot="table-caption"
-      className={cn("text-muted-foreground mt-4 text-sm", className)}
-      aria-live="polite"
       aria-atomic="true"
+      aria-live="polite"
+      className={cn("mt-4 text-muted-foreground text-sm", className)}
+      data-slot="table-caption"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 export {
   Table,
@@ -136,4 +141,4 @@ export {
   TableRow,
   TableCell,
   TableCaption,
-}
+};

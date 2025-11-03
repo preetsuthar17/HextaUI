@@ -1,6 +1,6 @@
-import { BadgeCheckIcon, ChevronRightIcon } from "lucide-react"
+import { BadgeCheckIcon, ChevronRightIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Item,
   ItemActions,
@@ -8,7 +8,7 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from "@/components/ui/item"
+} from "@/components/ui/item";
 
 export function ItemDemo() {
   return (
@@ -21,12 +21,12 @@ export function ItemDemo() {
           </ItemDescription>
         </ItemContent>
         <ItemActions>
-          <Button variant="outline" size="sm">
+          <Button size="sm" variant="outline">
             Action
           </Button>
         </ItemActions>
       </Item>
-      <Item variant="outline" size="sm" asChild>
+      <Item asChild size="sm" variant="outline">
         <a href="#">
           <ItemMedia>
             <BadgeCheckIcon className="size-5" />
@@ -40,5 +40,5 @@ export function ItemDemo() {
         </a>
       </Item>
     </div>
-  )
+  );
 }

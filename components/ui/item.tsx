@@ -1,24 +1,25 @@
-import * as React from "react"
-import { Slot } from "@radix-ui/react-slot"
-import { cva, type VariantProps } from "class-variance-authority"
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import * as React from "react";
+import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils";
 
-import { cn } from "@/lib/utils"
-import { Separator } from "@/components/ui/separator"
-
-const ItemGroup = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div">
->(function ItemGroup({ className, ...props }, ref) {
-  return (
-    <div
-      ref={ref}
-      role="list"
-      data-slot="item-group"
-      className={cn("group/item-group flex flex-col touch-manipulation", className)}
-      {...props}
-    />
-  )
-})
+const ItemGroup = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+  function ItemGroup({ className, ...props }, ref) {
+    return (
+      <div
+        className={cn(
+          "group/item-group flex touch-manipulation flex-col",
+          className
+        )}
+        data-slot="item-group"
+        ref={ref}
+        role="list"
+        {...props}
+      />
+    );
+  }
+);
 
 function ItemSeparator({
   className,
@@ -26,16 +27,16 @@ function ItemSeparator({
 }: React.ComponentProps<typeof Separator>) {
   return (
     <Separator
+      className={cn("my-0", className)}
       data-slot="item-separator"
       orientation="horizontal"
-      className={cn("my-0", className)}
       {...props}
     />
-  )
+  );
 }
 
 const itemVariants = cva(
-  "group/item flex items-center border border-transparent text-sm rounded-md transition-colors motion-safe:duration-200 touch-manipulation [a]:hover:bg-accent/50 [a]:transition-colors flex-wrap outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px]",
+  "group/item flex touch-manipulation flex-wrap items-center rounded-md border border-transparent text-sm outline-none transition-colors focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 motion-safe:duration-200 [a]:transition-colors [a]:hover:bg-accent/50",
   {
     variants: {
       variant: {
@@ -44,8 +45,8 @@ const itemVariants = cva(
         muted: "bg-muted/50",
       },
       size: {
-        default: "p-4 gap-4 ",
-        sm: "py-3 px-4 gap-2.5",
+        default: "gap-4 p-4",
+        sm: "gap-2.5 px-4 py-3",
       },
     },
     defaultVariants: {
@@ -53,42 +54,52 @@ const itemVariants = cva(
       size: "default",
     },
   }
-)
+);
 
 const Item = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> & VariantProps<typeof itemVariants> & { asChild?: boolean }
->(function Item({ className, variant = "default", size = "default", asChild = false, ...props }, ref) {
-  const Comp = asChild ? Slot : "div"
+  React.ComponentProps<"div"> &
+    VariantProps<typeof itemVariants> & { asChild?: boolean }
+>(function Item(
+  {
+    className,
+    variant = "default",
+    size = "default",
+    asChild = false,
+    ...props
+  },
+  ref
+) {
+  const Comp = asChild ? Slot : "div";
   return (
     <Comp
-      ref={ref}
-      role="listitem"
+      className={cn(itemVariants({ variant, size }), className)}
+      data-size={size}
       data-slot="item"
       data-variant={variant}
-      data-size={size}
-      className={cn(itemVariants({ variant, size }), className)}
+      ref={ref}
+      role="listitem"
       {...props}
     />
-  )
-})
+  );
+});
 
 const itemMediaVariants = cva(
-  "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none group-has-[[data-slot=item-description]]/item:translate-y-0.5",
+  "flex shrink-0 items-center justify-center gap-2 group-has-[[data-slot=item-description]]/item:translate-y-0.5 group-has-[[data-slot=item-description]]/item:self-start [&_svg]:pointer-events-none",
   {
     variants: {
       variant: {
         default: "bg-transparent",
-        icon: "size-8 border rounded-sm bg-muted [&_svg:not([class*='size-'])]:size-4",
+        icon: "size-8 rounded-sm border bg-muted [&_svg:not([class*='size-'])]:size-4",
         image:
-          "size-10 rounded-sm overflow-hidden [&_img]:size-full [&_img]:object-cover",
+          "size-10 overflow-hidden rounded-sm [&_img]:size-full [&_img]:object-cover",
       },
     },
     defaultVariants: {
       variant: "default",
     },
   }
-)
+);
 
 const ItemMedia = React.forwardRef<
   HTMLDivElement,
@@ -96,14 +107,14 @@ const ItemMedia = React.forwardRef<
 >(function ItemMedia({ className, variant = "default", ...props }, ref) {
   return (
     <div
-      ref={ref}
+      className={cn(itemMediaVariants({ variant }), className)}
       data-slot="item-media"
       data-variant={variant}
-      className={cn(itemMediaVariants({ variant }), className)}
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const ItemContent = React.forwardRef<
   HTMLDivElement,
@@ -111,33 +122,32 @@ const ItemContent = React.forwardRef<
 >(function ItemContent({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="item-content"
       className={cn(
         "flex flex-1 flex-col gap-1 [&+[data-slot=item-content]]:flex-none",
         className
       )}
-      {...props}
-    />
-  )
-})
-
-const ItemTitle = React.forwardRef<
-  HTMLDivElement,
-  React.ComponentProps<"div">
->(function ItemTitle({ className, ...props }, ref) {
-  return (
-    <div
+      data-slot="item-content"
       ref={ref}
-      data-slot="item-title"
-      className={cn(
-        "flex w-fit items-center gap-2 text-sm leading-snug font-medium",
-        className
-      )}
       {...props}
     />
-  )
-})
+  );
+});
+
+const ItemTitle = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
+  function ItemTitle({ className, ...props }, ref) {
+    return (
+      <div
+        className={cn(
+          "flex w-fit items-center gap-2 font-medium text-sm leading-snug",
+          className
+        )}
+        data-slot="item-title"
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
 
 const ItemDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -145,17 +155,17 @@ const ItemDescription = React.forwardRef<
 >(function ItemDescription({ className, ...props }, ref) {
   return (
     <p
-      ref={ref}
-      data-slot="item-description"
       className={cn(
-        "text-muted-foreground line-clamp-2 text-sm leading-normal font-normal text-balance tabular-nums",
+        "line-clamp-2 text-balance font-normal text-muted-foreground text-sm tabular-nums leading-normal",
         "[&>a:hover]:text-primary [&>a]:underline [&>a]:underline-offset-4",
         className
       )}
+      data-slot="item-description"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const ItemActions = React.forwardRef<
   HTMLDivElement,
@@ -163,13 +173,13 @@ const ItemActions = React.forwardRef<
 >(function ItemActions({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="item-actions"
       className={cn("flex items-center gap-2", className)}
+      data-slot="item-actions"
+      ref={ref}
       {...props}
     />
-  )}
-)
+  );
+});
 
 const ItemHeader = React.forwardRef<
   HTMLDivElement,
@@ -177,16 +187,16 @@ const ItemHeader = React.forwardRef<
 >(function ItemHeader({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="item-header"
       className={cn(
         "flex basis-full items-center justify-between gap-2",
         className
       )}
+      data-slot="item-header"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 const ItemFooter = React.forwardRef<
   HTMLDivElement,
@@ -194,16 +204,16 @@ const ItemFooter = React.forwardRef<
 >(function ItemFooter({ className, ...props }, ref) {
   return (
     <div
-      ref={ref}
-      data-slot="item-footer"
       className={cn(
         "flex basis-full items-center justify-between gap-2",
         className
       )}
+      data-slot="item-footer"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
 export {
   Item,
@@ -216,4 +226,4 @@ export {
   ItemDescription,
   ItemHeader,
   ItemFooter,
-}
+};

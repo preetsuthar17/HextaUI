@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Field,
   FieldDescription,
@@ -8,16 +8,16 @@ import {
   FieldLegend,
   FieldSeparator,
   FieldSet,
-} from "@/components/ui/field"
-import { Input } from "@/components/ui/input"
+} from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 
 export function FieldDemo() {
   return (
@@ -112,12 +112,12 @@ export function FieldDemo() {
             <FieldGroup>
               <Field orientation="horizontal">
                 <Checkbox
-                  id="checkout-7j9-same-as-shipping-wgm"
                   defaultChecked
+                  id="checkout-7j9-same-as-shipping-wgm"
                 />
                 <FieldLabel
-                  htmlFor="checkout-7j9-same-as-shipping-wgm"
                   className="font-normal"
+                  htmlFor="checkout-7j9-same-as-shipping-wgm"
                 >
                   Same as shipping address
                 </FieldLabel>
@@ -131,21 +131,21 @@ export function FieldDemo() {
                   Comments
                 </FieldLabel>
                 <Textarea
+                  className="resize-none"
                   id="checkout-7j9-optional-comments"
                   placeholder="Add any additional comments"
-                  className="resize-none"
                 />
               </Field>
             </FieldGroup>
           </FieldSet>
           <Field orientation="horizontal">
             <Button type="submit">Submit</Button>
-            <Button variant="outline" type="button">
+            <Button type="button" variant="outline">
               Cancel
             </Button>
           </Field>
         </FieldGroup>
       </form>
     </div>
-  )
+  );
 }

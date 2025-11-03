@@ -1,10 +1,10 @@
-"use client"
+"use client";
 
-import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio"
-import * as React from "react"
-import { cn } from "@/lib/utils"
+import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
-type AspectRatioProps = React.ComponentProps<typeof AspectRatioPrimitive.Root>
+type AspectRatioProps = React.ComponentProps<typeof AspectRatioPrimitive.Root>;
 
 const AspectRatio = React.forwardRef<
   React.ComponentRef<typeof AspectRatioPrimitive.Root>,
@@ -12,12 +12,12 @@ const AspectRatio = React.forwardRef<
 >(function AspectRatio({ className, ...props }, ref) {
   return (
     <AspectRatioPrimitive.Root
-      ref={ref}
-      data-slot="aspect-ratio"
       className={cn("touch-manipulation", className)}
+      data-slot="aspect-ratio"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
-export { AspectRatio }
+export { AspectRatio };

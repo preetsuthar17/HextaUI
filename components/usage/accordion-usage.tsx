@@ -3,15 +3,15 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"
+} from "@/components/ui/accordion";
 
 export function AccordionDemo() {
   return (
     <Accordion
-      type="single"
-      collapsible
       className="w-full"
+      collapsible
       defaultValue="item-1"
+      type="single"
     >
       <AccordionItem value="item-1">
         <AccordionTrigger>Product Information</AccordionTrigger>
@@ -57,5 +57,5 @@ export function AccordionDemo() {
         </AccordionContent>
       </AccordionItem>
     </Accordion>
-  )
+  );
 }

@@ -1,10 +1,5 @@
-import {
-  Item,
-  ItemContent,
-  ItemMedia,
-  ItemTitle,
-} from "@/components/ui/item"
-import { Spinner } from "@/components/ui/spinner"
+import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
+import { Spinner } from "@/components/ui/spinner";
 
 export function SpinnerDemo() {
   return (
@@ -21,5 +16,5 @@ export function SpinnerDemo() {
         </ItemContent>
       </Item>
     </div>
-  )
+  );
 }

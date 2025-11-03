@@ -1,17 +1,17 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import * as CollapsiblePrimitive from "@radix-ui/react-collapsible"
-import { cn } from "@/lib/utils"
+import * as CollapsiblePrimitive from "@radix-ui/react-collapsible";
+import * as React from "react";
+import { cn } from "@/lib/utils";
 
 const Collapsible = React.forwardRef<
   React.ComponentRef<typeof CollapsiblePrimitive.Root>,
   React.ComponentProps<typeof CollapsiblePrimitive.Root>
 >(function Collapsible({ ...props }, ref) {
   return (
-    <CollapsiblePrimitive.Root ref={ref} data-slot="collapsible" {...props} />
-  )
-})
+    <CollapsiblePrimitive.Root data-slot="collapsible" ref={ref} {...props} />
+  );
+});
 
 const CollapsibleTrigger = React.forwardRef<
   React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,
@@ -19,14 +19,14 @@ const CollapsibleTrigger = React.forwardRef<
 >(function CollapsibleTrigger({ className, ...props }, ref) {
   return (
     <CollapsiblePrimitive.CollapsibleTrigger
-      ref={ref}
-      data-slot="collapsible-trigger"
       className={cn("touch-manipulation", className)}
+      data-slot="collapsible-trigger"
+      ref={ref}
       type="button"
       {...props}
     />
-  )
-})
+  );
+});
 
 const CollapsibleContent = React.forwardRef<
   React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleContent>,
@@ -34,11 +34,11 @@ const CollapsibleContent = React.forwardRef<
 >(function CollapsibleContent({ ...props }, ref) {
   return (
     <CollapsiblePrimitive.CollapsibleContent
-      ref={ref}
       data-slot="collapsible-content"
+      ref={ref}
       {...props}
     />
-  )
-})
+  );
+});
 
-export { Collapsible, CollapsibleTrigger, CollapsibleContent }
+export { Collapsible, CollapsibleTrigger, CollapsibleContent };
