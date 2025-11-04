@@ -1,18 +1,17 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import { componentsRegistry } from "@/lib/components-registry";
 
-export default function Home() {
+export default function ComponentsIndexPage() {
   return (
     <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 font-sans">
       <header className="flex items-end justify-between gap-4">
         <div>
-          <h1 className="font-semibold text-2xl tracking-tight">
-            Hexta UI Components
-          </h1>
+          <h1 className="font-semibold text-2xl tracking-tight">Components</h1>
           <p className="text-muted-foreground text-sm">
-            Browse components and open their docs pages.
+            Pick a component to view installation, usage, and demo.
           </p>
         </div>
       </header>

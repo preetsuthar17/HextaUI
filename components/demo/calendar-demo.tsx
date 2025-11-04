@@ -10,7 +10,7 @@ export function CalendarDemo() {
   return (
     <Calendar
       captionLayout="dropdown"
-      className="rounded-md border shadow-sm"
+      className="rounded-lg border shadow-xs"
       mode="single"
       onSelect={setDate}
       selected={date}
