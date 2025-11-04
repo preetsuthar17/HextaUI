@@ -1,17 +1,37 @@
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { componentsRegistry } from "@/lib/components-registry";
 
 export default function Home() {
   return (
     <div className="mx-auto flex flex-col gap-12 px-4 py-8 font-sans">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
-        <div className="flex flex-col gap-2">
-          <h1 className="font-semibold text-4xl tracking-tighter">
-            Extended Components for shadcn/ui
+        <div className="flex flex-col gap-4">
+          <h1 className="flex flex-wrap items-center justify-center gap-2 font-semibold text-4xl tracking-tighter">
+            Extended Components for
+            <span className="inline-flex items-center gap-1 px-2">
+              <img
+                alt="shadcn/ui"
+                className="size-9 rounded-full align-middle"
+                src="https://github.com/shadcn.png"
+                style={{ display: "inline-block" }}
+              />
+              <span>shadcn/ui</span>
+            </span>
           </h1>
-          <p className="text-muted-foreground text-sm">
+          <p className="text-muted-foreground">
             Ready-to-use foundation components built on top of shadcn/ui.
           </p>
+          <div className="flex flex-wrap items-center justify-center gap-2">
+            <Button asChild variant="default">
+              <Link href="/components/accordion">View Components</Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link href="https://github.com/preetsuthar17/hextaui">
+                GitHub
+              </Link>
+            </Button>
+          </div>
         </div>
       </header>
 

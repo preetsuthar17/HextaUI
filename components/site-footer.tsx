@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="border-t">
-      <div className="mx-auto flex w-[95%] items-center justify-between px-4 py-4 font-medium text-sm">
+      <div className="mx-auto flex w-[95%] flex-wrap items-center justify-between gap-8 px-4 py-4 font-medium text-sm">
         <span>
           Built by{" "}
           <a
@@ -32,7 +32,7 @@ export function SiteFooter() {
           >
             GitHub
           </a>
-          <span aria-hidden="true">/</span>
+          <span aria-hidden="true">//</span>
           <a
             className="hover:underline"
             href="https://preetsuthar.me/twitter"
@@ -41,7 +41,7 @@ export function SiteFooter() {
           >
             Twitter
           </a>
-          <span aria-hidden="true">/</span>
+          <span aria-hidden="true">//</span>
           <a
             className="hover:underline"
             href="https://preetsuthar.me/sponsor"
