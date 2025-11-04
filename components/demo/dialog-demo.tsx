@@ -42,7 +42,7 @@ export function DialogDemo() {
           Edit Account
         </Button>
       </DialogTrigger>
-      <DialogContent className="overflow-hidden rounded-2xl p-0 shadow-xl sm:max-w-md">
+      <DialogContent className="overflow-hidden p-0 shadow-xl sm:max-w-md">
         <form className="flex flex-col" onSubmit={handleSubmit}>
           <DialogHeader className="border-b bg-accent/50 px-6 py-5">
             <DialogTitle className="flex items-center gap-2 text-lg">

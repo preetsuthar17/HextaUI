@@ -25,11 +25,11 @@ export function SiteFooter() {
         </span>
         <nav className="flex items-center gap-2">
           <a
+            aria-label="Preet Suthar on GitHub"
             className="hover:underline"
             href="https://preetsuthar.me/github"
             rel="noopener noreferrer"
             target="_blank"
-            aria-label="Preet Suthar on GitHub"
           >
             GitHub
           </a>
@@ -37,11 +37,11 @@ export function SiteFooter() {
             /
           </span>
           <a
+            aria-label="Preet Suthar on Twitter"
             className="hover:underline"
             href="https://preetsuthar.me/twitter"
             rel="noopener noreferrer"
             target="_blank"
-            aria-label="Preet Suthar on Twitter"
           >
             Twitter
           </a>
@@ -49,11 +49,11 @@ export function SiteFooter() {
             /
           </span>
           <a
+            aria-label="Sponsor Preet Suthar"
             className="hover:underline"
             href="https://preetsuthar.me/sponsor"
             rel="noopener noreferrer"
             target="_blank"
-            aria-label="Sponsor Preet Suthar"
           >
             Sponsor
           </a>

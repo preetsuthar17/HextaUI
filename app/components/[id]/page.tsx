@@ -43,7 +43,7 @@ export default async function ComponentPage({
     <div className="mx-auto w-full px-4 py-14 font-sans">
       <div className="flex justify-evenly gap-12">
         <ComponentsSidebar currentId={meta.id} />
-        <div className="flex max-w-7xl flex-col gap-12">
+        <div className="flex w-full max-w-4xl flex-col gap-12">
           <header className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-1 flex-col gap-4">
               <h1 className="wrap-break-word font-semibold text-3xl tracking-tight">

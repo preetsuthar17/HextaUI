@@ -42,9 +42,17 @@ function ComponentSearchList({ onSelect }: { onSelect: (id: string) => void }) {
         )}
         {items.map((c, i) => (
           <CommandMenuItem index={i} key={c.id} onSelect={() => onSelect(c.id)}>
-            <div className="flex flex-col">
-              <span className="font-medium">{c.title}</span>
-              <span className="text-muted-foreground text-xs">{c.id}</span>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <span className="flex items-center">
+                <span
+                  aria-hidden="true"
+                  className="inline-block size-3 shrink-0 rounded-full border border-border border-dashed bg-transparent"
+                />
+              </span>
+              <div className="flex flex-col items-start">
+                <span className="font-medium">{c.title}</span>
+                <span className="text-muted-foreground text-xs">{c.id}</span>
+              </div>
             </div>
           </CommandMenuItem>
         ))}

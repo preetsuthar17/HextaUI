@@ -200,7 +200,7 @@ const CommandMenuInput = React.forwardRef<
   ) => {
     const { value, setValue } = useCommandMenu();
     return (
-      <div className="flex items-center border-border border-b px-3 py-0">
+      <div className="flex items-center gap-2 border-border border-b px-3 py-0">
         <Search className="size-4 shrink-0 text-muted-foreground" />
         <input
           className={cn(

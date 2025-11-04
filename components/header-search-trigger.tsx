@@ -12,7 +12,7 @@ export function HeaderSearchTrigger() {
       onClick={() => openCommandMenu()}
       type="button"
     >
-      <Search className="h-4 w-4" />
+      <Search className="size-4" />
       <span className="truncate">Search components…</span>
     </button>
   );

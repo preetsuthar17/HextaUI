@@ -23,7 +23,7 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
   return (
     <aside
       aria-label="Components navigation"
-      className="top-16 hidden h-fit md:sticky"
+      className="sticky top-16 hidden h-fit md:block"
     >
       <div className="w-full max-w-3xl border">
         <div className="border-b p-2">
