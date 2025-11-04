@@ -65,13 +65,15 @@ export default function CodeBlock({
     }
   }, [selectedPackageManager]);
 
-  // Determine the theme to use based on website theme
   const theme = websiteTheme === "dark" ? "github-dark" : "github-light";
 
   const isPackageInstall = lang === "package-install";
   const displayCode = isPackageInstall
     ? transformPackageInstallCode(code, selectedPackageManager)
     : code;
+  
+  const lineCount = displayCode.split("\n").length;
+  const hasMultipleLines = lineCount > 1;
 
   useEffect(() => {
     let mounted = true;
@@ -190,6 +192,7 @@ export default function CodeBlock({
       const el = node as HTMLElement;
       const tagName = el.tagName.toLowerCase();
       const isCodeBlock = tagName === "pre" || tagName === "code";
+      const isCodeElement = tagName === "code";
 
       const props: Record<string, any> = { key };
       if (el.className) {
@@ -198,6 +201,11 @@ export default function CodeBlock({
           : el.className;
       } else if (isCodeBlock) {
         props.className = `whitespace-pre-wrap wrap-break-word ${scrollbarClass}`;
+      }
+      
+      // Add data attribute for multi-line code blocks
+      if (isCodeElement && hasMultipleLines) {
+        props["data-line-numbers"] = "true";
       }
 
       const styleAttr = el.getAttribute("style");

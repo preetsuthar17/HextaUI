@@ -223,3 +223,39 @@ code {
 pre {
   padding: 1rem;
 }
+
+/* Line numbers for multi-line code blocks */
+code[data-line-numbers="true"] {
+  counter-reset: line-number;
+}
+
+code[data-line-numbers="true"] .line {
+  counter-increment: line-number;
+  position: relative;
+  padding-left: 3.5rem;
+  line-height: 2;
+}
+
+code[data-line-numbers="true"] .line::before {
+  content: counter(line-number);
+  position: absolute;
+  left: 0;
+  width: 1.3rem;
+  padding-right: 0.5rem;
+  font-size: 13px;
+  letter-spacing: -0.05em;
+  display: inline-block;
+  text-align: right;
+  color: hsl(var(--muted-foreground) / 0.4);
+  user-select: none;
+  pointer-events: none;
+  white-space: nowrap;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Remove line number from empty last line if present */
+code[data-line-numbers="true"] .line:last-child:empty::before {
+  content: none;
+  counter-increment: none;
+}
