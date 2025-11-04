@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { ComponentSearch } from "@/components/component-search";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <ComponentSearch />
         <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
           <SiteHeader />
           <main
