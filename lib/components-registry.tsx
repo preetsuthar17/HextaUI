@@ -11,7 +11,9 @@ import { CalendarDemo } from "@/components/demo/calendar-demo";
 import { CarouselDemo } from "@/components/demo/carousel-demo";
 import { CheckboxDemo } from "@/components/demo/checkbox-demo";
 import { CollapsibleDemo } from "@/components/demo/collapsible-demo";
+import { CommandMenuDemo } from "@/components/demo/command-menu-demo";
 import { ContextMenuDemo } from "@/components/demo/context-menu-demo";
+import { DatePickerDemo } from "@/components/demo/date-picker-demo";
 import { DialogDemo } from "@/components/demo/dialog-demo";
 import { DropdownMenuDemo } from "@/components/demo/dropdown-menu-demo";
 import { EmptyDemo } from "@/components/demo/empty-demo";
@@ -40,6 +42,8 @@ import { TextareaDemo } from "@/components/demo/textarea-demo";
 import { ToggleDemo } from "@/components/demo/toggle-demo";
 import { ToggleGroupSpacing } from "@/components/demo/toggle-group-demo";
 import { TooltipDemo } from "@/components/demo/tooltip-demo";
+import { TreeBasicDemo } from "@/components/demo/tree-demo";
+import { VideoPlayerDemo } from "@/components/demo/video-player-demo";
 import { componentSnippets } from "@/lib/registry/snippets";
 
 const radixBaseDocs = "https://www.radix-ui.com/primitives/docs/components/";
@@ -83,6 +87,10 @@ const docsApiLinks: Record<string, { docs_ref?: string; api_ref?: string }> = {
     api_ref: undefined,
   },
   calendar: {
+    docs_ref: undefined,
+    api_ref: undefined,
+  },
+  "date-picker": {
     docs_ref: undefined,
     api_ref: undefined,
   },
@@ -214,6 +222,18 @@ const docsApiLinks: Record<string, { docs_ref?: string; api_ref?: string }> = {
     docs_ref: `${radixBaseDocs}tooltip`,
     api_ref: `${radixBaseApi}tooltip#api-reference`,
   },
+  "command-menu": {
+    docs_ref: undefined,
+    api_ref: undefined,
+  },
+  tree: {
+    docs_ref: undefined,
+    api_ref: undefined,
+  },
+  "video-player": {
+    docs_ref: undefined,
+    api_ref: undefined,
+  },
 };
 
 export type ComponentMeta = {
@@ -240,6 +260,7 @@ const demoComponents: Record<string, React.ComponentType> = {
   "button-group": ButtonGroupDemo,
   button: ButtonDemo,
   calendar: CalendarDemo,
+  "date-picker": DatePickerDemo,
   carousel: CarouselDemo,
   checkbox: CheckboxDemo,
   collapsible: CollapsibleDemo,
@@ -272,6 +293,9 @@ const demoComponents: Record<string, React.ComponentType> = {
   toggle: ToggleDemo,
   "toggle-group": ToggleGroupSpacing,
   tooltip: TooltipDemo,
+  "command-menu": CommandMenuDemo,
+  tree: TreeBasicDemo,
+  "video-player": VideoPlayerDemo,
 };
 
 const snippets = componentSnippets as Record<
@@ -334,6 +358,11 @@ const componentsList: { id: string; title: string; description?: string }[] = [
     id: "calendar",
     title: "Calendar",
     description: "A component to display dates and pick days.",
+  },
+  {
+    id: "date-picker",
+    title: "Date Picker",
+    description: "A component for selecting a date from a calendar popup.",
   },
   {
     id: "carousel",
@@ -491,6 +520,23 @@ const componentsList: { id: string; title: string; description?: string }[] = [
     id: "tooltip",
     title: "Tooltip",
     description: "A popup showing additional information on hover or focus.",
+  },
+  {
+    id: "command-menu",
+    title: "Command Menu",
+    description:
+      "A fast, keyboard-driven menu for executing commands or navigating.",
+  },
+  {
+    id: "tree",
+    title: "Tree",
+    description: "A flexible tree view with collapsible nodes and selection.",
+  },
+  {
+    id: "video-player",
+    title: "Video Player",
+    description:
+      "A modern, accessible video player with full controls and shortcuts.",
   },
 ];
 

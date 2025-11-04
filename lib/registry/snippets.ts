@@ -57,6 +57,214 @@ export function AccordionDemo() {
   </AccordionItem>
 </Accordion>`,
   },
+  "command-menu": {
+    demoCode: `"use client";
+
+import * as React from "react";
+import {
+  CommandMenu,
+  CommandMenuTrigger,
+  CommandMenuContent,
+  CommandMenuInput,
+  CommandMenuList,
+  CommandMenuGroup,
+  CommandMenuItem,
+  CommandMenuSeparator,
+  CommandMenuEmpty,
+  useCommandMenuShortcut,
+} from "@/components/ui/command-menu";
+import { Button } from "@/components/ui/button";
+import {
+  Calendar,
+  User,
+  Settings,
+  Plus,
+  Upload,
+  Download,
+  Command as CommandIcon,
+  Home,
+} from "lucide-react";
+
+const menuItems = [
+  {
+    group: "General",
+    items: [
+      { icon: <Home />, label: "Home" },
+      { icon: <Calendar />, label: "Calendar" },
+      { icon: <User />, label: "Users" },
+      { icon: <Settings />, label: "Settings" },
+    ],
+  },
+  {
+    group: "Actions",
+    items: [
+      { icon: <Plus />, label: "Create New", shortcut: "cmd+n" },
+      { icon: <Upload />, label: "Upload File", shortcut: "cmd+u" },
+      { icon: <Download />, label: "Download", shortcut: "cmd+d" },
+    ],
+  },
+];
+
+export const CommandMenuDemo = () => {
+  const [open, setOpen] = React.useState(false);
+  const [search, setSearch] = React.useState("");
+  useCommandMenuShortcut(() => setOpen(true));
+
+  const filteredGroups = menuItems
+    .map((group) => ({
+      ...group,
+      items: group.items.filter(
+        (item) => item.label.toLowerCase().includes(search.toLowerCase())
+      ),
+    }))
+    .filter((group) => group.items.length > 0);
+
+  const flatItems: { group: string; item: any }[] = [];
+  filteredGroups.forEach((group) => {
+    group.items.forEach((item) => {
+      flatItems.push({ group: group.group, item });
+    });
+  });
+
+  return (
+    <CommandMenu open={open} onOpenChange={setOpen}>
+      <CommandMenuTrigger asChild>
+        <Button variant="outline" className="gap-2">
+          <CommandIcon size={16} />
+          Command Menu
+        </Button>
+      </CommandMenuTrigger>
+      <CommandMenuContent>
+        <CommandMenuInput
+          placeholder="Type a command or search..."
+          value={search}
+          onChange={e => setSearch(e.target.value)}
+        />
+        <CommandMenuList>
+          {flatItems.length === 0 ? (
+            <CommandMenuEmpty>
+              No results found{search && \` for "\${search}"\`}
+            </CommandMenuEmpty>
+          ) : (
+            (() => {
+              let currIndex = 0;
+              return filteredGroups.map((group, groupIndex) => (
+                <React.Fragment key={group.group}>
+                  {groupIndex > 0 && <CommandMenuSeparator />}
+                  <CommandMenuGroup heading={group.group}>
+                    {group.items.map((item) => {
+                      const rendered = (
+                        <CommandMenuItem
+                          key={item.label}
+                          icon={item.icon}
+                          index={currIndex}
+                          onSelect={() => setOpen(false)}
+                        >
+                          {item.label}
+                        </CommandMenuItem>
+                      );
+                      currIndex++;
+                      return rendered;
+                    })}
+                  </CommandMenuGroup>
+                </React.Fragment>
+              ));
+            })()
+          )}
+        </CommandMenuList>
+      </CommandMenuContent>
+    </CommandMenu>
+  );
+};
+
+export default CommandMenuDemo;
+`,
+    usageImports: `import {
+  CommandMenu,
+  CommandMenuTrigger,
+  CommandMenuContent,
+  CommandMenuInput,
+  CommandMenuList,
+  CommandMenuGroup,
+  CommandMenuItem,
+  CommandMenuSeparator,
+  useCommandMenuShortcut,
+} from "@/components/ui/command-menu"
+import { Button } from "@/components/ui/button"`,
+    usageCode: `const [open, setOpen] = React.useState(false)
+
+return (
+  <CommandMenu open={open} onOpenChange={setOpen}>
+    <CommandMenuTrigger asChild>
+      <Button variant="outline">Open Command Menu</Button>
+    </CommandMenuTrigger>
+    <CommandMenuContent>
+      <CommandMenuInput placeholder="Type a command or search..." />
+      <CommandMenuList>
+        <CommandMenuGroup heading="Suggestions">
+          <CommandMenuItem index={0}>Search</CommandMenuItem>
+          <CommandMenuItem index={1}>Settings</CommandMenuItem>
+        </CommandMenuGroup>
+      </CommandMenuList>
+    </CommandMenuContent>
+  </CommandMenu>
+)`,
+  },
+  tree: {
+    demoCode: `"use client";
+
+import { Folder, File, FileText, Image } from "lucide-react";
+import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree";
+
+export function TreeDemo() {
+  return (
+    <TreeProvider className="w-full max-w-sm">
+      <Tree>
+        <TreeItem nodeId="documents" label="Documents" icon={<Folder />} hasChildren>
+          <TreeItem nodeId="projects" label="Projects" icon={<Folder />} level={1} hasChildren>
+            <TreeItem nodeId="project1" label="Project 1" icon={<Folder />} level={2} hasChildren>
+              <TreeItem nodeId="readme" label="README.md" icon={<FileText />} level={3} />
+              <TreeItem nodeId="index" label="index.tsx" icon={<FileText />} level={3} />
+            </TreeItem>
+          </TreeItem>
+          <TreeItem nodeId="images" label="Images" icon={<Folder />} level={1} hasChildren>
+            <TreeItem nodeId="logo" label="logo.png" icon={<Image />} level={2} />
+            <TreeItem nodeId="banner" label="banner.jpg" icon={<Image />} level={2} />
+          </TreeItem>
+        </TreeItem>
+      </Tree>
+    </TreeProvider>
+  );
+}
+`,
+    usageImports: `import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree"`,
+    usageCode: `<TreeProvider>
+  <Tree>
+    <TreeItem nodeId="1" label="Item 1" hasChildren>
+      <TreeItem nodeId="2" label="Item 2" level={1} />
+    </TreeItem>
+  </Tree>
+</TreeProvider>`,
+  },
+  "video-player": {
+    demoCode: `"use client";
+
+import { VideoPlayer } from "@/components/ui/video-player";
+
+export function VideoPlayerDemo() {
+  return (
+    <VideoPlayer
+      src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+      poster="https://peach.blender.org/wp-content/uploads/bbb-splash.png"
+      size="default"
+      className="aspect-video"
+    />
+  );
+}
+`,
+    usageImports: `import { VideoPlayer } from "@/components/ui/video-player"`,
+    usageCode: `<VideoPlayer src="/path/to/video.mp4" poster="/path/to/poster.jpg" />`,
+  },
   "alert-dialog": {
     demoCode: `"use client";
 
@@ -513,6 +721,57 @@ return (
     onSelect={setDate}
     className="rounded-lg border"
   />
+)`,
+  },
+  "date-picker": {
+    demoCode: `"use client";
+
+import * as React from "react";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+
+export function DatePickerDemo() {
+  const [date, setDate] = React.useState<Date | undefined>();
+
+  return (
+    <Popover>
+      <PopoverTrigger asChild>
+        <Button
+          variant="outline"
+          data-empty={!date}
+          className="w-[280px] justify-start text-left font-normal data-[empty=true]:text-muted-foreground"
+        >
+          <CalendarIcon />
+          {date ? format(date, "PPP") : <span>Pick a date</span>}
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-auto p-0">
+        <Calendar mode="single" selected={date} onSelect={setDate} />
+      </PopoverContent>
+    </Popover>
+  );
+}
+`,
+    usageImports: `import { Calendar } from "@/components/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
+import { Button } from "@/components/ui/button"`,
+    usageCode: `const [date, setDate] = React.useState<Date | undefined>()
+
+return (
+  <Popover>
+    <PopoverTrigger asChild>
+      <Button variant="outline" className="w-[280px] justify-start text-left font-normal" data-empty={!date}>
+        {date ? format(date, "PPP") : <span>Pick a date</span>}
+      </Button>
+    </PopoverTrigger>
+    <PopoverContent className="w-auto p-0">
+      <Calendar mode="single" selected={date} onSelect={setDate} />
+    </PopoverContent>
+  </Popover>
 )`,
   },
   carousel: {
