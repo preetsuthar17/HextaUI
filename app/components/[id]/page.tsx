@@ -40,7 +40,7 @@ export default async function ComponentPage({
   const Demo = meta.Demo;
 
   return (
-    <div className="mx-auto w-full px-4 py-14 font-sans">
+    <div className="mx-auto w-full px-4 py-14">
       <div className="flex justify-evenly gap-12">
         <ComponentsSidebar currentId={meta.id} />
         <div className="flex w-full max-w-4xl flex-col gap-12">

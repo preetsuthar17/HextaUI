@@ -3,74 +3,41 @@
 import { Check, Copy } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
-import { type BundledLanguage, type BundledTheme, codeToHtml } from "shiki";
+import { type BundledLanguage, codeToHtml } from "shiki";
 import { Button } from "./ui/button";
 
 type CodeBlockProps = {
   code: string;
   lang: BundledLanguage | "package-install";
-  theme?: BundledTheme;
-  showLineNumbers?: boolean;
   className?: string;
   filename?: string;
 };
 
 const PACKAGE_MANAGERS = {
-  npm: {
-    name: "npm",
-    logo: "📦",
-    command: "npx",
-    color: "#cb3837",
-  },
-  pnpm: {
-    name: "pnpm",
-    logo: "📦",
-    command: "pnpm dlx",
-    color: "#f69220",
-  },
-  yarn: {
-    name: "yarn",
-    logo: "🧶",
-    command: "yarn",
-    color: "#2c8ebb",
-  },
-  bun: {
-    name: "bun",
-    logo: "🍞",
-    command: "bunx --bun",
-    color: "#fbf0df",
-  },
+  npm: { name: "npm", command: "npx" },
+  pnpm: { name: "pnpm", command: "pnpm dlx" },
+  yarn: { name: "yarn", command: "yarn" },
+  bun: { name: "bun", command: "bunx --bun" },
 } as const;
 
 type PackageManager = keyof typeof PACKAGE_MANAGERS;
 
 const PACKAGE_MANAGER_STORAGE_KEY = "last-used-package-manager";
+const COPY_FEEDBACK_DURATION_MS = 2000;
+const scrollbarClass =
+  "scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground scrollbar-track-transparent";
 
+// Transform `pnpm dlx` in code block to match selected package manager
 function transformPackageInstallCode(
   code: string,
   packageManager: PackageManager
 ): string {
-  const { command } = PACKAGE_MANAGERS[packageManager];
-  return code.replace(/pnpm\s+dlx/g, command);
-}
-
-function getInitialPackageManager(): PackageManager {
-  if (typeof window === "undefined") return "pnpm";
-  const stored = window.localStorage.getItem(PACKAGE_MANAGER_STORAGE_KEY);
-  if (
-    stored &&
-    typeof stored === "string" &&
-    Object.keys(PACKAGE_MANAGERS).includes(stored)
-  ) {
-    return stored as PackageManager;
-  }
-  return "pnpm";
+  return code.replace(/pnpm\s+dlx/g, PACKAGE_MANAGERS[packageManager].command);
 }
 
 export default function CodeBlock({
   code,
   lang,
-  theme: propTheme = "github-light",
   className = "",
   filename,
 }: CodeBlockProps) {
@@ -79,35 +46,16 @@ export default function CodeBlock({
   const [copied, setCopied] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Use a state setter with lazy initialization for package manager (SSR-safe, late-read)
   const [selectedPackageManager, setSelectedPackageManager] =
     useState<PackageManager>(() => {
-      if (typeof window !== "undefined") {
-        const stored = window.localStorage.getItem(PACKAGE_MANAGER_STORAGE_KEY);
-        if (stored && Object.keys(PACKAGE_MANAGERS).includes(stored)) {
-          return stored as PackageManager;
-        }
+      if (typeof window === "undefined") return "pnpm";
+      const stored = window.localStorage.getItem(PACKAGE_MANAGER_STORAGE_KEY);
+      if (stored && stored in PACKAGE_MANAGERS) {
+        return stored as PackageManager;
       }
       return "pnpm";
     });
 
-  // Update selectedPackageManager with effect if user has changed localStorage (when navigating between tabs)
-  useEffect(() => {
-    function syncPackageManagerFromStorage(e: StorageEvent) {
-      if (
-        e.key === PACKAGE_MANAGER_STORAGE_KEY &&
-        e.newValue &&
-        Object.keys(PACKAGE_MANAGERS).includes(e.newValue)
-      ) {
-        setSelectedPackageManager(e.newValue as PackageManager);
-      }
-    }
-    window.addEventListener("storage", syncPackageManagerFromStorage);
-    return () =>
-      window.removeEventListener("storage", syncPackageManagerFromStorage);
-  }, []);
-
-  // Save selectedPackageManager to localStorage when it changes
   useEffect(() => {
     if (typeof window !== "undefined") {
       window.localStorage.setItem(
@@ -149,8 +97,6 @@ export default function CodeBlock({
     };
   }, [displayCode, lang, theme, isPackageInstall]);
 
-  const COPY_FEEDBACK_DURATION_MS = 2000;
-
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(displayCode);
@@ -159,25 +105,22 @@ export default function CodeBlock({
     } catch {}
   };
 
-  const scrollbarClass =
-    "scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground scrollbar-track-transparent";
-
   if (loading) {
     return (
       <div
         className={`rounded border border-border bg-background text-foreground ${className}`}
       >
         {filename && (
-          <div className="flex items-center justify-between rounded-t-lg border-border border-b bg-background px-4 py-2">
+          <div className="flex items-center border-border border-b bg-background px-4 py-2">
             <span className="font-mono text-muted-foreground text-sm">
               {filename}
             </span>
           </div>
         )}
         <div className="p-4">
-          <div className="animate-pulse">
-            <div className="mb-2 h-4 rounded bg-muted" />
-            <div className="mb-2 h-4 w-3/4 rounded bg-muted" />
+          <div className="animate-pulse space-y-2">
+            <div className="h-4 rounded bg-muted" />
+            <div className="h-4 w-3/4 rounded bg-muted" />
             <div className="h-4 w-1/2 rounded bg-muted" />
           </div>
         </div>
@@ -191,11 +134,12 @@ export default function CodeBlock({
     }
 
     if (typeof window === "undefined") {
+      // fallback - SSR
       return (
         <pre
-          className={`overflow-x-auto whitespace-pre bg-code font-mono ${scrollbarClass}`}
+          className={`wrap-break-word whitespace-pre-wrap bg-code font-mono ${scrollbarClass}`}
         >
-          <code className="whitespace-pre bg-code p-4 font-mono text-sm">
+          <code className="wrap-break-word whitespace-pre-wrap bg-code p-4 font-mono text-sm">
             {displayCode}
           </code>
         </pre>
@@ -209,31 +153,27 @@ export default function CodeBlock({
       // fallback for highlight error
       return (
         <pre
-          className={`overflow-x-auto whitespace-pre bg-code ${scrollbarClass}`}
+          className={`wrap-break-word whitespace-pre-wrap bg-code ${scrollbarClass}`}
         >
-          <code className="whitespace-pre bg-code">{displayCode}</code>
+          <code className="wrap-break-word whitespace-pre-wrap bg-code">
+            {displayCode}
+          </code>
         </pre>
       );
     }
 
     function parseInlineStyle(styleText: string): React.CSSProperties {
       const styleObject: React.CSSProperties = {};
-      styleText.split(";").forEach((declaration) => {
-        const [rawProp, rawValue] = declaration.split(":");
-        if (!(rawProp && rawValue)) {
-          return;
+      for (const declaration of styleText.split(";")) {
+        const [prop, value] = declaration.split(":").map((s) => s.trim());
+        if (prop && value) {
+          const camelProp = prop.replace(/-([a-z])/g, (_m, c) =>
+            c.toUpperCase()
+          );
+          // @ts-expect-error: dynamic style keys
+          styleObject[camelProp] = value;
         }
-        const prop = rawProp.trim();
-        const value = rawValue.trim();
-        if (!(prop && value)) {
-          return;
-        }
-        const camelProp = prop.replace(/-([a-z])/g, (_m, c: string) =>
-          c.toUpperCase()
-        );
-        // @ts-expect-error: dynamic style keys
-        styleObject[camelProp] = value;
-      });
+      }
       return styleObject;
     }
 
@@ -248,32 +188,34 @@ export default function CodeBlock({
         return null;
       }
       const el = node as HTMLElement;
-      const children = Array.from(el.childNodes).map((child, i) =>
-        domNodeToReact(child, i)
-      );
-      const props: any = { key };
+      const tagName = el.tagName.toLowerCase();
+      const isCodeBlock = tagName === "pre" || tagName === "code";
+
+      const props: Record<string, any> = { key };
       if (el.className) {
-        props.className = el.className;
+        props.className = isCodeBlock
+          ? `${el.className} whitespace-pre-wrap wrap-break-word ${scrollbarClass}`.trim()
+          : el.className;
+      } else if (isCodeBlock) {
+        props.className = `whitespace-pre-wrap wrap-break-word ${scrollbarClass}`;
       }
+
       const styleAttr = el.getAttribute("style");
       if (styleAttr) {
-        props.style = {
-          ...parseInlineStyle(styleAttr),
-        };
+        props.style = parseInlineStyle(styleAttr);
       }
-      Array.from(el.attributes).forEach((attr) => {
+
+      for (const attr of el.attributes) {
         if (attr.name.startsWith("data-")) {
           props[attr.name] = attr.value;
         }
-      });
-      if (
-        el.tagName.toLowerCase() === "pre" ||
-        el.tagName.toLowerCase() === "code"
-      ) {
-        props.className =
-          `${props.className || ""} whitespace-pre overflow-x-auto ${scrollbarClass}`.trim();
       }
-      return React.createElement(el.tagName.toLowerCase(), props, ...children);
+
+      const children = Array.from(el.childNodes).map((child, i) =>
+        domNodeToReact(child, i)
+      );
+
+      return React.createElement(tagName, props, ...children);
     }
 
     return domNodeToReact(pre, "pre");
@@ -301,16 +243,15 @@ export default function CodeBlock({
       )}
 
       {filename && (
-        <div className="flex items-center justify-between border-border border-b bg-background px-4 py-2">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-muted-foreground text-sm">
-              {filename}
-            </span>
-          </div>
+        <div className="flex items-center border-border border-b bg-background px-4 py-2">
+          <span className="font-mono text-muted-foreground text-sm">
+            {filename}
+          </span>
         </div>
       )}
 
-      <div className="relative">
+      {/* Changed: Only the code content is scrollable, not the filename or package manager bar. */}
+      <div className="relative flex flex-col">
         <Button
           aria-label="Copy code"
           className="absolute top-3 right-3 z-10 flex items-center justify-center gap-2 rounded bg-secondary/90 px-2 py-1 text-secondary-foreground opacity-0 transition-opacity duration-150 hover:bg-secondary focus-visible:opacity-100 group-hover:opacity-100"
@@ -331,7 +272,12 @@ export default function CodeBlock({
             </>
           )}
         </Button>
-        <div className="overflow-x-auto bg-code">{renderHighlightedCode()}</div>
+        {/* Only code content should scroll. Use a max-h for code container, not at root. */}
+        <div className="w-full bg-code" style={{ position: "relative" }}>
+          <div className="max-h-96 overflow-auto">
+            {renderHighlightedCode()}
+          </div>
+        </div>
       </div>
     </div>
   );

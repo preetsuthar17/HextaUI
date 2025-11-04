@@ -1,3 +1,4 @@
+import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/header-search-trigger";
@@ -41,6 +42,22 @@ export function SiteHeader() {
             >
               Sponsor
             </Link>
+          </li>
+          <li>
+            <a
+              aria-label="GitHub repository"
+              className="flex h-8 w-8 items-center justify-center rounded transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+              href="https://github.com/preetlx/hexta-ui"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              <Github
+                aria-hidden="true"
+                className="text-muted-foreground"
+                size={20}
+              />
+              <span className="sr-only">GitHub</span>
+            </a>
           </li>
         </ul>
       </nav>

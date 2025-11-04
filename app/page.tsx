@@ -5,10 +5,10 @@ import { componentsRegistry } from "@/lib/components-registry";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex flex-col gap-12 px-4 py-8 font-sans">
+    <div className="mx-auto flex flex-col gap-12 px-4 py-8">
       <header className="flex flex-col items-center justify-center gap-4 text-center">
         <div className="flex flex-col gap-4">
-          <h1 className="flex flex-wrap items-center justify-center gap-2 font-semibold text-4xl tracking-tighter">
+          <h1 className="flex flex-wrap items-center justify-center gap-2">
             Extended Components for
             <span className="inline-flex items-center gap-1 px-2">
               <Image

@@ -74,7 +74,6 @@ export function ComponentPreview({
             code={resolvedCode}
             filename={filename}
             lang={lang}
-            showLineNumbers
           />
         </div>
       ) : null}

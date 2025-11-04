@@ -339,7 +339,7 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           </div>
 
           {showIcons && (
-            <div className="flex size-4 items-center justify-center text-muted-foreground mx-2">
+            <div className="mx-2 flex size-4 items-center justify-center text-muted-foreground">
               {icon || getDefaultIcon()}
             </div>
           )}
