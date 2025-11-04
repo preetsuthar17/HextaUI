@@ -206,6 +206,14 @@
   [role="button"]:not(:disabled) {
     cursor: pointer;
   }
+
+  h1 {
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight text-balance;
+  }
+
+  h2 {
+    @apply scroll-m-20 text-xl font-semibold tracking-tight first:mt-0;
+  }
 }
 
 pre,

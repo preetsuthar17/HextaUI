@@ -3,10 +3,12 @@ import Link from "next/link";
 import { AskAIButton } from "@/components/ask-ai-button";
 import ComponentHeaderActions from "@/components/component-header-actions";
 import { ComponentInstallation } from "@/components/component-installation";
+import { ComponentPrevNext } from "@/components/component-prev-next";
 import { ComponentPreview } from "@/components/component-preview";
 import { ComponentSection } from "@/components/component-section";
 import ComponentUsage from "@/components/component-usage";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import { getComponentMetaById } from "@/lib/components-registry";
 
 export default async function ComponentPage({
@@ -93,6 +95,8 @@ export default async function ComponentPage({
       <ComponentSection id="usage">
         <ComponentUsage code={meta.usageCode} imports={meta.usageImports} />
       </ComponentSection>
+      <Separator />
+      <ComponentPrevNext currentId={meta.id} />
     </div>
   );
 }
