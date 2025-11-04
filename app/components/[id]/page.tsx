@@ -39,7 +39,7 @@ export default async function ComponentPage({
   const Demo = meta.Demo;
 
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-14 font-sans">
+    <div className="mx-auto flex flex-col gap-12 px-4 py-14 font-sans">
       <header className="flex items-start justify-between gap-6">
         <div className="flex flex-col gap-4">
           <h1 className="font-semibold text-3xl tracking-tight">

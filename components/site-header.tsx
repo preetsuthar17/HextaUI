@@ -4,7 +4,7 @@ import Link from "next/link";
 export function SiteHeader() {
   return (
     <header className="border-b">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4">
+      <nav className="mx-auto flex w-[95%] items-center justify-between px-4 py-4">
         <Link
           aria-label="Hexta UI home"
           className="flex items-center gap-2 font-medium"

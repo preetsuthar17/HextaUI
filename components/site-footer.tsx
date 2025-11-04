@@ -1,7 +1,7 @@
 export function SiteFooter() {
   return (
     <footer className="border-t">
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-4 font-medium text-sm">
+      <div className="mx-auto flex w-[95%] items-center justify-between px-4 py-4 font-medium text-sm">
         <span>
           Built by{" "}
           <a

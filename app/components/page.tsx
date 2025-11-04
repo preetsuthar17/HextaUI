@@ -5,7 +5,7 @@ import { componentsRegistry } from "@/lib/components-registry";
 
 export default function ComponentsIndexPage() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 font-sans">
+    <div className="mx-auto flex flex-col gap-8 px-4 py-8 font-sans">
       <header className="flex items-end justify-between gap-4">
         <div>
           <h1 className="font-semibold text-2xl tracking-tight">Components</h1>

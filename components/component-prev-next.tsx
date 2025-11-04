@@ -19,7 +19,7 @@ export function ComponentPrevNext({ currentId }: { currentId: string }) {
 
   return (
     <nav aria-label="Component pagination">
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto">
         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           <li className="min-w-0">
             {prevMeta && (
