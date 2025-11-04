@@ -18,20 +18,19 @@ export default function ComponentsIndexPage() {
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {componentsRegistry.map((c) => (
-          <div
-            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3"
+          <Link
             key={c.id}
+            href={`/components/${c.id}`}
+            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3 transition-colors hover:bg-accent focus-visible:bg-accent outline-none"
+            tabIndex={0}
+            aria-label={`View ${c.title} component`}
           >
             <div className="flex min-w-0 flex-col">
               <span className="truncate font-medium">{c.title}</span>
               <span className="text-muted-foreground text-xs">{c.id}</span>
             </div>
-            <Button asChild size="sm" variant="secondary">
-              <Link href={`/components/${c.id}`}>
-                Open <ArrowRightIcon className="size-4" />
-              </Link>
-            </Button>
-          </div>
+            <ArrowRightIcon className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+          </Link>
         ))}
       </div>
     </div>

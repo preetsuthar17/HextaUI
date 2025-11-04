@@ -9,30 +9,26 @@ export default function Home() {
       <header className="flex items-end justify-between gap-4">
         <div>
           <h1 className="font-semibold text-2xl tracking-tight">
-            Hexta UI Components
+            HextaUI
           </h1>
           <p className="text-muted-foreground text-sm">
-            Browse components and open their docs pages.
+            Foundation components built on top of shadcn/ui.
           </p>
         </div>
       </header>
 
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {componentsRegistry.map((c) => (
-          <div
-            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3"
+          <Link
+            href={`/components/${c.id}`}
+            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             key={c.id}
+            tabIndex={0}
           >
             <div className="flex min-w-0 flex-col">
               <span className="truncate font-medium">{c.title}</span>
-              <span className="text-muted-foreground text-xs">{c.id}</span>
             </div>
-            <Button asChild size="sm" variant="secondary">
-              <Link href={`/components/${c.id}`}>
-                Open <ArrowRightIcon className="size-4" />
-              </Link>
-            </Button>
-          </div>
+          </Link>
         ))}
       </div>
     </div>
