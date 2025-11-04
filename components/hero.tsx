@@ -34,10 +34,10 @@ export function Hero() {
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for
-          <span className="inline-flex items-center gap-2 px-1 ">
+          <span className="inline-flex items-center gap-2 px-1">
             <Image
               alt="shadcn/ui"
-              className="size-10 rounded-full align-middle translate-y-0.2"
+              className="size-10 translate-y-0.2 rounded-full align-middle"
               height={36}
               src="https://avatars.githubusercontent.com/u/124599?v=4"
               style={{ display: "inline-block" }}
@@ -57,12 +57,18 @@ export function Hero() {
           </ButtonGroup>
           <ButtonGroup aria-label="GitHub repository">
             <Button asChild className="h-11" variant="outline">
-              <Link target="_blank" href="https://github.com/preetsuthar17/hextaui">
+              <Link
+                href="https://github.com/preetsuthar17/hextaui"
+                target="_blank"
+              >
                 GitHub
               </Link>
             </Button>
             <Button asChild className="h-11" variant="outline">
-              <Link target="_blank" href="https://github.com/preetsuthar17/hextaui">
+              <Link
+                href="https://github.com/preetsuthar17/hextaui"
+                target="_blank"
+              >
                 <Star aria-hidden="true" className="size-4" />
                 <span>
                   {(starCount !== null

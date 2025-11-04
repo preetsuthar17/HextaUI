@@ -1,4 +1,5 @@
 import { ExternalLink } from "lucide-react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AskAIButton } from "@/components/ask-ai-button";
 import ComponentHeaderActions from "@/components/component-header-actions";
@@ -11,6 +12,39 @@ import { ComponentsSidebar } from "@/components/components-sidebar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { getComponentMetaById } from "@/lib/components-registry";
+import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id?: string }>;
+}): Promise<Metadata> {
+  const resolved = await params;
+  const id = (resolved.id ?? "").trim();
+  const meta = id ? getComponentMetaById(id) : undefined;
+
+  if (!meta) {
+    return generatePageMetadata({
+      title: "Component not found - HextaUI",
+      description: `No component with id "${id}".`,
+      url: `/components/${id}`,
+    });
+  }
+
+  return generatePageMetadata({
+    title: `${meta.title} - HextaUI`,
+    description: meta.description,
+    url: `/components/${meta.id}`,
+    image: `https://www.hextaui.com/og?component=${meta.id}`,
+    keywords: [
+      meta.title,
+      meta.id,
+      "shadcn/ui",
+      "react component",
+      "ui component",
+    ],
+  });
+}
 
 export default async function ComponentPage({
   params,
