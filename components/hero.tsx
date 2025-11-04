@@ -37,7 +37,7 @@ export function Hero() {
           <span className="inline-flex items-center gap-2 px-1 ">
             <Image
               alt="shadcn/ui"
-              className="size-10 rounded-full align-middle"
+              className="size-10 rounded-full align-middle translate-y-0.2"
               height={36}
               src="https://avatars.githubusercontent.com/u/124599?v=4"
               style={{ display: "inline-block" }}
