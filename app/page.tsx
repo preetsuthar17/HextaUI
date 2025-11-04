@@ -1,18 +1,16 @@
-import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { componentsRegistry } from "@/lib/components-registry";
 
 export default function Home() {
   return (
-    <div className="mx-auto flex max-w-5xl flex-col gap-8 px-4 py-8 font-sans">
-      <header className="flex items-end justify-between gap-4">
-        <div>
-          <h1 className="font-semibold text-2xl tracking-tight">
-            HextaUI
+    <div className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-8 font-sans">
+      <header className="flex flex-col items-center justify-center gap-4 text-center">
+        <div className="flex flex-col gap-2">
+          <h1 className="font-semibold text-4xl tracking-tighter">
+            Extended Components for shadcn/ui
           </h1>
           <p className="text-muted-foreground text-sm">
-            Foundation components built on top of shadcn/ui.
+            Ready-to-use foundation components built on top of shadcn/ui.
           </p>
         </div>
       </header>
@@ -20,8 +18,8 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {componentsRegistry.map((c) => (
           <Link
-            href={`/components/${c.id}`}
             className="flex items-center justify-between gap-2 rounded-md border bg-card p-3 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            href={`/components/${c.id}`}
             key={c.id}
             tabIndex={0}
           >

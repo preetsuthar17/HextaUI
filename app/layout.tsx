@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "sonner";
+import { SiteFooter } from "@/components/site-footer";
+import { SiteHeader } from "@/components/site-header";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,7 +31,22 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <main>{children}</main>
+        <a
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
+          href="#content"
+        >
+          Skip to content
+        </a>
+        <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+          <SiteHeader />
+          <main
+            className="mx-auto w-full max-w-screen-xl px-4 py-6"
+            id="content"
+          >
+            {children}
+          </main>
+          <SiteFooter />
+        </div>
         <Toaster />
       </body>
     </html>

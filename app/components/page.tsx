@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 
-import { Button } from "@/components/ui/button";
 import { componentsRegistry } from "@/lib/components-registry";
 
 export default function ComponentsIndexPage() {
@@ -19,17 +18,20 @@ export default function ComponentsIndexPage() {
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
         {componentsRegistry.map((c) => (
           <Link
-            key={c.id}
-            href={`/components/${c.id}`}
-            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3 transition-colors hover:bg-accent focus-visible:bg-accent outline-none"
-            tabIndex={0}
             aria-label={`View ${c.title} component`}
+            className="flex items-center justify-between gap-2 rounded-md border bg-card p-3 outline-none transition-colors hover:bg-accent focus-visible:bg-accent"
+            href={`/components/${c.id}`}
+            key={c.id}
+            tabIndex={0}
           >
             <div className="flex min-w-0 flex-col">
               <span className="truncate font-medium">{c.title}</span>
               <span className="text-muted-foreground text-xs">{c.id}</span>
             </div>
-            <ArrowRightIcon className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />
+            <ArrowRightIcon
+              aria-hidden="true"
+              className="size-5 shrink-0 text-muted-foreground"
+            />
           </Link>
         ))}
       </div>
