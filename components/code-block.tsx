@@ -71,7 +71,7 @@ export default function CodeBlock({
   const displayCode = isPackageInstall
     ? transformPackageInstallCode(code, selectedPackageManager)
     : code;
-  
+
   const lineCount = displayCode.split("\n").length;
   const hasMultipleLines = lineCount > 1;
 
@@ -202,7 +202,7 @@ export default function CodeBlock({
       } else if (isCodeBlock) {
         props.className = `whitespace-pre-wrap wrap-break-word ${scrollbarClass}`;
       }
-      
+
       // Add data attribute for multi-line code blocks
       if (isCodeElement && hasMultipleLines) {
         props["data-line-numbers"] = "true";
