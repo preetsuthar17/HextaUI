@@ -199,7 +199,11 @@ const Tree = React.forwardRef<HTMLDivElement, TreeProps>(
   ({ className, asChild = false, children, ...props }, ref) => {
     const Comp = asChild ? Slot : "div";
     return (
-      <Comp className={cn("space-y-1", className)} ref={ref} {...props}>
+      <Comp
+        className={cn("flex flex-col gap-1", className)}
+        ref={ref}
+        {...props}
+      >
         {children}
       </Comp>
     );
@@ -260,12 +264,12 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
     const getDefaultIcon = () =>
       hasChildren ? (
         isExpanded ? (
-          <FolderOpen aria-hidden="true" className="h-4 w-4" />
+          <FolderOpen aria-hidden="true" className="size-4" />
         ) : (
-          <Folder aria-hidden="true" className="h-4 w-4" />
+          <Folder aria-hidden="true" className="size-4" />
         )
       ) : (
-        <File aria-hidden="true" className="h-4 w-4" />
+        <File aria-hidden="true" className="size-4" />
       );
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -327,15 +331,15 @@ const TreeItem = React.forwardRef<HTMLDivElement, TreeItemProps>(
           <div
             aria-hidden="true"
             className={cn(
-              "mr-1 flex h-4 w-4 items-center justify-center text-muted-foreground transition-transform motion-safe:duration-200",
+              "flex size-4 items-center justify-center text-muted-foreground transition-transform motion-safe:duration-200",
               hasChildren && isExpanded ? "rotate-90" : "rotate-0"
             )}
           >
-            {hasChildren && <ChevronRight className="h-3 w-3" />}
+            {hasChildren && <ChevronRight className="size-3" />}
           </div>
 
           {showIcons && (
-            <div className="mr-2 flex h-4 w-4 items-center justify-center text-muted-foreground">
+            <div className="flex size-4 items-center justify-center text-muted-foreground">
               {icon || getDefaultIcon()}
             </div>
           )}

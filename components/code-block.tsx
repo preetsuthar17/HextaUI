@@ -302,7 +302,7 @@ export default function CodeBlock({
 
       {filename && (
         <div className="flex items-center justify-between border-border border-b bg-background px-4 py-2">
-          <div className="flex items-center space-x-2">
+          <div className="flex items-center gap-2">
             <span className="font-mono text-muted-foreground text-sm">
               {filename}
             </span>

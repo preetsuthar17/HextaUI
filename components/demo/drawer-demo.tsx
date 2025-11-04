@@ -77,9 +77,9 @@ export function DrawerDemo() {
             <DrawerDescription>Set your daily activity goal.</DrawerDescription>
           </DrawerHeader>
           <div className="p-4 pb-0">
-            <div className="flex items-center justify-center space-x-2">
+            <div className="flex items-center justify-center gap-2">
               <Button
-                className="h-8 w-8 shrink-0 rounded-full"
+                className="size-8 shrink-0 rounded-full"
                 disabled={goal <= 200}
                 onClick={() => onClick(-10)}
                 size="icon"
@@ -97,7 +97,7 @@ export function DrawerDemo() {
                 </div>
               </div>
               <Button
-                className="h-8 w-8 shrink-0 rounded-full"
+                className="size-8 shrink-0 rounded-full"
                 disabled={goal >= 400}
                 onClick={() => onClick(10)}
                 size="icon"

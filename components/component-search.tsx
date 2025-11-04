@@ -16,6 +16,12 @@ import {
 } from "@/components/ui/command-menu";
 import { componentsRegistry } from "@/lib/components-registry";
 
+export function openCommandMenu() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("open-command-menu"));
+  }
+}
+
 function ComponentSearchList({ onSelect }: { onSelect: (id: string) => void }) {
   const { value } = useCommandMenu();
   const items = React.useMemo(() => {
@@ -52,6 +58,12 @@ export function ComponentSearch() {
   const router = useRouter();
 
   useCommandMenuShortcut(() => setOpen(true));
+
+  React.useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-command-menu", handler);
+    return () => window.removeEventListener("open-command-menu", handler);
+  }, []);
 
   return (
     <CommandMenu onOpenChange={setOpen} open={open}>

@@ -41,7 +41,7 @@ export default function RootLayout({
         <ComponentSearch />
         <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
           <SiteHeader />
-          <main className="mx-auto w-full max-w-7xl px-4 py-6" id="content">
+          <main className="mx-auto w-full px-4 py-6" id="content">
             {children}
           </main>
           <SiteFooter />

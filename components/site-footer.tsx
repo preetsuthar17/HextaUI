@@ -29,24 +29,31 @@ export function SiteFooter() {
             href="https://preetsuthar.me/github"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Preet Suthar on GitHub"
           >
             GitHub
           </a>
-          <span aria-hidden="true">//</span>
+          <span aria-hidden="true" className="select-none">
+            /
+          </span>
           <a
             className="hover:underline"
             href="https://preetsuthar.me/twitter"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Preet Suthar on Twitter"
           >
             Twitter
           </a>
-          <span aria-hidden="true">//</span>
+          <span aria-hidden="true" className="select-none">
+            /
+          </span>
           <a
             className="hover:underline"
             href="https://preetsuthar.me/sponsor"
             rel="noopener noreferrer"
             target="_blank"
+            aria-label="Sponsor Preet Suthar"
           >
             Sponsor
           </a>

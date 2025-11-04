@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { componentsRegistry } from "@/lib/components-registry";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -10,10 +11,12 @@ export default function Home() {
           <h1 className="flex flex-wrap items-center justify-center gap-2 font-semibold text-4xl tracking-tighter">
             Extended Components for
             <span className="inline-flex items-center gap-1 px-2">
-              <img
+              <Image
+              width={36}
+              height={36}
                 alt="shadcn/ui"
                 className="size-9 rounded-full align-middle"
-                src="https://github.com/shadcn.png"
+                src="https://avatars.githubusercontent.com/u/124599?v=4"
                 style={{ display: "inline-block" }}
               />
               <span>shadcn/ui</span>

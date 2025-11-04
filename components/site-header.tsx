@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { HeaderSearchTrigger } from "@/components/header-search-trigger";
 
 export function SiteHeader() {
   return (
@@ -13,6 +14,9 @@ export function SiteHeader() {
           <Image alt="Hexta UI" height={20} src="/favicon.ico" width={20} />
           <span className="font-medium tracking-tight">HextaUI</span>
         </Link>
+        <div className="max-w-xs flex-1 md:hidden">
+          <HeaderSearchTrigger />
+        </div>
         <ul className="flex items-center gap-4">
           <li>
             <Link
@@ -28,14 +32,6 @@ export function SiteHeader() {
               href="/components"
             >
               Components
-            </Link>
-          </li>
-          <li>
-            <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:underline"
-              href="https://github.com/preetsuthar17/hextaui"
-            >
-              GitHub
             </Link>
           </li>
           <li>

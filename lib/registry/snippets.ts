@@ -1583,7 +1583,7 @@ import { Label } from "@/components/ui/label";
 export function LabelDemo() {
   return (
     <div>
-      <div className="flex items-center space-x-2">
+      <div className="flex items-center gap-2">
         <Checkbox id="terms" />
         <Label htmlFor="terms">Accept terms and conditions</Label>
       </div>
@@ -1741,11 +1741,11 @@ export function RadioGroupDemo() {
     usageImports: `import { Label } from "@/components/ui/label"
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
     usageCode: `<RadioGroup defaultValue="option-one">
-  <div className="flex items-center space-x-2">
+  <div className="flex items-center gap-2">
     <RadioGroupItem value="option-one" id="option-one" />
     <Label htmlFor="option-one">Option One</Label>
   </div>
-  <div className="flex items-center space-x-2">
+  <div className="flex items-center gap-2">
     <RadioGroupItem value="option-two" id="option-two" />
     <Label htmlFor="option-two">Option Two</Label>
   </div>
@@ -1905,14 +1905,14 @@ export function SelectDemo() {
 export function SeparatorDemo() {
   return (
     <div>
-      <div className="space-y-1">
+      <div className="flex flex-col gap-1">
         <h4 className="font-medium text-sm leading-none">Radix Primitives</h4>
         <p className="text-muted-foreground text-sm">
           An open-source UI component library.
         </p>
       </div>
       <Separator className="my-4" />
-      <div className="flex h-5 items-center space-x-4 text-sm">
+      <div className="flex h-5 items-center gap-4 text-sm">
         <div>Blog</div>
         <Separator orientation="vertical" />
         <div>Docs</div>
@@ -2001,9 +2001,9 @@ export function SheetDemo() {
 
 export function SkeletonDemo() {
   return (
-    <div className="flex items-center space-x-4">
-      <Skeleton className="h-12 w-12 rounded-full" />
-      <div className="space-y-2">
+    <div className="flex items-center gap-4">
+      <Skeleton className="size-12 rounded-full" />
+      <div className="flex flex-col gap-2">
         <Skeleton className="h-4 w-[250px]" />
         <Skeleton className="h-4 w-[200px]" />
       </div>
@@ -2095,7 +2095,7 @@ import { Switch } from "@/components/ui/switch";
 
 export function SwitchDemo() {
   return (
-    <div className="flex items-center space-x-2">
+    <div className="flex items-center gap-2">
       <Switch id="airplane-mode" />
       <Label htmlFor="airplane-mode">Airplane Mode</Label>
     </div>

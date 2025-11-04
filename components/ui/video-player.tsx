@@ -320,9 +320,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                 type="button"
               >
                 {isPlaying ? (
-                  <Pause aria-hidden="true" className="h-6 w-6" />
+                  <Pause aria-hidden="true" className="size-6" />
                 ) : (
-                  <Play aria-hidden="true" className="h-6 w-6" />
+                  <Play aria-hidden="true" className="size-6" />
                 )}
               </button>
             </div>
@@ -333,7 +333,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                 showControlsState ? "opacity-100" : "opacity-0"
               )}
             >
-              <div className="pointer-events-auto space-y-3 p-4">
+              <div className="pointer-events-auto flex flex-col gap-2 p-4">
                 <div className="flex items-center gap-2 text-sm text-white">
                   <span aria-live="off" className="min-w-0 font-mono text-xs">
                     {formatTime(currentTime)}
@@ -379,7 +379,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       type="button"
                     >
-                      <SkipBack aria-hidden="true" className="h-4 w-4" />
+                      <SkipBack aria-hidden="true" className="size-4" />
                     </button>
                     <button
                       aria-label={isPlaying ? "Pause" : "Play"}
@@ -391,9 +391,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       type="button"
                     >
                       {isPlaying ? (
-                        <Pause aria-hidden="true" className="h-4 w-4" />
+                        <Pause aria-hidden="true" className="size-4" />
                       ) : (
-                        <Play aria-hidden="true" className="h-4 w-4" />
+                        <Play aria-hidden="true" className="size-4" />
                       )}
                     </button>
                     <button
@@ -405,7 +405,7 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       }}
                       type="button"
                     >
-                      <SkipForward aria-hidden="true" className="h-4 w-4" />
+                      <SkipForward aria-hidden="true" className="size-4" />
                     </button>
                     <div className="group/volume flex items-center gap-2">
                       <button
@@ -418,9 +418,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                         type="button"
                       >
                         {isMuted || volume === 0 ? (
-                          <VolumeX aria-hidden="true" className="h-4 w-4" />
+                          <VolumeX aria-hidden="true" className="size-4" />
                         ) : (
-                          <Volume2 aria-hidden="true" className="h-4 w-4" />
+                          <Volume2 aria-hidden="true" className="size-4" />
                         )}
                       </button>
                       <div className="w-0 overflow-hidden transition-all group-hover/volume:w-20 motion-safe:duration-200">
@@ -467,9 +467,9 @@ const VideoPlayer = React.forwardRef<HTMLVideoElement, VideoPlayerProps>(
                       type="button"
                     >
                       {isFullscreen ? (
-                        <Minimize aria-hidden="true" className="h-4 w-4" />
+                        <Minimize aria-hidden="true" className="size-4" />
                       ) : (
-                        <Maximize aria-hidden="true" className="h-4 w-4" />
+                        <Maximize aria-hidden="true" className="size-4" />
                       )}
                     </button>
                   </div>

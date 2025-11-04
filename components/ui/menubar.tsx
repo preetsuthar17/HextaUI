@@ -239,7 +239,7 @@ function MenubarSubTrigger({
       {...props}
     >
       {children}
-      <ChevronRightIcon aria-hidden="true" className="ml-auto h-4 w-4" />
+      <ChevronRightIcon aria-hidden="true" className="ml-auto size-4" />
     </MenubarPrimitive.SubTrigger>
   );
 }
