@@ -20,6 +20,8 @@ async function fetchGitHubStars(): Promise<number | null> {
   }
 }
 
+const DEFAULT_STAR_COUNT = 310;
+
 export function Hero() {
   const [starCount, setStarCount] = useState<number | null>(null);
 
@@ -32,10 +34,10 @@ export function Hero() {
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for
-          <span className="inline-flex items-center gap-1 px-2">
+          <span className="inline-flex items-center gap-2 px-1 ">
             <Image
               alt="shadcn/ui"
-              className="size-9 rounded-full align-middle"
+              className="size-10 rounded-full align-middle"
               height={36}
               src="https://avatars.githubusercontent.com/u/124599?v=4"
               style={{ display: "inline-block" }}
@@ -45,7 +47,7 @@ export function Hero() {
           </span>
         </h1>
         <p className="text-muted-foreground">
-          Ready-to-use foundation components built on top of shadcn/ui.
+          Ready-to-use foundation components/blocks built on top of shadcn/ui.
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <ButtonGroup aria-label="View components">
@@ -55,18 +57,21 @@ export function Hero() {
           </ButtonGroup>
           <ButtonGroup aria-label="GitHub repository">
             <Button asChild className="h-11" variant="outline">
-              <Link href="https://github.com/preetsuthar17/hextaui">
+              <Link target="_blank" href="https://github.com/preetsuthar17/hextaui">
                 GitHub
               </Link>
             </Button>
-            {starCount !== null && (
-              <Button asChild className="h-11" variant="outline">
-                <Link href="https://github.com/preetsuthar17/hextaui">
-                  <Star aria-hidden="true" className="size-4" />
-                  <span>{starCount.toLocaleString()}</span>
-                </Link>
-              </Button>
-            )}
+            <Button asChild className="h-11" variant="outline">
+              <Link target="_blank" href="https://github.com/preetsuthar17/hextaui">
+                <Star aria-hidden="true" className="size-4" />
+                <span>
+                  {(starCount !== null
+                    ? starCount
+                    : DEFAULT_STAR_COUNT
+                  ).toLocaleString()}
+                </span>
+              </Link>
+            </Button>
           </ButtonGroup>
         </div>
       </div>
