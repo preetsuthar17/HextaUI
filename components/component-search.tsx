@@ -1,0 +1,89 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+import * as React from "react";
+
+import {
+  CommandMenu,
+  CommandMenuContent,
+  CommandMenuEmpty,
+  CommandMenuGroup,
+  CommandMenuInput,
+  CommandMenuItem,
+  CommandMenuList,
+  useCommandMenu,
+  useCommandMenuShortcut,
+} from "@/components/ui/command-menu";
+import { componentsRegistry } from "@/lib/components-registry";
+
+export function openCommandMenu() {
+  if (typeof window !== "undefined") {
+    window.dispatchEvent(new CustomEvent("open-command-menu"));
+  }
+}
+
+function ComponentSearchList({ onSelect }: { onSelect: (id: string) => void }) {
+  const { value } = useCommandMenu();
+  const items = React.useMemo(() => {
+    const q = value.trim().toLowerCase();
+    if (!q) return componentsRegistry;
+    return componentsRegistry.filter((c) =>
+      [c.title, c.id, c.description ?? ""].some((t) =>
+        t.toLowerCase().includes(q)
+      )
+    );
+  }, [value]);
+
+  return (
+    <CommandMenuList>
+      <CommandMenuGroup heading="Components">
+        {items.length === 0 && (
+          <CommandMenuEmpty>No components found.</CommandMenuEmpty>
+        )}
+        {items.map((c, i) => (
+          <CommandMenuItem index={i} key={c.id} onSelect={() => onSelect(c.id)}>
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <span className="flex items-center">
+                <span
+                  aria-hidden="true"
+                  className="inline-block size-3 shrink-0 rounded-full border border-border border-dashed bg-transparent"
+                />
+              </span>
+              <div className="flex flex-col items-start">
+                <span className="font-medium">{c.title}</span>
+                <span className="text-muted-foreground text-xs">{c.id}</span>
+              </div>
+            </div>
+          </CommandMenuItem>
+        ))}
+      </CommandMenuGroup>
+    </CommandMenuList>
+  );
+}
+
+export function ComponentSearch() {
+  const [open, setOpen] = React.useState(false);
+  const router = useRouter();
+
+  useCommandMenuShortcut(() => setOpen(true));
+
+  React.useEffect(() => {
+    const handler = () => setOpen(true);
+    window.addEventListener("open-command-menu", handler);
+    return () => window.removeEventListener("open-command-menu", handler);
+  }, []);
+
+  return (
+    <CommandMenu onOpenChange={setOpen} open={open}>
+      <CommandMenuContent onEscapeKeyDown={() => setOpen(false)}>
+        <CommandMenuInput autoFocus placeholder="Search components…" />
+        <ComponentSearchList
+          onSelect={(id) => {
+            setOpen(false);
+            router.push(`/components/${id}`);
+          }}
+        />
+      </CommandMenuContent>
+    </CommandMenu>
+  );
+}
