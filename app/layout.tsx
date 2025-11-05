@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Script from "next/script";
 import { Toaster } from "sonner";
 import { ComponentSearch } from "@/components/component-search";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
-import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -54,9 +54,9 @@ export default function RootLayout({
         </div>
         <Toaster />
         <Script
+          defer
           src="https://assets.onedollarstats.com/stonks.js"
           strategy="afterInteractive"
-          defer
         />
       </body>
     </html>

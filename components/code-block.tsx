@@ -143,7 +143,9 @@ export default function CodeBlock({
         <pre
           className={`wrap-break-word whitespace-pre-wrap bg-code font-mono ${breakClass} ${scrollbarClass}`}
         >
-          <code className={`wrap-break-word whitespace-pre-wrap bg-code p-4 font-mono text-sm ${breakClass}`}>
+          <code
+            className={`wrap-break-word whitespace-pre-wrap bg-code p-4 font-mono text-sm ${breakClass}`}
+          >
             {displayCode}
           </code>
         </pre>
@@ -159,7 +161,9 @@ export default function CodeBlock({
         <pre
           className={`wrap-break-word whitespace-pre-wrap bg-code ${breakClass} ${scrollbarClass}`}
         >
-          <code className={`wrap-break-word whitespace-pre-wrap bg-code ${breakClass}`}>
+          <code
+            className={`wrap-break-word whitespace-pre-wrap bg-code ${breakClass}`}
+          >
             {displayCode}
           </code>
         </pre>
