@@ -12,6 +12,7 @@ const FieldSet = React.forwardRef<
 >(function FieldSet({ className, ...props }, ref) {
   return (
     <fieldset
+      aria-disabled={(props as any).disabled ? true : undefined}
       className={cn(
         "flex touch-manipulation flex-col gap-6",
         "has-[>[data-slot=checkbox-group]]:gap-3 has-[>[data-slot=radio-group]]:gap-3",
@@ -147,7 +148,7 @@ const FieldTitle = React.forwardRef<
         "flex w-fit items-center gap-2 font-medium text-sm leading-snug group-data-[disabled=true]/field:opacity-50",
         className
       )}
-      data-slot="field-label"
+      data-slot="field-title"
       ref={ref}
       {...props}
     />

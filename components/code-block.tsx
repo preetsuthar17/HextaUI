@@ -120,7 +120,7 @@ export default function CodeBlock({
           </div>
         )}
         <div className="p-4">
-          <div className="animate-pulse space-y-2">
+          <div className="flex animate-pulse flex-col gap-2">
             <div className="h-4 rounded bg-muted" />
             <div className="h-4 w-3/4 rounded bg-muted" />
             <div className="h-4 w-1/2 rounded bg-muted" />

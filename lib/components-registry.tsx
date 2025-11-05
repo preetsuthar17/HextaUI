@@ -17,6 +17,7 @@ import { DatePickerDemo } from "@/components/demo/date-picker-demo";
 import { DialogDemo } from "@/components/demo/dialog-demo";
 import { DropdownMenuDemo } from "@/components/demo/dropdown-menu-demo";
 import { EmptyDemo } from "@/components/demo/empty-demo";
+import { FieldDemo } from "@/components/demo/field-demo";
 import { InputDemo } from "@/components/demo/input-demo";
 import { InputGroupDemo } from "@/components/demo/input-group-demo";
 import { InputOTPDemo } from "@/components/demo/input-otp-demo";
@@ -162,6 +163,10 @@ const docsApiLinks: Record<string, { docs_ref?: string; api_ref?: string }> = {
     docs_ref: undefined,
     api_ref: undefined,
   },
+  field: {
+    docs_ref: undefined,
+    api_ref: undefined,
+  },
   "scroll-area": {
     docs_ref: `${radixBaseDocs}scroll-area`,
     api_ref: `${radixBaseApi}scroll-area#api-reference`,
@@ -296,6 +301,7 @@ const demoComponents: Record<string, React.ComponentType> = {
   "command-menu": CommandMenuDemo,
   tree: TreeBasicDemo,
   "video-player": VideoPlayerDemo,
+  field: FieldDemo,
 };
 
 const snippets = componentSnippets as Record<
@@ -400,6 +406,11 @@ const componentsList: { id: string; title: string; description?: string }[] = [
     id: "empty",
     title: "Empty",
     description: "A placeholder for empty states or when no data is available.",
+  },
+  {
+    id: "field",
+    title: "Field",
+    description: "Accessible field layout: label, content, hints, errors.",
   },
   { id: "input", title: "Input", description: "A basic text input field." },
   {
