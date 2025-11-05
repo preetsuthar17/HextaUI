@@ -15,7 +15,7 @@ export function CollapsibleDemo() {
 
   return (
     <Collapsible
-      className="flex w-[350px] flex-col gap-2"
+      className="flex flex-col gap-2"
       onOpenChange={setIsOpen}
       open={isOpen}
     >

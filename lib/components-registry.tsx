@@ -313,241 +313,229 @@ const componentsList: { id: string; title: string; description?: string }[] = [
   {
     id: "accordion",
     title: "Accordion",
-    description:
-      "A vertically stacked set of interactive headings that each reveal a section of content.",
+    description: "Expands to show or hide content.",
   },
   {
     id: "alert-dialog",
     title: "Alert Dialog",
-    description:
-      "A modal dialog that appears in front of current content to display messages, ask for confirmations, or make critical adjustments to the user interface.",
+    description: "Modal dialog for important actions or decisions.",
   },
   {
     id: "alert",
     title: "Alert",
-    description:
-      "A simple message displayed to notify the user about a status or action.",
+    description: "Displays a status or message banner.",
   },
   {
     id: "aspect-ratio",
     title: "Aspect Ratio",
-    description:
-      "A component that maintains a fixed aspect ratio for its children.",
+    description: "Maintains a fixed ratio for child content.",
   },
   {
     id: "avatar",
     title: "Avatar",
-    description: "A visual representation of a user or object.",
+    description: "Shows an image or initials for a user/object.",
   },
   {
     id: "badge",
     title: "Badge",
-    description: "A small count or label for UI elements.",
+    description: "Small badge for counts or indicators.",
   },
   {
     id: "breadcrumb",
     title: "Breadcrumb",
-    description:
-      "A navigation aid that indicates the page’s location within the site hierarchy.",
+    description: "Displays navigation path as links.",
   },
   {
     id: "button-group",
     title: "Button Group",
-    description: "A group of related buttons displayed together.",
+    description: "Groups multiple buttons in a row.",
   },
   {
     id: "button",
     title: "Button",
-    description: "A clickable element used to trigger an action.",
+    description: "Clickable button for actions.",
   },
   {
     id: "calendar",
     title: "Calendar",
-    description: "A component to display dates and pick days.",
+    description: "Grid to display days and dates.",
   },
   {
     id: "date-picker",
     title: "Date Picker",
-    description: "A component for selecting a date from a calendar popup.",
+    description: "Field and calendar to pick dates.",
   },
   {
     id: "carousel",
     title: "Carousel",
-    description: "A rotating set of images or content blocks.",
+    description: "Rotates or slides multiple items.",
   },
   {
     id: "checkbox",
     title: "Checkbox",
-    description:
-      "A control that allows the user to select one or more options.",
+    description: "Box for selecting true or false.",
   },
   {
     id: "collapsible",
     title: "Collapsible",
-    description: "A panel that can expand or collapse to show or hide content.",
+    description: "Panel that expands and collapses.",
   },
   {
     id: "context-menu",
     title: "Context Menu",
-    description:
-      "A menu that appears on user interaction, such as right-click.",
+    description: "Menu that appears on right-click or action.",
   },
   {
     id: "dialog",
     title: "Dialog",
-    description: "A modal dialog for short-term interactions or forms.",
+    description: "Modal overlay for dialogs and forms.",
   },
   {
     id: "dropdown-menu",
     title: "Dropdown Menu",
-    description: "A menu that displays a list of actions or options.",
+    description: "Menu that opens with a trigger control.",
   },
   {
     id: "empty",
     title: "Empty",
-    description: "A placeholder for empty states or when no data is available.",
+    description: "Graphic placeholder for empty states.",
   },
   {
     id: "field",
     title: "Field",
-    description: "Accessible field layout: label, content, hints, errors.",
+    description: "Field layout with label and help.",
   },
-  { id: "input", title: "Input", description: "A basic text input field." },
+  { id: "input", title: "Input", description: "Single-line text input." },
   {
     id: "input-group",
     title: "Input Group",
-    description: "Groups related input fields and add-ons together.",
+    description: "Combines inputs and add-ons in a row.",
   },
   {
     id: "input-otp",
     title: "Input OTP",
-    description: "A group of inputs for entering a one-time password code.",
+    description: "Inputs for one-time code entry.",
   },
   {
     id: "kbd",
     title: "Kbd",
-    description: "Displays keyboard keys or shortcuts.",
+    description: "Renders keyboard key appearance.",
   },
-  { id: "label", title: "Label", description: "Text label for form elements." },
+  { id: "label", title: "Label", description: "Label for form input." },
   {
     id: "native-select",
     title: "Native Select",
-    description: "A native HTML select dropdown.",
+    description: "Dropdown using the native select element.",
   },
   {
     id: "pagination",
     title: "Pagination",
-    description: "A control for navigating between pages of content.",
+    description: "Controls for paging through content.",
   },
   {
     id: "progress",
     title: "Progress",
-    description: "Displays a progress bar to indicate completion status.",
+    description: "Linear progress indicator.",
   },
   {
     id: "radio-group",
     title: "Radio Group",
-    description: "A set of radio buttons for selecting a single option.",
+    description: "Group of choices where only one can be selected.",
   },
   {
     id: "resizable",
     title: "Resizable",
-    description: "A container or element that can be resized by the user.",
+    description: "Container that users can resize.",
   },
   {
     id: "scroll-area",
     title: "Scroll Area",
-    description: "A scrollable region for overflow content.",
+    description: "Scrollable area for overflowing content.",
   },
   {
     id: "select",
     title: "Select",
-    description:
-      "An enhanced select element for choosing one option from a list.",
+    description: "Custom dropdown select input.",
   },
   {
     id: "separator",
     title: "Separator",
-    description: "A visual divider for separating content.",
+    description: "Horizontal or vertical dividing line.",
   },
   {
     id: "sheet",
     title: "Sheet",
-    description: "A panel that slides in from the edge of the screen.",
+    description: "Drawer panel that slides in from edge.",
   },
   {
     id: "skeleton",
     title: "Skeleton",
-    description: "A placeholder loading indicator mimicking content layout.",
+    description: "Shimmer effect placeholder preview.",
   },
   {
     id: "slider",
     title: "Slider",
-    description: "A control for selecting a value or range along a track.",
+    description: "Draggable control for selecting a value.",
   },
   {
     id: "sonner",
     title: "Sonner",
-    description:
-      "A toast notification component for displaying brief messages.",
+    description: "Displays toast notifications.",
   },
   {
     id: "spinner",
     title: "Spinner",
-    description: "A loading indicator to show ongoing activity.",
+    description: "Circular activity indicator.",
   },
   {
     id: "switch",
     title: "Switch",
-    description: "A toggle switch for turning a setting on or off.",
+    description: "Toggle to switch between states.",
   },
   {
     id: "table",
     title: "Table",
-    description: "Displays data in a grid of rows and columns.",
+    description: "Displays data in rows and columns.",
   },
   {
     id: "tabs",
     title: "Tabs",
-    description:
-      "A set of buttons that switches between different content views.",
+    description: "Switches views using tabbed buttons.",
   },
   {
     id: "textarea",
     title: "Textarea",
-    description: "A multi-line text input.",
+    description: "Multi-line text input.",
   },
   {
     id: "toggle",
     title: "Toggle",
-    description: "A toggle button that can be active or inactive.",
+    description: "Pressable toggle button.",
   },
   {
     id: "toggle-group",
     title: "Toggle Group",
-    description: "A group of toggle buttons.",
+    description: "Groups multiple toggle buttons.",
   },
   {
     id: "tooltip",
     title: "Tooltip",
-    description: "A popup showing additional information on hover or focus.",
+    description: "Shows info on hover or focus.",
   },
   {
     id: "command-menu",
     title: "Command Menu",
-    description:
-      "A fast, keyboard-driven menu for executing commands or navigating.",
+    description: "Popup menu for running commands.",
   },
   {
     id: "tree",
     title: "Tree",
-    description: "A flexible tree view with collapsible nodes and selection.",
+    description: "Hierarchical collapsible structure.",
   },
   {
     id: "video-player",
     title: "Video Player",
-    description:
-      "A modern, accessible video player with full controls and shortcuts.",
+    description: "Video playback with controls.",
   },
 ];
 

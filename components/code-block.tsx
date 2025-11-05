@@ -27,7 +27,9 @@ const COPY_FEEDBACK_DURATION_MS = 2000;
 const scrollbarClass =
   "scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground scrollbar-track-transparent";
 
-// Transform `pnpm dlx` in code block to match selected package manager
+const breakClass =
+  "[@media(max-width:400px)]:break-words [@media(max-width:400px)]:break-all";
+
 function transformPackageInstallCode(
   code: string,
   packageManager: PackageManager
@@ -139,9 +141,9 @@ export default function CodeBlock({
       // fallback - SSR
       return (
         <pre
-          className={`wrap-break-word whitespace-pre-wrap bg-code font-mono ${scrollbarClass}`}
+          className={`wrap-break-word whitespace-pre-wrap bg-code font-mono ${breakClass} ${scrollbarClass}`}
         >
-          <code className="wrap-break-word whitespace-pre-wrap bg-code p-4 font-mono text-sm">
+          <code className={`wrap-break-word whitespace-pre-wrap bg-code p-4 font-mono text-sm ${breakClass}`}>
             {displayCode}
           </code>
         </pre>
@@ -155,9 +157,9 @@ export default function CodeBlock({
       // fallback for highlight error
       return (
         <pre
-          className={`wrap-break-word whitespace-pre-wrap bg-code ${scrollbarClass}`}
+          className={`wrap-break-word whitespace-pre-wrap bg-code ${breakClass} ${scrollbarClass}`}
         >
-          <code className="wrap-break-word whitespace-pre-wrap bg-code">
+          <code className={`wrap-break-word whitespace-pre-wrap bg-code ${breakClass}`}>
             {displayCode}
           </code>
         </pre>
@@ -195,12 +197,14 @@ export default function CodeBlock({
       const isCodeElement = tagName === "code";
 
       const props: Record<string, any> = { key };
+
+      // Add break word and break all to ensure letter breaking in code blocks
       if (el.className) {
         props.className = isCodeBlock
-          ? `${el.className} whitespace-pre-wrap wrap-break-word ${scrollbarClass}`.trim()
-          : el.className;
+          ? `${el.className} whitespace-pre-wrap wrap-break-word ${breakClass} ${scrollbarClass}`.trim()
+          : `${el.className} ${breakClass}`.trim();
       } else if (isCodeBlock) {
-        props.className = `whitespace-pre-wrap wrap-break-word ${scrollbarClass}`;
+        props.className = `whitespace-pre-wrap wrap-break-word ${breakClass} ${scrollbarClass}`;
       }
 
       // Add data attribute for multi-line code blocks

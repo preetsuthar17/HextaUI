@@ -609,7 +609,7 @@ export function ButtonGroupDemo() {
   return (
     <div className="mx-auto flex w-full max-w-md flex-col items-center gap-8 py-10">
       <div className="flex w-full flex-col items-center gap-6">
-        <div className="flex w-full items-center justify-center gap-4">
+        <div className="flex w-full items-center justify-center gap-4 flex-wrap">
           <ButtonGroup aria-label="User management actions">
             <Button aria-label="View user" variant="outline">
               View
@@ -892,7 +892,7 @@ export function CollapsibleDemo() {
 
   return (
     <Collapsible
-      className="flex w-[350px] flex-col gap-2"
+      className="flex flex-col gap-2"
       onOpenChange={setIsOpen}
       open={isOpen}
     >
