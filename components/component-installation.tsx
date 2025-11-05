@@ -12,7 +12,7 @@ export function ComponentInstallation({
       <h2>Installation using CLI</h2>
       <CodeBlock
         code={
-          installCode ?? `pnpm dlx shadcn@latest add @hextaui/${componentName}`
+          installCode ?? `pnpm dlx shadcn@latest add https://hextaui.com/r/${componentName}.json`
         }
         lang="package-install"
       />
