@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "aspect-ratio",
+  "type": "registry:ui",
+  "dependencies": ["@radix-ui/react-aspect-ratio"],
+  "files": [
+    {
+      "path": "registry/new-york/ui/aspect-ratio.tsx",
+      "content": "\"use client\";\n\nimport * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\ntype AspectRatioProps = React.ComponentProps<typeof AspectRatioPrimitive.Root>;\n\nconst AspectRatio = React.forwardRef<\n  React.ComponentRef<typeof AspectRatioPrimitive.Root>,\n  AspectRatioProps\n>(function AspectRatio({ className, ...props }, ref) {\n  return (\n    <AspectRatioPrimitive.Root\n      className={cn(\"touch-manipulation\", className)}\n      data-slot=\"aspect-ratio\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nexport { AspectRatio };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

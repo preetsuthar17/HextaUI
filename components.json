@@ -18,5 +18,7 @@
     "lib": "@/lib",
     "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@hextaui": "https://hextaui.com/r/{name}.json"
+  }
 }
