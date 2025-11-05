@@ -11,8 +11,17 @@ import ComponentUsage from "@/components/component-usage";
 import { ComponentsSidebar } from "@/components/components-sidebar";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-import { getComponentMetaById } from "@/lib/components-registry";
+import {
+  componentsRegistry,
+  getComponentMetaById,
+} from "@/lib/components-registry";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+
+export function generateStaticParams() {
+  return componentsRegistry.map((component) => ({
+    id: component.id,
+  }));
+}
 
 export async function generateMetadata({
   params,
