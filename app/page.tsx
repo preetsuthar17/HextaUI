@@ -1,9 +1,14 @@
 "use client";
 
+import { useState } from "react";
+import AICitations, {
+  type Citation,
+} from "@/components/blocks/ai/ai-citations";
 import AIConversation, {
   type Message,
 } from "@/components/blocks/ai/ai-conversation";
 import AIMessage from "@/components/blocks/ai/ai-message";
+import AIModelSelector from "@/components/blocks/ai/ai-model-selector";
 import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";
 import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";
 import AIThinking from "@/components/blocks/ai/ai-thinking";
@@ -173,7 +178,106 @@ const exampleQuota: Quota = {
   period: "month",
 };
 
+// Example citations data
+const exampleCitations: Citation[] = [
+  {
+    id: "citation-1",
+    number: 1,
+    text: "React component patterns",
+    sources: [
+      {
+        id: "source-1",
+        title: "React Component Patterns - Best Practices",
+        url: "https://react.dev/learn/thinking-in-react",
+        domain: "react.dev",
+        snippet:
+          "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.",
+        author: "React Team",
+        publishedAt: new Date("2024-01-15"),
+        type: "web",
+      },
+    ],
+  },
+  {
+    id: "citation-2",
+    number: 2,
+    text: "Accessibility guidelines",
+    sources: [
+      {
+        id: "source-2",
+        title: "Web Content Accessibility Guidelines (WCAG) 2.2",
+        url: "https://www.w3.org/WAI/WCAG22/quickref/",
+        domain: "w3.org",
+        snippet:
+          "WCAG 2.2 provides a wide range of recommendations for making Web content more accessible.",
+        author: "W3C",
+        publishedAt: new Date("2023-10-05"),
+        type: "document",
+      },
+      {
+        id: "source-3",
+        title: "ARIA Authoring Practices Guide",
+        url: "https://www.w3.org/WAI/ARIA/apg/",
+        domain: "w3.org",
+        snippet:
+          "The ARIA Authoring Practices Guide (APG) provides patterns, examples, and guidance for creating accessible web experiences.",
+        author: "W3C",
+        publishedAt: new Date("2024-02-20"),
+        type: "document",
+      },
+    ],
+  },
+  {
+    id: "citation-3",
+    number: 3,
+    text: "Tailwind CSS utility-first approach",
+    sources: [
+      {
+        id: "source-4",
+        title: "Tailwind CSS Documentation - Utility-First Fundamentals",
+        url: "https://tailwindcss.com/docs/utility-first",
+        domain: "tailwindcss.com",
+        snippet:
+          "Tailwind CSS is a utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.",
+        author: "Tailwind Labs",
+        publishedAt: new Date("2024-03-10"),
+        type: "web",
+      },
+    ],
+  },
+  {
+    id: "citation-4",
+    number: 4,
+    sources: [
+      {
+        id: "source-5",
+        title: "TypeScript Handbook - Advanced Types",
+        url: "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
+        domain: "typescriptlang.org",
+        snippet:
+          "TypeScript's type system is very powerful because it allows you to express types in terms of other types.",
+        author: "TypeScript Team",
+        publishedAt: new Date("2024-01-08"),
+        type: "web",
+      },
+      {
+        id: "source-6",
+        title: "Next.js Documentation - TypeScript",
+        url: "https://nextjs.org/docs/app/building-your-application/configuring/typescript",
+        domain: "nextjs.org",
+        snippet:
+          "Next.js provides an integrated TypeScript experience out of the box, similar to an IDE.",
+        author: "Vercel",
+        publishedAt: new Date("2024-02-15"),
+        type: "web",
+      },
+    ],
+  },
+];
+
 export default function Home() {
+  const [selectedModel, setSelectedModel] = useState<string>("gpt-4o");
+
   return (
     <div className="mx-auto flex w-[95%] flex-col gap-16 px-4 py-12">
       <div>
@@ -181,6 +285,13 @@ export default function Home() {
       </div>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col gap-8 rounded-xl">
+          <AIModelSelector
+            onModelSelect={(model) => {
+              setSelectedModel(model.id);
+              console.log("Selected model:", model);
+            }}
+            selectedModelId={selectedModel}
+          />
           <AIPromptInput />
           <AIStreamingResponse
             autoStart={true}
@@ -218,6 +329,12 @@ export default function Home() {
             isStreaming={false}
             onEdit={() => console.log("Edit clicked")}
             onRegenerate={() => console.log("Regenerate clicked")}
+          />
+          <AICitations
+            citations={exampleCitations}
+            className="rounded-xl border p-4 shadow-xs md:p-6"
+            defaultExpanded={false}
+            onSourceClick={(source) => console.log("Source clicked:", source)}
           />
         </div>
       </div>
