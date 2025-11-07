@@ -628,7 +628,7 @@ export default function AIPromptInput() {
 
   return (
     <TooltipProvider>
-      <div className="flex w-full max-w-2xl flex-col items-center gap-2">
+      <div className="flex w-full flex-col items-center gap-2">
         <Card className="w-full p-0 shadow-xs">
           <CardContent className="p-0">
             <form
