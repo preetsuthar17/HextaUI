@@ -47,7 +47,7 @@ export function SiteHeader() {
             <a
               aria-label="GitHub repository"
               className="flex h-8 w-8 items-center justify-center rounded transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
-              href="https://github.com/preetlx/hexta-ui"
+              href="https://github.com/preetsuthar17/hextaui"
               rel="noopener noreferrer"
               target="_blank"
             >
