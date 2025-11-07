@@ -648,7 +648,7 @@ export default function AIPromptInput() {
               </div>
 
               <Textarea
-                className="resize-none border-none p-4 shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="resize-none border-none p-4 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
                   if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {

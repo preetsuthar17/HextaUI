@@ -112,6 +112,7 @@ function MessageList({
         return (
           <div className="rounded-lg border bg-card p-6" key={message.id}>
             <AIMessage
+              className="shadow-none"
               content={message.content}
               isStreaming={isStreaming && isLastAI}
               onEdit={onEdit ? () => onEdit(message.id) : undefined}
