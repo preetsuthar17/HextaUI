@@ -41,18 +41,15 @@ export interface AICitationsProps {
   onSourceClick?: (source: CitationSource) => void;
 }
 
-function getSourceIcon(type?: CitationSource["type"]) {
-  switch (type) {
-    case "document":
-      return FileText;
-    case "paper":
-      return FileText;
-    case "web":
-      return Globe;
-    default:
-      return Globe;
-  }
-}
+const SOURCE_ICONS: Record<
+  NonNullable<CitationSource["type"]>,
+  React.ComponentType<{ className?: string }>
+> = {
+  document: FileText,
+  paper: FileText,
+  web: Globe,
+  other: Globe,
+};
 
 function formatDomain(url: string): string {
   try {
@@ -138,15 +135,16 @@ function SourcePreview({
   citationNumber,
   onSourceClick,
 }: SourcePreviewProps) {
-  const Icon = getSourceIcon(source.type);
   const domain = source.domain || formatDomain(source.url);
+  const IconComponent =
+    SOURCE_ICONS[source.type || "other"] || SOURCE_ICONS.web;
 
   return (
     <div className="group flex flex-col gap-2 rounded-lg border bg-card p-4 transition-colors hover:bg-accent">
       <div className="flex items-start justify-between gap-3">
         <div className="flex min-w-0 flex-1 items-start gap-3">
           <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10">
-            <Icon className="size-4 text-primary" />
+            <IconComponent className="size-4 text-primary" />
           </div>
           <div className="flex min-w-0 flex-1 flex-col gap-1">
             <div className="flex items-start gap-2">
