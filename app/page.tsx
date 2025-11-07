@@ -149,8 +149,8 @@ The component handles all the streaming logic automatically, respecting user pre
 
 export default function Home() {
   return (
-    <div className="mx-auto w-[95%] px-4 py-8">
-      <div className="mb-12">
+    <div className="mx-auto w-[95%] px-4 py-12 flex flex-col gap-16">
+      <div>
         <Hero />
       </div>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
