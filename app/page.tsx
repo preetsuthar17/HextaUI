@@ -1,3 +1,4 @@
+import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";
 import { Hero } from "@/components/hero";
 
 export default function Home() {
@@ -7,6 +8,9 @@ export default function Home() {
       <p className="flex items-center justify-center text-center">
         We&apos;re working on new components and blocks. Stay tuned!
       </p>
+      <div className="flex items-center justify-center">
+        <AIPromptInput />
+      </div>
     </div>
   );
 }
