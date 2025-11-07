@@ -156,13 +156,11 @@ export default function Home() {
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col gap-8 rounded-xl">
           <AIPromptInput />
-          <AIThinking className="max-w-max" />
-          <AIMessage
+          <AIStreamingResponse
+            autoStart={true}
             className="rounded-lg border p-4 shadow-xs md:p-6"
-            content={exampleMessage}
-            isStreaming={false}
-            onEdit={() => console.log("Edit clicked")}
-            onRegenerate={() => console.log("Regenerate clicked")}
+            content={streamingContent}
+            onComplete={() => console.log("Streaming complete")}
           />
         </div>
         {/* Second column: AIConversation */}
@@ -177,13 +175,15 @@ export default function Home() {
               console.log("Regenerate message:", messageId)
             }
           />
+          <AIThinking className="max-w-max" />
         </div>
         <div className="flex flex-col gap-8">
-          <AIStreamingResponse
-            autoStart={true}
+          <AIMessage
             className="rounded-lg border p-4 shadow-xs md:p-6"
-            content={streamingContent}
-            onComplete={() => console.log("Streaming complete")}
+            content={exampleMessage}
+            isStreaming={false}
+            onEdit={() => console.log("Edit clicked")}
+            onRegenerate={() => console.log("Regenerate clicked")}
           />
         </div>
       </div>
