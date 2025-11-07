@@ -209,8 +209,8 @@ interface FadeOverlayProps {
 function FadeOverlay({ position }: FadeOverlayProps) {
   const isTop = position === "top";
   const gradientClass = isTop
-    ? "bg-gradient-to-b from-secondary from-30% to-transparent"
-    : "bg-gradient-to-t from-secondary from-30% to-transparent";
+    ? "bg-gradient-to-b from-background from-30% to-transparent"
+    : "bg-gradient-to-t from-background from-30% to-transparent";
 
   return (
     <div
@@ -252,7 +252,7 @@ interface ContentCardProps {
 function ContentCard({ contentRef, content }: ContentCardProps) {
   return (
     <Card
-      className="relative overflow-hidden rounded-none bg-secondary p-2"
+      className="relative overflow-hidden rounded-xl p-2 shadow-xs"
       style={{ height: DIMENSIONS.CARD_HEIGHT }}
     >
       <FadeOverlay position="top" />

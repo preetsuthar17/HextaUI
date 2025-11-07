@@ -70,7 +70,7 @@ function UserMessage({ content }: UserMessageProps) {
   return (
     <div className="flex justify-end">
       <div className="max-w-[80%] rounded-lg rounded-tr-none bg-primary px-4 py-2 text-primary-foreground">
-        <p className="whitespace-pre-wrap break-words text-sm">{content}</p>
+        <p className="wrap-break-word whitespace-pre-wrap text-sm">{content}</p>
       </div>
     </div>
   );
@@ -155,7 +155,7 @@ export default function AIConversation({
   return (
     <div
       className={cn(
-        "flex flex-col overflow-hidden rounded-lg border bg-background",
+        "flex flex-col overflow-hidden rounded-xl border bg-background shadow-xs",
         className
       )}
     >

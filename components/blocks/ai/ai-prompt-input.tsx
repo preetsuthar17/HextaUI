@@ -102,10 +102,28 @@ interface ContextBadgeProps {
 function ContextBadge({ label, icon, avatar, onRemove }: ContextBadgeProps) {
   return (
     <span
-      className="inline-flex items-center gap-1 rounded-md border border-muted-foreground bg-secondary px-2 py-0.5 font-medium text-muted-foreground text-xs"
+      className="inline-flex items-center gap-1 rounded-xl border bg-secondary p-0.5 font-medium text-muted-foreground text-xs"
       style={{ whiteSpace: "nowrap", flex: "0 0 auto" }}
     >
-      {icon && <span>{icon}</span>}
+      {icon && (
+        <span className="relative inline-block size-4 overflow-hidden rounded-full bg-white p-0.5 align-middle">
+          <span
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "100%",
+              height: "100%",
+              fontSize: "12px",
+              lineHeight: 1,
+              objectFit: "cover",
+              borderRadius: "9999px",
+            }}
+          >
+            {icon}
+          </span>
+        </span>
+      )}
       {avatar && (
         <span className="relative inline-block h-4 w-4">
           <Image
@@ -122,7 +140,7 @@ function ContextBadge({ label, icon, avatar, onRemove }: ContextBadgeProps) {
       {label}
       <button
         aria-label={`Remove ${label}`}
-        className="rounded p-0.5 hover:bg-muted-foreground/10 focus:outline-none focus:ring-1 focus:ring-muted-foreground"
+        className="rounded-full p-0.5 hover:bg-muted-foreground/10 focus:outline-none focus:ring-1 focus:ring-muted-foreground"
         onClick={onRemove}
         tabIndex={0}
         type="button"
@@ -155,7 +173,7 @@ function ContextPopover({
       <PopoverTrigger asChild>
         <button
           aria-label="Add context"
-          className="inline-flex items-center gap-1 rounded-md border border-muted-foreground bg-secondary px-2 py-0.5 font-medium text-muted-foreground text-xs transition hover:bg-accent"
+          className="inline-flex items-center gap-1 rounded-xl border bg-secondary px-2 py-0.5 font-medium text-muted-foreground text-xs transition"
           style={{
             whiteSpace: "nowrap",
             flex: "0 0 auto",
@@ -169,7 +187,7 @@ function ContextPopover({
           <span>Add context</span>
         </button>
       </PopoverTrigger>
-      <PopoverContent align="start" className="z-30 w-52 p-2">
+      <PopoverContent align="start" className="z-30 w-max p-2">
         <div className="flex flex-col gap-3">
           <div>
             <div className="mb-1 px-1 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
@@ -181,10 +199,10 @@ function ContextPopover({
                 return (
                   <button
                     aria-pressed={isSelected}
-                    className={`inline-flex items-center justify-start gap-1 rounded-md border px-2 py-0.5 font-medium text-xs transition ${
+                    className={`inline-flex items-center justify-start gap-1 rounded-xl border px-2 py-0.5 font-medium text-xs transition ${
                       isSelected
-                        ? "border-muted-foreground bg-secondary text-muted-foreground"
-                        : "border-transparent bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
+                        ? "bg-secondary text-muted-foreground"
+                        : "border-transparent bg-background text-foreground"
                     }`}
                     key={page.id}
                     onClick={() => onPageToggle(page.id)}
@@ -207,9 +225,9 @@ function ContextPopover({
                 return (
                   <button
                     aria-pressed={isSelected}
-                    className={`inline-flex items-center justify-start gap-1 rounded-md border px-2 py-0.5 font-medium text-xs transition ${
+                    className={`inline-flex items-center justify-start gap-1 rounded-xl border p-0.5 font-medium text-xs transition ${
                       isSelected
-                        ? "border-muted-foreground bg-secondary text-muted-foreground"
+                        ? "bg-secondary text-muted-foreground"
                         : "border-transparent bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
                     }`}
                     key={user.id}
@@ -611,7 +629,7 @@ export default function AIPromptInput() {
   return (
     <TooltipProvider>
       <div className="flex w-full max-w-2xl flex-col items-center gap-2">
-        <Card className="w-full rounded-none p-0">
+        <Card className="w-full p-0 shadow-xs">
           <CardContent className="p-0">
             <form
               aria-label="AI chat input"
@@ -630,7 +648,7 @@ export default function AIPromptInput() {
               </div>
 
               <Textarea
-                className="resize-none border-none p-4 shadow-none focus-visible:ring-0 focus-visible:ring-offset-0"
+                className="resize-none border-none p-4 shadow-xs focus-visible:ring-0 focus-visible:ring-offset-0"
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
                   if ((e.metaKey || e.ctrlKey) && e.key === "Enter") {

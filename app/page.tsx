@@ -149,16 +149,16 @@ The component handles all the streaming logic automatically, respecting user pre
 
 export default function Home() {
   return (
-    <div className="mx-auto w-[95%] px-4 py-12 flex flex-col gap-16">
+    <div className="mx-auto flex w-[95%] flex-col gap-16 px-4 py-12">
       <div>
         <Hero />
       </div>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col gap-8 rounded-xl">
           <AIPromptInput />
           <AIThinking className="max-w-max" />
           <AIMessage
-            className="border p-4 shadow-sm md:p-6"
+            className="rounded-lg border p-4 shadow-xs md:p-6"
             content={exampleMessage}
             isStreaming={false}
             onEdit={() => console.log("Edit clicked")}
@@ -168,7 +168,7 @@ export default function Home() {
         {/* Second column: AIConversation */}
         <div className="flex flex-col gap-8">
           <AIConversation
-            className="shadow-sm"
+            className="shadow-xs"
             isStreaming={false}
             isThinking={false}
             messages={conversationMessages}
@@ -178,11 +178,10 @@ export default function Home() {
             }
           />
         </div>
-        {/* Third column: Streaming response */}
         <div className="flex flex-col gap-8">
           <AIStreamingResponse
             autoStart={true}
-            className="border p-4 shadow-sm md:p-6"
+            className="rounded-lg border p-4 shadow-xs md:p-6"
             content={streamingContent}
             onComplete={() => console.log("Streaming complete")}
           />

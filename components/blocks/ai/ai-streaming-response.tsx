@@ -160,6 +160,7 @@ export default function AIStreamingResponse({
   return (
     <div className={cn("relative", className)}>
       <AIMessage
+        className="shadow-none"
         content={displayedText}
         isStreaming={false}
         skipCodeHighlighting={!isComplete}
