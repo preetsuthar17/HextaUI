@@ -492,11 +492,7 @@ function LeftActionButtons({
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="start">
-          <DropdownMenuItem
-            onClick={() => {
-              // Handle attach - you can add actual functionality here
-            }}
-          >
+          <DropdownMenuItem onClick={() => {}}>
             <Paperclip className="size-4" />
             <span>Attach file</span>
           </DropdownMenuItem>

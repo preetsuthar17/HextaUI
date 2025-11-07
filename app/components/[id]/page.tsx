@@ -1,4 +1,4 @@
-import { ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { AskAIButton } from "@/components/ask-ai-button";
@@ -66,14 +66,18 @@ export default async function ComponentPage({
 
   if (!meta) {
     return (
-      <div className="mx-auto flex max-w-3xl flex-col gap-6 px-4 py-8">
-        <h1 className="font-semibold text-2xl tracking-tight">
+      <div className="mx-auto flex w-[95%] flex-col gap-4">
+        <h1 className="font-semibold text-3xl tracking-tight">
           Component not found
         </h1>
-        <p className="text-muted-foreground">No component with id “{id}”.</p>
+        <p className="text-muted-foreground">
+          No component found with id “{id}”.
+        </p>
         <div>
-          <Button asChild variant="secondary">
-            <Link href="/components">Back to Components</Link>
+          <Button asChild>
+            <Link href="/components">
+              <ArrowLeft /> Back to Components
+            </Link>
           </Button>
         </div>
       </div>
@@ -83,7 +87,7 @@ export default async function ComponentPage({
   const Demo = meta.Demo;
 
   return (
-    <div className="mx-auto w-full px-4 py-14">
+    <div className="mx-auto flex max-w-7xl flex-col gap-8 py-12">
       <div className="flex justify-evenly gap-12">
         <ComponentsSidebar currentId={meta.id} />
         <div className="flex w-full max-w-4xl flex-col gap-12">

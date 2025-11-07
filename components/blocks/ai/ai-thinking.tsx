@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Spinner } from "@/components/ui/spinner";
+import { cn } from "@/lib/utils";
 
 const SCROLL_CONFIG = {
   SPEED: 5,
@@ -282,13 +283,13 @@ function ShimmerStyles() {
   );
 }
 
-export default function AIThinking() {
+export default function AIThinking({ className }: { className?: string }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const timer = useTimer();
   useAutoScroll(contentRef);
 
   return (
-    <div className="flex max-w-xl flex-col gap-4">
+    <div className={cn("flex max-w-xl flex-col gap-4", className)}>
       <ThinkingHeader timer={timer} />
       <ContentCard content={THINKING_CONTENT} contentRef={contentRef} />
       <ShimmerStyles />

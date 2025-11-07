@@ -212,6 +212,37 @@
     @apply scroll-m-20 text-xl font-semibold tracking-tight first:mt-0;
     font-family: var(--font-geist-sans) !important;
   }
+
+  .prose {
+    @apply flex flex-col gap-6;
+
+    h1 {
+      @apply text-3xl md:text-4xl;
+    }
+
+    h2 {
+      @apply text-xl md:text-2xl;
+    }
+
+    p {
+      @apply leading-relaxed;
+    }
+
+    ul {
+      @apply flex flex-col gap-2 list-disc ml-4;
+      list-style-type: disc;
+    }
+
+    ol {
+      @apply flex flex-col gap-2 list-decimal ml-4;
+      list-style-type: decimal;
+    }
+    ol {
+      & > li {
+        @apply ml-3.5;
+      }
+    }
+  }
 }
 
 pre,
@@ -220,7 +251,7 @@ code {
   font-size: 14px;
 }
 
-pre {
+.shiki {
   padding: 1rem;
 }
 
