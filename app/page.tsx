@@ -7,6 +7,11 @@ import AIMessage from "@/components/blocks/ai/ai-message";
 import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";
 import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";
 import AIThinking from "@/components/blocks/ai/ai-thinking";
+import AIUsageQuota, {
+  type Quota,
+  type RateLimit,
+  type TokenUsage,
+} from "@/components/blocks/ai/ai-usage-quota";
 
 import { Hero } from "@/components/hero";
 
@@ -147,6 +152,27 @@ The component takes full text content and automatically splits it into tokens (w
 
 The component handles all the streaming logic automatically, respecting user preferences for reduced motion.`;
 
+// Example usage data
+const exampleTokenUsage: TokenUsage = {
+  input: 125_000,
+  output: 89_000,
+  total: 214_000,
+};
+
+const exampleRateLimit: RateLimit = {
+  remaining: 42,
+  limit: 100,
+  resetAt: new Date(Date.now() + 45 * 60 * 1000), // 45 minutes from now
+  window: "hour",
+};
+
+const exampleQuota: Quota = {
+  used: 8_500_000,
+  limit: 10_000_000,
+  resetAt: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000), // 2 days from now
+  period: "month",
+};
+
 export default function Home() {
   return (
     <div className="mx-auto flex w-[95%] flex-col gap-16 px-4 py-12">
@@ -158,13 +184,14 @@ export default function Home() {
           <AIPromptInput />
           <AIStreamingResponse
             autoStart={true}
-            className="rounded-lg border p-4 shadow-xs md:p-6"
+            className="rounded-xl border p-4 shadow-xs md:p-6"
             content={streamingContent}
             onComplete={() => console.log("Streaming complete")}
           />
         </div>
         {/* Second column: AIConversation */}
         <div className="flex flex-col gap-8">
+          <AIThinking className="max-w-max" />
           <AIConversation
             className="shadow-xs"
             isStreaming={false}
@@ -175,11 +202,18 @@ export default function Home() {
               console.log("Regenerate message:", messageId)
             }
           />
-          <AIThinking className="max-w-max" />
+          <AIUsageQuota
+            onUpgrade={() => console.log("Upgrade clicked")}
+            quota={exampleQuota}
+            rateLimit={exampleRateLimit}
+            showUpgradePrompt={true}
+            tokenUsage={exampleTokenUsage}
+            upgradeThreshold={80}
+          />
         </div>
         <div className="flex flex-col gap-8">
           <AIMessage
-            className="rounded-lg border p-4 shadow-xs md:p-6"
+            className="rounded-xl border p-4 shadow-xs md:p-6"
             content={exampleMessage}
             isStreaming={false}
             onEdit={() => console.log("Edit clicked")}
