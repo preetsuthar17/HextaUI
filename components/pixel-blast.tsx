@@ -362,18 +362,19 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
     timeOffset?: number;
     touch?: ReturnType<typeof createTouchTexture>;
   } | null>(null);
-  const prevConfigRef = useRef<any>(null);
+  type PixelBlastInitConfig = { antialias: boolean };
+  const prevConfigRef = useRef<PixelBlastInitConfig | null>(null);
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     speedRef.current = speed;
-    const needsReinitKeys = ["antialias"];
-    const cfg = { antialias };
+    const needsReinitKeys: Array<keyof PixelBlastInitConfig> = ["antialias"];
+    const cfg: PixelBlastInitConfig = { antialias };
     let mustReinit = false;
     if (!threeRef.current) mustReinit = true;
     else if (prevConfigRef.current) {
       for (const k of needsReinitKeys)
-        if (prevConfigRef.current[k] !== (cfg as any)[k]) {
+        if (prevConfigRef.current[k] !== cfg[k]) {
           mustReinit = true;
           break;
         }
@@ -494,7 +495,8 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
       const randomFloat = () => {
         if (
           typeof window !== "undefined" &&
-          (window as any).crypto?.getRandomValues
+          window.crypto &&
+          typeof window.crypto.getRandomValues === "function"
         ) {
           const u32 = new Uint32Array(1);
           window.crypto.getRandomValues(u32);
