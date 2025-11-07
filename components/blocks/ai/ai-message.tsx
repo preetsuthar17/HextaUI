@@ -157,14 +157,14 @@ function MessageActions({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onClick={onCopy}>
-          <Copy className="mr-2 size-4" />
+          <Copy className="size-4" />
           {copied ? "Copied!" : "Copy"}
         </DropdownMenuItem>
         {onRegenerate && (
           <>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={onRegenerate}>
-              <RotateCcw className="mr-2 size-4" />
+              <RotateCcw className="size-4" />
               Regenerate
             </DropdownMenuItem>
           </>
@@ -173,7 +173,7 @@ function MessageActions({
           <>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={onEdit}>
-              <Edit className="mr-2 size-4" />
+              <Edit className="size-4" />
               Edit
             </DropdownMenuItem>
           </>
