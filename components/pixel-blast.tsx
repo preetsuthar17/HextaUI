@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from "react";
+import type React from "react";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 
 type PixelBlastVariant = "square" | "circle" | "triangle" | "diamond";
@@ -101,7 +102,7 @@ const createTouchTexture = () => {
       const d = Math.sqrt(dd);
       vx = dx / (d || 1);
       vy = dy / (d || 1);
-      force = Math.min(dd * 10000, 1);
+      force = Math.min(dd * 10_000, 1);
     }
     last = { x: norm.x, y: norm.y };
     trail.push({ x: norm.x, y: norm.y, age: 0, force, vx, vy });
@@ -410,7 +411,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
       renderer.shadowMap.enabled = false;
       container.appendChild(renderer.domElement);
       if (transparent) renderer.setClearAlpha(0);
-      else renderer.setClearColor(0x000000, 1);
+      else renderer.setClearColor(0x00_00_00, 1);
       const uniforms = {
         uResolution: { value: new THREE.Vector2(0, 0) },
         uTime: { value: 0 },
@@ -500,7 +501,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
         ) {
           const u32 = new Uint32Array(1);
           window.crypto.getRandomValues(u32);
-          return u32[0] / 0xffffffff;
+          return u32[0] / 0xff_ff_ff_ff;
         }
         return Math.random();
       };
@@ -592,7 +593,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
       t.uniforms.uRippleSpeed.value = rippleSpeed;
       t.uniforms.uEdgeFade.value = edgeFade;
       if (transparent) t.renderer.setClearAlpha(0);
-      else t.renderer.setClearColor(0x000000, 1);
+      else t.renderer.setClearColor(0x00_00_00, 1);
     }
     prevConfigRef.current = cfg;
     return () => {
@@ -630,31 +631,31 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
 
   return (
     <div
-      ref={containerRef}
-      className={`w-full h-[400px] top-[118px] md:top-16 left-0 absolute -z-10 overflow-hidden opacity-95 ${
+      aria-label="PixelBlast interactive background"
+      className={`-z-10 absolute top-[118px] left-0 h-[400px] w-full overflow-hidden opacity-95 md:top-16 ${
         className ?? ""
       }`}
+      ref={containerRef}
       style={{
         ...style,
         willChange: "opacity",
       }}
-      aria-label="PixelBlast interactive background"
     >
       {/* Radial Gradient in the center */}
       <div
-        className="absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,#f8f8f8_0%,transparent_100%)] pointer-events-none"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,#f8f8f8_0%,transparent_100%)]"
         style={{ transform: "translateZ(0)" }}
       />
 
       {/* Bottom Gradient */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-[300px] bg-linear-to-t from-[#f8f8f8] to-transparent pointer-events-none"
+        className="pointer-events-none absolute right-0 bottom-0 left-0 h-[300px] bg-linear-to-t from-[#f8f8f8] to-transparent"
         style={{ transform: "translateZ(0)" }}
       />
 
       {/* Top Gradient */}
       <div
-        className="absolute top-0 left-0 right-0 h-[200px] bg-linear-to-b from-[#f8f8f8] to-transparent pointer-events-none"
+        className="pointer-events-none absolute top-0 right-0 left-0 h-[200px] bg-linear-to-b from-[#f8f8f8] to-transparent"
         style={{ transform: "translateZ(0)" }}
       />
     </div>

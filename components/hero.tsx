@@ -4,9 +4,9 @@ import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { PixelBlast } from "@/components/pixel-blast";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
-import { PixelBlast } from "@/components/pixel-blast";
 
 async function fetchGitHubStars(): Promise<number | null> {
   try {

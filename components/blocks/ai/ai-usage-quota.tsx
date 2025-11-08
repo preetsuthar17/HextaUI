@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertTriangle, Clock, TrendingUp, Zap } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -68,6 +68,64 @@ function formatTimeUntil(date: Date): string {
   if (hours > 0) return `${hours}h`;
   if (minutes > 0) return `${minutes}m`;
   return "Soon";
+}
+
+function formatTime(date: Date): string {
+  // Use consistent format to avoid hydration mismatches
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const hour12 = hours % 12 || 12;
+  const ampm = hours >= 12 ? "PM" : "AM";
+  const minutesStr = minutes.toString().padStart(2, "0");
+  return `${hour12}:${minutesStr} ${ampm}`;
+}
+
+function formatDateTime(date: Date): string {
+  // Use consistent format to avoid hydration mismatches
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const month = months[date.getMonth()];
+  const day = date.getDate();
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+  const hour12 = hours % 12 || 12;
+  const ampm = hours >= 12 ? "PM" : "AM";
+  const minutesStr = minutes.toString().padStart(2, "0");
+  return `${month} ${day}, ${hour12}:${minutesStr} ${ampm}`;
+}
+
+interface TimeUntilProps {
+  date: Date;
+  className?: string;
+}
+
+function TimeUntil({ date, className }: TimeUntilProps) {
+  const [timeUntil, setTimeUntil] = useState(() => formatTimeUntil(date));
+
+  useEffect(() => {
+    // Update time on client only
+    setTimeUntil(formatTimeUntil(date));
+
+    const interval = setInterval(() => {
+      setTimeUntil(formatTimeUntil(date));
+    }, 60_000); // Update every minute
+
+    return () => clearInterval(interval);
+  }, [date]);
+
+  return <span className={className}>{timeUntil}</span>;
 }
 
 interface TokenUsageDisplayProps {
@@ -152,17 +210,11 @@ function RateLimitIndicator({ rateLimit }: RateLimitIndicatorProps) {
             <Tooltip>
               <TooltipTrigger asChild>
                 <span className="cursor-help">
-                  Resets in {formatTimeUntil(rateLimit.resetAt)}
+                  Resets in <TimeUntil date={rateLimit.resetAt} />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                <p>
-                  Resets at{" "}
-                  {rateLimit.resetAt.toLocaleTimeString(undefined, {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
+                <p>Resets at {formatTime(rateLimit.resetAt)}</p>
               </TooltipContent>
             </Tooltip>
           )}
@@ -218,19 +270,13 @@ function QuotaProgress({ quota }: QuotaProgressProps) {
               <TooltipTrigger asChild>
                 <span className="flex cursor-help items-center gap-1">
                   <Clock className="size-3" />
-                  <span>Resets in {formatTimeUntil(quota.resetAt)}</span>
+                  <span>
+                    Resets in <TimeUntil date={quota.resetAt} />
+                  </span>
                 </span>
               </TooltipTrigger>
               <TooltipContent>
-                <p>
-                  Resets at{" "}
-                  {quota.resetAt.toLocaleDateString(undefined, {
-                    month: "short",
-                    day: "numeric",
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  })}
-                </p>
+                <p>Resets at {formatDateTime(quota.resetAt)}</p>
               </TooltipContent>
             </Tooltip>
           )}

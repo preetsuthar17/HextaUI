@@ -182,16 +182,9 @@ function ThinkingHeader({ timer }: ThinkingHeaderProps) {
   return (
     <div className="flex items-center gap-2">
       <Spinner aria-hidden="true" className="size-4" />
-      <p
-        className="bg-clip-text text-sm text-transparent"
-        style={{
-          backgroundImage: SHIMMER_CONFIG.GRADIENT,
-          backgroundSize: SHIMMER_CONFIG.BACKGROUND_SIZE,
-          animation: `shimmer ${SHIMMER_CONFIG.DURATION} linear infinite`,
-        }}
-      >
-        HextaAI is thinking
-      </p>
+      <span className="relative inline-block animate-pulse text-sm">
+        HextaAI is thinking...
+      </span>
       <span
         aria-label={`${timer} seconds elapsed`}
         className="text-muted-foreground text-sm"
