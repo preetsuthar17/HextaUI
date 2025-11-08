@@ -368,7 +368,7 @@ export default function AIPromptTemplates({
                                 onClick={(e) =>
                                   handleFavorite(
                                     template.id,
-                                    template.isFavorite || false,
+                                    !template.isFavorite,
                                     e
                                   )
                                 }
