@@ -115,14 +115,21 @@ function TimeUntil({ date, className }: TimeUntilProps) {
   const [timeUntil, setTimeUntil] = useState(() => formatTimeUntil(date));
 
   useEffect(() => {
-    // Update time on client only
-    setTimeUntil(formatTimeUntil(date));
-
-    const interval = setInterval(() => {
+    // Update time on client only - set up interval for periodic updates
+    const updateTime = () => {
       setTimeUntil(formatTimeUntil(date));
-    }, 60_000); // Update every minute
+    };
 
-    return () => clearInterval(interval);
+    // Update immediately on mount (client-side)
+    const timeoutId = setTimeout(updateTime, 0);
+
+    // Then update every minute
+    const interval = setInterval(updateTime, 60_000);
+
+    return () => {
+      clearTimeout(timeoutId);
+      clearInterval(interval);
+    };
   }, [date]);
 
   return <span className={className}>{timeUntil}</span>;

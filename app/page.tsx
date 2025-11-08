@@ -284,7 +284,7 @@ export default function Home() {
         <Hero />
       </div>
       <p className="text-center text-muted-foreground">
-        We're working on new components and blocks. stay tuned!
+        We&apos;re working on new components and blocks. stay tuned!
       </p>
       <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
         <div className="flex flex-col gap-8 rounded-xl">
