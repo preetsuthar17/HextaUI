@@ -28,7 +28,7 @@ const scrollbarClass =
   "scrollbar-thin scrollbar-thumb-rounded scrollbar-thumb-muted-foreground scrollbar-track-transparent";
 
 const breakClass =
-  "[@media(max-width:400px)]:break-words [@media(max-width:400px)]:break-all";
+  "[@media(max-width:400px)]:wrap-break-word [@media(max-width:400px)]:break-all";
 
 function transformPackageInstallCode(
   code: string,
