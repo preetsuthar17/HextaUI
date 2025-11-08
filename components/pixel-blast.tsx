@@ -643,19 +643,19 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
     >
       {/* Radial Gradient in the center */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,#f8f8f8_0%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,background_0%,transparent_100%)]"
         style={{ transform: "translateZ(0)" }}
       />
 
       {/* Bottom Gradient */}
       <div
-        className="pointer-events-none absolute right-0 bottom-0 left-0 h-[300px] bg-linear-to-t from-[#f8f8f8] to-transparent"
+        className="pointer-events-none absolute right-0 bottom-0 left-0 h-[300px] bg-linear-to-t from-background to-transparent"
         style={{ transform: "translateZ(0)" }}
       />
-
+  
       {/* Top Gradient */}
       <div
-        className="pointer-events-none absolute top-0 right-0 left-0 h-[200px] bg-linear-to-b from-[#f8f8f8] to-transparent"
+        className="pointer-events-none absolute top-0 right-0 left-0 h-[200px] bg-linear-to-b from-background to-transparent"
         style={{ transform: "translateZ(0)" }}
       />
     </div>
