@@ -369,6 +369,7 @@ export default function AuthTwoFactorSetup({
                     alt="QR code for two-factor authentication"
                     className="object-contain p-4"
                     fill
+                    sizes="(max-width: 640px) 192px, 192px"
                     src={qrCodeUrl}
                   />
                 </div>
