@@ -115,7 +115,7 @@ export default function BillingUpgradePrompt({
     return (
       <div
         className={cn(
-          "flex flex-col gap-4 rounded-lg border bg-gradient-to-r from-primary/10 to-primary/5 p-4 sm:flex-row sm:items-center sm:justify-between",
+          "flex flex-col gap-4 rounded-lg border bg-linear-to-r from-primary/10 to-primary/5 p-4 sm:flex-row sm:items-center sm:justify-between",
           className
         )}
       >
