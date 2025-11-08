@@ -1,16 +1,35 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
+import AIChatHistory, {
+  type Conversation,
+} from "@/components/blocks/ai/ai-chat-history";
 import AICitations, {
   type Citation,
 } from "@/components/blocks/ai/ai-citations";
 import AIConversation, {
   type Message,
 } from "@/components/blocks/ai/ai-conversation";
+import AIErrorHandler, {
+  type AIError,
+} from "@/components/blocks/ai/ai-error-handler";
+import AIFileUpload, {
+  type UploadedFile,
+} from "@/components/blocks/ai/ai-file-upload";
 import AIMessage from "@/components/blocks/ai/ai-message";
 import AIModelSelector from "@/components/blocks/ai/ai-model-selector";
 import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";
+import AIPromptTemplates, {
+  type PromptTemplate,
+} from "@/components/blocks/ai/ai-prompt-templates";
+import AISettingsPanel, {
+  type AISettings,
+  type AISettingsPreset,
+} from "@/components/blocks/ai/ai-settings-panel";
 import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";
+import AISuggestedPrompts, {
+  type SuggestedPrompt,
+} from "@/components/blocks/ai/ai-suggested-prompts";
 import AIThinking from "@/components/blocks/ai/ai-thinking";
 import AIUsageQuota, {
   type Quota,
@@ -275,10 +294,331 @@ const exampleCitations: Citation[] = [
 
 export default function AIPreview() {
   const [selectedModel, setSelectedModel] = useState<string>("gpt-4o");
+  const [activeConversationId, setActiveConversationId] =
+    useState<string>("conv-1");
+  const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [aiSettings, setAiSettings] = useState<AISettings>({
+    temperature: 0.7,
+    maxTokens: 2000,
+    topP: 1.0,
+    topK: 40,
+    frequencyPenalty: 0.0,
+    presencePenalty: 0.0,
+    systemPrompt: "",
+    model: "gpt-4",
+  });
+
+  const exampleConversations: Conversation[] = useMemo(() => {
+    const now = Date.now();
+    return [
+      {
+        id: "conv-1",
+        title: "React Component Patterns",
+        lastMessage: "How do I create reusable components?",
+        lastMessageAt: new Date(now),
+        messageCount: 12,
+        isActive: true,
+      },
+      {
+        id: "conv-2",
+        title: "TypeScript Best Practices",
+        lastMessage: "What are the benefits of using TypeScript?",
+        lastMessageAt: new Date(now - 2 * 60 * 60 * 1000),
+        messageCount: 8,
+      },
+      {
+        id: "conv-3",
+        title: "Tailwind CSS Tips",
+        lastMessage: "How to create custom utilities?",
+        lastMessageAt: new Date(now - 24 * 60 * 60 * 1000),
+        messageCount: 15,
+      },
+      {
+        id: "conv-4",
+        title: "Next.js App Router",
+        lastMessage: "Server components vs client components",
+        lastMessageAt: new Date(now - 3 * 24 * 60 * 60 * 1000),
+        messageCount: 6,
+      },
+    ];
+  }, []);
+
+  const exampleSuggestedPrompts: SuggestedPrompt[] = [
+    {
+      id: "prompt-1",
+      title: "Write a blog post",
+      prompt: "Write a comprehensive blog post about [topic]",
+      category: "Writing",
+      description: "Generate a well-structured blog post",
+      isPopular: true,
+      usageCount: 245,
+    },
+    {
+      id: "prompt-2",
+      title: "Explain code",
+      prompt: "Explain this code snippet: [code]",
+      category: "Code",
+      description: "Get detailed explanations of code",
+      isPopular: true,
+      usageCount: 189,
+    },
+    {
+      id: "prompt-3",
+      title: "Analyze data",
+      prompt: "Analyze this data and provide insights: [data]",
+      category: "Analysis",
+      description: "Deep dive into data analysis",
+      usageCount: 92,
+    },
+    {
+      id: "prompt-4",
+      title: "Creative story",
+      prompt: "Write a creative short story about [theme]",
+      category: "Creative",
+      description: "Generate creative narratives",
+      isRecent: true,
+      usageCount: 67,
+    },
+    {
+      id: "prompt-5",
+      title: "Research summary",
+      prompt: "Summarize the key findings from this research: [content]",
+      category: "Research",
+      description: "Create research summaries",
+      usageCount: 134,
+    },
+    {
+      id: "prompt-6",
+      title: "Code review",
+      prompt: "Review this code and suggest improvements: [code]",
+      category: "Code",
+      description: "Get code review feedback",
+      usageCount: 156,
+    },
+  ];
+
+  const examplePresets: AISettingsPreset[] = [
+    {
+      id: "preset-1",
+      name: "Creative Writing",
+      description: "Optimized for creative content",
+      settings: {
+        temperature: 0.9,
+        maxTokens: 3000,
+        topP: 0.95,
+      },
+    },
+    {
+      id: "preset-2",
+      name: "Code Generation",
+      description: "Focused and deterministic",
+      settings: {
+        temperature: 0.2,
+        maxTokens: 2000,
+        topP: 0.8,
+      },
+    },
+    {
+      id: "preset-3",
+      name: "Analysis",
+      description: "Balanced for analysis tasks",
+      settings: {
+        temperature: 0.5,
+        maxTokens: 2500,
+        topP: 0.9,
+      },
+    },
+  ];
+
+  const handleFileSelect = (files: File[]) => {
+    const newFiles: UploadedFile[] = files.map((file, idx) => ({
+      id: `file-${Date.now()}-${idx}`,
+      file,
+      status: "uploading",
+      progress: 0,
+    }));
+
+    setUploadedFiles((prev) => [...prev, ...newFiles]);
+
+    // Simulate upload progress
+    newFiles.forEach((uploadedFile) => {
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 10;
+        setUploadedFiles((prev) =>
+          prev.map((f) =>
+            f.id === uploadedFile.id
+              ? {
+                  ...f,
+                  progress,
+                  status: progress >= 100 ? "completed" : "uploading",
+                }
+              : f
+          )
+        );
+        if (progress >= 100) {
+          clearInterval(interval);
+        }
+      }, 200);
+    });
+  };
+
+  const handleFileRemove = (fileId: string) => {
+    setUploadedFiles((prev) => prev.filter((f) => f.id !== fileId));
+  };
+
+  const exampleError: AIError | null = null; // Set to null to hide by default, can be set to show error
+
+  const examplePromptTemplates: PromptTemplate[] = [
+    {
+      id: "template-1",
+      name: "Blog Post Writer",
+      description: "Generate a comprehensive blog post on any topic",
+      category: "Writing",
+      prompt:
+        "Write a detailed blog post about {topic}. Include an introduction, main points, and conclusion.",
+      variables: [
+        {
+          name: "topic",
+          label: "Topic",
+          placeholder: "e.g., React best practices",
+          required: true,
+        },
+      ],
+      isPopular: true,
+      usageCount: 342,
+      tags: ["blog", "writing", "content"],
+    },
+    {
+      id: "template-2",
+      name: "Code Explainer",
+      description: "Explain code snippets in detail",
+      category: "Code",
+      prompt:
+        "Explain this code snippet:\n\n{code}\n\nProvide a detailed explanation of what it does, how it works, and any potential improvements.",
+      variables: [
+        {
+          name: "code",
+          label: "Code",
+          placeholder: "Paste your code here",
+          required: true,
+        },
+      ],
+      isPopular: true,
+      isFavorite: true,
+      usageCount: 289,
+      tags: ["code", "explanation", "learning"],
+    },
+    {
+      id: "template-3",
+      name: "Data Analysis",
+      description: "Analyze data and provide insights",
+      category: "Analysis",
+      prompt:
+        "Analyze the following data and provide key insights:\n\n{data}\n\nFocus on trends, patterns, and actionable recommendations.",
+      variables: [
+        {
+          name: "data",
+          label: "Data",
+          placeholder: "Paste your data here",
+          required: true,
+        },
+      ],
+      usageCount: 156,
+      tags: ["analysis", "data", "insights"],
+    },
+    {
+      id: "template-4",
+      name: "Creative Story",
+      description: "Generate creative short stories",
+      category: "Creative",
+      prompt:
+        "Write a creative short story about {theme}. Make it engaging and original.",
+      variables: [
+        {
+          name: "theme",
+          label: "Theme",
+          placeholder: "e.g., time travel, friendship",
+          required: true,
+        },
+      ],
+      isFavorite: true,
+      usageCount: 198,
+      tags: ["creative", "story", "fiction"],
+    },
+    {
+      id: "template-5",
+      name: "Research Summary",
+      description: "Summarize research findings",
+      category: "Research",
+      prompt:
+        "Summarize the key findings from this research:\n\n{content}\n\nHighlight the main points and conclusions.",
+      variables: [
+        {
+          name: "content",
+          label: "Research Content",
+          placeholder: "Paste research content here",
+          required: true,
+        },
+      ],
+      usageCount: 124,
+      tags: ["research", "summary", "academic"],
+    },
+    {
+      id: "template-6",
+      name: "Email Draft",
+      description: "Draft professional emails",
+      category: "Business",
+      prompt:
+        "Draft a professional email about {subject} to {recipient}. Keep it concise and clear.",
+      variables: [
+        {
+          name: "subject",
+          label: "Subject",
+          placeholder: "e.g., Project update",
+          required: true,
+        },
+        {
+          name: "recipient",
+          label: "Recipient",
+          placeholder: "e.g., team members",
+          required: true,
+        },
+      ],
+      usageCount: 267,
+      tags: ["email", "business", "communication"],
+    },
+  ];
 
   return (
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <div className="flex flex-col gap-8 rounded-xl">
+        <AIPromptInput />
+        <AIChatHistory
+          activeConversationId={activeConversationId}
+          conversations={exampleConversations}
+          onArchive={async (id) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Archive conversation:", id);
+          }}
+          onDelete={async (id) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Delete conversation:", id);
+          }}
+          onNewConversation={() => console.log("New conversation")}
+          onRename={async (id, newTitle) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Rename conversation:", id, newTitle);
+          }}
+          onSelect={(id) => {
+            setActiveConversationId(id);
+            console.log("Select conversation:", id);
+          }}
+          onUnarchive={async (id) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Unarchive conversation:", id);
+          }}
+        />
         <AIModelSelector
           onModelSelect={(model) => {
             setSelectedModel(model.id);
@@ -286,27 +626,67 @@ export default function AIPreview() {
           }}
           selectedModelId={selectedModel}
         />
-        <AIPromptInput />
         <AIStreamingResponse
           autoStart={true}
           className="rounded-xl border p-4 shadow-xs md:p-6"
           content={streamingContent}
           onComplete={() => console.log("Streaming complete")}
         />
+        <AIFileUpload
+          acceptedTypes={["image/*", "application/pdf", "text/*"]}
+          maxFiles={5}
+          maxSize={10 * 1024 * 1024}
+          onFileRemove={handleFileRemove}
+          onFilesSelected={handleFileSelect}
+          processingStatus={{}}
+          showPreview={true}
+          uploadedFiles={uploadedFiles}
+        />
+        <AIThinking className="max-w-max" />
       </div>
       {/* Second column: AIConversation */}
       <div className="flex flex-col gap-8">
-        <AIThinking className="max-w-max" />
-        <AIConversation
-          className="shadow-xs"
-          isStreaming={false}
-          isThinking={false}
-          messages={conversationMessages}
-          onEdit={(messageId) => console.log("Edit message:", messageId)}
-          onRegenerate={(messageId) =>
-            console.log("Regenerate message:", messageId)
-          }
+        <AISuggestedPrompts
+          onSelect={(prompt) => console.log("Select prompt:", prompt)}
+          prompts={exampleSuggestedPrompts}
+          showCategories={true}
+          showSearch={true}
         />
+        <AIPromptTemplates
+          categories={[
+            "All",
+            "Writing",
+            "Code",
+            "Analysis",
+            "Creative",
+            "Research",
+            "Business",
+          ]}
+          onCreate={() => console.log("Create template")}
+          onFavorite={async (id, isFavorite) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Favorite template:", id, isFavorite);
+          }}
+          onSelect={(template, variables) => {
+            console.log("Select template:", template, variables);
+          }}
+          showCategories={true}
+          showFavorites={true}
+          showSearch={true}
+          templates={examplePromptTemplates}
+        />
+
+        <AIErrorHandler
+          error={exampleError}
+          onContactSupport={() => console.log("Contact support")}
+          onDismiss={() => console.log("Dismiss error")}
+          onRetry={async () => {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            console.log("Retry request");
+          }}
+          showDetails={true}
+        />
+
         <AIUsageQuota
           onUpgrade={() => console.log("Upgrade clicked")}
           quota={exampleQuota}
@@ -317,6 +697,54 @@ export default function AIPreview() {
         />
       </div>
       <div className="flex flex-col gap-8">
+        <AISettingsPanel
+          availableModels={[
+            "gpt-4",
+            "gpt-3.5-turbo",
+            "claude-3-opus",
+            "claude-3-sonnet",
+          ]}
+          onDeletePreset={async (id) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Delete preset:", id);
+          }}
+          onLoadPreset={(id) => {
+            const preset = examplePresets.find((p) => p.id === id);
+            if (preset) {
+              setAiSettings(preset.settings);
+              console.log("Load preset:", preset.name);
+            }
+          }}
+          onReset={() => {
+            setAiSettings({
+              temperature: 0.7,
+              maxTokens: 2000,
+              topP: 1.0,
+              topK: 40,
+              frequencyPenalty: 0.0,
+              presencePenalty: 0.0,
+              systemPrompt: "",
+              model: "gpt-4",
+            });
+            console.log("Reset settings");
+          }}
+          onSave={async (settings) => {
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setAiSettings(settings);
+            console.log("Save settings:", settings);
+          }}
+          onSavePreset={async (name, settings) => {
+            await new Promise((resolve) => setTimeout(resolve, 500));
+            console.log("Save preset:", name, settings);
+          }}
+          onSettingsChange={(settings) => {
+            setAiSettings(settings);
+            console.log("Settings changed:", settings);
+          }}
+          presets={examplePresets}
+          settings={aiSettings}
+          showAdvanced={false}
+        />
         <AIMessage
           className="rounded-xl border p-4 shadow-xs md:p-6"
           content={exampleMessage}
@@ -329,6 +757,16 @@ export default function AIPreview() {
           className="rounded-xl border p-4 shadow-xs md:p-6"
           defaultExpanded={false}
           onSourceClick={(source) => console.log("Source clicked:", source)}
+        />
+        <AIConversation
+          className="shadow-xs"
+          isStreaming={false}
+          isThinking={false}
+          messages={conversationMessages}
+          onEdit={(messageId) => console.log("Edit message:", messageId)}
+          onRegenerate={(messageId) =>
+            console.log("Regenerate message:", messageId)
+          }
         />
       </div>
     </div>
