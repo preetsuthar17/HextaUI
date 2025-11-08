@@ -362,7 +362,6 @@ export default function AuthPhoneVerify({
                 <Button
                   className="w-full"
                   onClick={onChangePhone}
-                  size="sm"
                   type="button"
                   variant="ghost"
                 >

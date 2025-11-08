@@ -183,7 +183,6 @@ export default function AuthTwoFactorVerify({
                     setUseRecoveryCode(false);
                     setRecoveryCode("");
                   }}
-                  size="sm"
                   type="button"
                   variant="outline"
                 >
@@ -258,7 +257,6 @@ export default function AuthTwoFactorVerify({
 
                   <Button
                     onClick={() => setUseRecoveryCode(true)}
-                    size="sm"
                     type="button"
                     variant="ghost"
                   >

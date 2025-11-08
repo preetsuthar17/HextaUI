@@ -125,7 +125,6 @@ function MessageActions({
         aria-label="Copy message"
         className="opacity-0 transition-opacity duration-150 group-hover:opacity-100"
         onClick={onCopy}
-        size="sm"
         variant="ghost"
       >
         {copied ? (

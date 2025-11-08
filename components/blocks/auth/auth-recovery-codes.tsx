@@ -140,7 +140,6 @@ export default function AuthRecoveryCodes({
               data-loading={isLoading}
               disabled={isLoading}
               onClick={onGenerate}
-              size="sm"
               type="button"
             >
               {isLoading ? (
@@ -195,7 +194,6 @@ export default function AuthRecoveryCodes({
                   <Button
                     className="w-full sm:w-auto"
                     onClick={() => setShowCodes(!showCodes)}
-                    size="sm"
                     type="button"
                     variant="ghost"
                   >
@@ -259,7 +257,6 @@ export default function AuthRecoveryCodes({
                   <Button
                     className="w-full sm:w-auto"
                     onClick={handleCopyAll}
-                    size="sm"
                     type="button"
                     variant="outline"
                   >
@@ -269,7 +266,6 @@ export default function AuthRecoveryCodes({
                   <Button
                     className="w-full sm:w-auto"
                     onClick={handleDownload}
-                    size="sm"
                     type="button"
                     variant="outline"
                   >
@@ -284,7 +280,6 @@ export default function AuthRecoveryCodes({
                           className="w-full sm:w-auto"
                           data-loading={isRegenerating}
                           disabled={isRegenerating}
-                          size="sm"
                           type="button"
                           variant="outline"
                         >

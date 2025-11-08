@@ -208,7 +208,6 @@ function SocialAccountItem({
                 className="w-full sm:w-auto"
                 disabled={isLoading}
                 onClick={() => onSetPrimary(account.provider)}
-                size="sm"
                 type="button"
                 variant="outline"
               >
@@ -259,7 +258,6 @@ function SocialAccountItem({
               className="w-full sm:w-auto"
               disabled={isLoading}
               onClick={() => onConnect(account.provider)}
-              size="sm"
               type="button"
             >
               {isLoading ? (

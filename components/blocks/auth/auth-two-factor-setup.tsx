@@ -179,7 +179,6 @@ export default function AuthTwoFactorSetup({
                     <Button
                       className="w-full sm:w-auto"
                       onClick={() => setShowBackupCodes(!showBackupCodes)}
-                      size="sm"
                       type="button"
                       variant="outline"
                     >
@@ -216,7 +215,6 @@ export default function AuthTwoFactorSetup({
                     <Button
                       className="w-full sm:w-auto"
                       onClick={handleDownloadBackupCodes}
-                      size="sm"
                       type="button"
                       variant="outline"
                     >
@@ -227,7 +225,6 @@ export default function AuthTwoFactorSetup({
                       <Button
                         className="w-full sm:w-auto"
                         onClick={onGenerateBackupCodes}
-                        size="sm"
                         type="button"
                         variant="outline"
                       >
@@ -410,7 +407,6 @@ export default function AuthTwoFactorSetup({
               <Button
                 className="w-full sm:w-auto"
                 onClick={onRegenerateSecret}
-                size="sm"
                 type="button"
                 variant="outline"
               >

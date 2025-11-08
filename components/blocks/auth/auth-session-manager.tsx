@@ -215,7 +215,6 @@ export default function AuthSessionManager({
                   aria-label="Revoke all other sessions"
                   className="w-full sm:w-auto"
                   disabled={isLoading || revokingAll}
-                  size="sm"
                   type="button"
                   variant="outline"
                 >
