@@ -308,8 +308,10 @@ export default function AIPreview() {
     model: "gpt-4",
   });
 
+  const [initialTimestamp] = useState(() => Date.now());
+
   const exampleConversations: Conversation[] = useMemo(() => {
-    const now = Date.now();
+    const now = initialTimestamp;
     return [
       {
         id: "conv-1",
@@ -341,7 +343,7 @@ export default function AIPreview() {
         messageCount: 6,
       },
     ];
-  }, []);
+  }, [initialTimestamp]);
 
   const exampleSuggestedPrompts: SuggestedPrompt[] = [
     {

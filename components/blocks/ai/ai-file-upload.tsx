@@ -162,14 +162,7 @@ export default function AIFileUpload({
         fileInputRef.current.value = "";
       }
     },
-    [
-      acceptedTypes,
-      maxSize,
-      maxFiles,
-      uploadedFiles.length,
-      onFilesSelected,
-      validateFile,
-    ]
+    [maxFiles, uploadedFiles.length, onFilesSelected, validateFile]
   );
 
   const handleDragOver = useCallback((e: React.DragEvent) => {
