@@ -171,7 +171,7 @@ export default function BillingInvoiceDetails({
           className
         )}
       >
-        <SheetHeader className="flex-shrink-0">
+        <SheetHeader className="shrink-0">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex min-w-0 flex-1 flex-col gap-2">
               <SheetTitle className="wrap-break-word">
@@ -357,7 +357,7 @@ export default function BillingInvoiceDetails({
           </div>
         </div>
 
-        <div className="flex flex-shrink-0 flex-col gap-2 border-t p-4 sm:flex-row sm:justify-end">
+        <div className="flex shrink-0 flex-col gap-2 border-t p-4 sm:flex-row sm:justify-end">
           {onPrint && (
             <Button
               aria-label="Print invoice"

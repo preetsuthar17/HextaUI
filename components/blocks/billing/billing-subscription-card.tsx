@@ -255,7 +255,7 @@ export default function BillingSubscriptionCard({
                   className="w-full sm:w-auto"
                   onClick={onCancel}
                   type="button"
-                  variant="outline"
+                  variant="destructive"
                 >
                   Cancel subscription
                 </Button>
