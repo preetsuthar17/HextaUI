@@ -41,7 +41,7 @@ export interface AIUsageQuotaProps {
   onUpgrade?: () => void;
   className?: string;
   showUpgradePrompt?: boolean;
-  upgradeThreshold?: number; // Percentage threshold to show upgrade prompt (default: 80)
+  upgradeThreshold?: number;
 }
 
 function formatNumber(num: number): string {
@@ -71,7 +71,6 @@ function formatTimeUntil(date: Date): string {
 }
 
 function formatTime(date: Date): string {
-  // Use consistent format to avoid hydration mismatches
   const hours = date.getHours();
   const minutes = date.getMinutes();
   const hour12 = hours % 12 || 12;
@@ -81,7 +80,6 @@ function formatTime(date: Date): string {
 }
 
 function formatDateTime(date: Date): string {
-  // Use consistent format to avoid hydration mismatches
   const months = [
     "Jan",
     "Feb",
@@ -115,15 +113,11 @@ function TimeUntil({ date, className }: TimeUntilProps) {
   const [timeUntil, setTimeUntil] = useState(() => formatTimeUntil(date));
 
   useEffect(() => {
-    // Update time on client only - set up interval for periodic updates
     const updateTime = () => {
       setTimeUntil(formatTimeUntil(date));
     };
 
-    // Update immediately on mount (client-side)
     const timeoutId = setTimeout(updateTime, 0);
-
-    // Then update every minute
     const interval = setInterval(updateTime, 60_000);
 
     return () => {
