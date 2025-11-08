@@ -13,7 +13,7 @@ export default function Home() {
         <Hero />
       </div>
       <p className="text-center text-muted-foreground">
-        We&apos;re working on new components and blocks. stay tuned!
+        We&apos;re working on new components and blocks. code coming soon!
       </p>
       <Tabs className="flex w-full flex-col gap-12" defaultValue="auth">
         <TabsList>
