@@ -58,6 +58,19 @@ export default function RootLayout({
           src="https://assets.onedollarstats.com/stonks.js"
           strategy="afterInteractive"
         />
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          data-cfasync="false"
+          data-color="#FF813F"
+          data-description="Support me on Buy me a coffee!"
+          data-id="preetsuthar17"
+          data-message="You can support HextaUI here!"
+          data-name="BMC-Widget"
+          data-position="Right"
+          data-x_margin="18"
+          data-y_margin="18"
+          src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
+        />
       </body>
     </html>
   );
