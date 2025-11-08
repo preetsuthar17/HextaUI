@@ -149,7 +149,7 @@ function MessageActions({
         <Button
           aria-label="Message actions"
           className="opacity-0 transition-opacity duration-150 group-hover:opacity-100"
-          size="sm"
+          size="icon"
           variant="ghost"
         >
           <MoreVertical className="size-4" />
@@ -325,10 +325,10 @@ function HighlightedCodeBlock({
 
     if (el.className) {
       props.className = isCodeBlock
-        ? `${el.className} whitespace-pre-wrap break-words`.trim()
+        ? `${el.className} whitespace-pre-wrap wrap-break-word`.trim()
         : el.className.trim();
     } else if (isCodeBlock) {
-      props.className = "whitespace-pre-wrap break-words";
+      props.className = "whitespace-pre-wrap wrap-break-word";
     }
 
     const styleAttr = el.getAttribute("style");

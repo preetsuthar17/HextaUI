@@ -189,8 +189,8 @@ function ContextPopover({
       </PopoverTrigger>
       <PopoverContent align="start" className="z-30 w-max p-2">
         <div className="flex flex-col gap-3">
-          <div>
-            <div className="mb-1 px-1 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+          <div className="flex flex-col gap-1">
+            <div className="px-1 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
               Pages
             </div>
             <div className="flex flex-col gap-1">
@@ -215,8 +215,8 @@ function ContextPopover({
               })}
             </div>
           </div>
-          <div>
-            <div className="mb-1 px-1 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
+          <div className="flex flex-col gap-1">
+            <div className="px-1 font-semibold text-muted-foreground text-xs uppercase tracking-wide">
               Users
             </div>
             <div className="flex flex-col gap-1">
