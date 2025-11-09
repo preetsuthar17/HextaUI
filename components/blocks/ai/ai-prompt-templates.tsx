@@ -179,7 +179,7 @@ export default function AIPromptTemplates({
 
   const handleFavorite = async (
     templateId: string,
-    currentFavorite: boolean,
+    currentFavorite: boolean | undefined,
     e: React.MouseEvent
   ) => {
     e.stopPropagation();
@@ -187,7 +187,7 @@ export default function AIPromptTemplates({
 
     setIsFavoriting(templateId);
     try {
-      await onFavorite(templateId, !currentFavorite);
+      await onFavorite(templateId, !(currentFavorite ?? false));
     } finally {
       setIsFavoriting(null);
     }
@@ -368,7 +368,7 @@ export default function AIPromptTemplates({
                                 onClick={(e) =>
                                   handleFavorite(
                                     template.id,
-                                    !template.isFavorite,
+                                    template.isFavorite,
                                     e
                                   )
                                 }
