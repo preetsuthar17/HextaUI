@@ -10,7 +10,16 @@ export function SiteFooter() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            Preet Suthar
+            @preetsuthar17
+          </a>
+          . Theme by{" "}
+          <a
+            className="underline hover:no-underline"
+            href="https://x.com/matsugfx"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            @matsugfx
           </a>
           . The source code is available on{" "}
           <a

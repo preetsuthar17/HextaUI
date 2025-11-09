@@ -2,6 +2,7 @@ import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/header-search-trigger";
+import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export function SiteHeader() {
   return (
@@ -38,10 +39,21 @@ export function SiteHeader() {
           <li>
             <Link
               className="text-sm underline-offset-4 hover:font-medium hover:underline"
+              href="/blocks"
+            >
+              Blocks
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-sm underline-offset-4 hover:font-medium hover:underline"
               href="https://preetsuthar.me/sponsor"
             >
               Sponsor
             </Link>
+          </li>
+          <li>
+            <ThemeSwitcher />
           </li>
           <li>
             <a
