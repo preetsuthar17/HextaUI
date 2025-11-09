@@ -6,6 +6,7 @@ import { Toaster } from "sonner";
 import { ComponentSearch } from "@/components/component-search";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ThemeProvider } from "@/components/theme-provider";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 const geistSans = Geist({
@@ -38,21 +39,28 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning={true}
       >
-        <a
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
-          href="#content"
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
         >
-          Skip to content
-        </a>
-        <ComponentSearch />
-        <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
-          <SiteHeader />
-          <main className="mx-auto w-full px-4 py-6" id="content">
-            {children}
-          </main>
-          <SiteFooter />
-        </div>
-        <Toaster />
+          <a
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
+            href="#content"
+          >
+            Skip to content
+          </a>
+          <ComponentSearch />
+          <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+            <SiteHeader />
+            <main className="mx-auto w-full px-4 py-6" id="content">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+          <Toaster />
+        </ThemeProvider>
         <Script
           defer
           src="https://assets.onedollarstats.com/stonks.js"
