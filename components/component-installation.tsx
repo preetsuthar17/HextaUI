@@ -9,7 +9,7 @@ export function ComponentInstallation({
 }) {
   return (
     <>
-      <h2>Add HextaUI to components.json</h2>
+      {/* <h2>Add HextaUI to components.json</h2>
       <p>Add the following to your <code>components.json</code> file:</p>
       <CodeBlock
         code={`{
@@ -18,12 +18,12 @@ export function ComponentInstallation({
   }
 }`}
         lang="json"
-      />
+      /> */}
       <h2>Installation using CLI</h2>
       <CodeBlock
         code={
           installCode ??
-          `pnpm dlx shadcn@latest add @hextaui/${componentName}`
+          `pnpm dlx shadcn@latest add https://hextaui.com/r/${componentName}.json`
         }
         lang="package-install"
       />
