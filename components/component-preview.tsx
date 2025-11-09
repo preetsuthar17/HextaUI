@@ -60,9 +60,11 @@ export function ComponentPreview({
   }
 
   return (
-    <div className={`rounded-lg border bg-card ${className}`}>
+    <div className={"rounded-lg border bg-card"}>
       <div className="p-4">
-        <div className="flex min-h-84 items-center justify-center rounded-md bg-transparent p-4 py-14">
+        <div
+          className={`flex min-h-84 items-center justify-center rounded-md bg-transparent p-4 py-14 ${className}`}
+        >
           {children}
         </div>
       </div>

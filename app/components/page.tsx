@@ -1,11 +1,31 @@
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
-
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { componentsRegistry } from "@/lib/components-registry";
 
 export default function ComponentsIndexPage() {
   return (
     <div className="mx-auto flex max-w-7xl flex-col gap-8">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink asChild>
+              <Link href="/">Home</Link>
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Components</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
       <header className="flex items-end justify-between gap-4">
         <div>
           <h1 className="font-semibold text-2xl tracking-tight">Components</h1>

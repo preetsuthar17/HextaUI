@@ -9,6 +9,14 @@ import { ComponentPreview } from "@/components/component-preview";
 import { ComponentSection } from "@/components/component-section";
 import ComponentUsage from "@/components/component-usage";
 import { ComponentsSidebar } from "@/components/components-sidebar";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -93,6 +101,25 @@ export default async function ComponentPage({
         <div className="flex w-full max-w-4xl flex-col gap-12">
           <header className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-1 flex-col gap-4">
+              <Breadcrumb>
+                <BreadcrumbList>
+                  <BreadcrumbItem>
+                    <BreadcrumbLink asChild>
+                      <Link href="/">Home</Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbLink asChild>
+                      <Link href="/components">Components</Link>
+                    </BreadcrumbLink>
+                  </BreadcrumbItem>
+                  <BreadcrumbSeparator />
+                  <BreadcrumbItem>
+                    <BreadcrumbPage>{meta.title}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </BreadcrumbList>
+              </Breadcrumb>
               <h1 className="wrap-break-word font-semibold text-3xl tracking-tight">
                 {meta.title}
               </h1>

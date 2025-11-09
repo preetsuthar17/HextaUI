@@ -1,0 +1,2376 @@
+import { Database, FileText, Image, Video } from "lucide-react";
+import type { Conversation } from "@/components/blocks/ai/ai-chat-history";
+import type { Citation } from "@/components/blocks/ai/ai-citations";
+import type { Message } from "@/components/blocks/ai/ai-conversation";
+import type { PromptTemplate } from "@/components/blocks/ai/ai-prompt-templates";
+import type { AISettings } from "@/components/blocks/ai/ai-settings-panel";
+import type { SuggestedPrompt } from "@/components/blocks/ai/ai-suggested-prompts";
+import type {
+  Quota,
+  RateLimit,
+  TokenUsage,
+} from "@/components/blocks/ai/ai-usage-quota";
+import type { Session } from "@/components/blocks/auth/auth-session-manager";
+import type { InvoiceDetails } from "@/components/blocks/billing/billing-invoice-details";
+import type { Invoice } from "@/components/blocks/billing/billing-invoice-list";
+import type { PaymentMethod } from "@/components/blocks/billing/billing-payment-method";
+import type { SelectablePlan } from "@/components/blocks/billing/billing-plan-selector";
+import type { PricingPlan } from "@/components/blocks/billing/billing-pricing-table";
+import type { ProfileData } from "@/components/blocks/settings/settings-profile";
+
+export function getBlockExampleProps(blockId: string): Record<string, any> {
+  const now = Date.now();
+
+  switch (blockId) {
+    // AI Blocks
+    case "ai-chat-history": {
+      return {
+        conversations: [
+          {
+            id: "conv-1",
+            title: "React Component Patterns",
+            lastMessage: "How do I create reusable components?",
+            lastMessageAt: new Date(now),
+            messageCount: 12,
+            isActive: true,
+          },
+          {
+            id: "conv-2",
+            title: "TypeScript Best Practices",
+            lastMessage: "What are the benefits of using TypeScript?",
+            lastMessageAt: new Date(now - 2 * 60 * 60 * 1000),
+            messageCount: 8,
+          },
+          {
+            id: "conv-3",
+            title: "Deploying to Vercel",
+            lastMessage: "How to set up automatic deployments?",
+            lastMessageAt: new Date(now - 6 * 60 * 60 * 1000),
+            messageCount: 5,
+            isArchived: true,
+          },
+        ] as Conversation[],
+        activeConversationId: "conv-1",
+        onSelect: (id: string) => {
+          /* example: select conversation logic */
+        },
+        onNewConversation: () => {
+          /* create new conversation */
+        },
+        onRename: async (id: string, newName: string) => {
+          /* rename logic */
+        },
+        onArchive: async (id: string) => {
+          /* archive logic */
+        },
+        onUnarchive: async (id: string) => {
+          /* unarchive logic */
+        },
+        onDelete: async (id: string) => {
+          /* delete logic */
+        },
+      };
+    }
+    case "ai-citations": {
+      return {
+        citations: [
+          {
+            id: "citation-1",
+            number: 1,
+            text: "React component patterns",
+            sources: [
+              {
+                id: "source-1",
+                title: "React Component Patterns - Best Practices",
+                url: "https://react.dev/learn/thinking-in-react",
+                domain: "react.dev",
+                snippet:
+                  "Components let you split the UI into independent, reusable pieces.",
+                author: "React Team",
+                publishedAt: new Date("2024-01-15"),
+                type: "web" as const,
+              },
+            ],
+          },
+          {
+            id: "citation-2",
+            number: 2,
+            text: "Types for Chatbots in TypeScript",
+            sources: [
+              {
+                id: "source-2",
+                title: "Structuring TypeScript for AI",
+                url: "https://typescriptlang.org/docs/ai",
+                domain: "typescriptlang.org",
+                snippet:
+                  "Structuring complex TypeScript types for AI chatbots helps ensure type safety.",
+                author: "TS Docs",
+                publishedAt: new Date("2023-08-22"),
+                type: "web" as const,
+              },
+            ],
+          },
+        ] as Citation[],
+        onSourceClick: (sourceId: string) => {
+          /* open citation source */
+        },
+      };
+    }
+    case "ai-conversation": {
+      return {
+        messages: [
+          {
+            id: "1",
+            role: "user" as const,
+            content: "What is HextaUI?",
+            timestamp: new Date(now - 120_000),
+          },
+          {
+            id: "2",
+            role: "assistant" as const,
+            content:
+              "HextaUI is a modern UI component library for Next.js applications.",
+            timestamp: new Date(now - 110_000),
+          },
+          {
+            id: "3",
+            role: "user" as const,
+            content: "Can you show an example usage?",
+            timestamp: new Date(now - 100_000),
+          },
+          {
+            id: "4",
+            role: "assistant" as const,
+            content:
+              "Certainly! Here is a simple Card component:\n\n```jsx\n<Card title='Hello'>Example content</Card>\n```\n",
+            timestamp: new Date(now - 95_000),
+          },
+          {
+            id: "5",
+            role: "user" as const,
+            content: "Does it support dark mode?",
+            timestamp: new Date(now - 93_000),
+          },
+          {
+            id: "6",
+            role: "assistant" as const,
+            content:
+              "Yes! HextaUI comes with built-in dark mode support out of the box.",
+            timestamp: new Date(now - 92_500),
+          },
+          {
+            id: "7",
+            role: "user" as const,
+            content: "How can I install it?",
+            timestamp: new Date(now - 90_000),
+          },
+          {
+            id: "8",
+            role: "assistant" as const,
+            content:
+              "You can install HextaUI using npm:\n\n```sh\nnpm install hextaui\n```\n",
+            timestamp: new Date(now - 88_000),
+          },
+          {
+            id: "9",
+            role: "user" as const,
+            content: "Is it compatible with TypeScript?",
+            timestamp: new Date(now - 87_000),
+          },
+          {
+            id: "10",
+            role: "assistant" as const,
+            content:
+              "Absolutely! HextaUI is fully typed and works seamlessly with TypeScript.",
+            timestamp: new Date(now - 86_000),
+          },
+        ] as Message[],
+        isStreaming: false,
+        isThinking: false,
+        onEdit: (id: string) => {
+          /* edit message by id */
+        },
+        onRegenerate: (id: string) => {
+          /* regenerate reply for a given id */
+        },
+      };
+    }
+    case "ai-error-handler": {
+      return {
+        error: {
+          code: "network_error",
+          message:
+            "Network unreachable. Please check your connection and retry.",
+        },
+        onRetry: async () => {
+          /* retry logic example */
+        },
+        onDismiss: () => {
+          /* dismiss error panel */
+        },
+        onContactSupport: () => {
+          /* contact support logic */
+        },
+      };
+    }
+    case "ai-message": {
+      return {
+        content: `# Welcome to HextaUI
+
+HextaUI is a modern UI component library for Next.js applications. Here's what makes it great:
+
+## Features
+
+- **Copy & Paste Components**: Just copy and use instantly!
+- **Fully Customizable**: Tailwind CSS + extensive props
+- **Type-Safe**: Full TypeScript support and IDE autocompletion
+- **Accessible**: ARIA and keyboard navigation out of the box
+
+## Example Usage
+
+\`\`\`tsx
+import { Card } from "hextaui";
+<Card title="Demo">Hello World</Card>
+\`\`\`
+`,
+        isStreaming: false,
+        onEdit: () => {
+          /* edit message */
+        },
+        onRegenerate: () => {
+          /* regenerate message */
+        },
+      };
+    }
+
+    case "ai-prompt-input": {
+      return {
+        onSend: (text: string) => {
+          /* send prompt logic with value: text */
+        },
+        placeholder: "Type your prompt here (e.g. Summarize this article)...",
+        disabled: false,
+        autoFocus: true,
+      };
+    }
+    case "ai-prompt-templates": {
+      return {
+        templates: [
+          {
+            id: "template-1",
+            name: "Blog Post Writer",
+            description: "Generate a comprehensive blog post on any topic",
+            category: "Writing",
+            prompt: "Write a detailed blog post about {topic}.",
+            variables: [
+              {
+                name: "topic",
+                label: "Topic",
+                placeholder: "e.g., React best practices",
+                required: true,
+              },
+              {
+                name: "audience",
+                label: "Audience",
+                placeholder: "e.g., Junior developers",
+                required: false,
+              },
+            ],
+            isPopular: true,
+            usageCount: 342,
+            tags: ["blog", "writing"],
+          },
+          {
+            id: "template-2",
+            name: "Code Reviewer",
+            description: "Review the following code for bugs or improvements",
+            category: "Code",
+            prompt: "Review this code:\n{code}",
+            variables: [
+              {
+                name: "code",
+                label: "Code",
+                placeholder: "Paste code here...",
+                required: true,
+              },
+            ],
+            usageCount: 178,
+            tags: ["review", "code"],
+          },
+        ] as PromptTemplate[],
+        categories: ["All", "Writing", "Code", "Analysis", "Summarization"],
+        onSelect: (templateId: string) => {
+          /* select template by id */
+        },
+        onFavorite: async (id: string, fav: boolean) => {
+          /* set/unset favorite */
+        },
+        onCreate: (tpl: PromptTemplate) => {
+          /* create new template */
+        },
+        showSearch: true,
+        showCategories: true,
+        showFavorites: true,
+      };
+    }
+    case "ai-settings-panel": {
+      return {
+        settings: {
+          temperature: 0.85,
+          maxTokens: 4000,
+          topP: 0.95,
+          topK: 120,
+          frequencyPenalty: 0.25,
+          presencePenalty: 0.15,
+          systemPrompt: "You are a concise expert assistant.",
+          model: "gpt-4o",
+        } as AISettings,
+        onSettingsChange: (settings: Partial<AISettings>) => {
+          /* update settings */
+        },
+        onSave: async () => {
+          /* save settings */
+        },
+        onReset: () => {
+          /* reset to defaults */
+        },
+        availableModels: [
+          "gpt-4o",
+          "gpt-4",
+          "gpt-3.5-turbo",
+          "claude-3-opus",
+          "llama-3-70b",
+        ],
+        presets: [
+          {
+            name: "Creative",
+            settings: { temperature: 0.95, maxTokens: 3000, model: "gpt-4o" },
+          },
+          {
+            name: "Accurate",
+            settings: { temperature: 0.2, model: "gpt-4" },
+          },
+        ],
+        onLoadPreset: (presetName: string) => {
+          /* load preset logic */
+        },
+        onSavePreset: async (preset: any) => {
+          /* save the given preset */
+        },
+        onDeletePreset: async (presetName: string) => {
+          /* delete preset */
+        },
+        showAdvanced: true,
+      };
+    }
+    case "ai-streaming-response": {
+      return {
+        content: `# Streaming Response
+
+This is a demonstration of real-time token-by-token streaming. The component processes content and displays it word by word for a natural reading experience.
+
+## Features
+
+- **Typewriter Effect**: Words appear one at a time
+- **Smart Delays**: Longer pauses after punctuation
+- **Automatic Streaming**: Content streams automatically
+
+## Live Example
+
+\`\`\`tsx
+<StreamingResponse content="The quick brown fox jumps over the lazy dog." autoStart />
+\`\`\`
+`,
+        autoStart: true,
+        onComplete: () => {
+          /* streaming completed */
+        },
+      };
+    }
+    case "ai-suggested-prompts": {
+      return {
+        prompts: [
+          {
+            id: "prompt-1",
+            title: "Write a blog post",
+            prompt: "Write a comprehensive blog post about [topic]",
+            category: "Writing",
+            description: "Generate a well-structured blog post",
+            isPopular: true,
+            usageCount: 245,
+          },
+          {
+            id: "prompt-2",
+            title: "Summarize this article",
+            prompt:
+              "Summarize the following article in simple terms:\n[ARTICLE TEXT]",
+            category: "Summarization",
+            description: "Easily shorten academic or technical content.",
+            isPopular: false,
+            usageCount: 99,
+          },
+          {
+            id: "prompt-3",
+            title: "Explain code",
+            prompt: "Explain what this code does:\n[CODE]",
+            category: "Code",
+            description: "Step-by-step explanation for a code block.",
+            usageCount: 50,
+          },
+        ] as SuggestedPrompt[],
+        onSelect: (promptId: string) => {
+          /* choose prompt */
+        },
+        showSearch: true,
+        showCategories: true,
+      };
+    }
+    case "ai-thinking": {
+      return {
+        spinner: true,
+        message: "Let me think of the best answer...",
+      };
+    }
+    case "ai-usage-quota": {
+      return {
+        tokenUsage: {
+          input: 225_000,
+          output: 178_700,
+          total: 403_700,
+          dailyUsageHistory: [
+            { date: new Date(now - 3 * 24 * 3600 * 1000), tokens: 52_000 },
+            { date: new Date(now - 2 * 24 * 3600 * 1000), tokens: 78_000 },
+            { date: new Date(now - 1 * 24 * 3600 * 1000), tokens: 91_000 },
+          ],
+        } as TokenUsage,
+        rateLimit: {
+          remaining: 7,
+          limit: 100,
+          resetAt: new Date(now + 18 * 60 * 1000),
+          window: "hour" as const,
+        } as RateLimit,
+        quota: {
+          used: 9_590_000,
+          limit: 10_000_000,
+          resetAt: new Date(now + 2 * 24 * 60 * 60 * 1000),
+          period: "month" as const,
+        } as Quota,
+        showUpgradePrompt: true,
+        upgradeThreshold: 80,
+        onUpgrade: () => {
+          /* upgrade logic */
+        },
+      };
+    }
+
+    // Auth Blocks
+    case "auth-login-form": {
+      return {
+        onSubmit: ({
+          email,
+          password,
+          remember,
+        }: {
+          email: string;
+          password: string;
+          remember: boolean;
+        }) => {
+          /* demo login */
+        },
+        onSocialLogin: (provider: string) => {
+          /* social login */
+        },
+        showRememberMe: true,
+        showSocialLogin: true,
+        emailPlaceholder: "your@email.com",
+      };
+    }
+    case "auth-signup-form": {
+      return {
+        onSubmit: ({
+          email,
+          password,
+          confirm,
+        }: {
+          email: string;
+          password: string;
+          confirm: string;
+        }) => {
+          /* signup logic */
+        },
+        onSocialLogin: (provider: string) => {
+          /* signup with provider */
+        },
+        showSocialLogin: true,
+      };
+    }
+    case "auth-forgot-password": {
+      return {
+        onSubmit: ({ email }: { email: string }) => {
+          /* send reset link */
+        },
+        onBackToLogin: () => {
+          /* nav back to login */
+        },
+        emailPlaceholder: "Enter your email address",
+      };
+    }
+    case "auth-reset-password": {
+      return {
+        onSubmit: ({
+          password,
+          confirm,
+        }: {
+          password: string;
+          confirm: string;
+        }) => {
+          /* reset password logic */
+        },
+        token: "example-token-sent-via-email",
+        showPasswordStrength: true,
+      };
+    }
+    case "auth-magic-link": {
+      return {
+        onSubmit: ({ email }: { email: string }) => {
+          /* send magic link */
+        },
+        onResend: () => {
+          /* resend magic link */
+        },
+        status: "pending" as const,
+        infoText: "Check your inbox for a sign-in link.",
+      };
+    }
+    case "auth-otp-verify": {
+      return {
+        deliveryMethod: "email" as const,
+        deliveryAddress: "user@example.com",
+        onSubmit: ({ code }: { code: string }) => {
+          /* verify otp */
+        },
+        onResend: () => {
+          /* resend code */
+        },
+      };
+    }
+    case "auth-phone-verify": {
+      return {
+        phoneNumber: "+1234567890",
+        onSubmit: ({ code }: { code: string }) => {
+          /* verify sms */
+        },
+        onResend: () => {
+          /* resend sms */
+        },
+        status: "pending" as const,
+      };
+    }
+    case "auth-verify-email": {
+      return {
+        email: "user@example.com",
+        status: "pending" as const,
+        onResend: () => {
+          /* resend email */
+        },
+        onVerify: () => {
+          /* verify email link */
+        },
+        infoText: "Verification link sent to your email.",
+      };
+    }
+    case "auth-change-password": {
+      return {
+        onSubmit: ({
+          current,
+          next,
+          confirm,
+        }: {
+          current: string;
+          next: string;
+          confirm: string;
+        }) => {
+          /* change password */
+        },
+      };
+    }
+    case "auth-email-change": {
+      return {
+        currentEmail: "user@example.com",
+        onSubmit: ({ newEmail }: { newEmail: string }) => {
+          /* change email */
+        },
+      };
+    }
+    case "auth-two-factor-setup": {
+      return {
+        qrUrl: "/static/2fa-qr.png",
+        secret: "JFVHK324HKJS",
+        onComplete: ({ code }: { code: string }) => {
+          /* complete 2fa setup */
+        },
+      };
+    }
+    case "auth-two-factor-verify": {
+      return {
+        onSubmit: ({ code }: { code: string }) => {
+          /* verify two-factor code */
+        },
+      };
+    }
+    case "auth-recovery-codes": {
+      return {
+        codes: [
+          "173839",
+          "572048",
+          "208453",
+          "983242",
+          "567890",
+          "450281",
+          "143892",
+        ],
+        onRegenerate: async () => {
+          /* regenerate demo codes */
+        },
+        onDownload: () => {
+          /* download demo codes */
+        },
+        showWarning: true,
+      };
+    }
+    case "auth-session-manager": {
+      return {
+        sessions: [
+          {
+            id: "session-1",
+            deviceType: "desktop" as const,
+            deviceName: "MacBook Pro",
+            browser: "Chrome",
+            location: "San Francisco, CA",
+            lastActive: new Date(now),
+            isCurrent: true,
+          },
+          {
+            id: "session-2",
+            deviceType: "mobile" as const,
+            deviceName: "iPhone 15",
+            browser: "Safari",
+            location: "New York, NY",
+            lastActive: new Date(now - 2 * 60 * 60 * 1000),
+            isCurrent: false,
+          },
+        ] as Session[],
+        onRevoke: (id: string) => {
+          /* revoke single session */
+        },
+        onRevokeAll: () => {
+          /* revoke all sessions */
+        },
+      };
+    }
+    case "auth-social-accounts": {
+      return {
+        connectedAccounts: [
+          {
+            id: "acct-google",
+            provider: "google",
+            email: "john.doe@gmail.com",
+          },
+        ],
+        availableProviders: ["google", "github", "twitter"],
+        onConnect: async (prov: string) => {
+          /* connect social provider */
+        },
+        onDisconnect: async (prov: string) => {
+          /* disconnect provider */
+        },
+      };
+    }
+    case "auth-account-delete": {
+      return {
+        onDelete: async () => {
+          /* delete user account */
+        },
+        confirmText: "DELETE",
+        info: "This action cannot be undone. All your data will be erased.",
+      };
+    }
+
+    // Billing Blocks
+    case "billing-pricing-table": {
+      return {
+        plans: [
+          {
+            id: "free",
+            name: "Free",
+            description: "Perfect for getting started",
+            price: { monthly: 0, annual: 0 },
+            currency: "USD",
+            features: [
+              {
+                name: "Community support",
+                values: { free: true, pro: true, enterprise: true },
+              },
+              {
+                name: "Essential features",
+                values: { free: true, pro: true, enterprise: true },
+              },
+            ],
+            isPopular: false,
+          },
+          {
+            id: "pro",
+            name: "Pro",
+            description: "Advanced usage & features",
+            price: { monthly: 29, annual: 290 },
+            currency: "USD",
+            features: [
+              {
+                name: "Everything in Free",
+                values: { free: false, pro: true, enterprise: true },
+              },
+              {
+                name: "Priority support",
+                values: { free: false, pro: true, enterprise: true },
+              },
+              {
+                name: "Advanced analytics",
+                values: { free: false, pro: true, enterprise: true },
+              },
+              {
+                name: "API access",
+                values: { free: false, pro: true, enterprise: true },
+              },
+            ],
+            isPopular: true,
+          },
+          {
+            id: "enterprise",
+            name: "Enterprise",
+            description: "Custom solutions and SLAs",
+            price: { monthly: 99, annual: 990 },
+            currency: "USD",
+            features: [
+              {
+                name: "All Pro features",
+                values: { free: false, pro: false, enterprise: true },
+              },
+              {
+                name: "Custom integrations",
+                values: { free: false, pro: false, enterprise: true },
+              },
+              {
+                name: "Dedicated manager",
+                values: { free: false, pro: false, enterprise: true },
+              },
+            ],
+            isPopular: false,
+          },
+        ] as PricingPlan[],
+        billingPeriod: "monthly" as const,
+        onBillingPeriodChange: (period: "monthly" | "annual") => {
+          /* change billing period */
+        },
+        onSelectPlan: (planId: string) => {
+          /* select plan */
+        },
+      };
+    }
+    case "billing-plan-selector": {
+      return {
+        plans: [
+          {
+            id: "free",
+            name: "Free",
+            description: "Perfect for getting started",
+            price: { monthly: 0, annual: 0 },
+            currency: "USD",
+            features: [
+              { name: "1,000 API requests/month", included: true },
+              { name: "5 GB storage", included: true },
+              { name: "1 team member", included: true },
+              { name: "Community support", included: true },
+            ],
+            isCurrent: true,
+            ctaLabel: "Current plan",
+          },
+          {
+            id: "pro",
+            name: "Pro",
+            description: "For growing teams",
+            price: { monthly: 29, annual: 290 },
+            currency: "USD",
+            isPopular: true,
+            isCurrent: false,
+            features: [
+              { name: "100,000 API requests/month", included: true },
+              { name: "100 GB storage", included: true },
+              { name: "10 team members", included: true },
+              { name: "Email support", included: true },
+              { name: "Custom domains", included: true },
+              { name: "Advanced analytics", included: true },
+            ],
+            ctaLabel: "Upgrade",
+          },
+          {
+            id: "enterprise",
+            name: "Enterprise",
+            description: "For large organizations",
+            price: { monthly: 99, annual: 990 },
+            currency: "USD",
+            isCurrent: false,
+            features: [
+              { name: "Unlimited API requests", included: true },
+              { name: "1 TB storage", included: true },
+              { name: "Unlimited team members", included: true },
+              { name: "Priority support", included: true },
+              { name: "SSO integration", included: true },
+              { name: "Dedicated account manager", included: true },
+            ],
+            ctaLabel: "Contact sales",
+          },
+        ] as SelectablePlan[],
+        selectedPlanId: "free",
+        billingPeriod: "monthly" as const,
+        onBillingPeriodChange: (period: "monthly" | "annual") => {
+          /* change billing period */
+        },
+        onPlanSelect: (planId: string) => {
+          /* select plan by id */
+        },
+        showAnnualSavings: true,
+        currency: "USD",
+      };
+    }
+    case "billing-subscription-card": {
+      return {
+        plan: {
+          id: "pro",
+          name: "Pro",
+          price: 29,
+          currency: "USD",
+          billingPeriod: "monthly" as const,
+        },
+        usage: [
+          {
+            label: "API Requests",
+            used: 85_000,
+            limit: 100_000,
+            unit: "requests",
+            warningThreshold: 80,
+          },
+          {
+            label: "Storage",
+            used: 75_000_000_000,
+            limit: 100_000_000_000,
+            unit: "bytes",
+            warningThreshold: 80,
+          },
+        ],
+        nextBillingDate: new Date(now + 15 * 24 * 60 * 60 * 1000),
+        autoRenew: true,
+        status: "active" as const,
+        onUpgrade: () => {
+          /* upgrade plan */
+        },
+        onDowngrade: () => {
+          /* downgrade plan */
+        },
+        onCancel: () => {
+          /* cancel subscription */
+        },
+        onManage: () => {
+          /* manage subscription */
+        },
+        showUsageDetails: true,
+      };
+    }
+    case "billing-payment-method": {
+      return {
+        paymentMethods: [
+          {
+            id: "pm-1",
+            type: "card" as const,
+            brand: "visa" as const,
+            last4: "4242",
+            expiryMonth: 12,
+            expiryYear: 2025,
+            isDefault: true,
+          },
+          {
+            id: "pm-2",
+            type: "card" as const,
+            brand: "amex" as const,
+            last4: "3005",
+            expiryMonth: 6,
+            expiryYear: 2026,
+            isDefault: false,
+          },
+        ] as PaymentMethod[],
+        onAdd: () => {
+          /* add payment method */
+        },
+        onSetDefault: (pmId: string) => {
+          /* set default method */
+        },
+        onRemove: (pmId: string) => {
+          /* remove method */
+        },
+      };
+    }
+    case "billing-payment-form": {
+      return {
+        onSubmit: ({
+          cardNumber,
+          exp,
+          cvc,
+        }: {
+          cardNumber: string;
+          exp: string;
+          cvc: string;
+        }) => {
+          /* submit payment */
+        },
+        onCancel: () => {
+          /* cancel payment form */
+        },
+        supportedBrands: ["visa", "mastercard", "amex"],
+      };
+    }
+    case "billing-invoice-list": {
+      return {
+        invoices: [
+          {
+            id: "inv-1",
+            invoiceNumber: "INV-2024-001",
+            date: new Date(now - 5 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            currency: "USD",
+            status: "paid" as const,
+          },
+          {
+            id: "inv-2",
+            invoiceNumber: "INV-2024-002",
+            date: new Date(now - 30 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            currency: "USD",
+            status: "due" as const,
+          },
+        ] as Invoice[],
+        onViewInvoice: (id: string) => {
+          /* view invoice details */
+        },
+        onDownloadInvoice: (id: string) => {
+          /* download invoice */
+        },
+      };
+    }
+    case "billing-invoice-details": {
+      return {
+        invoice: {
+          id: "inv-1",
+          invoiceNumber: "INV-2024-001",
+          date: new Date(now - 5 * 24 * 60 * 60 * 1000),
+          dueDate: new Date(now),
+          amount: 29,
+          currency: "USD",
+          status: "paid" as const,
+          description: "Pro Plan - January 2024",
+          lineItems: [
+            {
+              description: "Pro Plan Subscription",
+              quantity: 1,
+              unitPrice: 29,
+              subtotal: 29,
+            },
+          ],
+          subtotal: 29,
+          tax: {
+            amount: 0,
+            rate: 0,
+            label: "No tax",
+          },
+          total: 29,
+          paymentMethod: {
+            type: "card",
+            last4: "4242",
+            brand: "visa",
+          },
+          billingAddress: {
+            name: "John Doe",
+            line1: "123 Main Street",
+            city: "San Francisco",
+            state: "CA",
+            zip: "94102",
+            country: "United States",
+          },
+        } as InvoiceDetails,
+        open: true,
+        onOpenChange: () => {
+          /* handle open/close */
+        },
+        onDownload: () => {
+          /* download invoice */
+        },
+        onPrint: () => {
+          /* print invoice */
+        },
+        currency: "USD",
+      };
+    }
+    case "billing-billing-history": {
+      return {
+        transactions: [
+          {
+            id: "txn-1",
+            date: new Date(now - 10 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            type: "payment",
+            status: "success",
+            description: "Subscription - Pro Plan",
+          },
+          {
+            id: "txn-2",
+            date: new Date(now - 31 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            type: "payment",
+            status: "success",
+            description: "Subscription - Pro Plan",
+          },
+        ],
+        onViewDetails: (txnId: string) => {
+          /* view transaction */
+        },
+      };
+    }
+    case "billing-coupon-code": {
+      return {
+        onApply: async (code: string) => {
+          /* apply coupon code */
+        },
+        placeholder: "Enter coupon code...",
+        discountInfo: "Save 20% with WELCOME20",
+      };
+    }
+    case "billing-payment-failed": {
+      return {
+        failure: {
+          invoiceId: "inv-1",
+          invoiceNumber: "INV-2024-001",
+          amount: 29,
+          currency: "USD",
+          failedAt: new Date(now - 2 * 60 * 60 * 1000),
+          reason: "insufficient_funds" as const,
+          reasonMessage:
+            "Your payment method was declined due to insufficient funds.",
+          paymentMethod: {
+            type: "card",
+            last4: "4242",
+            brand: "visa",
+          },
+          retryAttempts: 1,
+          maxRetryAttempts: 3,
+        },
+        onRetry: async () => {
+          /* retry payment */
+        },
+        onUpdatePaymentMethod: () => {
+          /* update method */
+        },
+        onContactSupport: () => {
+          /* contact support */
+        },
+        currency: "USD",
+      };
+    }
+    case "billing-payment-schedule": {
+      return {
+        payments: [
+          {
+            id: "sch-1",
+            date: new Date(now + 15 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            currency: "USD",
+            status: "upcoming" as const,
+            description: "Pro Plan - February 2024",
+            paymentMethod: {
+              type: "card",
+              last4: "4242",
+              brand: "visa",
+            },
+            invoiceId: "inv-2",
+            invoiceNumber: "INV-2024-002",
+          },
+          {
+            id: "sch-2",
+            date: new Date(now + 45 * 24 * 60 * 60 * 1000),
+            amount: 29,
+            currency: "USD",
+            status: "upcoming" as const,
+            description: "Pro Plan - March 2024",
+            paymentMethod: {
+              type: "card",
+              last4: "4242",
+              brand: "visa",
+            },
+          },
+        ],
+        onViewInvoice: (invoiceId: string) => {
+          /* view invoice */
+        },
+        onRetry: async (paymentId: string) => {
+          /* retry payment */
+        },
+        onCancel: async (paymentId: string) => {
+          /* cancel scheduled payment */
+        },
+        currency: "USD",
+        showUpcomingOnly: false,
+      };
+    }
+    case "billing-subscription-settings": {
+      return {
+        subscription: {
+          id: "sub-1",
+          planName: "Pro Plan",
+          status: "active" as const,
+          billingPeriod: "monthly" as const,
+          currentBillingDate: new Date(now - 15 * 24 * 60 * 60 * 1000),
+          nextBillingDate: new Date(now + 15 * 24 * 60 * 60 * 1000),
+          autoRenew: true,
+          prorationPreview: {
+            newAmount: 99,
+            creditAmount: 14.5,
+            nextBillingDate: new Date(now + 15 * 24 * 60 * 60 * 1000),
+          },
+        },
+        onPause: async (resumeDate?: Date) => {
+          /* pause subscription */
+        },
+        onResume: async () => {
+          /* resume subscription */
+        },
+        onChangeBillingPeriod: async (period: "monthly" | "annual") => {
+          /* change billing period */
+        },
+        onUpdateBillingDate: async (date: Date) => {
+          /* update billing date */
+        },
+        onCancel: async (feedback?: string) => {
+          /* cancel subscription */
+        },
+        onReactivate: async () => {
+          /* reactivate subscription */
+        },
+        onToggleAutoRenew: async (enabled: boolean) => {
+          /* toggle auto-renew */
+        },
+        currency: "USD",
+      };
+    }
+    case "billing-upgrade-prompt": {
+      return {
+        currentPlan: {
+          id: "free",
+          name: "Free",
+        },
+        recommendedPlan: {
+          id: "pro",
+          name: "Pro",
+          price: 29,
+          currency: "USD",
+          billingPeriod: "monthly" as const,
+        },
+        features: [
+          { name: "Unlimited API requests" },
+          { name: "1 TB storage" },
+          { name: "Priority support" },
+          { name: "SSO integration" },
+        ],
+        reason: "recommended" as const,
+        onUpgrade: () => {
+          /* upgrade to recommended plan */
+        },
+        onDismiss: () => {
+          /* dismiss upgrade prompt */
+        },
+        onLearnMore: () => {
+          /* learn more about plan */
+        },
+        variant: "card" as const,
+        showSavings: true,
+        savingsAmount: 58,
+      };
+    }
+    case "billing-usage-alerts": {
+      return {
+        alerts: [
+          {
+            id: "alert-1",
+            name: "API Usage Alert",
+            category: "API Requests",
+            threshold: 80,
+            thresholdType: "percentage" as const,
+            enabled: true,
+            channels: ["email", "in_app"] as const,
+            lastTriggered: new Date(now - 2 * 24 * 60 * 60 * 1000),
+            triggerCount: 3,
+          },
+          {
+            id: "alert-2",
+            name: "Storage Limit Alert",
+            category: "Storage",
+            threshold: 5_000_000_000,
+            thresholdType: "absolute" as const,
+            enabled: true,
+            channels: ["email", "sms", "in_app"] as const,
+            triggerCount: 1,
+          },
+        ],
+        onToggle: async (alertId: string, enabled: boolean) => {
+          /* toggle alert */
+        },
+        onEdit: (alertId: string) => {
+          /* edit alert */
+        },
+        onDelete: async (alertId: string) => {
+          /* delete alert */
+        },
+        onCreate: () => {
+          /* create new alert */
+        },
+      };
+    }
+    case "billing-usage-billing": {
+      return {
+        currentPeriod: {
+          start: new Date(now - 30 * 24 * 60 * 60 * 1000),
+          end: new Date(now),
+          usage: 8_500_000,
+          limit: 10_000_000,
+        },
+        previousPeriod: {
+          usage: 7_200_000,
+          limit: 10_000_000,
+        },
+        dataPoints: [
+          {
+            date: new Date(now - 29 * 24 * 60 * 60 * 1000),
+            value: 250_000,
+            category: "API Requests",
+          },
+          {
+            date: new Date(now - 25 * 24 * 60 * 60 * 1000),
+            value: 320_000,
+            category: "API Requests",
+          },
+          {
+            date: new Date(now - 20 * 24 * 60 * 60 * 1000),
+            value: 410_000,
+            category: "API Requests",
+          },
+          {
+            date: new Date(now - 15 * 24 * 60 * 60 * 1000),
+            value: 380_000,
+            category: "API Requests",
+          },
+          {
+            date: new Date(now - 10 * 24 * 60 * 60 * 1000),
+            value: 450_000,
+            category: "API Requests",
+          },
+          {
+            date: new Date(now - 5 * 24 * 60 * 60 * 1000),
+            value: 520_000,
+            category: "API Requests",
+          },
+          { date: new Date(now), value: 580_000, category: "API Requests" },
+        ],
+        categories: [
+          {
+            name: "API Requests",
+            value: 5_800_000,
+            limit: 8_000_000,
+            color: "#3b82f6",
+          },
+          {
+            name: "Storage",
+            value: 2_700_000,
+            limit: 5_000_000,
+            color: "#10b981",
+          },
+        ],
+        unit: "requests",
+        onDateRangeChange: (start: Date, end: Date) => {
+          /* change date range */
+        },
+        onExport: () => {
+          /* export usage data */
+        },
+        showChart: true,
+        showBreakdown: true,
+        warningThreshold: 80,
+      };
+    }
+
+    // Settings Blocks
+    case "settings-profile": {
+      return {
+        profile: {
+          name: "John Doe",
+          email: "john.doe@example.com",
+          bio: "Design Engineer. Open Source Advocate. Loves UI/UX.",
+          location: "San Francisco, CA",
+          website: "https://example.com",
+          avatarUrl: "/static/avatar-john.png",
+          social: {
+            twitter: "johndoe",
+            github: "johnnydoe",
+          },
+        } as ProfileData,
+        onSave: async (data: any) => {
+          /* save profile */
+        },
+      };
+    }
+    case "settings-account": {
+      return {
+        account: {
+          type: "pro" as const,
+          status: "active" as const,
+          memberCount: 8,
+          memberLimit: 10,
+          storageUsed: 15 * 1024 * 1024 * 1024, // 15 GB
+          storageLimit: 100 * 1024 * 1024 * 1024, // 100 GB
+        },
+        onUpgrade: async () => {
+          /* upgrade account */
+        },
+        onDelete: async () => {
+          /* delete account */
+        },
+        onTransfer: async () => {
+          /* transfer account */
+        },
+      };
+    }
+    case "settings-security": {
+      return {
+        sessions: [
+          {
+            id: "sec-session-1",
+            ip: "192.168.1.1",
+            device: "MacBook Pro",
+            browser: "Chrome",
+            active: true,
+            lastActive: new Date(now),
+          },
+        ],
+        events: [
+          {
+            id: "event-1",
+            type: "login",
+            timestamp: new Date(now - 7_200_000),
+            ip: "192.168.1.1",
+          },
+        ],
+        onRevokeSession: (id: string) => {
+          /* revoke session */
+        },
+        onRevokeAllSessions: () => {
+          /* revoke all */
+        },
+      };
+    }
+    case "settings-notifications": {
+      return {
+        preferences: {
+          categories: [
+            {
+              id: "mentions",
+              name: "Mentions",
+              description: "When someone mentions you",
+              channels: { email: true, push: true, inApp: true, sms: false },
+              frequency: "realtime" as const,
+            },
+            {
+              id: "replies",
+              name: "Replies",
+              description: "When someone replies to your messages",
+              channels: { email: true, push: true, inApp: true, sms: false },
+              frequency: "realtime" as const,
+            },
+            {
+              id: "system",
+              name: "System Alerts",
+              description: "Important system notifications",
+              channels: { email: true, push: true, inApp: true, sms: true },
+              frequency: "realtime" as const,
+            },
+            {
+              id: "marketing",
+              name: "Marketing",
+              description: "Promotional emails and updates",
+              channels: { email: true, push: false, inApp: false, sms: false },
+              frequency: "digest-weekly" as const,
+            },
+            {
+              id: "security",
+              name: "Security",
+              description: "Security alerts and login notifications",
+              channels: { email: true, push: true, inApp: true, sms: true },
+              frequency: "realtime" as const,
+            },
+            {
+              id: "product-updates",
+              name: "Product Updates",
+              description: "New features and product announcements",
+              channels: { email: true, push: false, inApp: true, sms: false },
+              frequency: "digest-daily" as const,
+            },
+          ],
+          quietHoursEnabled: true,
+          quietHoursStart: "22:00",
+          quietHoursEnd: "08:00",
+        },
+        onSave: async (data: {
+          categories: Array<{
+            id: string;
+            name: string;
+            description: string;
+            channels: {
+              email: boolean;
+              push: boolean;
+              inApp: boolean;
+              sms: boolean;
+            };
+            frequency?: "realtime" | "digest-daily" | "digest-weekly" | "off";
+          }>;
+          quietHoursEnabled: boolean;
+          quietHoursStart?: string;
+          quietHoursEnd?: string;
+        }) => {
+          /* save notification preferences */
+        },
+      };
+    }
+    case "settings-preferences": {
+      return {
+        preferences: {
+          theme: "dark" as const,
+          language: "en",
+          timezone: "America/Los_Angeles",
+          codeFontSize: 16,
+        },
+        onSave: async (prefs: any) => {
+          /* save preferences */
+        },
+      };
+    }
+    case "settings-privacy": {
+      return {
+        privacySettings: {
+          profileVisibility: "private" as const,
+          dataSharing: false,
+          require2FA: true,
+        },
+        onSave: async (settings: any) => {
+          /* save privacy */
+        },
+      };
+    }
+    case "settings-api-keys": {
+      return {
+        apiKeys: [
+          {
+            id: "key-1",
+            name: "Production API Key",
+            key: "sk_live_1234567890abcdef",
+            createdAt: new Date(now - 30 * 24 * 60 * 60 * 1000),
+            lastUsed: new Date(now - 2 * 60 * 60 * 1000),
+            scopes: ["read", "write"],
+            usageCount: 15_420,
+            rateLimit: {
+              limit: 10_000,
+              remaining: 8560,
+              resetAt: new Date(now + 24 * 60 * 60 * 1000),
+            },
+          },
+          {
+            id: "key-2",
+            name: "Development Key",
+            key: "sk_test_abcdef1234567890",
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000),
+            scopes: ["read"],
+            usageCount: 234,
+          },
+          {
+            id: "key-3",
+            name: "Read-only Key",
+            key: "sk_readonly_xyz789abc123",
+            createdAt: new Date(now - 3 * 24 * 60 * 60 * 1000),
+            lastUsed: new Date(now - 5 * 60 * 60 * 1000),
+            scopes: ["read"],
+            expiresAt: new Date(now + 90 * 24 * 60 * 60 * 1000),
+            usageCount: 1250,
+          },
+        ],
+        onCreate: async (data: {
+          name: string;
+          expiresAt?: Date;
+          scopes: string[];
+        }) => {
+          /* create new key */
+          return {
+            id: `key-${Date.now()}`,
+            name: data.name,
+            key: `sk_${Math.random().toString(36).substring(7)}`,
+            createdAt: new Date(),
+            scopes: data.scopes,
+          };
+        },
+        onRevoke: async (keyId: string) => {
+          /* revoke key */
+        },
+        onRegenerate: async (keyId: string) => {
+          /* regenerate key */
+          return {
+            id: keyId,
+            name: "Regenerated Key",
+            key: `sk_${Math.random().toString(36).substring(7)}`,
+            createdAt: new Date(),
+            scopes: ["read", "write"],
+          };
+        },
+      };
+    }
+    case "settings-integrations": {
+      return {
+        integrations: [
+          {
+            id: "github",
+            name: "GitHub",
+            description: "Connect your GitHub account to sync repositories",
+            status: "connected" as const,
+            lastSynced: new Date(now - 2 * 60 * 60 * 1000), // 2 hours ago
+            scopes: ["repo", "read:user"],
+          },
+          {
+            id: "slack",
+            name: "Slack",
+            description: "Send notifications to your Slack workspace",
+            status: "disconnected" as const,
+            scopes: ["chat:write", "channels:read"],
+          },
+          {
+            id: "google",
+            name: "Google Drive",
+            description: "Access and sync files from Google Drive",
+            status: "expired" as const,
+            lastSynced: new Date(now - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+            needsReconnection: true,
+            scopes: ["drive.readonly"],
+          },
+          {
+            id: "stripe",
+            name: "Stripe",
+            description: "Manage payments and subscriptions",
+            status: "error" as const,
+            lastSynced: new Date(now - 5 * 60 * 60 * 1000), // 5 hours ago
+            scopes: ["read"],
+          },
+        ],
+        onConnect: async (integrationId: string) => {
+          /* connect integration */
+        },
+        onDisconnect: async (integrationId: string) => {
+          /* disconnect integration */
+        },
+        onReauthorize: async (integrationId: string) => {
+          /* reauthorize integration */
+        },
+      };
+    }
+    case "settings-webhooks": {
+      return {
+        webhooks: [
+          {
+            id: "webhook-1",
+            name: "Payment Notifications",
+            url: "https://api.example.com/webhooks/payment",
+            secret: "whsec_1234567890abcdef",
+            events: ["payment.succeeded", "payment.failed"],
+            status: "active" as const,
+            createdAt: new Date(now - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+            lastTriggered: new Date(now - 2 * 60 * 60 * 1000), // 2 hours ago
+            successCount: 245,
+            failureCount: 3,
+          },
+          {
+            id: "webhook-2",
+            name: "User Events",
+            url: "https://api.example.com/webhooks/users",
+            secret: "whsec_abcdef1234567890",
+            events: ["user.created", "user.updated", "user.deleted"],
+            status: "paused" as const,
+            createdAt: new Date(now - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+            lastTriggered: new Date(now - 5 * 24 * 60 * 60 * 1000), // 5 days ago
+            successCount: 120,
+            failureCount: 0,
+          },
+          {
+            id: "webhook-3",
+            name: "Subscription Updates",
+            url: "https://api.example.com/webhooks/subscriptions",
+            secret: "whsec_xyz789abc123def",
+            events: [
+              "subscription.created",
+              "subscription.updated",
+              "subscription.cancelled",
+            ],
+            status: "active" as const,
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            lastTriggered: new Date(now - 1 * 60 * 60 * 1000), // 1 hour ago
+            successCount: 89,
+            failureCount: 2,
+          },
+          {
+            id: "webhook-4",
+            name: "Failed Webhook",
+            url: "https://api.example.com/webhooks/failed",
+            secret: "whsec_failed123456",
+            events: ["payment.failed"],
+            status: "failed" as const,
+            createdAt: new Date(now - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+            lastTriggered: new Date(now - 12 * 60 * 60 * 1000), // 12 hours ago
+            successCount: 15,
+            failureCount: 8,
+          },
+        ],
+        deliveries: {
+          "webhook-1": [
+            {
+              id: "delivery-1",
+              webhookId: "webhook-1",
+              status: "success" as const,
+              responseCode: 200,
+              timestamp: new Date(now - 2 * 60 * 60 * 1000), // 2 hours ago
+              payload:
+                '{"event": "payment.succeeded", "amount": 29.99, "currency": "USD"}',
+              response: "OK",
+            },
+            {
+              id: "delivery-2",
+              webhookId: "webhook-1",
+              status: "success" as const,
+              responseCode: 200,
+              timestamp: new Date(now - 4 * 60 * 60 * 1000), // 4 hours ago
+              payload:
+                '{"event": "payment.failed", "reason": "insufficient_funds"}',
+              response: "OK",
+            },
+            {
+              id: "delivery-3",
+              webhookId: "webhook-1",
+              status: "failed" as const,
+              responseCode: 500,
+              timestamp: new Date(now - 6 * 60 * 60 * 1000), // 6 hours ago
+              payload: '{"event": "payment.succeeded", "amount": 49.99}',
+              response: "Internal Server Error",
+            },
+          ],
+          "webhook-3": [
+            {
+              id: "delivery-4",
+              webhookId: "webhook-3",
+              status: "success" as const,
+              responseCode: 200,
+              timestamp: new Date(now - 1 * 60 * 60 * 1000), // 1 hour ago
+              payload:
+                '{"event": "subscription.created", "plan": "pro", "userId": "user-123"}',
+              response: "OK",
+            },
+          ],
+        },
+        onCreate: async (data: {
+          name: string;
+          url: string;
+          events: string[];
+        }) => {
+          /* create webhook */
+          return {
+            id: `webhook-${Date.now()}`,
+            name: data.name,
+            url: data.url,
+            events: data.events,
+            status: "active" as const,
+            createdAt: new Date(),
+            successCount: 0,
+            failureCount: 0,
+          };
+        },
+        onUpdate: async (
+          id: string,
+          data: Partial<{
+            name: string;
+            url: string;
+            events: string[];
+            status: "active" | "paused" | "failed";
+          }>
+        ) => {
+          /* update webhook */
+        },
+        onDelete: async (id: string) => {
+          /* delete webhook */
+        },
+        onTest: async (id: string) => {
+          /* test webhook */
+        },
+        onToggleStatus: async (id: string) => {
+          /* toggle webhook status */
+        },
+      };
+    }
+    case "settings-team-members": {
+      return {
+        members: [
+          {
+            id: "user-1",
+            name: "Alice Admin",
+            email: "alice@company.com",
+            role: "admin",
+          },
+          {
+            id: "user-2",
+            name: "Bob Writer",
+            email: "bob@company.com",
+            role: "editor",
+          },
+        ],
+        onInvite: async (email: string, role: string) => {
+          /* invite member */
+        },
+        onRemove: async (id: string) => {
+          /* remove member */
+        },
+        onUpdateRole: async (id: string, newRole: string) => {
+          /* update role */
+        },
+      };
+    }
+    case "settings-storage": {
+      return {
+        totalUsed: 7 * 1024 * 1024 * 1024, // 7 GB
+        totalLimit: 100 * 1024 * 1024 * 1024, // 100 GB
+        categories: [
+          {
+            id: "files",
+            name: "Files",
+            icon: FileText,
+            used: 5 * 1024 * 1024 * 1024, // 5 GB
+            total: 10 * 1024 * 1024 * 1024, // 10 GB
+            color: "bg-blue-500/10",
+          },
+          {
+            id: "images",
+            name: "Images",
+            icon: Image,
+            used: 2 * 1024 * 1024 * 1024, // 2 GB
+            total: 5 * 1024 * 1024 * 1024, // 5 GB
+            color: "bg-green-500/10",
+          },
+          {
+            id: "backups",
+            name: "Backups",
+            icon: Database,
+            used: 2_500_000_000, // 2.5 GB
+            total: 20 * 1024 * 1024 * 1024, // 20 GB
+            color: "bg-purple-500/10",
+          },
+          {
+            id: "videos",
+            name: "Videos",
+            icon: Video,
+            used: 1_500_000_000, // 1.5 GB
+            total: 10 * 1024 * 1024 * 1024, // 10 GB
+            color: "bg-red-500/10",
+          },
+        ],
+        onCleanup: async (categoryId?: string) => {
+          /* start cleanup */
+        },
+      };
+    }
+    case "settings-backup": {
+      return {
+        backups: [
+          {
+            id: "backup-1",
+            name: "Automatic Backup - Daily",
+            type: "automatic" as const,
+            status: "completed" as const,
+            size: 500 * 1024 * 1024, // 500 MB
+            createdAt: new Date(now - 24 * 60 * 60 * 1000), // 1 day ago
+            completedAt: new Date(now - 24 * 60 * 60 * 1000 + 30_000),
+            location: "cloud",
+            retentionDays: 30,
+          },
+          {
+            id: "backup-2",
+            name: "Manual Backup",
+            type: "manual" as const,
+            status: "completed" as const,
+            size: 450 * 1024 * 1024, // 450 MB
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            completedAt: new Date(now - 7 * 24 * 60 * 60 * 1000 + 25_000),
+            location: "cloud",
+          },
+          {
+            id: "backup-3",
+            name: "Automatic Backup - Daily",
+            type: "automatic" as const,
+            status: "in_progress" as const,
+            size: 0,
+            createdAt: new Date(now - 5 * 60 * 1000), // 5 minutes ago
+            location: "cloud",
+          },
+          {
+            id: "backup-4",
+            name: "Weekly Backup",
+            type: "automatic" as const,
+            status: "completed" as const,
+            size: 520 * 1024 * 1024, // 520 MB
+            createdAt: new Date(now - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+            completedAt: new Date(now - 14 * 24 * 60 * 60 * 1000 + 35_000),
+            location: "cloud",
+            retentionDays: 30,
+          },
+          {
+            id: "backup-5",
+            name: "Failed Backup",
+            type: "automatic" as const,
+            status: "failed" as const,
+            size: 0,
+            createdAt: new Date(now - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+            location: "cloud",
+          },
+        ],
+        autoBackupEnabled: true,
+        autoBackupSchedule: "daily" as const,
+        retentionDays: 30,
+        storageLocation: "cloud",
+        onCreateBackup: async () => {
+          /* create backup */
+          return {
+            id: `backup-${Date.now()}`,
+            name: "Manual Backup",
+            type: "manual" as const,
+            status: "completed" as const,
+            size: 500 * 1024 * 1024,
+            createdAt: new Date(),
+            completedAt: new Date(),
+            location: "cloud",
+          };
+        },
+        onRestore: async (backupId: string) => {
+          /* restore backup */
+        },
+        onDelete: async (backupId: string) => {
+          /* delete backup */
+        },
+        onUpdateSettings: async (settings: {
+          enabled: boolean;
+          schedule?: "daily" | "weekly" | "monthly";
+          retentionDays?: number;
+          storageLocation?: string;
+        }) => {
+          /* update backup settings */
+        },
+      };
+    }
+    case "settings-export-data": {
+      return {
+        exportHistory: [
+          {
+            id: "export-1",
+            format: "json" as const,
+            scope: ["profile", "activity"],
+            status: "completed" as const,
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            completedAt: new Date(now - 7 * 24 * 60 * 60 * 1000 + 30_000),
+            downloadUrl: "#",
+            expiresAt: new Date(now + 23 * 24 * 60 * 60 * 1000), // 23 days from now
+          },
+          {
+            id: "export-2",
+            format: "csv" as const,
+            scope: ["messages"],
+            status: "processing" as const,
+            progress: 65,
+            createdAt: new Date(now - 5 * 60 * 1000), // 5 minutes ago
+          },
+          {
+            id: "export-3",
+            format: "zip" as const,
+            scope: ["profile", "activity", "messages", "files", "settings"],
+            status: "completed" as const,
+            createdAt: new Date(now - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+            completedAt: new Date(now - 14 * 24 * 60 * 60 * 1000 + 45_000),
+            downloadUrl: "#",
+            expiresAt: new Date(now + 16 * 24 * 60 * 60 * 1000), // 16 days from now
+          },
+          {
+            id: "export-4",
+            format: "pdf" as const,
+            scope: ["billing"],
+            status: "failed" as const,
+            createdAt: new Date(now - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+            error: "Export timeout - please try again",
+          },
+        ],
+        onExport: async (data: {
+          format: "json" | "csv" | "pdf" | "zip";
+          scope: string[];
+          dateRange?: { start: Date; end: Date };
+        }) => {
+          /* start export */
+          return {
+            id: `export-${Date.now()}`,
+            format: data.format,
+            scope: data.scope,
+            status: "processing" as const,
+            createdAt: new Date(),
+          };
+        },
+        onDownload: async (jobId: string) => {
+          /* download export */
+        },
+      };
+    }
+    case "settings-import-data": {
+      return {
+        importHistory: [
+          {
+            id: "import-1",
+            filename: "user-data-backup.json",
+            format: "json" as const,
+            status: "completed" as const,
+            createdAt: new Date(now - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+            completedAt: new Date(now - 14 * 24 * 60 * 60 * 1000 + 45_000),
+            recordsImported: 1250,
+            recordsSkipped: 12,
+            recordsFailed: 3,
+            conflictResolution: "merge" as const,
+          },
+          {
+            id: "import-2",
+            filename: "activity-logs.csv",
+            format: "csv" as const,
+            status: "completed" as const,
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            completedAt: new Date(now - 7 * 24 * 60 * 60 * 1000 + 30_000),
+            recordsImported: 5420,
+            recordsSkipped: 0,
+            recordsFailed: 0,
+            conflictResolution: "overwrite" as const,
+          },
+          {
+            id: "import-3",
+            filename: "messages-export.json",
+            format: "json" as const,
+            status: "importing" as const,
+            progress: 65,
+            createdAt: new Date(now - 2 * 60 * 1000), // 2 minutes ago
+            conflictResolution: "skip" as const,
+          },
+          {
+            id: "import-4",
+            filename: "settings-backup.json",
+            format: "json" as const,
+            status: "failed" as const,
+            createdAt: new Date(now - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+            error: "Invalid file format: missing required fields",
+            conflictResolution: "skip" as const,
+          },
+          {
+            id: "import-5",
+            filename: "contacts.csv",
+            format: "csv" as const,
+            status: "completed" as const,
+            createdAt: new Date(now - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+            completedAt: new Date(now - 1 * 24 * 60 * 60 * 1000 + 20_000),
+            recordsImported: 234,
+            recordsSkipped: 5,
+            recordsFailed: 1,
+            conflictResolution: "merge" as const,
+          },
+        ],
+        onUpload: async (file: File) => {
+          /* upload and preview file */
+          return {
+            totalRecords: 150,
+            categories: {
+              profile: 1,
+              activity: 50,
+              messages: 99,
+            },
+            conflicts: 5,
+            fields: ["id", "name", "email", "createdAt"],
+          };
+        },
+        onImport: async (data: {
+          file: File;
+          conflictResolution: "skip" | "overwrite" | "merge";
+          dryRun?: boolean;
+        }) => {
+          /* import data */
+          return {
+            id: `import-${Date.now()}`,
+            filename: data.file.name,
+            format: data.file.name.endsWith(".json")
+              ? ("json" as const)
+              : ("csv" as const),
+            status: data.dryRun ? ("dry-run" as const) : ("importing" as const),
+            createdAt: new Date(),
+            conflictResolution: data.conflictResolution,
+          };
+        },
+      };
+    }
+    case "settings-activity-log": {
+      return {
+        entries: [
+          {
+            id: "log-1",
+            action: "login",
+            type: "login" as const,
+            description: "User logged in",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 5 * 60 * 1000), // 5 minutes ago
+            status: "success" as const,
+          },
+          {
+            id: "log-2",
+            action: "profile_update",
+            type: "profile_update" as const,
+            description: "Profile information updated",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 2 * 60 * 60 * 1000), // 2 hours ago
+            status: "success" as const,
+          },
+          {
+            id: "log-3",
+            action: "password_change",
+            type: "password_change" as const,
+            description: "Password changed",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 6 * 60 * 60 * 1000), // 6 hours ago
+            status: "success" as const,
+          },
+          {
+            id: "log-4",
+            action: "settings_change",
+            type: "settings_change" as const,
+            description: "Notification preferences updated",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 12 * 60 * 60 * 1000), // 12 hours ago
+            status: "success" as const,
+          },
+          {
+            id: "log-5",
+            action: "export",
+            type: "export" as const,
+            description: "Data exported",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+            status: "success" as const,
+          },
+          {
+            id: "log-6",
+            action: "create",
+            type: "create" as const,
+            description: "API key created",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+            status: "success" as const,
+          },
+          {
+            id: "log-7",
+            action: "login",
+            type: "login" as const,
+            description: "Failed login attempt",
+            ipAddress: "203.0.113.45",
+            location: "New York, NY",
+            device: "iPhone 15",
+            timestamp: new Date(now - 3 * 24 * 60 * 60 * 1000), // 3 days ago
+            status: "failed" as const,
+          },
+          {
+            id: "log-8",
+            action: "logout",
+            type: "logout" as const,
+            description: "User logged out",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 4 * 24 * 60 * 60 * 1000), // 4 days ago
+            status: "success" as const,
+          },
+          {
+            id: "log-9",
+            action: "update",
+            type: "update" as const,
+            description: "Billing information updated",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 5 * 24 * 60 * 60 * 1000), // 5 days ago
+            status: "success" as const,
+          },
+          {
+            id: "log-10",
+            action: "delete",
+            type: "delete" as const,
+            description: "API key deleted",
+            ipAddress: "192.168.1.1",
+            location: "San Francisco, CA",
+            device: "MacBook Pro",
+            timestamp: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            status: "success" as const,
+          },
+        ],
+        onExport: async (filters: {
+          dateRange?: { start: Date; end: Date };
+          type?: string;
+          search?: string;
+        }) => {
+          /* export activity log */
+        },
+      };
+    }
+    case "settings-domains": {
+      return {
+        domains: [
+          {
+            id: "domain-1",
+            domain: "example.com",
+            status: "verified" as const,
+            sslEnabled: true,
+            verifiedAt: new Date(now - 30 * 24 * 60 * 60 * 1000), // 30 days ago
+          },
+          {
+            id: "domain-2",
+            domain: "app.example.com",
+            status: "pending" as const,
+            sslEnabled: false,
+            dnsRecords: [
+              {
+                type: "CNAME",
+                name: "app",
+                value: "example.vercel.app",
+              },
+            ],
+          },
+          {
+            id: "domain-3",
+            domain: "api.example.com",
+            status: "verified" as const,
+            sslEnabled: true,
+            verifiedAt: new Date(now - 15 * 24 * 60 * 60 * 1000), // 15 days ago
+          },
+          {
+            id: "domain-4",
+            domain: "staging.example.com",
+            status: "failed" as const,
+            sslEnabled: false,
+            dnsRecords: [
+              {
+                type: "CNAME",
+                name: "staging",
+                value: "staging.vercel.app",
+              },
+            ],
+          },
+          {
+            id: "domain-5",
+            domain: "www.example.com",
+            status: "pending" as const,
+            sslEnabled: false,
+            dnsRecords: [
+              {
+                type: "CNAME",
+                name: "www",
+                value: "example.vercel.app",
+              },
+              {
+                type: "A",
+                name: "@",
+                value: "192.0.2.1",
+              },
+            ],
+          },
+        ],
+        onCreate: async (domain: string) => {
+          /* create domain */
+          return {
+            id: `domain-${Date.now()}`,
+            domain,
+            status: "pending" as const,
+            sslEnabled: false,
+            dnsRecords: [
+              {
+                type: "CNAME",
+                name: domain.split(".")[0] || "@",
+                value: "example.vercel.app",
+              },
+            ],
+          };
+        },
+        onDelete: async (id: string) => {
+          /* delete domain */
+        },
+        onVerify: async (id: string) => {
+          /* verify domain */
+        },
+        onToggleSSL: async (id: string) => {
+          /* toggle SSL */
+        },
+      };
+    }
+    case "settings-sso": {
+      return {
+        enabled: true,
+        providers: [
+          {
+            id: "sso-1",
+            name: "Okta",
+            type: "saml" as const,
+            enabled: true,
+            status: "active" as const,
+            metadataUrl: "https://example.okta.com/saml/metadata",
+            entityId: "https://example.okta.com/app/example",
+            ssoUrl: "https://example.okta.com/app/example/sso/saml",
+            lastTested: new Date(now - 7 * 24 * 60 * 60 * 1000), // 7 days ago
+            userCount: 45,
+          },
+          {
+            id: "sso-2",
+            name: "Azure AD",
+            type: "oidc" as const,
+            enabled: false,
+            status: "pending" as const,
+            metadataUrl:
+              "https://login.microsoftonline.com/tenant-id/v2.0/.well-known/openid-configuration",
+            lastTested: new Date(now - 14 * 24 * 60 * 60 * 1000), // 14 days ago
+          },
+          {
+            id: "sso-3",
+            name: "Google Workspace",
+            type: "saml" as const,
+            enabled: true,
+            status: "active" as const,
+            metadataUrl:
+              "https://accounts.google.com/.well-known/saml-metadata",
+            entityId: "https://accounts.google.com/o/saml2?idpid=example",
+            ssoUrl: "https://accounts.google.com/o/saml2/idp?idpid=example",
+            lastTested: new Date(now - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+            userCount: 128,
+          },
+          {
+            id: "sso-4",
+            name: "Auth0",
+            type: "oidc" as const,
+            enabled: true,
+            status: "error" as const,
+            metadataUrl:
+              "https://example.auth0.com/.well-known/openid-configuration",
+            lastTested: new Date(now - 1 * 24 * 60 * 60 * 1000), // 1 day ago
+            userCount: 23,
+          },
+          {
+            id: "sso-5",
+            name: "OneLogin",
+            type: "saml" as const,
+            enabled: false,
+            status: "pending" as const,
+            metadataUrl: "https://app.onelogin.com/saml/metadata/example",
+            entityId: "https://app.onelogin.com/saml/metadata/example",
+            ssoUrl:
+              "https://app.onelogin.com/trust/saml2/http-post/sso/example",
+          },
+        ],
+        onCreate: async (data: {
+          name: string;
+          type: "saml" | "oauth" | "oidc";
+          metadataUrl?: string;
+          entityId?: string;
+          ssoUrl?: string;
+          certificate?: string;
+        }) => {
+          /* create SSO provider */
+          return {
+            id: `sso-${Date.now()}`,
+            name: data.name,
+            type: data.type,
+            enabled: false,
+            status: "pending" as const,
+            metadataUrl: data.metadataUrl,
+            entityId: data.entityId,
+            ssoUrl: data.ssoUrl,
+            certificate: data.certificate,
+          };
+        },
+        onUpdate: async (
+          id: string,
+          data: Partial<{
+            name: string;
+            type: "saml" | "oauth" | "oidc";
+            enabled: boolean;
+            status: "active" | "error" | "pending";
+            metadataUrl?: string;
+            entityId?: string;
+            ssoUrl?: string;
+            certificate?: string;
+          }>
+        ) => {
+          /* update SSO provider */
+        },
+        onDelete: async (id: string) => {
+          /* delete SSO provider */
+        },
+        onTest: async (id: string) => {
+          /* test SSO connection */
+        },
+        onToggle: async (enabled: boolean) => {
+          /* toggle SSO globally */
+        },
+      };
+    }
+    case "settings-advanced": {
+      return {
+        featureFlags: [
+          { id: "ff-1", name: "Experimental UI", enabled: true },
+          { id: "ff-2", name: "Debug Logging", enabled: false },
+        ],
+        onToggleFlag: (flagId: string, enabled: boolean) => {
+          /* enable flag */
+        },
+      };
+    }
+
+    default:
+      return {};
+  }
+}

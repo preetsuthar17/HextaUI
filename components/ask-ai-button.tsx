@@ -12,27 +12,30 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 type AskAIButton = {
-  componentId: string;
+  componentId?: string;
+  blockId?: string;
 };
 
-function useAskLinks(componentId: string) {
+function useAskLinks(componentId?: string, blockId?: string) {
   return useMemo(() => {
     const base =
       typeof window !== "undefined"
         ? window.location.origin
         : "https://hexta-ui.example";
-    const componentUrl = `${base}/components/${componentId}`;
-    const q = `I’m looking at this hextaui documentation page ${componentUrl}. Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.`;
+    const id = blockId || componentId || "";
+    const path = blockId ? "blocks" : "components";
+    const url = `${base}/${path}/${id}`;
+    const q = `I'm looking at this hextaui documentation page ${url}. Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.`;
     const gpt = `https://chatgpt.com/?${new URLSearchParams({ hints: "search", q })}`;
     const claude = `https://claude.ai/new?${new URLSearchParams({ q })}`;
     const t3 = `https://t3.chat/new?${new URLSearchParams({ q })}`;
     const v0Url = `https://v0.dev/?${new URLSearchParams({ q })}`;
     return { gpt, claude, t3, v0Url };
-  }, [componentId]);
+  }, [componentId, blockId]);
 }
 
-export function AskAIButton({ componentId }: AskAIButton) {
-  const { gpt, claude, t3, v0Url } = useAskLinks(componentId);
+export function AskAIButton({ componentId, blockId }: AskAIButton) {
+  const { gpt, claude, t3, v0Url } = useAskLinks(componentId, blockId);
 
   return (
     <div className="flex items-center gap-2">
