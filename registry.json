@@ -587,7 +587,7 @@
     },
     {
       "name": "ai-chat-history",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Chat History",
       "description": "Display and manage conversation history with search and filtering.",
       "registryDependencies": [
@@ -600,65 +600,65 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-chat-history.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-citations",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Citations",
       "description": "Display citations and sources with collapsible source previews.",
       "registryDependencies": ["collapsible"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-citations.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-conversation",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Conversation",
       "description": "Display AI conversation messages with streaming support.",
       "registryDependencies": ["ai-message", "ai-thinking"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-conversation.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-error-handler",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Error Handler",
       "description": "Display and handle AI errors with retry functionality.",
       "registryDependencies": ["alert", "badge", "button", "separator"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-error-handler.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-file-upload",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI File Upload",
       "description": "Upload files for AI analysis with drag and drop support.",
       "registryDependencies": ["button", "card", "progress"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-file-upload.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-message",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Message",
       "description": "Display AI messages with markdown support and code highlighting.",
       "dependencies": ["react-markdown", "remark-gfm", "shiki", "next-themes"],
@@ -666,26 +666,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-message.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-model-selector",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Model Selector",
       "description": "Select AI models from different providers with search.",
       "registryDependencies": ["button", "command-menu", "tooltip"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-model-selector.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-prompt-input",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Prompt Input",
       "description": "Input component for AI prompts with context selection and options.",
       "registryDependencies": [
@@ -701,13 +701,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-prompt-input.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-prompt-templates",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Prompt Templates",
       "description": "Browse and use pre-built prompt templates with variables.",
       "registryDependencies": [
@@ -722,13 +722,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-prompt-templates.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-settings-panel",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Settings Panel",
       "description": "Configure AI model parameters and behavior settings.",
       "registryDependencies": [
@@ -745,26 +745,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-settings-panel.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-streaming-response",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Streaming Response",
       "description": "Display streaming AI responses with token-by-token animation.",
       "registryDependencies": ["ai-message"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-streaming-response.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-suggested-prompts",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Suggested Prompts",
       "description": "Display suggested prompts with categories and search.",
       "registryDependencies": [
@@ -777,39 +777,39 @@
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-suggested-prompts.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-thinking",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Thinking",
       "description": "Display AI thinking process with animated scrolling content.",
       "registryDependencies": ["card", "spinner"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-thinking.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "ai-usage-quota",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "AI Usage Quota",
       "description": "Display AI usage statistics, rate limits, and quota information.",
       "registryDependencies": ["alert", "badge", "card", "progress", "tooltip"],
       "files": [
         {
           "path": "registry/new-york/blocks/ai/ai-usage-quota.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-account-delete",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Account Delete",
       "description": "Delete account with password confirmation and data loss acknowledgment.",
       "registryDependencies": [
@@ -823,52 +823,52 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-account-delete.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-change-password",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Change Password",
       "description": "Change password with current and new password fields.",
       "registryDependencies": ["button", "card", "field", "input-group"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-change-password.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-email-change",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Email Change",
       "description": "Change email address with password verification.",
       "registryDependencies": ["button", "card", "field", "input-group"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-email-change.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-forgot-password",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Forgot Password",
       "description": "Request password reset link via email.",
       "registryDependencies": ["button", "card", "field", "input-group"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-forgot-password.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-login-form",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Login Form",
       "description": "Login form with email/password and social login options.",
       "registryDependencies": [
@@ -882,26 +882,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-login-form.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-magic-link",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Magic Link",
       "description": "Passwordless authentication via magic link email.",
       "registryDependencies": ["button", "card", "field", "input-group"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-magic-link.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-otp-verify",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth OTP Verify",
       "description": "Verify OTP code sent via email, SMS, or WhatsApp.",
       "registryDependencies": [
@@ -914,13 +914,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-otp-verify.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-phone-verify",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Phone Verify",
       "description": "Verify phone number with OTP code via SMS.",
       "registryDependencies": [
@@ -935,26 +935,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-phone-verify.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-recovery-codes",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Recovery Codes",
       "description": "Display and manage two-factor authentication recovery codes.",
       "registryDependencies": ["alert-dialog", "button", "card"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-recovery-codes.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-reset-password",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Reset Password",
       "description": "Reset password with strength indicator and token validation.",
       "registryDependencies": [
@@ -967,13 +967,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-reset-password.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-session-manager",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Session Manager",
       "description": "Manage active sessions across devices with revoke functionality.",
       "registryDependencies": [
@@ -986,13 +986,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-session-manager.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-signup-form",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Signup Form",
       "description": "User registration form with email/password and social signup options.",
       "registryDependencies": [
@@ -1006,26 +1006,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-signup-form.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-social-accounts",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Social Accounts",
       "description": "Manage connected social accounts for authentication.",
       "registryDependencies": ["alert-dialog", "badge", "button", "card"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-social-accounts.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-two-factor-setup",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Two Factor Setup",
       "description": "Set up two-factor authentication with QR code and backup codes.",
       "dependencies": ["next"],
@@ -1040,13 +1040,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-two-factor-setup.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-two-factor-verify",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Two Factor Verify",
       "description": "Verify two-factor authentication code or recovery code.",
       "registryDependencies": [
@@ -1060,26 +1060,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-two-factor-verify.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "auth-verify-email",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Auth Verify Email",
       "description": "Email verification status with resend functionality.",
       "registryDependencies": ["button", "card"],
       "files": [
         {
           "path": "registry/new-york/blocks/auth/auth-verify-email.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-billing-history",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Billing History",
       "description": "Display transaction history with search, filters, and pagination.",
       "registryDependencies": [
@@ -1093,13 +1093,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-billing-history.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-coupon-code",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Coupon Code",
       "description": "Apply and manage discount coupon codes.",
       "registryDependencies": [
@@ -1113,26 +1113,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-coupon-code.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-invoice-details",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Invoice Details",
       "description": "Detailed invoice view in a sheet with line items and payment information.",
       "registryDependencies": ["badge", "button", "separator", "sheet"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-invoice-details.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-invoice-list",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Invoice List",
       "description": "List of invoices with search, filters, and pagination.",
       "registryDependencies": [
@@ -1146,26 +1146,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-invoice-list.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-payment-failed",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Payment Failed",
       "description": "Display payment failure details with retry and support options.",
       "registryDependencies": ["badge", "button", "card", "separator"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-payment-failed.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-payment-form",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Payment Form",
       "description": "Form to add payment methods with card details and billing address.",
       "registryDependencies": [
@@ -1179,13 +1179,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-payment-form.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-payment-method",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Payment Method",
       "description": "Manage payment methods with add, edit, delete, and set default options.",
       "registryDependencies": [
@@ -1198,13 +1198,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-payment-method.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-payment-schedule",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Payment Schedule",
       "description": "View scheduled payments with next payment preview and retry options.",
       "registryDependencies": [
@@ -1217,39 +1217,39 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-payment-schedule.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-plan-selector",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Plan Selector",
       "description": "Select subscription plans with monthly/annual billing toggle.",
       "registryDependencies": ["badge", "button", "card", "switch"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-plan-selector.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-pricing-table",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Pricing Table",
       "description": "Compare pricing plans in a table format with feature comparison.",
       "registryDependencies": ["badge", "button", "card", "switch", "tooltip"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-pricing-table.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-subscription-card",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Subscription Card",
       "description": "Display current subscription with usage, billing date, and management options.",
       "registryDependencies": [
@@ -1263,13 +1263,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-subscription-card.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-subscription-settings",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Subscription Settings",
       "description": "Manage subscription settings including pause, cancel, and billing period changes.",
       "registryDependencies": [
@@ -1284,26 +1284,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-subscription-settings.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-upgrade-prompt",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Upgrade Prompt",
       "description": "Prompt users to upgrade their plan with feature highlights.",
       "registryDependencies": ["badge", "button", "card", "separator"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-upgrade-prompt.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-usage-alerts",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Usage Alerts",
       "description": "Configure and manage usage alerts with notification channels.",
       "registryDependencies": [
@@ -1316,26 +1316,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-usage-alerts.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "billing-usage-billing",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Billing Usage Billing",
       "description": "Display usage statistics with charts, breakdowns, and trend analysis.",
       "registryDependencies": ["button", "card", "progress", "separator"],
       "files": [
         {
           "path": "registry/new-york/blocks/billing/billing-usage-billing.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-account",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Account",
       "description": "Manage account settings, subscription, and team members.",
       "registryDependencies": [
@@ -1350,13 +1350,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-account.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-activity-log",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Activity Log",
       "description": "View account activity and audit trail with search and filters.",
       "registryDependencies": [
@@ -1371,13 +1371,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-activity-log.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-advanced",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Advanced",
       "description": "Developer tools and experimental features configuration.",
       "registryDependencies": [
@@ -1394,13 +1394,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-advanced.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-api-keys",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings API Keys",
       "description": "Manage API keys for programmatic access with scopes and permissions.",
       "registryDependencies": [
@@ -1417,13 +1417,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-api-keys.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-export-data",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Export Data",
       "description": "Export your data in various formats with category selection.",
       "registryDependencies": [
@@ -1440,13 +1440,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-export-data.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-backup",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Backup",
       "description": "Manage automatic backups and restore your data.",
       "registryDependencies": [
@@ -1464,13 +1464,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-backup.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-domains",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Domains",
       "description": "Manage custom domains and SSL certificates.",
       "registryDependencies": [
@@ -1485,13 +1485,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-domains.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-import-data",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Import Data",
       "description": "Import data from JSON or CSV files with conflict resolution.",
       "registryDependencies": [
@@ -1506,26 +1506,26 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-import-data.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-integrations",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Integrations",
       "description": "Connect and manage third-party integrations.",
       "registryDependencies": ["alert-dialog", "badge", "button", "card"],
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-integrations.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-notifications",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Notifications",
       "description": "Manage notification preferences and quiet hours.",
       "registryDependencies": [
@@ -1540,13 +1540,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-notifications.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-preferences",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Preferences",
       "description": "Customize app experience, appearance, and accessibility.",
       "registryDependencies": [
@@ -1560,13 +1560,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-preferences.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-privacy",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Privacy",
       "description": "Control privacy settings and data sharing preferences.",
       "registryDependencies": [
@@ -1581,13 +1581,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-privacy.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-profile",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Profile",
       "description": "Manage profile information, avatar, and social links.",
       "registryDependencies": [
@@ -1601,13 +1601,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-profile.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-security",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Security",
       "description": "Manage account security, 2FA, and active sessions.",
       "registryDependencies": [
@@ -1623,13 +1623,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-security.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-sso",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings SSO",
       "description": "Configure SSO providers for your organization.",
       "registryDependencies": [
@@ -1647,13 +1647,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-sso.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-storage",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Storage",
       "description": "Manage storage usage and quotas by category.",
       "registryDependencies": [
@@ -1667,13 +1667,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-storage.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-team-members",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Team Members",
       "description": "Manage team members, roles, and invitations.",
       "registryDependencies": [
@@ -1691,13 +1691,13 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-team-members.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     },
     {
       "name": "settings-webhooks",
-      "type": "registry:component",
+      "type": "registry:ui",
       "title": "Settings Webhooks",
       "description": "Configure webhooks for event notifications and deliveries.",
       "registryDependencies": [
@@ -1714,7 +1714,7 @@
       "files": [
         {
           "path": "registry/new-york/blocks/settings/settings-webhooks.tsx",
-          "type": "registry:component"
+          "type": "registry:ui"
         }
       ]
     }

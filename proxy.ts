@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
 import { captureRegistryEvent } from "@wandry/analytics-sdk";
+import { type NextRequest, NextResponse } from "next/server";
 
 export function proxy(request: NextRequest) {
   const token = process.env.WANDRY_ANALYTICS_TOKEN;
@@ -23,4 +23,3 @@ export const config = {
     "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };
-
