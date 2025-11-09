@@ -4,6 +4,7 @@ import { Hero } from "@/components/hero";
 import AIPreview from "@/components/previews/ai-preview";
 import AuthPreview from "@/components/previews/auth-preview";
 import BillingPreview from "@/components/previews/billing-preview";
+import SettingsPreview from "@/components/previews/settings-preview";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
@@ -21,6 +22,7 @@ export default function Home() {
           <TabsTrigger value="auth">Authentication</TabsTrigger>
           <TabsTrigger value="ai">AI</TabsTrigger>
           <TabsTrigger value="billing">Billing</TabsTrigger>
+          <TabsTrigger value="settings">Settings</TabsTrigger>
         </TabsList>
         <TabsContent value="auth">
           <AuthPreview />
@@ -30,6 +32,9 @@ export default function Home() {
         </TabsContent>
         <TabsContent value="billing">
           <BillingPreview />
+        </TabsContent>
+        <TabsContent value="settings">
+          <SettingsPreview />
         </TabsContent>
       </Tabs>
     </div>
