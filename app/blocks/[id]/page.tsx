@@ -6,6 +6,9 @@ import { BlockDemo } from "@/components/block-demo";
 import BlockHeaderActions from "@/components/block-header-actions";
 import { BlockPrevNext } from "@/components/block-prev-next";
 import { BlocksSidebar } from "@/components/blocks-sidebar";
+import { ComponentInstallation } from "@/components/component-installation";
+import { ComponentSection } from "@/components/component-section";
+import ComponentUsage from "@/components/component-usage";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -142,6 +145,20 @@ export default async function BlockPage({
 
           {/* Demo */}
           <BlockDemo blockId={meta.id} Component={Component} />
+          {/* Installation second */}
+          <ComponentSection id="installation">
+            <ComponentInstallation componentName={meta.id} />
+          </ComponentSection>
+
+          {/* Usage */}
+          {meta.usageCode && (
+            <ComponentSection id="usage">
+              <ComponentUsage
+                code={meta.usageCode}
+                imports={meta.usageImports}
+              />
+            </ComponentSection>
+          )}
 
           <Separator />
           <BlockPrevNext currentId={meta.id} />

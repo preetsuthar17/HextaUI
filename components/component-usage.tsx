@@ -11,7 +11,7 @@ export function ComponentUsage({ imports, code }: ComponentUsageProps) {
 
   return (
     <div className="flex flex-col gap-4">
-      <h2>Usage</h2>
+      <h2>Example Usage</h2>
       {hasImports ? <CodeBlock code={imports as string} lang="tsx" /> : null}
       {hasCode ? <CodeBlock code={code as string} lang="tsx" /> : null}
     </div>

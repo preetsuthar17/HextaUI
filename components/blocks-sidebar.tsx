@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronRight } from "lucide-react";
+import { Bot, ChevronRight, CreditCard, Lock, Settings } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,16 @@ import {
   CollapsibleTrigger,
 } from "./ui/collapsible";
 import { Label } from "./ui/label";
+
+const categoryIcons: Record<
+  BlockCategory,
+  React.ComponentType<{ className?: string }>
+> = {
+  ai: Bot,
+  auth: Lock,
+  billing: CreditCard,
+  settings: Settings,
+};
 
 export function BlocksSidebar({ currentId }: { currentId?: string }) {
   const [query, setQuery] = React.useState("");
@@ -52,6 +62,22 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
     return grouped;
   }, [filtered]);
 
+  // Get total counts for each category (from all blocks, not just filtered)
+  const categoryCounts = React.useMemo(() => {
+    const counts: Record<BlockCategory, number> = {
+      ai: 0,
+      auth: 0,
+      billing: 0,
+      settings: 0,
+    };
+
+    blocksRegistry.forEach((block) => {
+      counts[block.category]++;
+    });
+
+    return counts;
+  }, []);
+
   const toggleCategory = (category: BlockCategory) => {
     setOpenCategories((prev) => {
       const next = new Set(prev);
@@ -67,7 +93,7 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
   return (
     <aside
       aria-label="Blocks navigation"
-      className="sticky top-16 hidden h-[70dvh] max-h-[70dvh] w-full max-w-xs md:block"
+      className="sticky top-23 hidden h-[70dvh] max-h-[70dvh] w-full max-w-xs md:block"
       style={{ minWidth: 0 }}
     >
       <div className="flex h-full w-full flex-col overflow-hidden rounded-md border bg-card">
@@ -99,6 +125,9 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
                   if (categoryBlocks.length === 0) return null;
 
                   const isOpen = openCategories.has(category);
+                  const Icon = categoryIcons[category];
+                  const totalCount = categoryCounts[category];
+                  const filteredCount = categoryBlocks.length;
 
                   return (
                     <li className="w-full" key={category}>
@@ -107,11 +136,21 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
                         open={isOpen}
                       >
                         <CollapsibleTrigger className="flex w-full items-center justify-between rounded-sm px-2 py-1.5 font-medium text-sm outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring">
-                          <span>{categoryLabels[category]}</span>
+                          <div className="flex items-center gap-2">
+                            <Icon className="size-4 shrink-0" />
+                            <span>{categoryLabels[category]}</span>
+                            <span className="text-muted-foreground text-xs">
+                              (
+                              {filteredCount === totalCount
+                                ? totalCount
+                                : `${filteredCount}/${totalCount}`}
+                              )
+                            </span>
+                          </div>
                           <ChevronRight
                             aria-hidden="true"
                             className={cn(
-                              "size-4 transition-transform",
+                              "size-4 shrink-0 transition-transform",
                               isOpen && "rotate-90"
                             )}
                           />

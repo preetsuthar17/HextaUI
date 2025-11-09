@@ -38,13 +38,12 @@ export function ThemeSwitcher() {
       <TooltipTrigger asChild>
         <Button
           aria-label={`Current theme: ${label}.`}
-          className="size-8"
           onClick={cycleTheme}
-          size="icon"
+          size="icon-sm"
           suppressHydrationWarning
           variant="ghost"
         >
-          <Icon className="size-5" />
+          <Icon className="size-4" />
           <span className="sr-only">Toggle theme</span>
         </Button>
       </TooltipTrigger>

@@ -28,7 +28,7 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
   return (
     <aside
       aria-label="Components navigation"
-      className="sticky top-16 hidden h-[70dvh] max-h-[70dvh] md:block"
+      className="sticky top-23 hidden h-[70dvh] max-h-[70dvh] w-full max-w-xs md:block"
       style={{ minWidth: 0 }}
     >
       <div className="flex h-full w-full max-w-3xl flex-col overflow-hidden rounded-md border bg-card">

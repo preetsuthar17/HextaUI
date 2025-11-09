@@ -65,6 +65,7 @@ import SettingsStorage from "@/components/blocks/settings/settings-storage";
 import SettingsTeamMembers from "@/components/blocks/settings/settings-team-members";
 import SettingsWebhooks from "@/components/blocks/settings/settings-webhooks";
 import { getBlockExampleProps } from "./block-examples";
+import { blockSnippets } from "./block-snippets";
 
 export type BlockCategory = "ai" | "auth" | "billing" | "settings";
 
@@ -75,6 +76,8 @@ export type BlockMeta = {
   category: BlockCategory;
   Component: React.ComponentType<any>;
   getExampleProps?: () => Record<string, any>;
+  usageImports?: string;
+  usageCode?: string;
 };
 
 const blocksList: Omit<BlockMeta, "Component">[] = [
@@ -533,10 +536,16 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   "settings-webhooks": SettingsWebhooks,
 };
 
+const snippets = blockSnippets as Record<
+  string,
+  Partial<Pick<BlockMeta, "usageImports" | "usageCode">>
+>;
+
 export const blocksRegistry: BlockMeta[] = blocksList.map((block) => ({
   ...block,
   Component: blockComponents[block.id],
   getExampleProps: () => getBlockExampleProps(block.id),
+  ...(snippets[block.id] ?? {}),
 }));
 
 export function getBlockMetaById(id: string): BlockMeta | undefined {
