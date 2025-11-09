@@ -675,7 +675,7 @@ export default function BillingPreview() {
         plans={examplePlans}
         showAnnualSavings={true}
       />
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-8 lg:grid-cols-2">
         <div className="flex flex-col gap-8">
           <BillingSubscriptionCard
             autoRenew={true}
