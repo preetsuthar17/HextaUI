@@ -61,7 +61,7 @@ function formatDate(date: Date): string {
 }
 
 function formatNumber(value: number, unit?: string): string {
-  const formatted = value.toLocaleString();
+  const formatted = value.toLocaleString("en-US");
   return unit ? `${formatted} ${unit}` : formatted;
 }
 

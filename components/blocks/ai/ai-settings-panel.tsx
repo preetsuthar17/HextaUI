@@ -177,10 +177,10 @@ export default function AISettingsPanel({
             <div className="flex flex-col gap-2">
               <FieldLabel>Presets</FieldLabel>
               <div className="flex flex-wrap gap-2">
-                {presets.map((preset) => (
+                {presets.map((preset, index) => (
                   <Badge
                     className="w-fit cursor-pointer gap-2 px-0.5 pl-3.5"
-                    key={preset.id}
+                    key={index}
                     onClick={() => onLoadPreset(preset.id)}
                     variant="outline"
                   >

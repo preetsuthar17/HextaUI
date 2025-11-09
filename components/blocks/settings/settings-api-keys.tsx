@@ -379,16 +379,86 @@ export default function SettingsAPIKeys({
                 >
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div className="flex min-w-0 flex-1 flex-col gap-2">
-                      <div className="flex flex-wrap items-center gap-2">
-                        <h4 className="font-medium text-sm">{apiKey.name}</h4>
-                        {isExpired && (
-                          <Badge className="text-xs" variant="destructive">
-                            Expired
-                          </Badge>
-                        )}
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <div>
+                          <h4 className="font-medium text-sm">{apiKey.name}</h4>
+
+                          {isExpired && (
+                            <Badge className="text-xs" variant="destructive">
+                              Expired
+                            </Badge>
+                          )}
+                        </div>
+                        <div className="flex shrink-0 flex-col gap-2 sm:items-end">
+                          <div className="flex flex-wrap gap-2">
+                            <Button
+                              className="w-full sm:w-auto"
+                              disabled={isRegenerating === apiKey.id}
+                              onClick={() => handleRegenerate(apiKey.id)}
+                              size={"sm"}
+                              type="button"
+                              variant="outline"
+                            >
+                              {isRegenerating === apiKey.id ? (
+                                <>
+                                  <Loader2 className="size-4 animate-spin" />
+                                  Regenerating…
+                                </>
+                              ) : (
+                                <>
+                                  <RefreshCw className="size-4" />
+                                  Regenerate
+                                </>
+                              )}
+                            </Button>
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  className="w-full sm:w-auto"
+                                  disabled={isRevoking === apiKey.id}
+                                  size={"sm"}
+                                  type="button"
+                                  variant="destructive"
+                                >
+                                  {isRevoking === apiKey.id ? (
+                                    <>
+                                      <Loader2 className="size-4 animate-spin" />
+                                      Revoking…
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Trash2 className="size-4" />
+                                      Revoke
+                                    </>
+                                  )}
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>
+                                    Revoke API Key?
+                                  </AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    This will permanently revoke the API key{" "}
+                                    <strong>{apiKey.name}</strong>. This action
+                                    cannot be undone.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    onClick={() => handleRevoke(apiKey.id)}
+                                  >
+                                    Revoke Key
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
+                          </div>
+                        </div>
                       </div>
-                      <div className="flex min-w-0 items-center gap-2">
-                        <code className="min-w-0 flex-1 break-all rounded bg-muted px-2 py-1 font-mono text-xs">
+                      <div className="flex min-w-0 items-center gap-2 bg-muted">
+                        <code className="bg- min-w-0 flex-1 break-all rounded px-2 py-1 font-mono text-xs">
                           {isVisible ? apiKey.key : maskKey(apiKey.key)}
                         </code>
                         <Button
@@ -454,71 +524,6 @@ export default function SettingsAPIKeys({
                           </p>
                         </div>
                       )}
-                    </div>
-                    <div className="flex shrink-0 flex-col gap-2 sm:items-end">
-                      <div className="flex flex-wrap gap-2">
-                        <Button
-                          className="w-full sm:w-auto"
-                          disabled={isRegenerating === apiKey.id}
-                          onClick={() => handleRegenerate(apiKey.id)}
-                          type="button"
-                          variant="outline"
-                        >
-                          {isRegenerating === apiKey.id ? (
-                            <>
-                              <Loader2 className="size-4 animate-spin" />
-                              Regenerating…
-                            </>
-                          ) : (
-                            <>
-                              <RefreshCw className="size-4" />
-                              Regenerate
-                            </>
-                          )}
-                        </Button>
-                        <AlertDialog>
-                          <AlertDialogTrigger asChild>
-                            <Button
-                              className="w-full sm:w-auto"
-                              disabled={isRevoking === apiKey.id}
-                              type="button"
-                              variant="destructive"
-                            >
-                              {isRevoking === apiKey.id ? (
-                                <>
-                                  <Loader2 className="size-4 animate-spin" />
-                                  Revoking…
-                                </>
-                              ) : (
-                                <>
-                                  <Trash2 className="size-4" />
-                                  Revoke
-                                </>
-                              )}
-                            </Button>
-                          </AlertDialogTrigger>
-                          <AlertDialogContent>
-                            <AlertDialogHeader>
-                              <AlertDialogTitle>
-                                Revoke API Key?
-                              </AlertDialogTitle>
-                              <AlertDialogDescription>
-                                This will permanently revoke the API key{" "}
-                                <strong>{apiKey.name}</strong>. This action
-                                cannot be undone.
-                              </AlertDialogDescription>
-                            </AlertDialogHeader>
-                            <AlertDialogFooter>
-                              <AlertDialogCancel>Cancel</AlertDialogCancel>
-                              <AlertDialogAction
-                                onClick={() => handleRevoke(apiKey.id)}
-                              >
-                                Revoke Key
-                              </AlertDialogAction>
-                            </AlertDialogFooter>
-                          </AlertDialogContent>
-                        </AlertDialog>
-                      </div>
                     </div>
                   </div>
                 </div>
