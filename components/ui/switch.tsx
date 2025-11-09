@@ -13,7 +13,7 @@ const Switch = React.forwardRef<
     <SwitchPrimitive.Root
       aria-disabled={(props as any).disabled ? true : undefined}
       className={cn(
-        "peer inline-flex h-[1.15rem] w-8 shrink-0 touch-manipulation items-center rounded-full border border-transparent shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-input motion-safe:duration-200 dark:data-[state=unchecked]:bg-input/80",
+        "peer inline-flex h-[1.15rem] w-8 shrink-0 touch-manipulation items-center rounded-full border border-transparent shadow-xs outline-none transition-[color,box-shadow] focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 data-[state=checked]:bg-primary data-[state=unchecked]:bg-muted motion-safe:duration-200 dark:data-[state=unchecked]:bg-input/80",
         className
       )}
       data-slot="switch"
