@@ -74,7 +74,7 @@ export function Contributors() {
         {contributors.map((contributor) => (
           <Link
             aria-label={`${contributor.login} on GitHub`}
-            className="flex aspect-square size-18 items-center justify-center border bg-card p-0 shadow-lg shadow-primary/20 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none"
+            className="flex aspect-square size-18 items-center justify-center overflow-hidden rounded-full border bg-card p-0 shadow-lg shadow-primary/20 transition-colors hover:bg-accent focus-visible:bg-accent focus-visible:outline-none"
             href={contributor.html_url}
             key={contributor.id}
             rel="noopener noreferrer"

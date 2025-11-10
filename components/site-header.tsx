@@ -1,9 +1,8 @@
-import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
+import { ThemeSelector } from "@/components/theme-selector";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Button } from "./ui/button";
 
 export function SiteHeader() {
   return (
@@ -54,27 +53,10 @@ export function SiteHeader() {
             </Link>
           </li>
           <li>
-            <ThemeSwitcher />
+            <ThemeSelector />
           </li>
           <li>
-            <Button
-              aria-label="GitHub repository"
-              asChild
-              size="icon-sm"
-              variant="ghost"
-            >
-              <Link
-                href="https://github.com/preetsuthar17/hextaui"
-                target="_blank"
-              >
-                <Github
-                  aria-hidden="true"
-                  className="text-muted-foreground"
-                  size={20}
-                />
-                <span className="sr-only">GitHub</span>
-              </Link>
-            </Button>
+            <ThemeSwitcher />
           </li>
         </ul>
       </nav>

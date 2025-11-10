@@ -18,7 +18,7 @@ const tierStyles = {
     shadow: "shadow-lg shadow-primary/20",
   },
   gold: {
-    size: "w-[72px] h-[72px]",
+    size: "size-[72px]",
     border: "border-2 border-yellow-500/50",
     shadow: "shadow-md shadow-yellow-500/10",
   },
@@ -99,7 +99,7 @@ export function Sponsors() {
           return (
             <Link
               className={cn(
-                "flex aspect-square items-center justify-center bg-card p-0 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                "flex aspect-square items-center justify-center overflow-hidden rounded-full bg-card p-0 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
                 styles.size,
                 styles.border,
                 styles.shadow
