@@ -1,7 +1,7 @@
 import { Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { HeaderSearchTrigger } from "@/components/header-search-trigger";
+import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 import { Button } from "./ui/button";
 

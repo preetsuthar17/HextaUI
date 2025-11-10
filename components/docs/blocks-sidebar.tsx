@@ -3,7 +3,13 @@
 import { Bot, ChevronRight, CreditCard, Lock, Settings } from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import {
@@ -13,12 +19,6 @@ import {
   categoryLabels,
 } from "@/lib/blocks-registry";
 import { cn } from "@/lib/utils";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "./ui/collapsible";
-import { Label } from "./ui/label";
 
 const categoryIcons: Record<
   BlockCategory,

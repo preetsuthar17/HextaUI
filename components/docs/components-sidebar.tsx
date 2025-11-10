@@ -3,11 +3,11 @@
 import Link from "next/link";
 import * as React from "react";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { componentsRegistry } from "@/lib/components-registry";
 import { cn } from "@/lib/utils";
-import { Label } from "./ui/label";
 
 export function ComponentsSidebar({ currentId }: { currentId?: string }) {
   const [query, setQuery] = React.useState("");

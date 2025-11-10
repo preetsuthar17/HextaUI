@@ -2,7 +2,7 @@
 
 import { Search } from "lucide-react";
 
-import { openCommandMenu } from "@/components/component-search";
+import { openCommandMenu } from "@/components/docs/component-search";
 
 export function HeaderSearchTrigger() {
   return (

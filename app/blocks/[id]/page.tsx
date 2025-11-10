@@ -1,14 +1,14 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AskAIButton } from "@/components/ask-ai-button";
-import { BlockDemo } from "@/components/block-demo";
-import BlockHeaderActions from "@/components/block-header-actions";
-import { BlockPrevNext } from "@/components/block-prev-next";
-import { BlocksSidebar } from "@/components/blocks-sidebar";
-import { ComponentInstallation } from "@/components/component-installation";
-import { ComponentSection } from "@/components/component-section";
-import ComponentUsage from "@/components/component-usage";
+import { AskAIButton } from "@/components/docs/ask-ai-button";
+import { BlockDemo } from "@/components/docs/block-demo";
+import BlockHeaderActions from "@/components/docs/block-header-actions";
+import { BlockPrevNext } from "@/components/docs/block-prev-next";
+import { BlocksSidebar } from "@/components/docs/blocks-sidebar";
+import { ComponentInstallation } from "@/components/docs/component-installation";
+import { ComponentSection } from "@/components/docs/component-section";
+import ComponentUsage from "@/components/docs/component-usage";
 import {
   Breadcrumb,
   BreadcrumbItem,

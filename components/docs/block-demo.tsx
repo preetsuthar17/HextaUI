@@ -2,8 +2,8 @@
 
 import type { ComponentType } from "react";
 import { useState } from "react";
-import { ComponentPreview } from "@/components/component-preview";
-import { ComponentSection } from "@/components/component-section";
+import { ComponentPreview } from "@/components/docs/component-preview";
+import { ComponentSection } from "@/components/docs/component-section";
 import { Button } from "@/components/ui/button";
 import { getBlockExampleProps } from "@/lib/block-examples";
 

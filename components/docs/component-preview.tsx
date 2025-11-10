@@ -1,6 +1,6 @@
 import type * as React from "react";
 
-import CodeBlock from "@/components/code-block";
+import CodeBlock from "@/components/docs/code-block";
 import { getComponentMetaById } from "@/lib/components-registry";
 
 type ComponentPreviewProps = {

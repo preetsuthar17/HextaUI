@@ -1,4 +1,4 @@
-import CodeBlock from "@/components/code-block";
+import CodeBlock from "@/components/docs/code-block";
 
 type ComponentUsageProps = {
   imports?: string | null;
