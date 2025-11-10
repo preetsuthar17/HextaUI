@@ -23,7 +23,7 @@ export function ComponentInstallation({
       <CodeBlock
         code={
           installCode ??
-          `pnpm dlx shadcn@latest add https://hextaui.com/r/${componentName}.json`
+          `pnpm dlx shadcn@latest add @hextaui/${componentName}`
         }
         lang="package-install"
       />
