@@ -12,18 +12,18 @@ function ContextMenu({
   const [menuKey, setMenuKey] = React.useState(0);
 
   return (
-    <ContextMenuPrimitive.Root 
+    <ContextMenuPrimitive.Root
+      data-slot="context-menu"
       key={menuKey}
-      data-slot="context-menu" 
       onOpenChange={(open) => {
         // Call original onOpenChange if provided
         props.onOpenChange?.(open);
         // When menu closes, prepare for next repositioning
         if (!open) {
-          setMenuKey(prev => prev + 1);
+          setMenuKey((prev) => prev + 1);
         }
       }}
-      {...props} 
+      {...props}
     />
   );
 }

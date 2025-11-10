@@ -24,6 +24,7 @@ import { InputOTPDemo } from "@/components/demo/input-otp-demo";
 import { KbdDemo } from "@/components/demo/kbd-demo";
 import { LabelDemo } from "@/components/demo/label-demo";
 import { NativeSelectDemo } from "@/components/demo/native-select-demo";
+import { NavigationMenuDemo } from "@/components/demo/navigation-menu-demo";
 import { PaginationDemo } from "@/components/demo/pagination-demo";
 import { ProgressDemo } from "@/components/demo/progress-demo";
 import { RadioGroupDemo } from "@/components/demo/radio-group-demo";
@@ -32,6 +33,7 @@ import { ScrollAreaDemo } from "@/components/demo/scroll-area-demo";
 import { SelectDemo } from "@/components/demo/select-demo";
 import { SeparatorDemo } from "@/components/demo/separator-demo";
 import { SheetDemo } from "@/components/demo/sheet-demo";
+import { SidebarDemo } from "@/components/demo/sidebar-demo";
 import { SkeletonDemo } from "@/components/demo/skeleton-demo";
 import { SliderDemo } from "@/components/demo/slider-demo";
 import { SonnerDemo } from "@/components/demo/sonner-demo";
@@ -147,6 +149,10 @@ const docsApiLinks: Record<string, { docs_ref?: string; api_ref?: string }> = {
     docs_ref: undefined,
     api_ref: undefined,
   },
+  "navigation-menu": {
+    docs_ref: `${radixBaseDocs}navigation-menu`,
+    api_ref: `${radixBaseApi}navigation-menu#api-reference`,
+  },
   pagination: {
     docs_ref: undefined,
     api_ref: undefined,
@@ -170,6 +176,10 @@ const docsApiLinks: Record<string, { docs_ref?: string; api_ref?: string }> = {
   "scroll-area": {
     docs_ref: `${radixBaseDocs}scroll-area`,
     api_ref: `${radixBaseApi}scroll-area#api-reference`,
+  },
+  sidebar: {
+    docs_ref: undefined,
+    api_ref: undefined,
   },
   select: {
     docs_ref: `${radixBaseDocs}select`,
@@ -279,11 +289,13 @@ const demoComponents: Record<string, React.ComponentType> = {
   kbd: KbdDemo,
   label: LabelDemo,
   "native-select": NativeSelectDemo,
+  "navigation-menu": NavigationMenuDemo,
   pagination: PaginationDemo,
   progress: ProgressDemo,
   "radio-group": RadioGroupDemo,
   resizable: ResizableDemo,
   "scroll-area": ScrollAreaDemo,
+  sidebar: SidebarDemo,
   select: SelectDemo,
   separator: SeparatorDemo,
   sheet: SheetDemo,
@@ -428,6 +440,11 @@ const componentsList: { id: string; title: string; description?: string }[] = [
     description: "Dropdown using the native select element.",
   },
   {
+    id: "navigation-menu",
+    title: "Navigation Menu",
+    description: "A collection of links for navigating websites.",
+  },
+  {
     id: "pagination",
     title: "Pagination",
     description: "Controls for paging through content.",
@@ -451,6 +468,11 @@ const componentsList: { id: string; title: string; description?: string }[] = [
     id: "scroll-area",
     title: "Scroll Area",
     description: "Scrollable area for overflowing content.",
+  },
+  {
+    id: "sidebar",
+    title: "Sidebar",
+    description: "A collapsible sidebar component for navigation.",
   },
   {
     id: "select",

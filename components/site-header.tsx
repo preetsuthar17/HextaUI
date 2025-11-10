@@ -13,7 +13,7 @@ export function SiteHeader() {
           className="flex items-center gap-2 font-medium"
           href="/"
         >
-          <Image alt="Hexta UI" height={20} src="/favicon.ico" width={20} />
+          <Image alt="Hexta UI" height={20} src="/Logo.svg" width={20} />
           <span className="font-medium tracking-tight">HextaUI</span>
         </Link>
         <div className="max-w-xs flex-1 md:hidden">

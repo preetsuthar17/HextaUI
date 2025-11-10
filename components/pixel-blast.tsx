@@ -38,7 +38,10 @@ const getColorCtx = () => {
   return __colorCtx;
 };
 
-const resolveCssColor = (value: string, scopeEl: HTMLElement | null): string => {
+const resolveCssColor = (
+  value: string,
+  scopeEl: HTMLElement | null
+): string => {
   if (typeof window === "undefined") return value;
   const parent = scopeEl ?? document.body;
   const el = document.createElement("span");

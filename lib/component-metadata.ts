@@ -128,6 +128,12 @@ const componentsList: ComponentMetadata[] = [
     description: "A native HTML select dropdown.",
   },
   {
+    id: "navigation-menu",
+    title: "Navigation Menu",
+    description:
+      "A collection of links for navigating websites with dropdown menus.",
+  },
+  {
     id: "pagination",
     title: "Pagination",
     description: "A control for navigating between pages of content.",
@@ -151,6 +157,12 @@ const componentsList: ComponentMetadata[] = [
     id: "scroll-area",
     title: "Scroll Area",
     description: "A scrollable region for overflow content.",
+  },
+  {
+    id: "sidebar",
+    title: "Sidebar",
+    description:
+      "A collapsible sidebar component for navigation with mobile support.",
   },
   {
     id: "select",
