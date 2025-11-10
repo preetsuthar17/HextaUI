@@ -32,7 +32,7 @@ export function Hero() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-16 text-center">
-      <PixelBlast />
+      <PixelBlast color="var(--primary)" />
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for

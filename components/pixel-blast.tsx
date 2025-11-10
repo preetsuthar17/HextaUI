@@ -24,6 +24,66 @@ type PixelBlastProps = {
   edgeFade?: number;
 };
 
+let __colorCanvas: HTMLCanvasElement | null = null;
+let __colorCtx: CanvasRenderingContext2D | null = null;
+
+const getColorCtx = () => {
+  if (typeof window === "undefined") return null;
+  if (!__colorCanvas) {
+    __colorCanvas = document.createElement("canvas");
+    __colorCanvas.width = 1;
+    __colorCanvas.height = 1;
+    __colorCtx = __colorCanvas.getContext("2d", { willReadFrequently: true });
+  }
+  return __colorCtx;
+};
+
+const resolveCssColor = (value: string, scopeEl: HTMLElement | null): string => {
+  if (typeof window === "undefined") return value;
+  const parent = scopeEl ?? document.body;
+  const el = document.createElement("span");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  el.style.top = "-9999px";
+  el.style.pointerEvents = "none";
+  el.style.opacity = "0";
+  el.style.color = value;
+  parent.appendChild(el);
+  const computed = window.getComputedStyle(el).color || value;
+  parent.removeChild(el);
+
+  if (/^(#|rgb\(|rgba\(|hsl\(|hwb\()/i.test(computed)) {
+    return computed;
+  }
+
+  const ctx = getColorCtx();
+  if (!ctx) return computed;
+  try {
+    (ctx as any).fillStyle = "#000";
+    (ctx as any).fillStyle = computed;
+    const norm = ctx.fillStyle as string;
+    if (typeof norm === "string" && /^(#|rgb\()/i.test(norm)) {
+      return norm;
+    }
+  } catch {
+    // fall through to pixel read
+  }
+  try {
+    ctx.clearRect(0, 0, 1, 1);
+    (ctx as any).fillStyle = computed;
+    ctx.fillRect(0, 0, 1, 1);
+    const data = ctx.getImageData(0, 0, 1, 1).data;
+    const r = data[0];
+    const g = data[1];
+    const b = data[2];
+    const a = data[3] / 255;
+    if (a >= 1) return `rgb(${r}, ${g}, ${b})`;
+    return `rgba(${r}, ${g}, ${b}, ${Math.round(a * 1000) / 1000})`;
+  } catch {
+    return computed;
+  }
+};
+
 const createTouchTexture = () => {
   const size = 64;
   const canvas = document.createElement("canvas");
@@ -362,6 +422,8 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
     quad?: THREE.Mesh<THREE.PlaneGeometry, THREE.ShaderMaterial>;
     timeOffset?: number;
     touch?: ReturnType<typeof createTouchTexture>;
+    lastResolvedColor?: string;
+    colorInput?: string;
   } | null>(null);
   type PixelBlastInitConfig = { antialias: boolean };
   const prevConfigRef = useRef<PixelBlastInitConfig | null>(null);
@@ -415,7 +477,8 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
       const uniforms = {
         uResolution: { value: new THREE.Vector2(0, 0) },
         uTime: { value: 0 },
-        uColor: { value: new THREE.Color(color) },
+
+        uColor: { value: new THREE.Color(1, 1, 1) },
         uClickPos: {
           value: Array.from(
             { length: MAX_CLICKS },
@@ -434,6 +497,9 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
         uRippleIntensity: { value: rippleIntensityScale },
         uEdgeFade: { value: edgeFade },
       };
+
+      const initialResolved = resolveCssColor(color, container);
+      uniforms.uColor.value.setStyle(initialResolved);
       const scene = new THREE.Scene();
       scene.matrixAutoUpdate = false;
 
@@ -560,6 +626,15 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
         uniforms.uTime.value =
           timeOffset + clock.getElapsedTime() * speedRef.current;
 
+        const colorStr = threeRef.current?.colorInput ?? color;
+        if (/\bvar\(/.test(colorStr)) {
+          const resolved = resolveCssColor(colorStr, container);
+          if (resolved !== threeRef.current?.lastResolvedColor) {
+            uniforms.uColor.value.setStyle(resolved);
+            if (threeRef.current) threeRef.current.lastResolvedColor = resolved;
+          }
+        }
+
         if (touch) touch.update();
         renderer.render(scene, camera);
       };
@@ -578,12 +653,17 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
         quad,
         timeOffset,
         touch,
+        lastResolvedColor: initialResolved,
+        colorInput: color,
       };
     } else {
       const t = threeRef.current!;
       t.uniforms.uShapeType.value = SHAPE_MAP[variant] ?? 0;
       t.uniforms.uPixelSize.value = pixelSize * t.renderer.getPixelRatio();
-      t.uniforms.uColor.value.set(color);
+      const resolvedNow = resolveCssColor(color, container);
+      t.uniforms.uColor.value.setStyle(resolvedNow);
+      t.lastResolvedColor = resolvedNow;
+      t.colorInput = color;
       t.uniforms.uScale.value = patternScale;
       t.uniforms.uDensity.value = patternDensity;
       t.uniforms.uPixelJitter.value = pixelSizeJitter;
@@ -643,7 +723,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
     >
       {/* Radial Gradient in the center */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,background_0%,transparent_100%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_1200px_400px_at_center,var(--color-background)_0%,transparent_100%)] dark:bg-[radial-gradient(ellipse_1200px_400px_at_center,var(--color-background)_0%,transparent_100%)]"
         style={{ transform: "translateZ(0)" }}
       />
 
