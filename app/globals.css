@@ -250,7 +250,7 @@ code[data-line-numbers="true"] {
 code[data-line-numbers="true"] .line {
   counter-increment: line-number;
   position: relative;
-  padding-left: 3.5rem;
+  padding-left: 3rem;
   line-height: 2;
 }
 
