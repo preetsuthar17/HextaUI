@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
+import { Logo } from "@/components/logo";
 import { ThemeSelector } from "@/components/theme-selector";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
@@ -13,7 +13,7 @@ export function SiteHeader() {
           className="flex items-center gap-2 font-medium"
           href="/"
         >
-          <Image alt="Hexta UI" height={20} src="/Logo.svg" width={20} />
+          <Logo size={26} />
           <span className="font-medium tracking-tight">HextaUI</span>
         </Link>
         <div className="max-w-xs flex-1 md:hidden">

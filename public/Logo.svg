@@ -35,7 +35,7 @@
 </filter>
 <linearGradient id="paint0_linear_132_25" x1="-211.917" y1="-132.296" x2="1297.42" y2="1213.4" gradientUnits="userSpaceOnUse">
 <stop offset="0.201923" stop-color="white" stop-opacity="0"/>
-<stop offset="0.634615" stop-color="#0015FF"/>
+<stop offset="0.634615" style="stop-color: var(--primary);"/>
 </linearGradient>
 <clipPath id="clip0_132_25">
 <rect x="7.70312" y="7.69922" width="1066" height="1066" rx="533" fill="white"/>

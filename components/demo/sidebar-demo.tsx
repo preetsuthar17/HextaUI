@@ -10,7 +10,7 @@ import {
   Settings,
   User,
 } from "lucide-react";
-import Image from "next/image";
+import { Logo } from "@/components/logo";
 import {
   Sidebar,
   SidebarContent,
@@ -71,13 +71,7 @@ export function SidebarDemo() {
         <Sidebar className="relative" collapsible="icon">
           <SidebarHeader>
             <div className="flex items-center gap-2 p-1.5">
-              <Image
-                alt="Hexta UI"
-                className="shrink-0"
-                height={20}
-                src="/Logo.svg"
-                width={20}
-              />
+              <Logo className="shrink-0" size={20} />
               <div className="grid flex-1 text-left text-sm leading-tight">
                 <span className="truncate font-semibold">HextaUI</span>
                 <span className="truncate text-sidebar-foreground/70 text-xs">
