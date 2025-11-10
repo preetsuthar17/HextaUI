@@ -9,7 +9,23 @@ import { cn } from "@/lib/utils";
 function ContextMenu({
   ...props
 }: React.ComponentProps<typeof ContextMenuPrimitive.Root>) {
-  return <ContextMenuPrimitive.Root data-slot="context-menu" {...props} />;
+  const [menuKey, setMenuKey] = React.useState(0);
+
+  return (
+    <ContextMenuPrimitive.Root 
+      key={menuKey}
+      data-slot="context-menu" 
+      onOpenChange={(open) => {
+        // Call original onOpenChange if provided
+        props.onOpenChange?.(open);
+        // When menu closes, prepare for next repositioning
+        if (!open) {
+          setMenuKey(prev => prev + 1);
+        }
+      }}
+      {...props} 
+    />
+  );
 }
 
 function ContextMenuTrigger({
