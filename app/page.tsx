@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { Hero } from "@/components/hero";
+import { Contributors } from "@/components/home/contributors";
+import { Hero } from "@/components/home/hero";
+import { Sponsors } from "@/components/home/sponsors";
 import AIPreview from "@/components/previews/ai-preview";
 import AuthPreview from "@/components/previews/auth-preview";
 import BillingPreview from "@/components/previews/billing-preview";
@@ -41,6 +43,34 @@ export default function Home() {
           <SettingsPreview />
         </TabsContent>
       </Tabs>
+
+      <section className="flex flex-col gap-8 py-8">
+        <Sponsors />
+        <Contributors />
+        <div className="flex flex-col items-start gap-4 text-left">
+          <p className="text-muted-foreground text-sm">
+            Want to support HextaUI?{" "}
+            <Link
+              className="underline underline-offset-4 hover:no-underline"
+              href="https://preetsuthar.me/sponsor"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Become a sponsor
+            </Link>{" "}
+            or{" "}
+            <Link
+              className="underline underline-offset-4 hover:no-underline"
+              href="https://github.com/preetsuthar17/hextaui"
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              contribute on GitHub
+            </Link>
+            .
+          </p>
+        </div>
+      </section>
     </div>
   );
 }
