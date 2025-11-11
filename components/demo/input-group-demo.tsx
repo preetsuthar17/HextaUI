@@ -52,11 +52,10 @@ export function InputGroupDemo() {
         <InputGroupTextarea placeholder="Ask, Search or Chat..." />
         <InputGroupAddon align="block-end">
           <InputGroupButton
-            className="rounded-full"
-            size="icon-xs"
+            className="size-8 rounded-full p-2"
             variant="outline"
           >
-            <IconPlus />
+            <IconPlus className="shrink-0" />
           </InputGroupButton>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -75,12 +74,11 @@ export function InputGroupDemo() {
           <InputGroupText className="ml-auto">52% used</InputGroupText>
           <Separator className="h-4!" orientation="vertical" />
           <InputGroupButton
-            className="rounded-full"
+            className="size-8 rounded-full p-2"
             disabled
-            size="icon-xs"
             variant="default"
           >
-            <ArrowUpIcon />
+            <ArrowUpIcon className="shrink-0" />
             <span className="sr-only">Send</span>
           </InputGroupButton>
         </InputGroupAddon>
