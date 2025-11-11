@@ -180,6 +180,7 @@
     /* Prevent unwanted scrollbars; set smoother text */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   :focus-visible {
     outline-color: var(--ring);

@@ -123,9 +123,9 @@ function MessageActions({
     return (
       <Button
         aria-label="Copy message"
-        className="opacity-0 transition-opacity duration-150 group-hover:opacity-100"
+        className="opacity-0 transition-opacity duration-150 hover:bg-secondary group-hover:opacity-100"
         onClick={onCopy}
-        variant="ghost"
+        variant="secondary"
       >
         {copied ? (
           <>

@@ -428,5 +428,6 @@ export {
   CommandMenuItem,
   CommandMenuSeparator,
   CommandMenuClose,
+  CommandMenuProvider,
   useCommandMenu,
 };
