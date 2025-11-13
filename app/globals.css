@@ -288,3 +288,14 @@ code[data-line-numbers="true"] .line:last-child:empty::before {
     transform: translateX(200%);
   }
 }
+
+@supports (corner-shape: squircle) {
+  :root {
+    --radius: 1rem !important;
+    corner-shape: squircle;
+  }
+
+  * {
+    corner-shape: inherit;
+  }
+}
