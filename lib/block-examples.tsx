@@ -1322,7 +1322,7 @@ This is a demonstration of real-time token-by-token streaming. The component pro
           bio: "Design Engineer. Open Source Advocate. Loves UI/UX.",
           location: "San Francisco, CA",
           website: "https://example.com",
-          avatarUrl: "/static/avatar-john.png",
+          avatarUrl: "https://api.dicebear.com/9.x/glass/svg?seed=john-doe",
           social: {
             twitter: "johndoe",
             github: "johnnydoe",
@@ -2366,6 +2366,789 @@ This is a demonstration of real-time token-by-token streaming. The component pro
         ],
         onToggleFlag: (flagId: string, enabled: boolean) => {
           /* enable flag */
+        },
+      };
+    }
+    // Team Blocks
+    case "team-switcher": {
+      return {
+        teams: [
+          {
+            id: "team-1",
+            name: "Acme Inc.",
+            plan: "pro" as const,
+            memberCount: 12,
+          },
+          {
+            id: "team-2",
+            name: "Design Team",
+            plan: "free" as const,
+            memberCount: 5,
+          },
+        ],
+        currentTeamId: "team-1",
+        onTeamSelect: (teamId: string) => {
+          /* select team */
+        },
+        onCreateTeam: () => {
+          /* create new team */
+        },
+        showPlan: true,
+      };
+    }
+    case "team-dashboard": {
+      return {
+        teamName: "Acme Inc.",
+        plan: "pro" as const,
+        members: [
+          {
+            id: "user-1",
+            name: "Sarah Johnson",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            role: "owner" as const,
+            status: "active" as const,
+          },
+          {
+            id: "user-2",
+            name: "Mike Chen",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            role: "admin" as const,
+            status: "active" as const,
+          },
+          {
+            id: "user-3",
+            name: "Emily Davis",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+            role: "member" as const,
+            status: "active" as const,
+          },
+        ],
+        recentActivities: [
+          {
+            id: "activity-1",
+            type: "member_joined" as const,
+            user: {
+              name: "Alex Rodriguez",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=alex-rodriguez",
+            },
+            description: "joined the team",
+            timestamp: new Date(now - 2 * 60 * 60 * 1000),
+          },
+          {
+            id: "activity-2",
+            type: "ai_session" as const,
+            user: {
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            description: "created a new AI session",
+            timestamp: new Date(now - 3 * 60 * 60 * 1000),
+          },
+        ],
+        usage: {
+          aiTokens: { used: 250_000, limit: 1_000_000 },
+          storage: {
+            used: 15 * 1024 * 1024 * 1024,
+            limit: 100 * 1024 * 1024 * 1024,
+          },
+          members: { current: 12, limit: 50 },
+        },
+        onInviteMember: () => {
+          /* invite member */
+        },
+        onManageSettings: () => {
+          /* manage settings */
+        },
+      };
+    }
+    case "team-member-list": {
+      return {
+        members: [
+          {
+            id: "member-1",
+            name: "Sarah Johnson",
+            email: "sarah@example.com",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            role: "owner" as const,
+            status: "active" as const,
+            lastActive: new Date(now - 5 * 60 * 1000),
+            joinedAt: new Date(now - 30 * 24 * 60 * 60 * 1000),
+            aiUsage: {
+              tokens: 125_000,
+              sessions: 45,
+            },
+          },
+          {
+            id: "member-2",
+            name: "Mike Chen",
+            email: "mike@example.com",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            role: "admin" as const,
+            status: "active" as const,
+            lastActive: new Date(now - 15 * 60 * 1000),
+            joinedAt: new Date(now - 20 * 24 * 60 * 60 * 1000),
+            aiUsage: {
+              tokens: 89_000,
+              sessions: 32,
+            },
+          },
+          {
+            id: "member-3",
+            name: "Emily Davis",
+            email: "emily@example.com",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+            role: "member" as const,
+            status: "active" as const,
+            lastActive: new Date(now - 2 * 60 * 60 * 1000),
+            joinedAt: new Date(now - 10 * 24 * 60 * 60 * 1000),
+            aiUsage: {
+              tokens: 45_000,
+              sessions: 18,
+            },
+          },
+        ],
+        currentUserId: "member-1",
+        onPromote: async (memberId: string) => {
+          /* promote member */
+        },
+        onDemote: async (memberId: string) => {
+          /* demote member */
+        },
+        onRemove: async (memberId: string) => {
+          /* remove member */
+        },
+        onResendInvite: async (memberId: string) => {
+          /* resend invite */
+        },
+        showUsage: true,
+      };
+    }
+    case "team-invitations": {
+      return {
+        invitations: [
+          {
+            id: "inv-1",
+            email: "new@example.com",
+            role: "member" as const,
+            status: "pending" as const,
+            invitedBy: { name: "Sarah Johnson", email: "sarah@example.com" },
+            createdAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+            expiresAt: new Date(now + 7 * 24 * 60 * 60 * 1000),
+          },
+          {
+            id: "inv-2",
+            link: "https://app.example.com/join/abc123xyz",
+            role: "admin" as const,
+            status: "pending" as const,
+            invitedBy: { name: "Mike Chen", email: "mike@example.com" },
+            createdAt: new Date(now - 2 * 24 * 60 * 60 * 1000),
+            expiresAt: new Date(now + 3 * 24 * 60 * 60 * 1000),
+          },
+        ],
+        onCreate: async (data: {
+          email?: string;
+          role: "admin" | "member" | "viewer";
+          expiresInDays?: number;
+          message?: string;
+        }) => {
+          /* create invitation */
+          return {
+            id: `inv-${Date.now()}`,
+            email: data.email,
+            role: data.role,
+            status: "pending" as const,
+            invitedBy: { name: "Sarah Johnson", email: "sarah@example.com" },
+            createdAt: new Date(),
+            expiresAt: data.expiresInDays
+              ? new Date(Date.now() + data.expiresInDays * 24 * 60 * 60 * 1000)
+              : undefined,
+          };
+        },
+        onRevoke: async (invitationId: string) => {
+          /* revoke invitation */
+        },
+        onResend: async (invitationId: string) => {
+          /* resend invitation */
+        },
+        onCopyLink: async (link: string) => {
+          /* copy invitation link */
+        },
+      };
+    }
+    case "team-activity-feed": {
+      return {
+        activities: [
+          {
+            id: "activity-1",
+            type: "member_joined" as const,
+            user: {
+              id: "user-1",
+              name: "Alex Rodriguez",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=alex-rodriguez",
+            },
+            description: "joined the team",
+            timestamp: new Date(now - 2 * 60 * 60 * 1000),
+          },
+          {
+            id: "activity-2",
+            type: "ai_session_created" as const,
+            user: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            description: "created a new AI session",
+            projectId: "project-1",
+            projectName: "Website Redesign",
+            timestamp: new Date(now - 3 * 60 * 60 * 1000),
+          },
+          {
+            id: "activity-3",
+            type: "file_uploaded" as const,
+            user: {
+              id: "user-3",
+              name: "Emily Davis",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+            },
+            description: "uploaded project-plan.pdf",
+            projectId: "project-1",
+            projectName: "Website Redesign",
+            timestamp: new Date(now - 5 * 60 * 60 * 1000),
+          },
+        ],
+        onFilterChange: (filters: any) => {
+          /* filter activities */
+        },
+        showFilters: true,
+      };
+    }
+    case "team-chat": {
+      return {
+        messages: [
+          {
+            id: "msg-1",
+            content: "Hey team! Let's discuss the new feature",
+            author: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            timestamp: new Date(now - 30 * 60 * 1000),
+          },
+          {
+            id: "msg-2",
+            content: "I think we should use @ai to help us brainstorm",
+            author: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            timestamp: new Date(now - 25 * 60 * 1000),
+            isAIMention: true,
+          },
+        ],
+        currentUserId: "user-1",
+        onSendMessage: async (content: string) => {
+          /* send message */
+        },
+      };
+    }
+    case "team-files": {
+      return {
+        files: [
+          {
+            id: "file-1",
+            name: "project-plan.pdf",
+            type: "application/pdf",
+            size: 2.5 * 1024 * 1024,
+            uploadedBy: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            uploadedAt: new Date(now - 2 * 24 * 60 * 60 * 1000),
+            tags: ["planning", "project"],
+            aiAccessible: true,
+          },
+          {
+            id: "file-2",
+            name: "design-mockups.png",
+            type: "image/png",
+            size: 1.2 * 1024 * 1024,
+            uploadedBy: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            uploadedAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+            tags: ["design"],
+          },
+        ],
+        onUpload: async (files: File[]) => {
+          /* upload files */
+        },
+        onDelete: async (fileId: string) => {
+          /* delete file */
+        },
+        onDownload: async (fileId: string) => {
+          /* download file */
+        },
+        onToggleAIAccess: async (fileId: string, enabled: boolean) => {
+          /* toggle AI access */
+        },
+      };
+    }
+    case "team-projects": {
+      return {
+        projects: [
+          {
+            id: "project-1",
+            name: "Website Redesign",
+            description: "Complete redesign of company website",
+            color: "#3b82f6",
+            members: [
+              {
+                id: "user-1",
+                name: "Sarah Johnson",
+                avatar:
+                  "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+              },
+              {
+                id: "user-2",
+                name: "Mike Chen",
+                avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+              },
+              {
+                id: "user-3",
+                name: "Emily Davis",
+                avatar:
+                  "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+              },
+            ],
+            defaultModel: "gpt-4",
+            aiUsage: {
+              tokens: 250_000,
+              sessions: 89,
+            },
+            createdAt: new Date(now - 30 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+          },
+          {
+            id: "project-2",
+            name: "Mobile App",
+            description: "New mobile application development",
+            color: "#10b981",
+            members: [
+              {
+                id: "user-2",
+                name: "Mike Chen",
+                avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+              },
+              {
+                id: "user-3",
+                name: "Emily Davis",
+                avatar:
+                  "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+              },
+            ],
+            defaultModel: "claude-3-opus",
+            aiUsage: {
+              tokens: 180_000,
+              sessions: 65,
+            },
+            createdAt: new Date(now - 20 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 2 * 24 * 60 * 60 * 1000),
+          },
+        ],
+        currentUserId: "user-1",
+        onCreate: async (data: {
+          name: string;
+          description?: string;
+          color?: string;
+          defaultModel?: string;
+        }) => {
+          /* create project */
+          return {
+            id: `project-${Date.now()}`,
+            name: data.name,
+            description: data.description,
+            color: data.color || "#3b82f6",
+            members: [],
+            defaultModel: data.defaultModel,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+        },
+        onUpdate: async (projectId: string, data: any) => {
+          /* update project */
+        },
+        onDelete: async (projectId: string) => {
+          /* delete project */
+        },
+        onSelect: (projectId: string) => {
+          /* select project */
+        },
+      };
+    }
+    case "team-notes": {
+      return {
+        notes: [
+          {
+            id: "note-1",
+            title: "Sprint Planning Notes",
+            content:
+              "Key decisions from today's sprint planning meeting:\n\n1. Focus on user authentication flow\n2. Complete API integration by Friday\n3. Design review scheduled for next week",
+            author: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            tags: ["sprint", "planning"],
+            aiSummary:
+              "Meeting notes covering sprint priorities including authentication work, API integration deadline, and upcoming design review.",
+            createdAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+            participants: [
+              {
+                id: "user-1",
+                name: "Sarah Johnson",
+                avatar:
+                  "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+              },
+              {
+                id: "user-2",
+                name: "Mike Chen",
+                avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+              },
+              {
+                id: "user-3",
+                name: "Emily Davis",
+                avatar:
+                  "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+              },
+            ],
+          },
+          {
+            id: "note-2",
+            title: "API Documentation",
+            content: "Updated API endpoints and authentication methods...",
+            author: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            tags: ["api", "documentation"],
+            createdAt: new Date(now - 2 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 1 * 24 * 60 * 60 * 1000),
+            lastEditedBy: {
+              id: "user-1",
+              name: "Sarah Johnson",
+            },
+          },
+        ],
+        currentUserId: "user-1",
+        onCreate: async (data: {
+          title: string;
+          content: string;
+          tags?: string[];
+        }) => {
+          /* create note */
+          return {
+            id: `note-${Date.now()}`,
+            title: data.title,
+            content: data.content,
+            author: { id: "user-1", name: "Sarah Johnson" },
+            tags: data.tags,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+        },
+        onUpdate: async (
+          noteId: string,
+          data: { title?: string; content?: string; tags?: string[] }
+        ) => {
+          /* update note */
+        },
+        onDelete: async (noteId: string) => {
+          /* delete note */
+        },
+        onSummarize: async (noteId: string) => {
+          /* generate AI summary */
+          return "AI-generated summary of the note content.";
+        },
+      };
+    }
+    case "team-analytics": {
+      return {
+        tokenUsage: {
+          current: 250_000,
+          previous: 200_000,
+        },
+        sessionCount: {
+          current: 145,
+          previous: 120,
+        },
+        memberUsage: [
+          {
+            id: "user-1",
+            name: "Sarah Johnson",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            tokens: 125_000,
+            sessions: 45,
+            files: 12,
+          },
+          {
+            id: "user-2",
+            name: "Mike Chen",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            tokens: 89_000,
+            sessions: 32,
+            files: 8,
+          },
+          {
+            id: "user-3",
+            name: "Emily Davis",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+            tokens: 45_000,
+            sessions: 18,
+            files: 5,
+          },
+        ],
+        topProjects: [
+          {
+            id: "project-1",
+            name: "Website Redesign",
+            usage: 250_000,
+          },
+          {
+            id: "project-2",
+            name: "Mobile App",
+            usage: 180_000,
+          },
+        ],
+      };
+    }
+    case "team-ai-room": {
+      return {
+        roomName: "Shared AI Workspace",
+        participants: [
+          {
+            id: "user-1",
+            name: "Sarah Johnson",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+          },
+          {
+            id: "user-2",
+            name: "Mike Chen",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+          },
+          {
+            id: "user-3",
+            name: "Emily Davis",
+            avatar: "https://api.dicebear.com/9.x/glass/svg?seed=emily-davis",
+          },
+        ],
+        messages: [
+          {
+            id: "ai-msg-1",
+            role: "user" as const,
+            content: "What are the best practices for React components?",
+            author: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            timestamp: new Date(now - 10 * 60 * 1000),
+          },
+          {
+            id: "ai-msg-2",
+            role: "assistant" as const,
+            content:
+              "Here are some best practices for React components:\n\n1. **Single Responsibility**: Each component should have one clear purpose\n2. **Composition over Inheritance**: Build complex UIs from simple components\n3. **Props Validation**: Use TypeScript or PropTypes\n4. **Avoid Prop Drilling**: Use Context API for deeply nested data\n5. **Memoization**: Use React.memo() and useMemo() wisely",
+            timestamp: new Date(now - 9 * 60 * 1000),
+          },
+        ],
+        currentUserId: "user-1",
+        onSendMessage: async (content: string) => {
+          /* send message */
+        },
+      };
+    }
+    case "team-notifications": {
+      return {
+        notifications: [
+          {
+            id: "notif-1",
+            type: "mention" as const,
+            title: "You were mentioned",
+            message: "Mike Chen mentioned you in a chat message",
+            user: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            read: false,
+            timestamp: new Date(now - 10 * 60 * 1000),
+            link: "#chat",
+          },
+          {
+            id: "notif-2",
+            type: "ai_event" as const,
+            title: "AI Session Completed",
+            message:
+              "Your AI session in Website Redesign project has finished processing",
+            read: false,
+            timestamp: new Date(now - 30 * 60 * 1000),
+            link: "#ai-room",
+          },
+          {
+            id: "notif-3",
+            type: "file_shared" as const,
+            title: "File Shared",
+            message: "Sarah Johnson shared project-plan.pdf with you",
+            user: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            read: true,
+            timestamp: new Date(now - 2 * 60 * 60 * 1000),
+            link: "#files",
+          },
+        ],
+        unreadCount: 3,
+        onMarkAsRead: async (notificationId: string) => {
+          /* mark as read */
+        },
+        onMarkAllAsRead: async () => {
+          /* mark all as read */
+        },
+        onDelete: async (notificationId: string) => {
+          /* delete notification */
+        },
+      };
+    }
+    case "team-prompt-library": {
+      return {
+        prompts: [
+          {
+            id: "prompt-1",
+            title: "Code Review Assistant",
+            prompt:
+              "Review this code and provide suggestions for improvement. Focus on performance, readability, and best practices.",
+            description: "Helps with code reviews and improvements",
+            category: "Code",
+            author: {
+              id: "user-1",
+              name: "Sarah Johnson",
+              avatar:
+                "https://api.dicebear.com/9.x/glass/svg?seed=sarah-johnson",
+            },
+            rating: 4.5,
+            usageCount: 45,
+            bestModel: "gpt-4",
+            tags: ["code", "review", "best-practices"],
+            createdAt: new Date(now - 7 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 7 * 24 * 60 * 60 * 1000),
+          },
+          {
+            id: "prompt-2",
+            title: "Blog Post Writer",
+            prompt:
+              "Write a comprehensive blog post about {topic}. Include an introduction, main points, and conclusion.",
+            description: "Generate well-structured blog posts",
+            category: "Writing",
+            author: {
+              id: "user-2",
+              name: "Mike Chen",
+              avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+            },
+            rating: 4.8,
+            usageCount: 32,
+            bestModel: "claude-3-opus",
+            tags: ["writing", "blog", "content"],
+            tone: "professional",
+            createdAt: new Date(now - 5 * 24 * 60 * 60 * 1000),
+            updatedAt: new Date(now - 5 * 24 * 60 * 60 * 1000),
+          },
+        ],
+        currentUserId: "user-1",
+        onCreate: async (data: {
+          title: string;
+          prompt: string;
+          description?: string;
+          category?: string;
+          tags?: string[];
+          bestModel?: string;
+          tone?: string;
+        }) => {
+          /* create prompt */
+          return {
+            id: `prompt-${Date.now()}`,
+            title: data.title,
+            prompt: data.prompt,
+            description: data.description,
+            category: data.category,
+            tags: data.tags,
+            author: { id: "user-1", name: "Sarah Johnson" },
+            bestModel: data.bestModel,
+            tone: data.tone,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+          };
+        },
+        onUpdate: async (promptId: string, data: any) => {
+          /* update prompt */
+        },
+        onDelete: async (promptId: string) => {
+          /* delete prompt */
+        },
+        onFavorite: async (promptId: string, isFavorite: boolean) => {
+          /* toggle favorite */
+        },
+        onUse: (prompt: any) => {
+          /* use prompt */
+        },
+      };
+    }
+    case "team-permissions-matrix": {
+      return {};
+    }
+    case "team-settings": {
+      return {
+        plan: "pro" as const,
+        settings: {
+          name: "Acme Inc.",
+          description: "A modern software company",
+          slug: "acme-inc",
+          color: "#3b82f6",
+          defaultModel: "gpt-4",
+        },
+        onSave: async (settings: {
+          name: string;
+          description?: string;
+          avatar?: string;
+          slug?: string;
+          color?: string;
+          defaultModel?: string;
+          defaultAccessScope?: string[];
+          metadata?: Record<string, string>;
+        }) => {
+          /* save team settings */
+        },
+        onAvatarUpload: async (file: File) => {
+          /* upload avatar */
+          return "https://api.dicebear.com/9.x/glass/svg?seed=team-avatar";
+        },
+        onAvatarRemove: async () => {
+          /* remove avatar */
         },
       };
     }

@@ -1093,7 +1093,7 @@ This is a demonstration of real-time token-by-token streaming."
     bio: "Design Engineer. Open Source Advocate. Loves UI/UX.",
     location: "San Francisco, CA",
     website: "https://example.com",
-    avatarUrl: "/static/avatar-john.png",
+    avatarUrl: "https://api.dicebear.com/9.x/glass/svg?seed=john-doe",
     social: { twitter: "johndoe", github: "johnnydoe" },
   }}
   onSave={async (data) => {
@@ -1221,6 +1221,471 @@ This is a demonstration of real-time token-by-token streaming."
   onDelete={async (id) => {
     /* delete webhook */
   }}
+/>`,
+  },
+  "team-activity-feed": {
+    usageImports: `import TeamActivityFeed from "@/components/blocks/team/team-activity-feed";`,
+    usageCode: `<TeamActivityFeed
+  activities={[
+    {
+      id: "activity-1",
+      type: "member_joined",
+      user: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      description: "joined the team",
+      timestamp: new Date(),
+    },
+  ]}
+  onFilterChange={(filters) => {
+    /* filter activities */
+  }}
+  showFilters={true}
+/>`,
+  },
+  "team-ai-room": {
+    usageImports: `import TeamAIRoom from "@/components/blocks/team/team-ai-room";`,
+    usageCode: `<TeamAIRoom
+  roomName="Shared AI Workspace"
+  participants={[
+    {
+      id: "user-1",
+      name: "Alice",
+      avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+    },
+  ]}
+  messages={[
+    {
+      id: "ai-msg-1",
+      role: "user",
+      content: "What are the best practices for React components?",
+      author: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      timestamp: new Date(),
+    },
+  ]}
+  currentUserId="user-1"
+  onSendMessage={async (content) => {
+    /* send message */
+  }}
+/>`,
+  },
+  "team-analytics": {
+    usageImports: `import TeamAnalytics from "@/components/blocks/team/team-analytics";`,
+    usageCode: `<TeamAnalytics
+  tokenUsage={{
+    current: 250000,
+    previous: 200000,
+  }}
+  sessionCount={{
+    current: 145,
+    previous: 120,
+  }}
+  memberUsage={[
+    {
+      id: "user-1",
+      name: "Alice",
+      avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      tokens: 125000,
+      sessions: 45,
+      files: 12,
+    },
+  ]}
+  topProjects={[
+    {
+      id: "project-1",
+      name: "Website Redesign",
+      usage: 250000,
+    },
+  ]}
+/>`,
+  },
+  "team-chat": {
+    usageImports: `import TeamChat from "@/components/blocks/team/team-chat";`,
+    usageCode: `<TeamChat
+  messages={[
+    {
+      id: "msg-1",
+      content: "Hey team! Let's discuss the new feature",
+      author: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      timestamp: new Date(),
+    },
+  ]}
+  currentUserId="user-1"
+  onSendMessage={async (content) => {
+    /* send message */
+  }}
+/>`,
+  },
+  "team-dashboard": {
+    usageImports: `import TeamDashboard from "@/components/blocks/team/team-dashboard";`,
+    usageCode: `<TeamDashboard
+  teamName="Acme Inc."
+  plan="pro"
+  members={[
+    {
+      id: "user-1",
+      name: "Alice",
+      avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      role: "admin",
+      status: "active",
+    },
+  ]}
+  recentActivities={[
+    {
+      id: "activity-1",
+      type: "member_joined",
+      user: { name: "Alice", avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice" },
+      description: "Alice joined the team",
+      timestamp: new Date(),
+    },
+  ]}
+  usage={{
+    aiTokens: { used: 250000, limit: 1000000 },
+    storage: { used: 15 * 1024 * 1024 * 1024, limit: 100 * 1024 * 1024 * 1024 },
+    members: { current: 12, limit: 50 },
+  }}
+  onInviteMember={() => {
+    /* invite member */
+  }}
+  onManageSettings={() => {
+    /* manage settings */
+  }}
+/>`,
+  },
+  "team-files": {
+    usageImports: `import TeamFiles from "@/components/blocks/team/team-files";`,
+    usageCode: `<TeamFiles
+  files={[
+    {
+      id: "file-1",
+      name: "project-plan.pdf",
+      type: "application/pdf",
+      size: 2.5 * 1024 * 1024,
+      uploadedBy: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      uploadedAt: new Date(),
+      tags: ["planning", "project"],
+      aiAccessible: true,
+    },
+  ]}
+  onUpload={async (files) => {
+    /* upload files */
+  }}
+  onDelete={async (fileId) => {
+    /* delete file */
+  }}
+  onDownload={async (fileId) => {
+    /* download file */
+  }}
+  onToggleAIAccess={async (fileId, enabled) => {
+    /* toggle AI access */
+  }}
+/>`,
+  },
+  "team-invitations": {
+    usageImports: `import TeamInvitations from "@/components/blocks/team/team-invitations";`,
+    usageCode: `<TeamInvitations
+  invitations={[
+    {
+      id: "inv-1",
+      email: "new@example.com",
+      role: "member",
+      status: "pending",
+      invitedBy: { name: "Alice", email: "alice@example.com" },
+      createdAt: new Date(),
+      expiresAt: new Date(),
+    },
+  ]}
+  onCreate={async (data) => {
+    /* create invitation */
+    return {
+      id: "inv-new",
+      email: data.email,
+      role: data.role,
+      status: "pending",
+      invitedBy: { name: "Alice", email: "alice@example.com" },
+      createdAt: new Date(),
+      expiresAt: data.expiresInDays ? new Date(Date.now() + data.expiresInDays * 24 * 60 * 60 * 1000) : undefined,
+    };
+  }}
+  onRevoke={async (invitationId) => {
+    /* revoke invitation */
+  }}
+  onResend={async (invitationId) => {
+    /* resend invitation */
+  }}
+  onCopyLink={async (link) => {
+    /* copy invitation link */
+  }}
+/>`,
+  },
+  "team-member-list": {
+    usageImports: `import TeamMemberList from "@/components/blocks/team/team-member-list";`,
+    usageCode: `<TeamMemberList
+  members={[
+    {
+      id: "member-1",
+      name: "Alice Admin",
+      email: "alice@company.com",
+      avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      role: "admin",
+      status: "active",
+      joinedAt: new Date(),
+      aiUsage: {
+        tokens: 125000,
+        sessions: 45,
+      },
+    },
+  ]}
+  currentUserId="member-1"
+  onPromote={async (memberId) => {
+    /* promote member */
+  }}
+  onDemote={async (memberId) => {
+    /* demote member */
+  }}
+  onRemove={async (memberId) => {
+    /* remove member */
+  }}
+  onResendInvite={async (memberId) => {
+    /* resend invite */
+  }}
+  showUsage={true}
+/>`,
+  },
+  "team-notes": {
+    usageImports: `import TeamNotes from "@/components/blocks/team/team-notes";`,
+    usageCode: `<TeamNotes
+  notes={[
+    {
+      id: "note-1",
+      title: "Sprint Planning Notes",
+      content: "Key decisions from today's sprint planning meeting...",
+      author: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      tags: ["sprint", "planning"],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ]}
+  currentUserId="user-1"
+  onCreate={async (data) => {
+    /* create note */
+    return {
+      id: "note-new",
+      title: data.title,
+      content: data.content,
+      author: { id: "user-1", name: "Alice" },
+      tags: data.tags,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+  }}
+  onUpdate={async (noteId, data) => {
+    /* update note */
+  }}
+  onDelete={async (noteId) => {
+    /* delete note */
+  }}
+  onSummarize={async (noteId) => {
+    /* generate AI summary */
+    return "AI-generated summary of the note content.";
+  }}
+/>`,
+  },
+  "team-notifications": {
+    usageImports: `import TeamNotifications from "@/components/blocks/team/team-notifications";`,
+    usageCode: `<TeamNotifications
+  notifications={[
+    {
+      id: "notif-1",
+      type: "mention",
+      title: "You were mentioned",
+      message: "Mike Chen mentioned you in a chat message",
+      user: {
+        id: "user-2",
+        name: "Mike Chen",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=mike-chen",
+      },
+      read: false,
+      timestamp: new Date(),
+      link: "#chat",
+    },
+  ]}
+  unreadCount={3}
+  onMarkAsRead={async (notificationId) => {
+    /* mark as read */
+  }}
+  onMarkAllAsRead={async () => {
+    /* mark all as read */
+  }}
+  onDelete={async (notificationId) => {
+    /* delete notification */
+  }}
+/>`,
+  },
+  "team-permissions-matrix": {
+    usageImports: `import TeamPermissionsMatrix from "@/components/blocks/team/team-permissions-matrix";`,
+    usageCode: "<TeamPermissionsMatrix />",
+  },
+  "team-projects": {
+    usageImports: `import TeamProjects from "@/components/blocks/team/team-projects";`,
+    usageCode: `<TeamProjects
+  projects={[
+    {
+      id: "project-1",
+      name: "Website Redesign",
+      description: "Complete redesign of company website",
+      color: "#3b82f6",
+      members: [
+        { id: "user-1", name: "Alice", avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice" },
+      ],
+      defaultModel: "gpt-4",
+      aiUsage: {
+        tokens: 250000,
+        sessions: 89,
+      },
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ]}
+  currentUserId="user-1"
+  onCreate={async (data) => {
+    /* create project */
+    return {
+      id: "project-new",
+      name: data.name,
+      description: data.description,
+      color: data.color || "#3b82f6",
+      members: [],
+      defaultModel: data.defaultModel,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+  }}
+  onUpdate={async (projectId, data) => {
+    /* update project */
+  }}
+  onDelete={async (projectId) => {
+    /* delete project */
+  }}
+  onSelect={(projectId) => {
+    /* select project */
+  }}
+/>`,
+  },
+  "team-prompt-library": {
+    usageImports: `import TeamPromptLibrary from "@/components/blocks/team/team-prompt-library";`,
+    usageCode: `<TeamPromptLibrary
+  prompts={[
+    {
+      id: "prompt-1",
+      title: "Code Review Assistant",
+      prompt: "Review this code and provide suggestions for improvement...",
+      description: "Helps with code reviews and improvements",
+      category: "Code",
+      author: {
+        id: "user-1",
+        name: "Alice",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=alice",
+      },
+      usageCount: 45,
+      bestModel: "gpt-4",
+      tags: ["code", "review", "best-practices"],
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+  ]}
+  currentUserId="user-1"
+  onCreate={async (data) => {
+    /* create prompt */
+    return {
+      id: "prompt-new",
+      title: data.title,
+      prompt: data.prompt,
+      description: data.description,
+      category: data.category,
+      tags: data.tags,
+      author: { id: "user-1", name: "Alice" },
+      bestModel: data.bestModel,
+      tone: data.tone,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+  }}
+  onUpdate={async (promptId, data) => {
+    /* update prompt */
+  }}
+  onDelete={async (promptId) => {
+    /* delete prompt */
+  }}
+  onFavorite={async (promptId, isFavorite) => {
+    /* toggle favorite */
+  }}
+  onUse={(prompt) => {
+    /* use prompt */
+  }}
+/>`,
+  },
+  "team-settings": {
+    usageImports: `import TeamSettings from "@/components/blocks/team/team-settings";`,
+    usageCode: `<TeamSettings
+  plan="pro"
+  settings={{
+    name: "Acme Inc.",
+    description: "A modern software company",
+    slug: "acme-inc",
+    color: "#3b82f6",
+    defaultModel: "gpt-4",
+  }}
+  onSave={async (settings) => {
+    /* save team settings */
+  }}
+  onAvatarUpload={async (file) => {
+    /* upload avatar */
+    return "https://api.dicebear.com/9.x/glass/svg?seed=team-avatar";
+  }}
+  onAvatarRemove={async () => {
+    /* remove avatar */
+  }}
+/>`,
+  },
+  "team-switcher": {
+    usageImports: `import TeamSwitcher from "@/components/blocks/team/team-switcher";`,
+    usageCode: `<TeamSwitcher
+  teams={[
+    {
+      id: "team-1",
+      name: "Design Team",
+      avatar: "https://api.dicebear.com/9.x/glass/svg?seed=team-avatar",
+      plan: "pro",
+      memberCount: 8,
+    },
+  ]}
+  currentTeamId="team-1"
+  onTeamSelect={(teamId) => {
+    /* select team */
+  }}
+  onCreateTeam={() => {
+    /* create new team */
+  }}
+  showPlan={true}
 />`,
   },
 } as const;

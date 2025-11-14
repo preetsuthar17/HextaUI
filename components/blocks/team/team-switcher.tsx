@@ -203,11 +203,11 @@ export default function TeamSwitcher({
               <>
                 <CommandMenuSeparator />
                 <CommandMenuItem
+                  icon={<Plus className="size-4" />}
                   index={filteredTeams.length}
                   onSelect={onCreateTeam}
                 >
-                  <Plus className="size-4" />
-                  <span>Create new team</span>
+                  Create new team
                 </CommandMenuItem>
               </>
             )}

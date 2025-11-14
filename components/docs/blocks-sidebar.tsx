@@ -1,6 +1,13 @@
 "use client";
 
-import { Bot, ChevronRight, CreditCard, Lock, Settings } from "lucide-react";
+import {
+  Bot,
+  ChevronRight,
+  CreditCard,
+  Lock,
+  Settings,
+  Users,
+} from "lucide-react";
 import Link from "next/link";
 import * as React from "react";
 import {
@@ -28,6 +35,7 @@ const categoryIcons: Record<
   auth: Lock,
   billing: CreditCard,
   settings: Settings,
+  team: Users,
 };
 
 export function BlocksSidebar({ currentId }: { currentId?: string }) {
@@ -53,6 +61,7 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
       auth: [],
       billing: [],
       settings: [],
+      team: [],
     };
 
     filtered.forEach((block) => {
@@ -69,6 +78,7 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
       auth: 0,
       billing: 0,
       settings: 0,
+      team: 0,
     };
 
     blocksRegistry.forEach((block) => {

@@ -64,10 +64,26 @@ import SettingsSSO from "@/components/blocks/settings/settings-sso";
 import SettingsStorage from "@/components/blocks/settings/settings-storage";
 import SettingsTeamMembers from "@/components/blocks/settings/settings-team-members";
 import SettingsWebhooks from "@/components/blocks/settings/settings-webhooks";
+
+import TeamActivityFeed from "@/components/blocks/team/team-activity-feed";
+import TeamAIRoom from "@/components/blocks/team/team-ai-room";
+import TeamAnalytics from "@/components/blocks/team/team-analytics";
+import TeamChat from "@/components/blocks/team/team-chat";
+import TeamDashboard from "@/components/blocks/team/team-dashboard";
+import TeamFiles from "@/components/blocks/team/team-files";
+import TeamInvitations from "@/components/blocks/team/team-invitations";
+import TeamMemberList from "@/components/blocks/team/team-member-list";
+import TeamNotes from "@/components/blocks/team/team-notes";
+import TeamNotifications from "@/components/blocks/team/team-notifications";
+import TeamPermissionsMatrix from "@/components/blocks/team/team-permissions-matrix";
+import TeamProjects from "@/components/blocks/team/team-projects";
+import TeamPromptLibrary from "@/components/blocks/team/team-prompt-library";
+import TeamSettings from "@/components/blocks/team/team-settings";
+import TeamSwitcher from "@/components/blocks/team/team-switcher";
 import { getBlockExampleProps } from "./block-examples";
 import { blockSnippets } from "./block-snippets";
 
-export type BlockCategory = "ai" | "auth" | "billing" | "settings";
+export type BlockCategory = "ai" | "auth" | "billing" | "settings" | "team";
 
 export type BlockMeta = {
   id: string;
@@ -464,6 +480,97 @@ const blocksList: Omit<BlockMeta, "Component">[] = [
     description: "Configure webhooks and event notifications.",
     category: "settings",
   },
+  // Team Blocks
+  {
+    id: "team-activity-feed",
+    title: "Activity Feed",
+    description: "Display team activity and events in a feed.",
+    category: "team",
+  },
+  {
+    id: "team-ai-room",
+    title: "AI Room",
+    description: "Collaborative AI workspace for team members.",
+    category: "team",
+  },
+  {
+    id: "team-analytics",
+    title: "Analytics",
+    description: "View team analytics and usage statistics.",
+    category: "team",
+  },
+  {
+    id: "team-chat",
+    title: "Chat",
+    description: "Team chat interface with messages and channels.",
+    category: "team",
+  },
+  {
+    id: "team-dashboard",
+    title: "Dashboard",
+    description: "Team dashboard with overview and metrics.",
+    category: "team",
+  },
+  {
+    id: "team-files",
+    title: "Files",
+    description: "Manage and share team files.",
+    category: "team",
+  },
+  {
+    id: "team-invitations",
+    title: "Invitations",
+    description: "Send and manage team invitations.",
+    category: "team",
+  },
+  {
+    id: "team-member-list",
+    title: "Member List",
+    description: "List and manage team members.",
+    category: "team",
+  },
+  {
+    id: "team-notes",
+    title: "Notes",
+    description: "Collaborative notes and documentation.",
+    category: "team",
+  },
+  {
+    id: "team-notifications",
+    title: "Notifications",
+    description: "Team notifications and alerts.",
+    category: "team",
+  },
+  {
+    id: "team-permissions-matrix",
+    title: "Permissions Matrix",
+    description: "Manage team permissions and roles.",
+    category: "team",
+  },
+  {
+    id: "team-projects",
+    title: "Projects",
+    description: "Manage team projects and tasks.",
+    category: "team",
+  },
+  {
+    id: "team-prompt-library",
+    title: "Prompt Library",
+    description: "Shared prompt library for the team.",
+    category: "team",
+  },
+  {
+    id: "team-settings",
+    title: "Settings",
+    description: "Team settings and configuration.",
+    category: "team",
+  },
+  {
+    id: "team-switcher",
+    title: "Team Switcher",
+    description: "Switch between teams and workspaces.",
+    category: "team",
+  },
 ];
 
 const blockComponents: Record<string, React.ComponentType<any>> = {
@@ -534,6 +641,22 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   "settings-storage": SettingsStorage,
   "settings-team-members": SettingsTeamMembers,
   "settings-webhooks": SettingsWebhooks,
+  // Team
+  "team-activity-feed": TeamActivityFeed,
+  "team-ai-room": TeamAIRoom,
+  "team-analytics": TeamAnalytics,
+  "team-chat": TeamChat,
+  "team-dashboard": TeamDashboard,
+  "team-files": TeamFiles,
+  "team-invitations": TeamInvitations,
+  "team-member-list": TeamMemberList,
+  "team-notes": TeamNotes,
+  "team-notifications": TeamNotifications,
+  "team-permissions-matrix": TeamPermissionsMatrix,
+  "team-projects": TeamProjects,
+  "team-prompt-library": TeamPromptLibrary,
+  "team-settings": TeamSettings,
+  "team-switcher": TeamSwitcher,
 };
 
 const snippets = blockSnippets as Record<
@@ -561,6 +684,7 @@ export const blockCategories: BlockCategory[] = [
   "auth",
   "billing",
   "settings",
+  "team",
 ];
 
 export const categoryLabels: Record<BlockCategory, string> = {
@@ -568,4 +692,5 @@ export const categoryLabels: Record<BlockCategory, string> = {
   auth: "Authentication",
   billing: "Billing",
   settings: "Settings",
+  team: "Team",
 };
