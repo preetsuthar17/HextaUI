@@ -1736,6 +1736,325 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "team-activity-feed",
+      "type": "registry:ui",
+      "title": "Team Activity Feed",
+      "description": "Display team activity and events in a feed with filtering.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "empty",
+        "input-group",
+        "select",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-activity-feed.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-ai-room",
+      "type": "registry:ui",
+      "title": "Team AI Room",
+      "description": "Collaborative AI workspace for team members with shared conversations.",
+      "registryDependencies": [
+        "ai-message",
+        "avatar",
+        "badge",
+        "card",
+        "empty",
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-ai-room.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-analytics",
+      "type": "registry:ui",
+      "title": "Team Analytics",
+      "description": "View team analytics and usage statistics with charts and breakdowns.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "card",
+        "progress",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-analytics.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-chat",
+      "type": "registry:ui",
+      "title": "Team Chat",
+      "description": "Team chat interface with messages and channels.",
+      "registryDependencies": [
+        "avatar",
+        "button",
+        "card",
+        "empty",
+        "input-group",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-chat.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-dashboard",
+      "type": "registry:ui",
+      "title": "Team Dashboard",
+      "description": "Team dashboard with overview and metrics.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "progress",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-dashboard.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-files",
+      "type": "registry:ui",
+      "title": "Team Files",
+      "description": "Manage and share team files with upload and download.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "empty",
+        "input-group"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-files.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-invitations",
+      "type": "registry:ui",
+      "title": "Team Invitations",
+      "description": "Send and manage team invitations with email and link options.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "checkbox",
+        "dialog",
+        "dropdown-menu",
+        "empty",
+        "field",
+        "input-group",
+        "select",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-invitations.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-member-list",
+      "type": "registry:ui",
+      "title": "Team Member List",
+      "description": "List and manage team members with roles and permissions.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "empty",
+        "input-group",
+        "select",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-member-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-notes",
+      "type": "registry:ui",
+      "title": "Team Notes",
+      "description": "Collaborative notes and documentation with AI summarization.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "dropdown-menu",
+        "empty",
+        "field",
+        "input-group",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-notes.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-notifications",
+      "type": "registry:ui",
+      "title": "Team Notifications",
+      "description": "Team notifications and alerts with filtering and management.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "empty",
+        "select",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-notifications.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-permissions-matrix",
+      "type": "registry:ui",
+      "title": "Team Permissions Matrix",
+      "description": "Manage team permissions and roles with visual matrix.",
+      "registryDependencies": ["badge", "card", "separator", "toggle"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-permissions-matrix.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-projects",
+      "type": "registry:ui",
+      "title": "Team Projects",
+      "description": "Manage team projects and tasks with member assignment.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "dropdown-menu",
+        "empty",
+        "field",
+        "input-group",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-projects.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-prompt-library",
+      "type": "registry:ui",
+      "title": "Team Prompt Library",
+      "description": "Shared prompt library for the team with favorites and categories.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "dropdown-menu",
+        "empty",
+        "field",
+        "input-group",
+        "select",
+        "separator",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-prompt-library.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-settings",
+      "type": "registry:ui",
+      "title": "Team Settings",
+      "description": "Team settings and configuration with avatar upload.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "field",
+        "input-group",
+        "separator",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-settings.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "team-switcher",
+      "type": "registry:ui",
+      "title": "Team Switcher",
+      "description": "Switch between teams and workspaces with search.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "command-menu",
+        "popover"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/team/team-switcher.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
