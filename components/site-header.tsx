@@ -22,7 +22,7 @@ export function SiteHeader() {
         <ul className="flex flex-wrap items-center gap-4">
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:underline"
+              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
               href="/"
             >
               Home
@@ -30,7 +30,7 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:underline"
+              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
               href="/components"
             >
               Components
@@ -38,7 +38,7 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:underline"
+              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
               href="/blocks"
             >
               Blocks
@@ -46,7 +46,15 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:underline"
+              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              href="/showcase"
+            >
+              Showcase
+            </Link>
+          </li>
+          <li>
+            <Link
+              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
               href="https://preetsuthar.me/sponsor"
             >
               Sponsor
