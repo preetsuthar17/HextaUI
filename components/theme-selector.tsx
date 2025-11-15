@@ -22,12 +22,12 @@ const THEME_STORAGE_KEY = "hextaui-color-theme";
 export function ThemeSelector() {
   const { theme: mode } = useTheme();
   const [colorTheme, setColorTheme] = useState<ThemeName>(() => {
-    if (typeof window === "undefined") return "retro-blue";
+    if (typeof window === "undefined") return "default";
     const stored = window.localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
     if (stored && getTheme(stored)) {
       return stored;
     }
-    return "retro-blue";
+    return "default";
   });
   const [hydrated] = useState(() => typeof window !== "undefined");
 

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { Contributors } from "@/components/home/contributors";
 import { Hero } from "@/components/home/hero";
+import { ThemeSelectorWithCopy } from "@/components/home/theme-selector-with-copy";
 import { Sponsors } from "@/components/home/sponsors";
 import AIPreview from "@/components/previews/ai-preview";
 import AuthPreview from "@/components/previews/auth-preview";
@@ -34,20 +35,23 @@ export default function Home() {
 
       <div className="flex w-full flex-col gap-12">
         <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap gap-2">
-            {previewOptions.map((option) => (
-              <Button
-                aria-current={selected === option.value ? "page" : undefined}
-                aria-pressed={selected === option.value}
-                key={option.value}
-                onClick={() => setSelected(option.value)}
-                size="sm"
-                type="button"
-                variant={selected === option.value ? "outline" : "ghost"}
-              >
-                {option.label}
-              </Button>
-            ))}
+          <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap gap-2">
+              {previewOptions.map((option) => (
+                <Button
+                  aria-current={selected === option.value ? "page" : undefined}
+                  aria-pressed={selected === option.value}
+                  key={option.value}
+                  onClick={() => setSelected(option.value)}
+                  size="sm"
+                  type="button"
+                  variant={selected === option.value ? "outline" : "ghost"}
+                >
+                  {option.label}
+                </Button>
+              ))}
+            </div>
+            <ThemeSelectorWithCopy />
           </div>
           <Link className="underline underline-offset-4" href="/blocks">
             Check out all blocks

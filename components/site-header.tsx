@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { Logo } from "@/components/logo";
-import { ThemeSelector } from "@/components/theme-selector";
 import { ThemeSwitcher } from "@/components/theme-switcher";
 
 export function SiteHeader() {
@@ -22,7 +21,7 @@ export function SiteHeader() {
         <ul className="flex flex-wrap items-center gap-4">
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              className="text-sm underline-offset-4 opacity-60 hover:opacity-100 hover:underline"
               href="/"
             >
               Home
@@ -30,7 +29,7 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              className="text-sm underline-offset-4 opacity-60 hover:opacity-100 hover:underline"
               href="/components"
             >
               Components
@@ -38,7 +37,7 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              className="text-sm underline-offset-4 opacity-60 hover:opacity-100 hover:underline"
               href="/blocks"
             >
               Blocks
@@ -46,7 +45,7 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              className="text-sm underline-offset-4 opacity-60 hover:opacity-100 hover:underline"
               href="/showcase"
             >
               Showcase
@@ -54,14 +53,11 @@ export function SiteHeader() {
           </li>
           <li>
             <Link
-              className="text-sm underline-offset-4 hover:font-medium hover:tracking-[-0.2px] hover:underline"
+              className="text-sm underline-offset-4 opacity-60 hover:opacity-100 hover:underline"
               href="https://preetsuthar.me/sponsor"
             >
               Sponsor
             </Link>
-          </li>
-          <li>
-            <ThemeSelector />
           </li>
           <li>
             <ThemeSwitcher />

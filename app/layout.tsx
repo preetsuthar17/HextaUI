@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
 import {
-  Architects_Daughter,
-  DM_Sans,
-  Fira_Code,
   Geist,
   Geist_Mono,
   Inter,
-  JetBrains_Mono,
-  Lora,
-  Merriweather,
-  Outfit,
-  Oxanium,
   Playfair_Display,
-  Poppins,
-  Press_Start_2P,
-  Source_Code_Pro,
-  Space_Mono,
+  Rubik,
+  Onest,
+  TASA_Orbiter
 } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -26,7 +17,7 @@ import { SiteHeader } from "@/components/site-header";
 import { ThemeProvider } from "@/components/theme-provider";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
-const geistSans = Geist({
+const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
@@ -41,78 +32,28 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
 });
 
-const pressStart2P = Press_Start_2P({
-  variable: "--font-press-start-2p",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const spaceMono = Space_Mono({
-  variable: "--font-space-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
-
-const architectsDaughter = Architects_Daughter({
-  variable: "--font-architects-daughter",
-  subsets: ["latin"],
-  weight: "400",
-});
-
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
-});
-
-const outfit = Outfit({
-  variable: "--font-outfit",
-  subsets: ["latin"],
-});
-
-const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const lora = Lora({
-  variable: "--font-lora",
-  subsets: ["latin"],
-});
-
-const firaCode = Fira_Code({
-  variable: "--font-fira-code",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const merriweather = Merriweather({
-  variable: "--font-merriweather",
-  subsets: ["latin"],
-  weight: ["300", "400", "700", "900"],
-});
-
-const jetBrainsMono = JetBrains_Mono({
-  variable: "--font-jetbrains-mono",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const oxanium = Oxanium({
-  variable: "--font-oxanium",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const sourceCodePro = Source_Code_Pro({
-  variable: "--font-source-code-pro",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+});
+
+const rubik = Rubik({
+  variable: "--font-rubik",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const onest = Onest({
+  variable: "--font-onest",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const tasaOrbiter = TASA_Orbiter({
+  variable: "--font-tasa-orbiter",
+  subsets: ["latin"],
+  fallback: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],  
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = generatePageMetadata();
@@ -132,7 +73,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${playfairDisplay.variable} ${pressStart2P.variable} ${spaceMono.variable} ${architectsDaughter.variable} ${dmSans.variable} ${outfit.variable} ${poppins.variable} ${lora.variable} ${firaCode.variable} ${merriweather.variable} ${jetBrainsMono.variable} ${oxanium.variable} ${sourceCodePro.variable} antialiased`}
+        className={`${geist.variable} ${inter.variable} ${playfairDisplay.variable} ${geistMono.variable} ${rubik.variable} ${onest.variable} ${tasaOrbiter.variable} antialiased`}
         suppressHydrationWarning={true}
       >
         <script
@@ -140,8 +81,16 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  const stored = localStorage.getItem('hextaui-color-theme') || 'retro-blue';
-                  const isDark = document.documentElement.classList.contains('dark');
+                  const stored = localStorage.getItem('hextaui-color-theme') || 'default';
+                  const themePreference = localStorage.getItem('theme');
+                  let isDark = false;
+                  if (themePreference === 'dark') {
+                    isDark = true;
+                  } else if (themePreference === 'light') {
+                    isDark = false;
+                  } else {
+                    isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  }
                   const themes = {
                     'retro-blue': {
                       light: {
@@ -353,6 +302,446 @@ export default function RootLayout({
                         '--shadow-lg': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
                         '--shadow-xl': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
                         '--shadow-2xl': '0 1px 3px 0px hsl(0 0% 0% / 0.25)'
+                      }
+                    },
+                    'purple': {
+                      light: {
+                        '--background': 'oklch(1 0 0)',
+                        '--foreground': 'oklch(0.282 0.087 267.935)',
+                        '--card': 'oklch(1 0 0)',
+                        '--card-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--popover': 'oklch(1 0 0)',
+                        '--popover-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--primary': 'oklch(0.468 0.272 279.601)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.955 0.025 298.615)',
+                        '--secondary-foreground': 'oklch(0.266 0.151 281.039)',
+                        '--muted': 'oklch(0.984 0.003 247.858)',
+                        '--muted-foreground': 'oklch(0.516 0.054 272.586)',
+                        '--accent': 'oklch(0.968 0.007 247.896)',
+                        '--accent-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--destructive': 'oklch(0.69 0.2 23.91)',
+                        '--destructive-foreground': 'oklch(1 0 0)',
+                        '--border': 'oklch(0.929 0.013 255.508)',
+                        '--input': 'oklch(0.929 0.013 255.508)',
+                        '--ring': 'oklch(0.468 0.272 279.601 / 0.1)',
+                        '--chart-1': 'oklch(0.55 0.25 279.6)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(0.984 0.003 247.858)',
+                        '--sidebar-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--sidebar-primary': 'oklch(0.468 0.272 279.601)',
+                        '--sidebar-primary-foreground': 'oklch(1 0 0)',
+                        '--sidebar-accent': 'oklch(0.968 0.007 247.896)',
+                        '--sidebar-accent-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--sidebar-border': 'oklch(0.929 0.013 255.508)',
+                        '--sidebar-ring': 'oklch(0.929 0.013 255.508)',
+                        '--font-sans': 'Rubik',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.625rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 0 0 oklch(0.554 0.041 257.417 / 0.05)',
+                        '--shadow-xs': '0 1px 2px 0 oklch(0.554 0.041 257.417 / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-md': '0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-lg': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-xl': '0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-2xl': '0 25px 50px -12px oklch(0.554 0.041 257.417 / 0.15)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      },
+                      dark: {
+                        '--background': 'oklch(0.15 0.03 268)',
+                        '--foreground': 'oklch(0.98 0 0)',
+                        '--card': 'oklch(0.17 0.03 268)',
+                        '--card-foreground': 'oklch(0.98 0 0)',
+                        '--popover': 'oklch(0.18 0.03 268)',
+                        '--popover-foreground': 'oklch(0.98 0 0)',
+                        '--primary': 'oklch(0.55 0.25 279.6)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.55 0.25 279.6 / 25%)',
+                        '--secondary-foreground': 'oklch(0.7 0.25 279.6)',
+                        '--muted': 'oklch(0.22 0.02 270)',
+                        '--muted-foreground': 'oklch(0.75 0.04 275)',
+                        '--accent': 'oklch(0.28 0.03 272)',
+                        '--accent-foreground': 'oklch(0.98 0 0)',
+                        '--destructive': 'oklch(0.69 0.2 23.91)',
+                        '--destructive-foreground': 'oklch(0 0 0)',
+                        '--border': 'oklch(0.3 0.02 270)',
+                        '--input': 'oklch(0.32 0.02 270)',
+                        '--ring': 'oklch(0.55 0.25 279.6)',
+                        '--chart-1': 'oklch(0.55 0.25 279.6)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(0.16 0.02 270)',
+                        '--sidebar-foreground': 'oklch(0.98 0 0)',
+                        '--sidebar-primary': 'oklch(1 0 0)',
+                        '--sidebar-primary-foreground': 'oklch(0.2 0.02 268)',
+                        '--sidebar-accent': 'oklch(0.24 0.02 272)',
+                        '--sidebar-accent-foreground': 'oklch(0.98 0 0)',
+                        '--sidebar-border': 'oklch(0.28 0.02 270)',
+                        '--sidebar-ring': 'oklch(0.55 0.25 279.6)',
+                        '--font-sans': 'Rubik',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.625rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-md': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-lg': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-xl': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-2xl': '0 1px 3px 0 hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      }
+                    },
+                    'night-wind': {
+                      light: {
+                        '--background': 'oklch(1 0 0)',
+                        '--foreground': 'oklch(0.145 0 0)',
+                        '--card': 'oklch(1 0 0)',
+                        '--card-foreground': 'oklch(0.145 0 0)',
+                        '--popover': 'oklch(1 0 0)',
+                        '--popover-foreground': 'oklch(0.145 0 0)',
+                        '--primary': 'oklch(0.7273 0.143 215.221)',
+                        '--primary-foreground': 'oklch(0.1 0.143 215.221)',
+                        '--secondary': 'oklch(0.7273 0.143 215.221 / 0.1)',
+                        '--secondary-foreground': 'oklch(0.2 0.143 215.221)',
+                        '--muted': 'oklch(0.97 0 0)',
+                        '--muted-foreground': 'oklch(0.556 0 0)',
+                        '--accent': 'oklch(0.97 0 0)',
+                        '--accent-foreground': 'oklch(0.145 0 0)',
+                        '--destructive': 'oklch(0.577 0.245 27.325)',
+                        '--destructive-foreground': 'oklch(1 0 0)',
+                        '--border': 'oklch(0.922 0 0)',
+                        '--input': 'oklch(0.922 0 0)',
+                        '--ring': 'oklch(0.715 0.143 215.221)',
+                        '--chart-1': 'oklch(0.81 0.1 252)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(1 0 0)',
+                        '--sidebar-foreground': 'oklch(0.145 0 0)',
+                        '--sidebar-primary': 'oklch(0.715 0.143 215.221)',
+                        '--sidebar-primary-foreground': 'oklch(0.1 0.143 215.221)',
+                        '--sidebar-accent': 'oklch(0.97 0 0)',
+                        '--sidebar-accent-foreground': 'oklch(0.145 0 0)',
+                        '--sidebar-border': 'oklch(0.922 0 0)',
+                        '--sidebar-ring': 'oklch(0.715 0.143 215.221)',
+                        '--font-sans': 'Inter',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.625rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-md': '0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1)',
+                        '--shadow-lg': '0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1)',
+                        '--shadow-xl': '0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1)',
+                        '--shadow-2xl': '0 25px 50px -12px hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      },
+                      dark: {
+                        '--background': 'oklch(0.1783 0.042 264.695)',
+                        '--foreground': 'oklch(0.985 0 0)',
+                        '--card': 'oklch(0.1783 0.042 264.695)',
+                        '--card-foreground': 'oklch(0.985 0 0)',
+                        '--popover': 'oklch(0.208 0.042 265.755)',
+                        '--popover-foreground': 'oklch(0.984 0.003 247.858)',
+                        '--primary': 'oklch(0.7273 0.143 215.221)',
+                        '--primary-foreground': 'oklch(0.129 0.042 264.695)',
+                        '--secondary': 'oklch(0.279 0.041 260.031)',
+                        '--secondary-foreground': 'oklch(0.984 0.003 247.858)',
+                        '--muted': 'oklch(0.129 0.042 264.695)',
+                        '--muted-foreground': 'oklch(0.704 0.04 256.788)',
+                        '--accent': 'oklch(0.208 0.042 265.755)',
+                        '--accent-foreground': 'oklch(0.985 0 0)',
+                        '--destructive': 'oklch(0.577 0.245 27.325)',
+                        '--destructive-foreground': 'oklch(0.985 0 0)',
+                        '--border': 'oklch(0.308 0.042 265.755)',
+                        '--input': 'oklch(0.308 0.042 265.755)',
+                        '--ring': 'oklch(0.715 0.143 215.221)',
+                        '--chart-1': 'oklch(0.81 0.1 252)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(0.1783 0.042 264.695)',
+                        '--sidebar-foreground': 'oklch(0.985 0 0)',
+                        '--sidebar-primary': 'oklch(0.715 0.143 215.221)',
+                        '--sidebar-primary-foreground': 'oklch(0.985 0 0)',
+                        '--sidebar-accent': 'oklch(0.208 0.042 265.755)',
+                        '--sidebar-accent-foreground': 'oklch(0.985 0 0)',
+                        '--sidebar-border': 'oklch(0.279 0.041 260.031)',
+                        '--sidebar-ring': 'oklch(0.715 0.143 215.221)',
+                        '--font-sans': 'Inter',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.625rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-md': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-lg': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-xl': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-2xl': '0 1px 3px 0 hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      }
+                    },
+                    'orbiter': {
+                      light: {
+                        '--background': 'oklch(1 0 0)',
+                        '--foreground': 'oklch(0.145 0 0)',
+                        '--card': 'oklch(1 0 0)',
+                        '--card-foreground': 'oklch(0.145 0 0)',
+                        '--popover': 'oklch(1 0 0)',
+                        '--popover-foreground': 'oklch(0.145 0 0)',
+                        '--primary': 'oklch(0.628 0.258 29.264)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.97 0 0)',
+                        '--secondary-foreground': 'oklch(0.145 0 0)',
+                        '--muted': 'oklch(0.97 0 0)',
+                        '--muted-foreground': 'oklch(0.556 0 0)',
+                        '--accent': 'oklch(0.97 0 0)',
+                        '--accent-foreground': 'oklch(0.145 0 0)',
+                        '--destructive': 'oklch(0.69 0.2 23.91)',
+                        '--destructive-foreground': 'oklch(1 0 0)',
+                        '--border': 'oklch(0.922 0 0)',
+                        '--input': 'oklch(0.922 0 0)',
+                        '--ring': 'oklch(0.646 0.28 41.116)',
+                        '--chart-1': 'oklch(0.646 0.28 41.116)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(1 0 0)',
+                        '--sidebar-foreground': 'oklch(0.145 0 0)',
+                        '--sidebar-primary': 'oklch(0.646 0.28 41.116)',
+                        '--sidebar-primary-foreground': 'oklch(1 0 0)',
+                        '--sidebar-accent': 'oklch(0.97 0 0)',
+                        '--sidebar-accent-foreground': 'oklch(0.145 0 0)',
+                        '--sidebar-border': 'oklch(0.922 0 0)',
+                        '--sidebar-ring': 'oklch(0.72 0 0)',
+                        '--font-sans': 'Tasa Orbiter',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-md': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-lg': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-xl': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-2xl': '0 1px 3px 0px hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      },
+                      dark: {
+                        '--background': 'oklch(0 0 0)',
+                        '--foreground': 'oklch(1 0 0)',
+                        '--card': 'oklch(0.14 0 0)',
+                        '--card-foreground': 'oklch(1 0 0)',
+                        '--popover': 'oklch(0.18 0 0)',
+                        '--popover-foreground': 'oklch(1 0 0)',
+                        '--primary': 'oklch(0.646 0.28 41.116)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.25 0 0)',
+                        '--secondary-foreground': 'oklch(1 0 0)',
+                        '--muted': 'oklch(0.23 0 0)',
+                        '--muted-foreground': 'oklch(0.72 0 0)',
+                        '--accent': 'oklch(0.25 0 0)',
+                        '--accent-foreground': 'oklch(1 0 0)',
+                        '--destructive': 'oklch(0.69 0.2 23.91)',
+                        '--destructive-foreground': 'oklch(0 0 0)',
+                        '--border': 'oklch(0.26 0 0)',
+                        '--input': 'oklch(0.32 0 0)',
+                        '--ring': 'oklch(0.646 0.28 41.116)',
+                        '--chart-1': 'oklch(0.646 0.28 41.116)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(0.18 0 0)',
+                        '--sidebar-foreground': 'oklch(1 0 0)',
+                        '--sidebar-primary': 'oklch(0.646 0.28 41.116)',
+                        '--sidebar-primary-foreground': 'oklch(1 0 0)',
+                        '--sidebar-accent': 'oklch(0.32 0 0)',
+                        '--sidebar-accent-foreground': 'oklch(1 0 0)',
+                        '--sidebar-border': 'oklch(0.32 0 0)',
+                        '--sidebar-ring': 'oklch(0.72 0 0)',
+                        '--font-sans': 'Tasa Orbiter',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0px hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-md': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-lg': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-xl': '0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)',
+                        '--shadow-2xl': '0 1px 3px 0px hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      }
+                    },
+                    'soft-orange': {
+                      light: {
+                        '--background': 'oklch(1 0 0)',
+                        '--foreground': 'oklch(0.282 0.087 267.935)',
+                        '--card': 'oklch(1 0 0)',
+                        '--card-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--popover': 'oklch(1 0 0)',
+                        '--popover-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--primary': 'oklch(0.677 0.203 40.381)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.981 0.009 258.335)',
+                        '--secondary-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--muted': 'oklch(0.984 0.003 247.858)',
+                        '--muted-foreground': 'oklch(0.516 0.054 272.586)',
+                        '--accent': 'oklch(0.968 0.007 247.896)',
+                        '--accent-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--destructive': 'oklch(0.69 0.2 23.91)',
+                        '--destructive-foreground': 'oklch(1 0 0)',
+                        '--border': 'oklch(0.929 0.013 255.508)',
+                        '--input': 'oklch(0.929 0.013 255.508)',
+                        '--ring': 'oklch(0.677 0.203 40.381 / 0.1)',
+                        '--chart-1': 'oklch(0.677 0.203 40.381)',
+                        '--chart-2': 'oklch(0.7 0.19 48)',
+                        '--chart-3': 'oklch(0.77 0.2 131)',
+                        '--chart-4': 'oklch(0.68 0.15 237)',
+                        '--chart-5': 'oklch(0.66 0.21 354)',
+                        '--sidebar': 'oklch(0.984 0.003 247.858)',
+                        '--sidebar-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--sidebar-primary': 'oklch(0.282 0.087 267.935)',
+                        '--sidebar-primary-foreground': 'oklch(1 0 0)',
+                        '--sidebar-accent': 'oklch(0.968 0.007 247.896)',
+                        '--sidebar-accent-foreground': 'oklch(0.282 0.087 267.935)',
+                        '--sidebar-border': 'oklch(0.929 0.013 255.508)',
+                        '--sidebar-ring': 'oklch(0.929 0.013 255.508)',
+                        '--font-sans': 'Onest',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.5rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 0 0 oklch(0.554 0.041 257.417 / 0.05)',
+                        '--shadow-xs': '0 1px 2px 0 oklch(0.554 0.041 257.417 / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-md': '0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-lg': '0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-xl': '0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)',
+                        '--shadow-2xl': '0 25px 50px -12px oklch(0.554 0.041 257.417 / 0.15)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
+                      },
+                      dark: {
+                        '--background': 'oklch(0.129 0.041 264.695)',
+                        '--foreground': 'oklch(0.97 0.014 254.604)',
+                        '--card': 'oklch(0.208 0.04 265.755)',
+                        '--card-foreground': 'oklch(0.97 0.014 254.604)',
+                        '--popover': 'oklch(0.279 0.037 260.031)',
+                        '--popover-foreground': 'oklch(0.97 0.014 254.604)',
+                        '--primary': 'oklch(0.677 0.203 40.381)',
+                        '--primary-foreground': 'oklch(1 0 0)',
+                        '--secondary': 'oklch(0.279 0.037 260.031)',
+                        '--secondary-foreground': 'oklch(0.97 0.014 254.604)',
+                        '--muted': 'oklch(0.279 0.037 260.031)',
+                        '--muted-foreground': 'oklch(0.711 0.035 256.788)',
+                        '--accent': 'oklch(0.279 0.037 260.031)',
+                        '--accent-foreground': 'oklch(0.984 0.003 247.858)',
+                        '--destructive': 'oklch(0.711 0.166 22.216)',
+                        '--destructive-foreground': 'oklch(0 0 0)',
+                        '--border': 'oklch(1 0 0 / 0.1)',
+                        '--input': 'oklch(1 0 0 / 0.15)',
+                        '--ring': 'oklch(0.677 0.203 40.381 / 0.1)',
+                        '--chart-1': 'oklch(0.677 0.203 40.381)',
+                        '--chart-2': 'oklch(0.696 0.149 162.48)',
+                        '--chart-3': 'oklch(0.769 0.165 70.08)',
+                        '--chart-4': 'oklch(0.627 0.233 303.9)',
+                        '--chart-5': 'oklch(0.645 0.215 16.439)',
+                        '--sidebar': 'oklch(0.208 0.04 265.755)',
+                        '--sidebar-foreground': 'oklch(0.97 0.014 254.604)',
+                        '--sidebar-primary': 'oklch(0.677 0.203 40.381)',
+                        '--sidebar-primary-foreground': 'oklch(1 0 0)',
+                        '--sidebar-accent': 'oklch(0.279 0.037 260.031)',
+                        '--sidebar-accent-foreground': 'oklch(0.984 0.003 247.858)',
+                        '--sidebar-border': 'oklch(1 0 0 / 0.1)',
+                        '--sidebar-ring': 'oklch(0.446 0.037 257.281)',
+                        '--font-sans': 'Onest',
+                        '--font-serif': 'ui-serif, Georgia, Cambria, \\'Times New Roman\\', Times, serif',
+                        '--font-mono': 'monospace',
+                        '--radius': '0.5rem',
+                        '--shadow-x': '0',
+                        '--shadow-y': '1px',
+                        '--shadow-blur': '3px',
+                        '--shadow-spread': '0px',
+                        '--shadow-opacity': '0.1',
+                        '--shadow-color': 'oklch(0 0 0)',
+                        '--shadow-2xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-xs': '0 1px 3px 0 hsl(0 0% 0% / 0.05)',
+                        '--shadow-sm': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-md': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-lg': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-xl': '0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)',
+                        '--shadow-2xl': '0 1px 3px 0 hsl(0 0% 0% / 0.25)',
+                        '--tracking-normal': '0em',
+                        '--spacing': '0.25rem'
                       }
                     },
                     'claude': {
@@ -1220,6 +1609,11 @@ export default function RootLayout({
                       }
                     }
                   };
+                  if (isDark) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
                   const theme = themes[stored];
                   if (theme) {
                     const vars = isDark ? theme.dark : theme.light;
