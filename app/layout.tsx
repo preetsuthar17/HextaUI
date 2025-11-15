@@ -3,10 +3,10 @@ import {
   Geist,
   Geist_Mono,
   Inter,
+  Onest,
   Playfair_Display,
   Rubik,
-  Onest,
-  TASA_Orbiter
+  TASA_Orbiter,
 } from "next/font/google";
 import "./globals.css";
 import Script from "next/script";
@@ -14,6 +14,7 @@ import { Toaster } from "sonner";
 import { ComponentSearch } from "@/components/docs/component-search";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { ThemeInitializer } from "@/components/theme-initializer";
 import { ThemeProvider } from "@/components/theme-provider";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
@@ -52,7 +53,22 @@ const onest = Onest({
 const tasaOrbiter = TASA_Orbiter({
   variable: "--font-tasa-orbiter",
   subsets: ["latin"],
-  fallback: ["ui-sans-serif", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "Noto Sans", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"],  
+  fallback: [
+    "ui-sans-serif",
+    "system-ui",
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "Roboto",
+    "Helvetica Neue",
+    "Arial",
+    "Noto Sans",
+    "sans-serif",
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol",
+    "Noto Color Emoji",
+  ],
   weight: ["400", "500", "600", "700"],
 });
 
@@ -81,7 +97,14 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  const stored = localStorage.getItem('hextaui-color-theme') || 'default';
+                  const validThemes = ['default', 'retro-blue', 'purple', 'night-wind', 'orbiter', 'soft-orange'];
+                  let stored = localStorage.getItem('hextaui-color-theme');
+                  if (stored) {
+                    stored = stored.trim();
+                  }
+                  if (!stored || !validThemes.includes(stored)) {
+                    stored = 'default';
+                  }
                   const themePreference = localStorage.getItem('theme');
                   let isDark = false;
                   if (themePreference === 'dark') {
@@ -1632,6 +1655,7 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
+          <ThemeInitializer />
           <a
             className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
             href="#content"

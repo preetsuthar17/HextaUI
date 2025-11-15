@@ -297,11 +297,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 0 0 oklch(0.554 0.041 257.417 / 0.05)",
       "--shadow-xs": "0 1px 2px 0 oklch(0.554 0.041 257.417 / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-md": "0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-lg": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-xl": "0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-md":
+        "0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-lg":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-xl":
+        "0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)",
       "--shadow-2xl": "0 25px 50px -12px oklch(0.554 0.041 257.417 / 0.15)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -352,11 +357,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-md": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-lg": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-xl": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-md":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-lg":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-xl":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
       "--shadow-2xl": "0 1px 3px 0 hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -411,11 +421,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-md": "0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1)",
-      "--shadow-lg": "0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1)",
-      "--shadow-xl": "0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-md":
+        "0 4px 6px -1px hsl(0 0% 0% / 0.1), 0 2px 4px -2px hsl(0 0% 0% / 0.1)",
+      "--shadow-lg":
+        "0 10px 15px -3px hsl(0 0% 0% / 0.1), 0 4px 6px -4px hsl(0 0% 0% / 0.1)",
+      "--shadow-xl":
+        "0 20px 25px -5px hsl(0 0% 0% / 0.1), 0 8px 10px -6px hsl(0 0% 0% / 0.1)",
       "--shadow-2xl": "0 25px 50px -12px hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -466,11 +481,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-md": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-lg": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-xl": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-md":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-lg":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-xl":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
       "--shadow-2xl": "0 1px 3px 0 hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -525,11 +545,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-md": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-lg": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-xl": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-sm":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-md":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-lg":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-xl":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)",
       "--shadow-2xl": "0 1px 3px 0px hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -580,11 +605,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0px hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-md": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-lg": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
-      "--shadow-xl": "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-sm":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 1px 2px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-md":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 2px 4px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-lg":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 4px 6px -1px hsl(0 0% 0% / 0.10)",
+      "--shadow-xl":
+        "0 1px 3px 0px hsl(0 0% 0% / 0.10), 0 8px 10px -1px hsl(0 0% 0% / 0.10)",
       "--shadow-2xl": "0 1px 3px 0px hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -639,11 +669,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 0 0 oklch(0.554 0.041 257.417 / 0.05)",
       "--shadow-xs": "0 1px 2px 0 oklch(0.554 0.041 257.417 / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-md": "0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-lg": "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)",
-      "--shadow-xl": "0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 1px 2px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-md":
+        "0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1), 0 2px 4px -2px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-lg":
+        "0 1px 3px 0 oklch(0.554 0.041 257.417 / 0.1), 0 4px 6px -1px oklch(0.554 0.041 257.417 / 0.1)",
+      "--shadow-xl":
+        "0 20px 25px -5px oklch(0 0 0 / 0.1), 0 8px 10px -6px oklch(0.554 0.041 257.417 / 0.1)",
       "--shadow-2xl": "0 25px 50px -12px oklch(0.554 0.041 257.417 / 0.15)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",
@@ -694,11 +729,16 @@ export const themes: Theme[] = [
       "--shadow-color": "oklch(0 0 0)",
       "--shadow-2xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
       "--shadow-xs": "0 1px 3px 0 hsl(0 0% 0% / 0.05)",
-      "--shadow-sm": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-md": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-lg": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
-      "--shadow-xl": "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-sm":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-md":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-lg":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1)",
+      "--shadow-xl":
+        "0 1px 3px 0 hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1)",
       "--shadow-2xl": "0 1px 3px 0 hsl(0 0% 0% / 0.25)",
       "--tracking-normal": "0em",
       "--spacing": "0.25rem",

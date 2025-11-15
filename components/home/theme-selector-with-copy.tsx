@@ -20,16 +20,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  applyTheme,
-  getTheme,
-  type ThemeName,
-  themes,
-} from "@/lib/themes";
+import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
 
-const themeFonts: Record<ThemeName, { sans?: string; serif?: string; mono?: string }> = {
+const themeFonts: Record<
+  ThemeName,
+  { sans?: string; serif?: string; mono?: string }
+> = {
   default: {},
   "retro-blue": {
     sans: "Geist Mono",
@@ -58,8 +56,8 @@ const fontImportMap: Record<string, string> = {
   "Fira Code": "Fira_Code",
   "JetBrains Mono": "JetBrains_Mono",
   "Source Code Pro": "Source_Code_Pro",
-  "Rubik": "Rubik",
-  "Onest": "Onest",
+  Rubik: "Rubik",
+  Onest: "Onest",
   "TASA Orbiter": "TASA_Orbiter",
 };
 
@@ -72,7 +70,7 @@ function getFontImportCode(themeName: ThemeName): string {
   const imports: string[] = [];
   const configs: string[] = [];
   const classNameVars: string[] = [];
-  
+
   const fontVarMap: Record<string, string> = {
     "Geist Mono": "geistMono",
     "Playfair Display": "playfairDisplay",
@@ -80,49 +78,56 @@ function getFontImportCode(themeName: ThemeName): string {
     "Space Mono": "spaceMono",
     "Architects Daughter": "architectsDaughter",
     "DM Sans": "dmSans",
-    "Outfit": "outfit",
-    "Poppins": "poppins",
-    "Lora": "lora",
+    Outfit: "outfit",
+    Poppins: "poppins",
+    Lora: "lora",
     "Fira Code": "firaCode",
-    "Merriweather": "merriweather",
+    Merriweather: "merriweather",
     "JetBrains Mono": "jetBrainsMono",
-    "Oxanium": "oxanium",
+    Oxanium: "oxanium",
     "Source Code Pro": "sourceCodePro",
-    "Inter": "inter",
-    "Rubik": "rubik",
-    "Onest": "onest",
+    Inter: "inter",
+    Rubik: "rubik",
+    Onest: "onest",
   };
 
-  const processFont = (fontDisplayName: string, type: "sans" | "serif" | "mono") => {
-    const fontImportName = fontImportMap[fontDisplayName] || fontDisplayName.replace(/\s+/g, "_");
-    const varName = fontVarMap[fontDisplayName] || fontDisplayName.toLowerCase().replace(/\s+/g, "");
-    
-    imports.push(
-      `import ${fontImportName} from "next/font/google";`
-    );
-    
-    const weightConfig = fontDisplayName === "Press Start 2P" 
-      ? '  weight: "400",'
-      : fontDisplayName === "Space Mono"
-      ? '  weight: ["400", "700"],'
-      : fontDisplayName === "Fira Code" || fontDisplayName === "JetBrains Mono" || fontDisplayName === "Source Code Pro"
-      ? '  weight: ["400", "500", "600", "700"],'
-      : fontDisplayName === "Poppins"
-      ? '  weight: ["400", "500", "600", "700"],'
-      : fontDisplayName === "Merriweather"
-      ? '  weight: ["300", "400", "700", "900"],'
-      : fontDisplayName === "Oxanium"
-      ? '  weight: ["400", "500", "600", "700"],'
-      : "";
-    
+  const processFont = (
+    fontDisplayName: string,
+    type: "sans" | "serif" | "mono"
+  ) => {
+    const fontImportName =
+      fontImportMap[fontDisplayName] || fontDisplayName.replace(/\s+/g, "_");
+    const varName =
+      fontVarMap[fontDisplayName] ||
+      fontDisplayName.toLowerCase().replace(/\s+/g, "");
+
+    imports.push(`import ${fontImportName} from "next/font/google";`);
+
+    const weightConfig =
+      fontDisplayName === "Press Start 2P"
+        ? '  weight: "400",'
+        : fontDisplayName === "Space Mono"
+          ? '  weight: ["400", "700"],'
+          : fontDisplayName === "Fira Code" ||
+              fontDisplayName === "JetBrains Mono" ||
+              fontDisplayName === "Source Code Pro"
+            ? '  weight: ["400", "500", "600", "700"],'
+            : fontDisplayName === "Poppins"
+              ? '  weight: ["400", "500", "600", "700"],'
+              : fontDisplayName === "Merriweather"
+                ? '  weight: ["300", "400", "700", "900"],'
+                : fontDisplayName === "Oxanium"
+                  ? '  weight: ["400", "500", "600", "700"],'
+                  : "";
+
     const configLines = [
       `const ${varName} = ${fontImportName}({`,
       `  variable: "--font-${varName}",`,
       `  subsets: ["latin"],`,
       ...(weightConfig ? [weightConfig] : []),
-      `});`
+      "});",
     ];
-    
+
     configs.push(configLines.join("\n"));
     classNameVars.push(`${varName}.variable`);
   };
@@ -212,11 +217,22 @@ export function ThemeSelectorWithCopy() {
 
   useEffect(() => {
     setHydrated(true);
+    const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
+    if (stored && getTheme(stored)) {
+      setColorTheme(stored);
+    }
   }, []);
 
   useEffect(() => {
     if (!hydrated) return;
-    const theme = getTheme(colorTheme);
+    const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
+    const themeToUse = stored && getTheme(stored) ? stored : "default";
+
+    if (themeToUse !== colorTheme) {
+      setColorTheme(themeToUse);
+    }
+
+    const theme = getTheme(themeToUse);
     if (theme) {
       const isDark = mode === "dark";
       applyTheme(theme, isDark);
@@ -259,13 +275,13 @@ export function ThemeSelectorWithCopy() {
   const darkCssCode = getThemeCSSCode(colorTheme, true);
   const globalsCssCode = getGlobalsCSSCode();
   const fontCode = getFontImportCode(colorTheme);
-  
+
   const darkCssFormatted = darkCssCode.replace(":root {", ".dark {");
   const allCssCode = `${lightCssCode}\n\n${darkCssFormatted}\n\n${globalsCssCode}`;
 
   return (
     <div className="flex items-center gap-2">
-      <Select value={colorTheme} onValueChange={handleThemeChange}>
+      <Select onValueChange={handleThemeChange} value={colorTheme}>
         <SelectTrigger className="w-[180px]">
           <SelectValue>
             <span className="flex items-center gap-2">
@@ -285,11 +301,11 @@ export function ThemeSelectorWithCopy() {
 
       <Dialog>
         <DialogTrigger asChild>
-          <Button size="icon" variant="outline" aria-label="Copy theme CSS">
+          <Button aria-label="Copy theme CSS" size="icon" variant="outline">
             <Copy className="size-4" />
           </Button>
         </DialogTrigger>
-          <DialogContent className="max-w-[95vw] sm:max-w-2xl max-h-[80vh] overflow-hidden flex flex-col">
+        <DialogContent className="flex max-h-[80vh] max-w-[95vw] flex-col overflow-hidden sm:max-w-2xl">
           <DialogHeader className="shrink-0">
             <DialogTitle>Theme CSS Code</DialogTitle>
             <DialogDescription>
@@ -297,15 +313,17 @@ export function ThemeSelectorWithCopy() {
               <strong>{currentTheme?.label}</strong> theme
             </DialogDescription>
           </DialogHeader>
-          <div className="flex flex-col gap-4 flex-1 min-h-0 overflow-hidden">
-            <div className="flex flex-col gap-2 flex-1 min-h-0 overflow-hidden">
-              <div className="flex items-center justify-between gap-2 shrink-0">
+          <div className="flex min-h-0 flex-1 flex-col gap-4 overflow-hidden">
+            <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-hidden">
+              <div className="flex shrink-0 items-center justify-between gap-2">
                 <h3 className="font-medium text-sm">All CSS Variables</h3>
                 <Button
+                  aria-label={
+                    copiedSection === "css" ? "Copied!" : "Copy all CSS"
+                  }
+                  onClick={() => handleCopy(allCssCode, "css")}
                   size="icon-sm"
                   variant="outline"
-                  onClick={() => handleCopy(allCssCode, "css")}
-                  aria-label={copiedSection === "css" ? "Copied!" : "Copy all CSS"}
                 >
                   {copiedSection === "css" ? (
                     <Check className="size-4" />
@@ -314,10 +332,10 @@ export function ThemeSelectorWithCopy() {
                   )}
                 </Button>
               </div>
-              <div className="rounded-md border overflow-hidden">
+              <div className="overflow-hidden rounded-md border">
                 <ScrollArea className="h-[495px] w-full">
                   <div className="p-4">
-                    <pre className="text-xs whitespace-pre">
+                    <pre className="whitespace-pre text-xs">
                       <code className="block min-w-max">{allCssCode}</code>
                     </pre>
                   </div>
@@ -327,12 +345,16 @@ export function ThemeSelectorWithCopy() {
             </div>
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="font-medium text-sm">Font Imports (layout.tsx)</h3>
+                <h3 className="font-medium text-sm">
+                  Font Imports (layout.tsx)
+                </h3>
                 <Button
+                  aria-label={
+                    copiedSection === "font" ? "Copied!" : "Copy font code"
+                  }
+                  onClick={() => handleCopy(fontCode, "font")}
                   size="icon-sm"
                   variant="outline"
-                  onClick={() => handleCopy(fontCode, "font")}
-                  aria-label={copiedSection === "font" ? "Copied!" : "Copy font code"}
                 >
                   {copiedSection === "font" ? (
                     <Check className="size-4" />
@@ -344,7 +366,7 @@ export function ThemeSelectorWithCopy() {
               <div className="rounded-md border">
                 <ScrollArea className="h-[200px]">
                   <div className="p-4">
-                    <pre className="text-xs whitespace-pre">
+                    <pre className="whitespace-pre text-xs">
                       <code className="block min-w-max">{fontCode}</code>
                     </pre>
                   </div>
@@ -358,4 +380,3 @@ export function ThemeSelectorWithCopy() {
     </div>
   );
 }
-

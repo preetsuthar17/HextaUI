@@ -13,7 +13,8 @@ const SCROLL_POSITION_KEY = "components-sidebar-scroll";
 
 export function ComponentsSidebar({ currentId }: { currentId?: string }) {
   const [query, setQuery] = React.useState("");
-  const scrollAreaRef = React.useRef<React.ComponentRef<typeof ScrollArea>>(null);
+  const scrollAreaRef =
+    React.useRef<React.ComponentRef<typeof ScrollArea>>(null);
 
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -34,11 +35,10 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
     if (!scrollArea) return;
 
     // Wait for the viewport to be available
-    const findViewport = (): HTMLElement | null => {
-      return scrollArea.querySelector(
+    const findViewport = (): HTMLElement | null =>
+      scrollArea.querySelector(
         '[data-slot="scroll-area-viewport"]'
       ) as HTMLElement | null;
-    };
 
     let cleanup: (() => void) | undefined;
     let frameId: number | undefined;
@@ -127,10 +127,7 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
         <Separator className="shrink-0" />
         {/* ScrollArea must fill available space and allow scrolling of long content */}
         <div className="flex min-h-0 flex-1 flex-col">
-          <ScrollArea
-            ref={scrollAreaRef}
-            className="min-h-0 flex-1 p-2"
-          >
+          <ScrollArea className="min-h-0 flex-1 p-2" ref={scrollAreaRef}>
             {filtered.length === 0 ? (
               <div className="p-2 text-center text-muted-foreground text-sm">
                 No results

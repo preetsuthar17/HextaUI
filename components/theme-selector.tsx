@@ -29,7 +29,17 @@ export function ThemeSelector() {
     }
     return "default";
   });
-  const [hydrated] = useState(() => typeof window !== "undefined");
+  const [hydrated, setHydrated] = useState(() => typeof window !== "undefined");
+
+  useEffect(() => {
+    if (!hydrated) {
+      setHydrated(true);
+    }
+    const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
+    if (stored && getTheme(stored) && stored !== colorTheme) {
+      setColorTheme(stored);
+    }
+  }, [hydrated, colorTheme]);
 
   useEffect(() => {
     if (!hydrated) return;
