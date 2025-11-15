@@ -260,7 +260,8 @@ export function ThemeSelectorWithCopy() {
   const globalsCssCode = getGlobalsCSSCode();
   const fontCode = getFontImportCode(colorTheme);
   
-  const allCssCode = `${lightCssCode}\n\n/* Dark Mode */\n@media (prefers-color-scheme: dark) {\n${darkCssCode.replace(":root", "  :root")}\n}\n\n${globalsCssCode}`;
+  const darkCssFormatted = darkCssCode.replace(":root {", ".dark {");
+  const allCssCode = `${lightCssCode}\n\n${darkCssFormatted}\n\n${globalsCssCode}`;
 
   return (
     <div className="flex items-center gap-2">
