@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { memo, useMemo } from "react";
 import { cn } from "@/lib/utils";
 
 interface Sponsor {
@@ -80,14 +81,18 @@ const tierOrder: Record<string, number> = {
   bronze: 4,
 };
 
-export function Sponsors() {
-  if (!sponsors.length) return null;
-
-  const sortedSponsors = [...sponsors].sort(
-    (a, b) =>
-      (tierOrder[a.tier || "bronze"] ?? 5) -
-      (tierOrder[b.tier || "bronze"] ?? 5)
+export const Sponsors = memo(function Sponsors() {
+  const sortedSponsors = useMemo(
+    () =>
+      [...sponsors].sort(
+        (a, b) =>
+          (tierOrder[a.tier || "bronze"] ?? 5) -
+          (tierOrder[b.tier || "bronze"] ?? 5)
+      ),
+    []
   );
+
+  if (!sponsors.length) return null;
 
   return (
     <div className="flex flex-col gap-4">
@@ -123,4 +128,4 @@ export function Sponsors() {
       </div>
     </div>
   );
-}
+});

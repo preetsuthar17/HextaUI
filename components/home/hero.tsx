@@ -3,15 +3,21 @@
 import { Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { PixelBlast } from "@/components/pixel-blast";
+import dynamic from "next/dynamic";
+import { memo, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
+
+const PixelBlast = dynamic(() => import("@/components/pixel-blast").then(mod => ({ default: mod.PixelBlast })), {
+  ssr: false,
+  loading: () => <div className="size-64 sr-only" />,
+});
 
 async function fetchGitHubStars(): Promise<number | null> {
   try {
     const response = await fetch(
-      "https://api.github.com/repos/preetsuthar17/hextaui"
+      "https://api.github.com/repos/preetsuthar17/hextaui",
+      { next: { revalidate: 3600 } }
     );
     if (!response.ok) return null;
     const data = await response.json();
@@ -23,12 +29,17 @@ async function fetchGitHubStars(): Promise<number | null> {
 
 const DEFAULT_STAR_COUNT = 310;
 
-export function Hero() {
+export const Hero = memo(function Hero() {
   const [starCount, setStarCount] = useState<number | null>(null);
 
   useEffect(() => {
     fetchGitHubStars().then(setStarCount);
   }, []);
+
+  const displayStarCount = useMemo(
+    () => (starCount !== null ? starCount : DEFAULT_STAR_COUNT).toLocaleString(),
+    [starCount]
+  );
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-16 text-center">
@@ -74,12 +85,7 @@ export function Hero() {
                 target="_blank"
               >
                 <Star aria-hidden="true" className="size-4" />
-                <span>
-                  {(starCount !== null
-                    ? starCount
-                    : DEFAULT_STAR_COUNT
-                  ).toLocaleString()}
-                </span>
+                <span>{displayStarCount}</span>
               </Link>
             </Button>
           </ButtonGroup>
@@ -87,4 +93,4 @@ export function Hero() {
       </div>
     </section>
   );
-}
+});

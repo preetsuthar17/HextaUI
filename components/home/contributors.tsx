@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 
 interface Contributor {
   login: string;
@@ -34,7 +34,7 @@ async function fetchContributors(): Promise<Contributor[]> {
   }
 }
 
-export function Contributors() {
+export const Contributors = memo(function Contributors() {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -93,4 +93,4 @@ export function Contributors() {
       </div>
     </div>
   );
-}
+});

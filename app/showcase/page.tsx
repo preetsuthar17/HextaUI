@@ -2,8 +2,13 @@
 
 import { ArrowUpRightIcon } from "lucide-react";
 import Link from "next/link";
-import { PixelBlast } from "@/components/pixel-blast";
+import dynamic from "next/dynamic";
 import { Button } from "@/components/ui/button";
+
+const PixelBlast = dynamic(() => import("@/components/pixel-blast").then(mod => ({ default: mod.PixelBlast })), {
+  ssr: false,
+  loading: () => <div className="size-64 sr-only" />,
+});
 
 export default function ShowcaseIndexPage() {
   return (
