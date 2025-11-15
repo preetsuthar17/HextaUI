@@ -88,10 +88,45 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+
+      </head>
       <body
         className={`${geist.variable} ${inter.variable} ${playfairDisplay.variable} ${geistMono.variable} ${rubik.variable} ${onest.variable} ${tasaOrbiter.variable} antialiased`}
         suppressHydrationWarning={true}
       >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          disableTransitionOnChange
+          enableSystem
+        >
+          <ThemeInitializer />
+          <a
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
+            href="#content"
+          >
+            Skip to content
+          </a>
+          <ComponentSearch />
+          <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+            <SiteHeader />
+            <main className="mx-auto w-full px-4 py-6" id="content">
+              {children}
+            </main>
+            <SiteFooter />
+          </div>
+          <Toaster />
+        </ThemeProvider>
+        <Script
+          defer
+          src="https://assets.onedollarstats.com/stonks.js"
+          strategy="afterInteractive"
+        />
+        {/* <script
+          crossOrigin="anonymous"
+          src="//unpkg.com/react-scan/dist/auto.global.js"
+        /> */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -1648,34 +1683,6 @@ export default function RootLayout({
               })();
             `,
           }}
-        />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          disableTransitionOnChange
-          enableSystem
-        >
-          <ThemeInitializer />
-          <a
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
-            href="#content"
-          >
-            Skip to content
-          </a>
-          <ComponentSearch />
-          <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
-            <SiteHeader />
-            <main className="mx-auto w-full px-4 py-6" id="content">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
-          <Toaster />
-        </ThemeProvider>
-        <Script
-          defer
-          src="https://assets.onedollarstats.com/stonks.js"
-          strategy="afterInteractive"
         />
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
         <script
