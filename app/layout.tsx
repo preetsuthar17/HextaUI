@@ -161,7 +161,8 @@ export default function RootLayout({
             strategy="lazyOnload"
           />
         )}
-        <Script
+        <script
+          defer
           data-cfasync="false"
           data-color="#FF813F"
           data-description="Support me on Buy me a coffee!"
@@ -172,7 +173,6 @@ export default function RootLayout({
           data-x_margin="18"
           data-y_margin="18"
           src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
-          strategy="lazyOnload"
         />
       </body>
     </html>
