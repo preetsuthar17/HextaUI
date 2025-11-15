@@ -9,8 +9,11 @@ import { Separator } from "@/components/ui/separator";
 import { componentsRegistry } from "@/lib/components-registry";
 import { cn } from "@/lib/utils";
 
+const SCROLL_POSITION_KEY = "components-sidebar-scroll";
+
 export function ComponentsSidebar({ currentId }: { currentId?: string }) {
   const [query, setQuery] = React.useState("");
+  const scrollAreaRef = React.useRef<React.ComponentRef<typeof ScrollArea>>(null);
 
   const filtered = React.useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -24,6 +27,81 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
         : componentsRegistry
     ).sort((a, b) => a.title.localeCompare(b.title));
   }, [query]);
+
+  // Restore scroll position on mount and save on scroll
+  React.useEffect(() => {
+    const scrollArea = scrollAreaRef.current;
+    if (!scrollArea) return;
+
+    // Wait for the viewport to be available
+    const findViewport = (): HTMLElement | null => {
+      return scrollArea.querySelector(
+        '[data-slot="scroll-area-viewport"]'
+      ) as HTMLElement | null;
+    };
+
+    let cleanup: (() => void) | undefined;
+    let frameId: number | undefined;
+    let timeoutId: NodeJS.Timeout | undefined;
+
+    // Try to find viewport, with retry mechanism
+    const trySetup = () => {
+      const viewport = findViewport();
+      if (viewport) {
+        cleanup = setupScrollHandling(viewport);
+        return true;
+      }
+      return false;
+    };
+
+    // Try immediately
+    if (!trySetup()) {
+      // If not found, retry on next frame
+      frameId = requestAnimationFrame(() => {
+        if (!trySetup()) {
+          // One more retry after a short delay
+          timeoutId = setTimeout(() => {
+            trySetup();
+          }, 50);
+        }
+      });
+    }
+
+    function setupScrollHandling(viewportElement: HTMLElement) {
+      // Restore saved scroll position
+      const savedScroll = sessionStorage.getItem(SCROLL_POSITION_KEY);
+      if (savedScroll) {
+        const scrollTop = Number.parseInt(savedScroll, 10);
+        // Use requestAnimationFrame to ensure the viewport is ready
+        requestAnimationFrame(() => {
+          viewportElement.scrollTop = scrollTop;
+        });
+      }
+
+      // Save scroll position on scroll
+      const handleScroll = () => {
+        sessionStorage.setItem(
+          SCROLL_POSITION_KEY,
+          String(viewportElement.scrollTop)
+        );
+      };
+
+      viewportElement.addEventListener("scroll", handleScroll);
+      return () => {
+        viewportElement.removeEventListener("scroll", handleScroll);
+      };
+    }
+
+    return () => {
+      if (frameId !== undefined) {
+        cancelAnimationFrame(frameId);
+      }
+      if (timeoutId !== undefined) {
+        clearTimeout(timeoutId);
+      }
+      cleanup?.();
+    };
+  }, []);
 
   return (
     <aside
@@ -49,7 +127,10 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
         <Separator className="shrink-0" />
         {/* ScrollArea must fill available space and allow scrolling of long content */}
         <div className="flex min-h-0 flex-1 flex-col">
-          <ScrollArea className="min-h-0 flex-1 p-2">
+          <ScrollArea
+            ref={scrollAreaRef}
+            className="min-h-0 flex-1 p-2"
+          >
             {filtered.length === 0 ? (
               <div className="p-2 text-center text-muted-foreground text-sm">
                 No results
