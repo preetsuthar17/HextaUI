@@ -61,6 +61,7 @@ export function Hero() {
             <Button asChild className="h-11" variant="outline">
               <Link
                 href="https://github.com/preetsuthar17/hextaui"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 GitHub
@@ -69,6 +70,7 @@ export function Hero() {
             <Button asChild className="h-11" variant="outline">
               <Link
                 href="https://github.com/preetsuthar17/hextaui"
+                rel="noopener noreferrer"
                 target="_blank"
               >
                 <Star aria-hidden="true" className="size-4" />

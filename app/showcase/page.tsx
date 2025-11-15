@@ -17,6 +17,7 @@ export default function ShowcaseIndexPage() {
         <Button asChild>
           <Link
             href="https://www.ikiform.com/f/hextaui-showase-submission-j2e9pt"
+            rel="noopener noreferrer"
             target="_blank"
           >
             Submit your project
