@@ -2850,6 +2850,253 @@ export function TooltipDemo() {
   </TooltipContent>
 </Tooltip>`,
   },
+    item: {
+    demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle, ItemDescription } from "@/components/ui/item";
+
+export function ItemDemo() {
+  return (
+    <div className="flex max-w-sm flex-col gap-4">
+      <Item>
+        <ItemMedia>
+          <span className="inline-flex size-10 items-center justify-center rounded-full bg-muted">
+            <span className="text-lg font-semibold text-primary">A</span>
+          </span>
+        </ItemMedia>
+        <ItemContent>
+          <ItemTitle>Alpha</ItemTitle>
+          <ItemDescription>This is an item description.</ItemDescription>
+        </ItemContent>
+      </Item>
+      <Item variant="muted">
+        <ItemContent>
+          <ItemTitle>Muted Variant</ItemTitle>
+        </ItemContent>
+        <ItemContent className="flex-none">
+          <span className="text-xs text-muted-foreground">Extra</span>
+        </ItemContent>
+      </Item>
+    </div>
+  );
+}
+`,
+    usageImports: `import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item"`,
+    usageCode: `<Item>
+  <ItemMedia>
+    <span className="size-8 rounded-full bg-muted" />
+  </ItemMedia>
+  <ItemContent>
+    <ItemTitle>List item</ItemTitle>
+  </ItemContent>
+</Item>`
+  },
+  // Inserted: menubar
+  menubar: {
+    demoCode: `"use client";
+
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarLabel,
+  MenubarShortcut,
+  MenubarSub,
+  MenubarSubTrigger,
+  MenubarSubContent,
+} from "@/components/ui/menubar";
+
+export function MenubarDemo() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>
+            New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            New Window <MenubarShortcut>⌘N</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem disabled>Open File…</MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>
+            Share…
+            <MenubarShortcut>⇧⌘S</MenubarShortcut>
+          </MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Undo</MenubarItem>
+          <MenubarItem>Redo</MenubarItem>
+          <MenubarSeparator />
+          <MenubarCheckboxItem checked>
+            Show Line Numbers
+          </MenubarCheckboxItem>
+          <MenubarCheckboxItem>Word Wrap</MenubarCheckboxItem>
+          <MenubarSeparator />
+          <MenubarRadioGroup value="markdown">
+            <MenubarRadioItem value="plain">Plain Text</MenubarRadioItem>
+            <MenubarRadioItem value="markdown">Markdown</MenubarRadioItem>
+            <MenubarRadioItem value="html">HTML</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarLabel>Zoom</MenubarLabel>
+          <MenubarItem>Zoom In</MenubarItem>
+          <MenubarItem>Zoom Out</MenubarItem>
+          <MenubarSeparator />
+          <MenubarSub>
+            <MenubarSubTrigger>Appearance</MenubarSubTrigger>
+            <MenubarSubContent>
+              <MenubarItem>Light Theme</MenubarItem>
+              <MenubarItem>Dark Theme</MenubarItem>
+              <MenubarItem>System</MenubarItem>
+            </MenubarSubContent>
+          </MenubarSub>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  );
+}
+`,
+    usageImports: `import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+} from "@/components/ui/menubar"`,
+    usageCode: `<Menubar>
+  <MenubarMenu>
+    <MenubarTrigger>File</MenubarTrigger>
+    <MenubarContent>
+      <MenubarItem>New File</MenubarItem>
+      <MenubarItem>Save</MenubarItem>
+    </MenubarContent>
+  </MenubarMenu>
+</Menubar>`
+  },
+  // Inserted: drawer
+  drawer: {
+    demoCode: `"use client";
+
+import { Button } from "@/components/ui/button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer";
+
+export function DrawerDemo() {
+  return (
+    <Drawer>
+      <DrawerTrigger asChild>
+        <Button variant="outline">Open Drawer</Button>
+      </DrawerTrigger>
+      <DrawerContent>
+        <DrawerHeader>
+          <DrawerTitle>Drawer Title</DrawerTitle>
+          <DrawerDescription>
+            This is the drawer description.
+          </DrawerDescription>
+        </DrawerHeader>
+        <div className="flex-1 px-4 py-2">
+          <p>Put content for your drawer here.</p>
+        </div>
+        <DrawerFooter>
+          <DrawerClose asChild>
+            <Button variant="outline">Close</Button>
+          </DrawerClose>
+        </DrawerFooter>
+      </DrawerContent>
+    </Drawer>
+  );
+}
+`,
+    usageImports: `import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/drawer"`,
+    usageCode: `<Drawer>
+  <DrawerTrigger>Open</DrawerTrigger>
+  <DrawerContent>
+    <DrawerHeader>
+      <DrawerTitle>Drawer</DrawerTitle>
+    </DrawerHeader>
+    <div>
+      Drawer content here.
+    </div>
+  </DrawerContent>
+</Drawer>`
+  },
+  // Inserted: hovercard
+  "hover-card": {
+    demoCode: `"use client";
+
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+
+export function HoverCardDemo() {
+  return (
+    <HoverCard>
+      <HoverCardTrigger asChild>
+        <Button variant="link">@alexdoe</Button>
+      </HoverCardTrigger>
+      <HoverCardContent className="w-80">
+        <div className="flex space-x-4">
+          <Avatar>
+            <AvatarImage src="https://randomuser.me/api/portraits/men/32.jpg" />
+            <AvatarFallback>AD</AvatarFallback>
+          </Avatar>
+          <div>
+            <h4 className="text-sm font-semibold">@alexdoe</h4>
+            <span className="text-xs text-muted-foreground">Frontend Developer</span>
+            <p className="mt-2 text-xs">
+              Loves building accessible web apps with React and Tailwind CSS.
+            </p>
+          </div>
+        </div>
+      </HoverCardContent>
+    </HoverCard>
+  );
+}
+`,
+    usageImports: `import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from "@/components/ui/hover-card"`,
+    usageCode: `<HoverCard>
+  <HoverCardTrigger>@johndoe</HoverCardTrigger>
+  <HoverCardContent>
+    <div>User profile details</div>
+  </HoverCardContent>
+</HoverCard>`
+  },
 } as const;
 
 export type ComponentSnippets = typeof componentSnippets;
