@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "native-select",
   "type": "registry:ui",
+  "title": "Native Select",
+  "description": "Dropdown using the native select element.",
   "files": [
     {
       "path": "registry/new-york/ui/native-select.tsx",

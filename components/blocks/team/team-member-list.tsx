@@ -227,7 +227,7 @@ export default function TeamMemberList({
           )}
           {showFilters && (
             <div className="flex flex-wrap gap-2">
-              <Select onValueChange={setRoleFilter} value={roleFilter}>
+              <Select onValueChange={setRoleFilter} value={roleFilter || "all"}>
                 <SelectTrigger className="w-full md:w-[140px]">
                   <SelectValue placeholder="All roles" />
                 </SelectTrigger>
@@ -239,7 +239,10 @@ export default function TeamMemberList({
                   <SelectItem value="viewer">Viewer</SelectItem>
                 </SelectContent>
               </Select>
-              <Select onValueChange={setStatusFilter} value={statusFilter}>
+              <Select
+                onValueChange={setStatusFilter}
+                value={statusFilter || "all"}
+              >
                 <SelectTrigger className="w-full md:w-[140px]">
                   <SelectValue placeholder="All statuses" />
                 </SelectTrigger>

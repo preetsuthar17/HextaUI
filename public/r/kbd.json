@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "kbd",
   "type": "registry:ui",
+  "title": "Kbd",
+  "description": "Renders keyboard key appearance.",
   "files": [
     {
       "path": "registry/new-york/ui/kbd.tsx",

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sidebar",
   "type": "registry:ui",
+  "title": "Sidebar",
+  "description": "A collapsible sidebar component for navigation.",
   "dependencies": ["@radix-ui/react-slot"],
   "registryDependencies": [
     "button",

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover",
   "type": "registry:ui",
+  "title": "Popover",
+  "description": "Floating panel for additional content.",
   "dependencies": ["@radix-ui/react-popover"],
   "files": [
     {

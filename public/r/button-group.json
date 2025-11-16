@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button-group",
   "type": "registry:ui",
+  "title": "Button Group",
+  "description": "Groups multiple buttons in a row.",
   "registryDependencies": ["button", "separator"],
   "files": [
     {

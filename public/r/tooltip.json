@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tooltip",
   "type": "registry:ui",
+  "title": "Tooltip",
+  "description": "Shows info on hover or focus.",
   "dependencies": ["@radix-ui/react-tooltip"],
   "files": [
     {

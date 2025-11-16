@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "avatar",
   "type": "registry:ui",
+  "title": "Avatar",
+  "description": "Shows an image or initials for a user/object.",
   "dependencies": ["@radix-ui/react-avatar"],
   "files": [
     {

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "checkbox",
   "type": "registry:ui",
+  "title": "Checkbox",
+  "description": "Box for selecting true or false.",
   "dependencies": ["@radix-ui/react-checkbox"],
   "files": [
     {

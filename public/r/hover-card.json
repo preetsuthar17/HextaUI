@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "hover-card",
   "type": "registry:ui",
+  "title": "Hover Card",
+  "description": "Card that appears on hover.",
   "dependencies": ["@radix-ui/react-hover-card"],
   "files": [
     {

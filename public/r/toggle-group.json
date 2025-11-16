@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle-group",
   "type": "registry:ui",
+  "title": "Toggle Group",
+  "description": "Groups multiple toggle buttons.",
   "dependencies": ["@radix-ui/react-toggle-group"],
   "registryDependencies": ["toggle"],
   "files": [

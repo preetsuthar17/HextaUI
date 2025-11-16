@@ -12,7 +12,9 @@
           "path": "registry/new-york/ui/accordion.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Accordion",
+      "description": "Expands to show or hide content."
     },
     {
       "name": "alert",
@@ -22,7 +24,9 @@
           "path": "registry/new-york/ui/alert.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Alert",
+      "description": "Displays a status or message banner."
     },
     {
       "name": "alert-dialog",
@@ -34,7 +38,9 @@
           "path": "registry/new-york/ui/alert-dialog.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Alert Dialog",
+      "description": "Modal dialog for important actions or decisions."
     },
     {
       "name": "aspect-ratio",
@@ -45,7 +51,9 @@
           "path": "registry/new-york/ui/aspect-ratio.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Aspect Ratio",
+      "description": "Maintains a fixed ratio for child content."
     },
     {
       "name": "avatar",
@@ -56,7 +64,9 @@
           "path": "registry/new-york/ui/avatar.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Avatar",
+      "description": "Shows an image or initials for a user/object."
     },
     {
       "name": "badge",
@@ -67,7 +77,9 @@
           "path": "registry/new-york/ui/badge.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Badge",
+      "description": "Small badge for counts or indicators."
     },
     {
       "name": "breadcrumb",
@@ -78,7 +90,9 @@
           "path": "registry/new-york/ui/breadcrumb.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Breadcrumb",
+      "description": "Displays navigation path as links."
     },
     {
       "name": "button",
@@ -89,7 +103,9 @@
           "path": "registry/new-york/ui/button.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Button",
+      "description": "Clickable button for actions."
     },
     {
       "name": "button-group",
@@ -100,7 +116,9 @@
           "path": "registry/new-york/ui/button-group.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Button Group",
+      "description": "Groups multiple buttons in a row."
     },
     {
       "name": "calendar",
@@ -112,7 +130,9 @@
           "path": "registry/new-york/ui/calendar.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Calendar",
+      "description": "Grid to display days and dates."
     },
     {
       "name": "card",
@@ -122,7 +142,9 @@
           "path": "registry/new-york/ui/card.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Card",
+      "description": "Container with header, content, and footer sections."
     },
     {
       "name": "carousel",
@@ -134,7 +156,9 @@
           "path": "registry/new-york/ui/carousel.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Carousel",
+      "description": "Rotates or slides multiple items."
     },
     {
       "name": "checkbox",
@@ -145,7 +169,9 @@
           "path": "registry/new-york/ui/checkbox.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Checkbox",
+      "description": "Box for selecting true or false."
     },
     {
       "name": "collapsible",
@@ -156,7 +182,9 @@
           "path": "registry/new-york/ui/collapsible.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Collapsible",
+      "description": "Panel that expands and collapses."
     },
     {
       "name": "command-menu",
@@ -171,7 +199,9 @@
           "path": "registry/new-york/ui/command-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Command Menu",
+      "description": "Popup menu for running commands."
     },
     {
       "name": "context-menu",
@@ -182,7 +212,9 @@
           "path": "registry/new-york/ui/context-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Context Menu",
+      "description": "Menu that appears on right-click or action."
     },
     {
       "name": "dialog",
@@ -193,7 +225,9 @@
           "path": "registry/new-york/ui/dialog.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Dialog",
+      "description": "Modal overlay for dialogs and forms."
     },
     {
       "name": "drawer",
@@ -204,7 +238,9 @@
           "path": "registry/new-york/ui/drawer.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Drawer",
+      "description": "Drawer panel that slides in from edge."
     },
     {
       "name": "dropdown-menu",
@@ -215,7 +251,9 @@
           "path": "registry/new-york/ui/dropdown-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Dropdown Menu",
+      "description": "Menu that opens with a trigger control."
     },
     {
       "name": "empty",
@@ -225,7 +263,9 @@
           "path": "registry/new-york/ui/empty.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Empty",
+      "description": "Graphic placeholder for empty states."
     },
     {
       "name": "field",
@@ -236,7 +276,9 @@
           "path": "registry/new-york/ui/field.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Field",
+      "description": "Field layout with label and help."
     },
     {
       "name": "hover-card",
@@ -247,7 +289,9 @@
           "path": "registry/new-york/ui/hover-card.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Hover Card",
+      "description": "Card that appears on hover."
     },
     {
       "name": "input",
@@ -257,7 +301,9 @@
           "path": "registry/new-york/ui/input.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Input",
+      "description": "Single-line text input."
     },
     {
       "name": "input-group",
@@ -268,7 +314,9 @@
           "path": "registry/new-york/ui/input-group.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Input Group",
+      "description": "Combines inputs and add-ons in a row."
     },
     {
       "name": "input-otp",
@@ -279,7 +327,9 @@
           "path": "registry/new-york/ui/input-otp.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Input OTP",
+      "description": "Inputs for one-time code entry."
     },
     {
       "name": "item",
@@ -290,7 +340,9 @@
           "path": "registry/new-york/ui/item.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Item",
+      "description": "List item component with actions."
     },
     {
       "name": "label",
@@ -301,7 +353,9 @@
           "path": "registry/new-york/ui/label.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Label",
+      "description": "Label for form input."
     },
     {
       "name": "menubar",
@@ -312,7 +366,9 @@
           "path": "registry/new-york/ui/menubar.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Menubar",
+      "description": "Horizontal menu bar for navigation."
     },
     {
       "name": "navigation-menu",
@@ -323,7 +379,9 @@
           "path": "registry/new-york/ui/navigation-menu.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Navigation Menu",
+      "description": "A collection of links for navigating websites."
     },
     {
       "name": "pagination",
@@ -334,7 +392,9 @@
           "path": "registry/new-york/ui/pagination.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Pagination",
+      "description": "Controls for paging through content."
     },
     {
       "name": "popover",
@@ -345,7 +405,9 @@
           "path": "registry/new-york/ui/popover.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Popover",
+      "description": "Floating panel for additional content."
     },
     {
       "name": "progress",
@@ -356,7 +418,9 @@
           "path": "registry/new-york/ui/progress.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Progress",
+      "description": "Linear progress indicator."
     },
     {
       "name": "radio-group",
@@ -367,7 +431,9 @@
           "path": "registry/new-york/ui/radio-group.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Radio Group",
+      "description": "Group of choices where only one can be selected."
     },
     {
       "name": "resizable",
@@ -378,7 +444,9 @@
           "path": "registry/new-york/ui/resizable.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Resizable",
+      "description": "Container that users can resize."
     },
     {
       "name": "scroll-area",
@@ -389,7 +457,9 @@
           "path": "registry/new-york/ui/scroll-area.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Scroll Area",
+      "description": "Scrollable area for overflowing content."
     },
     {
       "name": "sidebar",
@@ -408,7 +478,9 @@
           "path": "registry/new-york/ui/sidebar.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Sidebar",
+      "description": "A collapsible sidebar component for navigation."
     },
     {
       "name": "select",
@@ -419,7 +491,9 @@
           "path": "registry/new-york/ui/select.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Select",
+      "description": "Custom dropdown select input."
     },
     {
       "name": "separator",
@@ -430,7 +504,9 @@
           "path": "registry/new-york/ui/separator.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Separator",
+      "description": "Horizontal or vertical dividing line."
     },
     {
       "name": "sheet",
@@ -441,7 +517,9 @@
           "path": "registry/new-york/ui/sheet.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Sheet",
+      "description": "Drawer panel that slides in from edge."
     },
     {
       "name": "skeleton",
@@ -451,7 +529,9 @@
           "path": "registry/new-york/ui/skeleton.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Skeleton",
+      "description": "Shimmer effect placeholder preview."
     },
     {
       "name": "slider",
@@ -462,7 +542,9 @@
           "path": "registry/new-york/ui/slider.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Slider",
+      "description": "Draggable control for selecting a value."
     },
     {
       "name": "sonner",
@@ -473,7 +555,9 @@
           "path": "registry/new-york/ui/sonner.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Sonner",
+      "description": "Displays toast notifications."
     },
     {
       "name": "spinner",
@@ -484,7 +568,9 @@
           "path": "registry/new-york/ui/spinner.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Spinner",
+      "description": "Circular activity indicator."
     },
     {
       "name": "switch",
@@ -495,7 +581,9 @@
           "path": "registry/new-york/ui/switch.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Switch",
+      "description": "Toggle to switch between states."
     },
     {
       "name": "table",
@@ -505,7 +593,9 @@
           "path": "registry/new-york/ui/table.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Table",
+      "description": "Displays data in rows and columns."
     },
     {
       "name": "tabs",
@@ -516,7 +606,9 @@
           "path": "registry/new-york/ui/tabs.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Tabs",
+      "description": "Switches views using tabbed buttons."
     },
     {
       "name": "textarea",
@@ -526,7 +618,9 @@
           "path": "registry/new-york/ui/textarea.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Textarea",
+      "description": "Multi-line text input."
     },
     {
       "name": "toggle",
@@ -537,7 +631,9 @@
           "path": "registry/new-york/ui/toggle.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Toggle",
+      "description": "Pressable toggle button."
     },
     {
       "name": "toggle-group",
@@ -549,7 +645,9 @@
           "path": "registry/new-york/ui/toggle-group.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Toggle Group",
+      "description": "Groups multiple toggle buttons."
     },
     {
       "name": "tooltip",
@@ -560,7 +658,9 @@
           "path": "registry/new-york/ui/tooltip.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Tooltip",
+      "description": "Shows info on hover or focus."
     },
     {
       "name": "kbd",
@@ -570,7 +670,9 @@
           "path": "registry/new-york/ui/kbd.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Kbd",
+      "description": "Renders keyboard key appearance."
     },
     {
       "name": "native-select",
@@ -580,7 +682,9 @@
           "path": "registry/new-york/ui/native-select.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Native Select",
+      "description": "Dropdown using the native select element."
     },
     {
       "name": "tree",
@@ -591,7 +695,9 @@
           "path": "registry/new-york/ui/tree.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Tree",
+      "description": "Hierarchical collapsible structure."
     },
     {
       "name": "video-player",
@@ -602,7 +708,9 @@
           "path": "registry/new-york/ui/video-player.tsx",
           "type": "registry:ui"
         }
-      ]
+      ],
+      "title": "Video Player",
+      "description": "Video playback with controls."
     },
     {
       "name": "ai-chat-history",

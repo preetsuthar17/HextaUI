@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "radio-group",
   "type": "registry:ui",
+  "title": "Radio Group",
+  "description": "Group of choices where only one can be selected.",
   "dependencies": ["@radix-ui/react-radio-group"],
   "files": [
     {

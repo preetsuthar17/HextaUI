@@ -214,7 +214,7 @@ export default function AISettingsPanel({
                 <FieldContent>
                   <Select
                     onValueChange={(value) => updateSetting("model", value)}
-                    value={localSettings.model || availableModels[0]}
+                    value={localSettings.model ?? availableModels[0] ?? ""}
                   >
                     <SelectTrigger id="model">
                       <SelectValue />

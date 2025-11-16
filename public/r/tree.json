@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tree",
   "type": "registry:ui",
+  "title": "Tree",
+  "description": "Hierarchical collapsible structure.",
   "dependencies": ["@radix-ui/react-slot"],
   "files": [
     {

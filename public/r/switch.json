@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "switch",
   "type": "registry:ui",
+  "title": "Switch",
+  "description": "Toggle to switch between states.",
   "dependencies": ["@radix-ui/react-switch"],
   "files": [
     {

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-group",
   "type": "registry:ui",
+  "title": "Input Group",
+  "description": "Combines inputs and add-ons in a row.",
   "registryDependencies": ["button", "input", "textarea"],
   "files": [
     {

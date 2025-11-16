@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "breadcrumb",
   "type": "registry:ui",
+  "title": "Breadcrumb",
+  "description": "Displays navigation path as links.",
   "dependencies": ["@radix-ui/react-slot"],
   "files": [
     {

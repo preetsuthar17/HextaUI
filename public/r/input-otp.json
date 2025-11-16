@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input-otp",
   "type": "registry:ui",
+  "title": "Input OTP",
+  "description": "Inputs for one-time code entry.",
   "dependencies": ["input-otp"],
   "files": [
     {

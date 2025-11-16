@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "progress",
   "type": "registry:ui",
+  "title": "Progress",
+  "description": "Linear progress indicator.",
   "dependencies": ["@radix-ui/react-progress"],
   "files": [
     {

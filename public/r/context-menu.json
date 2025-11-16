@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "context-menu",
   "type": "registry:ui",
+  "title": "Context Menu",
+  "description": "Menu that appears on right-click or action.",
   "dependencies": ["@radix-ui/react-context-menu"],
   "files": [
     {

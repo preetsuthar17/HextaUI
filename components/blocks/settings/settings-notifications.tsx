@@ -232,7 +232,7 @@ export default function SettingsNotifications({
                           | "digest-weekly"
                           | "off"
                       ) => updateCategoryFrequency(category.id, value)}
-                      value={category.frequency || "realtime"}
+                      value={category.frequency ?? "realtime"}
                     >
                       <SelectTrigger className="w-full shrink-0 sm:w-[140px]">
                         <SelectValue />

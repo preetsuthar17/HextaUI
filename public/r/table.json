@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "table",
   "type": "registry:ui",
+  "title": "Table",
+  "description": "Displays data in rows and columns.",
   "files": [
     {
       "path": "registry/new-york/ui/table.tsx",

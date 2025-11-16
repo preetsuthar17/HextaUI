@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "type": "registry:ui",
+  "title": "Card",
+  "description": "Container with header, content, and footer sections.",
   "files": [
     {
       "path": "registry/new-york/ui/card.tsx",

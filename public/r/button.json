@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
   "type": "registry:ui",
+  "title": "Button",
+  "description": "Clickable button for actions.",
   "dependencies": ["@radix-ui/react-slot"],
   "files": [
     {

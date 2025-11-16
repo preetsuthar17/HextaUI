@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "slider",
   "type": "registry:ui",
+  "title": "Slider",
+  "description": "Draggable control for selecting a value.",
   "dependencies": ["@radix-ui/react-slider"],
   "files": [
     {

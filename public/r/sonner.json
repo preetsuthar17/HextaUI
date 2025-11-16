@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "sonner",
   "type": "registry:ui",
+  "title": "Sonner",
+  "description": "Displays toast notifications.",
   "dependencies": ["sonner", "next-themes"],
   "files": [
     {

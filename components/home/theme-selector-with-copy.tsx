@@ -257,7 +257,7 @@ export function ThemeSelectorWithCopy() {
   if (!hydrated) {
     return (
       <div className="flex items-center gap-2">
-        <Select disabled>
+        <Select disabled value={colorTheme}>
           <SelectTrigger className="w-[180px]">
             <SelectValue placeholder="Select theme" />
           </SelectTrigger>

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs",
   "type": "registry:ui",
+  "title": "Tabs",
+  "description": "Switches views using tabbed buttons.",
   "dependencies": ["@radix-ui/react-tabs"],
   "files": [
     {

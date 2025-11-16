@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dropdown-menu",
   "type": "registry:ui",
+  "title": "Dropdown Menu",
+  "description": "Menu that opens with a trigger control.",
   "dependencies": ["@radix-ui/react-dropdown-menu"],
   "files": [
     {

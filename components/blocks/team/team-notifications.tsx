@@ -184,7 +184,7 @@ export default function TeamNotifications({
           </div>
           {showFilters && (
             <div className="flex flex-wrap gap-2">
-              <Select onValueChange={setTypeFilter} value={typeFilter}>
+              <Select onValueChange={setTypeFilter} value={typeFilter || "all"}>
                 <SelectTrigger className="w-full md:w-[140px]">
                   <SelectValue placeholder="All types" />
                 </SelectTrigger>
@@ -199,7 +199,10 @@ export default function TeamNotifications({
                   <SelectItem value="system">System</SelectItem>
                 </SelectContent>
               </Select>
-              <Select onValueChange={setStatusFilter} value={statusFilter}>
+              <Select
+                onValueChange={setStatusFilter}
+                value={statusFilter || "all"}
+              >
                 <SelectTrigger className="w-full md:w-[140px]">
                   <SelectValue placeholder="All statuses" />
                 </SelectTrigger>

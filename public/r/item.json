@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "item",
   "type": "registry:ui",
+  "title": "Item",
+  "description": "List item component with actions.",
   "registryDependencies": ["separator"],
   "files": [
     {

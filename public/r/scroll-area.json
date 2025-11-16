@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "scroll-area",
   "type": "registry:ui",
+  "title": "Scroll Area",
+  "description": "Scrollable area for overflowing content.",
   "dependencies": ["@radix-ui/react-scroll-area"],
   "files": [
     {

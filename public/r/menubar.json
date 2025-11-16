@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "menubar",
   "type": "registry:ui",
+  "title": "Menubar",
+  "description": "Horizontal menu bar for navigation.",
   "dependencies": ["@radix-ui/react-menubar"],
   "files": [
     {

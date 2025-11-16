@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "toggle",
   "type": "registry:ui",
+  "title": "Toggle",
+  "description": "Pressable toggle button.",
   "dependencies": ["@radix-ui/react-toggle"],
   "files": [
     {

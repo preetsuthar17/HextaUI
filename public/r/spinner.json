@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "spinner",
   "type": "registry:ui",
+  "title": "Spinner",
+  "description": "Circular activity indicator.",
   "dependencies": ["class-variance-authority"],
   "files": [
     {

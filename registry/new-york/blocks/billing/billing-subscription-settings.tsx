@@ -240,7 +240,7 @@ export default function BillingSubscriptionSettings({
                       onValueChange={(value) =>
                         handleChangeBillingPeriod(value as "monthly" | "annual")
                       }
-                      value={subscription.billingPeriod}
+                      value={subscription.billingPeriod ?? "monthly"}
                     >
                       <SelectTrigger className="w-[140px]">
                         <SelectValue />

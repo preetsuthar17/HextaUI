@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion",
   "type": "registry:ui",
+  "title": "Accordion",
+  "description": "Expands to show or hide content.",
   "dependencies": ["@radix-ui/react-accordion"],
   "files": [
     {

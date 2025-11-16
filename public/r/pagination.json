@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "pagination",
   "type": "registry:ui",
+  "title": "Pagination",
+  "description": "Controls for paging through content.",
   "registryDependencies": ["button"],
   "files": [
     {

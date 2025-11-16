@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog",
   "type": "registry:ui",
+  "title": "Dialog",
+  "description": "Modal overlay for dialogs and forms.",
   "dependencies": ["@radix-ui/react-dialog"],
   "files": [
     {

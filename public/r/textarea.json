@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea",
   "type": "registry:ui",
+  "title": "Textarea",
+  "description": "Multi-line text input.",
   "files": [
     {
       "path": "registry/new-york/ui/textarea.tsx",

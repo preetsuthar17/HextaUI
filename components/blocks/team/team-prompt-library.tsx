@@ -304,7 +304,7 @@ export default function TeamPromptLibrary({
                                 category: value,
                               }))
                             }
-                            value={promptData.category}
+                            value={promptData.category ?? ""}
                           >
                             <SelectTrigger id="prompt-category">
                               <SelectValue placeholder="Select category" />

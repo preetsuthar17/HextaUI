@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "select",
   "type": "registry:ui",
+  "title": "Select",
+  "description": "Custom dropdown select input.",
   "dependencies": ["@radix-ui/react-select"],
   "files": [
     {

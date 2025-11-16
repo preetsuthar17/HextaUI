@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "calendar",
   "type": "registry:ui",
+  "title": "Calendar",
+  "description": "Grid to display days and dates.",
   "dependencies": ["react-day-picker@latest", "date-fns"],
   "registryDependencies": ["button"],
   "files": [

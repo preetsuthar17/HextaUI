@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "aspect-ratio",
   "type": "registry:ui",
+  "title": "Aspect Ratio",
+  "description": "Maintains a fixed ratio for child content.",
   "dependencies": ["@radix-ui/react-aspect-ratio"],
   "files": [
     {

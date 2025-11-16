@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "drawer",
   "type": "registry:ui",
+  "title": "Drawer",
+  "description": "Drawer panel that slides in from edge.",
   "dependencies": ["vaul", "@radix-ui/react-dialog"],
   "files": [
     {

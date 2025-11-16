@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "badge",
   "type": "registry:ui",
+  "title": "Badge",
+  "description": "Small badge for counts or indicators.",
   "dependencies": ["@radix-ui/react-slot"],
   "files": [
     {

@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "video-player",
   "type": "registry:ui",
+  "title": "Video Player",
+  "description": "Video playback with controls.",
   "dependencies": ["@radix-ui/react-slot"],
   "files": [
     {

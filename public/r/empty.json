@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "empty",
   "type": "registry:ui",
+  "title": "Empty",
+  "description": "Graphic placeholder for empty states.",
   "files": [
     {
       "path": "registry/new-york/ui/empty.tsx",

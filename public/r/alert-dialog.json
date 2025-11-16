@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-dialog",
   "type": "registry:ui",
+  "title": "Alert Dialog",
+  "description": "Modal dialog for important actions or decisions.",
   "dependencies": ["@radix-ui/react-alert-dialog"],
   "registryDependencies": ["button"],
   "files": [

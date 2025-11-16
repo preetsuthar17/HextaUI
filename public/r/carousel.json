@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "carousel",
   "type": "registry:ui",
+  "title": "Carousel",
+  "description": "Rotates or slides multiple items.",
   "dependencies": ["embla-carousel-react"],
   "registryDependencies": ["button"],
   "files": [

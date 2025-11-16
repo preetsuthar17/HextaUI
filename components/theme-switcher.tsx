@@ -2,7 +2,7 @@
 
 import { Laptop, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Tooltip,
@@ -12,6 +12,11 @@ import {
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const cycleTheme = useCallback(() => {
     if (theme === "light") {
@@ -23,7 +28,7 @@ export function ThemeSwitcher() {
     }
   }, [theme, setTheme]);
 
-  const currentTheme = theme || "light";
+  const currentTheme = mounted ? theme || "system" : "system";
   const Icon =
     currentTheme === "light" ? Sun : currentTheme === "dark" ? Moon : Laptop;
   const label =
@@ -43,12 +48,16 @@ export function ThemeSwitcher() {
           suppressHydrationWarning
           variant="ghost"
         >
-          <Icon className="size-4" />
+          {mounted ? (
+            <Icon className="size-4" />
+          ) : (
+            <Laptop className="size-4" />
+          )}
           <span className="sr-only">Toggle theme</span>
         </Button>
       </TooltipTrigger>
       <TooltipContent>
-        <p>{label} theme</p>
+        <p>{mounted ? label : "System"} theme</p>
       </TooltipContent>
     </Tooltip>
   );

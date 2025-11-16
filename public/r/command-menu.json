@@ -2,6 +2,8 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "command-menu",
   "type": "registry:ui",
+  "title": "Command Menu",
+  "description": "Popup menu for running commands.",
   "dependencies": ["@radix-ui/react-visually-hidden", "@radix-ui/react-dialog"],
   "registryDependencies": ["kbd", "scroll-area"],
   "files": [
