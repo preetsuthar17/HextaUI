@@ -57,10 +57,28 @@ import { componentSnippets } from "@/lib/registry/snippets";
 const radixBaseDocs = "https://www.radix-ui.com/primitives/docs/components/";
 const radixBaseApi = "https://www.radix-ui.com/docs/primitives/components/";
 
-// Helper function to generate Radix UI docs/api links
+const addUtmParams = (url: string): string => {
+  if (!url) return url;
+  try {
+    const urlObj = new URL(url);
+    if (urlObj.hostname.includes("shadcn.com")) {
+      urlObj.searchParams.set("utm_source", "hextaui");
+      urlObj.searchParams.set("utm_medium", "referral");
+      urlObj.searchParams.set("utm_campaign", "component-docs");
+      urlObj.searchParams.set("ref", "hextaui.com");
+    }
+    return urlObj.toString();
+  } catch {
+    return url;
+  }
+};
+
 const radixDocs = (component: string) => `${radixBaseDocs}${component}`;
 const radixApi = (component: string) =>
   `${radixBaseApi}${component}#api-reference`;
+
+const shadcnDocs = (path: string) =>
+  addUtmParams(`https://ui.shadcn.com/docs/components/${path}`);
 
 export type ComponentMeta = {
   id: string;
@@ -128,28 +146,28 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Badge",
     description: "Small badge for counts or indicators.",
     Demo: BadgeDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/alert",
+    docs_ref: shadcnDocs("alert"),
   },
   {
     id: "breadcrumb",
     title: "Breadcrumb",
     description: "Displays navigation path as links.",
     Demo: BreadcrumbDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/breadcrumb",
+    docs_ref: shadcnDocs("breadcrumb"),
   },
   {
     id: "button-group",
     title: "Button Group",
     description: "Groups multiple buttons in a row.",
     Demo: ButtonGroupDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/button-group",
+    docs_ref: shadcnDocs("button-group"),
   },
   {
     id: "button",
     title: "Button",
     description: "Clickable button for actions.",
     Demo: ButtonDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/button",
+    docs_ref: shadcnDocs("button"),
   },
   {
     id: "calendar",
@@ -177,7 +195,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Card",
     description: "Container with header, content, and footer sections.",
     Demo: CardDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/card",
+    docs_ref: shadcnDocs("card"),
   },
   {
     id: "checkbox",
@@ -232,14 +250,14 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Empty",
     description: "Graphic placeholder for empty states.",
     Demo: EmptyDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/empty",
+    docs_ref: shadcnDocs("empty"),
   },
   {
     id: "field",
     title: "Field",
     description: "Field layout with label and help.",
     Demo: FieldDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/field",
+    docs_ref: shadcnDocs("field"),
   },
   {
     id: "hover-card",
@@ -254,14 +272,14 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Input",
     description: "Single-line text input.",
     Demo: InputDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/input",
+    docs_ref: shadcnDocs("input"),
   },
   {
     id: "input-group",
     title: "Input Group",
     description: "Combines inputs and add-ons in a row.",
     Demo: InputGroupDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/input-group",
+    docs_ref: shadcnDocs("input-group"),
   },
   {
     id: "input-otp",
@@ -275,14 +293,14 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Item",
     description: "List item component with actions.",
     Demo: ItemDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/item",
+    docs_ref: shadcnDocs("item"),
   },
   {
     id: "kbd",
     title: "Kbd",
     description: "Renders keyboard key appearance.",
     Demo: KbdDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/kbd",
+    docs_ref: shadcnDocs("kbd"),
   },
   {
     id: "label",
@@ -305,7 +323,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Native Select",
     description: "Dropdown using the native select element.",
     Demo: NativeSelectDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/native-select",
+    docs_ref: shadcnDocs("native-select"),
   },
   {
     id: "navigation-menu",
@@ -320,7 +338,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Pagination",
     description: "Controls for paging through content.",
     Demo: PaginationDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/pagination",
+    docs_ref: shadcnDocs("pagination"),
   },
   {
     id: "progress",
@@ -360,7 +378,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Sidebar",
     description: "A collapsible sidebar component for navigation.",
     Demo: SidebarDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/sidebar",
+    docs_ref: shadcnDocs("sidebar"),
   },
   {
     id: "select",
@@ -391,7 +409,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Skeleton",
     description: "Shimmer effect placeholder preview.",
     Demo: SkeletonDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/skeleton",
+    docs_ref: shadcnDocs("skeleton"),
   },
   {
     id: "slider",
@@ -413,7 +431,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Spinner",
     description: "Circular activity indicator.",
     Demo: SpinnerDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/spinner",
+    docs_ref: shadcnDocs("spinner"),
   },
   {
     id: "switch",
@@ -428,7 +446,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Table",
     description: "Displays data in rows and columns.",
     Demo: TableDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/table",
+    docs_ref: shadcnDocs("table"),
   },
   {
     id: "tabs",
@@ -443,7 +461,7 @@ const componentDefinitions: ComponentDefinition[] = [
     title: "Textarea",
     description: "Multi-line text input.",
     Demo: TextareaDemo,
-    docs_ref: "https://ui.shadcn.com/docs/components/textarea",
+    docs_ref: shadcnDocs("textarea"),
   },
   {
     id: "toggle",
