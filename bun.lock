@@ -32,7 +32,7 @@
         "@radix-ui/react-toggle-group": "^1.1.11",
         "@radix-ui/react-tooltip": "^1.2.8",
         "@tabler/icons-react": "^3.35.0",
-        "@wandry/analytics-sdk": "^1.8.3",
+        "@wandry/analytics-sdk": "^1.9.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
         "date-fns": "^4.1.0",
@@ -624,7 +624,7 @@
 
     "@unrs/resolver-binding-win32-x64-msvc": ["@unrs/resolver-binding-win32-x64-msvc@1.11.1", "", { "os": "win32", "cpu": "x64" }, "sha512-lrW200hZdbfRtztbygyaq/6jP6AKE8qQN2KvPcJ+x7wiD038YtnYtZ82IMNJ69GJibV7bwL3y9FgK+5w/pYt6g=="],
 
-    "@wandry/analytics-sdk": ["@wandry/analytics-sdk@1.8.3", "", {}, "sha512-HJ0KUrc1TPRKiqXfJ0p60VF/PZqwQ2Y1g5EW7XNiXJscoToYe9fG++bjLLSpD9bV6RHEUKP1CqZqjLFc++mFOQ=="],
+    "@wandry/analytics-sdk": ["@wandry/analytics-sdk@1.9.0", "", {}, "sha512-/ejwUK6VkVrBNe02z2X5nLxdRu+fzwlJiEkJOQR8BtYEh1XrcqEGTTWqREXLU3Puqb6+odtR7uaSPzt/hqNM+Q=="],
 
     "@webgpu/types": ["@webgpu/types@0.1.66", "", {}, "sha512-YA2hLrwLpDsRueNDXIMqN9NTzD6bCDkuXbOSe0heS+f8YE8usA6Gbv1prj81pzVHrbaAma7zObnIC+I6/sXJgA=="],
 

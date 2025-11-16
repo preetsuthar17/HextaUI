@@ -8,6 +8,7 @@ export async function GET(request: NextRequest) {
 
   const rssXml = await generateRegistryRssFeed({
     baseUrl,
+    componentsUrl: "components",
     rss: {
       title: "HextaUI Component Registry",
       description:
