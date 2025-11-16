@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
 import { BlockDemo } from "@/components/docs/block-demo";
 import BlockHeaderActions from "@/components/docs/block-header-actions";
@@ -26,6 +27,7 @@ import {
 } from "@/lib/blocks-registry";
 import { getComponentCode } from "@/lib/get-component-code";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+import { Spinner } from "@/components/ui/spinner";
 
 export function generateStaticParams() {
   return blocksRegistry.map((block) => ({
@@ -148,10 +150,12 @@ export default async function BlockPage({
           <BlockDemo blockId={meta.id} Component={Component} />
           {/* Installation second */}
           <ComponentSection id="installation">
-            <ComponentInstallation
-              componentCode={getComponentCode(meta.id)}
-              componentName={meta.id}
-            />
+            <Suspense fallback={<Spinner/>}>
+              <ComponentInstallation
+                componentCode={getComponentCode(meta.id)}
+                componentName={meta.id}
+              />
+            </Suspense>
           </ComponentSection>
 
           {/* Usage */}

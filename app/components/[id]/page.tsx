@@ -1,6 +1,7 @@
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
 import ComponentHeaderActions from "@/components/docs/component-header-actions";
 import { ComponentInstallation } from "@/components/docs/component-installation";
@@ -25,6 +26,7 @@ import {
 } from "@/lib/components-registry";
 import { getComponentCode } from "@/lib/get-component-code";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+import { Spinner } from "@/components/ui/spinner";
 
 export function generateStaticParams() {
   return componentsRegistry.map((component) => ({
@@ -173,11 +175,13 @@ export default async function ComponentPage({
 
           {/* Installation second */}
           <ComponentSection id="installation">
-            <ComponentInstallation
-              componentCode={getComponentCode(meta.id)}
-              componentName={meta.id}
-              installCode={meta.installCode}
-            />
+            <Suspense fallback={<Spinner/>}>
+              <ComponentInstallation
+                componentCode={getComponentCode(meta.id)}
+                componentName={meta.id}
+                installCode={meta.installCode}
+              />
+            </Suspense>
           </ComponentSection>
 
           <ComponentSection id="usage">
