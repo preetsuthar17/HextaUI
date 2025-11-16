@@ -1,13 +1,12 @@
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Suspense } from "react";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
 import { BlockDemo } from "@/components/docs/block-demo";
 import BlockHeaderActions from "@/components/docs/block-header-actions";
 import { BlockPrevNext } from "@/components/docs/block-prev-next";
 import { BlocksSidebar } from "@/components/docs/blocks-sidebar";
-import { ComponentInstallation } from "@/components/docs/component-installation";
 import { ComponentSection } from "@/components/docs/component-section";
 import ComponentUsage from "@/components/docs/component-usage";
 import {
@@ -20,6 +19,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Spinner } from "@/components/ui/spinner";
 import {
   blocksRegistry,
   categoryLabels,
@@ -27,7 +27,17 @@ import {
 } from "@/lib/blocks-registry";
 import { getComponentCode } from "@/lib/get-component-code";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
-import { Spinner } from "@/components/ui/spinner";
+
+const ComponentInstallation = dynamic(
+  () =>
+    import("@/components/docs/component-installation").then(
+      (mod) => mod.ComponentInstallation
+    ),
+  {
+    loading: () => <Spinner />,
+    ssr: true,
+  }
+);
 
 export function generateStaticParams() {
   return blocksRegistry.map((block) => ({
@@ -150,12 +160,10 @@ export default async function BlockPage({
           <BlockDemo blockId={meta.id} Component={Component} />
           {/* Installation second */}
           <ComponentSection id="installation">
-            <Suspense fallback={<Spinner/>}>
-              <ComponentInstallation
-                componentCode={getComponentCode(meta.id)}
-                componentName={meta.id}
-              />
-            </Suspense>
+            <ComponentInstallation
+              componentCode={getComponentCode(meta.id)}
+              componentName={meta.id}
+            />
           </ComponentSection>
 
           {/* Usage */}
