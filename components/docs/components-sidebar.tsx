@@ -11,7 +11,11 @@ import { cn } from "@/lib/utils";
 
 const SCROLL_POSITION_KEY = "components-sidebar-scroll";
 
-export function ComponentsSidebar({ currentId }: { currentId?: string }) {
+export const ComponentsSidebar = React.memo(function ComponentsSidebar({
+  currentId,
+}: {
+  currentId?: string;
+}) {
   const [query, setQuery] = React.useState("");
   const scrollAreaRef =
     React.useRef<React.ComponentRef<typeof ScrollArea>>(null);
@@ -159,4 +163,4 @@ export function ComponentsSidebar({ currentId }: { currentId?: string }) {
       </div>
     </aside>
   );
-}
+});

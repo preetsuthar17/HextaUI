@@ -40,7 +40,11 @@ const categoryIcons: Record<
 
 const SCROLL_POSITION_KEY = "blocks-sidebar-scroll";
 
-export function BlocksSidebar({ currentId }: { currentId?: string }) {
+export const BlocksSidebar = React.memo(function BlocksSidebar({
+  currentId,
+}: {
+  currentId?: string;
+}) {
   const [query, setQuery] = React.useState("");
   const [openCategories, setOpenCategories] = React.useState<
     Set<BlockCategory>
@@ -278,4 +282,4 @@ export function BlocksSidebar({ currentId }: { currentId?: string }) {
       </div>
     </aside>
   );
-}
+});

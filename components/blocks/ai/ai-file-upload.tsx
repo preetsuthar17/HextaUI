@@ -307,7 +307,6 @@ export default function AIFileUpload({
                             className="size-12 shrink-0 rounded-md object-cover"
                             height={48}
                             src={uploadedFile.preview}
-                            unoptimized
                             width={48}
                           />
                         ) : (
