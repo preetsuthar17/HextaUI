@@ -78,6 +78,18 @@ export function SiteFooter() {
           >
             RSS
           </a>
+          <span aria-hidden="true" className="select-none">
+            /
+          </span>
+          <a
+            aria-label="LLMs"
+            className="hover:underline"
+            href="/llms.txt"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            LLMs
+          </a>
         </nav>
       </div>
     </footer>
