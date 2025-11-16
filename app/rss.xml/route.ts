@@ -17,7 +17,7 @@ export async function GET(request: NextRequest) {
       pubDateStrategy: "githubLastEdit",
     },
     registry: {
-      path: "registry.json",
+      path: "r/registry.json",
     },
     github: {
       owner: "preetsuthar17",
