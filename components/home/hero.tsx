@@ -1,17 +1,23 @@
 "use client";
 
 import { Star } from "lucide-react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { memo, useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ButtonGroup } from "@/components/ui/button-group";
 
-const PixelBlast = dynamic(() => import("@/components/pixel-blast").then(mod => ({ default: mod.PixelBlast })), {
-  ssr: false,
-  loading: () => <div className="size-64 sr-only" />,
-});
+const PixelBlast = dynamic(
+  () =>
+    import("@/components/pixel-blast").then((mod) => ({
+      default: mod.PixelBlast,
+    })),
+  {
+    ssr: false,
+    loading: () => <div className="sr-only size-64" />,
+  }
+);
 
 async function fetchGitHubStars(): Promise<number | null> {
   try {
@@ -37,7 +43,8 @@ export const Hero = memo(function Hero() {
   }, []);
 
   const displayStarCount = useMemo(
-    () => (starCount !== null ? starCount : DEFAULT_STAR_COUNT).toLocaleString(),
+    () =>
+      (starCount !== null ? starCount : DEFAULT_STAR_COUNT).toLocaleString(),
     [starCount]
   );
 

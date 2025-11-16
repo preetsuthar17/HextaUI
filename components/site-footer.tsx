@@ -66,6 +66,18 @@ export function SiteFooter() {
           >
             Sponsor
           </a>
+          <span aria-hidden="true" className="select-none">
+            /
+          </span>
+          <a
+            aria-label="RSS Feed"
+            className="hover:underline"
+            href="/rss.xml"
+            rel="alternate"
+            type="application/rss+xml"
+          >
+            RSS
+          </a>
         </nav>
       </div>
     </footer>

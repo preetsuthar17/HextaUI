@@ -9,6 +9,8 @@ import {
   TASA_Orbiter,
 } from "next/font/google";
 import "./globals.css";
+
+import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
 import { Toaster } from "sonner";
 import { ComponentSearch } from "@/components/docs/component-search";
@@ -16,10 +18,8 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { ThemeInitializer } from "@/components/theme-initializer";
 import { ThemeProvider } from "@/components/theme-provider";
-import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 import { generateThemeScript } from "@/lib/generate-theme-script";
-
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -110,25 +110,25 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link
-          rel="preconnect"
-          href="https://cdnjs.buymeacoffee.com"
           crossOrigin="anonymous"
+          href="https://cdnjs.buymeacoffee.com"
+          rel="preconnect"
         />
+        <link href="https://assets.onedollarstats.com" rel="dns-prefetch" />
         <link
-          rel="dns-prefetch"
-          href="https://assets.onedollarstats.com"
+          href="/rss.xml"
+          rel="alternate"
+          title="HextaUI Component Registry"
+          type="application/rss+xml"
         />
         <script
-          suppressHydrationWarning
           dangerouslySetInnerHTML={{
             __html: generateThemeScript(),
           }}
+          suppressHydrationWarning
         />
       </head>
-      <body
-        className={`${fontVariables} antialiased`}
-        suppressHydrationWarning
-      >
+      <body className={`${fontVariables} antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -164,20 +164,20 @@ export default function RootLayout({
           />
         )}
         <script
-          defer
           data-cfasync="false"
           data-color="#FF813F"
           data-description="Support me on Buy me a coffee!"
           data-id="preetsuthar17"
-           data-message="You can support HextaUI here!"
+          data-message="You can support HextaUI here!"
           data-name="BMC-Widget"
           data-position="Right"
           data-x_margin="18"
           data-y_margin="18"
+          defer
           src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
         />
       </body>
-      <GoogleAnalytics gaId="G-ETYD3SB2M7"/>
+      <GoogleAnalytics gaId="G-ETYD3SB2M7" />
     </html>
   );
 }

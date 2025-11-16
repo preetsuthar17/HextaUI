@@ -1,14 +1,20 @@
 "use client";
 
 import { ArrowUpRightIcon } from "lucide-react";
-import Link from "next/link";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const PixelBlast = dynamic(() => import("@/components/pixel-blast").then(mod => ({ default: mod.PixelBlast })), {
-  ssr: false,
-  loading: () => <div className="size-64 sr-only" />,
-});
+const PixelBlast = dynamic(
+  () =>
+    import("@/components/pixel-blast").then((mod) => ({
+      default: mod.PixelBlast,
+    })),
+  {
+    ssr: false,
+    loading: () => <div className="sr-only size-64" />,
+  }
+);
 
 export default function ShowcaseIndexPage() {
   return (
