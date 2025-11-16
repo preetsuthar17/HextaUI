@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Suspense } from "react";
 import { parseAsStringEnum, useQueryState } from "nuqs";
+import { Suspense } from "react";
 import { Contributors } from "@/components/home/contributors";
 import { Hero } from "@/components/home/hero";
 import { Sponsors } from "@/components/home/sponsors";

@@ -69,6 +69,11 @@ const componentsList: ComponentMetadata[] = [
     description: "A component for selecting a date from a calendar popup.",
   },
   {
+    id: "card",
+    title: "Card",
+    description: "A container with header, content, and footer sections.",
+  },
+  {
     id: "carousel",
     title: "Carousel",
     description: "A rotating set of images or content blocks.",

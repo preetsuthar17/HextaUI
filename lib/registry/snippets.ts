@@ -57,6 +57,58 @@ export function AccordionDemo() {
   </AccordionItem>
 </Accordion>`,
   },
+  card: {
+    demoCode: `import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+
+export function CardDemo() {
+  return (
+    <Card className="w-full max-w-sm mx-auto">
+      <CardHeader>
+        <CardTitle>Card Title</CardTitle>
+        <CardDescription>This is a simple card description.</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut
+          perspiciatis unde omnis iste natus error sit voluptatem.
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Button variant="outline">Learn More</Button>
+      </CardFooter>
+    </Card>
+  );
+}
+`,
+    usageImports: `import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+} from "@/components/ui/card"`,
+    usageCode: `<Card>
+  <CardHeader>
+    <CardTitle>Card Title</CardTitle>
+    <CardDescription>Card description</CardDescription>
+  </CardHeader>
+  <CardContent>
+    Card content goes here.
+  </CardContent>
+  <CardFooter>
+    Card footer
+  </CardFooter>
+</Card>`,
+  },
   "command-menu": {
     demoCode: `"use client";
 
