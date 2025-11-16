@@ -1,0 +1,161 @@
+# HextaUI
+
+> Ready-to-use foundation components/blocks built on top of shadcn/ui.
+
+## Table of Contents
+
+### Components
+
+- [Accordion](https://www.hextaui.com/components/accordion): Expands to show or hide content.
+- [Alert](https://www.hextaui.com/components/alert): Displays a status or message banner.
+- [Alert Dialog](https://www.hextaui.com/components/alert-dialog): Modal dialog for important actions or decisions.
+- [Aspect Ratio](https://www.hextaui.com/components/aspect-ratio): Maintains a fixed ratio for child content.
+- [Avatar](https://www.hextaui.com/components/avatar): Shows an image or initials for a user/object.
+- [Badge](https://www.hextaui.com/components/badge): Small badge for counts or indicators.
+- [Breadcrumb](https://www.hextaui.com/components/breadcrumb): Displays navigation path as links.
+- [Button](https://www.hextaui.com/components/button): Clickable button for actions.
+- [Button Group](https://www.hextaui.com/components/button-group): Groups multiple buttons in a row.
+- [Calendar](https://www.hextaui.com/components/calendar): Grid to display days and dates.
+- [Card](https://www.hextaui.com/components/card): Container with header, content, and footer sections.
+- [Carousel](https://www.hextaui.com/components/carousel): Rotates or slides multiple items.
+- [Checkbox](https://www.hextaui.com/components/checkbox): Box for selecting true or false.
+- [Collapsible](https://www.hextaui.com/components/collapsible): Panel that expands and collapses.
+- [Command Menu](https://www.hextaui.com/components/command-menu): Popup menu for running commands.
+- [Context Menu](https://www.hextaui.com/components/context-menu): Menu that appears on right-click or action.
+- [Dialog](https://www.hextaui.com/components/dialog): Modal overlay for dialogs and forms.
+- [Drawer](https://www.hextaui.com/components/drawer): Drawer panel that slides in from edge.
+- [Dropdown Menu](https://www.hextaui.com/components/dropdown-menu): Menu that opens with a trigger control.
+- [Empty](https://www.hextaui.com/components/empty): Graphic placeholder for empty states.
+- [Field](https://www.hextaui.com/components/field): Field layout with label and help.
+- [Hover Card](https://www.hextaui.com/components/hover-card): Card that appears on hover.
+- [Input](https://www.hextaui.com/components/input): Single-line text input.
+- [Item](https://www.hextaui.com/components/item): List item component with actions.
+- [Kbd](https://www.hextaui.com/components/kbd): Renders keyboard key appearance.
+- [Label](https://www.hextaui.com/components/label): Label for form input.
+- [Menubar](https://www.hextaui.com/components/menubar): Horizontal menu bar for navigation.
+- [Native Select](https://www.hextaui.com/components/native-select): Dropdown using the native select element.
+- [Navigation Menu](https://www.hextaui.com/components/navigation-menu): A collection of links for navigating websites.
+- [Pagination](https://www.hextaui.com/components/pagination): Controls for paging through content.
+- [Popover](https://www.hextaui.com/components/popover): Floating panel for additional content.
+- [Progress](https://www.hextaui.com/components/progress): Linear progress indicator.
+- [Radio Group](https://www.hextaui.com/components/radio-group): Group of choices where only one can be selected.
+- [Resizable](https://www.hextaui.com/components/resizable): Container that users can resize.
+- [Scroll Area](https://www.hextaui.com/components/scroll-area): Scrollable area for overflowing content.
+- [Select](https://www.hextaui.com/components/select): Custom dropdown select input.
+- [Separator](https://www.hextaui.com/components/separator): Horizontal or vertical dividing line.
+- [Sheet](https://www.hextaui.com/components/sheet): Drawer panel that slides in from edge.
+- [Sidebar](https://www.hextaui.com/components/sidebar): A collapsible sidebar component for navigation.
+- [Skeleton](https://www.hextaui.com/components/skeleton): Shimmer effect placeholder preview.
+- [Slider](https://www.hextaui.com/components/slider): Draggable control for selecting a value.
+- [Sonner](https://www.hextaui.com/components/sonner): Displays toast notifications.
+- [Spinner](https://www.hextaui.com/components/spinner): Circular activity indicator.
+- [Switch](https://www.hextaui.com/components/switch): Toggle to switch between states.
+- [Table](https://www.hextaui.com/components/table): Displays data in rows and columns.
+- [Tabs](https://www.hextaui.com/components/tabs): Switches views using tabbed buttons.
+- [Textarea](https://www.hextaui.com/components/textarea): Multi-line text input.
+- [Toggle](https://www.hextaui.com/components/toggle): Pressable toggle button.
+- [Toggle Group](https://www.hextaui.com/components/toggle-group): Groups multiple toggle buttons.
+- [Tooltip](https://www.hextaui.com/components/tooltip): Shows info on hover or focus.
+- [Tree](https://www.hextaui.com/components/tree): Hierarchical collapsible structure.
+- [Video Player](https://www.hextaui.com/components/video-player): Video playback with controls.
+
+### Blocks
+
+#### AI
+
+- [AI Chat History](https://www.hextaui.com/blocks/ai-chat-history): Display and manage conversation history with search and filtering.
+- [AI Citations](https://www.hextaui.com/blocks/ai-citations): Display citations and sources with collapsible source previews.
+- [AI Conversation](https://www.hextaui.com/blocks/ai-conversation): Display AI conversation messages with streaming support.
+- [AI Error Handler](https://www.hextaui.com/blocks/ai-error-handler): Display and handle AI errors with retry functionality.
+- [AI File Upload](https://www.hextaui.com/blocks/ai-file-upload): Upload files for AI analysis with drag and drop support.
+- [AI Message](https://www.hextaui.com/blocks/ai-message): Display AI messages with markdown support and code highlighting.
+- [AI Model Selector](https://www.hextaui.com/blocks/ai-model-selector): Select AI models from different providers with search.
+- [AI Prompt Input](https://www.hextaui.com/blocks/ai-prompt-input): Input component for AI prompts with context selection and options.
+- [AI Prompt Templates](https://www.hextaui.com/blocks/ai-prompt-templates): Browse and use pre-built prompt templates with variables.
+- [AI Settings Panel](https://www.hextaui.com/blocks/ai-settings-panel): Configure AI model parameters and behavior settings.
+- [AI Streaming Response](https://www.hextaui.com/blocks/ai-streaming-response): Display streaming AI responses with token-by-token animation.
+- [AI Suggested Prompts](https://www.hextaui.com/blocks/ai-suggested-prompts): Display suggested prompts with categories and search.
+- [AI Thinking](https://www.hextaui.com/blocks/ai-thinking): Display AI thinking process with animated scrolling content.
+- [AI Usage Quota](https://www.hextaui.com/blocks/ai-usage-quota): Display AI usage statistics, rate limits, and quota information.
+
+#### Auth
+
+- [Auth Account Delete](https://www.hextaui.com/blocks/auth-account-delete): Delete account with password confirmation and data loss acknowledgment.
+- [Auth Change Password](https://www.hextaui.com/blocks/auth-change-password): Change password with current and new password fields.
+- [Auth Email Change](https://www.hextaui.com/blocks/auth-email-change): Change email address with password verification.
+- [Auth Forgot Password](https://www.hextaui.com/blocks/auth-forgot-password): Request password reset link via email.
+- [Auth Login Form](https://www.hextaui.com/blocks/auth-login-form): Login form with email/password and social login options.
+- [Auth Magic Link](https://www.hextaui.com/blocks/auth-magic-link): Passwordless authentication via magic link email.
+- [Auth OTP Verify](https://www.hextaui.com/blocks/auth-otp-verify): Verify OTP code sent via email, SMS, or WhatsApp.
+- [Auth Phone Verify](https://www.hextaui.com/blocks/auth-phone-verify): Verify phone number with OTP code via SMS.
+- [Auth Recovery Codes](https://www.hextaui.com/blocks/auth-recovery-codes): Display and manage two-factor authentication recovery codes.
+- [Auth Reset Password](https://www.hextaui.com/blocks/auth-reset-password): Reset password with strength indicator and token validation.
+- [Auth Session Manager](https://www.hextaui.com/blocks/auth-session-manager): Manage active sessions across devices with revoke functionality.
+- [Auth Signup Form](https://www.hextaui.com/blocks/auth-signup-form): User registration form with email/password and social signup options.
+- [Auth Social Accounts](https://www.hextaui.com/blocks/auth-social-accounts): Manage connected social accounts for authentication.
+- [Auth Two Factor Setup](https://www.hextaui.com/blocks/auth-two-factor-setup): Set up two-factor authentication with QR code and backup codes.
+- [Auth Two Factor Verify](https://www.hextaui.com/blocks/auth-two-factor-verify): Verify two-factor authentication code or recovery code.
+- [Auth Verify Email](https://www.hextaui.com/blocks/auth-verify-email): Email verification status with resend functionality.
+
+#### Billing
+
+- [Billing Billing History](https://www.hextaui.com/blocks/billing-billing-history): Display transaction history with search, filters, and pagination.
+- [Billing Coupon Code](https://www.hextaui.com/blocks/billing-coupon-code): Apply and manage discount coupon codes.
+- [Billing Invoice Details](https://www.hextaui.com/blocks/billing-invoice-details): Detailed invoice view in a sheet with line items and payment information.
+- [Billing Invoice List](https://www.hextaui.com/blocks/billing-invoice-list): List of invoices with search, filters, and pagination.
+- [Billing Payment Failed](https://www.hextaui.com/blocks/billing-payment-failed): Display payment failure details with retry and support options.
+- [Billing Payment Form](https://www.hextaui.com/blocks/billing-payment-form): Form to add payment methods with card details and billing address.
+- [Billing Payment Method](https://www.hextaui.com/blocks/billing-payment-method): Manage payment methods with add, edit, delete, and set default options.
+- [Billing Payment Schedule](https://www.hextaui.com/blocks/billing-payment-schedule): View scheduled payments with next payment preview and retry options.
+- [Billing Plan Selector](https://www.hextaui.com/blocks/billing-plan-selector): Select subscription plans with monthly/annual billing toggle.
+- [Billing Pricing Table](https://www.hextaui.com/blocks/billing-pricing-table): Compare pricing plans in a table format with feature comparison.
+- [Billing Subscription Card](https://www.hextaui.com/blocks/billing-subscription-card): Display current subscription with usage, billing date, and management options.
+- [Billing Subscription Settings](https://www.hextaui.com/blocks/billing-subscription-settings): Manage subscription settings including pause, cancel, and billing period changes.
+- [Billing Upgrade Prompt](https://www.hextaui.com/blocks/billing-upgrade-prompt): Prompt users to upgrade their plan with feature highlights.
+- [Billing Usage Alerts](https://www.hextaui.com/blocks/billing-usage-alerts): Configure and manage usage alerts with notification channels.
+- [Billing Usage Billing](https://www.hextaui.com/blocks/billing-usage-billing): Display usage statistics with charts, breakdowns, and trend analysis.
+
+#### Input
+
+- [Input Group](https://www.hextaui.com/blocks/input-group): Combines inputs and add-ons in a row.
+- [Input OTP](https://www.hextaui.com/blocks/input-otp): Inputs for one-time code entry.
+
+#### Settings
+
+- [Settings Account](https://www.hextaui.com/blocks/settings-account): Manage account settings, subscription, and team members.
+- [Settings Activity Log](https://www.hextaui.com/blocks/settings-activity-log): View account activity and audit trail with search and filters.
+- [Settings Advanced](https://www.hextaui.com/blocks/settings-advanced): Developer tools and experimental features configuration.
+- [Settings API Keys](https://www.hextaui.com/blocks/settings-api-keys): Manage API keys for programmatic access with scopes and permissions.
+- [Settings Backup](https://www.hextaui.com/blocks/settings-backup): Manage automatic backups and restore your data.
+- [Settings Domains](https://www.hextaui.com/blocks/settings-domains): Manage custom domains and SSL certificates.
+- [Settings Export Data](https://www.hextaui.com/blocks/settings-export-data): Export your data in various formats with category selection.
+- [Settings Import Data](https://www.hextaui.com/blocks/settings-import-data): Import data from JSON or CSV files with conflict resolution.
+- [Settings Integrations](https://www.hextaui.com/blocks/settings-integrations): Connect and manage third-party integrations.
+- [Settings Notifications](https://www.hextaui.com/blocks/settings-notifications): Manage notification preferences and quiet hours.
+- [Settings Preferences](https://www.hextaui.com/blocks/settings-preferences): Customize app experience, appearance, and accessibility.
+- [Settings Privacy](https://www.hextaui.com/blocks/settings-privacy): Control privacy settings and data sharing preferences.
+- [Settings Profile](https://www.hextaui.com/blocks/settings-profile): Manage profile information, avatar, and social links.
+- [Settings Security](https://www.hextaui.com/blocks/settings-security): Manage account security, 2FA, and active sessions.
+- [Settings SSO](https://www.hextaui.com/blocks/settings-sso): Configure SSO providers for your organization.
+- [Settings Storage](https://www.hextaui.com/blocks/settings-storage): Manage storage usage and quotas by category.
+- [Settings Team Members](https://www.hextaui.com/blocks/settings-team-members): Manage team members, roles, and invitations.
+- [Settings Webhooks](https://www.hextaui.com/blocks/settings-webhooks): Configure webhooks for event notifications and deliveries.
+
+#### Team
+
+- [Team Activity Feed](https://www.hextaui.com/blocks/team-activity-feed): Display team activity and events in a feed with filtering.
+- [Team AI Room](https://www.hextaui.com/blocks/team-ai-room): Collaborative AI workspace for team members with shared conversations.
+- [Team Analytics](https://www.hextaui.com/blocks/team-analytics): View team analytics and usage statistics with charts and breakdowns.
+- [Team Chat](https://www.hextaui.com/blocks/team-chat): Team chat interface with messages and channels.
+- [Team Dashboard](https://www.hextaui.com/blocks/team-dashboard): Team dashboard with overview and metrics.
+- [Team Files](https://www.hextaui.com/blocks/team-files): Manage and share team files with upload and download.
+- [Team Invitations](https://www.hextaui.com/blocks/team-invitations): Send and manage team invitations with email and link options.
+- [Team Member List](https://www.hextaui.com/blocks/team-member-list): List and manage team members with roles and permissions.
+- [Team Notes](https://www.hextaui.com/blocks/team-notes): Collaborative notes and documentation with AI summarization.
+- [Team Notifications](https://www.hextaui.com/blocks/team-notifications): Team notifications and alerts with filtering and management.
+- [Team Permissions Matrix](https://www.hextaui.com/blocks/team-permissions-matrix): Manage team permissions and roles with visual matrix.
+- [Team Projects](https://www.hextaui.com/blocks/team-projects): Manage team projects and tasks with member assignment.
+- [Team Prompt Library](https://www.hextaui.com/blocks/team-prompt-library): Shared prompt library for the team with favorites and categories.
+- [Team Settings](https://www.hextaui.com/blocks/team-settings): Team settings and configuration with avatar upload.
+- [Team Switcher](https://www.hextaui.com/blocks/team-switcher): Switch between teams and workspaces with search.
+

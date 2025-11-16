@@ -5,12 +5,13 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "next-sitemap",
+    "postbuild": "next-sitemap && bun run scripts/generate-llms-txt.ts",
     "start": "next start",
     "lint": "eslint",
     "check": "tsc --noEmit",
     "format": "bun x ultracite fix",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "generate:llms": "bun run scripts/generate-llms-txt.ts"
   },
   "dependencies": {
     "@next/third-parties": "^16.0.3",
