@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { parseAsStringEnum, useQueryState } from "nuqs";
 import { Contributors } from "@/components/home/contributors";
 import { Hero } from "@/components/home/hero";
 import { Sponsors } from "@/components/home/sponsors";
@@ -19,10 +19,18 @@ const previewOptions = [
   { value: "billing", label: "Billing", component: BillingPreview },
   { value: "settings", label: "Settings", component: SettingsPreview },
   { value: "team", label: "Team", component: TeamPreview },
-];
+] as const;
+
+const parsePreviewTab = parseAsStringEnum([
+  "auth",
+  "ai",
+  "billing",
+  "settings",
+  "team",
+]).withDefault("auth");
 
 export default function Home() {
-  const [selected, setSelected] = useState("auth");
+  const [selected, setSelected] = useQueryState("preview", parsePreviewTab);
 
   const SelectedPreview =
     previewOptions.find((o) => o.value === selected)?.component ?? AuthPreview;
