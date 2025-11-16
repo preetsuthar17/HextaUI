@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Suspense } from "react";
 import { parseAsStringEnum, useQueryState } from "nuqs";
 import { Contributors } from "@/components/home/contributors";
 import { Hero } from "@/components/home/hero";
@@ -12,6 +13,7 @@ import BillingPreview from "@/components/previews/billing-preview";
 import SettingsPreview from "@/components/previews/settings-preview";
 import TeamPreview from "@/components/previews/team-preview";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 
 const previewOptions = [
   { value: "auth", label: "Authentication", component: AuthPreview },
@@ -29,47 +31,55 @@ const parsePreviewTab = parseAsStringEnum([
   "team",
 ]).withDefault("auth");
 
-export default function Home() {
+function PreviewSection() {
   const [selected, setSelected] = useQueryState("preview", parsePreviewTab);
 
   const SelectedPreview =
     previewOptions.find((o) => o.value === selected)?.component ?? AuthPreview;
 
   return (
+    <div className="flex w-full flex-col gap-12">
+      <div className="flex flex-wrap items-center justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-4">
+          <div className="flex flex-wrap gap-2">
+            {previewOptions.map((option) => (
+              <Button
+                aria-current={selected === option.value ? "page" : undefined}
+                aria-pressed={selected === option.value}
+                key={option.value}
+                onClick={() => setSelected(option.value)}
+                size="sm"
+                type="button"
+                variant={selected === option.value ? "outline" : "ghost"}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+          <ThemeSelectorWithCopy />
+        </div>
+        <Link className="underline underline-offset-4" href="/blocks">
+          Check out all blocks
+        </Link>
+      </div>
+
+      <div>
+        <SelectedPreview />
+      </div>
+    </div>
+  );
+}
+
+export default function Home() {
+  return (
     <div className="mx-auto flex w-[95%] flex-col gap-16 px-4 py-12">
       <div>
         <Hero />
       </div>
 
-      <div className="flex w-full flex-col gap-12">
-        <div className="flex flex-wrap items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex flex-wrap gap-2">
-              {previewOptions.map((option) => (
-                <Button
-                  aria-current={selected === option.value ? "page" : undefined}
-                  aria-pressed={selected === option.value}
-                  key={option.value}
-                  onClick={() => setSelected(option.value)}
-                  size="sm"
-                  type="button"
-                  variant={selected === option.value ? "outline" : "ghost"}
-                >
-                  {option.label}
-                </Button>
-              ))}
-            </div>
-            <ThemeSelectorWithCopy />
-          </div>
-          <Link className="underline underline-offset-4" href="/blocks">
-            Check out all blocks
-          </Link>
-        </div>
-
-        <div>
-          <SelectedPreview />
-        </div>
-      </div>
+      <Suspense fallback={<Spinner />}>
+        <PreviewSection />
+      </Suspense>
 
       <section className="flex flex-col gap-8 py-8">
         <Sponsors />
