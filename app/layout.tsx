@@ -19,6 +19,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 import { generateThemeScript } from "@/lib/generate-theme-script";
 
+import { GoogleAnalytics } from "@next/third-parties/google";
+
 const geist = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -167,7 +169,7 @@ export default function RootLayout({
           data-color="#FF813F"
           data-description="Support me on Buy me a coffee!"
           data-id="preetsuthar17"
-          data-message="You can support HextaUI here!"
+           data-message="You can support HextaUI here!"
           data-name="BMC-Widget"
           data-position="Right"
           data-x_margin="18"
@@ -175,6 +177,7 @@ export default function RootLayout({
           src="https://cdnjs.buymeacoffee.com/1.0.0/widget.prod.min.js"
         />
       </body>
+      <GoogleAnalytics gaId="G-ETYD3SB2M7"/>
     </html>
   );
 }
