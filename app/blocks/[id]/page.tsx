@@ -24,6 +24,7 @@ import {
   categoryLabels,
   getBlockMetaById,
 } from "@/lib/blocks-registry";
+import { getComponentCode } from "@/lib/get-component-code";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
@@ -147,7 +148,10 @@ export default async function BlockPage({
           <BlockDemo blockId={meta.id} Component={Component} />
           {/* Installation second */}
           <ComponentSection id="installation">
-            <ComponentInstallation componentName={meta.id} />
+            <ComponentInstallation
+              componentCode={getComponentCode(meta.id)}
+              componentName={meta.id}
+            />
           </ComponentSection>
 
           {/* Usage */}

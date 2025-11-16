@@ -23,6 +23,7 @@ import {
   componentsRegistry,
   getComponentMetaById,
 } from "@/lib/components-registry";
+import { getComponentCode } from "@/lib/get-component-code";
 import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 export function generateStaticParams() {
@@ -173,6 +174,7 @@ export default async function ComponentPage({
           {/* Installation second */}
           <ComponentSection id="installation">
             <ComponentInstallation
+              componentCode={getComponentCode(meta.id)}
               componentName={meta.id}
               installCode={meta.installCode}
             />

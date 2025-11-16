@@ -12,6 +12,7 @@ import "./globals.css";
 
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { Toaster } from "sonner";
 import { ComponentSearch } from "@/components/docs/component-search";
 import { SiteFooter } from "@/components/site-footer";
@@ -135,22 +136,24 @@ export default function RootLayout({
           disableTransitionOnChange
           enableSystem
         >
-          <ThemeInitializer />
-          <a
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
-            href="#content"
-          >
-            Skip to content
-          </a>
-          <ComponentSearch />
-          <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
-            <SiteHeader />
-            <main className="mx-auto w-full px-4 py-6" id="content">
-              {children}
-            </main>
-            <SiteFooter />
-          </div>
-          <Toaster />
+          <NuqsAdapter>
+            <ThemeInitializer />
+            <a
+              className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-card focus:px-3 focus:py-2 focus:text-foreground focus:shadow"
+              href="#content"
+            >
+              Skip to content
+            </a>
+            <ComponentSearch />
+            <div className="grid min-h-dvh grid-rows-[auto_1fr_auto]">
+              <SiteHeader />
+              <main className="mx-auto w-full px-4 py-6" id="content">
+                {children}
+              </main>
+              <SiteFooter />
+            </div>
+            <Toaster />
+          </NuqsAdapter>
         </ThemeProvider>
         <Script
           src="https://assets.onedollarstats.com/stonks.js"
