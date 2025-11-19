@@ -2850,7 +2850,7 @@ export function TooltipDemo() {
   </TooltipContent>
 </Tooltip>`,
   },
-    item: {
+  item: {
     demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle, ItemDescription } from "@/components/ui/item";
 
 export function ItemDemo() {
@@ -2887,7 +2887,7 @@ export function ItemDemo() {
   <ItemContent>
     <ItemTitle>List item</ItemTitle>
   </ItemContent>
-</Item>`
+</Item>`,
   },
   // Inserted: menubar
   menubar: {
@@ -2985,7 +2985,7 @@ export function MenubarDemo() {
       <MenubarItem>Save</MenubarItem>
     </MenubarContent>
   </MenubarMenu>
-</Menubar>`
+</Menubar>`,
   },
   // Inserted: drawer
   drawer: {
@@ -3046,7 +3046,7 @@ export function DrawerDemo() {
       Drawer content here.
     </div>
   </DrawerContent>
-</Drawer>`
+</Drawer>`,
   },
   // Inserted: hovercard
   "hover-card": {
@@ -3095,7 +3095,7 @@ export function HoverCardDemo() {
   <HoverCardContent>
     <div>User profile details</div>
   </HoverCardContent>
-</HoverCard>`
+</HoverCard>`,
   },
 } as const;
 
