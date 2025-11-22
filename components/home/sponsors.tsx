@@ -123,6 +123,15 @@ export const Sponsors = memo(function Sponsors() {
                 </span>
               </span>
             );
+            const extraProps =
+              sponsor.name === "shadcnblocks"
+                ? {
+                    "data-s-event": "Sponsor link: shadcnblocks.com",
+                    "data-s-event-props":
+                      "location=sponsors;label=shadcnblocks.com",
+                  }
+                : {};
+
             return (
               <Tooltip key={sponsor.name}>
                 <TooltipTrigger asChild>
@@ -137,6 +146,7 @@ export const Sponsors = memo(function Sponsors() {
                     href={sponsor.url}
                     rel="noopener noreferrer"
                     target="_blank"
+                    {...extraProps}
                   >
                     <Image
                       alt={sponsor.name}

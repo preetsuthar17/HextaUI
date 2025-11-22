@@ -169,6 +169,13 @@ export default function RootLayout({
         />
         {process.env.NODE_ENV === "development" && (
           <Script
+            data-debug="hextaui.com"
+            defer
+            src="https://assets.onedollarstats.com/stonks.js"
+          />
+        )}
+        {process.env.NODE_ENV === "development" && (
+          <Script
             crossOrigin="anonymous"
             src="//unpkg.com/react-scan/dist/auto.global.js"
             strategy="lazyOnload"

@@ -40,7 +40,7 @@ export default function BlocksIndexPage() {
           </p>
         </div>
       </header>
-      <div className="flex flex-wrap items-center gap-6 border border-dashed p-6 rounded-xl">
+      <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
             alt="shadcnblocks logo"
@@ -49,12 +49,12 @@ export default function BlocksIndexPage() {
             width={84}
           />
         </div>
-        <div className="flex flex-col md:gap-2 gap-4">
-          <h2 className="flex items-center gap-2 font-semibold text-xl tracking-tighter flex-wrap">
-            <span className="block md:hidden shrink-0">
+        <div className="flex flex-col gap-4 md:gap-2">
+          <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl tracking-tighter">
+            <span className="block shrink-0 md:hidden">
               <Image
-                className="shrink-0"
                 alt="shadcnblocks logo"
+                className="shrink-0"
                 height={24}
                 src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
                 width={24}
@@ -71,9 +71,13 @@ export default function BlocksIndexPage() {
               <a
                 href="https://shadcnblocks.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
                 rel="noopener noreferrer"
+                role="button"
                 style={{ textDecoration: "none" }}
                 tabIndex={0}
                 target="_blank"
+                type="button"
+                data-s-event="Blocks link: shadcnblocks.com"
+                data-s-event-props="location=blocks;label=shadcnblocks.com"
               >
                 Check out more blocks
                 <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />
