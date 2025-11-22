@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "check": "tsc --noEmit",
-    "format": "bun x ultracite fix",
+    "format": "bunx biome format --write || true",
     "registry:build": "shadcn build",
     "generate:llms": "bun run scripts/generate-llms-txt.ts"
   },
