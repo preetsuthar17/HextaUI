@@ -3,6 +3,12 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useMemo } from "react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface Sponsor {
@@ -55,6 +61,12 @@ const sponsors: Sponsor[] = [
     tier: "silver",
   },
   {
+    name: "shadcnblocks",
+    logo: "https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg",
+    url: "https://shadcnblocks.com",
+    tier: "platinum",
+  },
+  {
     name: "ticketping-com",
     logo: "https://github.com/ticketping-com.png",
     url: "https://github.com/ticketping-com",
@@ -97,35 +109,52 @@ export const Sponsors = memo(function Sponsors() {
   return (
     <div className="flex flex-col gap-4">
       <h2 className="font-semibold text-2xl tracking-tight">Sponsors</h2>
-      <div className="flex flex-wrap gap-2">
-        {sortedSponsors.map((sponsor) => {
-          const tier = sponsor.tier || "bronze";
-          const styles = tierStyles[tier];
-          return (
-            <Link
-              className={cn(
-                "flex aspect-square items-center justify-center overflow-hidden rounded-full bg-card p-0 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                styles.size,
-                styles.border,
-                styles.shadow
-              )}
-              href={sponsor.url}
-              key={sponsor.name}
-              rel="noopener noreferrer"
-              target="_blank"
-              title={`${sponsor.name} - ${tier[0].toUpperCase() + tier.slice(1)} Sponsor`}
-            >
-              <Image
-                alt={sponsor.name}
-                className="size-full object-contain opacity-70 transition-opacity hover:opacity-100"
-                height={48}
-                src={sponsor.logo}
-                width={48}
-              />
-            </Link>
-          );
-        })}
-      </div>
+      <TooltipProvider>
+        <div className="flex flex-wrap gap-2">
+          {sortedSponsors.map((sponsor) => {
+            const tier = sponsor.tier || "bronze";
+            const styles = tierStyles[tier];
+            const tooltipContent = (
+              <span className="font-semibold">
+                {sponsor.name}
+                <br />
+                <span className="font-normal">
+                  {tier[0].toUpperCase() + tier.slice(1)} Sponsor
+                </span>
+              </span>
+            );
+            return (
+              <Tooltip key={sponsor.name}>
+                <TooltipTrigger asChild>
+                  <Link
+                    aria-label={`${sponsor.name} – ${tier[0].toUpperCase() + tier.slice(1)} Sponsor`}
+                    className={cn(
+                      "flex aspect-square items-center justify-center overflow-hidden rounded-full bg-card p-0 transition-all hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+                      styles.size,
+                      styles.border,
+                      styles.shadow
+                    )}
+                    href={sponsor.url}
+                    rel="noopener noreferrer"
+                    target="_blank"
+                  >
+                    <Image
+                      alt={sponsor.name}
+                      className="size-full object-contain opacity-70 transition-opacity hover:opacity-100"
+                      height={48}
+                      src={sponsor.logo}
+                      width={48}
+                    />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent className="max-w-xs text-center" side="top">
+                  {tooltipContent}
+                </TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </div>
+      </TooltipProvider>
     </div>
   );
 });

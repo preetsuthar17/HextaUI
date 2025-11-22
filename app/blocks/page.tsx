@@ -1,4 +1,5 @@
 import { ArrowRightIcon } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Breadcrumb,
@@ -8,6 +9,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
 import {
   blockCategories,
   categoryLabels,
@@ -38,15 +40,56 @@ export default function BlocksIndexPage() {
           </p>
         </div>
       </header>
-
+      <div className="flex flex-wrap items-center gap-6 border border-dashed p-6 rounded-xl">
+        <div className="hidden md:block">
+          <Image
+            alt="shadcnblocks logo"
+            height={84}
+            src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
+            width={84}
+          />
+        </div>
+        <div className="flex flex-col md:gap-2 gap-4">
+          <h2 className="flex items-center gap-2 font-semibold text-xl tracking-tighter flex-wrap">
+            <span className="block md:hidden shrink-0">
+              <Image
+                className="shrink-0"
+                alt="shadcnblocks logo"
+                height={24}
+                src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
+                width={24}
+              />
+            </span>
+            The ultimate block set for Shadcn UI & Tailwind
+          </h2>
+          <p className="text-muted-foreground text-sm">
+            Browse 929 blocks and 1115 patterns for shadcn/ui, Tailwind, and
+            React. Ready to copy, paste, or install in your project.
+          </p>
+          <div>
+            <Button asChild variant={"outline"}>
+              <a
+                href="https://shadcnblocks.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+                tabIndex={0}
+                target="_blank"
+              >
+                Check out more blocks
+                <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />
+              </a>
+            </Button>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-col gap-12">
         {blockCategories.map((category) => {
           const categoryBlocks = getBlocksByCategory(category);
           return (
             <section className="flex flex-col gap-4" key={category}>
-              <h2 className="font-semibold text-lg tracking-tight">
+              <h3 className="font-semibold text-lg tracking-tight">
                 {categoryLabels[category]}
-              </h2>
+              </h3>
               <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3">
                 {categoryBlocks.map((block) => (
                   <Link
