@@ -199,7 +199,6 @@ export default async function ComponentPage({
 
           <Separator />
           <ComponentPrevNext currentId={meta.id} />
-         
         </div>
         <div className="hidden md:block">
           <CarbonAds />

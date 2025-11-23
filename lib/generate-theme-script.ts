@@ -1,4 +1,4 @@
-import { themes } from "./themes";
+import { themeRadii, themes } from "./themes";
 
 export function generateThemeScript(): string {
   const validThemes = themes.map((t) => t.name);
@@ -15,8 +15,9 @@ export function generateThemeScript(): string {
     };
   });
 
+  const radiiData = JSON.stringify(themeRadii);
   const themesJson = JSON.stringify(themesData);
   const validThemesJson = JSON.stringify(validThemes);
 
-  return `!function(){try{const e=${validThemesJson},t=${themesJson},n=localStorage.getItem('hextaui-color-theme');let r=n?n.trim():'default';if(!r||!e.includes(r))r='default';const o=localStorage.getItem('theme');let i=!1;'dark'===o?i=!0:'light'!==o&&(i=window.matchMedia('(prefers-color-scheme: dark)').matches);i?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark');const a=t[r];if(a){const e=i?a.dark:a.light;for(const[t,n]of Object.entries(e))document.documentElement.style.setProperty(t,n)}}catch(e){}}();`;
+  return `!function(){try{const e=${validThemesJson},t=${themesJson},s=${radiiData},n=localStorage.getItem('hextaui-color-theme');let r=n?n.trim():'default';if(!r||!e.includes(r))r='default';const o=localStorage.getItem('theme');let i=!1;'dark'===o?i=!0:'light'!==o&&(i=window.matchMedia('(prefers-color-scheme: dark)').matches);i?document.documentElement.classList.add('dark'):document.documentElement.classList.remove('dark');const a=t[r];if(a){const e=i?a.dark:a.light;for(const[t,n]of Object.entries(e))document.documentElement.style.setProperty(t,n);const c=s[r],u=i?c.dark:c.light;let l=u;const p=navigator.userAgent;!(/Chrome/.test(p)&&!/Edg/.test(p))&&(l='0.625rem');document.documentElement.style.setProperty('--radius',l)}}catch(e){}}();`;
 }

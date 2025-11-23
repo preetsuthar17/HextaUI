@@ -183,6 +183,12 @@
     @apply border-border outline-ring/50 corner-squircle;
     box-sizing: border-box;
   }
+
+  @supports not (corner-shape: squircle) {
+    :root {
+      --radius: 0.625rem;
+    }
+  }
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);

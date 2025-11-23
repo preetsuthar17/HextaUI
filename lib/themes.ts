@@ -752,10 +752,20 @@ export function getThemeFonts(themeName: ThemeName): ThemeFonts {
   return themeFonts[themeName];
 }
 
+function isChrome(): boolean {
+  if (typeof window === "undefined") return false;
+  const userAgent = window.navigator.userAgent;
+  return /Chrome/.test(userAgent) && !/Edg/.test(userAgent);
+}
+
 export function applyTheme(theme: Theme, isDark: boolean) {
   const root = document.documentElement;
   const variables = isDark ? theme.dark : theme.light;
-  const radius = getThemeRadius(theme.name, isDark);
+  let radius = getThemeRadius(theme.name, isDark);
+
+  if (!isChrome()) {
+    radius = "0.625rem";
+  }
 
   Object.entries(variables).forEach(([key, value]) => {
     root.style.setProperty(key, value);
