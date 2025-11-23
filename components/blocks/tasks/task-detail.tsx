@@ -20,6 +20,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -39,7 +40,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import type { Task, TaskAssignee, TaskPriority, TaskStatus } from "./task-list";
-import { Checkbox } from "@/components/ui/checkbox";
 
 export interface TaskComment {
   id: string;
@@ -396,7 +396,7 @@ export default function TaskDetail({
                           className="flex items-center gap-2 rounded-lg border bg-card p-2"
                           key={subtask.id}
                         >
-                          <label className="flex items-center gap-2 flex-1 cursor-pointer">
+                          <label className="flex flex-1 cursor-pointer items-center gap-2">
                             <Checkbox
                               aria-label={`Mark subtask '${subtask.title}' as complete`}
                               checked={subtask.completed}
