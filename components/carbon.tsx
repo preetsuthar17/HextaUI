@@ -14,7 +14,6 @@ const CarbonAds = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Remove existing ad if present
     const prev = document.querySelector("#carbonads");
     if (prev && prev.parentElement) {
       prev.parentElement.removeChild(prev);
@@ -39,7 +38,7 @@ const CarbonAds = () => {
       className="carbon-container"
       id="carbon-container"
       ref={containerRef}
-      style={{ minHeight: 130, minWidth: 180, position: "relative" }}
+      style={{ minHeight: 130, minWidth: 225, position: "relative" }}
     />
   );
 };
