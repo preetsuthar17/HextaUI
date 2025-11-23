@@ -117,9 +117,9 @@ export default function BlocksIndexPage() {
           <div>
             <Button asChild variant={"outline"}>
               <a
-                data-s-event="Blocks link: shadcnblocks.com"
-                data-s-event-props="location=blocks;label=shadcnblocks.com"
-                href="https://shadcnblocks.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
+                data-s-event="Blocks link: ikiform.com"
+                data-s-event-props="location=blocks;label=ikiform.com"
+                href="https://ikiform.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
                 rel="noopener noreferrer"
                 role="button"
                 style={{ textDecoration: "none" }}
