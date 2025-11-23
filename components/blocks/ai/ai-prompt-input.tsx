@@ -633,10 +633,10 @@ export default function AIPromptInput() {
           <CardContent className="p-0">
             <form
               aria-label="AI chat input"
-              className="flex flex-col gap-3"
+              className="flex flex-col gap-3 p-4"
               onSubmit={handleSubmit}
             >
-              <div className="flex w-full items-start justify-between p-4 pb-0">
+              <div className="flex w-full items-start justify-between pb-0">
                 <ContextSelector
                   onPageToggle={handlePageToggle}
                   onRemovePage={handleRemovePage}
@@ -660,7 +660,7 @@ export default function AIPromptInput() {
                 value={input}
               />
 
-              <div className="flex w-full items-center justify-between gap-2 p-4">
+              <div className="flex w-full items-center justify-between gap-2">
                 <div className="flex items-center justify-center gap-1">
                   <LeftActionButtons
                     onThinkingToggle={setThinkingEnabled}

@@ -262,8 +262,9 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
                                       isCurrent ? "page" : undefined
                                     }
                                     className={cn(
-                                      "block w-full truncate rounded-sm px-2 py-1 text-sm outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring",
-                                      isCurrent && "bg-accent font-medium"
+                                      "block w-full truncate rounded-sm px-2 py-1 text-sm opacity-50 outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring",
+                                      isCurrent &&
+                                        "bg-accent font-medium opacity-100"
                                     )}
                                     href={`/blocks/${block.id}`}
                                     tabIndex={0}
