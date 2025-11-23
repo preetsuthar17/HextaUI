@@ -153,7 +153,7 @@ const CommandMenuContent = React.forwardRef<
           <div
             className={cn(
               "-translate-x-1/2 -translate-y-1/2 fixed top-[30%] left-1/2 z-50 w-[95%] max-w-2xl",
-              "rounded-card border border-border bg-background",
+              "rounded-xl border border-border bg-background",
               "overflow-hidden",
               "motion-safe:duration-200 motion-reduce:animate-none",
               className
@@ -330,7 +330,7 @@ const CommandMenuItem = React.forwardRef<
     return (
       <div
         className={cn(
-          "relative flex cursor-default select-none items-center gap-2 rounded-ele px-2 py-2 text-sm outline-none transition-colors",
+          "relative flex cursor-default select-none items-center gap-2 rounded-md px-2 py-2 text-sm outline-none transition-colors",
           "hover:bg-accent hover:text-accent-foreground",
           isSelected && "bg-accent text-accent-foreground",
           disabled && "pointer-events-none opacity-50",
