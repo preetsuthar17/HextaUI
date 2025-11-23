@@ -189,7 +189,7 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
   return (
     <aside
       aria-label="Blocks navigation"
-      className="sticky top-23 hidden h-[70dvh] max-h-[70dvh] w-full max-w-xs md:block"
+      className="sticky top-23 hidden h-[70dvh] max-h-[70dvh] w-full max-w-60 md:block"
       style={{ minWidth: 0 }}
     >
       <div className="flex h-full w-full flex-col overflow-hidden rounded-md border bg-card">

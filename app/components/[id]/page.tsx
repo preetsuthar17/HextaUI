@@ -2,6 +2,7 @@ import { ArrowLeft, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import CarbonAds from "@/components/carbon";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
 import ComponentHeaderActions from "@/components/docs/component-header-actions";
 import { ComponentPrevNext } from "@/components/docs/component-prev-next";
@@ -108,10 +109,10 @@ export default async function ComponentPage({
   const Demo = meta.Demo;
 
   return (
-    <div className="mx-auto flex max-w-7xl flex-col gap-8 py-12">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 py-12">
       <div className="flex justify-evenly gap-12">
         <ComponentsSidebar currentId={meta.id} />
-        <div className="flex w-full max-w-4xl flex-col gap-12">
+        <div className="flex w-full flex-col gap-12">
           <header className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-1 flex-col gap-4">
               <Breadcrumb>
@@ -198,6 +199,10 @@ export default async function ComponentPage({
 
           <Separator />
           <ComponentPrevNext currentId={meta.id} />
+         
+        </div>
+        <div className="hidden md:block">
+          <CarbonAds />
         </div>
       </div>
     </div>
