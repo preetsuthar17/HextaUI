@@ -88,7 +88,7 @@ export function SiteHeader() {
                   >
                     <Image
                       alt="shadcnblocks logo"
-                      className="invert"
+                      className="invert dark:invert-0"
                       height={16}
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
                       width={16}

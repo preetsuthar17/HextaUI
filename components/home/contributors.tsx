@@ -34,6 +34,36 @@ async function fetchContributors(): Promise<Contributor[]> {
   }
 }
 
+function ContributorSkeleton({ className }: { className?: string }) {
+  return (
+    <span
+      aria-label="Loading contributor"
+      className={`flex aspect-square size-18 animate-pulse items-center justify-center overflow-hidden rounded-full border bg-card p-0 shadow-lg shadow-primary/20 ${className ?? ""}`}
+      role="img"
+    >
+      <svg
+        aria-hidden="true"
+        className="size-full opacity-60"
+        focusable="false"
+        height={48}
+        viewBox="0 0 48 48"
+        width={48}
+      >
+        <circle
+          className="text-muted"
+          cx="24"
+          cy="24"
+          fill="currentColor"
+          r="22"
+        />
+        <ellipse cx="24" cy="34" fill="#fff" opacity="0.18" rx="12" ry="6" />
+        <circle cx="24" cy="20" fill="#fff" opacity="0.15" r="9" />
+      </svg>
+      <span className="sr-only">Loading contributor…</span>
+    </span>
+  );
+}
+
 export const Contributors = memo(function Contributors() {
   const [contributors, setContributors] = useState<Contributor[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -49,14 +79,9 @@ export const Contributors = memo(function Contributors() {
     return (
       <div className="flex flex-col gap-4">
         <h2 className="font-semibold text-lg tracking-tight">Contributors</h2>
-        <div className="grid grid-cols-4 gap-3 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
+        <div className="flex flex-wrap gap-2">
           {[...Array(8)].map((_, i) => (
-            <div
-              className="flex aspect-square items-center justify-center border bg-card p-4"
-              key={i}
-            >
-              <div className="size-12 animate-pulse bg-muted" />
-            </div>
+            <ContributorSkeleton key={i} />
           ))}
         </div>
       </div>

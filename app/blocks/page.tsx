@@ -44,6 +44,7 @@ export default function BlocksIndexPage() {
         <div className="hidden md:block">
           <Image
             alt="shadcnblocks logo"
+            className="dark:invert"
             height={84}
             src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
             width={84}
@@ -54,7 +55,7 @@ export default function BlocksIndexPage() {
             <span className="block shrink-0 md:hidden">
               <Image
                 alt="shadcnblocks logo"
-                className="shrink-0"
+                className="shrink-0 dark:invert"
                 height={24}
                 src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
                 width={24}
@@ -69,6 +70,8 @@ export default function BlocksIndexPage() {
           <div>
             <Button asChild variant={"outline"}>
               <a
+                data-s-event="Blocks link: shadcnblocks.com"
+                data-s-event-props="location=blocks;label=shadcnblocks.com"
                 href="https://shadcnblocks.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
                 rel="noopener noreferrer"
                 role="button"
@@ -76,8 +79,6 @@ export default function BlocksIndexPage() {
                 tabIndex={0}
                 target="_blank"
                 type="button"
-                data-s-event="Blocks link: shadcnblocks.com"
-                data-s-event-props="location=blocks;label=shadcnblocks.com"
               >
                 Check out more blocks
                 <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />

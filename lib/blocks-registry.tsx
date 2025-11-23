@@ -64,7 +64,13 @@ import SettingsSSO from "@/components/blocks/settings/settings-sso";
 import SettingsStorage from "@/components/blocks/settings/settings-storage";
 import SettingsTeamMembers from "@/components/blocks/settings/settings-team-members";
 import SettingsWebhooks from "@/components/blocks/settings/settings-webhooks";
-
+import ProjectList from "@/components/blocks/tasks/project-list";
+import TaskBoard from "@/components/blocks/tasks/task-board";
+import TaskCreate from "@/components/blocks/tasks/task-create";
+import TaskDetail from "@/components/blocks/tasks/task-detail";
+import TaskFilters from "@/components/blocks/tasks/task-filters";
+import TaskList from "@/components/blocks/tasks/task-list";
+import TaskProgress from "@/components/blocks/tasks/task-progress";
 import TeamActivityFeed from "@/components/blocks/team/team-activity-feed";
 import TeamAIRoom from "@/components/blocks/team/team-ai-room";
 import TeamAnalytics from "@/components/blocks/team/team-analytics";
@@ -83,7 +89,13 @@ import TeamSwitcher from "@/components/blocks/team/team-switcher";
 import { getBlockExampleProps } from "./block-examples";
 import { blockSnippets } from "./block-snippets";
 
-export type BlockCategory = "ai" | "auth" | "billing" | "settings" | "team";
+export type BlockCategory =
+  | "ai"
+  | "auth"
+  | "billing"
+  | "settings"
+  | "team"
+  | "tasks";
 
 export type BlockMeta = {
   id: string;
@@ -571,6 +583,50 @@ const blocksList: Omit<BlockMeta, "Component">[] = [
     description: "Switch between teams and workspaces.",
     category: "team",
   },
+  // Task Blocks
+  {
+    id: "task-board",
+    title: "Task Board",
+    description: "Kanban-style board for managing tasks with drag-and-drop.",
+    category: "tasks",
+  },
+  {
+    id: "task-create",
+    title: "Task Create",
+    description: "Form to create new tasks with all necessary fields.",
+    category: "tasks",
+  },
+  {
+    id: "task-detail",
+    title: "Task Detail",
+    description:
+      "Detailed view of a task with subtasks, comments, and activity.",
+    category: "tasks",
+  },
+  {
+    id: "task-filters",
+    title: "Task Filters",
+    description: "Filter and search tasks by various criteria.",
+    category: "tasks",
+  },
+  {
+    id: "task-list",
+    title: "Task List",
+    description: "List view of tasks with sorting and filtering options.",
+    category: "tasks",
+  },
+  {
+    id: "task-progress",
+    title: "Task Progress",
+    description: "Visual progress indicator for task completion goals.",
+    category: "tasks",
+  },
+  {
+    id: "project-list",
+    title: "Project List",
+    description: "Display and manage projects with progress tracking.",
+    category: "tasks",
+  },
 ];
 
 const blockComponents: Record<string, React.ComponentType<any>> = {
@@ -657,6 +713,14 @@ const blockComponents: Record<string, React.ComponentType<any>> = {
   "team-prompt-library": TeamPromptLibrary,
   "team-settings": TeamSettings,
   "team-switcher": TeamSwitcher,
+  // Tasks
+  "task-board": TaskBoard,
+  "task-create": TaskCreate,
+  "task-detail": TaskDetail,
+  "task-filters": TaskFilters,
+  "task-list": TaskList,
+  "task-progress": TaskProgress,
+  "project-list": ProjectList,
 };
 
 const snippets = blockSnippets as Record<
@@ -685,6 +749,7 @@ export const blockCategories: BlockCategory[] = [
   "billing",
   "settings",
   "team",
+  "tasks",
 ];
 
 export const categoryLabels: Record<BlockCategory, string> = {
@@ -693,4 +758,5 @@ export const categoryLabels: Record<BlockCategory, string> = {
   billing: "Billing",
   settings: "Settings",
   team: "Team",
+  tasks: "Tasks",
 };

@@ -4,6 +4,7 @@ import {
   Bot,
   ChevronRight,
   CreditCard,
+  Kanban,
   Lock,
   Settings,
   Users,
@@ -36,6 +37,7 @@ const categoryIcons: Record<
   billing: CreditCard,
   settings: Settings,
   team: Users,
+  tasks: Kanban,
 };
 
 const SCROLL_POSITION_KEY = "blocks-sidebar-scroll";
@@ -70,6 +72,7 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
       billing: [],
       settings: [],
       team: [],
+      tasks: [],
     };
 
     filtered.forEach((block) => {
@@ -87,6 +90,7 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
       billing: 0,
       settings: 0,
       team: 0,
+      tasks: 0,
     };
 
     blocksRegistry.forEach((block) => {

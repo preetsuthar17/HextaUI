@@ -2163,6 +2163,147 @@
           "type": "registry:ui"
         }
       ]
+    },
+    {
+      "name": "task-board",
+      "type": "registry:ui",
+      "title": "Task Board",
+      "description": "Kanban-style board for managing tasks with drag-and-drop functionality.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-board.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-create",
+      "type": "registry:ui",
+      "title": "Task Create",
+      "description": "Form to create new tasks with all necessary fields including assignees, projects, and due dates.",
+      "registryDependencies": [
+        "button",
+        "card",
+        "field",
+        "input-group",
+        "select",
+        "separator",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-create.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-detail",
+      "type": "registry:ui",
+      "title": "Task Detail",
+      "description": "Detailed view of a task with subtasks, comments, attachments, and activity log. Includes URL-synced tabs.",
+      "dependencies": ["nuqs"],
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dialog",
+        "dropdown-menu",
+        "tabs",
+        "textarea"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-detail.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-filters",
+      "type": "registry:ui",
+      "title": "Task Filters",
+      "description": "Filter and search tasks by status, priority, assignees, projects, and tags with active filter badges.",
+      "registryDependencies": [
+        "badge",
+        "button",
+        "card",
+        "input-group",
+        "select",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-filters.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-list",
+      "type": "registry:ui",
+      "title": "Task List",
+      "description": "List view of tasks with sorting, filtering, bulk selection, and inline status updates.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "checkbox",
+        "dropdown-menu",
+        "input-group",
+        "select",
+        "separator"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "task-progress",
+      "type": "registry:ui",
+      "title": "Task Progress",
+      "description": "Visual progress indicator for task completion goals with percentage and count display.",
+      "registryDependencies": ["card", "progress"],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/task-progress.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "project-list",
+      "type": "registry:ui",
+      "title": "Project List",
+      "description": "Display and manage projects with progress tracking, member avatars, and task counts.",
+      "registryDependencies": [
+        "avatar",
+        "badge",
+        "button",
+        "card",
+        "dropdown-menu",
+        "input-group",
+        "progress",
+        "select"
+      ],
+      "files": [
+        {
+          "path": "registry/new-york/blocks/tasks/project-list.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }

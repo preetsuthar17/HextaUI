@@ -1688,6 +1688,558 @@ This is a demonstration of real-time token-by-token streaming."
   showPlan={true}
 />`,
   },
+  "task-board": {
+    usageImports: `import TaskBoard from "@/components/blocks/tasks/task-board";`,
+    usageCode: `<TaskBoard
+  tasks={[
+    {
+      id: "task-1",
+      title: "Redesign homepage hero section",
+      description: "Update the hero section with new messaging, improved CTA placement, and better visual hierarchy. Need to align with brand guidelines and ensure accessibility standards.",
+      status: "in_progress",
+      priority: "high",
+      assignees: [
+        {
+          id: "user-1",
+          name: "Sarah Chen",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+        },
+        {
+          id: "user-2",
+          name: "Marcus Rodriguez",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+        },
+      ],
+      tags: ["design", "frontend", "ui"],
+      dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+      createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-2",
+      title: "Implement OAuth 2.0 authentication flow",
+      description: "Add Google and GitHub OAuth providers. Need to handle token refresh, session management, and secure storage. Include rate limiting and CSRF protection.",
+      status: "todo",
+      priority: "urgent",
+      assignees: [
+        {
+          id: "user-3",
+          name: "Emily Watson",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=EmilyWatson2024",
+        },
+      ],
+      tags: ["backend", "security", "auth"],
+      dueDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+      createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  onTaskSelect={(taskId) => {
+    // Open task detail view or navigate to task page
+    setSelectedTaskId(taskId);
+    router.push(\`/tasks/\${taskId}\`);
+  }}
+  onTaskMove={async (taskId, fromStatus, toStatus) => {
+    // Update task status in your database/state
+    await updateTaskStatus(taskId, toStatus);
+    // Optional: Send notification to assignees
+    await notifyTaskStatusChange(taskId, toStatus);
+  }}
+  onTaskUpdate={async (taskId, updates) => {
+    // Update task fields (priority, assignees, due date, etc.)
+    await updateTask(taskId, updates);
+  }}
+  onTaskDelete={async (taskId) => {
+    // Confirm deletion, then remove from database
+    if (confirm("Are you sure you want to delete this task?")) {
+      await deleteTask(taskId);
+    }
+  }}
+/>`,
+  },
+  "task-create": {
+    usageImports: `import TaskCreate from "@/components/blocks/tasks/task-create";`,
+    usageCode: `<TaskCreate
+  availableAssignees={[
+    { id: "user-1", name: "Sarah Chen" },
+    { id: "user-2", name: "Marcus Rodriguez" },
+    { id: "user-3", name: "Emily Watson" },
+    { id: "user-4", name: "David Kim" },
+  ]}
+  availableProjects={[
+    { id: "project-1", name: "Q4 Website Redesign" },
+    { id: "project-2", name: "Mobile App v2.0" },
+    { id: "project-3", name: "Payment System Integration" },
+  ]}
+  onCreate={async (data) => {
+    // Create task in your database
+    const newTask = await createTask({
+      title: data.title,
+      description: data.description,
+      status: data.status,
+      priority: data.priority,
+      assigneeIds: data.assigneeIds,
+      projectId: data.projectId,
+      dueDate: data.dueDate,
+      tags: data.tags,
+    });
+    
+    // Return the created task with generated ID
+    return {
+      id: newTask.id,
+      title: newTask.title,
+      description: newTask.description,
+      status: newTask.status,
+      priority: newTask.priority,
+      assignees: newTask.assignees,
+      tags: newTask.tags,
+      dueDate: newTask.dueDate,
+      createdAt: newTask.createdAt,
+      updatedAt: newTask.updatedAt,
+    };
+  }}
+  onCancel={() => {
+    // Close modal or navigate back
+    setIsCreateModalOpen(false);
+    router.back();
+  }}
+/>`,
+  },
+  "task-detail": {
+    usageImports: `import TaskDetail from "@/components/blocks/tasks/task-detail";`,
+    usageCode: `<TaskDetail
+  task={{
+    id: "task-1",
+    title: "Redesign homepage hero section",
+    description: "Update the hero section with new messaging, improved CTA placement, and better visual hierarchy. Need to align with brand guidelines and ensure accessibility standards. Include A/B testing setup for conversion optimization.",
+    status: "in_progress",
+    priority: "high",
+    assignees: [
+      {
+        id: "user-1",
+        name: "Sarah Chen",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+      },
+      {
+        id: "user-2",
+        name: "Marcus Rodriguez",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+      },
+    ],
+    tags: ["design", "frontend", "ui"],
+    dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+    createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+    updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+  }}
+  subtasks={[
+    { id: "subtask-1", title: "Create low-fidelity wireframes for desktop and mobile", completed: true },
+    { id: "subtask-2", title: "Design high-fidelity mockups in Figma", completed: true },
+    { id: "subtask-3", title: "Get stakeholder approval on design direction", completed: true },
+    { id: "subtask-4", title: "Implement responsive HTML/CSS structure", completed: false },
+    { id: "subtask-5", title: "Add animations and micro-interactions", completed: false },
+    { id: "subtask-6", title: "Conduct accessibility audit and fix issues", completed: false },
+  ]}
+  comments={[
+    {
+      id: "comment-1",
+      content: "I've reviewed the design mockups and they look good! One suggestion: we should increase the CTA button size on mobile by 10% for better touch targets. Also, can we add a subtle animation on hover?",
+      author: {
+        id: "user-2",
+        name: "Marcus Rodriguez",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+      },
+      createdAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "comment-2",
+      content: "Thanks for the feedback! I've updated the mobile CTA size and added a smooth scale animation. The changes are in the latest commit. Can you take another look?",
+      author: {
+        id: "user-1",
+        name: "Sarah Chen",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+      },
+      createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  attachments={[
+    {
+      id: "attachment-1",
+      name: "hero-section-mockup-v3.fig",
+      url: "https://example.com/files/hero-section-mockup-v3.fig",
+      size: 3_456_000,
+      type: "application/octet-stream",
+      uploadedBy: {
+        id: "user-1",
+        name: "Sarah Chen",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+      },
+      uploadedAt: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "attachment-2",
+      name: "brand-guidelines-2025.pdf",
+      url: "https://example.com/files/brand-guidelines-2025.pdf",
+      size: 2_147_000,
+      type: "application/pdf",
+      uploadedBy: {
+        id: "user-2",
+        name: "Marcus Rodriguez",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+      },
+      uploadedAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  activities={[
+    {
+      id: "activity-1",
+      type: "created",
+      user: {
+        id: "user-2",
+        name: "Marcus Rodriguez",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+      },
+      description: "created this task",
+      timestamp: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "activity-2",
+      type: "assigned",
+      user: {
+        id: "user-2",
+        name: "Marcus Rodriguez",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+      },
+      description: "assigned to Sarah Chen and Marcus Rodriguez",
+      timestamp: new Date(Date.now() - 11 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "activity-3",
+      type: "updated",
+      user: {
+        id: "user-1",
+        name: "Sarah Chen",
+        avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+      },
+      description: "updated the priority to High",
+      timestamp: new Date(Date.now() - 10 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  onUpdate={async (updates) => {
+    // Update task in your database
+    await updateTask(task.id, updates);
+    // Refresh task data
+    await refetchTask(task.id);
+  }}
+  onDelete={async () => {
+    // Confirm deletion
+    if (confirm("Are you sure you want to delete this task? This action cannot be undone.")) {
+      await deleteTask(task.id);
+      // Navigate back or close detail view
+      router.push("/tasks");
+    }
+  }}
+/>`,
+  },
+  "task-filters": {
+    usageImports: `import TaskFilters from "@/components/blocks/tasks/task-filters";`,
+    usageCode: `<TaskFilters
+  availableAssignees={[
+    { id: "user-1", name: "Sarah Chen" },
+    { id: "user-2", name: "Marcus Rodriguez" },
+    { id: "user-3", name: "Emily Watson" },
+    { id: "user-4", name: "David Kim" },
+    { id: "user-5", name: "Priya Patel" },
+  ]}
+  availableProjects={[
+    { id: "project-1", name: "Q4 Website Redesign" },
+    { id: "project-2", name: "Mobile App v2.0" },
+    { id: "project-3", name: "Payment System Integration" },
+    { id: "project-4", name: "Performance Optimization" },
+  ]}
+  availableTags={[
+    "design",
+    "frontend",
+    "backend",
+    "security",
+    "documentation",
+    "mobile",
+    "devops",
+    "review",
+    "ui",
+    "auth",
+    "api",
+    "bug",
+    "ci-cd",
+    "performance",
+    "database",
+    "email",
+    "payments",
+  ]}
+  onFiltersChange={(filters) => {
+    // Update URL query params for shareable filters
+    const params = new URLSearchParams();
+    if (filters.status) params.set("status", filters.status);
+    if (filters.priority) params.set("priority", filters.priority);
+    if (filters.assigneeIds?.length) params.set("assignees", filters.assigneeIds.join(","));
+    if (filters.projectId) params.set("project", filters.projectId);
+    if (filters.tags?.length) params.set("tags", filters.tags.join(","));
+    
+    router.push(\`/tasks?\${params.toString()}\`);
+    
+    // Or update local state and refetch tasks
+    setFilters(filters);
+    refetchTasks(filters);
+  }}
+/>`,
+  },
+  "task-list": {
+    usageImports: `import TaskList from "@/components/blocks/tasks/task-list";`,
+    usageCode: `<TaskList
+  tasks={[
+    {
+      id: "task-1",
+      title: "Redesign homepage hero section",
+      description: "Update the hero section with new messaging, improved CTA placement, and better visual hierarchy.",
+      status: "in_progress",
+      priority: "high",
+      assignees: [
+        {
+          id: "user-1",
+          name: "Sarah Chen",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+        },
+        {
+          id: "user-2",
+          name: "Marcus Rodriguez",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+        },
+      ],
+      tags: ["design", "frontend", "ui"],
+      dueDate: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
+      createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-2",
+      title: "Implement OAuth 2.0 authentication flow",
+      description: "Add Google and GitHub OAuth providers. Need to handle token refresh, session management, and secure storage.",
+      status: "todo",
+      priority: "urgent",
+      assignees: [
+        {
+          id: "user-3",
+          name: "Emily Watson",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=EmilyWatson2024",
+        },
+      ],
+      tags: ["backend", "security", "auth"],
+      dueDate: new Date(Date.now() + 10 * 24 * 60 * 60 * 1000),
+      createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-3",
+      title: "Complete API documentation for v2.0",
+      description: "Document all REST endpoints with request/response examples, error codes, rate limits, and authentication requirements.",
+      status: "done",
+      priority: "medium",
+      assignees: [
+        {
+          id: "user-4",
+          name: "David Kim",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=DavidKim2024",
+        },
+      ],
+      tags: ["documentation", "api"],
+      createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  onTaskSelect={(taskId) => {
+    // Open task detail view
+    setSelectedTaskId(taskId);
+    setIsDetailOpen(true);
+    // Or navigate to task page
+    router.push(\`/tasks/\${taskId}\`);
+  }}
+  onTaskUpdate={async (taskId, updates) => {
+    // Update task in database
+    try {
+      await updateTask(taskId, updates);
+      // Show success notification
+      toast.success("Task updated successfully");
+      // Refresh task list
+      await refetchTasks();
+    } catch (error) {
+      // Handle error
+      toast.error("Failed to update task");
+      console.error(error);
+    }
+  }}
+  onTaskDelete={async (taskId) => {
+    // Confirm deletion
+    if (confirm("Are you sure you want to delete this task?")) {
+      try {
+        await deleteTask(taskId);
+        toast.success("Task deleted");
+        await refetchTasks();
+      } catch (error) {
+        toast.error("Failed to delete task");
+        console.error(error);
+      }
+    }
+  }}
+/>`,
+  },
+  "task-progress": {
+    usageImports: `import TaskProgress from "@/components/blocks/tasks/task-progress";`,
+    usageCode: `<TaskProgress
+  goal={12}
+  tasks={[
+    {
+      id: "task-1",
+      title: "Redesign homepage hero section",
+      status: "done",
+      priority: "high",
+      assignees: [],
+      tags: [],
+      createdAt: new Date(Date.now() - 12 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-2",
+      title: "Implement OAuth 2.0 authentication",
+      status: "done",
+      priority: "urgent",
+      assignees: [],
+      tags: [],
+      createdAt: new Date(Date.now() - 8 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-3",
+      title: "Complete API documentation",
+      status: "done",
+      priority: "medium",
+      assignees: [],
+      tags: [],
+      createdAt: new Date(Date.now() - 25 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "task-4",
+      title: "Fix iOS Safari layout bugs",
+      status: "in_progress",
+      priority: "high",
+      assignees: [],
+      tags: [],
+      createdAt: new Date(Date.now() - 4 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+/>`,
+  },
+  "project-list": {
+    usageImports: `import ProjectList from "@/components/blocks/tasks/project-list";`,
+    usageCode: `<ProjectList
+  projects={[
+    {
+      id: "project-1",
+      name: "Q4 Website Redesign",
+      description: "Complete redesign of company website with focus on conversion optimization, improved accessibility, and modern design patterns. Includes new CMS integration and performance improvements.",
+      status: "active",
+      progress: 68,
+      color: "#3b82f6",
+      members: [
+        {
+          id: "user-1",
+          name: "Sarah Chen",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+        },
+        {
+          id: "user-2",
+          name: "Marcus Rodriguez",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+        },
+        {
+          id: "user-5",
+          name: "Priya Patel",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=PriyaPatel2024",
+        },
+      ],
+      taskCount: 24,
+      completedTaskCount: 16,
+      createdAt: new Date(Date.now() - 45 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "project-2",
+      name: "Mobile App v2.0",
+      description: "Major update to mobile application with new features: offline mode, push notifications, and improved performance. Targeting iOS 15+ and Android 12+.",
+      status: "active",
+      progress: 42,
+      color: "#10b981",
+      members: [
+        {
+          id: "user-1",
+          name: "Sarah Chen",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=SarahChen2024",
+        },
+        {
+          id: "user-3",
+          name: "Emily Watson",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=EmilyWatson2024",
+        },
+        {
+          id: "user-5",
+          name: "Priya Patel",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=PriyaPatel2024",
+        },
+      ],
+      taskCount: 18,
+      completedTaskCount: 8,
+      createdAt: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+    },
+    {
+      id: "project-3",
+      name: "Payment System Integration",
+      description: "Integrate Stripe and PayPal payment gateways with subscription management, invoicing, and refund handling. Includes PCI compliance audit.",
+      status: "completed",
+      progress: 100,
+      color: "#8b5cf6",
+      members: [
+        {
+          id: "user-2",
+          name: "Marcus Rodriguez",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=MarcusRodriguez2024",
+        },
+        {
+          id: "user-3",
+          name: "Emily Watson",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=EmilyWatson2024",
+        },
+        {
+          id: "user-4",
+          name: "David Kim",
+          avatar: "https://api.dicebear.com/9.x/glass/svg?seed=DavidKim2024",
+        },
+      ],
+      taskCount: 14,
+      completedTaskCount: 14,
+      createdAt: new Date(Date.now() - 60 * 24 * 60 * 60 * 1000),
+      updatedAt: new Date(Date.now() - 3 * 24 * 60 * 60 * 1000),
+    },
+  ]}
+  onProjectSelect={(projectId) => {
+    // Navigate to project detail page
+    router.push(\`/projects/\${projectId}\`);
+    // Or filter tasks by project
+    setSelectedProjectId(projectId);
+    refetchTasks({ projectId });
+  }}
+/>`,
+  },
 } as const;
 
 export type BlockSnippets = typeof blockSnippets;

@@ -11,6 +11,7 @@ import AIPreview from "@/components/previews/ai-preview";
 import AuthPreview from "@/components/previews/auth-preview";
 import BillingPreview from "@/components/previews/billing-preview";
 import SettingsPreview from "@/components/previews/settings-preview";
+import TasksPreview from "@/components/previews/tasks-preview";
 import TeamPreview from "@/components/previews/team-preview";
 import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/spinner";
@@ -20,6 +21,7 @@ const previewOptions = [
   { value: "ai", label: "AI", component: AIPreview },
   { value: "billing", label: "Billing", component: BillingPreview },
   { value: "settings", label: "Settings", component: SettingsPreview },
+  { value: "tasks", label: "Tasks", component: TasksPreview },
   { value: "team", label: "Team", component: TeamPreview },
 ] as const;
 
@@ -28,6 +30,7 @@ const parsePreviewTab = parseAsStringEnum([
   "ai",
   "billing",
   "settings",
+  "tasks",
   "team",
 ]).withDefault("auth");
 
@@ -77,7 +80,13 @@ export default function Home() {
         <Hero />
       </div>
 
-      <Suspense fallback={<Spinner />}>
+      <Suspense
+        fallback={
+          <section className="flex min-h-screen items-center justify-center">
+            <Spinner />
+          </section>
+        }
+      >
         <PreviewSection />
       </Suspense>
 
