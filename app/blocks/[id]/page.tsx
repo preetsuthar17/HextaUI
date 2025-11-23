@@ -2,6 +2,7 @@ import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
+import { Suspense } from "react";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
 import { BlockDemo } from "@/components/docs/block-demo";
 import BlockHeaderActions from "@/components/docs/block-header-actions";
@@ -157,13 +158,17 @@ export default async function BlockPage({
           </header>
 
           {/* Demo */}
-          <BlockDemo blockId={meta.id} Component={Component} />
+          <Suspense fallback={<Spinner />}>
+            <BlockDemo blockId={meta.id} Component={Component} />
+          </Suspense>
           {/* Installation second */}
           <ComponentSection id="installation">
-            <ComponentInstallation
-              componentCode={getComponentCode(meta.id)}
-              componentName={meta.id}
-            />
+            <Suspense fallback={<Spinner />}>
+              <ComponentInstallation
+                componentCode={getComponentCode(meta.id)}
+                componentName={meta.id}
+              />
+            </Suspense>
           </ComponentSection>
 
           {/* Usage */}
