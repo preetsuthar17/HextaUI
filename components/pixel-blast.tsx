@@ -715,7 +715,7 @@ export const PixelBlast: React.FC<PixelBlastProps> = ({
   return (
     <div
       aria-label="PixelBlast interactive background"
-      className={`-z-10 absolute top-[118px] left-0 h-[400px] w-full overflow-hidden opacity-95 md:top-16 ${
+      className={`-z-10 absolute top-[118px] left-0 h-[400px] w-full overflow-hidden opacity-55 md:top-16 ${
         className ?? ""
       }`}
       ref={containerRef}
