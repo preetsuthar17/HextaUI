@@ -4,8 +4,8 @@ import type { ComponentType } from "react";
 import { useState } from "react";
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { ComponentSection } from "@/components/docs/component-section";
-import { Button } from "@/components/ui/button";
 import { getBlockExampleProps } from "@/lib/block-examples";
+import { Button } from "@/registry/new-york/ui/button";
 
 interface BlockDemoProps {
   Component: ComponentType<any>;

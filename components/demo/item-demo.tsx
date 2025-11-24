@@ -1,6 +1,6 @@
 import { BadgeCheckIcon, ChevronRightIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Item,
   ItemActions,
@@ -8,7 +8,7 @@ import {
   ItemDescription,
   ItemMedia,
   ItemTitle,
-} from "@/components/ui/item";
+} from "@/registry/new-york/ui/item";
 
 export function ItemDemo() {
   return (

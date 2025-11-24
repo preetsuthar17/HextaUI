@@ -11,16 +11,17 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
+} from "@/registry/new-york/ui/card";
+import { Checkbox } from "@/registry/new-york/ui/checkbox";
 import {
   Dialog,
   DialogContent,
@@ -29,42 +30,41 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/registry/new-york/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
+} from "@/registry/new-york/ui/empty";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/components/ui/field";
+} from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group";
+} from "@/registry/new-york/ui/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/select";
+import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export interface TeamInvitation {
   id: string;
@@ -262,7 +262,7 @@ export default function TeamInvitations({
                       <Checkbox
                         checked={inviteData.useDirectLink}
                         id="use-direct-link"
-                        onCheckedChange={(checked) =>
+                        onCheckedChange={(checked: boolean) =>
                           setInviteData((prev) => ({
                             ...prev,
                             useDirectLink: checked === true,
@@ -287,7 +287,7 @@ export default function TeamInvitations({
                         </InputGroupAddon>
                         <InputGroupInput
                           id="email"
-                          onChange={(e) =>
+                          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                             setInviteData((prev) => ({
                               ...prev,
                               email: e.target.value,
@@ -329,7 +329,7 @@ export default function TeamInvitations({
                   <FieldLabel htmlFor="expires">Expires in</FieldLabel>
                   <FieldContent>
                     <Select
-                      onValueChange={(value) =>
+                      onValueChange={(value: string) =>
                         setInviteData((prev) => ({
                           ...prev,
                           expiresInDays: Number.parseInt(value),
@@ -355,7 +355,7 @@ export default function TeamInvitations({
                   <FieldContent>
                     <Textarea
                       id="message"
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                         setInviteData((prev) => ({
                           ...prev,
                           message: e.target.value,

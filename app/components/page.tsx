@@ -1,6 +1,7 @@
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { componentsRegistry } from "@/lib/components-registry";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,9 +9,8 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import { componentsRegistry } from "@/lib/components-registry";
+} from "@/registry/new-york/ui/breadcrumb";
+import { Button } from "@/registry/new-york/ui/button";
 
 export default function ComponentsIndexPage() {
   return (

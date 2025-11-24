@@ -11,7 +11,7 @@ import {
   User,
 } from "lucide-react";
 import * as React from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   CommandMenu,
   CommandMenuContent,
@@ -23,7 +23,7 @@ import {
   CommandMenuSeparator,
   CommandMenuTrigger,
   useCommandMenuShortcut,
-} from "@/components/ui/command-menu";
+} from "@/registry/new-york/ui/command-menu";
 
 const menuItems = [
   {

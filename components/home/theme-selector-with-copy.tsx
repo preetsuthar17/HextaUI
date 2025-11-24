@@ -3,7 +3,8 @@
 import { Check, Copy, Palette } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,16 +12,15 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+} from "@/registry/new-york/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/registry/new-york/ui/scroll-area";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
+} from "@/registry/new-york/ui/select";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
 

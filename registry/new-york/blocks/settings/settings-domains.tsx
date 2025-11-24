@@ -2,6 +2,7 @@
 
 import { Check, Copy, Globe, Plus, RefreshCw, Trash2, X } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,16 +13,16 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/alert-dialog";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -30,16 +31,18 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/registry/new-york/ui/dialog";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/components/ui/field";
-import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/field";
+import {
+  InputGroup,
+  InputGroupInput,
+} from "@/registry/new-york/ui/input-group";
 
 export interface Domain {
   id: string;

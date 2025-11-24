@@ -2,9 +2,14 @@
 
 import { Check, ChevronsUpDown, Plus } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   CommandMenuEmpty,
   CommandMenuInput,
@@ -12,13 +17,12 @@ import {
   CommandMenuList,
   CommandMenuProvider,
   CommandMenuSeparator,
-} from "@/components/ui/command-menu";
+} from "@/registry/new-york/ui/command-menu";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "@/components/ui/popover";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/popover";
 
 export interface Team {
   id: string;

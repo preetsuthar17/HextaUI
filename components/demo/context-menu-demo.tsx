@@ -15,7 +15,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu";
+} from "@/registry/new-york/ui/context-menu";
 
 export function ContextMenuDemo() {
   const [showHidden, setShowHidden] = React.useState(false);

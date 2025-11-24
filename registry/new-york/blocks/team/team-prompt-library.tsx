@@ -12,16 +12,21 @@ import {
   Trash2,
 } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -30,36 +35,35 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/registry/new-york/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   Empty,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
-import { Field, FieldContent, FieldLabel } from "@/components/ui/field";
+} from "@/registry/new-york/ui/empty";
+import { Field, FieldContent, FieldLabel } from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group";
+} from "@/registry/new-york/ui/input-group";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/select";
+import { Separator } from "@/registry/new-york/ui/separator";
+import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export interface TeamPrompt {
   id: string;
@@ -242,7 +246,9 @@ export default function TeamPromptLibrary({
                         <InputGroup>
                           <InputGroupInput
                             id="prompt-title"
-                            onChange={(e) =>
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
                               setPromptData((prev) => ({
                                 ...prev,
                                 title: e.target.value,
@@ -260,7 +266,9 @@ export default function TeamPromptLibrary({
                       <FieldContent>
                         <Textarea
                           id="prompt-content"
-                          onChange={(e) =>
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) =>
                             setPromptData((prev) => ({
                               ...prev,
                               prompt: e.target.value,
@@ -279,7 +287,9 @@ export default function TeamPromptLibrary({
                       <FieldContent>
                         <Textarea
                           id="prompt-description"
-                          onChange={(e) =>
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) =>
                             setPromptData((prev) => ({
                               ...prev,
                               description: e.target.value,
@@ -298,7 +308,7 @@ export default function TeamPromptLibrary({
                         </FieldLabel>
                         <FieldContent>
                           <Select
-                            onValueChange={(value) =>
+                            onValueChange={(value: string) =>
                               setPromptData((prev) => ({
                                 ...prev,
                                 category: value,
@@ -329,7 +339,9 @@ export default function TeamPromptLibrary({
                           <InputGroup>
                             <InputGroupInput
                               id="prompt-model"
-                              onChange={(e) =>
+                              onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                              ) =>
                                 setPromptData((prev) => ({
                                   ...prev,
                                   bestModel: e.target.value,
@@ -381,7 +393,9 @@ export default function TeamPromptLibrary({
                 <Search className="size-4" />
               </InputGroupAddon>
               <InputGroupInput
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchQuery(e.target.value)
+                }
                 placeholder="Search prompts…"
                 type="search"
                 value={searchQuery}

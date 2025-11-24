@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { Card } from "@/components/ui/card";
-import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
+import { Card } from "@/registry/new-york/ui/card";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 const SCROLL_CONFIG = {
   SPEED: 5,

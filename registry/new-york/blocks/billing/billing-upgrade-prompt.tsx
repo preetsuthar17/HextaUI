@@ -2,17 +2,17 @@
 
 import { Check, Loader2, Sparkles, TrendingUp, X } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Separator } from "@/registry/new-york/ui/separator";
 
 export interface UpgradeFeature {
   name: string;

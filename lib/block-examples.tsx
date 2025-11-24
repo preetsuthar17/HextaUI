@@ -1,22 +1,22 @@
 import { Database, FileText, Image, Video } from "lucide-react";
-import type { Conversation } from "@/components/blocks/ai/ai-chat-history";
-import type { Citation } from "@/components/blocks/ai/ai-citations";
-import type { Message } from "@/components/blocks/ai/ai-conversation";
-import type { PromptTemplate } from "@/components/blocks/ai/ai-prompt-templates";
-import type { AISettings } from "@/components/blocks/ai/ai-settings-panel";
-import type { SuggestedPrompt } from "@/components/blocks/ai/ai-suggested-prompts";
+import type { Conversation } from "@/registry/new-york/blocks/ai/ai-chat-history";
+import type { Citation } from "@/registry/new-york/blocks/ai/ai-citations";
+import type { Message } from "@/registry/new-york/blocks/ai/ai-conversation";
+import type { PromptTemplate } from "@/registry/new-york/blocks/ai/ai-prompt-templates";
+import type { AISettings } from "@/registry/new-york/blocks/ai/ai-settings-panel";
+import type { SuggestedPrompt } from "@/registry/new-york/blocks/ai/ai-suggested-prompts";
 import type {
   Quota,
   RateLimit,
   TokenUsage,
-} from "@/components/blocks/ai/ai-usage-quota";
-import type { Session } from "@/components/blocks/auth/auth-session-manager";
-import type { InvoiceDetails } from "@/components/blocks/billing/billing-invoice-details";
-import type { Invoice } from "@/components/blocks/billing/billing-invoice-list";
-import type { PaymentMethod } from "@/components/blocks/billing/billing-payment-method";
-import type { SelectablePlan } from "@/components/blocks/billing/billing-plan-selector";
-import type { PricingPlan } from "@/components/blocks/billing/billing-pricing-table";
-import type { ProfileData } from "@/components/blocks/settings/settings-profile";
+} from "@/registry/new-york/blocks/ai/ai-usage-quota";
+import type { Session } from "@/registry/new-york/blocks/auth/auth-session-manager";
+import type { InvoiceDetails } from "@/registry/new-york/blocks/billing/billing-invoice-details";
+import type { Invoice } from "@/registry/new-york/blocks/billing/billing-invoice-list";
+import type { PaymentMethod } from "@/registry/new-york/blocks/billing/billing-payment-method";
+import type { SelectablePlan } from "@/registry/new-york/blocks/billing/billing-plan-selector";
+import type { PricingPlan } from "@/registry/new-york/blocks/billing/billing-pricing-table";
+import type { ProfileData } from "@/registry/new-york/blocks/settings/settings-profile";
 
 export function getBlockExampleProps(blockId: string): Record<string, any> {
   const now = Date.now();

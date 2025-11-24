@@ -2,28 +2,28 @@
 
 import { CheckCircle2, Eye, EyeOff, Loader2, Lock, Shield } from "lucide-react";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/components/ui/field";
+} from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/components/ui/input-group";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/input-group";
 
 export interface AuthChangePasswordProps {
   onSubmit?: (data: { currentPassword: string; newPassword: string }) => void;

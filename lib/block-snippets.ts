@@ -1,6 +1,6 @@
 export const blockSnippets = {
   "ai-chat-history": {
-    usageImports: `import AIChatHistory from "@/components/blocks/ai/ai-chat-history";`,
+    usageImports: `import AIChatHistory from "@/registry/new-york/blocks/ai/ai-chat-history";`,
     usageCode: `<AIChatHistory
   conversations={[
     {
@@ -28,7 +28,7 @@ export const blockSnippets = {
 />`,
   },
   "ai-citations": {
-    usageImports: `import AICitations from "@/components/blocks/ai/ai-citations";`,
+    usageImports: `import AICitations from "@/registry/new-york/blocks/ai/ai-citations";`,
     usageCode: `<AICitations
   citations={[
     {
@@ -55,7 +55,7 @@ export const blockSnippets = {
 />`,
   },
   "ai-conversation": {
-    usageImports: `import AIConversation from "@/components/blocks/ai/ai-conversation";`,
+    usageImports: `import AIConversation from "@/registry/new-york/blocks/ai/ai-conversation";`,
     usageCode: `<AIConversation
   messages={[
     {
@@ -82,7 +82,7 @@ export const blockSnippets = {
 />`,
   },
   "ai-error-handler": {
-    usageImports: `import AIErrorHandler from "@/components/blocks/ai/ai-error-handler";`,
+    usageImports: `import AIErrorHandler from "@/registry/new-york/blocks/ai/ai-error-handler";`,
     usageCode: `<AIErrorHandler
   error={{
     code: "network_error",
@@ -100,7 +100,7 @@ export const blockSnippets = {
 />`,
   },
   "ai-file-upload": {
-    usageImports: `import AIFileUpload from "@/components/blocks/ai/ai-file-upload";`,
+    usageImports: `import AIFileUpload from "@/registry/new-york/blocks/ai/ai-file-upload";`,
     usageCode: `<AIFileUpload
   onUpload={(files) => {
     /* handle file upload */
@@ -110,7 +110,7 @@ export const blockSnippets = {
 />`,
   },
   "ai-message": {
-    usageImports: `import AIMessage from "@/components/blocks/ai/ai-message";`,
+    usageImports: `import AIMessage from "@/registry/new-york/blocks/ai/ai-message";`,
     usageCode: `<AIMessage
   content="# Welcome to HextaUI
 
@@ -131,7 +131,7 @@ HextaUI is a modern UI component library for Next.js applications.
 />`,
   },
   "ai-model-selector": {
-    usageImports: `import AIModelSelector from "@/components/blocks/ai/ai-model-selector";`,
+    usageImports: `import AIModelSelector from "@/registry/new-york/blocks/ai/ai-model-selector";`,
     usageCode: `<AIModelSelector
   models={[
     { id: "gpt-4o", name: "GPT-4o", provider: "openai" },
@@ -144,7 +144,7 @@ HextaUI is a modern UI component library for Next.js applications.
 />`,
   },
   "ai-prompt-input": {
-    usageImports: `import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";`,
+    usageImports: `import AIPromptInput from "@/registry/new-york/blocks/ai/ai-prompt-input";`,
     usageCode: `<AIPromptInput
   onSend={(text) => {
     /* send prompt logic with value: text */
@@ -155,7 +155,7 @@ HextaUI is a modern UI component library for Next.js applications.
 />`,
   },
   "ai-prompt-templates": {
-    usageImports: `import AIPromptTemplates from "@/components/blocks/ai/ai-prompt-templates";`,
+    usageImports: `import AIPromptTemplates from "@/registry/new-york/blocks/ai/ai-prompt-templates";`,
     usageCode: `<AIPromptTemplates
   templates={[
     {
@@ -190,7 +190,7 @@ HextaUI is a modern UI component library for Next.js applications.
 />`,
   },
   "ai-settings-panel": {
-    usageImports: `import AISettingsPanel from "@/components/blocks/ai/ai-settings-panel";`,
+    usageImports: `import AISettingsPanel from "@/registry/new-york/blocks/ai/ai-settings-panel";`,
     usageCode: `<AISettingsPanel
   settings={{
     temperature: 0.85,
@@ -215,7 +215,7 @@ HextaUI is a modern UI component library for Next.js applications.
 />`,
   },
   "ai-streaming-response": {
-    usageImports: `import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";`,
+    usageImports: `import AIStreamingResponse from "@/registry/new-york/blocks/ai/ai-streaming-response";`,
     usageCode: `<AIStreamingResponse
   content="# Streaming Response
 
@@ -227,7 +227,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "ai-suggested-prompts": {
-    usageImports: `import AISuggestedPrompts from "@/components/blocks/ai/ai-suggested-prompts";`,
+    usageImports: `import AISuggestedPrompts from "@/registry/new-york/blocks/ai/ai-suggested-prompts";`,
     usageCode: `<AISuggestedPrompts
   prompts={[
     {
@@ -248,14 +248,14 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "ai-thinking": {
-    usageImports: `import AIThinking from "@/components/blocks/ai/ai-thinking";`,
+    usageImports: `import AIThinking from "@/registry/new-york/blocks/ai/ai-thinking";`,
     usageCode: `<AIThinking
   spinner={true}
   message="Let me think of the best answer..."
 />`,
   },
   "ai-usage-quota": {
-    usageImports: `import AIUsageQuota from "@/components/blocks/ai/ai-usage-quota";`,
+    usageImports: `import AIUsageQuota from "@/registry/new-york/blocks/ai/ai-usage-quota";`,
     usageCode: `<AIUsageQuota
   tokenUsage={{
     input: 225_000,
@@ -283,7 +283,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-account-delete": {
-    usageImports: `import AuthAccountDelete from "@/components/blocks/auth/auth-account-delete";`,
+    usageImports: `import AuthAccountDelete from "@/registry/new-york/blocks/auth/auth-account-delete";`,
     usageCode: `<AuthAccountDelete
   onDelete={async () => {
     /* delete user account */
@@ -293,7 +293,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-change-password": {
-    usageImports: `import AuthChangePassword from "@/components/blocks/auth/auth-change-password";`,
+    usageImports: `import AuthChangePassword from "@/registry/new-york/blocks/auth/auth-change-password";`,
     usageCode: `<AuthChangePassword
   onSubmit={async ({ current, next, confirm }) => {
     /* change password */
@@ -301,7 +301,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-email-change": {
-    usageImports: `import AuthEmailChange from "@/components/blocks/auth/auth-email-change";`,
+    usageImports: `import AuthEmailChange from "@/registry/new-york/blocks/auth/auth-email-change";`,
     usageCode: `<AuthEmailChange
   currentEmail="user@example.com"
   onSubmit={async ({ newEmail }) => {
@@ -310,7 +310,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-forgot-password": {
-    usageImports: `import AuthForgotPassword from "@/components/blocks/auth/auth-forgot-password";`,
+    usageImports: `import AuthForgotPassword from "@/registry/new-york/blocks/auth/auth-forgot-password";`,
     usageCode: `<AuthForgotPassword
   onSubmit={async ({ email }) => {
     /* send reset link */
@@ -322,7 +322,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-login-form": {
-    usageImports: `import AuthLoginForm from "@/components/blocks/auth/auth-login-form";`,
+    usageImports: `import AuthLoginForm from "@/registry/new-york/blocks/auth/auth-login-form";`,
     usageCode: `<AuthLoginForm
   onSubmit={async ({ email, password, remember }) => {
     /* demo login */
@@ -336,7 +336,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-magic-link": {
-    usageImports: `import AuthMagicLink from "@/components/blocks/auth/auth-magic-link";`,
+    usageImports: `import AuthMagicLink from "@/registry/new-york/blocks/auth/auth-magic-link";`,
     usageCode: `<AuthMagicLink
   onSubmit={async ({ email }) => {
     /* send magic link */
@@ -349,7 +349,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-otp-verify": {
-    usageImports: `import AuthOTPVerify from "@/components/blocks/auth/auth-otp-verify";`,
+    usageImports: `import AuthOTPVerify from "@/registry/new-york/blocks/auth/auth-otp-verify";`,
     usageCode: `<AuthOTPVerify
   deliveryMethod="email"
   deliveryAddress="user@example.com"
@@ -362,7 +362,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-phone-verify": {
-    usageImports: `import AuthPhoneVerify from "@/components/blocks/auth/auth-phone-verify";`,
+    usageImports: `import AuthPhoneVerify from "@/registry/new-york/blocks/auth/auth-phone-verify";`,
     usageCode: `<AuthPhoneVerify
   phoneNumber="+1234567890"
   onSubmit={async ({ code }) => {
@@ -375,7 +375,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-recovery-codes": {
-    usageImports: `import AuthRecoveryCodes from "@/components/blocks/auth/auth-recovery-codes";`,
+    usageImports: `import AuthRecoveryCodes from "@/registry/new-york/blocks/auth/auth-recovery-codes";`,
     usageCode: `<AuthRecoveryCodes
   codes={["173839", "572048", "208453", "983242"]}
   onRegenerate={async () => {
@@ -388,7 +388,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-reset-password": {
-    usageImports: `import AuthResetPassword from "@/components/blocks/auth/auth-reset-password";`,
+    usageImports: `import AuthResetPassword from "@/registry/new-york/blocks/auth/auth-reset-password";`,
     usageCode: `<AuthResetPassword
   onSubmit={async ({ password, confirm }) => {
     /* reset password logic */
@@ -398,7 +398,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-session-manager": {
-    usageImports: `import AuthSessionManager from "@/components/blocks/auth/auth-session-manager";`,
+    usageImports: `import AuthSessionManager from "@/registry/new-york/blocks/auth/auth-session-manager";`,
     usageCode: `<AuthSessionManager
   sessions={[
     {
@@ -420,7 +420,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-signup-form": {
-    usageImports: `import AuthSignupForm from "@/components/blocks/auth/auth-signup-form";`,
+    usageImports: `import AuthSignupForm from "@/registry/new-york/blocks/auth/auth-signup-form";`,
     usageCode: `<AuthSignupForm
   onSubmit={async ({ email, password, confirm }) => {
     /* signup logic */
@@ -432,7 +432,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-social-accounts": {
-    usageImports: `import AuthSocialAccounts from "@/components/blocks/auth/auth-social-accounts";`,
+    usageImports: `import AuthSocialAccounts from "@/registry/new-york/blocks/auth/auth-social-accounts";`,
     usageCode: `<AuthSocialAccounts
   connectedAccounts={[
     {
@@ -451,7 +451,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-two-factor-setup": {
-    usageImports: `import AuthTwoFactorSetup from "@/components/blocks/auth/auth-two-factor-setup";`,
+    usageImports: `import AuthTwoFactorSetup from "@/registry/new-york/blocks/auth/auth-two-factor-setup";`,
     usageCode: `<AuthTwoFactorSetup
   qrUrl="/static/2fa-qr.png"
   secret="JFVHK324HKJS"
@@ -461,7 +461,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-two-factor-verify": {
-    usageImports: `import AuthTwoFactorVerify from "@/components/blocks/auth/auth-two-factor-verify";`,
+    usageImports: `import AuthTwoFactorVerify from "@/registry/new-york/blocks/auth/auth-two-factor-verify";`,
     usageCode: `<AuthTwoFactorVerify
   onSubmit={async ({ code }) => {
     /* verify two-factor code */
@@ -469,7 +469,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "auth-verify-email": {
-    usageImports: `import AuthVerifyEmail from "@/components/blocks/auth/auth-verify-email";`,
+    usageImports: `import AuthVerifyEmail from "@/registry/new-york/blocks/auth/auth-verify-email";`,
     usageCode: `<AuthVerifyEmail
   email="user@example.com"
   status="pending"
@@ -483,7 +483,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-billing-history": {
-    usageImports: `import BillingBillingHistory from "@/components/blocks/billing/billing-billing-history";`,
+    usageImports: `import BillingBillingHistory from "@/registry/new-york/blocks/billing/billing-billing-history";`,
     usageCode: `<BillingBillingHistory
   transactions={[
     {
@@ -501,7 +501,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-coupon-code": {
-    usageImports: `import BillingCouponCode from "@/components/blocks/billing/billing-coupon-code";`,
+    usageImports: `import BillingCouponCode from "@/registry/new-york/blocks/billing/billing-coupon-code";`,
     usageCode: `<BillingCouponCode
   onApply={async (code) => {
     /* apply coupon code */
@@ -511,7 +511,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-invoice-details": {
-    usageImports: `import BillingInvoiceDetails from "@/components/blocks/billing/billing-invoice-details";`,
+    usageImports: `import BillingInvoiceDetails from "@/registry/new-york/blocks/billing/billing-invoice-details";`,
     usageCode: `<BillingInvoiceDetails
   invoice={{
     id: "inv-1",
@@ -554,7 +554,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-invoice-list": {
-    usageImports: `import BillingInvoiceList from "@/components/blocks/billing/billing-invoice-list";`,
+    usageImports: `import BillingInvoiceList from "@/registry/new-york/blocks/billing/billing-invoice-list";`,
     usageCode: `<BillingInvoiceList
   invoices={[
     {
@@ -575,7 +575,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-payment-failed": {
-    usageImports: `import BillingPaymentFailed from "@/components/blocks/billing/billing-payment-failed";`,
+    usageImports: `import BillingPaymentFailed from "@/registry/new-york/blocks/billing/billing-payment-failed";`,
     usageCode: `<BillingPaymentFailed
   failure={{
     invoiceId: "inv-1",
@@ -602,7 +602,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-payment-form": {
-    usageImports: `import BillingPaymentForm from "@/components/blocks/billing/billing-payment-form";`,
+    usageImports: `import BillingPaymentForm from "@/registry/new-york/blocks/billing/billing-payment-form";`,
     usageCode: `<BillingPaymentForm
   onSubmit={async ({ cardNumber, exp, cvc }) => {
     /* submit payment */
@@ -614,7 +614,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-payment-method": {
-    usageImports: `import BillingPaymentMethod from "@/components/blocks/billing/billing-payment-method";`,
+    usageImports: `import BillingPaymentMethod from "@/registry/new-york/blocks/billing/billing-payment-method";`,
     usageCode: `<BillingPaymentMethod
   paymentMethods={[
     {
@@ -639,7 +639,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-payment-schedule": {
-    usageImports: `import BillingPaymentSchedule from "@/components/blocks/billing/billing-payment-schedule";`,
+    usageImports: `import BillingPaymentSchedule from "@/registry/new-york/blocks/billing/billing-payment-schedule";`,
     usageCode: `<BillingPaymentSchedule
   payments={[
     {
@@ -664,7 +664,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-plan-selector": {
-    usageImports: `import BillingPlanSelector from "@/components/blocks/billing/billing-plan-selector";`,
+    usageImports: `import BillingPlanSelector from "@/registry/new-york/blocks/billing/billing-plan-selector";`,
     usageCode: `<BillingPlanSelector
   plans={[
     {
@@ -692,7 +692,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-pricing-table": {
-    usageImports: `import BillingPricingTable from "@/components/blocks/billing/billing-pricing-table";`,
+    usageImports: `import BillingPricingTable from "@/registry/new-york/blocks/billing/billing-pricing-table";`,
     usageCode: `<BillingPricingTable
   plans={[
     {
@@ -720,7 +720,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-subscription-card": {
-    usageImports: `import BillingSubscriptionCard from "@/components/blocks/billing/billing-subscription-card";`,
+    usageImports: `import BillingSubscriptionCard from "@/registry/new-york/blocks/billing/billing-subscription-card";`,
     usageCode: `<BillingSubscriptionCard
   plan={{
     id: "pro",
@@ -750,7 +750,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-subscription-settings": {
-    usageImports: `import BillingSubscriptionSettings from "@/components/blocks/billing/billing-subscription-settings";`,
+    usageImports: `import BillingSubscriptionSettings from "@/registry/new-york/blocks/billing/billing-subscription-settings";`,
     usageCode: `<BillingSubscriptionSettings
   subscription={{
     id: "sub-1",
@@ -771,7 +771,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-upgrade-prompt": {
-    usageImports: `import BillingUpgradePrompt from "@/components/blocks/billing/billing-upgrade-prompt";`,
+    usageImports: `import BillingUpgradePrompt from "@/registry/new-york/blocks/billing/billing-upgrade-prompt";`,
     usageCode: `<BillingUpgradePrompt
   currentPlan={{ id: "free", name: "Free" }}
   recommendedPlan={{
@@ -792,7 +792,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-usage-alerts": {
-    usageImports: `import BillingUsageAlerts from "@/components/blocks/billing/billing-usage-alerts";`,
+    usageImports: `import BillingUsageAlerts from "@/registry/new-york/blocks/billing/billing-usage-alerts";`,
     usageCode: `<BillingUsageAlerts
   alerts={[
     {
@@ -819,7 +819,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "billing-usage-billing": {
-    usageImports: `import BillingUsageBilling from "@/components/blocks/billing/billing-usage-billing";`,
+    usageImports: `import BillingUsageBilling from "@/registry/new-york/blocks/billing/billing-usage-billing";`,
     usageCode: `<BillingUsageBilling
   currentPeriod={{
     start: new Date(),
@@ -840,7 +840,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-account": {
-    usageImports: `import SettingsAccount from "@/components/blocks/settings/settings-account";`,
+    usageImports: `import SettingsAccount from "@/registry/new-york/blocks/settings/settings-account";`,
     usageCode: `<SettingsAccount
   account={{
     type: "pro",
@@ -862,7 +862,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-activity-log": {
-    usageImports: `import SettingsActivityLog from "@/components/blocks/settings/settings-activity-log";`,
+    usageImports: `import SettingsActivityLog from "@/registry/new-york/blocks/settings/settings-activity-log";`,
     usageCode: `<SettingsActivityLog
   entries={[
     {
@@ -883,7 +883,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-advanced": {
-    usageImports: `import SettingsAdvanced from "@/components/blocks/settings/settings-advanced";`,
+    usageImports: `import SettingsAdvanced from "@/registry/new-york/blocks/settings/settings-advanced";`,
     usageCode: `<SettingsAdvanced
   featureFlags={[
     { id: "ff-1", name: "Experimental UI", enabled: true },
@@ -895,7 +895,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-api-keys": {
-    usageImports: `import SettingsAPIKeys from "@/components/blocks/settings/settings-api-keys";`,
+    usageImports: `import SettingsAPIKeys from "@/registry/new-york/blocks/settings/settings-api-keys";`,
     usageCode: `<SettingsAPIKeys
   apiKeys={[
     {
@@ -917,7 +917,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-export-data": {
-    usageImports: `import SettingsExportData from "@/components/blocks/settings/settings-export-data";`,
+    usageImports: `import SettingsExportData from "@/registry/new-york/blocks/settings/settings-export-data";`,
     usageCode: `<SettingsExportData
   exportHistory={[
     {
@@ -940,7 +940,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-backup": {
-    usageImports: `import SettingsBackup from "@/components/blocks/settings/settings-backup";`,
+    usageImports: `import SettingsBackup from "@/registry/new-york/blocks/settings/settings-backup";`,
     usageCode: `<SettingsBackup
   backups={[
     {
@@ -967,7 +967,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-domains": {
-    usageImports: `import SettingsDomains from "@/components/blocks/settings/settings-domains";`,
+    usageImports: `import SettingsDomains from "@/registry/new-york/blocks/settings/settings-domains";`,
     usageCode: `<SettingsDomains
   domains={[
     {
@@ -990,7 +990,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-import-data": {
-    usageImports: `import SettingsImportData from "@/components/blocks/settings/settings-import-data";`,
+    usageImports: `import SettingsImportData from "@/registry/new-york/blocks/settings/settings-import-data";`,
     usageCode: `<SettingsImportData
   importHistory={[
     {
@@ -1015,7 +1015,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-integrations": {
-    usageImports: `import SettingsIntegrations from "@/components/blocks/settings/settings-integrations";`,
+    usageImports: `import SettingsIntegrations from "@/registry/new-york/blocks/settings/settings-integrations";`,
     usageCode: `<SettingsIntegrations
   integrations={[
     {
@@ -1036,7 +1036,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-notifications": {
-    usageImports: `import SettingsNotifications from "@/components/blocks/settings/settings-notifications";`,
+    usageImports: `import SettingsNotifications from "@/registry/new-york/blocks/settings/settings-notifications";`,
     usageCode: `<SettingsNotifications
   preferences={{
     categories: [
@@ -1058,7 +1058,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-preferences": {
-    usageImports: `import SettingsPreferences from "@/components/blocks/settings/settings-preferences";`,
+    usageImports: `import SettingsPreferences from "@/registry/new-york/blocks/settings/settings-preferences";`,
     usageCode: `<SettingsPreferences
   preferences={{
     theme: "dark",
@@ -1072,7 +1072,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-privacy": {
-    usageImports: `import SettingsPrivacy from "@/components/blocks/settings/settings-privacy";`,
+    usageImports: `import SettingsPrivacy from "@/registry/new-york/blocks/settings/settings-privacy";`,
     usageCode: `<SettingsPrivacy
   privacySettings={{
     profileVisibility: "private",
@@ -1085,7 +1085,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-profile": {
-    usageImports: `import SettingsProfile from "@/components/blocks/settings/settings-profile";`,
+    usageImports: `import SettingsProfile from "@/registry/new-york/blocks/settings/settings-profile";`,
     usageCode: `<SettingsProfile
   profile={{
     name: "John Doe",
@@ -1102,7 +1102,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-security": {
-    usageImports: `import SettingsSecurity from "@/components/blocks/settings/settings-security";`,
+    usageImports: `import SettingsSecurity from "@/registry/new-york/blocks/settings/settings-security";`,
     usageCode: `<SettingsSecurity
   sessions={[
     {
@@ -1124,7 +1124,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-sso": {
-    usageImports: `import SettingsSSO from "@/components/blocks/settings/settings-sso";`,
+    usageImports: `import SettingsSSO from "@/registry/new-york/blocks/settings/settings-sso";`,
     usageCode: `<SettingsSSO
   enabled={true}
   providers={[
@@ -1153,7 +1153,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-storage": {
-    usageImports: `import SettingsStorage from "@/components/blocks/settings/settings-storage";`,
+    usageImports: `import SettingsStorage from "@/registry/new-york/blocks/settings/settings-storage";`,
     usageCode: `<SettingsStorage
   totalUsed={7 * 1024 * 1024 * 1024}
   totalLimit={100 * 1024 * 1024 * 1024}
@@ -1173,7 +1173,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-team-members": {
-    usageImports: `import SettingsTeamMembers from "@/components/blocks/settings/settings-team-members";`,
+    usageImports: `import SettingsTeamMembers from "@/registry/new-york/blocks/settings/settings-team-members";`,
     usageCode: `<SettingsTeamMembers
   members={[
     {
@@ -1195,7 +1195,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "settings-webhooks": {
-    usageImports: `import SettingsWebhooks from "@/components/blocks/settings/settings-webhooks";`,
+    usageImports: `import SettingsWebhooks from "@/registry/new-york/blocks/settings/settings-webhooks";`,
     usageCode: `<SettingsWebhooks
   webhooks={[
     {
@@ -1224,7 +1224,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-activity-feed": {
-    usageImports: `import TeamActivityFeed from "@/components/blocks/team/team-activity-feed";`,
+    usageImports: `import TeamActivityFeed from "@/registry/new-york/blocks/team/team-activity-feed";`,
     usageCode: `<TeamActivityFeed
   activities={[
     {
@@ -1246,7 +1246,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-ai-room": {
-    usageImports: `import TeamAIRoom from "@/components/blocks/team/team-ai-room";`,
+    usageImports: `import TeamAIRoom from "@/registry/new-york/blocks/team/team-ai-room";`,
     usageCode: `<TeamAIRoom
   roomName="Shared AI Workspace"
   participants={[
@@ -1276,7 +1276,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-analytics": {
-    usageImports: `import TeamAnalytics from "@/components/blocks/team/team-analytics";`,
+    usageImports: `import TeamAnalytics from "@/registry/new-york/blocks/team/team-analytics";`,
     usageCode: `<TeamAnalytics
   tokenUsage={{
     current: 250000,
@@ -1306,7 +1306,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-chat": {
-    usageImports: `import TeamChat from "@/components/blocks/team/team-chat";`,
+    usageImports: `import TeamChat from "@/registry/new-york/blocks/team/team-chat";`,
     usageCode: `<TeamChat
   messages={[
     {
@@ -1327,7 +1327,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-dashboard": {
-    usageImports: `import TeamDashboard from "@/components/blocks/team/team-dashboard";`,
+    usageImports: `import TeamDashboard from "@/registry/new-york/blocks/team/team-dashboard";`,
     usageCode: `<TeamDashboard
   teamName="Acme Inc."
   plan="pro"
@@ -1363,7 +1363,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-files": {
-    usageImports: `import TeamFiles from "@/components/blocks/team/team-files";`,
+    usageImports: `import TeamFiles from "@/registry/new-york/blocks/team/team-files";`,
     usageCode: `<TeamFiles
   files={[
     {
@@ -1396,7 +1396,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-invitations": {
-    usageImports: `import TeamInvitations from "@/components/blocks/team/team-invitations";`,
+    usageImports: `import TeamInvitations from "@/registry/new-york/blocks/team/team-invitations";`,
     usageCode: `<TeamInvitations
   invitations={[
     {
@@ -1433,7 +1433,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-member-list": {
-    usageImports: `import TeamMemberList from "@/components/blocks/team/team-member-list";`,
+    usageImports: `import TeamMemberList from "@/registry/new-york/blocks/team/team-member-list";`,
     usageCode: `<TeamMemberList
   members={[
     {
@@ -1467,7 +1467,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-notes": {
-    usageImports: `import TeamNotes from "@/components/blocks/team/team-notes";`,
+    usageImports: `import TeamNotes from "@/registry/new-york/blocks/team/team-notes";`,
     usageCode: `<TeamNotes
   notes={[
     {
@@ -1510,7 +1510,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-notifications": {
-    usageImports: `import TeamNotifications from "@/components/blocks/team/team-notifications";`,
+    usageImports: `import TeamNotifications from "@/registry/new-york/blocks/team/team-notifications";`,
     usageCode: `<TeamNotifications
   notifications={[
     {
@@ -1541,11 +1541,11 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-permissions-matrix": {
-    usageImports: `import TeamPermissionsMatrix from "@/components/blocks/team/team-permissions-matrix";`,
+    usageImports: `import TeamPermissionsMatrix from "@/registry/new-york/blocks/team/team-permissions-matrix";`,
     usageCode: "<TeamPermissionsMatrix />",
   },
   "team-projects": {
-    usageImports: `import TeamProjects from "@/components/blocks/team/team-projects";`,
+    usageImports: `import TeamProjects from "@/registry/new-york/blocks/team/team-projects";`,
     usageCode: `<TeamProjects
   projects={[
     {
@@ -1591,7 +1591,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-prompt-library": {
-    usageImports: `import TeamPromptLibrary from "@/components/blocks/team/team-prompt-library";`,
+    usageImports: `import TeamPromptLibrary from "@/registry/new-york/blocks/team/team-prompt-library";`,
     usageCode: `<TeamPromptLibrary
   prompts={[
     {
@@ -1644,7 +1644,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-settings": {
-    usageImports: `import TeamSettings from "@/components/blocks/team/team-settings";`,
+    usageImports: `import TeamSettings from "@/registry/new-york/blocks/team/team-settings";`,
     usageCode: `<TeamSettings
   plan="pro"
   settings={{
@@ -1667,7 +1667,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "team-switcher": {
-    usageImports: `import TeamSwitcher from "@/components/blocks/team/team-switcher";`,
+    usageImports: `import TeamSwitcher from "@/registry/new-york/blocks/team/team-switcher";`,
     usageCode: `<TeamSwitcher
   teams={[
     {
@@ -1689,7 +1689,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-board": {
-    usageImports: `import TaskBoard from "@/components/blocks/tasks/task-board";`,
+    usageImports: `import TaskBoard from "@/registry/new-york/blocks/tasks/task-board";`,
     usageCode: `<TaskBoard
   tasks={[
     {
@@ -1758,7 +1758,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-create": {
-    usageImports: `import TaskCreate from "@/components/blocks/tasks/task-create";`,
+    usageImports: `import TaskCreate from "@/registry/new-york/blocks/tasks/task-create";`,
     usageCode: `<TaskCreate
   availableAssignees={[
     { id: "user-1", name: "Sarah Chen" },
@@ -1806,7 +1806,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-detail": {
-    usageImports: `import TaskDetail from "@/components/blocks/tasks/task-detail";`,
+    usageImports: `import TaskDetail from "@/registry/new-york/blocks/tasks/task-detail";`,
     usageCode: `<TaskDetail
   task={{
     id: "task-1",
@@ -1941,7 +1941,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-filters": {
-    usageImports: `import TaskFilters from "@/components/blocks/tasks/task-filters";`,
+    usageImports: `import TaskFilters from "@/registry/new-york/blocks/tasks/task-filters";`,
     usageCode: `<TaskFilters
   availableAssignees={[
     { id: "user-1", name: "Sarah Chen" },
@@ -1993,7 +1993,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-list": {
-    usageImports: `import TaskList from "@/components/blocks/tasks/task-list";`,
+    usageImports: `import TaskList from "@/registry/new-york/blocks/tasks/task-list";`,
     usageCode: `<TaskList
   tasks={[
     {
@@ -2092,7 +2092,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "task-progress": {
-    usageImports: `import TaskProgress from "@/components/blocks/tasks/task-progress";`,
+    usageImports: `import TaskProgress from "@/registry/new-york/blocks/tasks/task-progress";`,
     usageCode: `<TaskProgress
   goal={12}
   tasks={[
@@ -2140,7 +2140,7 @@ This is a demonstration of real-time token-by-token streaming."
 />`,
   },
   "project-list": {
-    usageImports: `import ProjectList from "@/components/blocks/tasks/project-list";`,
+    usageImports: `import ProjectList from "@/registry/new-york/blocks/tasks/project-list";`,
     usageCode: `<ProjectList
   projects={[
     {

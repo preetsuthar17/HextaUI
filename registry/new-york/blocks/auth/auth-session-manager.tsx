@@ -10,6 +10,7 @@ import {
   Tablet,
 } from "lucide-react";
 import { useCallback, useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -20,18 +21,17 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/alert-dialog";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Separator } from "@/registry/new-york/ui/separator";
 
 export type DeviceType = "desktop" | "mobile" | "tablet" | "unknown";
 

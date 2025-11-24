@@ -10,18 +10,18 @@ import {
   X,
 } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { Separator } from "@/components/ui/separator";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Progress } from "@/registry/new-york/ui/progress";
+import { Separator } from "@/registry/new-york/ui/separator";
 
 export interface ScheduledPayment {
   id: string;

@@ -2,12 +2,12 @@
 
 import Link from "next/link";
 import * as React from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
 import { componentsRegistry } from "@/lib/components-registry";
 import { cn } from "@/lib/utils";
+import { Input } from "@/registry/new-york/ui/input";
+import { Label } from "@/registry/new-york/ui/label";
+import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
+import { Separator } from "@/registry/new-york/ui/separator";
 
 const SCROLL_POSITION_KEY = "components-sidebar-scroll";
 

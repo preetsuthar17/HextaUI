@@ -4,54 +4,54 @@ import { FileText, Image } from "lucide-react";
 import { useMemo, useState } from "react";
 import SettingsAccount, {
   type AccountInfo,
-} from "@/components/blocks/settings/settings-account";
+} from "@/registry/new-york/blocks/settings/settings-account";
 import SettingsActivityLog, {
   type ActivityLogEntry,
-} from "@/components/blocks/settings/settings-activity-log";
+} from "@/registry/new-york/blocks/settings/settings-activity-log";
 import SettingsAdvanced, {
   type FeatureFlag,
-} from "@/components/blocks/settings/settings-advanced";
+} from "@/registry/new-york/blocks/settings/settings-advanced";
 import SettingsAPIKeys, {
   type APIKey,
-} from "@/components/blocks/settings/settings-api-keys";
+} from "@/registry/new-york/blocks/settings/settings-api-keys";
 import SettingsBackup, {
   type Backup,
-} from "@/components/blocks/settings/settings-backup";
+} from "@/registry/new-york/blocks/settings/settings-backup";
 import SettingsDomains, {
   type Domain,
-} from "@/components/blocks/settings/settings-domains";
+} from "@/registry/new-york/blocks/settings/settings-domains";
 import SettingsExportData, {
   type ExportJob,
-} from "@/components/blocks/settings/settings-export-data";
+} from "@/registry/new-york/blocks/settings/settings-export-data";
 import SettingsImportData, {
   type ImportJob,
-} from "@/components/blocks/settings/settings-import-data";
+} from "@/registry/new-york/blocks/settings/settings-import-data";
 import SettingsIntegrations, {
   type Integration,
-} from "@/components/blocks/settings/settings-integrations";
-import SettingsNotifications from "@/components/blocks/settings/settings-notifications";
-import SettingsPreferences from "@/components/blocks/settings/settings-preferences";
-import SettingsPrivacy from "@/components/blocks/settings/settings-privacy";
+} from "@/registry/new-york/blocks/settings/settings-integrations";
+import SettingsNotifications from "@/registry/new-york/blocks/settings/settings-notifications";
+import SettingsPreferences from "@/registry/new-york/blocks/settings/settings-preferences";
+import SettingsPrivacy from "@/registry/new-york/blocks/settings/settings-privacy";
 import SettingsProfile, {
   type ProfileData,
-} from "@/components/blocks/settings/settings-profile";
+} from "@/registry/new-york/blocks/settings/settings-profile";
 import SettingsSecurity, {
   type SecurityEvent,
   type SecuritySession,
-} from "@/components/blocks/settings/settings-security";
+} from "@/registry/new-york/blocks/settings/settings-security";
 import SettingsSSO, {
   type SSOProvider,
-} from "@/components/blocks/settings/settings-sso";
+} from "@/registry/new-york/blocks/settings/settings-sso";
 import SettingsStorage, {
   type StorageCategory,
-} from "@/components/blocks/settings/settings-storage";
+} from "@/registry/new-york/blocks/settings/settings-storage";
 import SettingsTeamMembers, {
   type TeamMember,
-} from "@/components/blocks/settings/settings-team-members";
+} from "@/registry/new-york/blocks/settings/settings-team-members";
 import SettingsWebhooks, {
   type Webhook,
   type WebhookDelivery,
-} from "@/components/blocks/settings/settings-webhooks";
+} from "@/registry/new-york/blocks/settings/settings-webhooks";
 
 export default function SettingsPreview() {
   const [baseTimestamp] = useState(() => Date.now());

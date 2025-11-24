@@ -3,6 +3,7 @@
 import { CircleCheckIcon, CircleHelpIcon, CircleIcon } from "lucide-react";
 import Link from "next/link";
 import type * as React from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,8 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { useIsMobile } from "@/hooks/use-mobile";
+} from "@/registry/new-york/ui/navigation-menu";
 
 const components: { title: string; href: string; description: string }[] = [
   {

@@ -1,8 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
-
-import { Button } from "@/components/ui/button";
 import { blocksRegistry } from "@/lib/blocks-registry";
+import { Button } from "@/registry/new-york/ui/button";
 
 type BlockHeaderActionsProps = {
   blockId: string;

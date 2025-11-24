@@ -7,7 +7,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/registry/new-york/ui/breadcrumb";
 
 export function BreadcrumbDemo() {
   return (

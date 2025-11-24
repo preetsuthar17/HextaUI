@@ -1,6 +1,6 @@
 "use client";
 
-import { VideoPlayer } from "@/components/ui/video-player";
+import { VideoPlayer } from "@/registry/new-york/ui/video-player";
 
 export function VideoPlayerDemo() {
   return (

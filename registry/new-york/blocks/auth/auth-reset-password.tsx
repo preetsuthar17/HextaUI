@@ -2,29 +2,29 @@
 
 import { CheckCircle2, Eye, EyeOff, Loader2, Lock } from "lucide-react";
 import { useCallback, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/components/ui/field";
+} from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupInput,
-} from "@/components/ui/input-group";
-import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/input-group";
+import { Progress } from "@/registry/new-york/ui/progress";
 
 export interface PasswordStrength {
   score: number; // 0-4

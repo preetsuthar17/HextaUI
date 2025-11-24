@@ -11,16 +11,21 @@ import {
   Trash2,
 } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -29,28 +34,27 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/registry/new-york/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   Empty,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
-import { Field, FieldContent, FieldLabel } from "@/components/ui/field";
+} from "@/registry/new-york/ui/empty";
+import { Field, FieldContent, FieldLabel } from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/input-group";
+import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export interface TeamProject {
   id: string;
@@ -212,7 +216,9 @@ export default function TeamProjects({
                         <InputGroup>
                           <InputGroupInput
                             id="project-name"
-                            onChange={(e) =>
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
                               setProjectData((prev) => ({
                                 ...prev,
                                 name: e.target.value,
@@ -232,7 +238,9 @@ export default function TeamProjects({
                       <FieldContent>
                         <Textarea
                           id="project-description"
-                          onChange={(e) =>
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) =>
                             setProjectData((prev) => ({
                               ...prev,
                               description: e.target.value,
@@ -251,7 +259,9 @@ export default function TeamProjects({
                           <input
                             className="size-10 rounded border"
                             id="project-color"
-                            onChange={(e) =>
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
                               setProjectData((prev) => ({
                                 ...prev,
                                 color: e.target.value,
@@ -262,7 +272,9 @@ export default function TeamProjects({
                           />
                           <InputGroup className="flex-1">
                             <InputGroupInput
-                              onChange={(e) =>
+                              onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                              ) =>
                                 setProjectData((prev) => ({
                                   ...prev,
                                   color: e.target.value,
@@ -312,7 +324,9 @@ export default function TeamProjects({
                 <Search className="size-4" />
               </InputGroupAddon>
               <InputGroupInput
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchQuery(e.target.value)
+                }
                 placeholder="Search projects…"
                 type="search"
                 value={searchQuery}

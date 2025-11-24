@@ -3,39 +3,39 @@
 import { useMemo, useState } from "react";
 import AIChatHistory, {
   type Conversation,
-} from "@/components/blocks/ai/ai-chat-history";
+} from "@/registry/new-york/blocks/ai/ai-chat-history";
 import AICitations, {
   type Citation,
-} from "@/components/blocks/ai/ai-citations";
+} from "@/registry/new-york/blocks/ai/ai-citations";
 import AIConversation, {
   type Message,
-} from "@/components/blocks/ai/ai-conversation";
+} from "@/registry/new-york/blocks/ai/ai-conversation";
 import AIErrorHandler, {
   type AIError,
-} from "@/components/blocks/ai/ai-error-handler";
+} from "@/registry/new-york/blocks/ai/ai-error-handler";
 import AIFileUpload, {
   type UploadedFile,
-} from "@/components/blocks/ai/ai-file-upload";
-import AIMessage from "@/components/blocks/ai/ai-message";
-import AIModelSelector from "@/components/blocks/ai/ai-model-selector";
-import AIPromptInput from "@/components/blocks/ai/ai-prompt-input";
+} from "@/registry/new-york/blocks/ai/ai-file-upload";
+import AIMessage from "@/registry/new-york/blocks/ai/ai-message";
+import AIModelSelector from "@/registry/new-york/blocks/ai/ai-model-selector";
+import AIPromptInput from "@/registry/new-york/blocks/ai/ai-prompt-input";
 import AIPromptTemplates, {
   type PromptTemplate,
-} from "@/components/blocks/ai/ai-prompt-templates";
+} from "@/registry/new-york/blocks/ai/ai-prompt-templates";
 import AISettingsPanel, {
   type AISettings,
   type AISettingsPreset,
-} from "@/components/blocks/ai/ai-settings-panel";
-import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";
+} from "@/registry/new-york/blocks/ai/ai-settings-panel";
+import AIStreamingResponse from "@/registry/new-york/blocks/ai/ai-streaming-response";
 import AISuggestedPrompts, {
   type SuggestedPrompt,
-} from "@/components/blocks/ai/ai-suggested-prompts";
-import AIThinking from "@/components/blocks/ai/ai-thinking";
+} from "@/registry/new-york/blocks/ai/ai-suggested-prompts";
+import AIThinking from "@/registry/new-york/blocks/ai/ai-thinking";
 import AIUsageQuota, {
   type Quota,
   type RateLimit,
   type TokenUsage,
-} from "@/components/blocks/ai/ai-usage-quota";
+} from "@/registry/new-york/blocks/ai/ai-usage-quota";
 
 const exampleMessage = `
 # Welcome to HextaUI
@@ -54,7 +54,7 @@ HextaUI is a modern UI component library for Next.js applications. Here's what m
 Here's a simple example using React:
 
 \`\`\`tsx
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function MyComponent() {
   return (
@@ -157,7 +157,7 @@ This is a demonstration of real-time token-by-token streaming. The component pro
 Here's how to use the component:
 
 \`\`\`tsx
-import AIStreamingResponse from "@/components/blocks/ai/ai-streaming-response";
+import AIStreamingResponse from "@/registry/new-york/blocks/ai/ai-streaming-response";
 
 const content = "This is a full paragraph that will be streamed token by token.";
 

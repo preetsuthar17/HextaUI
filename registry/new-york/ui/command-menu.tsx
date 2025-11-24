@@ -4,9 +4,9 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { Search, X } from "lucide-react";
 import * as React from "react";
-import { Kbd } from "@/components/ui/kbd";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
+import { Kbd } from "@/registry/new-york/ui/kbd";
+import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 
 const getModifierKey = () => {
   if (typeof navigator === "undefined") return { key: "Ctrl", symbol: "Ctrl" };

@@ -3,19 +3,19 @@
 import { Palette } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
+} from "@/registry/new-york/ui/tooltip";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
 

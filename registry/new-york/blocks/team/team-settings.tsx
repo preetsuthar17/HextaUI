@@ -2,27 +2,34 @@
 
 import { Loader2, Save, Upload } from "lucide-react";
 import { useRef, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Field,
   FieldContent,
   FieldDescription,
   FieldError,
   FieldLabel,
-} from "@/components/ui/field";
-import { InputGroup, InputGroupInput } from "@/components/ui/input-group";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/field";
+import {
+  InputGroup,
+  InputGroupInput,
+} from "@/registry/new-york/ui/input-group";
+import { Separator } from "@/registry/new-york/ui/separator";
+import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export interface TeamSettings {
   name: string;
@@ -230,7 +237,7 @@ export default function TeamSettings({
                 <InputGroup>
                   <InputGroupInput
                     id="name"
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLocalSettings((prev) => ({
                         ...prev,
                         name: e.target.value,
@@ -250,7 +257,7 @@ export default function TeamSettings({
               <FieldContent>
                 <Textarea
                   id="description"
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
                     setLocalSettings((prev) => ({
                       ...prev,
                       description: e.target.value,
@@ -269,7 +276,7 @@ export default function TeamSettings({
                 <InputGroup>
                   <InputGroupInput
                     id="slug"
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLocalSettings((prev) => ({
                         ...prev,
                         slug: e.target.value.toLowerCase().replace(/\s+/g, "-"),
@@ -293,7 +300,7 @@ export default function TeamSettings({
                   <input
                     className="size-10 rounded border"
                     id="color"
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setLocalSettings((prev) => ({
                         ...prev,
                         color: e.target.value,
@@ -304,7 +311,7 @@ export default function TeamSettings({
                   />
                   <InputGroup className="flex-1">
                     <InputGroupInput
-                      onChange={(e) =>
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                         setLocalSettings((prev) => ({
                           ...prev,
                           color: e.target.value,
@@ -337,7 +344,7 @@ export default function TeamSettings({
                   <select
                     className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:font-medium file:text-sm placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                     id="default-model"
-                    onChange={(e) =>
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                       setLocalSettings((prev) => ({
                         ...prev,
                         defaultModel: e.target.value,

@@ -1,7 +1,7 @@
 "use client";
 
 import { FileText, Folder, FolderOpen, Image } from "lucide-react";
-import { Tree, TreeItem, TreeProvider } from "@/components/ui/tree";
+import { Tree, TreeItem, TreeProvider } from "@/registry/new-york/ui/tree";
 
 export function TreeBasicDemo() {
   return (

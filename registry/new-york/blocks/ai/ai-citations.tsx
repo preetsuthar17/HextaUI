@@ -8,12 +8,12 @@ import {
   Quote,
 } from "lucide-react";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/collapsible";
 
 export interface CitationSource {
   id: string;

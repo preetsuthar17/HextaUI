@@ -11,16 +11,16 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useRef, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Progress } from "@/registry/new-york/ui/progress";
 
 export interface UploadedFile {
   id: string;

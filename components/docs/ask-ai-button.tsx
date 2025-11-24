@@ -3,13 +3,13 @@
 import { ChevronDown, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 
 type AskAIButton = {
   componentId?: string;

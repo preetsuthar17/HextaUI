@@ -1,4 +1,4 @@
-import { Kbd, KbdGroup } from "@/components/ui/kbd";
+import { Kbd, KbdGroup } from "@/registry/new-york/ui/kbd";
 
 export function KbdDemo() {
   return (

@@ -7,7 +7,7 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
+} from "@/registry/new-york/ui/accordion";
 
 export function AccordionDemo() {
   return (
@@ -47,7 +47,7 @@ export function AccordionDemo() {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion"`,
+} from "@/registry/new-york/ui/accordion"`,
     usageCode: `<Accordion type="single" collapsible className="w-full" defaultValue="item-1">
   <AccordionItem value="item-1">
     <AccordionTrigger>Product Information</AccordionTrigger>
@@ -65,8 +65,8 @@ export function AccordionDemo() {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/card";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function CardDemo() {
   return (
@@ -95,7 +95,7 @@ export function CardDemo() {
   CardDescription,
   CardContent,
   CardFooter,
-} from "@/components/ui/card"`,
+} from "@/registry/new-york/ui/card"`,
     usageCode: `<Card>
   <CardHeader>
     <CardTitle>Card Title</CardTitle>
@@ -124,8 +124,8 @@ import {
   CommandMenuSeparator,
   CommandMenuEmpty,
   useCommandMenuShortcut,
-} from "@/components/ui/command-menu";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/command-menu";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Calendar,
   User,
@@ -241,8 +241,8 @@ export default CommandMenuDemo;
   CommandMenuItem,
   CommandMenuSeparator,
   useCommandMenuShortcut,
-} from "@/components/ui/command-menu"
-import { Button } from "@/components/ui/button"`,
+} from "@/registry/new-york/ui/command-menu"
+import { Button } from "@/registry/new-york/ui/button"`,
     usageCode: `const [open, setOpen] = React.useState(false)
 
 return (
@@ -266,7 +266,7 @@ return (
     demoCode: `"use client";
 
 import { Folder, File, FileText, Image } from "lucide-react";
-import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree";
+import { TreeProvider, Tree, TreeItem } from "@/registry/new-york/ui/tree";
 
 export function TreeDemo() {
   return (
@@ -289,7 +289,7 @@ export function TreeDemo() {
   );
 }
 `,
-    usageImports: `import { TreeProvider, Tree, TreeItem } from "@/components/ui/tree"`,
+    usageImports: `import { TreeProvider, Tree, TreeItem } from "@/registry/new-york/ui/tree"`,
     usageCode: `<TreeProvider>
   <Tree>
     <TreeItem nodeId="1" label="Item 1" hasChildren>
@@ -301,7 +301,7 @@ export function TreeDemo() {
   "video-player": {
     demoCode: `"use client";
 
-import { VideoPlayer } from "@/components/ui/video-player";
+import { VideoPlayer } from "@/registry/new-york/ui/video-player";
 
 export function VideoPlayerDemo() {
   return (
@@ -314,7 +314,7 @@ export function VideoPlayerDemo() {
   );
 }
 `,
-    usageImports: `import { VideoPlayer } from "@/components/ui/video-player"`,
+    usageImports: `import { VideoPlayer } from "@/registry/new-york/ui/video-player"`,
     usageCode: `<VideoPlayer src="/path/to/video.mp4" poster="/path/to/poster.jpg" />`,
   },
   "alert-dialog": {
@@ -330,8 +330,8 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/alert-dialog";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function AlertDialogDemo() {
   return (
@@ -383,7 +383,7 @@ export function AlertDialogDemo() {
   AlertDialogHeader,
   AlertDialogTitle,
   AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"`,
+} from "@/registry/new-york/ui/alert-dialog"`,
     usageCode: `<AlertDialog>
   <AlertDialogTrigger>Open</AlertDialogTrigger>
   <AlertDialogContent>
@@ -405,7 +405,7 @@ export function AlertDialogDemo() {
     demoCode: `"use client";
 
 import { Terminal } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@/registry/new-york/ui/alert";
 
 export function AlertDemo() {
   return (
@@ -419,7 +419,7 @@ export function AlertDemo() {
   );
 }
 `,
-    usageImports: `import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"`,
+    usageImports: `import { Alert, AlertDescription, AlertTitle } from "@/registry/new-york/ui/alert"`,
     usageCode: `<Alert variant="default | destructive">
   <Terminal />
   <AlertTitle>Heads up!</AlertTitle>
@@ -431,7 +431,7 @@ export function AlertDemo() {
   "aspect-ratio": {
     demoCode: `"use client";
 
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { AspectRatio } from "@/registry/new-york/ui/aspect-ratio";
 
 export function AspectRatioDemo() {
   return (
@@ -448,7 +448,7 @@ export function AspectRatioDemo() {
   );
 }
 `,
-    usageImports: `import { AspectRatio } from "@/components/ui/aspect-ratio"`,
+    usageImports: `import { AspectRatio } from "@/registry/new-york/ui/aspect-ratio"`,
     usageCode: `<AspectRatio ratio={16 / 9}>
   <Image src="..." alt="Image" className="rounded-md object-cover" />
 </AspectRatio>`,
@@ -456,7 +456,7 @@ export function AspectRatioDemo() {
   avatar: {
     demoCode: `"use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/new-york/ui/avatar";
 
 export function AvatarDemo() {
   return (
@@ -508,7 +508,7 @@ export function AvatarDemo() {
   );
 }
 `,
-    usageImports: `import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"`,
+    usageImports: `import { Avatar, AvatarFallback, AvatarImage } from "@/registry/new-york/ui/avatar"`,
     usageCode: `<Avatar>
   <AvatarImage src="https://github.com/shadcn.png" />
   <AvatarFallback>CN</AvatarFallback>
@@ -518,7 +518,7 @@ export function AvatarDemo() {
     demoCode: `"use client";
 
 import { CheckCircle2 } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "@/registry/new-york/ui/badge";
 
 export function BadgeDemo() {
   return (
@@ -541,7 +541,7 @@ export function BadgeDemo() {
   );
 }
 `,
-    usageImports: `import { Badge } from "@/components/ui/badge"`,
+    usageImports: `import { Badge } from "@/registry/new-york/ui/badge"`,
     usageCode: `<Badge variant="default | outline | secondary | destructive">Badge</Badge>`,
   },
   breadcrumb: {
@@ -554,7 +554,7 @@ import {
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
+} from "@/registry/new-york/ui/breadcrumb";
 
 export function BreadcrumbDemo() {
   return (
@@ -618,7 +618,7 @@ export function BreadcrumbDemo() {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb"`,
+} from "@/registry/new-york/ui/breadcrumb"`,
     usageCode: `<Breadcrumb>
   <BreadcrumbList>
     <BreadcrumbItem>
@@ -647,15 +647,15 @@ import {
     Trash2Icon,
     UploadIcon,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
+import { Button } from "@/registry/new-york/ui/button";
+import { ButtonGroup } from "@/registry/new-york/ui/button-group";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 
 export function ButtonGroupDemo() {
   return (
@@ -717,7 +717,7 @@ export function ButtonGroupDemo() {
   ButtonGroup,
   ButtonGroupSeparator,
   ButtonGroupText,
-} from "@/components/ui/button-group"`,
+} from "@/registry/new-york/ui/button-group"`,
     usageCode: `<ButtonGroup>
   <Button>Button 1</Button>
   <Button>Button 2</Button>
@@ -726,7 +726,7 @@ export function ButtonGroupDemo() {
   button: {
     demoCode: `import { ArrowUpIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function ButtonDemo() {
   return (
@@ -739,7 +739,7 @@ export function ButtonDemo() {
   );
 }
 `,
-    usageImports: `import { Button } from "@/components/ui/button"`,
+    usageImports: `import { Button } from "@/registry/new-york/ui/button"`,
     usageCode: `<Button variant="outline">Button</Button>`,
   },
   calendar: {
@@ -747,7 +747,7 @@ export function ButtonDemo() {
 
 import * as React from "react";
 
-import { Calendar } from "@/components/ui/calendar";
+import { Calendar } from "@/registry/new-york/ui/calendar";
 
 export function CalendarDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -763,7 +763,7 @@ export function CalendarDemo() {
   );
 }
 `,
-    usageImports: `import { Calendar } from "@/components/ui/calendar"`,
+    usageImports: `import { Calendar } from "@/registry/new-york/ui/calendar"`,
     usageCode: `const [date, setDate] = React.useState<Date | undefined>(new Date())
 
 return (
@@ -782,9 +782,9 @@ import * as React from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Button } from "@/registry/new-york/ui/button";
+import { Calendar } from "@/registry/new-york/ui/calendar";
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/new-york/ui/popover";
 
 export function DatePickerDemo() {
   const [date, setDate] = React.useState<Date | undefined>();
@@ -808,9 +808,9 @@ export function DatePickerDemo() {
   );
 }
 `,
-    usageImports: `import { Calendar } from "@/components/ui/calendar"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { Button } from "@/components/ui/button"`,
+    usageImports: `import { Calendar } from "@/registry/new-york/ui/calendar"
+import { Popover, PopoverContent, PopoverTrigger } from "@/registry/new-york/ui/popover"
+import { Button } from "@/registry/new-york/ui/button"`,
     usageCode: `const [date, setDate] = React.useState<Date | undefined>()
 
 return (
@@ -829,14 +829,14 @@ return (
   carousel: {
     demoCode: `"use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent } from "@/registry/new-york/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel";
+} from "@/registry/new-york/ui/carousel";
 
 export function CarouselDemo() {
   return (
@@ -868,7 +868,7 @@ export function CarouselDemo() {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"`,
+} from "@/registry/new-york/ui/carousel"`,
     usageCode: `<Carousel>
   <CarouselContent>
     <CarouselItem>...</CarouselItem>
@@ -882,8 +882,8 @@ export function CarouselDemo() {
   checkbox: {
     demoCode: `"use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/registry/new-york/ui/checkbox";
+import { Label } from "@/registry/new-york/ui/label";
 
 export function CheckboxDemo() {
   return (
@@ -923,7 +923,7 @@ export function CheckboxDemo() {
   );
 }
 `,
-    usageImports: `import { Checkbox } from "@/components/ui/checkbox"`,
+    usageImports: `import { Checkbox } from "@/registry/new-york/ui/checkbox"`,
     usageCode: "<Checkbox />",
   },
   collapsible: {
@@ -932,12 +932,12 @@ export function CheckboxDemo() {
 import { ChevronsUpDown } from "lucide-react";
 import * as React from "react";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible";
+} from "@/registry/new-york/ui/collapsible";
 
 export function CollapsibleDemo() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -978,7 +978,7 @@ export function CollapsibleDemo() {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "@/components/ui/collapsible"`,
+} from "@/registry/new-york/ui/collapsible"`,
     usageCode: `<Collapsible>
   <CollapsibleTrigger>Can I use this in my project?</CollapsibleTrigger>
   <CollapsibleContent>
@@ -1005,7 +1005,7 @@ import {
   ContextMenuSub,
   ContextMenuSubTrigger,
   ContextMenuSubContent,
-} from "@/components/ui/context-menu";
+} from "@/registry/new-york/ui/context-menu";
 
 export function ContextMenuDemo() {
   const [showHidden, setShowHidden] = React.useState(false);
@@ -1075,7 +1075,7 @@ export function ContextMenuDemo() {
   ContextMenuContent,
   ContextMenuItem,
   ContextMenuTrigger,
-} from "@/components/ui/context-menu"`,
+} from "@/registry/new-york/ui/context-menu"`,
     usageCode: `<ContextMenu>
   <ContextMenuTrigger>Right click</ContextMenuTrigger>
   <ContextMenuContent>
@@ -1089,7 +1089,7 @@ export function ContextMenuDemo() {
   dialog: {
     demoCode: `"use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Dialog,
   DialogClose,
@@ -1099,9 +1099,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+} from "@/registry/new-york/ui/dialog";
+import { Input } from "@/registry/new-york/ui/input";
+import { Label } from "@/registry/new-york/ui/label";
 import { User, AtSign } from "lucide-react";
 import * as React from "react";
 
@@ -1208,7 +1208,7 @@ export function DialogDemo() {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog"`,
+} from "@/registry/new-york/ui/dialog"`,
     usageCode: `<Dialog>
   <DialogTrigger>Open</DialogTrigger>
   <DialogContent>
@@ -1227,7 +1227,7 @@ export function DialogDemo() {
 
 import * as React from "react";
 import { User, Settings, Users, LogOut, UserPlus, Mail, MessageSquare, MoreHorizontal, CreditCard, Keyboard, Github, LifeBuoy, Shield } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
@@ -1241,7 +1241,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
   DropdownMenuPortal,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 
 export function DropdownMenuDemo() {
   const [open, setOpen] = React.useState(false);
@@ -1362,7 +1362,7 @@ export function DropdownMenuDemo() {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"`,
+} from "@/registry/new-york/ui/dropdown-menu"`,
     usageCode: `<DropdownMenu>
   <DropdownMenuTrigger>Open</DropdownMenuTrigger>
   <DropdownMenuContent>
@@ -1379,7 +1379,7 @@ export function DropdownMenuDemo() {
     demoCode: `"use client";
 
 import { IconMail } from "@tabler/icons-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Empty,
   EmptyHeader,
@@ -1387,7 +1387,7 @@ import {
   EmptyTitle,
   EmptyDescription,
   EmptyContent,
-} from "@/components/ui/empty";
+} from "@/registry/new-york/ui/empty";
 
 export function EmptyDemo() {
   return (
@@ -1416,7 +1416,7 @@ export function EmptyDemo() {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty"`,
+} from "@/registry/new-york/ui/empty"`,
     usageCode: `<Empty>
   <EmptyHeader>
     <EmptyMedia variant="icon">
@@ -1444,8 +1444,8 @@ import {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+} from "@/registry/new-york/ui/field";
+import { Input } from "@/registry/new-york/ui/input";
 
 export function FieldDemo() {
   return (
@@ -1490,7 +1490,7 @@ export function FieldDemo() {
   FieldSeparator,
   FieldSet,
   FieldTitle,
-} from "@/components/ui/field"`,
+} from "@/registry/new-york/ui/field"`,
     usageCode: `<FieldSet>
   <FieldLegend>Profile</FieldLegend>
   <FieldDescription>This appears on invoices and emails.</FieldDescription>
@@ -1513,13 +1513,13 @@ export function FieldDemo() {
 </FieldSet>`,
   },
   input: {
-    demoCode: `import { Input } from "@/components/ui/input";
+    demoCode: `import { Input } from "@/registry/new-york/ui/input";
 
 export function InputDemo() {
   return <Input placeholder="Email" type="email" className="max-w-sm w-full" />;
 }
 `,
-    usageImports: `import { Input } from "@/components/ui/input"`,
+    usageImports: `import { Input } from "@/registry/new-york/ui/input"`,
     usageCode: `<Input placeholder="Email" type="email"i/>`,
   },
   "input-group": {
@@ -1531,7 +1531,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   InputGroup,
   InputGroupAddon,
@@ -1539,13 +1539,13 @@ import {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/components/ui/input-group";
-import { Separator } from "@/components/ui/separator";
+} from "@/registry/new-york/ui/input-group";
+import { Separator } from "@/registry/new-york/ui/separator";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/registry/new-york/ui/tooltip";
 
 export function InputGroupDemo() {
   return (
@@ -1627,7 +1627,7 @@ export function InputGroupDemo() {
   InputGroupInput,
   InputGroupText,
   InputGroupTextarea,
-} from "@/components/ui/input-group"`,
+} from "@/registry/new-york/ui/input-group"`,
     usageCode: `<InputGroup>
   <InputGroupInput placeholder="Search..." />
   <InputGroupAddon>
@@ -1644,7 +1644,7 @@ export function InputGroupDemo() {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/input-otp";
+} from "@/registry/new-york/ui/input-otp";
 
 export function InputOTPDemo() {
   return (
@@ -1669,7 +1669,7 @@ export function InputOTPDemo() {
   InputOTPGroup,
   InputOTPSeparator,
   InputOTPSlot,
-} from "@/components/ui/input-otp"`,
+} from "@/registry/new-york/ui/input-otp"`,
     usageCode: `<InputOTP maxLength={6}>
   <InputOTPGroup>
     <InputOTPSlot index={0} />
@@ -1685,7 +1685,7 @@ export function InputOTPDemo() {
 </InputOTP>`,
   },
   kbd: {
-    demoCode: `import { Kbd, KbdGroup } from "@/components/ui/kbd";
+    demoCode: `import { Kbd, KbdGroup } from "@/registry/new-york/ui/kbd";
 
 export function KbdDemo() {
   return (
@@ -1705,12 +1705,12 @@ export function KbdDemo() {
   );
 }
 `,
-    usageImports: `import { Kbd } from "@/components/ui/kbd"`,
+    usageImports: `import { Kbd } from "@/registry/new-york/ui/kbd"`,
     usageCode: "<Kbd>Ctrl</Kbd>",
   },
   label: {
-    demoCode: `import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+    demoCode: `import { Checkbox } from "@/registry/new-york/ui/checkbox";
+import { Label } from "@/registry/new-york/ui/label";
 
 export function LabelDemo() {
   return (
@@ -1723,14 +1723,14 @@ export function LabelDemo() {
   );
 }
 `,
-    usageImports: `import { Label } from "@/components/ui/label"`,
+    usageImports: `import { Label } from "@/registry/new-york/ui/label"`,
     usageCode: `<Label htmlFor="email">Your email address</Label>`,
   },
   "native-select": {
     demoCode: `import {
   NativeSelect,
   NativeSelectOption,
-} from "@/components/ui/native-select";
+} from "@/registry/new-york/ui/native-select";
 
 export function NativeSelectDemo() {
   return (
@@ -1748,7 +1748,7 @@ export function NativeSelectDemo() {
   NativeSelect,
   NativeSelectOptGroup,
   NativeSelectOption,
-} from "@/components/ui/native-select"`,
+} from "@/registry/new-york/ui/native-select"`,
     usageCode: `<NativeSelect>
   <NativeSelectOption value="">Select a fruit</NativeSelectOption>
   <NativeSelectOption value="apple">Apple</NativeSelectOption>
@@ -1774,7 +1774,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
+} from "@/registry/new-york/ui/navigation-menu";
 
 export function NavigationMenuDemo() {
   return (
@@ -1857,7 +1857,7 @@ function ListItem({
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu"`,
+} from "@/registry/new-york/ui/navigation-menu"`,
     usageCode: `<NavigationMenu>
   <NavigationMenuList>
     <NavigationMenuItem>
@@ -1883,7 +1883,7 @@ function ListItem({
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination";
+} from "@/registry/new-york/ui/pagination";
 
 export function PaginationDemo() {
   return (
@@ -1922,7 +1922,7 @@ export function PaginationDemo() {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"`,
+} from "@/registry/new-york/ui/pagination"`,
     usageCode: `<Pagination>
   <PaginationContent>
     <PaginationItem>
@@ -1945,7 +1945,7 @@ export function PaginationDemo() {
 
 import * as React from "react";
 
-import { Progress } from "@/components/ui/progress";
+import { Progress } from "@/registry/new-york/ui/progress";
 
 export function ProgressDemo() {
   const [progress, setProgress] = React.useState(13);
@@ -1958,12 +1958,12 @@ export function ProgressDemo() {
   return <Progress className="w-[60%]" value={progress} />;
 }
 `,
-    usageImports: `import { Progress } from "@/components/ui/progress"`,
+    usageImports: `import { Progress } from "@/registry/new-york/ui/progress"`,
     usageCode: "<Progress value={33} />",
   },
   "radio-group": {
-    demoCode: `import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+    demoCode: `import { Label } from "@/registry/new-york/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/registry/new-york/ui/radio-group";
 
 export function RadioGroupDemo() {
   return (
@@ -1984,8 +1984,8 @@ export function RadioGroupDemo() {
   );
 }
 `,
-    usageImports: `import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
+    usageImports: `import { Label } from "@/registry/new-york/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/registry/new-york/ui/radio-group"`,
     usageCode: `<RadioGroup defaultValue="option-one">
   <div className="flex items-center gap-2">
     <RadioGroupItem value="option-one" id="option-one" />
@@ -2002,7 +2002,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable";
+} from "@/registry/new-york/ui/resizable";
 
 export function ResizableDemo() {
   return (
@@ -2039,15 +2039,15 @@ export function ResizableDemo() {
   ResizableHandle,
   ResizablePanel,
   ResizablePanelGroup,
-} from "@/components/ui/resizable"`,
-    usageCode: `import { Label } from "@/components/ui/label"
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"`,
+} from "@/registry/new-york/ui/resizable"`,
+    usageCode: `import { Label } from "@/registry/new-york/ui/label"
+import { RadioGroup, RadioGroupItem } from "@/registry/new-york/ui/radio-group"`,
   },
   "scroll-area": {
     demoCode: `import * as React from "react";
 
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Separator } from "@/components/ui/separator";
+import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
+import { Separator } from "@/registry/new-york/ui/separator";
 
 const users = [
   "Alice Johnson",
@@ -2086,7 +2086,7 @@ export function ScrollAreaDemo() {
   );
 }
 `,
-    usageImports: `import { ScrollArea } from "@/components/ui/scroll-area"`,
+    usageImports: `import { ScrollArea } from "@/registry/new-york/ui/scroll-area"`,
     usageCode: `<ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
   Jokester began sneaking into the castle in the middle of the night and leaving
   jokes all over the place: under the king's pillow, in his soup, even in the
@@ -2114,7 +2114,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
   SidebarInset,
-} from "@/components/ui/sidebar";
+} from "@/registry/new-york/ui/sidebar";
 
 export function SidebarDemo() {
   return (
@@ -2209,7 +2209,7 @@ export function SidebarDemo() {
   SidebarProvider,
   SidebarTrigger,
   SidebarInset,
-} from "@/components/ui/sidebar"`,
+} from "@/registry/new-york/ui/sidebar"`,
     usageCode: `<SidebarProvider>
   <Sidebar>
     <SidebarHeader>Header</SidebarHeader>
@@ -2245,7 +2245,7 @@ export function SidebarDemo() {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select";
+} from "@/registry/new-york/ui/select";
 
 export function SelectDemo() {
   return (
@@ -2273,7 +2273,7 @@ export function SelectDemo() {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"`,
+} from "@/registry/new-york/ui/select"`,
     usageCode: `<Select>
   <SelectTrigger className="w-[180px]">
     <SelectValue placeholder="Theme" />
@@ -2286,7 +2286,7 @@ export function SelectDemo() {
 </Select>`,
   },
   separator: {
-    demoCode: `import { Separator } from "@/components/ui/separator";
+    demoCode: `import { Separator } from "@/registry/new-york/ui/separator";
 
 export function SeparatorDemo() {
   return (
@@ -2309,13 +2309,13 @@ export function SeparatorDemo() {
   );
 }
 `,
-    usageImports: `import { Separator } from "@/components/ui/separator"`,
+    usageImports: `import { Separator } from "@/registry/new-york/ui/separator"`,
     usageCode: "<Separator />",
   },
   sheet: {
-    demoCode: `import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
+    demoCode: `import { Button } from "@/registry/new-york/ui/button";
+import { Input } from "@/registry/new-york/ui/input";
+import { Label } from "@/registry/new-york/ui/label";
 import {
   Sheet,
   SheetClose,
@@ -2325,7 +2325,7 @@ import {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet";
+} from "@/registry/new-york/ui/sheet";
 
 export function SheetDemo() {
   return (
@@ -2368,7 +2368,7 @@ export function SheetDemo() {
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "@/components/ui/sheet"`,
+} from "@/registry/new-york/ui/sheet"`,
     usageCode: `<Sheet>
   <SheetTrigger>Open</SheetTrigger>
   <SheetContent>
@@ -2383,7 +2383,7 @@ export function SheetDemo() {
 </Sheet>`,
   },
   skeleton: {
-    demoCode: `import { Skeleton } from "@/components/ui/skeleton";
+    demoCode: `import { Skeleton } from "@/registry/new-york/ui/skeleton";
 
 export function SkeletonDemo() {
   return (
@@ -2397,11 +2397,11 @@ export function SkeletonDemo() {
   );
 }
 `,
-    usageImports: `import { Skeleton } from "@/components/ui/skeleton"`,
+    usageImports: `import { Skeleton } from "@/registry/new-york/ui/skeleton"`,
     usageCode: `<Skeleton className="h-[20px] w-[100px] rounded-full" />`,
   },
   slider: {
-    demoCode: `import { Slider } from "@/components/ui/slider";
+    demoCode: `import { Slider } from "@/registry/new-york/ui/slider";
 import { cn } from "@/lib/utils";
 
 type SliderProps = React.ComponentProps<typeof Slider>;
@@ -2418,7 +2418,7 @@ export function SliderDemo({ className, ...props }: SliderProps) {
   );
 }
 `,
-    usageImports: `import { Slider } from "@/components/ui/slider"`,
+    usageImports: `import { Slider } from "@/registry/new-york/ui/slider"`,
     usageCode: "<Slider defaultValue={[33]} max={100} step={1} />",
   },
   sonner: {
@@ -2426,7 +2426,7 @@ export function SliderDemo({ className, ...props }: SliderProps) {
 
 import { toast } from "sonner";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function SonnerDemo() {
   return (
@@ -2451,8 +2451,8 @@ export function SonnerDemo() {
     usageCode: `toast("Event has been created.")`,
   },
   spinner: {
-    demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
-import { Spinner } from "@/components/ui/spinner";
+    demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle } from "@/registry/new-york/ui/item";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 export function SpinnerDemo() {
   return (
@@ -2472,12 +2472,12 @@ export function SpinnerDemo() {
   );
 }
 `,
-    usageImports: `import { Spinner } from "@/components/ui/spinner"`,
+    usageImports: `import { Spinner } from "@/registry/new-york/ui/spinner"`,
     usageCode: "<Spinner />",
   },
   switch: {
-    demoCode: `import { Label } from "@/components/ui/label";
-import { Switch } from "@/components/ui/switch";
+    demoCode: `import { Label } from "@/registry/new-york/ui/label";
+import { Switch } from "@/registry/new-york/ui/switch";
 
 export function SwitchDemo() {
   return (
@@ -2488,7 +2488,7 @@ export function SwitchDemo() {
   );
 }
 `,
-    usageImports: `import { Switch } from "@/components/ui/switch"`,
+    usageImports: `import { Switch } from "@/registry/new-york/ui/switch"`,
     usageCode: "<Switch />",
   },
   table: {
@@ -2501,7 +2501,7 @@ export function SwitchDemo() {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table";
+} from "@/registry/new-york/ui/table";
 
 const invoices = [
   {
@@ -2588,7 +2588,7 @@ export function TableDemo() {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/ui/table"`,
+} from "@/registry/new-york/ui/table"`,
     usageCode: `<Table>
   <TableCaption>A list of your recent invoices.</TableCaption>
   <TableHeader>
@@ -2610,7 +2610,7 @@ export function TableDemo() {
 </Table>`,
   },
   tabs: {
-    demoCode: `import { Button } from "@/components/ui/button";
+    demoCode: `import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
@@ -2618,10 +2618,10 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+} from "@/registry/new-york/ui/card";
+import { Input } from "@/registry/new-york/ui/input";
+import { Label } from "@/registry/new-york/ui/label";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs";
 
 export function TabsDemo() {
   return (
@@ -2684,7 +2684,7 @@ export function TabsDemo() {
   );
 }
 `,
-    usageImports: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"`,
+    usageImports: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/registry/new-york/ui/tabs"`,
     usageCode: `<Tabs defaultValue="account" className="w-[400px]">
   <TabsList>
     <TabsTrigger value="account">Account</TabsTrigger>
@@ -2695,18 +2695,18 @@ export function TabsDemo() {
 </Tabs>`,
   },
   textarea: {
-    demoCode: `import { Textarea } from "@/components/ui/textarea";
+    demoCode: `import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export function TextareaDemo() {
   return <Textarea placeholder="Type your message here." />;
 }
 `,
-    usageImports: `import { Textarea } from "@/components/ui/textarea"<Textarea />`,
+    usageImports: `import { Textarea } from "@/registry/new-york/ui/textarea"<Textarea />`,
   },
   toggle: {
     demoCode: `import { BookmarkIcon } from "lucide-react";
 
-import { Toggle } from "@/components/ui/toggle";
+import { Toggle } from "@/registry/new-york/ui/toggle";
 
 export function ToggleDemo() {
   return (
@@ -2722,7 +2722,7 @@ export function ToggleDemo() {
   );
 }
 `,
-    usageImports: `import { Toggle } from "@/components/ui/toggle"`,
+    usageImports: `import { Toggle } from "@/registry/new-york/ui/toggle"`,
     usageCode: "<Toggle>Toggle</Toggle>",
   },
   "toggle-group": {
@@ -2731,7 +2731,7 @@ export function ToggleDemo() {
 import * as ToggleGroupPrimitive from "@radix-ui/react-toggle-group";
 import type { VariantProps } from "class-variance-authority";
 import * as React from "react";
-import { toggleVariants } from "@/components/ui/toggle";
+import { toggleVariants } from "@/registry/new-york/ui/toggle";
 import { cn } from "@/lib/utils";
 
 const ToggleGroupContext = React.createContext<
@@ -2810,7 +2810,7 @@ const ToggleGroupItem = React.forwardRef<
 
 export { ToggleGroup, ToggleGroupItem };
 `,
-    usageImports: `import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"`,
+    usageImports: `import { ToggleGroup, ToggleGroupItem } from "@/registry/new-york/ui/toggle-group"`,
     usageCode: `<ToggleGroup type="single">
   <ToggleGroupItem value="a">A</ToggleGroupItem>
   <ToggleGroupItem value="b">B</ToggleGroupItem>
@@ -2818,12 +2818,12 @@ export { ToggleGroup, ToggleGroupItem };
 </ToggleGroup>`,
   },
   tooltip: {
-    demoCode: `import { Button } from "@/components/ui/button";
+    demoCode: `import { Button } from "@/registry/new-york/ui/button";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from "@/registry/new-york/ui/tooltip";
 
 export function TooltipDemo() {
   return (
@@ -2842,7 +2842,7 @@ export function TooltipDemo() {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/components/ui/tooltip"`,
+} from "@/registry/new-york/ui/tooltip"`,
     usageCode: `<Tooltip>
   <TooltipTrigger>Hover</TooltipTrigger>
   <TooltipContent>
@@ -2851,7 +2851,7 @@ export function TooltipDemo() {
 </Tooltip>`,
   },
   item: {
-    demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle, ItemDescription } from "@/components/ui/item";
+    demoCode: `import { Item, ItemContent, ItemMedia, ItemTitle, ItemDescription } from "@/registry/new-york/ui/item";
 
 export function ItemDemo() {
   return (
@@ -2879,7 +2879,7 @@ export function ItemDemo() {
   );
 }
 `,
-    usageImports: `import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item"`,
+    usageImports: `import { Item, ItemContent, ItemMedia, ItemTitle } from "@/registry/new-york/ui/item"`,
     usageCode: `<Item>
   <ItemMedia>
     <span className="size-8 rounded-full bg-muted" />
@@ -2908,7 +2908,7 @@ import {
   MenubarSub,
   MenubarSubTrigger,
   MenubarSubContent,
-} from "@/components/ui/menubar";
+} from "@/registry/new-york/ui/menubar";
 
 export function MenubarDemo() {
   return (
@@ -2976,7 +2976,7 @@ export function MenubarDemo() {
   MenubarTrigger,
   MenubarContent,
   MenubarItem,
-} from "@/components/ui/menubar"`,
+} from "@/registry/new-york/ui/menubar"`,
     usageCode: `<Menubar>
   <MenubarMenu>
     <MenubarTrigger>File</MenubarTrigger>
@@ -2991,7 +2991,7 @@ export function MenubarDemo() {
   drawer: {
     demoCode: `"use client";
 
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Drawer,
   DrawerClose,
@@ -3001,7 +3001,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer";
+} from "@/registry/new-york/ui/drawer";
 
 export function DrawerDemo() {
   return (
@@ -3035,7 +3035,7 @@ export function DrawerDemo() {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-} from "@/components/ui/drawer"`,
+} from "@/registry/new-york/ui/drawer"`,
     usageCode: `<Drawer>
   <DrawerTrigger>Open</DrawerTrigger>
   <DrawerContent>
@@ -3056,9 +3056,9 @@ import {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
+} from "@/registry/new-york/ui/hover-card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/registry/new-york/ui/avatar";
+import { Button } from "@/registry/new-york/ui/button";
 
 export function HoverCardDemo() {
   return (
@@ -3089,7 +3089,7 @@ export function HoverCardDemo() {
   HoverCard,
   HoverCardContent,
   HoverCardTrigger,
-} from "@/components/ui/hover-card"`,
+} from "@/registry/new-york/ui/hover-card"`,
     usageCode: `<HoverCard>
   <HoverCardTrigger>@johndoe</HoverCardTrigger>
   <HoverCardContent>

@@ -5,13 +5,13 @@ import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { Logo } from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Badge } from "./ui/badge";
+import { Badge } from "@/registry/new-york/ui/badge";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "@/registry/new-york/ui/tooltip";
 
 export function SiteHeader() {
   return (

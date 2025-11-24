@@ -1,6 +1,9 @@
 import { BookmarkIcon, HeartIcon, StarIcon } from "lucide-react";
 
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
+import {
+  ToggleGroup,
+  ToggleGroupItem,
+} from "@/registry/new-york/ui/toggle-group";
 
 export function ToggleGroupSpacing() {
   return (

@@ -83,7 +83,7 @@ const shadowPresets: Record<ShadowPreset, ShadowConfig> = {
     y: "1px",
     blur: "3px",
     spread: "0px",
-    opacity: "0.1",
+    opacity: "0.05",
     color: "oklch(0 0 0)",
   },
   retro: {

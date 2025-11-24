@@ -1,7 +1,7 @@
 "use client";
 
 import { IconMail } from "@tabler/icons-react";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Empty,
   EmptyContent,
@@ -9,7 +9,7 @@ import {
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
+} from "@/registry/new-york/ui/empty";
 
 export function EmptyDemo() {
   return (

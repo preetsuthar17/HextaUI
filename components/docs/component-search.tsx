@@ -2,7 +2,8 @@
 
 import { useRouter } from "next/navigation";
 import * as React from "react";
-
+import { blocksRegistry } from "@/lib/blocks-registry";
+import { componentsRegistry } from "@/lib/components-registry";
 import {
   CommandMenu,
   CommandMenuContent,
@@ -13,9 +14,7 @@ import {
   CommandMenuList,
   useCommandMenu,
   useCommandMenuShortcut,
-} from "@/components/ui/command-menu";
-import { blocksRegistry } from "@/lib/blocks-registry";
-import { componentsRegistry } from "@/lib/components-registry";
+} from "@/registry/new-york/ui/command-menu";
 
 export function openCommandMenu() {
   if (typeof window !== "undefined") {

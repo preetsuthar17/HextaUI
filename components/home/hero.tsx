@@ -5,8 +5,8 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { ButtonGroup } from "@/components/ui/button-group";
+import { Button } from "@/registry/new-york/ui/button";
+import { ButtonGroup } from "@/registry/new-york/ui/button-group";
 
 const PixelBlast = dynamic(
   () =>
@@ -50,7 +50,8 @@ export const Hero = memo(function Hero() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-16 text-center">
-      <PixelBlast color="var(--primary)" />
+      <PixelBlast color="var(--primary)" transparent={true} />
+
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for

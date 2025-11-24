@@ -2,17 +2,17 @@
 
 import { Check, Lock, X } from "lucide-react";
 import { useState } from "react";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import { Badge } from "@/registry/new-york/ui/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
-import { Toggle } from "@/components/ui/toggle";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Separator } from "@/registry/new-york/ui/separator";
+import { Toggle } from "@/registry/new-york/ui/toggle";
 
 export type PermissionAction =
   | "view"

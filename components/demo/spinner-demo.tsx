@@ -1,5 +1,10 @@
-import { Item, ItemContent, ItemMedia, ItemTitle } from "@/components/ui/item";
-import { Spinner } from "@/components/ui/spinner";
+import {
+  Item,
+  ItemContent,
+  ItemMedia,
+  ItemTitle,
+} from "@/registry/new-york/ui/item";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 export function SpinnerDemo() {
   return (

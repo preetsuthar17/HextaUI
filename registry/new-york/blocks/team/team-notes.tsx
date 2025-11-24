@@ -10,16 +10,21 @@ import {
   Trash2,
 } from "lucide-react";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Dialog,
   DialogContent,
@@ -28,28 +33,27 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/registry/new-york/ui/dialog";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+} from "@/registry/new-york/ui/dropdown-menu";
 import {
   Empty,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
-import { Field, FieldContent, FieldLabel } from "@/components/ui/field";
+} from "@/registry/new-york/ui/empty";
+import { Field, FieldContent, FieldLabel } from "@/registry/new-york/ui/field";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
-} from "@/components/ui/input-group";
-import { Textarea } from "@/components/ui/textarea";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/input-group";
+import { Textarea } from "@/registry/new-york/ui/textarea";
 
 export interface TeamNote {
   id: string;
@@ -227,7 +231,9 @@ export default function TeamNotes({
                         <InputGroup>
                           <InputGroupInput
                             id="note-title"
-                            onChange={(e) =>
+                            onChange={(
+                              e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
                               setNoteData((prev) => ({
                                 ...prev,
                                 title: e.target.value,
@@ -245,7 +251,9 @@ export default function TeamNotes({
                       <FieldContent>
                         <Textarea
                           id="note-content"
-                          onChange={(e) =>
+                          onChange={(
+                            e: React.ChangeEvent<HTMLTextAreaElement>
+                          ) =>
                             setNoteData((prev) => ({
                               ...prev,
                               content: e.target.value,
@@ -293,7 +301,9 @@ export default function TeamNotes({
                 <Search className="size-4" />
               </InputGroupAddon>
               <InputGroupInput
-                onChange={(e) => setSearchQuery(e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchQuery(e.target.value)
+                }
                 placeholder="Search notes…"
                 type="search"
                 value={searchQuery}

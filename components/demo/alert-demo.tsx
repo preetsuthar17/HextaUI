@@ -1,7 +1,11 @@
 "use client";
 
 import { Terminal } from "lucide-react";
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/registry/new-york/ui/alert";
 
 export function AlertDemo() {
   return (

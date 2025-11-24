@@ -1,7 +1,7 @@
 import {
   NativeSelect,
   NativeSelectOption,
-} from "@/components/ui/native-select";
+} from "@/registry/new-york/ui/native-select";
 
 export function NativeSelectDemo() {
   return (

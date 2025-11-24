@@ -3,7 +3,7 @@
 import { ArrowUpRightIcon } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { Button } from "@/registry/new-york/ui/button";
 
 const PixelBlast = dynamic(
   () =>

@@ -2,15 +2,15 @@
 
 import { CheckCircle2, Target, TrendingUp } from "lucide-react";
 import { useMemo } from "react";
+import { cn } from "@/lib/utils";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Progress } from "@/components/ui/progress";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/card";
+import { Progress } from "@/registry/new-york/ui/progress";
 import type { Task } from "./task-list";
 
 export interface TaskProgressProps {

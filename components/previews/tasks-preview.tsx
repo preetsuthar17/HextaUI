@@ -1,24 +1,24 @@
 "use client";
 
 import { useState } from "react";
-import type { Project } from "@/components/blocks/tasks/project-list";
-import ProjectList from "@/components/blocks/tasks/project-list";
-import TaskBoard from "@/components/blocks/tasks/task-board";
+import type { Project } from "@/registry/new-york/blocks/tasks/project-list";
+import ProjectList from "@/registry/new-york/blocks/tasks/project-list";
+import TaskBoard from "@/registry/new-york/blocks/tasks/task-board";
 import TaskDetail, {
   type Subtask,
   type TaskActivity,
   type TaskAttachment,
   type TaskComment,
-} from "@/components/blocks/tasks/task-detail";
-import TaskFilters from "@/components/blocks/tasks/task-filters";
+} from "@/registry/new-york/blocks/tasks/task-detail";
+import TaskFilters from "@/registry/new-york/blocks/tasks/task-filters";
 import type {
   Task,
   TaskAssignee,
   TaskPriority,
   TaskStatus,
-} from "@/components/blocks/tasks/task-list";
-import TaskList from "@/components/blocks/tasks/task-list";
-import TaskProgress from "@/components/blocks/tasks/task-progress";
+} from "@/registry/new-york/blocks/tasks/task-list";
+import TaskList from "@/registry/new-york/blocks/tasks/task-list";
+import TaskProgress from "@/registry/new-york/blocks/tasks/task-progress";
 
 // Fixed base date to prevent hydration mismatches
 const BASE_DATE = new Date("2025-11-18T09:00:00Z");

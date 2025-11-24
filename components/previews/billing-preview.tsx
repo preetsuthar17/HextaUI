@@ -3,46 +3,46 @@
 import { useState } from "react";
 import BillingBillingHistory, {
   type BillingTransaction,
-} from "@/components/blocks/billing/billing-billing-history";
+} from "@/registry/new-york/blocks/billing/billing-billing-history";
 import BillingCouponCode, {
   type AppliedCoupon,
-} from "@/components/blocks/billing/billing-coupon-code";
+} from "@/registry/new-york/blocks/billing/billing-coupon-code";
 import BillingInvoiceDetails, {
   type InvoiceDetails,
-} from "@/components/blocks/billing/billing-invoice-details";
+} from "@/registry/new-york/blocks/billing/billing-invoice-details";
 import BillingInvoiceList, {
   type Invoice,
-} from "@/components/blocks/billing/billing-invoice-list";
+} from "@/registry/new-york/blocks/billing/billing-invoice-list";
 import BillingPaymentFailed, {
   type PaymentFailureDetails,
-} from "@/components/blocks/billing/billing-payment-failed";
-import BillingPaymentForm from "@/components/blocks/billing/billing-payment-form";
+} from "@/registry/new-york/blocks/billing/billing-payment-failed";
+import BillingPaymentForm from "@/registry/new-york/blocks/billing/billing-payment-form";
 import BillingPaymentMethod, {
   type PaymentMethod,
-} from "@/components/blocks/billing/billing-payment-method";
+} from "@/registry/new-york/blocks/billing/billing-payment-method";
 import BillingPaymentSchedule, {
   type ScheduledPayment,
-} from "@/components/blocks/billing/billing-payment-schedule";
+} from "@/registry/new-york/blocks/billing/billing-payment-schedule";
 import BillingPlanSelector, {
   type SelectablePlan,
-} from "@/components/blocks/billing/billing-plan-selector";
+} from "@/registry/new-york/blocks/billing/billing-plan-selector";
 import BillingPricingTable, {
   type PricingPlan,
-} from "@/components/blocks/billing/billing-pricing-table";
-import BillingSubscriptionCard from "@/components/blocks/billing/billing-subscription-card";
+} from "@/registry/new-york/blocks/billing/billing-pricing-table";
+import BillingSubscriptionCard from "@/registry/new-york/blocks/billing/billing-subscription-card";
 import BillingSubscriptionSettings, {
   type SubscriptionSettings,
-} from "@/components/blocks/billing/billing-subscription-settings";
+} from "@/registry/new-york/blocks/billing/billing-subscription-settings";
 import BillingUpgradePrompt, {
   type UpgradeFeature,
-} from "@/components/blocks/billing/billing-upgrade-prompt";
+} from "@/registry/new-york/blocks/billing/billing-upgrade-prompt";
 import BillingUsageAlerts, {
   type UsageAlert,
-} from "@/components/blocks/billing/billing-usage-alerts";
+} from "@/registry/new-york/blocks/billing/billing-usage-alerts";
 import BillingUsageBilling, {
   type UsageCategory,
   type UsageDataPoint,
-} from "@/components/blocks/billing/billing-usage-billing";
+} from "@/registry/new-york/blocks/billing/billing-usage-billing";
 
 export default function BillingPreview() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "annual">(

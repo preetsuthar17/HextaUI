@@ -2,19 +2,19 @@ import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  blockCategories,
+  categoryLabels,
+  getBlocksByCategory,
+} from "@/lib/blocks-registry";
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import {
-  blockCategories,
-  categoryLabels,
-  getBlocksByCategory,
-} from "@/lib/blocks-registry";
+} from "@/registry/new-york/ui/breadcrumb";
+import { Button } from "@/registry/new-york/ui/button";
 
 export default function BlocksIndexPage() {
   return (

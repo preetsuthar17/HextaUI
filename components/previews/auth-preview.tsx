@@ -1,26 +1,26 @@
 "use client";
 
 import { useState } from "react";
-import AuthAccountDelete from "@/components/blocks/auth/auth-account-delete";
-import AuthChangePassword from "@/components/blocks/auth/auth-change-password";
-import AuthEmailChange from "@/components/blocks/auth/auth-email-change";
-import AuthForgotPassword from "@/components/blocks/auth/auth-forgot-password";
-import AuthLoginForm from "@/components/blocks/auth/auth-login-form";
-import AuthMagicLink from "@/components/blocks/auth/auth-magic-link";
-import AuthOTPVerify from "@/components/blocks/auth/auth-otp-verify";
-import AuthPhoneVerify from "@/components/blocks/auth/auth-phone-verify";
-import AuthRecoveryCodes from "@/components/blocks/auth/auth-recovery-codes";
-import AuthResetPassword from "@/components/blocks/auth/auth-reset-password";
+import AuthAccountDelete from "@/registry/new-york/blocks/auth/auth-account-delete";
+import AuthChangePassword from "@/registry/new-york/blocks/auth/auth-change-password";
+import AuthEmailChange from "@/registry/new-york/blocks/auth/auth-email-change";
+import AuthForgotPassword from "@/registry/new-york/blocks/auth/auth-forgot-password";
+import AuthLoginForm from "@/registry/new-york/blocks/auth/auth-login-form";
+import AuthMagicLink from "@/registry/new-york/blocks/auth/auth-magic-link";
+import AuthOTPVerify from "@/registry/new-york/blocks/auth/auth-otp-verify";
+import AuthPhoneVerify from "@/registry/new-york/blocks/auth/auth-phone-verify";
+import AuthRecoveryCodes from "@/registry/new-york/blocks/auth/auth-recovery-codes";
+import AuthResetPassword from "@/registry/new-york/blocks/auth/auth-reset-password";
 import AuthSessionManager, {
   type Session,
-} from "@/components/blocks/auth/auth-session-manager";
-import AuthSignupForm from "@/components/blocks/auth/auth-signup-form";
+} from "@/registry/new-york/blocks/auth/auth-session-manager";
+import AuthSignupForm from "@/registry/new-york/blocks/auth/auth-signup-form";
 import AuthSocialAccounts, {
   type SocialAccount,
-} from "@/components/blocks/auth/auth-social-accounts";
-import AuthTwoFactorSetup from "@/components/blocks/auth/auth-two-factor-setup";
-import AuthTwoFactorVerify from "@/components/blocks/auth/auth-two-factor-verify";
-import AuthVerifyEmail from "@/components/blocks/auth/auth-verify-email";
+} from "@/registry/new-york/blocks/auth/auth-social-accounts";
+import AuthTwoFactorSetup from "@/registry/new-york/blocks/auth/auth-two-factor-setup";
+import AuthTwoFactorVerify from "@/registry/new-york/blocks/auth/auth-two-factor-verify";
+import AuthVerifyEmail from "@/registry/new-york/blocks/auth/auth-verify-email";
 
 export default function AuthPreview() {
   const [forgotPasswordSuccess, setForgotPasswordSuccess] = useState(false);

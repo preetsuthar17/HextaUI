@@ -2,30 +2,34 @@
 
 import { Bot, Loader2, Send, Users } from "lucide-react";
 import { useRef, useState } from "react";
-import AIMessageComponent from "@/components/blocks/ai/ai-message";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+import AIMessageComponent from "@/registry/new-york/blocks/ai/ai-message";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/registry/new-york/ui/avatar";
+import { Badge } from "@/registry/new-york/ui/badge";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
+} from "@/registry/new-york/ui/card";
 import {
   Empty,
   EmptyDescription,
   EmptyHeader,
   EmptyMedia,
   EmptyTitle,
-} from "@/components/ui/empty";
+} from "@/registry/new-york/ui/empty";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupButton,
   InputGroupTextarea,
-} from "@/components/ui/input-group";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/input-group";
 
 export interface Participant {
   id: string;

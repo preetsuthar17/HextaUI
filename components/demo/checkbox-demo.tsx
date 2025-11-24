@@ -1,7 +1,7 @@
 "use client";
 
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { Checkbox } from "@/registry/new-york/ui/checkbox";
+import { Label } from "@/registry/new-york/ui/label";
 
 export function CheckboxDemo() {
   return (

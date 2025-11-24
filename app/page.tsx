@@ -13,8 +13,8 @@ import BillingPreview from "@/components/previews/billing-preview";
 import SettingsPreview from "@/components/previews/settings-preview";
 import TasksPreview from "@/components/previews/tasks-preview";
 import TeamPreview from "@/components/previews/team-preview";
-import { Button } from "@/components/ui/button";
-import { Spinner } from "@/components/ui/spinner";
+import { Button } from "@/registry/new-york/ui/button";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 const previewOptions = [
   { value: "auth", label: "Authentication", component: AuthPreview },

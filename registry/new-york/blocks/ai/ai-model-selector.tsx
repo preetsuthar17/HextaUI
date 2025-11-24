@@ -10,7 +10,8 @@ import {
   Zap,
 } from "lucide-react";
 import { useMemo, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   CommandMenu,
   CommandMenuContent,
@@ -21,14 +22,13 @@ import {
   CommandMenuSeparator,
   CommandMenuTrigger,
   useCommandMenuShortcut,
-} from "@/components/ui/command-menu";
+} from "@/registry/new-york/ui/command-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
+} from "@/registry/new-york/ui/tooltip";
 
 export type AIProvider = "openai" | "anthropic" | "google" | "meta" | "mistral";
 

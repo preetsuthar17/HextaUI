@@ -26,7 +26,7 @@ import {
   SidebarMenuItem,
   SidebarProvider,
   SidebarTrigger,
-} from "@/components/ui/sidebar";
+} from "@/registry/new-york/ui/sidebar";
 
 const menuItems = [
   {

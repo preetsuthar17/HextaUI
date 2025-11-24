@@ -11,22 +11,22 @@ import { ComponentSection } from "@/components/docs/component-section";
 import ComponentUsage from "@/components/docs/component-usage";
 import { ComponentsSidebar } from "@/components/docs/components-sidebar";
 import {
+  componentsRegistry,
+  getComponentMetaById,
+} from "@/lib/components-registry";
+import { getComponentCode } from "@/lib/get-component-code";
+import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Spinner } from "@/components/ui/spinner";
-import {
-  componentsRegistry,
-  getComponentMetaById,
-} from "@/lib/components-registry";
-import { getComponentCode } from "@/lib/get-component-code";
-import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
+} from "@/registry/new-york/ui/breadcrumb";
+import { Button } from "@/registry/new-york/ui/button";
+import { Separator } from "@/registry/new-york/ui/separator";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 const ComponentInstallation = dynamic(
   () =>
