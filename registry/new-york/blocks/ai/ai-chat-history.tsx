@@ -12,6 +12,16 @@ import {
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/registry/new-york/ui/alert-dialog";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
@@ -33,16 +43,6 @@ import {
   InputGroupInput,
 } from "@/registry/new-york/ui/input-group";
 import { Separator } from "@/registry/new-york/ui/separator";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/registry/new-york/ui/alert-dialog";
 
 export interface Conversation {
   id: string;
@@ -176,10 +176,10 @@ function EmptyState({
       </div>
       {!searchQuery && showNewButton && onNewConversation && (
         <Button
+          className="min-h-[44px]"
           onClick={onNewConversation}
           type="button"
           variant="outline"
-          className="min-h-[44px]"
         >
           <Plus className="size-4" />
           New Conversation
@@ -261,7 +261,7 @@ function ConversationSearch({
         <Search className="size-4" />
       </InputGroupAddon>
       <InputGroupInput
-        ref={inputRef}
+        aria-label="Search conversations"
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => {
           if (e.key === "Escape") {
@@ -270,9 +270,9 @@ function ConversationSearch({
           }
         }}
         placeholder={placeholder}
+        ref={inputRef}
         type="search"
         value={value}
-        aria-label="Search conversations"
       />
     </InputGroup>
   );
@@ -343,15 +343,16 @@ function ConversationItem({
           "min-h-[60px] touch-manipulation",
           isActive
             ? "border-primary bg-primary/5 shadow-xs"
-            : "border-transparent bg-card hover:border-border hover:bg-muted/50 focus-within:border-border focus-within:bg-muted/50",
-          isLoading && "opacity-50 pointer-events-none"
+            : "border-transparent bg-card focus-within:border-border focus-within:bg-muted/50 hover:border-border hover:bg-muted/50",
+          isLoading && "pointer-events-none opacity-50"
         )}
         role="listitem"
       >
         <div className="flex items-start gap-3">
           <button
             aria-label={`Select conversation ${conversation.title}`}
-            className="flex min-w-0 flex-1 flex-col gap-1 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-sm"
+            className="flex min-w-0 flex-1 flex-col gap-1 rounded-sm text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            disabled={isLoading}
             onClick={onSelect}
             onKeyDown={(e) => {
               if (e.key === "Enter" || e.key === " ") {
@@ -360,12 +361,11 @@ function ConversationItem({
               }
             }}
             type="button"
-            disabled={isLoading}
           >
             {isEditing ? (
               <input
-                ref={inputRef}
-                className="w-full rounded-md border bg-background px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 min-h-[32px]"
+                aria-label="Edit conversation title"
+                className="min-h-[32px] w-full rounded-md border bg-background px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                 onBlur={onRenameSubmit}
                 onChange={(e) => onEditValueChange(e.target.value)}
                 onKeyDown={(e) => {
@@ -377,8 +377,8 @@ function ConversationItem({
                     onRenameCancel();
                   }
                 }}
+                ref={inputRef}
                 value={editValue}
-                aria-label="Edit conversation title"
               />
             ) : (
               <>
@@ -418,11 +418,11 @@ function ConversationItem({
               <DropdownMenuTrigger asChild>
                 <Button
                   aria-label={`More options for ${conversation.title}`}
-                  className="shrink-0 opacity-0 transition-opacity group-hover:opacity-100 group-focus-within:opacity-100 focus-visible:opacity-100 min-h-[32px] min-w-[32px]"
+                  className="min-h-[32px] min-w-[32px] shrink-0 opacity-0 transition-opacity focus-visible:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100"
+                  disabled={isLoading}
                   size="icon"
                   type="button"
                   variant="ghost"
-                  disabled={isLoading}
                 >
                   <MoreVertical className="size-4" />
                 </Button>
@@ -430,8 +430,8 @@ function ConversationItem({
               <DropdownMenuContent align="end">
                 {onRename && (
                   <DropdownMenuItem
-                    onClick={onRenameStart}
                     disabled={isLoading}
+                    onClick={onRenameStart}
                   >
                     <Pencil className="size-4" />
                     Rename
@@ -441,8 +441,8 @@ function ConversationItem({
                 {conversation.isArchived
                   ? onUnarchive && (
                       <DropdownMenuItem
-                        onClick={() => onUnarchive(conversation.id)}
                         disabled={isLoading}
+                        onClick={() => onUnarchive(conversation.id)}
                       >
                         <Archive className="size-4" />
                         Unarchive
@@ -450,8 +450,8 @@ function ConversationItem({
                     )
                   : onArchive && (
                       <DropdownMenuItem
-                        onClick={() => onArchive(conversation.id)}
                         disabled={isLoading}
+                        onClick={() => onArchive(conversation.id)}
                       >
                         <Archive className="size-4" />
                         Archive
@@ -461,8 +461,8 @@ function ConversationItem({
                   <>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem
-                      onClick={() => setShowDeleteDialog(true)}
                       disabled={isLoading}
+                      onClick={() => setShowDeleteDialog(true)}
                       variant="destructive"
                     >
                       <Trash2 className="size-4" />
@@ -476,7 +476,7 @@ function ConversationItem({
         </div>
       </div>
 
-      <AlertDialog open={showDeleteDialog} onOpenChange={setShowDeleteDialog}>
+      <AlertDialog onOpenChange={setShowDeleteDialog} open={showDeleteDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
             <AlertDialogTitle>Delete conversation?</AlertDialogTitle>
@@ -488,9 +488,9 @@ function ConversationItem({
           <AlertDialogFooter>
             <AlertDialogCancel disabled={isDeleting}>Cancel</AlertDialogCancel>
             <AlertDialogAction
-              onClick={handleDelete}
-              disabled={isDeleting}
               className="bg-destructive text-white hover:bg-destructive/90 focus-visible:ring-destructive/20 dark:bg-destructive/60 dark:focus-visible:ring-destructive/40"
+              disabled={isDeleting}
+              onClick={handleDelete}
             >
               {isDeleting ? (
                 <>
@@ -557,21 +557,21 @@ function ConversationGroup({
 
           return (
             <ConversationItem
-              key={conversation.id}
               conversation={conversation}
+              editValue={editValue}
               isActive={isActive}
               isEditing={isEditing}
-              editValue={editValue}
-              onSelect={() => onSelect(conversation.id)}
-              onRenameStart={() => onRenameStart(conversation)}
-              onRenameSubmit={() => onRenameSubmit(conversation.id)}
-              onRenameCancel={onRenameCancel}
+              isLoading={isLoading[conversation.id]}
+              key={conversation.id}
+              onArchive={onArchive}
+              onDelete={onDelete}
               onEditValueChange={onEditValueChange}
               onRename={onRename}
-              onDelete={onDelete}
-              onArchive={onArchive}
+              onRenameCancel={onRenameCancel}
+              onRenameStart={() => onRenameStart(conversation)}
+              onRenameSubmit={() => onRenameSubmit(conversation.id)}
+              onSelect={() => onSelect(conversation.id)}
               onUnarchive={onUnarchive}
-              isLoading={isLoading[conversation.id]}
             />
           );
         })}
@@ -624,7 +624,7 @@ export default function AIChatHistory({
 
   const handleRenameSubmit = useCallback(
     async (conversationId: string) => {
-      if (!onRename || !editValue.trim()) {
+      if (!(onRename && editValue.trim())) {
         setEditingId(null);
         return;
       }
@@ -696,7 +696,7 @@ export default function AIChatHistory({
 
   return (
     <Card
-      className={cn("flex h-fit flex-col shadow-xs max-w-sm w-full", className)}
+      className={cn("flex h-fit w-full max-w-sm flex-col shadow-xs", className)}
     >
       <CardHeader className="shrink-0">
         <div className="flex flex-col gap-4">
@@ -727,8 +727,8 @@ export default function AIChatHistory({
                 <ConversationGroup
                   activeConversationId={activeConversationId}
                   conversations={group.conversations}
-                  editValue={editValue}
                   editingId={editingId}
+                  editValue={editValue}
                   isLoading={loadingStates}
                   label={group.label}
                   onArchive={onArchive}
