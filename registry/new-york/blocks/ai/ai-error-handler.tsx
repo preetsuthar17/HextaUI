@@ -58,7 +58,9 @@ export default function AIErrorHandler({
       <div className="flex min-w-0 flex-1 flex-col gap-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
           <div className="flex min-w-0 flex-1 flex-col gap-1">
-            <AlertTitle className="wrap-break-word">{title}</AlertTitle>
+            <AlertTitle className="wrap-break-word font-medium text-base">
+              {title}
+            </AlertTitle>
             <AlertDescription className="wrap-break-word">
               {message}
             </AlertDescription>
@@ -80,11 +82,12 @@ export default function AIErrorHandler({
         {onRetry && (
           <Button
             aria-busy={isRetrying}
-            className="min-h-[32px] w-fit touch-manipulation"
+            className="ml-auto min-h-[32px] w-fit touch-manipulation sm:ml-0"
             data-loading={isRetrying}
             disabled={isRetrying}
             onClick={handleRetry}
             type="button"
+            variant={"secondary"}
           >
             {isRetrying ? (
               <>
