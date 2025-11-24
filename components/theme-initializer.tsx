@@ -12,14 +12,7 @@ function applyStoredTheme(mode: string | undefined) {
   const theme = getTheme(themeName);
 
   if (theme) {
-    let isDark = false;
-    if (mode === "dark") {
-      isDark = true;
-    } else if (mode === "light") {
-      isDark = false;
-    } else {
-      isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    }
+    const isDark = mode === "dark";
     applyTheme(theme, isDark);
   }
 }
