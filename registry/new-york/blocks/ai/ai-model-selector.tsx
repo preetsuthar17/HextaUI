@@ -6,23 +6,31 @@ import {
   Gauge,
   Image as ImageIcon,
   Rocket,
+  Search,
   Sparkles,
   Zap,
 } from "lucide-react";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   CommandMenu,
   CommandMenuContent,
-  CommandMenuEmpty,
   CommandMenuInput,
   CommandMenuItem,
   CommandMenuList,
   CommandMenuSeparator,
   CommandMenuTrigger,
+  useCommandMenu,
   useCommandMenuShortcut,
 } from "@/registry/new-york/ui/command-menu";
+import {
+  Empty,
+  EmptyDescription,
+  EmptyHeader,
+  EmptyMedia,
+  EmptyTitle,
+} from "@/registry/new-york/ui/empty";
 import {
   Tooltip,
   TooltipContent,
@@ -52,13 +60,16 @@ export type ModelFeature =
 interface ProviderConfig {
   name: string;
   icon: React.ReactNode;
+  ariaLabel: string;
 }
 
 const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   openai: {
     name: "OpenAI",
+    ariaLabel: "OpenAI provider",
     icon: (
       <svg
+        aria-hidden="true"
         className="size-4"
         viewBox="0 0 512 512"
         xmlns="http://www.w3.org/2000/svg"
@@ -72,8 +83,10 @@ const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   },
   anthropic: {
     name: "Anthropic",
+    ariaLabel: "Anthropic provider",
     icon: (
       <svg
+        aria-hidden="true"
         className="size-4"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -87,8 +100,10 @@ const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   },
   google: {
     name: "Google",
+    ariaLabel: "Google provider",
     icon: (
       <svg
+        aria-hidden="true"
         className="size-4"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -102,8 +117,10 @@ const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   },
   meta: {
     name: "Meta",
+    ariaLabel: "Meta provider",
     icon: (
       <svg
+        aria-hidden="true"
         className="size-4"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +138,10 @@ const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
   },
   mistral: {
     name: "Mistral",
+    ariaLabel: "Mistral provider",
     icon: (
       <svg
+        aria-hidden="true"
         className="size-4"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -137,11 +156,11 @@ const PROVIDER_CONFIGS: Record<AIProvider, ProviderConfig> = {
 };
 
 const FEATURE_ICONS: Record<ModelFeature, React.ReactNode> = {
-  fast: <Zap className="size-3" />,
-  turbo: <Rocket className="size-3" />,
-  reasoning: <Sparkles className="size-3" />,
-  multimodal: <ImageIcon className="size-3" />,
-  "long-context": <Gauge className="size-3" />,
+  fast: <Zap aria-hidden="true" className="size-3" />,
+  turbo: <Rocket aria-hidden="true" className="size-3" />,
+  reasoning: <Sparkles aria-hidden="true" className="size-3" />,
+  multimodal: <ImageIcon aria-hidden="true" className="size-3" />,
+  "long-context": <Gauge aria-hidden="true" className="size-3" />,
 };
 
 const FEATURE_LABELS: Record<ModelFeature, string> = {
@@ -152,9 +171,7 @@ const FEATURE_LABELS: Record<ModelFeature, string> = {
   "long-context": "Long context",
 };
 
-// Default models data
 const DEFAULT_MODELS: AIModel[] = [
-  // OpenAI
   {
     id: "gpt-4o",
     name: "GPT-4o",
@@ -170,11 +187,26 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["fast"],
   },
   {
+    id: "gpt-4o-2024-11-20",
+    name: "GPT-4o (2024-11-20)",
+    provider: "openai",
+    description: "Latest GPT-4o snapshot",
+    features: ["fast", "multimodal", "long-context"],
+  },
+  {
     id: "o1",
     name: "o1",
     provider: "openai",
     description: "Advanced reasoning",
     features: ["reasoning"],
+  },
+  {
+    id: "o1-preview",
+    name: "o1 Preview",
+    provider: "openai",
+    description: "Advanced reasoning preview",
+    features: ["reasoning"],
+    isPreview: true,
   },
   {
     id: "o1-mini",
@@ -184,11 +216,41 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["fast", "reasoning"],
   },
   {
+    id: "o1-mini-preview",
+    name: "o1 Mini Preview",
+    provider: "openai",
+    description: "Fast reasoning preview",
+    features: ["fast", "reasoning"],
+    isPreview: true,
+  },
+  {
     id: "gpt-4-turbo",
     name: "GPT-4 Turbo",
     provider: "openai",
     description: "High performance model",
     features: ["turbo", "multimodal", "long-context"],
+  },
+  {
+    id: "gpt-4-turbo-preview",
+    name: "GPT-4 Turbo Preview",
+    provider: "openai",
+    description: "Latest GPT-4 Turbo",
+    features: ["turbo", "multimodal", "long-context"],
+    isPreview: true,
+  },
+  {
+    id: "gpt-4",
+    name: "GPT-4",
+    provider: "openai",
+    description: "Original GPT-4 model",
+    features: ["multimodal", "long-context"],
+  },
+  {
+    id: "gpt-4-32k",
+    name: "GPT-4 32K",
+    provider: "openai",
+    description: "GPT-4 with extended context",
+    features: ["long-context"],
   },
   {
     id: "gpt-3.5-turbo",
@@ -197,7 +259,13 @@ const DEFAULT_MODELS: AIModel[] = [
     description: "Fast and efficient",
     features: ["turbo"],
   },
-  // Anthropic
+  {
+    id: "gpt-3.5-turbo-16k",
+    name: "GPT-3.5 Turbo 16K",
+    provider: "openai",
+    description: "GPT-3.5 with extended context",
+    features: ["turbo", "long-context"],
+  },
   {
     id: "claude-4-opus",
     name: "Claude 4 Opus",
@@ -222,11 +290,32 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["fast", "multimodal"],
   },
   {
+    id: "claude-3.5-sonnet-20241022",
+    name: "Claude 3.5 Sonnet (2024-10-22)",
+    provider: "anthropic",
+    description: "Latest Claude 3.5 Sonnet",
+    features: ["fast", "multimodal"],
+  },
+  {
+    id: "claude-3.5-haiku",
+    name: "Claude 3.5 Haiku",
+    provider: "anthropic",
+    description: "Fastest Claude model",
+    features: ["fast", "multimodal"],
+  },
+  {
     id: "claude-3-opus",
     name: "Claude 3 Opus",
     provider: "anthropic",
     description: "Most powerful model",
     features: ["reasoning", "multimodal", "long-context"],
+  },
+  {
+    id: "claude-3-sonnet",
+    name: "Claude 3 Sonnet",
+    provider: "anthropic",
+    description: "Balanced Claude 3",
+    features: ["multimodal", "long-context"],
   },
   {
     id: "claude-3-haiku",
@@ -235,13 +324,27 @@ const DEFAULT_MODELS: AIModel[] = [
     description: "Fast and cost-effective",
     features: ["fast", "multimodal"],
   },
-  // Google
+  {
+    id: "claude-3-5-sonnet-20240620",
+    name: "Claude 3.5 Sonnet (2024-06-20)",
+    provider: "anthropic",
+    description: "Claude 3.5 Sonnet snapshot",
+    features: ["fast", "multimodal"],
+  },
   {
     id: "gemini-2.0-pro",
     name: "Gemini 2.0 Pro",
     provider: "google",
     description: "Advanced capabilities",
     features: ["multimodal", "long-context"],
+    isPreview: true,
+  },
+  {
+    id: "gemini-2.0-flash",
+    name: "Gemini 2.0 Flash",
+    provider: "google",
+    description: "Fast Gemini 2.0",
+    features: ["fast", "multimodal", "long-context"],
     isPreview: true,
   },
   {
@@ -252,11 +355,32 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["multimodal", "long-context"],
   },
   {
+    id: "gemini-1.5-pro-latest",
+    name: "Gemini 1.5 Pro Latest",
+    provider: "google",
+    description: "Latest Gemini 1.5 Pro",
+    features: ["multimodal", "long-context"],
+  },
+  {
     id: "gemini-1.5-flash",
     name: "Gemini 1.5 Flash",
     provider: "google",
     description: "Fast and efficient",
     features: ["fast", "multimodal", "long-context"],
+  },
+  {
+    id: "gemini-1.5-flash-8b",
+    name: "Gemini 1.5 Flash 8B",
+    provider: "google",
+    description: "Lightweight Flash model",
+    features: ["fast", "multimodal"],
+  },
+  {
+    id: "gemini-1.0-pro",
+    name: "Gemini 1.0 Pro",
+    provider: "google",
+    description: "Original Gemini Pro",
+    features: ["multimodal"],
   },
   {
     id: "gemini-ultra",
@@ -266,7 +390,6 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["reasoning", "multimodal", "long-context"],
     isPreview: true,
   },
-  // Meta
   {
     id: "llama-3.1-405b",
     name: "Llama 3.1 405B",
@@ -282,6 +405,13 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["fast", "long-context"],
   },
   {
+    id: "llama-3.1-8b",
+    name: "Llama 3.1 8B",
+    provider: "meta",
+    description: "Lightweight model",
+    features: ["fast"],
+  },
+  {
     id: "llama-3.2",
     name: "Llama 3.2",
     provider: "meta",
@@ -289,12 +419,55 @@ const DEFAULT_MODELS: AIModel[] = [
     features: ["fast"],
     isNew: true,
   },
-  // Mistral
+  {
+    id: "llama-3.2-3b",
+    name: "Llama 3.2 3B",
+    provider: "meta",
+    description: "Ultra-lightweight",
+    features: ["fast"],
+    isNew: true,
+  },
+  {
+    id: "llama-3.2-1b",
+    name: "Llama 3.2 1B",
+    provider: "meta",
+    description: "Smallest Llama model",
+    features: ["fast"],
+    isNew: true,
+  },
+  {
+    id: "llama-3-70b",
+    name: "Llama 3 70B",
+    provider: "meta",
+    description: "Llama 3 base model",
+    features: ["fast"],
+  },
+  {
+    id: "llama-3-8b",
+    name: "Llama 3 8B",
+    provider: "meta",
+    description: "Llama 3 lightweight",
+    features: ["fast"],
+  },
   {
     id: "mistral-large",
     name: "Mistral Large",
     provider: "mistral",
     description: "High performance",
+    features: ["fast", "long-context"],
+  },
+  {
+    id: "mistral-large-2407",
+    name: "Mistral Large 2407",
+    provider: "mistral",
+    description: "Mistral Large snapshot",
+    features: ["fast", "long-context"],
+  },
+  {
+    id: "mistral-large-2402",
+    name: "Mistral Large 2402",
+    provider: "mistral",
+    description: "Mistral Large snapshot",
     features: ["fast", "long-context"],
   },
   {
@@ -311,6 +484,36 @@ const DEFAULT_MODELS: AIModel[] = [
     description: "Fast and efficient",
     features: ["fast"],
   },
+  {
+    id: "mistral-small-2402",
+    name: "Mistral Small 2402",
+    provider: "mistral",
+    description: "Mistral Small snapshot",
+    features: ["fast"],
+  },
+  {
+    id: "mistral-tiny",
+    name: "Mistral Tiny",
+    provider: "mistral",
+    description: "Ultra-fast model",
+    features: ["fast"],
+  },
+  {
+    id: "pixtral-large",
+    name: "Pixtral Large",
+    provider: "mistral",
+    description: "Multimodal vision model",
+    features: ["multimodal", "long-context"],
+    isNew: true,
+  },
+  {
+    id: "pixtral-12b",
+    name: "Pixtral 12B",
+    provider: "mistral",
+    description: "Efficient vision model",
+    features: ["fast", "multimodal"],
+    isNew: true,
+  },
 ];
 
 export interface AIModelSelectorProps {
@@ -319,13 +522,23 @@ export interface AIModelSelectorProps {
   onModelSelect?: (model: AIModel) => void;
   trigger?: React.ReactNode;
   className?: string;
+  isLoading?: boolean;
 }
 
-function ModelFeatureBadge({ feature }: { feature: ModelFeature }) {
+interface ModelFeatureBadgeProps {
+  feature: ModelFeature;
+}
+
+function ModelFeatureBadge({ feature }: ModelFeatureBadgeProps) {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <div className="flex size-4 cursor-help items-center justify-center rounded text-muted-foreground">
+        <div
+          aria-label={FEATURE_LABELS[feature]}
+          className="flex min-h-[32px] min-w-[32px] cursor-help items-center justify-center rounded text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+          role="button"
+          tabIndex={0}
+        >
           {FEATURE_ICONS[feature]}
         </div>
       </TooltipTrigger>
@@ -336,32 +549,45 @@ function ModelFeatureBadge({ feature }: { feature: ModelFeature }) {
   );
 }
 
-function ModelItem({
-  model,
-  isSelected,
-  index,
-  onSelect,
-}: {
+interface ModelBadgeProps {
+  label: string;
+  variant: "new" | "preview";
+}
+
+function ModelBadge({ label, variant }: ModelBadgeProps) {
+  return (
+    <span
+      className={cn(
+        "shrink-0 rounded-full px-1.5 py-0.5 font-medium text-xs tabular-nums",
+        variant === "new" &&
+          "bg-primary/10 text-primary ring-1 ring-primary/20",
+        variant === "preview" && "bg-muted text-muted-foreground"
+      )}
+    >
+      {label}
+    </span>
+  );
+}
+
+interface ModelItemProps {
   model: AIModel;
   isSelected: boolean;
   index: number;
   onSelect: () => void;
-}) {
+}
+
+function ModelItem({ model, isSelected, index, onSelect }: ModelItemProps) {
   return (
     <CommandMenuItem index={index} onSelect={onSelect}>
       <div className="flex min-w-0 flex-1 items-center gap-3">
         <div className="flex min-w-0 flex-1 flex-col gap-0.5">
           <div className="flex items-center gap-2">
-            <span className="font-medium text-sm">{model.name}</span>
-            {model.isNew && (
-              <span className="shrink-0 rounded-full bg-primary/10 px-1.5 py-0.5 font-medium text-primary text-xs">
-                New
-              </span>
-            )}
+            <span className="font-medium text-sm tabular-nums">
+              {model.name}
+            </span>
+            {model.isNew && <ModelBadge label="New" variant="new" />}
             {model.isPreview && (
-              <span className="shrink-0 rounded-full bg-muted px-1.5 py-0.5 font-medium text-muted-foreground text-xs">
-                Preview
-              </span>
+              <ModelBadge label="Preview" variant="preview" />
             )}
           </div>
           {model.description && (
@@ -374,37 +600,96 @@ function ModelItem({
           {model.features?.map((feature) => (
             <ModelFeatureBadge feature={feature} key={feature} />
           ))}
-          {isSelected && <Check className="size-4 text-primary" />}
+          {isSelected && (
+            <Check
+              aria-label="Selected"
+              className="size-4 text-primary"
+              role="status"
+            />
+          )}
         </div>
       </div>
     </CommandMenuItem>
   );
 }
 
-export default function AIModelSelector({
-  models = DEFAULT_MODELS,
-  selectedModelId,
-  onModelSelect,
-  trigger,
-  className,
-}: AIModelSelectorProps) {
-  const [open, setOpen] = useState(false);
-  const [searchValue, setSearchValue] = useState("");
+interface ProviderGroupHeaderProps {
+  provider: AIProvider;
+}
 
-  useCommandMenuShortcut(() => {
-    setOpen((prev) => !prev);
-  });
+function ProviderGroupHeader({ provider }: ProviderGroupHeaderProps) {
+  const config = PROVIDER_CONFIGS[provider];
+  return (
+    <div
+      aria-label={`${config.name} models`}
+      className="flex items-center gap-2 px-2 py-1.5"
+      role="group"
+    >
+      <div
+        aria-hidden="true"
+        className="flex size-4 items-center justify-center text-muted-foreground"
+      >
+        {config.icon}
+      </div>
+      <span className="font-semibold text-muted-foreground text-xs uppercase tabular-nums tracking-tight">
+        {config.name}
+      </span>
+    </div>
+  );
+}
+
+interface EmptyStateProps {
+  searchQuery: string;
+}
+
+function EmptyState({ searchQuery }: EmptyStateProps) {
+  return (
+    <Empty>
+      <EmptyHeader>
+        <EmptyMedia variant="icon">
+          <Search aria-hidden="true" className="size-6" />
+        </EmptyMedia>
+        <EmptyTitle>
+          {searchQuery ? "No models found" : "No models available"}
+        </EmptyTitle>
+        <EmptyDescription>
+          {searchQuery
+            ? `No models match "${searchQuery}". Try a different search term.`
+            : "There are no AI models available at this time."}
+        </EmptyDescription>
+      </EmptyHeader>
+    </Empty>
+  );
+}
+
+interface ModelListProps {
+  models: AIModel[];
+  selectedModelId?: string;
+  onSelect: (model: AIModel) => void;
+  isLoading: boolean;
+}
+
+function ModelList({
+  models,
+  selectedModelId,
+  onSelect,
+  isLoading,
+}: ModelListProps) {
+  const { value: searchValue } = useCommandMenu();
 
   const filteredModels = useMemo(() => {
     if (!searchValue.trim()) return models;
 
-    const query = searchValue.toLowerCase();
+    const query = searchValue.toLowerCase().trim();
     return models.filter(
       (model) =>
         model.name.toLowerCase().includes(query) ||
         model.provider.toLowerCase().includes(query) ||
         model.description?.toLowerCase().includes(query) ||
-        PROVIDER_CONFIGS[model.provider].name.toLowerCase().includes(query)
+        PROVIDER_CONFIGS[model.provider].name.toLowerCase().includes(query) ||
+        model.features?.some((feature) =>
+          FEATURE_LABELS[feature].toLowerCase().includes(query)
+        )
     );
   }, [models, searchValue]);
 
@@ -423,82 +708,175 @@ export default function AIModelSelector({
       }
     });
 
-    return Object.entries(groups).filter(([, models]) => models.length > 0) as [
-      AIProvider,
-      AIModel[],
-    ][];
+    return Object.entries(groups).filter(
+      ([, providerModels]) => providerModels.length > 0
+    ) as [AIProvider, AIModel[]][];
   }, [filteredModels]);
 
-  const selectedModel = models.find((m) => m.id === selectedModelId);
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center gap-2 py-8 text-muted-foreground text-sm">
+        <span>Loading models…</span>
+      </div>
+    );
+  }
 
-  const handleSelect = (model: AIModel) => {
-    onModelSelect?.(model);
-    setOpen(false);
-    setSearchValue("");
-  };
+  if (groupedModels.length === 0) {
+    return <EmptyState searchQuery={searchValue} />;
+  }
+
+  return (
+    <>
+      {groupedModels.map(([provider, providerModels], groupIndex) => {
+        const globalStartIndex = filteredModels.findIndex(
+          (m) => m.provider === provider
+        );
+        return (
+          <div key={provider} role="list">
+            {groupIndex > 0 && <CommandMenuSeparator />}
+            <ProviderGroupHeader provider={provider} />
+            {providerModels.map((model, modelIndex) => {
+              const globalIndex = globalStartIndex + modelIndex;
+              return (
+                <ModelItem
+                  index={globalIndex}
+                  isSelected={model.id === selectedModelId}
+                  key={model.id}
+                  model={model}
+                  onSelect={() => onSelect(model)}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+    </>
+  );
+}
+
+interface DefaultTriggerProps {
+  selectedModel: AIModel | undefined;
+  className?: string;
+  onClick?: () => void;
+}
+
+function DefaultTrigger({
+  selectedModel,
+  className,
+  onClick,
+}: DefaultTriggerProps) {
+  return (
+    <Button
+      aria-label={
+        selectedModel
+          ? `Selected model: ${selectedModel.name}. Click to change model.`
+          : "Select AI model"
+      }
+      className={cn("min-h-[32px] gap-2", className)}
+      onClick={onClick}
+      type="button"
+      variant="outline"
+    >
+      {selectedModel ? (
+        <>
+          <div
+            aria-hidden="true"
+            className="flex size-4 items-center justify-center text-muted-foreground"
+          >
+            {PROVIDER_CONFIGS[selectedModel.provider].icon}
+          </div>
+          <span className="tabular-nums">{selectedModel.name}</span>
+        </>
+      ) : (
+        <span>Select model</span>
+      )}
+      <ChevronDown
+        aria-hidden="true"
+        className="size-4 text-muted-foreground"
+      />
+    </Button>
+  );
+}
+
+export default function AIModelSelector({
+  models = DEFAULT_MODELS,
+  selectedModelId,
+  onModelSelect,
+  trigger,
+  className,
+  isLoading = false,
+}: AIModelSelectorProps) {
+  const [open, setOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  useCommandMenuShortcut(
+    useCallback(() => {
+      setOpen((prev) => !prev);
+    }, [])
+  );
+
+  useEffect(() => {
+    if (open && searchInputRef.current) {
+      setTimeout(() => {
+        searchInputRef.current?.focus();
+      }, 100);
+    }
+  }, [open]);
+
+  const selectedModel = useMemo(
+    () => models.find((m) => m.id === selectedModelId),
+    [models, selectedModelId]
+  );
+
+  const handleSelect = useCallback(
+    (model: AIModel) => {
+      onModelSelect?.(model);
+      setOpen(false);
+    },
+    [onModelSelect]
+  );
+
+  const handleOpenChange = useCallback((newOpen: boolean) => {
+    setOpen(newOpen);
+  }, []);
+
+  const handleTriggerClick = useCallback(() => {
+    setOpen(true);
+  }, []);
 
   return (
     <TooltipProvider>
-      <CommandMenu onOpenChange={setOpen} open={open}>
+      <CommandMenu onOpenChange={handleOpenChange} open={open}>
         {trigger ? (
           <CommandMenuTrigger asChild>{trigger}</CommandMenuTrigger>
         ) : (
           <CommandMenuTrigger asChild>
-            <Button
-              className={cn("gap-2", className)}
-              type="button"
-              variant="outline"
-            >
-              {selectedModel ? (
-                <>
-                  <div className="flex size-4 items-center justify-center text-muted-foreground">
-                    {PROVIDER_CONFIGS[selectedModel.provider].icon}
-                  </div>
-                  <span>{selectedModel.name}</span>
-                </>
-              ) : (
-                <span>Select model</span>
-              )}
-              <ChevronDown className="size-4 text-muted-foreground" />
-            </Button>
+            <DefaultTrigger
+              className={className}
+              onClick={handleTriggerClick}
+              selectedModel={selectedModel}
+            />
           </CommandMenuTrigger>
         )}
 
-        <CommandMenuContent className="max-w-2xl" showShortcut={false}>
-          <CommandMenuInput placeholder="Search models..." />
+        <CommandMenuContent
+          aria-label="AI model selector"
+          className="max-w-2xl"
+          showShortcut={false}
+        >
+          <CommandMenuInput
+            aria-label="Search AI models"
+            disabled={isLoading}
+            placeholder="Search models…"
+            ref={searchInputRef}
+          />
           <CommandMenuList maxHeight="400px">
-            {groupedModels.length === 0 ? (
-              <CommandMenuEmpty>No models found.</CommandMenuEmpty>
-            ) : (
-              groupedModels.map(([provider, providerModels], groupIndex) => {
-                const providerConfig = PROVIDER_CONFIGS[provider];
-                return (
-                  <div key={provider}>
-                    {groupIndex > 0 && <CommandMenuSeparator />}
-                    <div className="flex items-center gap-2 px-2 py-1.5">
-                      <div className="flex size-4 items-center justify-center text-muted-foreground">
-                        {providerConfig.icon}
-                      </div>
-                      <span className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
-                        {providerConfig.name}
-                      </span>
-                    </div>
-                    {providerModels.map((model, modelIndex) => {
-                      const globalIndex = filteredModels.indexOf(model);
-                      return (
-                        <ModelItem
-                          index={globalIndex}
-                          isSelected={model.id === selectedModelId}
-                          key={model.id}
-                          model={model}
-                          onSelect={() => handleSelect(model)}
-                        />
-                      );
-                    })}
-                  </div>
-                );
-              })
-            )}
+            <ModelList
+              isLoading={isLoading}
+              models={models}
+              onSelect={handleSelect}
+              selectedModelId={selectedModelId}
+            />
           </CommandMenuList>
         </CommandMenuContent>
       </CommandMenu>
