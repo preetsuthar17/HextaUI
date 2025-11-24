@@ -85,28 +85,86 @@ export function getBlockExampleProps(blockId: string): Record<string, any> {
                 url: "https://react.dev/learn/thinking-in-react",
                 domain: "react.dev",
                 snippet:
-                  "Components let you split the UI into independent, reusable pieces.",
+                  "Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.",
                 author: "React Team",
                 publishedAt: new Date("2024-01-15"),
-                type: "web" as const,
+                type: "web",
               },
             ],
           },
           {
             id: "citation-2",
             number: 2,
-            text: "Types for Chatbots in TypeScript",
+            text: "Accessibility guidelines",
             sources: [
               {
                 id: "source-2",
-                title: "Structuring TypeScript for AI",
-                url: "https://typescriptlang.org/docs/ai",
+                title: "Web Content Accessibility Guidelines (WCAG) 2.2",
+                url: "https://www.w3.org/WAI/WCAG22/quickref/",
+                domain: "w3.org",
+                snippet:
+                  "WCAG 2.2 provides a wide range of recommendations for making Web content more accessible.",
+                author: "W3C",
+                publishedAt: new Date("2023-10-05"),
+                type: "document",
+              },
+              {
+                id: "source-3",
+                title: "ARIA Authoring Practices Guide",
+                url: "https://www.w3.org/WAI/ARIA/apg/",
+                domain: "w3.org",
+                snippet:
+                  "The ARIA Authoring Practices Guide (APG) provides patterns, examples, and guidance for creating accessible web experiences.",
+                author: "W3C",
+                publishedAt: new Date("2024-02-20"),
+                type: "document",
+              },
+            ],
+          },
+          {
+            id: "citation-3",
+            number: 3,
+            text: "Tailwind CSS utility-first approach",
+            sources: [
+              {
+                id: "source-4",
+                title:
+                  "Tailwind CSS Documentation - Utility-First Fundamentals",
+                url: "https://tailwindcss.com/docs/utility-first",
+                domain: "tailwindcss.com",
+                snippet:
+                  "Tailwind CSS is a utility-first CSS framework packed with classes that can be composed to build any design, directly in your markup.",
+                author: "Tailwind Labs",
+                publishedAt: new Date("2024-03-10"),
+                type: "web",
+              },
+            ],
+          },
+          {
+            id: "citation-4",
+            number: 4,
+            sources: [
+              {
+                id: "source-5",
+                title: "TypeScript Handbook - Advanced Types",
+                url: "https://www.typescriptlang.org/docs/handbook/2/types-from-types.html",
                 domain: "typescriptlang.org",
                 snippet:
-                  "Structuring complex TypeScript types for AI chatbots helps ensure type safety.",
-                author: "TS Docs",
-                publishedAt: new Date("2023-08-22"),
-                type: "web" as const,
+                  "TypeScript's type system is very powerful because it allows you to express types in terms of other types.",
+                author: "TypeScript Team",
+                publishedAt: new Date("2024-01-08"),
+                type: "web",
+              },
+              {
+                id: "source-6",
+                title: "Next.js Documentation - TypeScript",
+                url: "https://nextjs.org/docs/app/building-your-application/configuring/typescript",
+                domain: "nextjs.org",
+                snippet:
+                  "Next.js provides an integrated TypeScript experience out of the box, similar to an IDE.",
+                author: "Vercel",
+                publishedAt: new Date("2024-02-15"),
+                type: "web",
               },
             ],
           },
