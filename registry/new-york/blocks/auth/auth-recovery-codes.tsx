@@ -24,6 +24,11 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/registry/new-york/ui/alert-dialog";
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/registry/new-york/ui/alert";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
@@ -171,22 +176,18 @@ export default function AuthRecoveryCodes({
 
           {codes.length > 0 ? (
             <>
-              <div className="rounded-lg border border-yellow-500/50 bg-yellow-500/5 p-4">
-                <div className="flex items-start gap-3">
-                  <AlertTriangle className="size-5 shrink-0 text-yellow-600" />
-                  <div className="flex flex-1 flex-col gap-1">
-                    <p className="font-medium text-sm text-yellow-900 dark:text-yellow-100">
-                      Important: Save these codes
-                    </p>
-                    <p className="text-xs text-yellow-800 dark:text-yellow-200">
-                      Store these recovery codes in a secure location. Each code
-                      can only be used once. If you lose access to your
-                      authenticator app, these codes are your only way to access
-                      your account.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <Alert variant="destructive">
+                <AlertTriangle />
+                <AlertTitle>
+                  Important: Save these codes
+                </AlertTitle>
+                <AlertDescription>
+                  Store these recovery codes in a secure location. Each code
+                  can only be used once. If you lose access to your
+                  authenticator app, these codes are your only way to access
+                  your account.
+                </AlertDescription>
+              </Alert>
 
               <div className="flex flex-col gap-3">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
