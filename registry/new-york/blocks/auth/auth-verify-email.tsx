@@ -129,8 +129,8 @@ export default function AuthVerifyEmail({
         return {
           title: "Verify your email",
           description: email
-            ? `We&apos;ve sent a verification link to ${email}. Please check your inbox and click the link to verify your email address.`
-            : "We&apos;ve sent a verification link to your email address. Please check your inbox and click the link to verify your email address.",
+            ? `We've sent a verification link to ${email}. Please check your inbox and click the link to verify your email address.`
+            : "We've sent a verification link to your email address. Please check your inbox and click the link to verify your email address.",
         };
     }
   };
@@ -153,7 +153,7 @@ export default function AuthVerifyEmail({
                 <Clock className="size-4 shrink-0 text-muted-foreground" />
                 <div className="flex flex-col gap-1">
                   <p className="font-medium text-sm">
-                    Didn&apos;t receive the email?
+                    Didn't receive the email?
                   </p>
                   <p className="text-muted-foreground text-xs">
                     Check your spam folder or try resending the verification
