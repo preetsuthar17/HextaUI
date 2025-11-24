@@ -91,6 +91,7 @@ export function SiteHeader() {
                       className="invert dark:invert-0"
                       height={16}
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
+                      style={{ width: "16px", height: "auto" }}
                       width={16}
                     />
                     shadcnblocks.com
