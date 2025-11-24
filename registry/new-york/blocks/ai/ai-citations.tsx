@@ -108,7 +108,7 @@ function CitationNumber({
     "size-6 min-h-6 min-w-6 md:size-[24px] md:min-h-[24px] md:min-w-[24px]",
     asButton &&
       onClick &&
-      "cursor-pointer hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:bg-primary/30",
+      "cursor-pointer [-webkit-tap-highlight-color:transparent] hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 active:bg-primary/30",
     !asButton && "pointer-events-none",
     className
   );
@@ -225,12 +225,13 @@ function SourcePreview({
         className={cn(
           "group flex flex-col gap-2 rounded-md bg-muted/30 p-3 pl-4 transition-colors",
           "focus-within:bg-muted/50 hover:bg-muted/50",
-          "border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+          "border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
+          "touch-manipulation [-webkit-tap-highlight-color:transparent]"
         )}
         onClick={handleClick}
         role="article"
       >
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-between flex-col sm:flex-row   gap-3">
           <div className="flex min-w-0 flex-1 items-start gap-3">
             <div
               aria-hidden="true"
@@ -250,16 +251,16 @@ function SourcePreview({
               <SourceMetadata source={source} />
             </div>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5">
+          <div className="flex shrink-0 items-center gap-1.5 ">
             {source.snippet && (
               <CollapsibleTrigger
                 aria-label={isSnippetOpen ? "Hide snippet" : "Show snippet"}
                 className={cn(
                   "flex shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors",
-                  "size-8 min-h-8 min-w-8",
+                  "min-h-[44px] min-w-[44px] sm:min-h-[24px] sm:min-w-[24px]",
                   "hover:bg-background hover:text-foreground",
                   "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
-                  "active:bg-background/80"
+                  "[-webkit-tap-highlight-color:transparent] active:bg-background/80"
                 )}
                 onClick={(e) => e.stopPropagation()}
                 type="button"
@@ -277,10 +278,10 @@ function SourcePreview({
               aria-label={`Open ${source.title} in new tab`}
               className={cn(
                 "flex shrink-0 items-center justify-center rounded-md text-muted-foreground transition-colors",
-                "size-8 min-h-8 min-w-8",
+                "min-h-[44px] min-w-[44px] sm:min-h-[24px] sm:min-w-[24px]",
                 "hover:bg-background hover:text-foreground",
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
-                "active:bg-background/80"
+                "[-webkit-tap-highlight-color:transparent] active:bg-background/80"
               )}
               href={source.url}
               onClick={(e) => e.stopPropagation()}
@@ -321,10 +322,10 @@ function CitationItemHeader({
         aria-controls={`citation-content-${citation.id}`}
         aria-expanded={isOpen}
         className={cn(
-          "flex min-h-12 items-center justify-between rounded-lg bg-card px-4 py-3 text-left transition-colors",
+          "flex min-h-[44px] items-center justify-between rounded-lg bg-card px-2 text-left transition-colors ",
           "hover:bg-accent/50",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-          "active:bg-accent/70"
+          "touch-manipulation [-webkit-tap-highlight-color:transparent] active:bg-accent/70 sm:min-h-[24px]"
         )}
         type="button"
       >
@@ -359,7 +360,7 @@ function CitationItemHeader({
   return (
     <div
       aria-label={`Citation ${citation.number}`}
-      className="flex items-center gap-3 rounded-lg bg-card px-4 py-3"
+      className="flex items-center gap-3 rounded-lg bg-card px-2"
       role="group"
     >
       <CitationNumber

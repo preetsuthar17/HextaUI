@@ -176,7 +176,7 @@ function EmptyState({
       </div>
       {!searchQuery && showNewButton && onNewConversation && (
         <Button
-          className="min-h-[44px]"
+          className="min-h-[44px] sm:min-h-[24px]"
           onClick={onNewConversation}
           type="button"
           variant="outline"
@@ -202,8 +202,8 @@ function ConversationHeader({
 }: ConversationHeaderProps) {
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+      <div className="flex flex-wrap items-center justify-between gap-6">
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
           <CardTitle>Conversations</CardTitle>
           <CardDescription>
             {conversationsCount} conversation
@@ -212,7 +212,7 @@ function ConversationHeader({
         </div>
         {showNewButton && onNewConversation && (
           <Button
-            className="w-full shrink-0"
+            className="min-h-[44px] w-full shrink-0 sm:min-h-[24px]"
             onClick={onNewConversation}
             type="button"
           >
@@ -340,7 +340,7 @@ function ConversationItem({
       <div
         className={cn(
           "group relative flex flex-col gap-2 rounded-lg border p-3 transition-colors",
-          "min-h-[60px] touch-manipulation",
+          "min-h-[60px] touch-manipulation [-webkit-tap-highlight-color:transparent]",
           isActive
             ? "border-primary bg-primary/5 shadow-xs"
             : "border-transparent bg-card focus-within:border-border focus-within:bg-muted/50 hover:border-border hover:bg-muted/50",
@@ -351,7 +351,7 @@ function ConversationItem({
         <div className="flex items-start gap-3">
           <button
             aria-label={`Select conversation ${conversation.title}`}
-            className="flex min-w-0 flex-1 flex-col gap-1 rounded-sm text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="flex min-h-[44px] min-w-0 flex-1 flex-col gap-1 rounded-sm text-left [-webkit-tap-highlight-color:transparent] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:min-h-[24px]"
             disabled={isLoading}
             onClick={onSelect}
             onKeyDown={(e) => {
@@ -365,7 +365,7 @@ function ConversationItem({
             {isEditing ? (
               <input
                 aria-label="Edit conversation title"
-                className="min-h-[32px] w-full rounded-md border bg-background px-2 py-1.5 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+                className="min-h-[44px] w-full rounded-md border bg-background px-2 py-1.5 text-base focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 sm:min-h-[24px] sm:text-sm"
                 onBlur={onRenameSubmit}
                 onChange={(e) => onEditValueChange(e.target.value)}
                 onKeyDown={(e) => {
@@ -414,64 +414,66 @@ function ConversationItem({
             )}
           </button>
           {!isEditing && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  aria-label={`More options for ${conversation.title}`}
-                  className="min-h-[32px] min-w-[32px] shrink-0 opacity-0 transition-opacity focus-visible:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100"
-                  disabled={isLoading}
-                  size="icon"
-                  type="button"
-                  variant="ghost"
-                >
-                  <MoreVertical className="size-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                {onRename && (
-                  <DropdownMenuItem
+            <div className="absolute top-2 right-2 z-10">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    aria-label={`More options for ${conversation.title}`}
+                    className="min-h-[44px] min-w-[44px] shrink-0 opacity-0 transition-opacity [-webkit-tap-highlight-color:transparent] focus-visible:opacity-100 group-focus-within:opacity-100 group-hover:opacity-100 sm:min-h-[24px] sm:min-w-[24px]"
                     disabled={isLoading}
-                    onClick={onRenameStart}
+                    size="icon"
+                    type="button"
+                    variant="ghost"
                   >
-                    <Pencil className="size-4" />
-                    Rename
-                  </DropdownMenuItem>
-                )}
-                <DropdownMenuSeparator />
-                {conversation.isArchived
-                  ? onUnarchive && (
-                      <DropdownMenuItem
-                        disabled={isLoading}
-                        onClick={() => onUnarchive(conversation.id)}
-                      >
-                        <Archive className="size-4" />
-                        Unarchive
-                      </DropdownMenuItem>
-                    )
-                  : onArchive && (
-                      <DropdownMenuItem
-                        disabled={isLoading}
-                        onClick={() => onArchive(conversation.id)}
-                      >
-                        <Archive className="size-4" />
-                        Archive
-                      </DropdownMenuItem>
-                    )}
-                {onDelete && (
-                  <>
-                    <DropdownMenuSeparator />
+                    <MoreVertical className="size-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  {onRename && (
                     <DropdownMenuItem
                       disabled={isLoading}
-                      onClick={() => setShowDeleteDialog(true)}
-                      variant="destructive"
+                      onClick={onRenameStart}
                     >
-                      <Trash2 className="size-4" />
-                      Delete
+                      <Pencil className="size-4" />
+                      Rename
                     </DropdownMenuItem>
-                  </>
-                )}
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  )}
+                  <DropdownMenuSeparator />
+                  {conversation.isArchived
+                    ? onUnarchive && (
+                        <DropdownMenuItem
+                          disabled={isLoading}
+                          onClick={() => onUnarchive(conversation.id)}
+                        >
+                          <Archive className="size-4" />
+                          Unarchive
+                        </DropdownMenuItem>
+                      )
+                    : onArchive && (
+                        <DropdownMenuItem
+                          disabled={isLoading}
+                          onClick={() => onArchive(conversation.id)}
+                        >
+                          <Archive className="size-4" />
+                          Archive
+                        </DropdownMenuItem>
+                      )}
+                  {onDelete && (
+                    <>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem
+                        disabled={isLoading}
+                        onClick={() => setShowDeleteDialog(true)}
+                        variant="destructive"
+                      >
+                        <Trash2 className="size-4" />
+                        Delete
+                      </DropdownMenuItem>
+                    </>
+                  )}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           )}
         </div>
       </div>
@@ -545,7 +547,7 @@ function ConversationGroup({
 }: ConversationGroupProps) {
   return (
     <div>
-      <div className="sticky top-0 z-10 bg-card py-2">
+      <div className="sticky top-0 z-10 bg-card pb-2">
         <h3 className="font-medium text-muted-foreground text-xs uppercase tracking-wider">
           {label}
         </h3>
