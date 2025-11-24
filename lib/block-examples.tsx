@@ -255,19 +255,13 @@ export function getBlockExampleProps(blockId: string): Record<string, any> {
     }
     case "ai-error-handler": {
       return {
-        error: {
-          code: "network_error",
-          message:
-            "Network unreachable. Please check your connection and retry.",
-        },
+        error: "Network unreachable. Please check your connection and retry.",
+        title: "Network Error",
         onRetry: async () => {
           /* retry logic example */
         },
         onDismiss: () => {
           /* dismiss error panel */
-        },
-        onContactSupport: () => {
-          /* contact support logic */
         },
       };
     }

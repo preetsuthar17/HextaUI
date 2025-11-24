@@ -252,12 +252,12 @@ function UserMessage({
 }: UserMessageProps) {
   return (
     <div
-      id={`user-message-${messageId}`}
       aria-label={`User message ${messageId}`}
       className={cn(
         "flex justify-end rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         isFocused && "ring-2 ring-ring ring-offset-2"
       )}
+      id={`user-message-${messageId}`}
       ref={messageRef}
       role="article"
       tabIndex={0}
@@ -299,7 +299,7 @@ function AssistantMessage({
       aria-label={`Assistant message ${index + 1}${isStreaming && isLastAI ? ", streaming" : ""}`}
       aria-live={isStreaming && isLastAI ? "polite" : "off"}
       className={cn(
-        "min-h-[44px] rounded-lg border bg-card p-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 text-sm",
+        "min-h-[44px] rounded-lg border bg-card p-6 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
         isFocused && "ring-2 ring-ring ring-offset-2"
       )}
       ref={messageRef}

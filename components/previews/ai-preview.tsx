@@ -10,9 +10,7 @@ import AICitations, {
 import AIConversation, {
   type Message,
 } from "@/registry/new-york/blocks/ai/ai-conversation";
-import AIErrorHandler, {
-  type AIError,
-} from "@/registry/new-york/blocks/ai/ai-error-handler";
+import AIErrorHandler from "@/registry/new-york/blocks/ai/ai-error-handler";
 import AIFileUpload, {
   type UploadedFile,
 } from "@/registry/new-york/blocks/ai/ai-file-upload";
@@ -469,7 +467,7 @@ export default function AIPreview() {
     setUploadedFiles((prev) => prev.filter((f) => f.id !== fileId));
   };
 
-  const exampleError: AIError | null = null; // Set to null to hide by default, can be set to show error
+  const exampleError: string | Error | null = null; // Set to null to hide by default, can be set to show error (e.g., "Network error" or new Error("Something went wrong"))
 
   const examplePromptTemplates: PromptTemplate[] = [
     {
@@ -680,13 +678,11 @@ export default function AIPreview() {
 
         <AIErrorHandler
           error={exampleError}
-          onContactSupport={() => console.log("Contact support")}
           onDismiss={() => console.log("Dismiss error")}
           onRetry={async () => {
             await new Promise((resolve) => setTimeout(resolve, 1000));
             console.log("Retry request");
           }}
-          showDetails={true}
         />
 
         <AIUsageQuota
