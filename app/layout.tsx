@@ -140,9 +140,9 @@ export default function RootLayout({
       <body className={`${fontVariables} antialiased`} suppressHydrationWarning>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           disableTransitionOnChange
-          enableSystem
+          enableSystem={false}
         >
           <NuqsAdapter>
             <ThemeInitializer />
