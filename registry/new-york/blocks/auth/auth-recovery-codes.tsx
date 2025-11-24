@@ -176,12 +176,12 @@ export default function AuthRecoveryCodes({
 
           {codes.length > 0 ? (
             <>
-              <Alert className="border-yellow-500/50 bg-yellow-500/5 [&>svg]:text-yellow-600">
+              <Alert variant="destructive">
                 <AlertTriangle />
-                <AlertTitle className="text-yellow-900 dark:text-yellow-100">
+                <AlertTitle>
                   Important: Save these codes
                 </AlertTitle>
-                <AlertDescription className="text-yellow-800 dark:text-yellow-200">
+                <AlertDescription>
                   Store these recovery codes in a secure location. Each code
                   can only be used once. If you lose access to your
                   authenticator app, these codes are your only way to access
