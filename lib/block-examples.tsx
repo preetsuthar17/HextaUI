@@ -663,44 +663,121 @@ import { Card } from "hextaui";
         templates: [
           {
             id: "template-1",
-            name: "Blog Post Writer",
-            description: "Generate a comprehensive blog post on any topic",
-            category: "Writing",
-            prompt: "Write a detailed blog post about {topic}.",
+            name: "Meeting Notes Summarizer",
+            description:
+              "Summarize meeting notes into key points and action items.",
+            category: "Business",
+            prompt:
+              "Summarize the following meeting notes into concise bullet points and list the action items at the end:\n\n{meetingNotes}\n\nUse clear, professional language.",
             variables: [
               {
-                name: "topic",
-                label: "Topic",
-                placeholder: "e.g., React best practices",
+                name: "meetingNotes",
+                label: "Meeting Notes",
+                placeholder: "Paste raw meeting notes here…",
                 required: true,
               },
-              {
-                name: "audience",
-                label: "Audience",
-                placeholder: "e.g., Junior developers",
-                required: false,
-              },
             ],
-            isPopular: true,
-            usageCount: 342,
-            tags: ["blog", "writing"],
+            usageCount: 217,
+            tags: ["summary", "meeting", "action items"],
           },
           {
             id: "template-2",
-            name: "Code Reviewer",
-            description: "Review the following code for bugs or improvements",
-            category: "Code",
-            prompt: "Review this code:\n{code}",
+            name: "Customer Support Reply",
+            description:
+              "Generate a helpful response to a customer support ticket.",
+            category: "Business",
+            prompt:
+              "Draft a professional and empathetic response to the following customer inquiry:\n\n{customerMessage}\n\nAddress the concerns politely and suggest next steps.",
             variables: [
               {
-                name: "code",
-                label: "Code",
-                placeholder: "Paste code here...",
+                name: "customerMessage",
+                label: "Customer Message",
+                placeholder: "Paste customer inquiry here…",
                 required: true,
               },
             ],
-            usageCount: 178,
-            tags: ["review", "code"],
+            usageCount: 181,
+            isFavorite: true,
+            tags: ["support", "reply", "email"],
+          },
+          {
+            id: "template-3",
+            name: "Bug Report Formatter",
+            description: "Format raw bug details into a structured bug report.",
+            category: "Code",
+            prompt:
+              "Format the following bug details into a structured software bug report with steps to reproduce, expected behavior, and actual behavior:\n\n{rawBugDetails}\n\nKeep it clear and concise.",
+            variables: [
+              {
+                name: "rawBugDetails",
+                label: "Raw Bug Details",
+                placeholder: "Paste or describe the bug here…",
+                required: true,
+              },
+            ],
+            usageCount: 95,
+            tags: ["bug", "report", "QA"],
+          },
+          {
+            id: "template-4",
+            name: "Sales Email Generator",
+            description: "Create a persuasive sales outreach email.",
+            category: "Business",
+            prompt:
+              "Write a concise and persuasive sales email to {recipientType} about {productOrService}. Mention key benefits and include a clear call to action.",
+            variables: [
+              {
+                name: "recipientType",
+                label: "Recipient Type",
+                placeholder: "e.g., decision maker at Acme Corp…",
+                required: true,
+              },
+              {
+                name: "productOrService",
+                label: "Product/Service",
+                placeholder: "e.g., new project management SaaS…",
+                required: true,
+              },
+            ],
+            usageCount: 133,
+            tags: ["email", "sales", "communication"],
+          },
+          {
+            id: "template-5",
+            name: "Git Commit Message Generator",
+            description: "Suggest a clear, conventional Git commit message.",
+            category: "Code",
+            prompt:
+              "Given the following code changes summary, suggest a clear and conventional Git commit message following present tense and imperative mood:\n\n{changeSummary}",
+            variables: [
+              {
+                name: "changeSummary",
+                label: "Code Change Summary",
+                placeholder: "Describe your code change…",
+                required: true,
+              },
+            ],
+            usageCount: 154,
+            tags: ["git", "commit", "code"],
+          },
+          {
+            id: "template-6",
+            name: "Resume Achievement Bullet Generator",
+            description:
+              "Turn work activity descriptions into measurable resume bullets.",
+            category: "Writing",
+            prompt:
+              "Rewrite the following work activities as impactful resume achievement bullets. Focus on accomplishments and quantify results when possible:\n\n{workDetails}",
+            variables: [
+              {
+                name: "workDetails",
+                label: "Work Activities",
+                placeholder: "E.g., Managed a project that launched on time…",
+                required: true,
+              },
+            ],
+            usageCount: 142,
+            tags: ["resume", "career", "writing"],
           },
         ] as PromptTemplate[],
         categories: ["All", "Writing", "Code", "Analysis", "Summarization"],
