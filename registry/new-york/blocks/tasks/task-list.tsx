@@ -178,7 +178,6 @@ function TaskItem({
   onStatusChange,
   onDelete,
 }: TaskItemProps) {
-  const StatusIcon = getStatusIcon(task.status);
   const overdue = isOverdue(task.dueDate);
 
   return (
@@ -199,12 +198,28 @@ function TaskItem({
           onClick={() => onTaskClick(task.id)}
           type="button"
         >
-          <StatusIcon
-            className={cn(
-              "mt-0.5 size-5 shrink-0",
-              getStatusColor(task.status)
-            )}
-          />
+          {task.status === "done" ? (
+            <CheckCircle2
+              className={cn(
+                "mt-0.5 size-5 shrink-0",
+                getStatusColor(task.status)
+              )}
+            />
+          ) : task.status === "in_progress" ? (
+            <Clock
+              className={cn(
+                "mt-0.5 size-5 shrink-0",
+                getStatusColor(task.status)
+              )}
+            />
+          ) : (
+            <Circle
+              className={cn(
+                "mt-0.5 size-5 shrink-0",
+                getStatusColor(task.status)
+              )}
+            />
+          )}
           <div className="flex min-w-0 flex-1 flex-col gap-2">
             <h4 className="wrap-break-word font-medium text-sm leading-tight">
               {task.title}

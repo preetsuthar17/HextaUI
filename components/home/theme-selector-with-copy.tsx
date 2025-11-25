@@ -2,7 +2,7 @@
 
 import { Check, Copy, Palette } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
 import { Button } from "@/registry/new-york/ui/button";
 import {
@@ -216,11 +216,13 @@ export function ThemeSelectorWithCopy() {
   const [copiedSection, setCopiedSection] = useState<string | null>(null);
 
   useEffect(() => {
-    setHydrated(true);
-    const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
-    if (stored && getTheme(stored)) {
-      setColorTheme(stored);
-    }
+    startTransition(() => {
+      setHydrated(true);
+      const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
+      if (stored && getTheme(stored)) {
+        setColorTheme(stored);
+      }
+    });
   }, []);
 
   useEffect(() => {
@@ -229,7 +231,9 @@ export function ThemeSelectorWithCopy() {
     const themeToUse = stored && getTheme(stored) ? stored : "default";
 
     if (themeToUse !== colorTheme) {
-      setColorTheme(themeToUse);
+      startTransition(() => {
+        setColorTheme(themeToUse);
+      });
     }
 
     const theme = getTheme(themeToUse);

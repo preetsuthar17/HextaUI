@@ -153,7 +153,7 @@ export default function AuthVerifyEmail({
                 <Clock className="size-4 shrink-0 text-muted-foreground" />
                 <div className="flex flex-col gap-1">
                   <p className="font-medium text-sm">
-                    Didn't receive the email?
+                    Didn&apos;t receive the email?
                   </p>
                   <p className="text-muted-foreground text-xs">
                     Check your spam folder or try resending the verification

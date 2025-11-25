@@ -2,7 +2,7 @@
 
 import { Palette } from "lucide-react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
 import { Button } from "@/registry/new-york/ui/button";
 import {
@@ -33,11 +33,15 @@ export function ThemeSelector() {
 
   useEffect(() => {
     if (!hydrated) {
-      setHydrated(true);
+      startTransition(() => {
+        setHydrated(true);
+      });
     }
     const stored = localStorage.getItem(THEME_STORAGE_KEY) as ThemeName;
     if (stored && getTheme(stored) && stored !== colorTheme) {
-      setColorTheme(stored);
+      startTransition(() => {
+        setColorTheme(stored);
+      });
     }
   }, [hydrated, colorTheme]);
 

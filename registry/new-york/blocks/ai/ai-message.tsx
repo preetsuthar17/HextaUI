@@ -3,8 +3,10 @@
 import { Copy, Edit, MoreVertical, RotateCcw } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, {
+  startTransition,
   useCallback,
   useEffect,
+  useId,
   useMemo,
   useRef,
   useState,
@@ -247,15 +249,19 @@ function HighlightedCodeBlock({
 
   useEffect(() => {
     if (skipHighlighting) {
-      setHighlightedCode("");
-      setLoading(false);
-      setError(false);
+      startTransition(() => {
+        setHighlightedCode("");
+        setLoading(false);
+        setError(false);
+      });
       return;
     }
 
     let mounted = true;
-    setLoading(true);
-    setError(false);
+    startTransition(() => {
+      setLoading(true);
+      setError(false);
+    });
 
     const highlightCode = async () => {
       try {
@@ -550,8 +556,8 @@ export default function AIMessage({
   const [copied, setCopied] = useState(false);
   const [copyError, setCopyError] = useState(false);
   const messageRef = useRef<HTMLDivElement>(null);
+  const messageId = useId();
   const displayedContent = useStreamingText(content, isStreaming);
-  const messageId = useMemo(() => `ai-message-${Date.now()}`, []);
 
   const handleCopy = useCallback(async () => {
     try {

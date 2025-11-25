@@ -312,7 +312,7 @@ export const themes: Theme[] = [
         primaryForeground: "oklch(0.205 0 0)",
         secondary: "oklch(0.269 0 0)",
         secondaryForeground: "oklch(0.985 0 0)",
-        muted: "oklch(0.269 0 0)",
+        muted: "oklch(0.209 0 0)",
         mutedForeground: "oklch(0.708 0 0)",
         accent: "oklch(0.269 0 0)",
         accentForeground: "oklch(0.985 0 0)",

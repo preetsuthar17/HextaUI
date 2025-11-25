@@ -1,6 +1,7 @@
 import { ArrowLeft, ArrowRightIcon, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 import Link from "next/link";
 import CarbonAds from "@/components/carbon";
 import { AskAIButton } from "@/components/docs/ask-ai-button";
@@ -27,7 +28,6 @@ import {
 import { Button } from "@/registry/new-york/ui/button";
 import { Separator } from "@/registry/new-york/ui/separator";
 import { Spinner } from "@/registry/new-york/ui/spinner";
-import Image from "next/image";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -203,10 +203,10 @@ export default async function ComponentPage({
           <Separator />
           <ComponentPrevNext currentId={meta.id} />
         </div>
-        <aside className="hidden w-1/5 min-w-[180px] max-w-[240px] flex-col items-end md:flex gap-4">
-          <div className="flex flex-col gap-2 border p-4 sm:p-6 border-dashed">
-            <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl tracking-tighter leading-tight">
-              <span className="block shrink-0 ">
+        <aside className="hidden w-1/5 min-w-[180px] max-w-[240px] flex-col items-end gap-4 md:flex">
+          <div className="flex flex-col gap-2 border border-dashed p-4 sm:p-6">
+            <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl leading-tight tracking-tighter">
+              <span className="block shrink-0">
                 <Image
                   alt="shadcnblocks logo"
                   className="shrink-0 dark:invert"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { startTransition, useEffect, useState } from "react";
 import { applyTheme, getTheme, type ThemeName } from "@/lib/themes";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
@@ -22,7 +22,9 @@ export function ThemeInitializer() {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    startTransition(() => {
+      setMounted(true);
+    });
     applyStoredTheme(mode);
 
     const handleStorageChange = (e: StorageEvent) => {
@@ -33,7 +35,7 @@ export function ThemeInitializer() {
 
     window.addEventListener("storage", handleStorageChange);
     return () => window.removeEventListener("storage", handleStorageChange);
-  }, []);
+  }, [mode]);
 
   useEffect(() => {
     if (mounted) {

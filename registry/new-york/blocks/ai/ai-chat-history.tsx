@@ -483,8 +483,8 @@ function ConversationItem({
           <AlertDialogHeader>
             <AlertDialogTitle>Delete conversation?</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to delete "{conversation.title}"? This
-              action cannot be undone.
+              Are you sure you want to delete &quot;{conversation.title}&quot;?
+              This action cannot be undone.
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

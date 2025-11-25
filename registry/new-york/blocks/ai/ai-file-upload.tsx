@@ -211,7 +211,6 @@ function FileUploadItem({
   error,
   onRemove,
 }: FileUploadItemProps) {
-  const Icon = getFileIcon(uploadedFile.file.type);
   const status = processingStatus?.[uploadedFile.id] || uploadedFile.status;
   const fileError = error || uploadedFile.error;
   const isUploading = status === "uploading";
@@ -237,7 +236,24 @@ function FileUploadItem({
           />
         ) : (
           <div className="flex size-12 shrink-0 items-center justify-center rounded-md bg-muted">
-            <Icon aria-hidden="true" className="size-6 text-muted-foreground" />
+            {uploadedFile.file.type.startsWith("image/") ? (
+              <FileImage
+                aria-hidden="true"
+                className="size-6 text-muted-foreground"
+              />
+            ) : uploadedFile.file.type.includes("text") ||
+              uploadedFile.file.type.includes("document") ||
+              uploadedFile.file.type.includes("pdf") ? (
+              <FileText
+                aria-hidden="true"
+                className="size-6 text-muted-foreground"
+              />
+            ) : (
+              <File
+                aria-hidden="true"
+                className="size-6 text-muted-foreground"
+              />
+            )}
           </div>
         )}
         <div className="flex min-w-0 flex-1 flex-col gap-1">
