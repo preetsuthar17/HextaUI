@@ -7,7 +7,6 @@ import {
   Search,
   Sparkles,
   TrendingUp,
-  X,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";

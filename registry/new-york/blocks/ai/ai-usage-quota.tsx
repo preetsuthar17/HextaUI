@@ -1,7 +1,7 @@
 "use client";
 
 import { AlertTriangle, Clock, TrendingUp, Zap } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
   Alert,
@@ -9,6 +9,7 @@ import {
   AlertTitle,
 } from "@/registry/new-york/ui/alert";
 import { Badge } from "@/registry/new-york/ui/badge";
+import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
   CardContent,
@@ -53,6 +54,34 @@ export interface AIUsageQuotaProps {
   upgradeThreshold?: number;
 }
 
+const MONTHS = [
+  "Jan",
+  "Feb",
+  "Mar",
+  "Apr",
+  "May",
+  "Jun",
+  "Jul",
+  "Aug",
+  "Sep",
+  "Oct",
+  "Nov",
+  "Dec",
+] as const;
+
+const WINDOW_LABELS = {
+  minute: "min",
+  hour: "hr",
+  day: "day",
+  month: "mo",
+} as const;
+
+const PERIOD_LABELS = {
+  day: "Daily",
+  month: "Monthly",
+  year: "Yearly",
+} as const;
+
 function formatNumber(num: number): string {
   if (num >= 1_000_000) {
     return `${(num / 1_000_000).toFixed(1)}M`;
@@ -89,21 +118,7 @@ function formatTime(date: Date): string {
 }
 
 function formatDateTime(date: Date): string {
-  const months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ];
-  const month = months[date.getMonth()];
+  const month = MONTHS[date.getMonth()];
   const day = date.getDate();
   const hours = date.getHours();
   const minutes = date.getMinutes();
@@ -113,12 +128,32 @@ function formatDateTime(date: Date): string {
   return `${month} ${day}, ${hour12}:${minutesStr} ${ampm}`;
 }
 
+function calculatePercentage(used: number, limit: number): number {
+  return (used / limit) * 100;
+}
+
+function getStatusVariant(percentage: number, isQuota = false) {
+  if (isQuota) {
+    if (percentage >= 90) return "destructive";
+    if (percentage >= 75) return "outline";
+    return "secondary";
+  }
+  if (percentage < 20) return "destructive";
+  if (percentage < 50) return "outline";
+  return "secondary";
+}
+
 interface TimeUntilProps {
   date: Date;
   className?: string;
+  "aria-label"?: string;
 }
 
-function TimeUntil({ date, className }: TimeUntilProps) {
+function TimeUntil({
+  date,
+  className,
+  "aria-label": ariaLabel,
+}: TimeUntilProps) {
   const [timeUntil, setTimeUntil] = useState(() => formatTimeUntil(date));
 
   useEffect(() => {
@@ -135,7 +170,11 @@ function TimeUntil({ date, className }: TimeUntilProps) {
     };
   }, [date]);
 
-  return <span className={className}>{timeUntil}</span>;
+  return (
+    <span aria-label={ariaLabel} aria-live="polite" className={className}>
+      {timeUntil}
+    </span>
+  );
 }
 
 interface TokenUsageDisplayProps {
@@ -144,34 +183,55 @@ interface TokenUsageDisplayProps {
 
 function TokenUsageDisplay({ tokenUsage }: TokenUsageDisplayProps) {
   return (
-    <div className="flex flex-col gap-3">
+    <section
+      aria-labelledby="token-usage-heading"
+      className="flex flex-col gap-3"
+    >
       <div className="flex items-center justify-between">
-        <h3 className="font-medium text-sm">Token Usage</h3>
-        <Badge className="font-mono text-xs" variant="outline">
+        <h3 className="font-medium text-sm" id="token-usage-heading">
+          Token Usage
+        </h3>
+        <Badge
+          aria-label={`Total tokens: ${formatNumber(tokenUsage.total)}`}
+          className="font-mono text-xs"
+          variant="outline"
+        >
           {formatNumber(tokenUsage.total)}
         </Badge>
       </div>
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between text-muted-foreground text-xs">
+      <div className="flex flex-col gap-2" role="list">
+        <div
+          className="flex items-center justify-between text-muted-foreground text-xs"
+          role="listitem"
+        >
           <div className="flex items-center gap-1.5">
-            <TrendingUp className="size-3" />
+            <TrendingUp aria-hidden="true" className="size-3.5" />
             <span>Input</span>
           </div>
-          <span className="font-mono tabular-nums">
+          <span
+            aria-label={`Input tokens: ${formatNumber(tokenUsage.input)}`}
+            className="font-mono tabular-nums"
+          >
             {formatNumber(tokenUsage.input)}
           </span>
         </div>
-        <div className="flex items-center justify-between text-muted-foreground text-xs">
+        <div
+          className="flex items-center justify-between text-muted-foreground text-xs"
+          role="listitem"
+        >
           <div className="flex items-center gap-1.5">
-            <Zap className="size-3" />
+            <Zap aria-hidden="true" className="size-3" />
             <span>Output</span>
           </div>
-          <span className="font-mono tabular-nums">
+          <span
+            aria-label={`Output tokens: ${formatNumber(tokenUsage.output)}`}
+            className="font-mono tabular-nums"
+          >
             {formatNumber(tokenUsage.output)}
           </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -180,47 +240,58 @@ interface RateLimitIndicatorProps {
 }
 
 function RateLimitIndicator({ rateLimit }: RateLimitIndicatorProps) {
-  const percentage = (rateLimit.remaining / rateLimit.limit) * 100;
+  const percentage = calculatePercentage(rateLimit.remaining, rateLimit.limit);
+  const usedPercentage = 100 - percentage;
   const isLow = percentage < 20;
   const isWarning = percentage < 50;
+  const variant = getStatusVariant(percentage);
 
-  const windowLabel = {
-    minute: "min",
-    hour: "hr",
-    day: "day",
-    month: "mo",
-  }[rateLimit.window];
+  const windowLabel = WINDOW_LABELS[rateLimit.window];
 
   return (
-    <div className="flex flex-col gap-3">
+    <section
+      aria-labelledby="rate-limit-heading"
+      className="flex flex-col gap-3"
+    >
       <div className="flex items-center justify-between">
-        <h3 className="font-medium text-sm">Rate Limit</h3>
+        <h3 className="font-medium text-sm" id="rate-limit-heading">
+          Rate Limit
+        </h3>
         <Badge
+          aria-label={`${rateLimit.remaining} of ${rateLimit.limit} requests remaining`}
           className={cn(
             "font-mono text-xs",
             isLow && "border-destructive/50 bg-destructive/10 text-destructive"
           )}
-          variant={isLow ? "destructive" : isWarning ? "outline" : "secondary"}
+          variant={variant}
         >
           {rateLimit.remaining}/{rateLimit.limit}
         </Badge>
       </div>
       <div className="flex flex-col gap-2">
         <Progress
-          aria-label={`${rateLimit.remaining} of ${rateLimit.limit} requests remaining`}
+          aria-label={`${rateLimit.remaining} of ${rateLimit.limit} requests remaining, ${usedPercentage.toFixed(1)}% used`}
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={percentage}
           className="h-2"
+          role="progressbar"
           value={percentage}
         />
         <div className="flex items-center justify-between text-muted-foreground text-xs">
           <div className="flex items-center gap-1.5">
-            <Clock className="size-3" />
+            <Clock aria-hidden="true" className="size-3" />
             <span>Per {windowLabel}</span>
           </div>
           {rateLimit.resetAt && (
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="cursor-help">
-                  Resets in <TimeUntil date={rateLimit.resetAt} />
+                <span className="cursor-help touch-manipulation" tabIndex={0}>
+                  <span className="sr-only">Rate limit resets in </span>
+                  <TimeUntil
+                    aria-label={`Rate limit resets in ${formatTimeUntil(rateLimit.resetAt)}`}
+                    date={rateLimit.resetAt}
+                  />
                 </span>
               </TooltipTrigger>
               <TooltipContent>
@@ -230,7 +301,7 @@ function RateLimitIndicator({ rateLimit }: RateLimitIndicatorProps) {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
@@ -239,49 +310,60 @@ interface QuotaProgressProps {
 }
 
 function QuotaProgress({ quota }: QuotaProgressProps) {
-  const percentage = (quota.used / quota.limit) * 100;
+  const percentage = calculatePercentage(quota.used, quota.limit);
   const isLow = percentage >= 90;
   const isWarning = percentage >= 75;
+  const variant = getStatusVariant(percentage, true);
 
-  const periodLabel = {
-    day: "Daily",
-    month: "Monthly",
-    year: "Yearly",
-  }[quota.period];
+  const periodLabel = PERIOD_LABELS[quota.period];
 
   return (
-    <div className="flex flex-col gap-3">
+    <section aria-labelledby="quota-heading" className="flex flex-col gap-3">
       <div className="flex items-center justify-between">
-        <h3 className="font-medium text-sm">{periodLabel} Quota</h3>
+        <h3 className="font-medium text-sm" id="quota-heading">
+          {periodLabel} Quota
+        </h3>
         <Badge
+          aria-label={`${formatNumber(quota.used)} of ${formatNumber(quota.limit)} tokens used, ${percentage.toFixed(1)}%`}
           className={cn(
             "font-mono text-xs",
             isLow && "border-destructive/50 bg-destructive/10 text-destructive"
           )}
-          variant={isLow ? "destructive" : isWarning ? "outline" : "secondary"}
+          variant={variant}
         >
           {formatNumber(quota.used)}/{formatNumber(quota.limit)}
         </Badge>
       </div>
       <div className="flex flex-col gap-2">
         <Progress
-          aria-label={`${quota.used} of ${quota.limit} tokens used`}
+          aria-label={`${formatNumber(quota.used)} of ${formatNumber(quota.limit)} tokens used, ${percentage.toFixed(1)}%`}
+          aria-valuemax={100}
+          aria-valuemin={0}
+          aria-valuenow={percentage}
           className={cn(
             "h-2",
             isLow && "[&>div]:bg-destructive",
             isWarning && !isLow && "[&>div]:bg-yellow-500"
           )}
+          role="progressbar"
           value={percentage}
         />
         <div className="flex items-center justify-between text-muted-foreground text-xs">
-          <span>{percentage.toFixed(1)}% used</span>
+          <span aria-live="polite">{percentage.toFixed(1)}% used</span>
           {quota.resetAt && (
             <Tooltip>
               <TooltipTrigger asChild>
-                <span className="flex cursor-help items-center gap-1">
-                  <Clock className="size-3" />
+                <span
+                  className="flex cursor-help touch-manipulation items-center gap-1"
+                  tabIndex={0}
+                >
+                  <Clock aria-hidden="true" className="size-3" />
                   <span>
-                    Resets in <TimeUntil date={quota.resetAt} />
+                    <span className="sr-only">Quota resets in </span>
+                    <TimeUntil
+                      aria-label={`Quota resets in ${formatTimeUntil(quota.resetAt)}`}
+                      date={quota.resetAt}
+                    />
                   </span>
                 </span>
               </TooltipTrigger>
@@ -292,24 +374,50 @@ function QuotaProgress({ quota }: QuotaProgressProps) {
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 }
 
 interface UpgradePromptProps {
   message?: string;
+  onUpgrade?: () => void;
 }
 
-function UpgradePrompt({ message }: UpgradePromptProps) {
+function UpgradePrompt({ message, onUpgrade }: UpgradePromptProps) {
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        onUpgrade?.();
+      }
+    },
+    [onUpgrade]
+  );
+
   return (
-    <Alert className="rounded-xl border-primary/20 bg-primary/5">
-      <AlertTriangle className="size-4 text-primary" />
+    <Alert
+      className="rounded-xl border-primary/20 bg-primary/5 shadow-sm"
+      live="assertive"
+      role="alert"
+    >
+      <AlertTriangle aria-hidden="true" className="size-4 text-primary" />
       <AlertTitle className="text-sm">Usage Warning!</AlertTitle>
-      <AlertDescription className="flex items-center justify-between gap-2">
+      <AlertDescription className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <span className="text-muted-foreground text-xs">
           {message ||
             "You're approaching your usage limits. Upgrade to continue using HextaAI without interruptions."}
         </span>
+        {onUpgrade && (
+          <Button
+            className="min-h-[32px] w-full touch-manipulation sm:w-auto"
+            onClick={onUpgrade}
+            onKeyDown={handleKeyDown}
+            size="sm"
+            variant="default"
+          >
+            Upgrade Now
+          </Button>
+        )}
       </AlertDescription>
     </Alert>
   );
@@ -327,9 +435,14 @@ export default function AIUsageQuota({
   const shouldShowUpgrade = useMemo(() => {
     if (!showUpgradePrompt) return false;
 
-    const quotaPercentage = quota ? (quota.used / quota.limit) * 100 : 0;
+    const quotaPercentage = quota
+      ? calculatePercentage(quota.used, quota.limit)
+      : 0;
     const rateLimitPercentage = rateLimit
-      ? ((rateLimit.limit - rateLimit.remaining) / rateLimit.limit) * 100
+      ? calculatePercentage(
+          rateLimit.limit - rateLimit.remaining,
+          rateLimit.limit
+        )
       : 0;
 
     return (
@@ -337,6 +450,29 @@ export default function AIUsageQuota({
       rateLimitPercentage >= upgradeThreshold
     );
   }, [quota, rateLimit, showUpgradePrompt, upgradeThreshold]);
+
+  const upgradeMessage = useMemo(() => {
+    if (!shouldShowUpgrade) return;
+
+    if (quota) {
+      const quotaPercentage = calculatePercentage(quota.used, quota.limit);
+      if (quotaPercentage >= upgradeThreshold) {
+        return `You've used ${quotaPercentage.toFixed(0)}% of your ${quota.period}ly quota. Upgrade to get more tokens.`;
+      }
+    }
+
+    if (rateLimit) {
+      const rateLimitPercentage = calculatePercentage(
+        rateLimit.limit - rateLimit.remaining,
+        rateLimit.limit
+      );
+      if (rateLimitPercentage >= upgradeThreshold) {
+        return `You've used ${rateLimitPercentage.toFixed(0)}% of your rate limit. Upgrade for higher limits.`;
+      }
+    }
+
+    return;
+  }, [quota, rateLimit, shouldShowUpgrade, upgradeThreshold]);
 
   const hasAnyData = tokenUsage || rateLimit || quota;
 
@@ -346,22 +482,15 @@ export default function AIUsageQuota({
 
   return (
     <TooltipProvider>
-      {shouldShowUpgrade && (
-        <UpgradePrompt
-          message={
-            quota && (quota.used / quota.limit) * 100 >= upgradeThreshold
-              ? `You've used ${((quota.used / quota.limit) * 100).toFixed(0)}% of your ${quota.period}ly quota. Upgrade to get more tokens.`
-              : rateLimit &&
-                  ((rateLimit.limit - rateLimit.remaining) / rateLimit.limit) *
-                    100 >=
-                    upgradeThreshold
-                ? `You've used ${(((rateLimit.limit - rateLimit.remaining) / rateLimit.limit) * 100).toFixed(0)}% of your rate limit. Upgrade for higher limits.`
-                : undefined
-          }
-        />
-      )}
+      <div
+        aria-label="AI usage and quota information"
+        className={cn("flex w-full flex-col gap-4", className)}
+        role="region"
+      >
+        {shouldShowUpgrade && (
+          <UpgradePrompt message={upgradeMessage} onUpgrade={onUpgrade} />
+        )}
 
-      <div className={cn("flex w-full flex-col gap-4", className)}>
         <Card className="gap-2 p-4 shadow-xs md:p-6">
           <CardHeader className="p-0">
             <CardTitle className="p-0 text-base">Usage & Quota</CardTitle>

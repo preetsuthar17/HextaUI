@@ -736,27 +736,27 @@ This is a demonstration of real-time token-by-token streaming."
     usageImports: `import AIUsageQuota from "@/registry/new-york/blocks/ai/ai-usage-quota";`,
     usageCode: `<AIUsageQuota
   tokenUsage={{
-    input: 225_000,
-    output: 178_700,
-    total: 403_700,
-    dailyUsageHistory: [],
+    input: 2_150,
+    output: 1_340,
+    total: 3_490,
   }}
   rateLimit={{
-    remaining: 7,
-    limit: 100,
-    resetAt: new Date(),
+    remaining: 12,
+    limit: 50,
+    resetAt: new Date(Date.now() + 22 * 60 * 1000), 
     window: "hour",
   }}
   quota={{
-    used: 9_590_000,
-    limit: 10_000_000,
-    resetAt: new Date(),
+    used: 45_650,
+    limit: 50_000,
+    resetAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
     period: "month",
   }}
   showUpgradePrompt={true}
-  upgradeThreshold={80}
+  upgradeThreshold={75}
   onUpgrade={() => {
-    /* upgrade logic */
+    // Redirect to upgrades page or open upgrade modal here
+    alert("Upgrade your plan to increase your AI usage quota!");
   }}
 />`,
   },

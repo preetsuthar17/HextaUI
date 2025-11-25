@@ -927,31 +927,27 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     case "ai-usage-quota": {
       return {
         tokenUsage: {
-          input: 225_000,
-          output: 178_700,
-          total: 403_700,
-          dailyUsageHistory: [
-            { date: new Date(now - 3 * 24 * 3600 * 1000), tokens: 52_000 },
-            { date: new Date(now - 2 * 24 * 3600 * 1000), tokens: 78_000 },
-            { date: new Date(now - 1 * 24 * 3600 * 1000), tokens: 91_000 },
-          ],
+          input: 2150,
+          output: 1340,
+          total: 3490,
         } as TokenUsage,
         rateLimit: {
-          remaining: 7,
-          limit: 100,
-          resetAt: new Date(now + 18 * 60 * 1000),
+          remaining: 12,
+          limit: 50,
+          resetAt: new Date(Date.now() + 22 * 60 * 1000), // resets in 22 minutes
           window: "hour" as const,
         } as RateLimit,
         quota: {
-          used: 9_590_000,
-          limit: 10_000_000,
-          resetAt: new Date(now + 2 * 24 * 60 * 60 * 1000),
+          used: 45_650,
+          limit: 50_000,
+          resetAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000), // resets in 3 days
           period: "month" as const,
         } as Quota,
         showUpgradePrompt: true,
-        upgradeThreshold: 80,
+        upgradeThreshold: 75,
         onUpgrade: () => {
-          /* upgrade logic */
+          // Redirect to upgrades page or open upgrade modal here
+          alert("Upgrade your plan to increase your AI usage quota!");
         },
       };
     }
