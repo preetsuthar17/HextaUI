@@ -4,7 +4,7 @@ import type { ComponentType } from "react";
 import { useState } from "react";
 import { ComponentPreview } from "@/components/docs/component-preview";
 import { ComponentSection } from "@/components/docs/component-section";
-import { getBlockExampleProps } from "@/lib/block-examples";
+import { getBlockExampleProps } from "@/lib/blocks-registry";
 import { Button } from "@/registry/new-york/ui/button";
 
 interface BlockDemoProps {
@@ -15,13 +15,9 @@ interface BlockDemoProps {
 export function BlockDemo({ Component, blockId }: BlockDemoProps) {
   const exampleProps = getBlockExampleProps(blockId);
 
-  // Handle state for Sheet/Dialog components that need controlled open state
   const [open, setOpen] = useState(
     blockId === "billing-invoice-details" ? false : undefined
   );
-
-  // Override onOpenChange for components that need it
-  // Ensure payments is always an array for payment-schedule
   const propsWithState = {
     ...exampleProps,
     ...(blockId === "billing-invoice-details" && {
