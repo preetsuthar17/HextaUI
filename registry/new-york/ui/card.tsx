@@ -39,7 +39,10 @@ const CardTitle = React.forwardRef<HTMLDivElement, React.ComponentProps<"div">>(
   function CardTitle({ className, ...props }, ref) {
     return (
       <div
-        className={cn("font-semibold leading-none", className)}
+        className={cn(
+          "font-semibold leading-none tracking-tight text-xl",
+          className
+        )}
         data-slot="card-title"
         ref={ref}
         {...props}

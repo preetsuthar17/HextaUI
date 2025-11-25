@@ -680,13 +680,13 @@ HextaUI is a modern UI component library for Next.js applications.
     },
   ],
   onLoadPreset: (presetName: string) => {
-    console.log(\`Loaded preset: \$\{presetName}\`);
+    console.log(\`Loaded preset: $\{presetName}\`);
   },
   onSavePreset: async (preset: any) => {
-    console.log(\`Preset saved: \$\{preset\}\`);
+    console.log(\`Preset saved: $\{preset}\`);
   },
   onDeletePreset: async (presetName: string) => {
-    console.log(\`Deleted preset: \$\{presetName\}\`);
+    console.log(\`Deleted preset: $\{presetName}\`);
   },
   showAdvanced: true,
   };

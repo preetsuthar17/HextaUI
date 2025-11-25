@@ -8,7 +8,6 @@ import {
   Plus,
   Search,
   Sparkles,
-  X,
 } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
@@ -183,18 +182,6 @@ function TemplateSearch({ value, onChange, resultCount }: TemplateSearchProps) {
           type="search"
           value={value}
         />
-        {value && (
-          <Button
-            aria-label="Clear search"
-            className="-translate-y-1/2 absolute top-1/2 right-2 min-h-[44px] min-w-[32px] sm:min-h-[32px]"
-            onClick={() => onChange("")}
-            size="icon"
-            type="button"
-            variant="ghost"
-          >
-            <X aria-hidden="true" className="size-4" />
-          </Button>
-        )}
       </InputGroup>
       {value && resultCount !== undefined && (
         <p className="mt-2 text-muted-foreground text-xs" role="status">
