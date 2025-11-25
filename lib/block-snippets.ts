@@ -12,7 +12,7 @@ export const blockSnippets = {
       isActive: true,
     },
   ]}
-  activeConversationId="conv-1"
+  activeConversationId={"conv-1"}
   onSelect={(id) => {
     /* select conversation logic */
   }}
@@ -102,7 +102,7 @@ export const blockSnippets = {
   "ai-file-upload": {
     usageImports: `import AIFileUpload from "@/registry/new-york/blocks/ai/ai-file-upload";`,
     usageCode: `<AIFileUpload
-  onUpload={(files) => {
+  onUpload={(files: File[]) => {
     /* handle file upload */
   }}
   maxSize={10 * 1024 * 1024}
@@ -112,15 +112,7 @@ export const blockSnippets = {
   "ai-message": {
     usageImports: `import AIMessage from "@/registry/new-york/blocks/ai/ai-message";`,
     usageCode: `<AIMessage
-  content="# Welcome to HextaUI
-
-HextaUI is a modern UI component library for Next.js applications.
-
-## Features
-
-- **Copy & Paste Components**: Just copy and use instantly!
-- **Fully Customizable**: Tailwind CSS + extensive props
-- **Type-Safe**: Full TypeScript support"
+  content={"# Welcome to HextaUI\n\nHextaUI is a modern UI component library for Next.js applications.\n\n## Features\n\n- **Copy & Paste Components**: Just copy and use instantly!\n- **Fully Customizable**: Tailwind CSS + extensive props\n- **Type-Safe**: Full TypeScript support"}
   isStreaming={false}
   onEdit={() => {
     /* edit message */
@@ -134,350 +126,350 @@ HextaUI is a modern UI component library for Next.js applications.
     usageImports: `import AIModelSelector from "@/registry/new-york/blocks/ai/ai-model-selector";`,
     usageCode: `<AIModelSelector
   models={[
-      {
-        id: "gpt-4o",
-        name: "GPT-4o",
-        provider: "openai",
-        description: "Most capable model",
-        features: ["fast", "multimodal", "long-context"],
-      },
-      {
-        id: "gpt-4o-mini",
-        name: "GPT-4o Mini",
-        provider: "openai",
-        description: "Fast and affordable",
-        features: ["fast"],
-      },
-      {
-        id: "gpt-4o-2024-11-20",
-        name: "GPT-4o (2024-11-20)",
-        provider: "openai",
-        description: "Latest GPT-4o snapshot",
-        features: ["fast", "multimodal", "long-context"],
-      },
-      {
-        id: "o1",
-        name: "o1",
-        provider: "openai",
-        description: "Advanced reasoning",
-        features: ["reasoning"],
-      },
-      {
-        id: "o1-preview",
-        name: "o1 Preview",
-        provider: "openai",
-        description: "Advanced reasoning preview",
-        features: ["reasoning"],
-        isPreview: true,
-      },
-      {
-        id: "o1-mini",
-        name: "o1 Mini",
-        provider: "openai",
-        description: "Fast reasoning",
-        features: ["fast", "reasoning"],
-      },
-      {
-        id: "o1-mini-preview",
-        name: "o1 Mini Preview",
-        provider: "openai",
-        description: "Fast reasoning preview",
-        features: ["fast", "reasoning"],
-        isPreview: true,
-      },
-      {
-        id: "gpt-4-turbo",
-        name: "GPT-4 Turbo",
-        provider: "openai",
-        description: "High performance model",
-        features: ["turbo", "multimodal", "long-context"],
-      },
-      {
-        id: "gpt-4-turbo-preview",
-        name: "GPT-4 Turbo Preview",
-        provider: "openai",
-        description: "Latest GPT-4 Turbo",
-        features: ["turbo", "multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "gpt-4",
-        name: "GPT-4",
-        provider: "openai",
-        description: "Original GPT-4 model",
-        features: ["multimodal", "long-context"],
-      },
-      {
-        id: "gpt-4-32k",
-        name: "GPT-4 32K",
-        provider: "openai",
-        description: "GPT-4 with extended context",
-        features: ["long-context"],
-      },
-      {
-        id: "gpt-3.5-turbo",
-        name: "GPT-3.5 Turbo",
-        provider: "openai",
-        description: "Fast and efficient",
-        features: ["turbo"],
-      },
-      {
-        id: "gpt-3.5-turbo-16k",
-        name: "GPT-3.5 Turbo 16K",
-        provider: "openai",
-        description: "GPT-3.5 with extended context",
-        features: ["turbo", "long-context"],
-      },
-      {
-        id: "claude-4-opus",
-        name: "Claude 4 Opus",
-        provider: "anthropic",
-        description: "Most capable model",
-        features: ["reasoning", "multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "claude-4-sonnet",
-        name: "Claude 4 Sonnet",
-        provider: "anthropic",
-        description: "Balanced performance",
-        features: ["fast", "multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "claude-3.5-sonnet",
-        name: "Claude 3.5 Sonnet",
-        provider: "anthropic",
-        description: "Fast and intelligent",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "claude-3.5-sonnet-20241022",
-        name: "Claude 3.5 Sonnet (2024-10-22)",
-        provider: "anthropic",
-        description: "Latest Claude 3.5 Sonnet",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "claude-3.5-haiku",
-        name: "Claude 3.5 Haiku",
-        provider: "anthropic",
-        description: "Fastest Claude model",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "claude-3-opus",
-        name: "Claude 3 Opus",
-        provider: "anthropic",
-        description: "Most powerful model",
-        features: ["reasoning", "multimodal", "long-context"],
-      },
-      {
-        id: "claude-3-sonnet",
-        name: "Claude 3 Sonnet",
-        provider: "anthropic",
-        description: "Balanced Claude 3",
-        features: ["multimodal", "long-context"],
-      },
-      {
-        id: "claude-3-haiku",
-        name: "Claude 3 Haiku",
-        provider: "anthropic",
-        description: "Fast and cost-effective",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "claude-3-5-sonnet-20240620",
-        name: "Claude 3.5 Sonnet (2024-06-20)",
-        provider: "anthropic",
-        description: "Claude 3.5 Sonnet snapshot",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "gemini-2.0-pro",
-        name: "Gemini 2.0 Pro",
-        provider: "google",
-        description: "Advanced capabilities",
-        features: ["multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "gemini-2.0-flash",
-        name: "Gemini 2.0 Flash",
-        provider: "google",
-        description: "Fast Gemini 2.0",
-        features: ["fast", "multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "gemini-1.5-pro",
-        name: "Gemini 1.5 Pro",
-        provider: "google",
-        description: "Multimodal model",
-        features: ["multimodal", "long-context"],
-      },
-      {
-        id: "gemini-1.5-pro-latest",
-        name: "Gemini 1.5 Pro Latest",
-        provider: "google",
-        description: "Latest Gemini 1.5 Pro",
-        features: ["multimodal", "long-context"],
-      },
-      {
-        id: "gemini-1.5-flash",
-        name: "Gemini 1.5 Flash",
-        provider: "google",
-        description: "Fast and efficient",
-        features: ["fast", "multimodal", "long-context"],
-      },
-      {
-        id: "gemini-1.5-flash-8b",
-        name: "Gemini 1.5 Flash 8B",
-        provider: "google",
-        description: "Lightweight Flash model",
-        features: ["fast", "multimodal"],
-      },
-      {
-        id: "gemini-1.0-pro",
-        name: "Gemini 1.0 Pro",
-        provider: "google",
-        description: "Original Gemini Pro",
-        features: ["multimodal"],
-      },
-      {
-        id: "gemini-ultra",
-        name: "Gemini Ultra",
-        provider: "google",
-        description: "Most capable model",
-        features: ["reasoning", "multimodal", "long-context"],
-        isPreview: true,
-      },
-      {
-        id: "llama-3.1-405b",
-        name: "Llama 3.1 405B",
-        provider: "meta",
-        description: "Open source model",
-        features: ["long-context"],
-      },
-      {
-        id: "llama-3.1-70b",
-        name: "Llama 3.1 70B",
-        provider: "meta",
-        description: "Balanced performance",
-        features: ["fast", "long-context"],
-      },
-      {
-        id: "llama-3.1-8b",
-        name: "Llama 3.1 8B",
-        provider: "meta",
-        description: "Lightweight model",
-        features: ["fast"],
-      },
-      {
-        id: "llama-3.2",
-        name: "Llama 3.2",
-        provider: "meta",
-        description: "Latest open source",
-        features: ["fast"],
-        isNew: true,
-      },
-      {
-        id: "llama-3.2-3b",
-        name: "Llama 3.2 3B",
-        provider: "meta",
-        description: "Ultra-lightweight",
-        features: ["fast"],
-        isNew: true,
-      },
-      {
-        id: "llama-3.2-1b",
-        name: "Llama 3.2 1B",
-        provider: "meta",
-        description: "Smallest Llama model",
-        features: ["fast"],
-        isNew: true,
-      },
-      {
-        id: "llama-3-70b",
-        name: "Llama 3 70B",
-        provider: "meta",
-        description: "Llama 3 base model",
-        features: ["fast"],
-      },
-      {
-        id: "llama-3-8b",
-        name: "Llama 3 8B",
-        provider: "meta",
-        description: "Llama 3 lightweight",
-        features: ["fast"],
-      },
-      {
-        id: "mistral-large",
-        name: "Mistral Large",
-        provider: "mistral",
-        description: "High performance",
-        features: ["fast", "long-context"],
-      },
-      {
-        id: "mistral-large-2407",
-        name: "Mistral Large 2407",
-        provider: "mistral",
-        description: "Mistral Large snapshot",
-        features: ["fast", "long-context"],
-      },
-      {
-        id: "mistral-large-2402",
-        name: "Mistral Large 2402",
-        provider: "mistral",
-        description: "Mistral Large snapshot",
-        features: ["fast", "long-context"],
-      },
-      {
-        id: "mistral-medium",
-        name: "Mistral Medium",
-        provider: "mistral",
-        description: "Balanced capabilities",
-        features: ["fast"],
-      },
-      {
-        id: "mistral-small",
-        name: "Mistral Small",
-        provider: "mistral",
-        description: "Fast and efficient",
-        features: ["fast"],
-      },
-      {
-        id: "mistral-small-2402",
-        name: "Mistral Small 2402",
-        provider: "mistral",
-        description: "Mistral Small snapshot",
-        features: ["fast"],
-      },
-      {
-        id: "mistral-tiny",
-        name: "Mistral Tiny",
-        provider: "mistral",
-        description: "Ultra-fast model",
-        features: ["fast"],
-      },
-      {
-        id: "pixtral-large",
-        name: "Pixtral Large",
-        provider: "mistral",
-        description: "Multimodal vision model",
-        features: ["multimodal", "long-context"],
-        isNew: true,
-      },
-      {
-        id: "pixtral-12b",
-        name: "Pixtral 12B",
-        provider: "mistral",
-        description: "Efficient vision model",
-        features: ["fast", "multimodal"],
-        isNew: true,
-      },
+    {
+      id: "gpt-4o",
+      name: "GPT-4o",
+      provider: "openai",
+      description: "Most capable model",
+      features: ["fast", "multimodal", "long-context"],
+    },
+    {
+      id: "gpt-4o-mini",
+      name: "GPT-4o Mini",
+      provider: "openai",
+      description: "Fast and affordable",
+      features: ["fast"],
+    },
+    {
+      id: "gpt-4o-2024-11-20",
+      name: "GPT-4o (2024-11-20)",
+      provider: "openai",
+      description: "Latest GPT-4o snapshot",
+      features: ["fast", "multimodal", "long-context"],
+    },
+    {
+      id: "o1",
+      name: "o1",
+      provider: "openai",
+      description: "Advanced reasoning",
+      features: ["reasoning"],
+    },
+    {
+      id: "o1-preview",
+      name: "o1 Preview",
+      provider: "openai",
+      description: "Advanced reasoning preview",
+      features: ["reasoning"],
+      isPreview: true,
+    },
+    {
+      id: "o1-mini",
+      name: "o1 Mini",
+      provider: "openai",
+      description: "Fast reasoning",
+      features: ["fast", "reasoning"],
+    },
+    {
+      id: "o1-mini-preview",
+      name: "o1 Mini Preview",
+      provider: "openai",
+      description: "Fast reasoning preview",
+      features: ["fast", "reasoning"],
+      isPreview: true,
+    },
+    {
+      id: "gpt-4-turbo",
+      name: "GPT-4 Turbo",
+      provider: "openai",
+      description: "High performance model",
+      features: ["turbo", "multimodal", "long-context"],
+    },
+    {
+      id: "gpt-4-turbo-preview",
+      name: "GPT-4 Turbo Preview",
+      provider: "openai",
+      description: "Latest GPT-4 Turbo",
+      features: ["turbo", "multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "gpt-4",
+      name: "GPT-4",
+      provider: "openai",
+      description: "Original GPT-4 model",
+      features: ["multimodal", "long-context"],
+    },
+    {
+      id: "gpt-4-32k",
+      name: "GPT-4 32K",
+      provider: "openai",
+      description: "GPT-4 with extended context",
+      features: ["long-context"],
+    },
+    {
+      id: "gpt-3.5-turbo",
+      name: "GPT-3.5 Turbo",
+      provider: "openai",
+      description: "Fast and efficient",
+      features: ["turbo"],
+    },
+    {
+      id: "gpt-3.5-turbo-16k",
+      name: "GPT-3.5 Turbo 16K",
+      provider: "openai",
+      description: "GPT-3.5 with extended context",
+      features: ["turbo", "long-context"],
+    },
+    {
+      id: "claude-4-opus",
+      name: "Claude 4 Opus",
+      provider: "anthropic",
+      description: "Most capable model",
+      features: ["reasoning", "multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "claude-4-sonnet",
+      name: "Claude 4 Sonnet",
+      provider: "anthropic",
+      description: "Balanced performance",
+      features: ["fast", "multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "claude-3.5-sonnet",
+      name: "Claude 3.5 Sonnet",
+      provider: "anthropic",
+      description: "Fast and intelligent",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "claude-3.5-sonnet-20241022",
+      name: "Claude 3.5 Sonnet (2024-10-22)",
+      provider: "anthropic",
+      description: "Latest Claude 3.5 Sonnet",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "claude-3.5-haiku",
+      name: "Claude 3.5 Haiku",
+      provider: "anthropic",
+      description: "Fastest Claude model",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "claude-3-opus",
+      name: "Claude 3 Opus",
+      provider: "anthropic",
+      description: "Most powerful model",
+      features: ["reasoning", "multimodal", "long-context"],
+    },
+    {
+      id: "claude-3-sonnet",
+      name: "Claude 3 Sonnet",
+      provider: "anthropic",
+      description: "Balanced Claude 3",
+      features: ["multimodal", "long-context"],
+    },
+    {
+      id: "claude-3-haiku",
+      name: "Claude 3 Haiku",
+      provider: "anthropic",
+      description: "Fast and cost-effective",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "claude-3-5-sonnet-20240620",
+      name: "Claude 3.5 Sonnet (2024-06-20)",
+      provider: "anthropic",
+      description: "Claude 3.5 Sonnet snapshot",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "gemini-2.0-pro",
+      name: "Gemini 2.0 Pro",
+      provider: "google",
+      description: "Advanced capabilities",
+      features: ["multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "gemini-2.0-flash",
+      name: "Gemini 2.0 Flash",
+      provider: "google",
+      description: "Fast Gemini 2.0",
+      features: ["fast", "multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "gemini-1.5-pro",
+      name: "Gemini 1.5 Pro",
+      provider: "google",
+      description: "Multimodal model",
+      features: ["multimodal", "long-context"],
+    },
+    {
+      id: "gemini-1.5-pro-latest",
+      name: "Gemini 1.5 Pro Latest",
+      provider: "google",
+      description: "Latest Gemini 1.5 Pro",
+      features: ["multimodal", "long-context"],
+    },
+    {
+      id: "gemini-1.5-flash",
+      name: "Gemini 1.5 Flash",
+      provider: "google",
+      description: "Fast and efficient",
+      features: ["fast", "multimodal", "long-context"],
+    },
+    {
+      id: "gemini-1.5-flash-8b",
+      name: "Gemini 1.5 Flash 8B",
+      provider: "google",
+      description: "Lightweight Flash model",
+      features: ["fast", "multimodal"],
+    },
+    {
+      id: "gemini-1.0-pro",
+      name: "Gemini 1.0 Pro",
+      provider: "google",
+      description: "Original Gemini Pro",
+      features: ["multimodal"],
+    },
+    {
+      id: "gemini-ultra",
+      name: "Gemini Ultra",
+      provider: "google",
+      description: "Most capable model",
+      features: ["reasoning", "multimodal", "long-context"],
+      isPreview: true,
+    },
+    {
+      id: "llama-3.1-405b",
+      name: "Llama 3.1 405B",
+      provider: "meta",
+      description: "Open source model",
+      features: ["long-context"],
+    },
+    {
+      id: "llama-3.1-70b",
+      name: "Llama 3.1 70B",
+      provider: "meta",
+      description: "Balanced performance",
+      features: ["fast", "long-context"],
+    },
+    {
+      id: "llama-3.1-8b",
+      name: "Llama 3.1 8B",
+      provider: "meta",
+      description: "Lightweight model",
+      features: ["fast"],
+    },
+    {
+      id: "llama-3.2",
+      name: "Llama 3.2",
+      provider: "meta",
+      description: "Latest open source",
+      features: ["fast"],
+      isNew: true,
+    },
+    {
+      id: "llama-3.2-3b",
+      name: "Llama 3.2 3B",
+      provider: "meta",
+      description: "Ultra-lightweight",
+      features: ["fast"],
+      isNew: true,
+    },
+    {
+      id: "llama-3.2-1b",
+      name: "Llama 3.2 1B",
+      provider: "meta",
+      description: "Smallest Llama model",
+      features: ["fast"],
+      isNew: true,
+    },
+    {
+      id: "llama-3-70b",
+      name: "Llama 3 70B",
+      provider: "meta",
+      description: "Llama 3 base model",
+      features: ["fast"],
+    },
+    {
+      id: "llama-3-8b",
+      name: "Llama 3 8B",
+      provider: "meta",
+      description: "Llama 3 lightweight",
+      features: ["fast"],
+    },
+    {
+      id: "mistral-large",
+      name: "Mistral Large",
+      provider: "mistral",
+      description: "High performance",
+      features: ["fast", "long-context"],
+    },
+    {
+      id: "mistral-large-2407",
+      name: "Mistral Large 2407",
+      provider: "mistral",
+      description: "Mistral Large snapshot",
+      features: ["fast", "long-context"],
+    },
+    {
+      id: "mistral-large-2402",
+      name: "Mistral Large 2402",
+      provider: "mistral",
+      description: "Mistral Large snapshot",
+      features: ["fast", "long-context"],
+    },
+    {
+      id: "mistral-medium",
+      name: "Mistral Medium",
+      provider: "mistral",
+      description: "Balanced capabilities",
+      features: ["fast"],
+    },
+    {
+      id: "mistral-small",
+      name: "Mistral Small",
+      provider: "mistral",
+      description: "Fast and efficient",
+      features: ["fast"],
+    },
+    {
+      id: "mistral-small-2402",
+      name: "Mistral Small 2402",
+      provider: "mistral",
+      description: "Mistral Small snapshot",
+      features: ["fast"],
+    },
+    {
+      id: "mistral-tiny",
+      name: "Mistral Tiny",
+      provider: "mistral",
+      description: "Ultra-fast model",
+      features: ["fast"],
+    },
+    {
+      id: "pixtral-large",
+      name: "Pixtral Large",
+      provider: "mistral",
+      description: "Multimodal vision model",
+      features: ["multimodal", "long-context"],
+      isNew: true,
+    },
+    {
+      id: "pixtral-12b",
+      name: "Pixtral 12B",
+      provider: "mistral",
+      description: "Efficient vision model",
+      features: ["fast", "multimodal"],
+      isNew: true,
+    },
   ]}
-  selectedModelId="gpt-4o"
+  selectedModelId={"gpt-4o"}
   onModelSelect={(model) => {
     /* select model - receives full model object */
     console.log("Selected model:", model);
@@ -488,25 +480,25 @@ HextaUI is a modern UI component library for Next.js applications.
   "ai-prompt-input": {
     usageImports: `import AIPromptInput from "@/registry/new-york/blocks/ai/ai-prompt-input";`,
     usageCode: `<AIPromptInput
-  onSend={(text) => {
+  onSend={(text: string) => {
     /* send prompt logic with value: text */
   }}
-  placeholder="Type your prompt here (e.g. Summarize this article)..."
+  placeholder={"Type your prompt here (e.g. Summarize this article)..."}
   disabled={false}
-  autoFocus={true}
+  autoFocus
 />`,
   },
   "ai-prompt-templates": {
     usageImports: `import AIPromptTemplates from "@/registry/new-york/blocks/ai/ai-prompt-templates";`,
     usageCode: `<AIPromptTemplates
   templates={[
-  {
+    {
       id: "template-1",
       name: "Meeting Notes Summarizer",
       description: "Summarize meeting notes into key points and action items.",
       category: "Business",
       prompt:
-        "Summarize the following meeting notes into concise bullet points and list the action items at the end:\n\n{meetingNotes}\n\nUse clear, professional language.",
+        "Summarize the following meeting notes into concise bullet points and list the action items at the end:\\n\\n{meetingNotes}\\n\\nUse clear, professional language.",
       variables: [
         {
           name: "meetingNotes",
@@ -524,7 +516,7 @@ HextaUI is a modern UI component library for Next.js applications.
       description: "Generate a helpful response to a customer support ticket.",
       category: "Business",
       prompt:
-        "Draft a professional and empathetic response to the following customer inquiry:\n\n{customerMessage}\n\nAddress the concerns politely and suggest next steps.",
+        "Draft a professional and empathetic response to the following customer inquiry:\\n\\n{customerMessage}\\n\\nAddress the concerns politely and suggest next steps.",
       variables: [
         {
           name: "customerMessage",
@@ -543,7 +535,7 @@ HextaUI is a modern UI component library for Next.js applications.
       description: "Format raw bug details into a structured bug report.",
       category: "Code",
       prompt:
-        "Format the following bug details into a structured software bug report with steps to reproduce, expected behavior, and actual behavior:\n\n{rawBugDetails}\n\nKeep it clear and concise.",
+        "Format the following bug details into a structured software bug report with steps to reproduce, expected behavior, and actual behavior:\\n\\n{rawBugDetails}\\n\\nKeep it clear and concise.",
       variables: [
         {
           name: "rawBugDetails",
@@ -585,7 +577,7 @@ HextaUI is a modern UI component library for Next.js applications.
       description: "Suggest a clear, conventional Git commit message.",
       category: "Code",
       prompt:
-        "Given the following code changes summary, suggest a clear and conventional Git commit message following present tense and imperative mood:\n\n{changeSummary}",
+        "Given the following code changes summary, suggest a clear and conventional Git commit message following present tense and imperative mood:\\n\\n{changeSummary}",
       variables: [
         {
           name: "changeSummary",
@@ -604,7 +596,7 @@ HextaUI is a modern UI component library for Next.js applications.
         "Turn work activity descriptions into measurable resume bullets.",
       category: "Writing",
       prompt:
-        "Rewrite the following work activities as impactful resume achievement bullets. Focus on accomplishments and quantify results when possible:\n\n{workDetails}",
+        "Rewrite the following work activities as impactful resume achievement bullets. Focus on accomplishments and quantify results when possible:\\n\\n{workDetails}",
       variables: [
         {
           name: "workDetails",
@@ -618,10 +610,10 @@ HextaUI is a modern UI component library for Next.js applications.
     },
   ]}
   categories={["All", "Writing", "Code", "Analysis"]}
-  onSelect={(templateId) => {
+  onSelect={(templateId: string) => {
     /* select template by id */
   }}
-  onFavorite={async (id, fav) => {
+  onFavorite={async (id: string, fav: boolean) => {
     /* set/unset favorite */
   }}
   onCreate={(tpl) => {
@@ -632,7 +624,7 @@ HextaUI is a modern UI component library for Next.js applications.
   "ai-settings-panel": {
     usageImports: `import AISettingsPanel from "@/registry/new-york/blocks/ai/ai-settings-panel";`,
     usageCode: `<AISettingsPanel
-  settings: {
+  settings={{
     temperature: 0.6,
     maxTokens: 1500,
     topP: 0.9,
@@ -642,24 +634,24 @@ HextaUI is a modern UI component library for Next.js applications.
     systemPrompt:
       "You are an AI assistant that helps answer user questions clearly and helpfully.",
     model: "gpt-3.5-turbo",
-  } as AISettings,
-  onSettingsChange: (settings: Partial<AISettings>) => {
+  }}
+  onSettingsChange={(settings: Partial<AISettings>) => {
     console.log("Settings changed:", settings);
-  },
-  onSave: async (settings: Partial<AISettings>) => {
+  }}
+  onSave={async (settings: Partial<AISettings>) => {
     console.log("Settings saved:", settings);
-  },
-  onReset: () => {
+  }}
+  onReset={() => {
     console.log("Settings reset to defaults");
-  },
-  availableModels: [
+  }}
+  availableModels={[
     "gpt-3.5-turbo",
     "gpt-4",
     "gpt-4o",
     "claude-3-opus",
     "llama-3-70b",
-  ],
-  presets: [
+  ]}
+  presets={[
     {
       name: "Quick Q&A",
       settings: {
@@ -678,18 +670,17 @@ HextaUI is a modern UI component library for Next.js applications.
         systemPrompt: "Provide detailed explanations and full sentences.",
       },
     },
-  ],
-  onLoadPreset: (presetName: string) => {
-    console.log(\`Loaded preset: $\{presetName}\`);
-  },
-  onSavePreset: async (preset: any) => {
-    console.log(\`Preset saved: $\{preset}\`);
-  },
-  onDeletePreset: async (presetName: string) => {
-    console.log(\`Deleted preset: $\{presetName}\`);
-  },
-  showAdvanced: true,
-  };
+  ]}
+  onLoadPreset={(presetName: string) => {
+    console.log(\`Loaded preset: \${presetName}\`);
+  }}
+  onSavePreset={async (preset: any) => {
+    console.log(\`Preset saved: \${preset}\`);
+  }}
+  onDeletePreset={async (presetName: string) => {
+    console.log(\`Deleted preset: \${presetName}\`);
+  }}
+  showAdvanced={true}
 />`,
   },
   "ai-streaming-response": {
@@ -736,27 +727,27 @@ This is a demonstration of real-time token-by-token streaming."
     usageImports: `import AIUsageQuota from "@/registry/new-york/blocks/ai/ai-usage-quota";`,
     usageCode: `<AIUsageQuota
   tokenUsage={{
-    input: 2_150,
-    output: 1_340,
-    total: 3_490,
+    input: 225_000,
+    output: 178_700,
+    total: 403_700,
+    dailyUsageHistory: [],
   }}
   rateLimit={{
-    remaining: 12,
-    limit: 50,
-    resetAt: new Date(Date.now() + 22 * 60 * 1000), 
+    remaining: 7,
+    limit: 100,
+    resetAt: new Date(),
     window: "hour",
   }}
   quota={{
-    used: 45_650,
-    limit: 50_000,
-    resetAt: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+    used: 9_590_000,
+    limit: 10_000_000,
+    resetAt: new Date(),
     period: "month",
   }}
   showUpgradePrompt={true}
-  upgradeThreshold={75}
+  upgradeThreshold={80}
   onUpgrade={() => {
-    // Redirect to upgrades page or open upgrade modal here
-    alert("Upgrade your plan to increase your AI usage quota!");
+    /* upgrade logic */
   }}
 />`,
   },
