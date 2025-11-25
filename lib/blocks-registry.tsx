@@ -87,6 +87,8 @@ import TaskCreate from "@/registry/new-york/blocks/tasks/task-create";
 import TaskDetail from "@/registry/new-york/blocks/tasks/task-detail";
 import TaskFilters from "@/registry/new-york/blocks/tasks/task-filters";
 import TaskList from "@/registry/new-york/blocks/tasks/task-list";
+import TaskProgress from "@/registry/new-york/blocks/tasks/task-progress";
+import TeamActivityFeed from "@/registry/new-york/blocks/team/team-activity-feed";
 import TeamAIRoom from "@/registry/new-york/blocks/team/team-ai-room";
 import TeamAnalytics from "@/registry/new-york/blocks/team/team-analytics";
 import TeamChat from "@/registry/new-york/blocks/team/team-chat";
@@ -101,8 +103,6 @@ import TeamProjects from "@/registry/new-york/blocks/team/team-projects";
 import TeamPromptLibrary from "@/registry/new-york/blocks/team/team-prompt-library";
 import TeamSettings from "@/registry/new-york/blocks/team/team-settings";
 import TeamSwitcher from "@/registry/new-york/blocks/team/team-switcher";
-import TaskProgress from "@/registry/new-york/blocks/tasks/task-progress";
-import TeamActivityFeed from "@/registry/new-york/blocks/team/team-activity-feed";
 
 // ============================================================================
 // BLOCK EXAMPLE PROPS
