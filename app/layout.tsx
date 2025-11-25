@@ -175,10 +175,9 @@ export default function RootLayout({
           />
         )}
         {process.env.NODE_ENV === "development" && (
-          <Script
+          <script
             crossOrigin="anonymous"
             src="//unpkg.com/react-scan/dist/auto.global.js"
-            strategy="lazyOnload"
           />
         )}
         <script
