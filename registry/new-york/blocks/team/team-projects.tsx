@@ -184,7 +184,7 @@ export default function TeamProjects({
       <CardHeader>
         <div className="flex flex-col gap-4">
           <div className="flex flex-col flex-wrap gap-3 md:flex-row md:items-start md:justify-between">
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
               <CardTitle>Projects</CardTitle>
               <CardDescription>
                 {projects.length} project{projects.length !== 1 ? "s" : ""} in

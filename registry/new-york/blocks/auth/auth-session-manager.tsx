@@ -106,7 +106,7 @@ function SessionItem({
       <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted">
         <DeviceIcon className="size-5 text-muted-foreground" />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col gap-1">
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
         <div className="flex flex-wrap items-center gap-2">
           <h4 className="font-medium text-sm">{session.deviceName}</h4>
           {session.isCurrent && (

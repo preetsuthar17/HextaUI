@@ -218,7 +218,7 @@ export default function TeamChat({
                           )}
                           <div
                             className={cn(
-                              "flex min-w-0 flex-1 flex-col gap-1",
+                              "flex min-w-0 flex-1 flex-col gap-2",
                               isCurrentUser && "items-end"
                             )}
                           >
@@ -290,7 +290,7 @@ export default function TeamChat({
                 </Button>
               )}
             </div>
-            <div className="relative flex min-w-0 flex-1 flex-col gap-1.5">
+            <div className="relative flex min-w-0 flex-1 flex-col gap-2.5">
               <InputGroup>
                 <InputGroupTextarea
                   className="min-h-[52px] resize-none pr-12"

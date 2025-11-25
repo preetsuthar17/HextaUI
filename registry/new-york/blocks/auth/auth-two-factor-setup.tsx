@@ -151,7 +151,7 @@ export default function AuthTwoFactorSetup({
               <div className="rounded-lg border bg-muted/50 p-4">
                 <div className="flex items-start gap-3">
                   <ShieldCheck className="size-5 shrink-0 text-primary" />
-                  <div className="flex min-w-0 flex-1 flex-col gap-1">
+                  <div className="flex min-w-0 flex-1 flex-col gap-2">
                     <p className="wrap-break-word font-medium text-sm">
                       2FA is active
                     </p>

@@ -57,7 +57,7 @@ export default function AIErrorHandler({
       <AlertTriangle aria-hidden="true" className="size-4" />
       <div className="flex min-w-0 flex-1 flex-col gap-3">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <AlertTitle className="wrap-break-word font-medium text-base">
               {title}
             </AlertTitle>

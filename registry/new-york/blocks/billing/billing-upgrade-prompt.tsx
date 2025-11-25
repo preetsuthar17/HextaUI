@@ -251,7 +251,7 @@ export default function BillingUpgradePrompt({
                       ) : (
                         <Check className="size-4 shrink-0 text-primary" />
                       )}
-                      <div className="flex min-w-0 flex-1 flex-col gap-1">
+                      <div className="flex min-w-0 flex-1 flex-col gap-2">
                         <span className="wrap-break-word text-sm">
                           {feature.name}
                         </span>

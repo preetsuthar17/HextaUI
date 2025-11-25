@@ -457,7 +457,7 @@ export default function TaskList({
       <CardHeader>
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
               <CardTitle>Tasks</CardTitle>
               <CardDescription>
                 {filteredTasks.length} task

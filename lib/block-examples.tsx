@@ -798,49 +798,60 @@ import { Card } from "hextaui";
     case "ai-settings-panel": {
       return {
         settings: {
-          temperature: 0.85,
-          maxTokens: 4000,
-          topP: 0.95,
-          topK: 120,
-          frequencyPenalty: 0.25,
-          presencePenalty: 0.15,
-          systemPrompt: "You are a concise expert assistant.",
-          model: "gpt-4o",
+          temperature: 0.6,
+          maxTokens: 1500,
+          topP: 0.9,
+          topK: 40,
+          frequencyPenalty: 0.1,
+          presencePenalty: 0.0,
+          systemPrompt:
+            "You are an AI assistant that helps answer user questions clearly and helpfully.",
+          model: "gpt-3.5-turbo",
         } as AISettings,
         onSettingsChange: (settings: Partial<AISettings>) => {
-          /* update settings */
+          console.log("Settings changed:", settings);
         },
-        onSave: async () => {
-          /* save settings */
+        onSave: async (settings: Partial<AISettings>) => {
+          console.log("Settings saved:", settings);
         },
         onReset: () => {
-          /* reset to defaults */
+          console.log("Settings reset to defaults");
         },
         availableModels: [
-          "gpt-4o",
-          "gpt-4",
           "gpt-3.5-turbo",
+          "gpt-4",
+          "gpt-4o",
           "claude-3-opus",
           "llama-3-70b",
         ],
         presets: [
           {
-            name: "Creative",
-            settings: { temperature: 0.95, maxTokens: 3000, model: "gpt-4o" },
+            name: "Quick Q&A",
+            settings: {
+              temperature: 0.3,
+              maxTokens: 800,
+              model: "gpt-3.5-turbo",
+              systemPrompt: "Answer questions briefly and factually.",
+            },
           },
           {
-            name: "Accurate",
-            settings: { temperature: 0.2, model: "gpt-4" },
+            name: "Long-form Assist",
+            settings: {
+              temperature: 0.8,
+              maxTokens: 2500,
+              model: "gpt-4",
+              systemPrompt: "Provide detailed explanations and full sentences.",
+            },
           },
         ],
         onLoadPreset: (presetName: string) => {
-          /* load preset logic */
+          console.log(`Loaded preset: ${presetName}`);
         },
         onSavePreset: async (preset: any) => {
-          /* save the given preset */
+          console.log("Preset saved:", preset);
         },
         onDeletePreset: async (presetName: string) => {
-          /* delete preset */
+          console.log(`Deleted preset: ${presetName}`);
         },
         showAdvanced: true,
       };

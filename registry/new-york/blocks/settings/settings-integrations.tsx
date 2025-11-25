@@ -170,7 +170,7 @@ export default function SettingsIntegrations({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Integrations</CardTitle>
             <CardDescription className="wrap-break-word">
               Connect and manage third-party integrations
@@ -201,7 +201,7 @@ export default function SettingsIntegrations({
                         <integration.icon className="size-5 text-muted-foreground" />
                       </div>
                     )}
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <div className="flex flex-wrap items-center gap-2">
                         <h4 className="font-medium text-sm">
                           {integration.name}

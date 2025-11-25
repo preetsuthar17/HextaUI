@@ -140,7 +140,7 @@ export default function SettingsDomains({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Custom Domains</CardTitle>
             <CardDescription className="wrap-break-word">
               Manage your custom domains and SSL certificates

@@ -231,7 +231,7 @@ export default function AISuggestedPrompts({
                     <div className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary">
                       <Icon className="size-4" />
                     </div>
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <h3 className="wrap-break-word font-medium text-sm">
                           {prompt.title}

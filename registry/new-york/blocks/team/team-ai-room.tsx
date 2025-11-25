@@ -127,7 +127,7 @@ export default function TeamAIRoom({
     <Card className={cn("flex h-[700px] flex-col shadow-xs", className)}>
       <CardHeader className="shrink-0">
         <div className="flex items-center justify-between gap-4">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle>{roomName}</CardTitle>
             <CardDescription>
               Collaborative AI workspace with shared context
@@ -196,7 +196,7 @@ export default function TeamAIRoom({
                             : "U"}
                         </AvatarFallback>
                       </Avatar>
-                      <div className="flex min-w-0 flex-1 flex-col gap-1">
+                      <div className="flex min-w-0 flex-1 flex-col gap-2">
                         <div className="flex items-center gap-2">
                           <span className="font-medium text-sm">
                             {message.author?.name || "User"}
@@ -253,7 +253,7 @@ export default function TeamAIRoom({
         {/* Input */}
         <div className="shrink-0 rounded-lg bg-muted/30 p-4">
           <div className="flex items-center">
-            <div className="relative flex min-w-0 flex-1 flex-col gap-1.5">
+            <div className="relative flex min-w-0 flex-1 flex-col gap-2.5">
               <InputGroup>
                 <InputGroupTextarea
                   className="min-h-[52px] resize-none pr-12"

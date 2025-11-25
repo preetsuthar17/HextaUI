@@ -159,7 +159,7 @@ function ProjectCard({
             {project.name.charAt(0).toUpperCase()}
           </div>
         )}
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex items-center gap-2">
             <h3 className="wrap-break-word font-semibold text-base">
               {project.name}
@@ -375,7 +375,7 @@ export default function ProjectList({
       <CardHeader>
         <div className="flex flex-col gap-4">
           <div className="flex flex-wrap items-center justify-between gap-3">
-            <div className="flex min-w-0 flex-1 flex-col gap-1">
+            <div className="flex min-w-0 flex-1 flex-col gap-2">
               <CardTitle>Projects</CardTitle>
               <CardDescription>
                 {filteredProjects.length} project

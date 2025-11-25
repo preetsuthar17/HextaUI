@@ -99,7 +99,7 @@ export default function SettingsAdvanced({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Advanced Settings</CardTitle>
             <CardDescription className="wrap-break-word">
               Developer tools and experimental features
@@ -224,7 +224,7 @@ export default function SettingsAdvanced({
                     className="flex items-center justify-between rounded-lg border p-4"
                     key={flag.id}
                   >
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <div className="flex items-center gap-2">
                         <span className="font-medium text-sm">{flag.name}</span>
                         {flag.experimental && (

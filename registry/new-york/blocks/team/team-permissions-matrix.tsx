@@ -305,7 +305,7 @@ export default function TeamPermissionsMatrix({
                     className="flex flex-col gap-3 rounded-lg border bg-card p-4 transition-colors hover:bg-muted/50"
                     key={permission.action}
                   >
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <span className="wrap-break-word font-medium text-sm">
                         {permission.label}
                       </span>

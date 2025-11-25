@@ -228,7 +228,7 @@ export default function BillingPlanSelector({
                           ) : (
                             <div className="size-4 shrink-0" />
                           )}
-                          <div className="flex min-w-0 flex-1 flex-col gap-1">
+                          <div className="flex min-w-0 flex-1 flex-col gap-2">
                             <span className="wrap-break-word text-sm">
                               {feature.name}
                               {feature.limit !== undefined &&

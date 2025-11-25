@@ -153,7 +153,7 @@ export default function SettingsPreferences({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Preferences</CardTitle>
             <CardDescription className="wrap-break-word">
               Customize your app experience and appearance

@@ -218,7 +218,7 @@ export default function SettingsAPIKeys({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">API Keys</CardTitle>
             <CardDescription className="wrap-break-word">
               Manage your API keys for programmatic access

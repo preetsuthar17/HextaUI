@@ -177,7 +177,7 @@ export default function SettingsTeamMembers({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Team Members</CardTitle>
             <CardDescription className="wrap-break-word">
               Manage team members and their roles
@@ -335,7 +335,7 @@ export default function SettingsTeamMembers({
                         {getInitials(member.name)}
                       </AvatarFallback>
                     </Avatar>
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <div className="flex flex-wrap items-center gap-2">
                         <h4 className="font-medium text-sm">{member.name}</h4>
                         {isOwner && (

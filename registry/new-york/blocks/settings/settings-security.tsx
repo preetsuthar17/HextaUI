@@ -244,7 +244,7 @@ export default function SettingsSecurity({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Security</CardTitle>
             <CardDescription className="wrap-break-word">
               Manage your account security and authentication
@@ -525,7 +525,7 @@ export default function SettingsSecurity({
                           <Monitor className="size-5" />
                         )}
                       </div>
-                      <div className="flex min-w-0 flex-1 flex-col gap-1">
+                      <div className="flex min-w-0 flex-1 flex-col gap-2">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-medium text-sm">
                             {session.device}
@@ -607,7 +607,7 @@ export default function SettingsSecurity({
                       <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-muted">
                         <Icon className="size-4" />
                       </div>
-                      <div className="flex min-w-0 flex-1 flex-col gap-1">
+                      <div className="flex min-w-0 flex-1 flex-col gap-2">
                         <div className="flex flex-wrap items-center gap-2">
                           <span className="font-medium text-sm">
                             {event.description}

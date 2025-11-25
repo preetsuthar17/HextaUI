@@ -174,7 +174,7 @@ function SocialAccountItem({
         >
           <Icon className={cn("size-5", config.color)} />
         </div>
-        <div className="flex min-w-0 flex-1 flex-col gap-1">
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
             <h4 className="font-medium text-sm">{config.name}</h4>
             {account.isPrimary && (

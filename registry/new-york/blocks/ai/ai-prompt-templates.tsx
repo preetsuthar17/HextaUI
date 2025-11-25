@@ -520,7 +520,7 @@ function TemplateDialog({
             <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-muted text-muted-foreground">
               <Icon aria-hidden="true" className="size-5" />
             </div>
-            <div className="flex min-w-0 flex-1 flex-col gap-1 text-left">
+            <div className="flex min-w-0 flex-1 flex-col gap-2 text-left">
               <DialogTitle className="wrap-break-word">
                 {template.name}
               </DialogTitle>

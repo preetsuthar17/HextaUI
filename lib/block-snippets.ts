@@ -632,26 +632,64 @@ HextaUI is a modern UI component library for Next.js applications.
   "ai-settings-panel": {
     usageImports: `import AISettingsPanel from "@/registry/new-york/blocks/ai/ai-settings-panel";`,
     usageCode: `<AISettingsPanel
-  settings={{
-    temperature: 0.85,
-    maxTokens: 4000,
-    topP: 0.95,
-    topK: 120,
-    frequencyPenalty: 0.25,
-    presencePenalty: 0.15,
-    systemPrompt: "You are a concise expert assistant.",
-    model: "gpt-4o",
-  }}
-  onSettingsChange={(settings) => {
-    /* update settings */
-  }}
-  onSave={async () => {
-    /* save settings */
-  }}
-  onReset={() => {
-    /* reset to defaults */
-  }}
-  availableModels={["gpt-4o", "gpt-4", "gpt-3.5-turbo"]}
+  settings: {
+    temperature: 0.6,
+    maxTokens: 1500,
+    topP: 0.9,
+    topK: 40,
+    frequencyPenalty: 0.1,
+    presencePenalty: 0.0,
+    systemPrompt:
+      "You are an AI assistant that helps answer user questions clearly and helpfully.",
+    model: "gpt-3.5-turbo",
+  } as AISettings,
+  onSettingsChange: (settings: Partial<AISettings>) => {
+    console.log("Settings changed:", settings);
+  },
+  onSave: async (settings: Partial<AISettings>) => {
+    console.log("Settings saved:", settings);
+  },
+  onReset: () => {
+    console.log("Settings reset to defaults");
+  },
+  availableModels: [
+    "gpt-3.5-turbo",
+    "gpt-4",
+    "gpt-4o",
+    "claude-3-opus",
+    "llama-3-70b",
+  ],
+  presets: [
+    {
+      name: "Quick Q&A",
+      settings: {
+        temperature: 0.3,
+        maxTokens: 800,
+        model: "gpt-3.5-turbo",
+        systemPrompt: "Answer questions briefly and factually.",
+      },
+    },
+    {
+      name: "Long-form Assist",
+      settings: {
+        temperature: 0.8,
+        maxTokens: 2500,
+        model: "gpt-4",
+        systemPrompt: "Provide detailed explanations and full sentences.",
+      },
+    },
+  ],
+  onLoadPreset: (presetName: string) => {
+    console.log(\`Loaded preset: \$\{presetName}\`);
+  },
+  onSavePreset: async (preset: any) => {
+    console.log(\`Preset saved: \$\{preset\}\`);
+  },
+  onDeletePreset: async (presetName: string) => {
+    console.log(\`Deleted preset: \$\{presetName\}\`);
+  },
+  showAdvanced: true,
+  };
 />`,
   },
   "ai-streaming-response": {

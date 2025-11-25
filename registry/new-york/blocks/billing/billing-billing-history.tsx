@@ -401,7 +401,7 @@ export default function BillingBillingHistory({
                         >
                           <TypeIcon className="size-4" />
                         </div>
-                        <div className="flex min-w-0 flex-1 flex-col gap-1">
+                        <div className="flex min-w-0 flex-1 flex-col gap-2">
                           <div className="flex flex-wrap items-center gap-2">
                             <span className="wrap-break-word font-medium text-sm">
                               {transaction.description}

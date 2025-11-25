@@ -248,7 +248,7 @@ export default function SettingsImportData({
     <Card className={cn("w-full shadow-xs", className)}>
       <CardHeader>
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-          <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <div className="flex min-w-0 flex-1 flex-col gap-2">
             <CardTitle className="wrap-break-word">Import Data</CardTitle>
             <CardDescription className="wrap-break-word">
               Import your data from a JSON or CSV file
@@ -267,7 +267,7 @@ export default function SettingsImportData({
                     <div className="flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10">
                       <FileUp className="size-5 text-primary" />
                     </div>
-                    <div className="flex min-w-0 flex-1 flex-col gap-1">
+                    <div className="flex min-w-0 flex-1 flex-col gap-2">
                       <p className="wrap-break-word font-medium text-sm">
                         {uploadedFile.name}
                       </p>
