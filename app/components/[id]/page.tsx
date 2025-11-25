@@ -1,4 +1,4 @@
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRightIcon, ExternalLink } from "lucide-react";
 import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -27,6 +27,7 @@ import {
 import { Button } from "@/registry/new-york/ui/button";
 import { Separator } from "@/registry/new-york/ui/separator";
 import { Spinner } from "@/registry/new-york/ui/spinner";
+import Image from "next/image";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -109,10 +110,12 @@ export default async function ComponentPage({
   const Demo = meta.Demo;
 
   return (
-    <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 py-12">
-      <div className="flex justify-evenly gap-12">
-        <ComponentsSidebar currentId={meta.id} />
-        <div className="flex w-full flex-col gap-12">
+    <div className="mx-auto flex max-w-[95%] flex-col gap-8 py-12">
+      <div className="flex w-full gap-8">
+        <aside className="hidden w-1/5 min-w-[180px] max-w-[240px] flex-col md:flex">
+          <ComponentsSidebar currentId={meta.id} />
+        </aside>
+        <div className="z-22 mx-auto flex w-full max-w-4xl flex-1 flex-col gap-12 bg-background">
           <header className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div className="flex flex-1 flex-col gap-4">
               <Breadcrumb>
@@ -200,9 +203,45 @@ export default async function ComponentPage({
           <Separator />
           <ComponentPrevNext currentId={meta.id} />
         </div>
-        <div className="hidden md:block">
+        <aside className="hidden w-1/5 min-w-[180px] max-w-[240px] flex-col items-end md:flex gap-4">
+          <div className="flex flex-col gap-2 border p-4 sm:p-6 border-dashed">
+            <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl tracking-tighter leading-tight">
+              <span className="block shrink-0 ">
+                <Image
+                  alt="shadcnblocks logo"
+                  className="shrink-0 dark:invert"
+                  height={32}
+                  src="https://ikiform.com/favicon.ico"
+                  width={32}
+                />
+              </span>
+              Build Forms, Collect Responses & Analyze.
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              The open-source forms platform for effortless data collection and
+              analysis.
+            </p>
+            <div>
+              <Button asChild variant={"outline"}>
+                <a
+                  data-s-event="Blocks/Components link: ikiform.com"
+                  data-s-event-props="location=blocks/components;label=ikiform.com"
+                  href="https://ikiform.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
+                  rel="noopener noreferrer"
+                  role="button"
+                  style={{ textDecoration: "none" }}
+                  tabIndex={0}
+                  target="_blank"
+                  type="button"
+                >
+                  Start collecting responses
+                  <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
           <CarbonAds />
-        </div>
+        </aside>
       </div>
     </div>
   );

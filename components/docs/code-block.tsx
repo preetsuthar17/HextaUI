@@ -111,11 +111,9 @@ export default function CodeBlock({
 
   if (loading) {
     return (
-      <div
-        className={`rounded border border-border bg-background text-foreground ${className}`}
-      >
+      <div className={`rounded bg-muted text-foreground ${className}`}>
         {filename && (
-          <div className="flex items-center border-border border-b bg-background px-4 py-2">
+          <div className="flex items-center border-border border-b bg-muted px-4 py-2">
             <span className="font-mono text-muted-foreground text-sm">
               {filename}
             </span>
@@ -239,17 +237,17 @@ export default function CodeBlock({
 
   return (
     <div
-      className={`group relative overflow-hidden rounded-lg border border-border bg-background text-foreground ${className}`}
+      className={`group relative overflow-hidden rounded-lg bg-muted text-foreground ${className}`}
     >
       {isPackageInstall && (
-        <div className="flex border-border border-b bg-background">
+        <div className="flex border-border border-b bg-muted">
           <div className="flex w-full flex-wrap gap-1 p-2 sm:flex-nowrap">
             {Object.entries(PACKAGE_MANAGERS).map(([key, manager]) => (
               <Button
                 className="h-6 p-2 text-sm"
                 key={key}
                 onClick={() => setSelectedPackageManager(key as PackageManager)}
-                variant={selectedPackageManager === key ? "secondary" : "ghost"}
+                variant={selectedPackageManager === key ? "outline" : "ghost"}
               >
                 <span>{manager.name}</span>
               </Button>
@@ -259,7 +257,7 @@ export default function CodeBlock({
       )}
 
       {filename && (
-        <div className="flex items-center border-border border-b bg-background px-4 py-2">
+        <div className="flex items-center border-border border-b bg-muted px-4 py-2">
           <span className="font-mono text-muted-foreground text-sm">
             {filename}
           </span>
@@ -270,7 +268,7 @@ export default function CodeBlock({
       <div className="relative flex flex-col">
         <Button
           aria-label="Copy code"
-          className="absolute top-3 right-3 z-10 flex items-center justify-center gap-2 rounded bg-secondary/90 px-2 py-1 text-secondary-foreground opacity-0 transition-opacity duration-150 hover:bg-secondary focus-visible:opacity-100 group-hover:opacity-100"
+          className="absolute top-3 right-3 z-10 flex items-center justify-center gap-2 rounded bg-muted/90 px-2 py-1 text-secondary-foreground opacity-0 transition-opacity duration-150 hover:bg-muted focus-visible:opacity-100 group-hover:opacity-100"
           onClick={copyToClipboard}
           size="sm"
           type="button"

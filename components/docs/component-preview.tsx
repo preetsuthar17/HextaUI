@@ -72,7 +72,7 @@ export function ComponentPreview({
       {resolvedCode ? (
         <div>
           <CodeBlock
-            className="max-h-120 overflow-y-auto rounded-t-none rounded-b-lg border-0 border-t bg-code"
+            className="max-h-120 overflow-y-auto rounded-t-none rounded-b-lg border-0 border-t bg-muted"
             code={resolvedCode}
             filename={filename}
             lang={lang}

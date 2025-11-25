@@ -14,6 +14,11 @@ import {
 import { useCallback, useState } from "react";
 import { cn } from "@/lib/utils";
 import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/registry/new-york/ui/alert";
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -24,11 +29,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/registry/new-york/ui/alert-dialog";
-import {
-  Alert,
-  AlertDescription,
-  AlertTitle,
-} from "@/registry/new-york/ui/alert";
 import { Button } from "@/registry/new-york/ui/button";
 import {
   Card,
@@ -178,14 +178,11 @@ export default function AuthRecoveryCodes({
             <>
               <Alert variant="destructive">
                 <AlertTriangle />
-                <AlertTitle>
-                  Important: Save these codes
-                </AlertTitle>
+                <AlertTitle>Important: Save these codes</AlertTitle>
                 <AlertDescription>
-                  Store these recovery codes in a secure location. Each code
-                  can only be used once. If you lose access to your
-                  authenticator app, these codes are your only way to access
-                  your account.
+                  Store these recovery codes in a secure location. Each code can
+                  only be used once. If you lose access to your authenticator
+                  app, these codes are your only way to access your account.
                 </AlertDescription>
               </Alert>
 

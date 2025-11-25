@@ -231,7 +231,7 @@ function SourcePreview({
         onClick={handleClick}
         role="article"
       >
-        <div className="flex items-center justify-between flex-col sm:flex-row   gap-3">
+        <div className="flex flex-col items-center justify-between gap-3 sm:flex-row">
           <div className="flex min-w-0 flex-1 items-start gap-3">
             <div
               aria-hidden="true"
@@ -251,7 +251,7 @@ function SourcePreview({
               <SourceMetadata source={source} />
             </div>
           </div>
-          <div className="flex shrink-0 items-center gap-1.5 ">
+          <div className="flex shrink-0 items-center gap-1.5">
             {source.snippet && (
               <CollapsibleTrigger
                 aria-label={isSnippetOpen ? "Hide snippet" : "Show snippet"}
@@ -322,7 +322,7 @@ function CitationItemHeader({
         aria-controls={`citation-content-${citation.id}`}
         aria-expanded={isOpen}
         className={cn(
-          "flex min-h-[44px] items-center justify-between rounded-lg bg-card px-2 text-left transition-colors ",
+          "flex min-h-[44px] items-center justify-between rounded-lg bg-card px-2 text-left transition-colors",
           "hover:bg-accent/50",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
           "touch-manipulation [-webkit-tap-highlight-color:transparent] active:bg-accent/70 sm:min-h-[24px]"

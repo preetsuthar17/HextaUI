@@ -38,7 +38,7 @@ const CarbonAds = () => {
       className="carbon-container"
       id="carbon-container"
       ref={containerRef}
-      style={{ minHeight: 130, minWidth: 225, position: "relative" }}
+      style={{ minHeight: 130, minWidth: 300, position: "relative" }}
     />
   );
 };
