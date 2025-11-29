@@ -70,6 +70,223 @@ const DEFAULT_SOCIAL_PROVIDERS: SocialProvider[] = [
   { id: "github", name: "GitHub", icon: Github },
 ];
 
+function validateEmail(value: string): string | undefined {
+  if (!value.trim()) {
+    return "Email is required";
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(value)) {
+    return "Please enter a valid email address";
+  }
+  return;
+}
+
+function validatePassword(value: string): string | undefined {
+  if (!value) {
+    return "Password is required";
+  }
+  if (value.length < 6) {
+    return "Password must be at least 6 characters";
+  }
+  return;
+}
+
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+interface EmailFieldProps {
+  id: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+}
+
+function EmailField({ id, value, onChange, error }: EmailFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Email
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Mail aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="email"
+            id={id}
+            inputMode="email"
+            name="email"
+            onChange={onChange}
+            placeholder="name@example.com…"
+            required
+            type="email"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface PasswordFieldProps {
+  id: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  showPassword: boolean;
+  onTogglePassword: () => void;
+  error?: string;
+}
+
+function PasswordField({
+  id,
+  value,
+  onChange,
+  showPassword,
+  onTogglePassword,
+  error,
+}: PasswordFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Password
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Lock aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="current-password"
+            id={id}
+            name="password"
+            onChange={onChange}
+            placeholder="Enter your password…"
+            required
+            type={showPassword ? "text" : "password"}
+            value={value}
+          />
+          <InputGroupButton
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="min-h-[32px] min-w-[32px] touch-manipulation"
+            onClick={(e) => {
+              e.preventDefault();
+              onTogglePassword();
+            }}
+            type="button"
+          >
+            {showPassword ? (
+              <EyeOff aria-hidden="true" className="size-4" />
+            ) : (
+              <Eye aria-hidden="true" className="size-4" />
+            )}
+          </InputGroupButton>
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface RememberMeCheckboxProps {
+  checked: boolean;
+  onCheckedChange: (checked: boolean) => void;
+  id: string;
+}
+
+function RememberMeCheckbox({
+  checked,
+  onCheckedChange,
+  id,
+}: RememberMeCheckboxProps) {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox
+        checked={checked}
+        id={id}
+        onCheckedChange={(checked) => onCheckedChange(checked === true)}
+      />
+      <label
+        className="cursor-pointer text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+        htmlFor={id}
+      >
+        Remember me
+      </label>
+    </div>
+  );
+}
+
+interface SocialLoginButtonsProps {
+  providers: SocialProvider[];
+  onSocialLogin?: (provider: string) => void;
+}
+
+function SocialLoginButtons({
+  providers,
+  onSocialLogin,
+}: SocialLoginButtonsProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      {providers.map((provider) => {
+        const Icon = provider.icon;
+        return (
+          <Button
+            aria-label={`Sign in with ${provider.name}`}
+            className="min-h-[44px] w-full touch-manipulation"
+            key={provider.id}
+            onClick={(e) => {
+              e.preventDefault();
+              onSocialLogin?.(provider.id);
+            }}
+            type="button"
+            variant="outline"
+          >
+            <Icon aria-hidden="true" className="size-4" />
+            Continue with {provider.name}
+          </Button>
+        );
+      })}
+    </div>
+  );
+}
+
+function EmailSeparator() {
+  return (
+    <div className="relative">
+      <Separator />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="bg-card px-2 text-muted-foreground text-xs">
+          Or continue with email
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function AuthLoginForm({
   onSubmit,
   onSocialLogin,
@@ -89,27 +306,6 @@ export default function AuthLoginForm({
     email?: string;
     password?: string;
   }>({});
-
-  const validateEmail = (value: string): string | undefined => {
-    if (!value.trim()) {
-      return "Email is required";
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
-      return "Please enter a valid email address";
-    }
-    return;
-  };
-
-  const validatePassword = (value: string): string | undefined => {
-    if (!value) {
-      return "Password is required";
-    }
-    if (value.length < 6) {
-      return "Password must be at least 6 characters";
-    }
-    return;
-  };
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -136,24 +332,38 @@ export default function AuthLoginForm({
     [email, password, rememberMe, onSubmit]
   );
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (localErrors.email) {
-      setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
-    }
-  };
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setEmail(value);
+      if (localErrors.email) {
+        setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
+      }
+    },
+    [localErrors.email]
+  );
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPassword(value);
-    if (localErrors.password) {
-      setLocalErrors((prev) => ({
-        ...prev,
-        password: validatePassword(value),
-      }));
-    }
-  };
+  const handlePasswordChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setPassword(value);
+      if (localErrors.password) {
+        setLocalErrors((prev) => ({
+          ...prev,
+          password: validatePassword(value),
+        }));
+      }
+    },
+    [localErrors.password]
+  );
+
+  const handleTogglePassword = useCallback(() => {
+    setShowPassword((prev) => !prev);
+  }, []);
+
+  const handleRememberMeChange = useCallback((checked: boolean) => {
+    setRememberMe(checked);
+  }, []);
 
   const emailError = errors?.email || localErrors.email;
   const passwordError = errors?.password || localErrors.password;
@@ -169,163 +379,54 @@ export default function AuthLoginForm({
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          {generalError && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {generalError}
-            </div>
-          )}
+          {generalError && <ErrorAlert message={generalError} />}
 
           {showSocialLogin && socialProviders.length > 0 && (
             <>
-              <div className="flex flex-col gap-2">
-                {socialProviders.map((provider) => {
-                  const Icon = provider.icon;
-                  return (
-                    <Button
-                      aria-label={`Sign in with ${provider.name}`}
-                      className="w-full"
-                      key={provider.id}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onSocialLogin?.(provider.id);
-                      }}
-                      type="button"
-                      variant="outline"
-                    >
-                      <Icon className="size-4" />
-                      Continue with {provider.name}
-                    </Button>
-                  );
-                })}
-              </div>
-              <div className="relative">
-                <Separator />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="bg-background px-2 text-muted-foreground text-xs">
-                    Or continue with email
-                  </span>
-                </div>
-              </div>
+              <SocialLoginButtons
+                onSocialLogin={onSocialLogin}
+                providers={socialProviders}
+              />
+              <EmailSeparator />
             </>
           )}
 
           <div className="flex flex-col gap-4">
-            <Field data-invalid={!!emailError}>
-              <FieldLabel htmlFor="login-email">
-                Email
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!emailError}>
-                  <InputGroupAddon>
-                    <Mail className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      emailError ? "login-email-error" : undefined
-                    }
-                    aria-invalid={!!emailError}
-                    autoComplete="email"
-                    id="login-email"
-                    inputMode="email"
-                    name="email"
-                    onChange={handleEmailChange}
-                    placeholder="name@example.com"
-                    required
-                    type="email"
-                    value={email}
-                  />
-                </InputGroup>
-                {emailError && (
-                  <FieldError id="login-email-error">{emailError}</FieldError>
-                )}
-              </FieldContent>
-            </Field>
+            <EmailField
+              error={emailError}
+              id="login-email"
+              onChange={handleEmailChange}
+              value={email}
+            />
 
-            <Field data-invalid={!!passwordError}>
-              <FieldLabel htmlFor="login-password">
-                Password
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!passwordError}>
-                  <InputGroupAddon>
-                    <Lock className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      passwordError ? "login-password-error" : undefined
-                    }
-                    aria-invalid={!!passwordError}
-                    autoComplete="current-password"
-                    id="login-password"
-                    name="password"
-                    onChange={handlePasswordChange}
-                    placeholder="Enter your password"
-                    required
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                  />
-                  <InputGroupButton
-                    aria-label={
-                      showPassword ? "Hide password" : "Show password"
-                    }
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowPassword((prev) => !prev);
-                    }}
-                    type="button"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="size-4" />
-                    ) : (
-                      <Eye className="size-4" />
-                    )}
-                  </InputGroupButton>
-                </InputGroup>
-                {passwordError && (
-                  <FieldError id="login-password-error">
-                    {passwordError}
-                  </FieldError>
-                )}
-              </FieldContent>
-            </Field>
+            <PasswordField
+              error={passwordError}
+              id="login-password"
+              onChange={handlePasswordChange}
+              onTogglePassword={handleTogglePassword}
+              showPassword={showPassword}
+              value={password}
+            />
 
             {showRememberMe && (
-              <div className="flex items-center gap-2">
-                <Checkbox
-                  checked={rememberMe}
-                  id="remember-me"
-                  onCheckedChange={(checked) => setRememberMe(checked === true)}
-                />
-                <label
-                  className="cursor-pointer text-sm leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                  htmlFor="remember-me"
-                >
-                  Remember me
-                </label>
-              </div>
+              <RememberMeCheckbox
+                checked={rememberMe}
+                id="remember-me"
+                onCheckedChange={handleRememberMeChange}
+              />
             )}
           </div>
 
           <Button
             aria-busy={isLoading}
-            className="w-full"
+            className="min-h-[44px] w-full touch-manipulation"
             data-loading={isLoading}
             disabled={isLoading}
             type="submit"
           >
             {isLoading ? (
               <>
-                <Loader2 className="size-4 animate-spin" />
+                <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                 Signing in…
               </>
             ) : (

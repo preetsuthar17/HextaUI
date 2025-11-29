@@ -30,6 +30,7 @@ import {
 import { Button } from "@/registry/new-york/ui/button";
 import { Separator } from "@/registry/new-york/ui/separator";
 import { Spinner } from "@/registry/new-york/ui/spinner";
+import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -166,6 +167,9 @@ export default async function BlockPage({
           </header>
 
           {/* Demo */}
+          <div className="flex justify-end -mb-6">
+            <OpenInV0Button url={`https://www.hextaui.com/r/${meta.id}.json`} />
+          </div>
           <Suspense
             fallback={
               <div className="flex h-84 w-full animate-pulse items-center justify-center rounded-xl bg-muted p-4">

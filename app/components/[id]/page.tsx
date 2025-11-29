@@ -11,6 +11,7 @@ import { ComponentPreview } from "@/components/docs/component-preview";
 import { ComponentSection } from "@/components/docs/component-section";
 import ComponentUsage from "@/components/docs/component-usage";
 import { ComponentsSidebar } from "@/components/docs/components-sidebar";
+import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 import {
   componentsRegistry,
   getComponentMetaById,
@@ -178,6 +179,11 @@ export default async function ComponentPage({
 
           {/* Demo first */}
           <ComponentSection id="demo">
+            <div className="flex justify-end">
+              <OpenInV0Button
+                url={`https://www.hextaui.com/r/${meta.id}.json`}
+              />
+            </div>
             <ComponentPreview
               autoCodeFrom={meta.demoCode ? undefined : Demo}
               codeKind="demo"
