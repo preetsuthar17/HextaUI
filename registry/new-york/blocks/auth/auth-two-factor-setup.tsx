@@ -397,7 +397,6 @@ function SetupHeader() {
   return (
     <>
       <CardTitle className="flex flex-wrap items-center gap-2">
-        <Shield aria-hidden="true" className="size-5 shrink-0" />
         <span className="wrap-break-word">
           Set up two-factor authentication
         </span>

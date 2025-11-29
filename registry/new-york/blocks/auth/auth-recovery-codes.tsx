@@ -88,7 +88,6 @@ function EmptyState({ className }: EmptyStateProps) {
     <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Shield aria-hidden="true" className="size-5" />
           Recovery codes
         </CardTitle>
         <CardDescription>

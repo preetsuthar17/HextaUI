@@ -49,7 +49,6 @@ function Header() {
   return (
     <>
       <CardTitle className="flex items-center gap-2">
-        <Shield aria-hidden="true" className="size-5" />
         Verify two-factor authentication
       </CardTitle>
       <CardDescription>
