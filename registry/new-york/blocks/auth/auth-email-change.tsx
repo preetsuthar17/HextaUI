@@ -231,7 +231,7 @@ interface SuccessStateProps {
 
 function SuccessState({ message, newEmail, className }: SuccessStateProps) {
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
       <CardHeader>
         <CardTitle>Verification email sent</CardTitle>
         <CardDescription>

@@ -372,7 +372,12 @@ export default function AuthAccountDelete({
   const generalError = errors?.general;
 
   return (
-    <Card className={cn("w-full border-destructive/50 shadow-xs", className)}>
+    <Card
+      className={cn(
+        "w-full border-destructive/50 shadow-xs max-w-sm",
+        className
+      )}
+    >
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-destructive">
           <Trash2 aria-hidden="true" className="size-5" />

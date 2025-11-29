@@ -314,7 +314,7 @@ export default function AuthChangePassword({
   const generalError = errors?.general;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
       <CardHeader>
         <CardTitle>Change password</CardTitle>
         <CardDescription>

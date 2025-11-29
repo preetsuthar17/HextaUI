@@ -370,7 +370,7 @@ export default function AuthLoginForm({
   const generalError = errors?.general;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
       <CardHeader>
         <CardTitle>Sign in</CardTitle>
         <CardDescription>

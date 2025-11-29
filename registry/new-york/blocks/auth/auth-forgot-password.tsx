@@ -117,7 +117,7 @@ interface SuccessStateProps {
 
 function SuccessState({ message, onBack, className }: SuccessStateProps) {
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
       <CardHeader>
         <CardTitle>Check your email</CardTitle>
         <CardDescription>
@@ -215,7 +215,7 @@ export default function AuthForgotPassword({
   }
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
       <CardHeader>
         <CardTitle>Reset password</CardTitle>
         <CardDescription>
