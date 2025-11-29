@@ -5,6 +5,7 @@ import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import { type BundledLanguage, codeToHtml } from "shiki";
 import { Button } from "@/registry/new-york/ui/button";
+import { Spinner } from "@/registry/new-york/ui/spinner";
 
 type CodeBlockProps = {
   code: string;
@@ -111,21 +112,8 @@ export default function CodeBlock({
 
   if (loading) {
     return (
-      <div className={`rounded bg-muted text-foreground ${className}`}>
-        {filename && (
-          <div className="flex items-center border-border border-b bg-muted px-4 py-2">
-            <span className="font-mono text-muted-foreground text-sm">
-              {filename}
-            </span>
-          </div>
-        )}
-        <div className="p-4">
-          <div className="flex animate-pulse flex-col gap-2">
-            <div className="h-4 rounded bg-muted" />
-            <div className="h-4 w-3/4 rounded bg-muted" />
-            <div className="h-4 w-1/2 rounded bg-muted" />
-          </div>
-        </div>
+      <div className="flex h-24 w-full animate-pulse items-center justify-center rounded-xl bg-muted p-4">
+        <Spinner />
       </div>
     );
   }

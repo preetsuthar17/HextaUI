@@ -37,7 +37,11 @@ const ComponentInstallation = dynamic(
       (mod) => mod.ComponentInstallation
     ),
   {
-    loading: () => <Spinner />,
+    loading: () => (
+      <div className="flex h-24 w-full animate-pulse items-center justify-center rounded-xl bg-muted p-4">
+        <Spinner />
+      </div>
+    ),
     ssr: true,
   }
 );
@@ -162,12 +166,24 @@ export default async function BlockPage({
           </header>
 
           {/* Demo */}
-          <Suspense fallback={<Spinner />}>
+          <Suspense
+            fallback={
+              <div className="flex h-84 w-full animate-pulse items-center justify-center rounded-xl bg-muted p-4">
+                <Spinner />
+              </div>
+            }
+          >
             <BlockDemo blockId={meta.id} Component={Component} />
           </Suspense>
           {/* Installation second */}
           <ComponentSection id="installation">
-            <Suspense fallback={<Spinner />}>
+            <Suspense
+              fallback={
+                <div className="flex h-24 w-full animate-pulse items-center justify-center rounded-xl bg-muted p-4">
+                  <Spinner />
+                </div>
+              }
+            >
               <ComponentInstallation
                 componentCode={getComponentCode(meta.id)}
                 componentName={meta.id}
