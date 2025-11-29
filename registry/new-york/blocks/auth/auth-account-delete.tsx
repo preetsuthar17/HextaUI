@@ -374,7 +374,7 @@ export default function AuthAccountDelete({
   return (
     <Card
       className={cn(
-        "w-full border-destructive/50 shadow-xs max-w-sm",
+        "w-full max-w-sm border-destructive/50 shadow-xs",
         className
       )}
     >

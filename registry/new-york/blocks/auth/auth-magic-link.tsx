@@ -171,7 +171,7 @@ interface VerifiedStateProps {
 
 function VerifiedState({ className }: VerifiedStateProps) {
   return (
-    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Email verified</CardTitle>
         <CardDescription>You&apos;ve successfully signed in</CardDescription>
@@ -206,7 +206,7 @@ function ExpiredState({
   onResend,
 }: ExpiredStateProps) {
   return (
-    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Link expired</CardTitle>
         <CardDescription>
@@ -255,7 +255,7 @@ function SentState({
   onResend,
 }: SentStateProps) {
   return (
-    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Check your email</CardTitle>
         <CardDescription>We&apos;ve sent you a magic link</CardDescription>
@@ -391,7 +391,7 @@ export default function AuthMagicLink({
   }
 
   return (
-    <Card className={cn("w-full shadow-xs max-w-sm", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Sign in with magic link</CardTitle>
         <CardDescription>
