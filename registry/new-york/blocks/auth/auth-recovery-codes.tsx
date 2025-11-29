@@ -170,7 +170,7 @@ function RecoveryCodeItem({
 }: RecoveryCodeItemProps) {
   if (showCode) {
     return (
-      <div className="flex items-center justify-between gap-2 rounded-md border bg-muted/50 pl-2 py-0.5  font-mono text-sm">
+      <div className="flex items-center justify-between gap-2 rounded-md border bg-muted/50 py-0.5 pl-2 font-mono text-sm">
         <span className="flex-1">{code}</span>
         <Button
           aria-label={`Copy recovery code ${index + 1}`}
@@ -442,7 +442,7 @@ export default function AuthRecoveryCodes({
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <h3 className="font-medium text-sm">Your recovery codes</h3>
                   <Button
-                    className="min-h-[44px] w-full touch-manipulation sm:w-auto flex items-center"
+                    className="flex min-h-[44px] w-full touch-manipulation items-center sm:w-auto"
                     onClick={handleToggleShowCodes}
                     type="button"
                     variant="ghost"
