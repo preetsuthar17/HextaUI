@@ -346,7 +346,7 @@ export default function AuthEmailChange({
   }
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Change email address</CardTitle>
         <CardDescription>
