@@ -76,6 +76,393 @@ const DEFAULT_SOCIAL_PROVIDERS: SocialProvider[] = [
   { id: "github", name: "GitHub", icon: Github },
 ];
 
+function validateName(value: string): string | undefined {
+  if (!value.trim()) {
+    return "Name is required";
+  }
+  if (value.trim().length < 2) {
+    return "Name must be at least 2 characters";
+  }
+  return;
+}
+
+function validateEmail(value: string): string | undefined {
+  if (!value.trim()) {
+    return "Email is required";
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(value)) {
+    return "Please enter a valid email address";
+  }
+  return;
+}
+
+function validatePassword(value: string): string | undefined {
+  if (!value) {
+    return "Password is required";
+  }
+  if (value.length < 8) {
+    return "Password must be at least 8 characters";
+  }
+  if (!/(?=.*[a-z])/.test(value)) {
+    return "Password must contain at least one lowercase letter";
+  }
+  if (!/(?=.*[A-Z])/.test(value)) {
+    return "Password must contain at least one uppercase letter";
+  }
+  if (!/(?=.*\d)/.test(value)) {
+    return "Password must contain at least one number";
+  }
+  return;
+}
+
+function validateConfirmPassword(
+  value: string,
+  passwordValue: string
+): string | undefined {
+  if (!value) {
+    return "Please confirm your password";
+  }
+  if (value !== passwordValue) {
+    return "Passwords do not match";
+  }
+  return;
+}
+
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+interface SocialLoginButtonsProps {
+  onSocialLogin?: (provider: string) => void;
+  providers: SocialProvider[];
+}
+
+function SocialLoginButtons({
+  providers,
+  onSocialLogin,
+}: SocialLoginButtonsProps) {
+  return (
+    <div className="flex flex-col gap-2">
+      {providers.map((provider) => {
+        const Icon = provider.icon;
+        return (
+          <Button
+            aria-label={`Sign up with ${provider.name}`}
+            className="min-h-[44px] w-full touch-manipulation"
+            key={provider.id}
+            onClick={(e) => {
+              e.preventDefault();
+              onSocialLogin?.(provider.id);
+            }}
+            type="button"
+            variant="outline"
+          >
+            <Icon aria-hidden="true" className="size-4" />
+            Continue with {provider.name}
+          </Button>
+        );
+      })}
+    </div>
+  );
+}
+
+function EmailSeparator() {
+  return (
+    <div className="relative">
+      <Separator />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="bg-card px-2 text-muted-foreground text-xs">
+          Or continue with email
+        </span>
+      </div>
+    </div>
+  );
+}
+
+interface NameFieldProps {
+  error?: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+}
+
+function NameField({ id, value, onChange, error }: NameFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Full name
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <User aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="name"
+            id={id}
+            name="name"
+            onChange={onChange}
+            placeholder="John Doe…"
+            required
+            type="text"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface EmailFieldProps {
+  error?: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+}
+
+function EmailField({ id, value, onChange, error }: EmailFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Email
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Mail aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="email"
+            id={id}
+            inputMode="email"
+            name="email"
+            onChange={onChange}
+            placeholder="name@example.com…"
+            required
+            type="email"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface PasswordFieldProps {
+  error?: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onTogglePassword: () => void;
+  showPassword: boolean;
+  value: string;
+}
+
+function PasswordField({
+  id,
+  value,
+  onChange,
+  showPassword,
+  onTogglePassword,
+  error,
+}: PasswordFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Password
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Lock aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="new-password"
+            id={id}
+            name="password"
+            onChange={onChange}
+            placeholder="Create a password…"
+            required
+            type={showPassword ? "text" : "password"}
+            value={value}
+          />
+          <InputGroupButton
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            className="min-h-[32px] min-w-[32px] touch-manipulation"
+            onClick={(e) => {
+              e.preventDefault();
+              onTogglePassword();
+            }}
+            type="button"
+          >
+            {showPassword ? (
+              <EyeOff aria-hidden="true" className="size-4" />
+            ) : (
+              <Eye aria-hidden="true" className="size-4" />
+            )}
+          </InputGroupButton>
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+        <FieldDescription>
+          Must be at least 8 characters with uppercase, lowercase, and number
+        </FieldDescription>
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface ConfirmPasswordFieldProps {
+  error?: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onTogglePassword: () => void;
+  showPassword: boolean;
+  value: string;
+}
+
+function ConfirmPasswordField({
+  id,
+  value,
+  onChange,
+  showPassword,
+  onTogglePassword,
+  error,
+}: ConfirmPasswordFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Confirm password
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Lock aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="new-password"
+            id={id}
+            name="confirmPassword"
+            onChange={onChange}
+            placeholder="Confirm your password…"
+            required
+            type={showPassword ? "text" : "password"}
+            value={value}
+          />
+          <InputGroupButton
+            aria-label={
+              showPassword ? "Hide confirm password" : "Show confirm password"
+            }
+            className="min-h-[32px] min-w-[32px] touch-manipulation"
+            onClick={(e) => {
+              e.preventDefault();
+              onTogglePassword();
+            }}
+            type="button"
+          >
+            {showPassword ? (
+              <EyeOff aria-hidden="true" className="size-4" />
+            ) : (
+              <Eye aria-hidden="true" className="size-4" />
+            )}
+          </InputGroupButton>
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface TermsCheckboxProps {
+  acceptTerms: boolean;
+  error?: string;
+  onAcceptTermsChange: (checked: boolean) => void;
+  privacyUrl: string;
+  termsUrl: string;
+}
+
+function TermsCheckbox({
+  acceptTerms,
+  error,
+  onAcceptTermsChange,
+  privacyUrl,
+  termsUrl,
+}: TermsCheckboxProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldContent className="flex flex-col">
+        <div className="flex items-start gap-2">
+          <Checkbox
+            checked={acceptTerms}
+            id="accept-terms"
+            onCheckedChange={(checked) => onAcceptTermsChange(checked === true)}
+          />
+          <label
+            className="cursor-pointer text-sm leading-relaxed peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            htmlFor="accept-terms"
+          >
+            I agree to the{" "}
+            <a
+              className="rounded-sm text-primary underline underline-offset-4 hover:text-primary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              href={termsUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Terms of Service
+            </a>{" "}
+            and{" "}
+            <a
+              className="rounded-sm text-primary underline underline-offset-4 hover:text-primary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+              href={privacyUrl}
+              rel="noopener noreferrer"
+              target="_blank"
+            >
+              Privacy Policy
+            </a>
+            <span aria-label="required" className="text-destructive">
+              *
+            </span>
+          </label>
+        </div>
+        {error && <FieldError>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
 export default function AuthSignupForm({
   onSubmit,
   onSocialLogin,
@@ -101,59 +488,6 @@ export default function AuthSignupForm({
     confirmPassword?: string;
     terms?: string;
   }>({});
-
-  const validateName = (value: string): string | undefined => {
-    if (!value.trim()) {
-      return "Name is required";
-    }
-    if (value.trim().length < 2) {
-      return "Name must be at least 2 characters";
-    }
-    return;
-  };
-
-  const validateEmail = (value: string): string | undefined => {
-    if (!value.trim()) {
-      return "Email is required";
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
-      return "Please enter a valid email address";
-    }
-    return;
-  };
-
-  const validatePassword = (value: string): string | undefined => {
-    if (!value) {
-      return "Password is required";
-    }
-    if (value.length < 8) {
-      return "Password must be at least 8 characters";
-    }
-    if (!/(?=.*[a-z])/.test(value)) {
-      return "Password must contain at least one lowercase letter";
-    }
-    if (!/(?=.*[A-Z])/.test(value)) {
-      return "Password must contain at least one uppercase letter";
-    }
-    if (!/(?=.*\d)/.test(value)) {
-      return "Password must contain at least one number";
-    }
-    return;
-  };
-
-  const validateConfirmPassword = (
-    value: string,
-    passwordValue: string
-  ): string | undefined => {
-    if (!value) {
-      return "Please confirm your password";
-    }
-    if (value !== passwordValue) {
-      return "Passwords do not match";
-    }
-    return;
-  };
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
@@ -197,51 +531,73 @@ export default function AuthSignupForm({
     [name, email, password, confirmPassword, acceptTerms, onSubmit]
   );
 
-  const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setName(value);
-    if (localErrors.name) {
-      setLocalErrors((prev) => ({ ...prev, name: validateName(value) }));
-    }
-  };
+  const handleNameChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setName(value);
+      if (localErrors.name) {
+        setLocalErrors((prev) => ({ ...prev, name: validateName(value) }));
+      }
+    },
+    [localErrors.name]
+  );
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (localErrors.email) {
-      setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
-    }
-  };
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setEmail(value);
+      if (localErrors.email) {
+        setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
+      }
+    },
+    [localErrors.email]
+  );
 
-  const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setPassword(value);
-    if (localErrors.password) {
-      setLocalErrors((prev) => ({
-        ...prev,
-        password: validatePassword(value),
-      }));
-    }
-    if (localErrors.confirmPassword && confirmPassword) {
-      setLocalErrors((prev) => ({
-        ...prev,
-        confirmPassword: validateConfirmPassword(confirmPassword, value),
-      }));
-    }
-  };
+  const handlePasswordChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setPassword(value);
+      if (localErrors.password) {
+        setLocalErrors((prev) => ({
+          ...prev,
+          password: validatePassword(value),
+        }));
+      }
+      if (localErrors.confirmPassword && confirmPassword) {
+        setLocalErrors((prev) => ({
+          ...prev,
+          confirmPassword: validateConfirmPassword(confirmPassword, value),
+        }));
+      }
+    },
+    [localErrors.password, localErrors.confirmPassword, confirmPassword]
+  );
 
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const value = e.target.value;
-    setConfirmPassword(value);
-    if (localErrors.confirmPassword) {
-      setLocalErrors((prev) => ({
-        ...prev,
-        confirmPassword: validateConfirmPassword(value, password),
-      }));
-    }
-  };
+  const handleConfirmPasswordChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setConfirmPassword(value);
+      if (localErrors.confirmPassword) {
+        setLocalErrors((prev) => ({
+          ...prev,
+          confirmPassword: validateConfirmPassword(value, password),
+        }));
+      }
+    },
+    [localErrors.confirmPassword, password]
+  );
+
+  const handleTogglePassword = useCallback(() => {
+    setShowPassword((prev) => !prev);
+  }, []);
+
+  const handleToggleConfirmPassword = useCallback(() => {
+    setShowConfirmPassword((prev) => !prev);
+  }, []);
+
+  const handleAcceptTermsChange = useCallback((checked: boolean) => {
+    setAcceptTerms(checked);
+  }, []);
 
   const nameError = errors?.name || localErrors.name;
   const emailError = errors?.email || localErrors.email;
@@ -252,287 +608,77 @@ export default function AuthSignupForm({
   const generalError = errors?.general;
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Create an account</CardTitle>
         <CardDescription>Enter your information to get started</CardDescription>
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          {generalError && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {generalError}
-            </div>
-          )}
+          {generalError && <ErrorAlert message={generalError} />}
 
           {showSocialLogin && socialProviders.length > 0 && (
             <>
-              <div className="flex flex-col gap-2">
-                {socialProviders.map((provider) => {
-                  const Icon = provider.icon;
-                  return (
-                    <Button
-                      aria-label={`Sign up with ${provider.name}`}
-                      className="w-full"
-                      key={provider.id}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        onSocialLogin?.(provider.id);
-                      }}
-                      type="button"
-                      variant="outline"
-                    >
-                      <Icon className="size-4" />
-                      Continue with {provider.name}
-                    </Button>
-                  );
-                })}
-              </div>
-              <div className="relative">
-                <Separator />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="bg-background px-2 text-muted-foreground text-xs">
-                    Or continue with email
-                  </span>
-                </div>
-              </div>
+              <SocialLoginButtons
+                onSocialLogin={onSocialLogin}
+                providers={socialProviders}
+              />
+              <EmailSeparator />
             </>
           )}
 
           <div className="flex flex-col gap-4">
-            <Field data-invalid={!!nameError}>
-              <FieldLabel htmlFor="signup-name">
-                Full name
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!nameError}>
-                  <InputGroupAddon>
-                    <User className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      nameError ? "signup-name-error" : undefined
-                    }
-                    aria-invalid={!!nameError}
-                    autoComplete="name"
-                    id="signup-name"
-                    name="name"
-                    onChange={handleNameChange}
-                    placeholder="John Doe"
-                    required
-                    type="text"
-                    value={name}
-                  />
-                </InputGroup>
-                {nameError && (
-                  <FieldError id="signup-name-error">{nameError}</FieldError>
-                )}
-              </FieldContent>
-            </Field>
+            <NameField
+              error={nameError}
+              id="signup-name"
+              onChange={handleNameChange}
+              value={name}
+            />
 
-            <Field data-invalid={!!emailError}>
-              <FieldLabel htmlFor="signup-email">
-                Email
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!emailError}>
-                  <InputGroupAddon>
-                    <Mail className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      emailError ? "signup-email-error" : undefined
-                    }
-                    aria-invalid={!!emailError}
-                    autoComplete="email"
-                    id="signup-email"
-                    inputMode="email"
-                    name="email"
-                    onChange={handleEmailChange}
-                    placeholder="name@example.com"
-                    required
-                    type="email"
-                    value={email}
-                  />
-                </InputGroup>
-                {emailError && (
-                  <FieldError id="signup-email-error">{emailError}</FieldError>
-                )}
-              </FieldContent>
-            </Field>
+            <EmailField
+              error={emailError}
+              id="signup-email"
+              onChange={handleEmailChange}
+              value={email}
+            />
 
-            <Field data-invalid={!!passwordError}>
-              <FieldLabel htmlFor="signup-password">
-                Password
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!passwordError}>
-                  <InputGroupAddon>
-                    <Lock className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      passwordError ? "signup-password-error" : undefined
-                    }
-                    aria-invalid={!!passwordError}
-                    autoComplete="new-password"
-                    id="signup-password"
-                    name="password"
-                    onChange={handlePasswordChange}
-                    placeholder="Create a password"
-                    required
-                    type={showPassword ? "text" : "password"}
-                    value={password}
-                  />
-                  <InputGroupButton
-                    aria-label={
-                      showPassword ? "Hide password" : "Show password"
-                    }
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowPassword((prev) => !prev);
-                    }}
-                    type="button"
-                  >
-                    {showPassword ? (
-                      <EyeOff className="size-4" />
-                    ) : (
-                      <Eye className="size-4" />
-                    )}
-                  </InputGroupButton>
-                </InputGroup>
-                {passwordError && (
-                  <FieldError id="signup-password-error">
-                    {passwordError}
-                  </FieldError>
-                )}
-                <FieldDescription>
-                  Must be at least 8 characters with uppercase, lowercase, and
-                  number
-                </FieldDescription>
-              </FieldContent>
-            </Field>
+            <PasswordField
+              error={passwordError}
+              id="signup-password"
+              onChange={handlePasswordChange}
+              onTogglePassword={handleTogglePassword}
+              showPassword={showPassword}
+              value={password}
+            />
 
-            <Field data-invalid={!!confirmPasswordError}>
-              <FieldLabel htmlFor="signup-confirm-password">
-                Confirm password
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputGroup aria-invalid={!!confirmPasswordError}>
-                  <InputGroupAddon>
-                    <Lock className="size-4" />
-                  </InputGroupAddon>
-                  <InputGroupInput
-                    aria-describedby={
-                      confirmPasswordError
-                        ? "signup-confirm-password-error"
-                        : undefined
-                    }
-                    aria-invalid={!!confirmPasswordError}
-                    autoComplete="new-password"
-                    id="signup-confirm-password"
-                    name="confirmPassword"
-                    onChange={handleConfirmPasswordChange}
-                    placeholder="Confirm your password"
-                    required
-                    type={showConfirmPassword ? "text" : "password"}
-                    value={confirmPassword}
-                  />
-                  <InputGroupButton
-                    aria-label={
-                      showConfirmPassword
-                        ? "Hide confirm password"
-                        : "Show confirm password"
-                    }
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowConfirmPassword((prev) => !prev);
-                    }}
-                    type="button"
-                  >
-                    {showConfirmPassword ? (
-                      <EyeOff className="size-4" />
-                    ) : (
-                      <Eye className="size-4" />
-                    )}
-                  </InputGroupButton>
-                </InputGroup>
-                {confirmPasswordError && (
-                  <FieldError id="signup-confirm-password-error">
-                    {confirmPasswordError}
-                  </FieldError>
-                )}
-              </FieldContent>
-            </Field>
+            <ConfirmPasswordField
+              error={confirmPasswordError}
+              id="signup-confirm-password"
+              onChange={handleConfirmPasswordChange}
+              onTogglePassword={handleToggleConfirmPassword}
+              showPassword={showConfirmPassword}
+              value={confirmPassword}
+            />
 
-            <Field data-invalid={!!termsError}>
-              <FieldContent className="flex flex-col">
-                <div className="flex items-start gap-2">
-                  <Checkbox
-                    checked={acceptTerms}
-                    id="accept-terms"
-                    onCheckedChange={(checked) =>
-                      setAcceptTerms(checked === true)
-                    }
-                  />
-                  <label
-                    className="cursor-pointer text-sm leading-relaxed peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    htmlFor="accept-terms"
-                  >
-                    I agree to the{" "}
-                    <a
-                      className="rounded-sm text-primary underline underline-offset-4 hover:text-primary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                      href={termsUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      Terms of Service
-                    </a>{" "}
-                    and{" "}
-                    <a
-                      className="rounded-sm text-primary underline underline-offset-4 hover:text-primary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                      href={privacyUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      Privacy Policy
-                    </a>
-                    <span aria-label="required" className="text-destructive">
-                      *
-                    </span>
-                  </label>
-                </div>
-                {termsError && <FieldError>{termsError}</FieldError>}
-              </FieldContent>
-            </Field>
+            <TermsCheckbox
+              acceptTerms={acceptTerms}
+              error={termsError}
+              onAcceptTermsChange={handleAcceptTermsChange}
+              privacyUrl={privacyUrl}
+              termsUrl={termsUrl}
+            />
           </div>
 
           <Button
             aria-busy={isLoading}
-            className="w-full"
+            className="min-h-[44px] w-full touch-manipulation"
             data-loading={isLoading}
             disabled={isLoading}
             type="submit"
           >
             {isLoading ? (
               <>
-                <Loader2 className="size-4 animate-spin" />
+                <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                 Creating account…
               </>
             ) : (
