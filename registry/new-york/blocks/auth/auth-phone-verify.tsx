@@ -69,7 +69,7 @@ export interface AuthPhoneVerifyProps {
   className?: string;
   isLoading?: boolean;
   status?: VerificationStatus;
-  resendCooldown?: number; // seconds
+  resendCooldown?: number;
   errors?: {
     phone?: string;
     code?: string;
@@ -79,7 +79,6 @@ export interface AuthPhoneVerifyProps {
   countries?: Country[];
 }
 
-// Common countries list
 const DEFAULT_COUNTRIES: Country[] = [
   { code: "US", name: "United States", dialCode: "+1", flag: "🇺🇸" },
   { code: "GB", name: "United Kingdom", dialCode: "+44", flag: "🇬🇧" },
@@ -92,6 +91,486 @@ const DEFAULT_COUNTRIES: Country[] = [
   { code: "CN", name: "China", dialCode: "+86", flag: "🇨🇳" },
   { code: "BR", name: "Brazil", dialCode: "+55", flag: "🇧🇷" },
 ];
+
+function formatPhoneNumber(value: string, countryCode: string): string {
+  const digits = value.replace(/\D/g, "");
+  if (countryCode === "US" || countryCode === "CA") {
+    if (digits.length <= 3) return digits;
+    if (digits.length <= 6) {
+      return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    }
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+  }
+  return digits;
+}
+
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+interface VerifiedStateProps {
+  className?: string;
+  phoneNumber?: string;
+  selectedCountry?: Country;
+}
+
+function VerifiedState({
+  className,
+  phoneNumber,
+  selectedCountry,
+}: VerifiedStateProps) {
+  return (
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Phone verified</CardTitle>
+        <CardDescription>
+          Your phone number has been successfully verified
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
+          <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
+            <CheckCircle2 aria-hidden="true" className="size-8 text-primary" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="font-medium text-sm">
+              Phone number verified successfully
+            </p>
+            {phoneNumber && (
+              <p className="text-muted-foreground text-sm">
+                {selectedCountry?.dialCode} {phoneNumber}
+              </p>
+            )}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface ExpiredErrorStateProps {
+  className?: string;
+  cooldown: number;
+  generalError?: string;
+  isLoading: boolean;
+  onChangePhone?: () => void;
+  onResend?: () => void;
+  status: "expired" | "error";
+}
+
+function ExpiredErrorState({
+  className,
+  cooldown,
+  generalError,
+  isLoading,
+  onChangePhone,
+  onResend,
+  status,
+}: ExpiredErrorStateProps) {
+  return (
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Verification failed</CardTitle>
+        <CardDescription>
+          {status === "expired"
+            ? "The verification code has expired"
+            : "Something went wrong with verification"}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-4">
+          {generalError && <ErrorAlert message={generalError} />}
+
+          <div className="flex flex-col items-center gap-4 rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
+            <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10">
+              <XCircle aria-hidden="true" className="size-8 text-destructive" />
+            </div>
+            <p className="text-destructive text-sm">
+              {status === "expired"
+                ? "The verification code has expired. Please request a new one."
+                : "Verification failed. Please try again."}
+            </p>
+          </div>
+
+          {onChangePhone && (
+            <Button
+              className="min-h-[44px] w-full touch-manipulation"
+              onClick={onChangePhone}
+              type="button"
+              variant="outline"
+            >
+              Change phone number
+            </Button>
+          )}
+
+          {onResend && (
+            <Button
+              aria-busy={isLoading}
+              className="min-h-[44px] w-full touch-manipulation"
+              data-loading={isLoading}
+              disabled={cooldown > 0 || isLoading}
+              onClick={onResend}
+              type="button"
+            >
+              {isLoading ? (
+                <>
+                  <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+                  Sending…
+                </>
+              ) : cooldown > 0 ? (
+                <>
+                  <RefreshCw aria-hidden="true" className="size-4" />
+                  Resend in {cooldown}s
+                </>
+              ) : (
+                <>
+                  <RefreshCw aria-hidden="true" className="size-4" />
+                  Request new code
+                </>
+              )}
+            </Button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface ResendButtonProps {
+  cooldown: number;
+  isLoading: boolean;
+  onClick: () => void;
+}
+
+function ResendButton({ cooldown, isLoading, onClick }: ResendButtonProps) {
+  return (
+    <button
+      className="min-h-[32px] touch-manipulation self-start rounded-sm hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:self-auto"
+      disabled={cooldown > 0 || isLoading}
+      onClick={onClick}
+      type="button"
+    >
+      {cooldown > 0 ? (
+        `Resend in ${cooldown}s`
+      ) : (
+        <span className="flex items-center gap-1">
+          <RefreshCw aria-hidden="true" className="size-3" />
+          Resend code
+        </span>
+      )}
+    </button>
+  );
+}
+
+interface OTPVerificationStateProps {
+  autoSubmit: boolean;
+  className?: string;
+  code: string;
+  codeError?: string;
+  cooldown: number;
+  generalError?: string;
+  isLoading: boolean;
+  onChangePhone?: () => void;
+  onCodeChange: (code: string) => void;
+  onOTPSubmit?: (code: string) => void;
+  onResend?: () => void;
+  phoneNumber?: string;
+  selectedCountry?: Country;
+  status: "sent" | "verifying";
+}
+
+function OTPVerificationState({
+  autoSubmit,
+  className,
+  code,
+  codeError,
+  cooldown,
+  generalError,
+  isLoading,
+  onChangePhone,
+  onCodeChange,
+  onOTPSubmit,
+  onResend,
+  phoneNumber,
+  selectedCountry,
+  status,
+}: OTPVerificationStateProps) {
+  return (
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Verify your phone number</CardTitle>
+        <CardDescription>
+          Enter the 6-digit code sent to{" "}
+          {phoneNumber && (
+            <span className="font-medium">
+              {selectedCountry?.dialCode} {phoneNumber}
+            </span>
+          )}
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-6">
+          {generalError && <ErrorAlert message={generalError} />}
+          <Field data-invalid={!!codeError}>
+            <FieldLabel htmlFor="phone-otp-code">
+              Verification code
+              <span aria-label="required" className="text-destructive">
+                *
+              </span>
+            </FieldLabel>
+            <FieldContent>
+              <InputOTP
+                aria-describedby={
+                  codeError ? "phone-otp-code-error" : undefined
+                }
+                aria-invalid={!!codeError}
+                disabled={isLoading || status === "verifying"}
+                id="phone-otp-code"
+                maxLength={6}
+                onChange={onCodeChange}
+                value={code}
+              >
+                <InputOTPGroup>
+                  <InputOTPSlot index={0} />
+                  <InputOTPSlot index={1} />
+                  <InputOTPSlot index={2} />
+                  <InputOTPSlot index={3} />
+                  <InputOTPSlot index={4} />
+                  <InputOTPSlot index={5} />
+                </InputOTPGroup>
+              </InputOTP>
+              {codeError && (
+                <FieldError id="phone-otp-code-error">{codeError}</FieldError>
+              )}
+              <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
+                <span>Enter the 6-digit code from SMS</span>
+                {onResend && (
+                  <ResendButton
+                    cooldown={cooldown}
+                    isLoading={isLoading}
+                    onClick={onResend}
+                  />
+                )}
+              </div>
+            </FieldContent>
+          </Field>
+
+          {onChangePhone && (
+            <>
+              <Separator />
+              <Button
+                className="min-h-[44px] w-full touch-manipulation"
+                onClick={onChangePhone}
+                type="button"
+                variant="ghost"
+              >
+                Change phone number
+              </Button>
+            </>
+          )}
+
+          {!autoSubmit && (
+            <Button
+              aria-busy={isLoading || status === "verifying"}
+              className="min-h-[44px] w-full touch-manipulation"
+              data-loading={isLoading || status === "verifying"}
+              disabled={
+                isLoading || status === "verifying" || code.length !== 6
+              }
+              onClick={() => onOTPSubmit?.(code)}
+              type="button"
+            >
+              {isLoading || status === "verifying" ? (
+                <>
+                  <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+                  Verifying…
+                </>
+              ) : (
+                <>
+                  <CheckCircle2 aria-hidden="true" className="size-4" />
+                  Verify code
+                </>
+              )}
+            </Button>
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface CountrySelectProps {
+  countries: Country[];
+  countryCode: string;
+  onCountryCodeChange: (code: string) => void;
+}
+
+function CountrySelect({
+  countries,
+  countryCode,
+  onCountryCodeChange,
+}: CountrySelectProps) {
+  return (
+    <Field className="w-fit">
+      <FieldLabel htmlFor="phone-country">Country</FieldLabel>
+      <FieldContent>
+        <Select onValueChange={onCountryCodeChange} value={countryCode}>
+          <SelectTrigger id="phone-country">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {countries.map((country) => (
+              <SelectItem key={country.code} value={country.code}>
+                <div className="flex items-center gap-2">
+                  <span aria-hidden="true">{country.flag}</span>
+                  <span>{country.dialCode}</span>
+                </div>
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface PhoneNumberFieldProps {
+  error?: string;
+  id: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+}
+
+function PhoneNumberField({
+  error,
+  id,
+  onChange,
+  value,
+}: PhoneNumberFieldProps) {
+  return (
+    <Field className="flex-1" data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Phone number
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Phone aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="tel"
+            id={id}
+            inputMode="tel"
+            name="phoneNumber"
+            onChange={onChange}
+            placeholder="(555) 123-4567…"
+            required
+            type="tel"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface PhoneNumberFormProps {
+  className?: string;
+  countries: Country[];
+  countryCode: string;
+  generalError?: string;
+  isLoading: boolean;
+  onCountryCodeChange: (code: string) => void;
+  onPhoneChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onPhoneSubmit: (e: React.FormEvent) => void;
+  phoneError?: string;
+  phoneNumber: string;
+}
+
+function PhoneNumberForm({
+  className,
+  countries,
+  countryCode,
+  generalError,
+  isLoading,
+  onCountryCodeChange,
+  onPhoneChange,
+  onPhoneSubmit,
+  phoneError,
+  phoneNumber,
+}: PhoneNumberFormProps) {
+  return (
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Verify your phone number</CardTitle>
+        <CardDescription>
+          We&apos;ll send a verification code via SMS
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <form className="flex flex-col gap-6" onSubmit={onPhoneSubmit}>
+          {generalError && <ErrorAlert message={generalError} />}
+
+          <div className="flex flex-col gap-4">
+            <div className="flex flex-col sm:flex-row gap-2">
+              <CountrySelect
+                countries={countries}
+                countryCode={countryCode}
+                onCountryCodeChange={onCountryCodeChange}
+              />
+              <PhoneNumberField
+                error={phoneError}
+                id="phone-number"
+                onChange={onPhoneChange}
+                value={phoneNumber}
+              />
+            </div>
+          </div>
+          <p className="text-sm text-muted-foreground">
+            We&apos;ll send a verification code to this number
+          </p>
+          <Button
+            aria-busy={isLoading}
+            className="min-h-[44px] w-full touch-manipulation"
+            data-loading={isLoading}
+            disabled={isLoading || !phoneNumber.trim()}
+            type="submit"
+          >
+            {isLoading ? (
+              <>
+                <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+                Sending code…
+              </>
+            ) : (
+              <>
+                <MessageSquare aria-hidden="true" className="size-4" />
+                Send verification code
+              </>
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
 
 export default function AuthPhoneVerify({
   phoneNumber: initialPhoneNumber,
@@ -144,367 +623,80 @@ export default function AuthPhoneVerify({
     setCooldown(resendCooldown);
   }, [cooldown, onResend, resendCooldown]);
 
+  const handlePhoneChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const formatted = formatPhoneNumber(e.target.value, countryCode);
+      setPhoneNumber(formatted);
+    },
+    [countryCode]
+  );
+
+  const handleCodeChange = useCallback((newCode: string) => {
+    setCode(newCode);
+  }, []);
+
   const selectedCountry = countries.find((c) => c.code === countryCode);
   const phoneError = errors?.phone;
   const codeError = errors?.code;
   const generalError = errors?.general;
 
-  const formatPhoneNumber = (value: string): string => {
-    // Remove all non-digits
-    const digits = value.replace(/\D/g, "");
-    // Format as (XXX) XXX-XXXX for US/CA, or keep as is
-    if (countryCode === "US" || countryCode === "CA") {
-      if (digits.length <= 3) return digits;
-      if (digits.length <= 6) {
-        return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
-      }
-      return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
-    }
-    return digits;
-  };
-
-  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const formatted = formatPhoneNumber(e.target.value);
-    setPhoneNumber(formatted);
-  };
-
   if (status === "verified") {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Phone verified</CardTitle>
-          <CardDescription>
-            Your phone number has been successfully verified
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
-            <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle2 className="size-8 text-primary" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <p className="font-medium text-sm">
-                Phone number verified successfully
-              </p>
-              {phoneNumber && (
-                <p className="text-muted-foreground text-sm">
-                  {selectedCountry?.dialCode} {phoneNumber}
-                </p>
-              )}
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <VerifiedState
+        className={className}
+        phoneNumber={phoneNumber}
+        selectedCountry={selectedCountry}
+      />
     );
   }
 
   if (status === "expired" || status === "error") {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Verification failed</CardTitle>
-          <CardDescription>
-            {status === "expired"
-              ? "The verification code has expired"
-              : "Something went wrong with verification"}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-4">
-            {generalError && (
-              <div
-                aria-live="polite"
-                className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-                role="alert"
-              >
-                {generalError}
-              </div>
-            )}
-
-            <div className="flex flex-col items-center gap-4 rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
-              <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10">
-                <XCircle className="size-8 text-destructive" />
-              </div>
-              <p className="text-destructive text-sm">
-                {status === "expired"
-                  ? "The verification code has expired. Please request a new one."
-                  : "Verification failed. Please try again."}
-              </p>
-            </div>
-
-            {onChangePhone && (
-              <Button
-                className="w-full"
-                onClick={onChangePhone}
-                type="button"
-                variant="outline"
-              >
-                Change phone number
-              </Button>
-            )}
-
-            {onResend && (
-              <Button
-                aria-busy={isLoading}
-                className="w-full"
-                data-loading={isLoading}
-                disabled={cooldown > 0 || isLoading}
-                onClick={handleResend}
-                type="button"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" />
-                    Sending…
-                  </>
-                ) : cooldown > 0 ? (
-                  <>
-                    <RefreshCw className="size-4" />
-                    Resend in {cooldown}s
-                  </>
-                ) : (
-                  <>
-                    <RefreshCw className="size-4" />
-                    Request new code
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+      <ExpiredErrorState
+        className={className}
+        cooldown={cooldown}
+        generalError={generalError}
+        isLoading={isLoading}
+        onChangePhone={onChangePhone}
+        onResend={onResend ? handleResend : undefined}
+        status={status}
+      />
     );
   }
 
   if (status === "sent" || status === "verifying") {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Verify your phone number</CardTitle>
-          <CardDescription>
-            Enter the 6-digit code sent to{" "}
-            {phoneNumber && (
-              <span className="font-medium">
-                {selectedCountry?.dialCode} {phoneNumber}
-              </span>
-            )}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-6">
-            {generalError && (
-              <div
-                aria-live="polite"
-                className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-                role="alert"
-              >
-                {generalError}
-              </div>
-            )}
-
-            <Field data-invalid={!!codeError}>
-              <FieldLabel htmlFor="phone-otp-code">
-                Verification code
-                <span aria-label="required" className="text-destructive">
-                  *
-                </span>
-              </FieldLabel>
-              <FieldContent>
-                <InputOTP
-                  aria-describedby={
-                    codeError ? "phone-otp-code-error" : undefined
-                  }
-                  aria-invalid={!!codeError}
-                  disabled={isLoading || status === "verifying"}
-                  id="phone-otp-code"
-                  maxLength={6}
-                  onChange={setCode}
-                  value={code}
-                >
-                  <InputOTPGroup>
-                    <InputOTPSlot index={0} />
-                    <InputOTPSlot index={1} />
-                    <InputOTPSlot index={2} />
-                    <InputOTPSlot index={3} />
-                    <InputOTPSlot index={4} />
-                    <InputOTPSlot index={5} />
-                  </InputOTPGroup>
-                </InputOTP>
-                {codeError && (
-                  <FieldError id="phone-otp-code-error">{codeError}</FieldError>
-                )}
-                <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
-                  <span>Enter the 6-digit code from SMS</span>
-                  {onResend && (
-                    <button
-                      className="self-start rounded-sm hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:self-auto"
-                      disabled={cooldown > 0 || isLoading}
-                      onClick={handleResend}
-                      type="button"
-                    >
-                      {cooldown > 0 ? (
-                        `Resend in ${cooldown}s`
-                      ) : (
-                        <span className="flex items-center gap-1">
-                          <RefreshCw className="size-3" />
-                          Resend code
-                        </span>
-                      )}
-                    </button>
-                  )}
-                </div>
-              </FieldContent>
-            </Field>
-
-            {onChangePhone && (
-              <>
-                <Separator />
-                <Button
-                  className="w-full"
-                  onClick={onChangePhone}
-                  type="button"
-                  variant="ghost"
-                >
-                  Change phone number
-                </Button>
-              </>
-            )}
-
-            {!autoSubmit && (
-              <Button
-                aria-busy={isLoading || status === "verifying"}
-                className="w-full"
-                data-loading={isLoading || status === "verifying"}
-                disabled={
-                  isLoading || status === "verifying" || code.length !== 6
-                }
-                onClick={() => onOTPSubmit?.(code)}
-                type="button"
-              >
-                {isLoading || status === "verifying" ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" />
-                    Verifying…
-                  </>
-                ) : (
-                  <>
-                    <CheckCircle2 className="size-4" />
-                    Verify code
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+      <OTPVerificationState
+        autoSubmit={autoSubmit}
+        className={className}
+        code={code}
+        codeError={codeError}
+        cooldown={cooldown}
+        generalError={generalError}
+        isLoading={isLoading}
+        onChangePhone={onChangePhone}
+        onCodeChange={handleCodeChange}
+        onOTPSubmit={onOTPSubmit}
+        onResend={onResend ? handleResend : undefined}
+        phoneNumber={phoneNumber}
+        selectedCountry={selectedCountry}
+        status={status}
+      />
     );
   }
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
-      <CardHeader>
-        <CardTitle>Verify your phone number</CardTitle>
-        <CardDescription>
-          We&apos;ll send a verification code via SMS
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <form className="flex flex-col gap-6" onSubmit={handlePhoneSubmit}>
-          {generalError && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {generalError}
-            </div>
-          )}
-
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col gap-4 sm:flex-row sm:gap-2">
-              <Field className="w-full sm:w-32">
-                <FieldLabel htmlFor="phone-country">Country</FieldLabel>
-                <FieldContent>
-                  <Select onValueChange={setCountryCode} value={countryCode}>
-                    <SelectTrigger id="phone-country">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {countries.map((country) => (
-                        <SelectItem key={country.code} value={country.code}>
-                          <div className="flex items-center gap-2">
-                            <span>{country.flag}</span>
-                            <span>{country.dialCode}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
-                </FieldContent>
-              </Field>
-
-              <Field className="flex-1" data-invalid={!!phoneError}>
-                <FieldLabel htmlFor="phone-number">
-                  Phone number
-                  <span aria-label="required" className="text-destructive">
-                    *
-                  </span>
-                </FieldLabel>
-                <FieldContent>
-                  <InputGroup aria-invalid={!!phoneError}>
-                    <InputGroupAddon>
-                      <Phone className="size-4" />
-                    </InputGroupAddon>
-                    <InputGroupInput
-                      aria-describedby={
-                        phoneError ? "phone-number-error" : undefined
-                      }
-                      aria-invalid={!!phoneError}
-                      autoComplete="tel"
-                      id="phone-number"
-                      inputMode="tel"
-                      name="phoneNumber"
-                      onChange={handlePhoneChange}
-                      placeholder="(555) 123-4567"
-                      required
-                      type="tel"
-                      value={phoneNumber}
-                    />
-                  </InputGroup>
-                  {phoneError && (
-                    <FieldError id="phone-number-error">
-                      {phoneError}
-                    </FieldError>
-                  )}
-                  <FieldDescription>
-                    We&apos;ll send a verification code to this number
-                  </FieldDescription>
-                </FieldContent>
-              </Field>
-            </div>
-          </div>
-
-          <Button
-            aria-busy={isLoading}
-            className="w-full"
-            data-loading={isLoading}
-            disabled={isLoading || !phoneNumber.trim()}
-            type="submit"
-          >
-            {isLoading ? (
-              <>
-                <Loader2 className="size-4 animate-spin" />
-                Sending code…
-              </>
-            ) : (
-              <>
-                <MessageSquare className="size-4" />
-                Send verification code
-              </>
-            )}
-          </Button>
-        </form>
-      </CardContent>
-    </Card>
+    <PhoneNumberForm
+      className={className}
+      countries={countries}
+      countryCode={countryCode}
+      generalError={generalError}
+      isLoading={isLoading}
+      onCountryCodeChange={setCountryCode}
+      onPhoneChange={handlePhoneChange}
+      onPhoneSubmit={handlePhoneSubmit}
+      phoneError={phoneError}
+      phoneNumber={phoneNumber}
+    />
   );
 }
