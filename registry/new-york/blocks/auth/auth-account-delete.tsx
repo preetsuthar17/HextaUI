@@ -33,6 +33,7 @@ import {
   InputGroup,
   InputGroupInput,
 } from "@/registry/new-york/ui/input-group";
+import { Label } from "../../ui/label";
 
 export interface AuthAccountDeleteProps {
   onDelete?: (data: { confirmText: string }) => void;
@@ -180,18 +181,18 @@ function AcknowledgmentCheckbox({
   onCheckedChange,
 }: AcknowledgmentCheckboxProps) {
   return (
-    <div className="flex items-start gap-2">
+    <div className="flex items-center gap-2">
       <Checkbox
         checked={checked}
         id={id}
         onCheckedChange={(checked) => onCheckedChange(checked === true)}
       />
-      <label
+      <Label
         className="cursor-pointer text-sm leading-relaxed peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
         htmlFor={id}
       >
         {label}
-      </label>
+      </Label>
     </div>
   );
 }
@@ -380,7 +381,6 @@ export default function AuthAccountDelete({
     >
       <CardHeader>
         <CardTitle className="flex items-center gap-2 text-destructive">
-          <Trash2 aria-hidden="true" className="size-5" />
           Delete account
         </CardTitle>
         <CardDescription>

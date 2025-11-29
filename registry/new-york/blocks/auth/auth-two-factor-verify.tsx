@@ -1,6 +1,6 @@
 "use client";
 
-import { Loader2, RefreshCw, Shield, ShieldCheck } from "lucide-react";
+import { Loader2, RefreshCw, ShieldCheck } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/new-york/ui/button";
