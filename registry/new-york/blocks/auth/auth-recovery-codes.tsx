@@ -390,7 +390,7 @@ export default function AuthRecoveryCodes({
     <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <div className="flex items-center justify-between">
-          <div>
+          <div className="flex flex-col gap-2">
             <CardTitle className="flex items-center gap-2">
               <Shield aria-hidden="true" className="size-5" />
               Recovery codes
