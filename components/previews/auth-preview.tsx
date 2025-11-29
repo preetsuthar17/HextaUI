@@ -107,6 +107,7 @@ export default function AuthPreview() {
     <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
       <div className="flex flex-col gap-8">
         <AuthLoginForm
+          className="max-w-full"
           onSocialLogin={(provider) => {
             console.log("Social login:", provider);
           }}
@@ -115,6 +116,7 @@ export default function AuthPreview() {
           }}
         />
         <AuthSignupForm
+          className="max-w-full"
           onSocialLogin={(provider) => {
             console.log("Social signup:", provider);
           }}
@@ -126,6 +128,7 @@ export default function AuthPreview() {
         />
         <AuthForgotPassword
           defaultEmail="user@example.com"
+          className="max-w-full"
           isSuccess={forgotPasswordSuccess}
           onBack={() => setForgotPasswordSuccess(false)}
           onSubmit={(email) => {
@@ -135,6 +138,7 @@ export default function AuthPreview() {
         />
         <AuthVerifyEmail
           email="user@example.com"
+          className="max-w-full"
           onResend={() => {
             console.log("Resending verification email");
             setVerifyEmailStatus("pending");
@@ -144,14 +148,20 @@ export default function AuthPreview() {
         />
         <AuthResetPassword
           isTokenValid={true}
+          className="max-w-full"
           onSubmit={(data) => {
             console.log("Password reset:", data);
+          }}
+          onTokenValidate={async (token) => {
+            console.log("Validating token:", token);
+            return true;
           }}
           token="reset-token-123"
         />
       </div>
       <div className="flex flex-col gap-8">
         <AuthChangePassword
+          className="max-w-full"
           isSuccess={changePasswordSuccess}
           onSubmit={(data) => {
             console.log("Password changed:", data);
@@ -160,6 +170,7 @@ export default function AuthPreview() {
         />
         <AuthMagicLink
           email="user@example.com"
+          className="max-w-full"
           onResend={(email) => {
             console.log("Resending magic link to:", email);
             setMagicLinkStatus("sent");
@@ -174,6 +185,7 @@ export default function AuthPreview() {
         <AuthOTPVerify
           deliveryAddress="user@example.com"
           deliveryMethod="email"
+          className="max-w-full"
           onResend={(method) => {
             console.log("Resending OTP via:", method);
           }}
@@ -183,6 +195,7 @@ export default function AuthPreview() {
           resendCooldown={60}
         />
         <AuthTwoFactorVerify
+          className="max-w-full"
           onRecoveryCode={(code) => {
             console.log("Recovery code used:", code);
           }}
@@ -196,6 +209,7 @@ export default function AuthPreview() {
         />
         <AuthPhoneVerify
           countryCode="US"
+          className="max-w-full"
           onChangePhone={() => {
             setPhoneVerifyStatus("pending");
           }}
@@ -216,6 +230,7 @@ export default function AuthPreview() {
         />
         <AuthSocialAccounts
           accounts={exampleSocialAccounts}
+          className="max-w-full"
           onConnect={(provider) => {
             console.log("Connecting:", provider);
           }}
@@ -229,6 +244,7 @@ export default function AuthPreview() {
       </div>
       <div className="flex flex-col gap-8">
         <AuthTwoFactorSetup
+          className="max-w-full"
           backupCodes={["ABC123", "DEF456", "GHI789", "JKL012", "MNO345"]}
           isEnabled={twoFactorEnabled}
           onDisable={(password) => {
@@ -250,6 +266,7 @@ export default function AuthPreview() {
         />
         <AuthEmailChange
           currentEmail="user@example.com"
+          className="max-w-full"
           isSuccess={false}
           onSubmit={(data) => {
             console.log("Email change requested:", data);
@@ -257,6 +274,7 @@ export default function AuthPreview() {
         />
         <AuthRecoveryCodes
           codes={["ABC123", "DEF456", "GHI789", "JKL012", "MNO345", "PQR678"]}
+          className="max-w-full"
           onGenerate={() => {
             console.log("Generating recovery codes");
           }}
@@ -265,6 +283,7 @@ export default function AuthPreview() {
           }}
         />
         <AuthSessionManager
+          className="max-w-full"
           onRevoke={(sessionId) => {
             console.log("Revoking session:", sessionId);
           }}
@@ -274,6 +293,7 @@ export default function AuthPreview() {
           sessions={exampleSessions}
         />
         <AuthAccountDelete
+          className="max-w-full"
           dataSummary={{
             projects: 12,
             files: 245,
