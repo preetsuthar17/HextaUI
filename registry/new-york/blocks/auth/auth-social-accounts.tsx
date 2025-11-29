@@ -147,19 +147,163 @@ const PROVIDER_CONFIG: Record<
   },
 };
 
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+interface EmptyStateProps {
+  message?: string;
+}
+
+function EmptyState({
+  message = "No social accounts available",
+}: EmptyStateProps) {
+  return (
+    <div className="flex flex-col items-center justify-center py-8 text-center">
+      <p className="text-muted-foreground text-sm">{message}</p>
+    </div>
+  );
+}
+
+interface DisconnectDialogProps {
+  isLoading: boolean;
+  onDisconnect: (provider: SocialProvider) => void;
+  providerName: string;
+  provider: SocialProvider;
+}
+
+function DisconnectDialog({
+  isLoading,
+  onDisconnect,
+  providerName,
+  provider,
+}: DisconnectDialogProps) {
+  return (
+    <AlertDialog>
+      <AlertDialogTrigger asChild>
+        <Button
+          aria-label={`Disconnect ${providerName}`}
+          className="min-h-[32px] min-w-[32px] touch-manipulation"
+          disabled={isLoading}
+          size="icon"
+          type="button"
+          variant="ghost"
+        >
+          <Unlink aria-hidden="true" className="size-4" />
+        </Button>
+      </AlertDialogTrigger>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle>Disconnect {providerName}?</AlertDialogTitle>
+          <AlertDialogDescription>
+            This will disconnect your {providerName} account. You&apos;ll need
+            to reconnect it to use it for sign-in again.
+          </AlertDialogDescription>
+        </AlertDialogHeader>
+        <AlertDialogFooter>
+          <AlertDialogCancel>Cancel</AlertDialogCancel>
+          <AlertDialogAction
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            onClick={() => onDisconnect(provider)}
+          >
+            Disconnect
+          </AlertDialogAction>
+        </AlertDialogFooter>
+      </AlertDialogContent>
+    </AlertDialog>
+  );
+}
+
+interface ConnectButtonProps {
+  isLoading: boolean;
+  onConnect: (provider: SocialProvider) => void;
+  provider: SocialProvider;
+  providerName: string;
+}
+
+function ConnectButton({
+  isLoading,
+  onConnect,
+  provider,
+  providerName,
+}: ConnectButtonProps) {
+  return (
+    <Button
+      aria-label={`Connect ${providerName}`}
+      className="min-h-[44px] w-full touch-manipulation sm:w-auto"
+      disabled={isLoading}
+      onClick={() => onConnect(provider)}
+      type="button"
+    >
+      {isLoading ? (
+        <>
+          <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+          Connecting…
+        </>
+      ) : (
+        <>
+          <ExternalLink aria-hidden="true" className="size-4" />
+          Connect
+        </>
+      )}
+    </Button>
+  );
+}
+
+interface SetPrimaryButtonProps {
+  isLoading: boolean;
+  onSetPrimary: (provider: SocialProvider) => void;
+  provider: SocialProvider;
+  providerName: string;
+}
+
+function SetPrimaryButton({
+  isLoading,
+  onSetPrimary,
+  provider,
+  providerName,
+}: SetPrimaryButtonProps) {
+  return (
+    <Button
+      aria-label={`Set ${providerName} as primary`}
+      className="min-h-[44px] w-full touch-manipulation sm:w-auto"
+      disabled={isLoading}
+      onClick={() => onSetPrimary(provider)}
+      type="button"
+      variant="outline"
+    >
+      Set primary
+    </Button>
+  );
+}
+
+interface SocialAccountItemProps {
+  account: SocialAccount;
+  isLoading: boolean;
+  onConnect?: (provider: SocialProvider) => void;
+  onDisconnect?: (provider: SocialProvider) => void;
+  onSetPrimary?: (provider: SocialProvider) => void;
+}
+
 function SocialAccountItem({
   account,
   onConnect,
   onDisconnect,
   onSetPrimary,
   isLoading,
-}: {
-  account: SocialAccount;
-  onConnect?: (provider: SocialProvider) => void;
-  onDisconnect?: (provider: SocialProvider) => void;
-  onSetPrimary?: (provider: SocialProvider) => void;
-  isLoading?: boolean;
-}) {
+}: SocialAccountItemProps) {
   const config = PROVIDER_CONFIG[account.provider];
   const Icon = config.icon;
 
@@ -172,7 +316,7 @@ function SocialAccountItem({
             account.isConnected ? "bg-muted" : "bg-muted/50"
           )}
         >
-          <Icon className={cn("size-5", config.color)} />
+          <Icon aria-hidden="true" className={cn("size-5", config.color)} />
         </div>
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex flex-wrap items-center gap-2">
@@ -183,10 +327,16 @@ function SocialAccountItem({
               </Badge>
             )}
             {account.isVerified && account.isConnected && (
-              <CheckCircle2 className="size-3.5 text-primary" />
+              <CheckCircle2
+                aria-hidden="true"
+                className="size-3.5 text-primary"
+              />
             )}
             {account.isConnected && !account.isVerified && (
-              <XCircle className="size-3.5 text-yellow-500" />
+              <XCircle
+                aria-hidden="true"
+                className="size-3.5 text-yellow-500"
+              />
             )}
           </div>
           {account.email && (
@@ -203,79 +353,50 @@ function SocialAccountItem({
         {account.isConnected ? (
           <>
             {!account.isPrimary && onSetPrimary && (
-              <Button
-                aria-label={`Set ${config.name} as primary`}
-                className="w-full sm:w-auto"
-                disabled={isLoading}
-                onClick={() => onSetPrimary(account.provider)}
-                type="button"
-                variant="outline"
-              >
-                Set primary
-              </Button>
+              <SetPrimaryButton
+                isLoading={isLoading}
+                onSetPrimary={onSetPrimary}
+                provider={account.provider}
+                providerName={config.name}
+              />
             )}
             {onDisconnect && (
-              <AlertDialog>
-                <AlertDialogTrigger asChild>
-                  <Button
-                    aria-label={`Disconnect ${config.name}`}
-                    disabled={isLoading}
-                    size="icon"
-                    type="button"
-                    variant="ghost"
-                  >
-                    <Unlink className="size-4" />
-                  </Button>
-                </AlertDialogTrigger>
-                <AlertDialogContent>
-                  <AlertDialogHeader>
-                    <AlertDialogTitle>
-                      Disconnect {config.name}?
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                      This will disconnect your {config.name} account.
-                      You&apos;ll need to reconnect it to use it for sign-in
-                      again.
-                    </AlertDialogDescription>
-                  </AlertDialogHeader>
-                  <AlertDialogFooter>
-                    <AlertDialogCancel>Cancel</AlertDialogCancel>
-                    <AlertDialogAction
-                      className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
-                      onClick={() => onDisconnect(account.provider)}
-                    >
-                      Disconnect
-                    </AlertDialogAction>
-                  </AlertDialogFooter>
-                </AlertDialogContent>
-              </AlertDialog>
+              <DisconnectDialog
+                isLoading={isLoading}
+                onDisconnect={onDisconnect}
+                provider={account.provider}
+                providerName={config.name}
+              />
             )}
           </>
         ) : (
           onConnect && (
-            <Button
-              aria-label={`Connect ${config.name}`}
-              className="w-full sm:w-auto"
-              disabled={isLoading}
-              onClick={() => onConnect(account.provider)}
-              type="button"
-            >
-              {isLoading ? (
-                <>
-                  <Loader2 className="size-4 animate-spin" />
-                  Connecting…
-                </>
-              ) : (
-                <>
-                  <ExternalLink className="size-4" />
-                  Connect
-                </>
-              )}
-            </Button>
+            <ConnectButton
+              isLoading={isLoading}
+              onConnect={onConnect}
+              provider={account.provider}
+              providerName={config.name}
+            />
           )
         )}
       </div>
     </div>
+  );
+}
+
+const DEFAULT_ACCOUNTS: SocialAccount[] = [
+  { provider: "google", isConnected: false },
+  { provider: "github", isConnected: false },
+  { provider: "apple", isConnected: false },
+  { provider: "microsoft", isConnected: false },
+];
+
+function getDisplayAccounts(accounts: SocialAccount[]): SocialAccount[] {
+  if (accounts.length > 0) {
+    return accounts;
+  }
+  return DEFAULT_ACCOUNTS.filter(
+    (acc) => !accounts.some((a) => a.provider === acc.provider)
   );
 }
 
@@ -288,23 +409,10 @@ export default function AuthSocialAccounts({
   isLoading = false,
   errors,
 }: AuthSocialAccountsProps) {
-  // Default accounts if none provided
-  const defaultAccounts: SocialAccount[] = [
-    { provider: "google", isConnected: false },
-    { provider: "github", isConnected: false },
-    { provider: "apple", isConnected: false },
-    { provider: "microsoft", isConnected: false },
-  ];
-
-  const displayAccounts =
-    accounts.length > 0
-      ? accounts
-      : defaultAccounts.filter(
-          (acc) => !accounts.some((a) => a.provider === acc.provider)
-        );
+  const displayAccounts = getDisplayAccounts(accounts);
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
         <CardTitle>Connected accounts</CardTitle>
         <CardDescription>
@@ -313,22 +421,10 @@ export default function AuthSocialAccounts({
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-4">
-          {errors?.general && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {errors.general}
-            </div>
-          )}
+          {errors?.general && <ErrorAlert message={errors.general} />}
 
           {displayAccounts.length === 0 ? (
-            <div className="flex flex-col items-center justify-center py-8 text-center">
-              <p className="text-muted-foreground text-sm">
-                No social accounts available
-              </p>
-            </div>
+            <EmptyState />
           ) : (
             <div className="flex flex-col gap-3">
               {displayAccounts.map((account) => (
