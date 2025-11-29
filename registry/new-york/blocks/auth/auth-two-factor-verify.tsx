@@ -29,6 +29,275 @@ import {
 } from "@/registry/new-york/ui/input-otp";
 import { Separator } from "@/registry/new-york/ui/separator";
 
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+function Header() {
+  return (
+    <>
+      <CardTitle className="flex items-center gap-2">
+        <Shield aria-hidden="true" className="size-5" />
+        Verify two-factor authentication
+      </CardTitle>
+      <CardDescription>
+        Enter the 6-digit code from your authenticator app
+      </CardDescription>
+    </>
+  );
+}
+
+interface RecoveryCodeFieldProps {
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+}
+
+function RecoveryCodeField({ value, onChange, error }: RecoveryCodeFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor="recovery-code">
+        Recovery code
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <ShieldCheck aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? "recovery-code-error" : undefined}
+            aria-invalid={!!error}
+            autoComplete="one-time-code"
+            id="recovery-code"
+            name="recoveryCode"
+            onChange={(e) => onChange(e.target.value)}
+            placeholder="Enter recovery code…"
+            required
+            type="text"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id="recovery-code-error">{error}</FieldError>}
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface VerifyRecoveryCodeButtonProps {
+  isLoading: boolean;
+  disabled: boolean;
+}
+
+function VerifyRecoveryCodeButton({
+  isLoading,
+  disabled,
+}: VerifyRecoveryCodeButtonProps) {
+  return (
+    <Button
+      aria-busy={isLoading}
+      className="min-h-[44px] w-full touch-manipulation sm:min-h-[32px] sm:w-auto"
+      data-loading={isLoading}
+      disabled={disabled}
+      type="submit"
+    >
+      {isLoading ? (
+        <>
+          <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+          Verifying…
+        </>
+      ) : (
+        <>
+          <ShieldCheck aria-hidden="true" className="size-4" />
+          Verify recovery code
+        </>
+      )}
+    </Button>
+  );
+}
+
+interface SwitchToAuthenticatorButtonProps {
+  onSwitch: () => void;
+}
+
+function SwitchToAuthenticatorButton({
+  onSwitch,
+}: SwitchToAuthenticatorButtonProps) {
+  return (
+    <Button
+      className="min-h-[44px] w-full touch-manipulation sm:min-h-[32px] sm:w-auto"
+      onClick={onSwitch}
+      type="button"
+      variant="outline"
+    >
+      Use authenticator code
+    </Button>
+  );
+}
+
+interface RecoveryCodeFormProps {
+  recoveryCode: string;
+  onRecoveryCodeChange: (value: string) => void;
+  error?: string;
+  isLoading: boolean;
+  onSubmit: (e: React.FormEvent) => void;
+  onSwitchToAuthenticator: () => void;
+}
+
+function RecoveryCodeForm({
+  recoveryCode,
+  onRecoveryCodeChange,
+  error,
+  isLoading,
+  onSubmit,
+  onSwitchToAuthenticator,
+}: RecoveryCodeFormProps) {
+  return (
+    <form className="flex flex-col gap-4" onSubmit={onSubmit}>
+      <RecoveryCodeField
+        error={error}
+        onChange={onRecoveryCodeChange}
+        value={recoveryCode}
+      />
+      <div className="flex flex-col gap-2 sm:flex-row">
+        <VerifyRecoveryCodeButton
+          disabled={isLoading || !recoveryCode.trim()}
+          isLoading={isLoading}
+        />
+        <SwitchToAuthenticatorButton onSwitch={onSwitchToAuthenticator} />
+      </div>
+    </form>
+  );
+}
+
+interface ResendButtonProps {
+  cooldown: number;
+  isLoading: boolean;
+  onResend: () => void;
+}
+
+function ResendButton({ cooldown, isLoading, onResend }: ResendButtonProps) {
+  return (
+    <button
+      className="min-h-[32px] touch-manipulation self-start rounded-sm hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:self-auto"
+      disabled={cooldown > 0 || isLoading}
+      onClick={onResend}
+      type="button"
+    >
+      {cooldown > 0 ? (
+        `Resend in ${cooldown}s`
+      ) : (
+        <span className="flex items-center gap-1">
+          <RefreshCw aria-hidden="true" className="size-3" />
+          Resend code
+        </span>
+      )}
+    </button>
+  );
+}
+
+interface OTPFieldWithResendProps {
+  value: string;
+  onChange: (value: string) => void;
+  error?: string;
+  isLoading: boolean;
+  cooldown: number;
+  onResend?: () => void;
+}
+
+function OTPFieldWithResend({
+  value,
+  onChange,
+  error,
+  isLoading,
+  cooldown,
+  onResend,
+}: OTPFieldWithResendProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor="2fa-code">
+        Authentication code
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputOTP
+          aria-describedby={error ? "2fa-code-error" : undefined}
+          aria-invalid={!!error}
+          disabled={isLoading}
+          id="2fa-code"
+          maxLength={6}
+          onChange={onChange}
+          value={value}
+        >
+          <InputOTPGroup>
+            <InputOTPSlot index={0} />
+            <InputOTPSlot index={1} />
+            <InputOTPSlot index={2} />
+            <InputOTPSlot index={3} />
+            <InputOTPSlot index={4} />
+            <InputOTPSlot index={5} />
+          </InputOTPGroup>
+        </InputOTP>
+        {error && <FieldError id="2fa-code-error">{error}</FieldError>}
+        <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
+          <span>Enter the 6-digit code from your app</span>
+          {onResend && (
+            <ResendButton
+              cooldown={cooldown}
+              isLoading={isLoading}
+              onResend={onResend}
+            />
+          )}
+        </div>
+      </FieldContent>
+    </Field>
+  );
+}
+
+function EmailSeparator() {
+  return (
+    <div className="relative">
+      <Separator />
+      <div className="absolute inset-0 flex items-center justify-center">
+        <span className="bg-card px-2 text-muted-foreground text-xs">Or</span>
+      </div>
+    </div>
+  );
+}
+
+interface RecoveryCodeToggleButtonProps {
+  onToggle: () => void;
+}
+
+function RecoveryCodeToggleButton({ onToggle }: RecoveryCodeToggleButtonProps) {
+  return (
+    <Button
+      className="min-h-[44px] w-full touch-manipulation sm:min-h-[32px]"
+      onClick={onToggle}
+      type="button"
+      variant="ghost"
+    >
+      Use recovery code instead
+    </Button>
+  );
+}
+
 export interface AuthTwoFactorVerifyProps {
   onSubmit?: (code: string) => void;
   onRecoveryCode?: (code: string) => void;
@@ -90,178 +359,50 @@ export default function AuthTwoFactorVerify({
     [recoveryCode, onRecoveryCode]
   );
 
-  const codeError = errors?.code;
-  const recoveryCodeError = errors?.recoveryCode;
-  const generalError = errors?.general;
+  const handleSwitchToAuthenticator = useCallback(() => {
+    setUseRecoveryCode(false);
+    setRecoveryCode("");
+  }, []);
+
+  const handleSwitchToRecoveryCode = useCallback(() => {
+    setUseRecoveryCode(true);
+  }, []);
 
   return (
-    <Card className={cn("w-full shadow-xs", className)}>
+    <Card className={cn("w-full max-w-sm shadow-xs", className)}>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Shield className="size-5" />
-          Verify two-factor authentication
-        </CardTitle>
-        <CardDescription>
-          Enter the 6-digit code from your authenticator app
-        </CardDescription>
+        <Header />
       </CardHeader>
       <CardContent>
         <div className="flex flex-col gap-6">
-          {generalError && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {generalError}
-            </div>
-          )}
+          {errors?.general && <ErrorAlert message={errors.general} />}
 
           {useRecoveryCode ? (
-            <form
-              className="flex flex-col gap-4"
+            <RecoveryCodeForm
+              error={errors?.recoveryCode}
+              isLoading={isLoading}
+              onRecoveryCodeChange={setRecoveryCode}
               onSubmit={handleRecoveryCodeSubmit}
-            >
-              <Field data-invalid={!!recoveryCodeError}>
-                <FieldLabel htmlFor="recovery-code">
-                  Recovery code
-                  <span aria-label="required" className="text-destructive">
-                    *
-                  </span>
-                </FieldLabel>
-                <FieldContent>
-                  <InputGroup aria-invalid={!!recoveryCodeError}>
-                    <InputGroupAddon>
-                      <ShieldCheck className="size-4" />
-                    </InputGroupAddon>
-                    <InputGroupInput
-                      aria-describedby={
-                        recoveryCodeError ? "recovery-code-error" : undefined
-                      }
-                      aria-invalid={!!recoveryCodeError}
-                      autoComplete="one-time-code"
-                      id="recovery-code"
-                      name="recoveryCode"
-                      onChange={(e) => setRecoveryCode(e.target.value)}
-                      placeholder="Enter recovery code"
-                      required
-                      type="text"
-                      value={recoveryCode}
-                    />
-                  </InputGroup>
-                  {recoveryCodeError && (
-                    <FieldError id="recovery-code-error">
-                      {recoveryCodeError}
-                    </FieldError>
-                  )}
-                </FieldContent>
-              </Field>
-
-              <div className="flex flex-col gap-2 sm:flex-row">
-                <Button
-                  aria-busy={isLoading}
-                  className="w-full sm:w-auto"
-                  data-loading={isLoading}
-                  disabled={isLoading || !recoveryCode.trim()}
-                  type="submit"
-                >
-                  {isLoading ? (
-                    <>
-                      <Loader2 className="size-4 animate-spin" />
-                      Verifying…
-                    </>
-                  ) : (
-                    <>
-                      <ShieldCheck className="size-4" />
-                      Verify recovery code
-                    </>
-                  )}
-                </Button>
-                <Button
-                  className="w-full sm:w-auto"
-                  onClick={() => {
-                    setUseRecoveryCode(false);
-                    setRecoveryCode("");
-                  }}
-                  type="button"
-                  variant="outline"
-                >
-                  Use authenticator code
-                </Button>
-              </div>
-            </form>
+              onSwitchToAuthenticator={handleSwitchToAuthenticator}
+              recoveryCode={recoveryCode}
+            />
           ) : (
             <div className="flex flex-col gap-4">
-              <Field data-invalid={!!codeError}>
-                <FieldLabel htmlFor="2fa-code">
-                  Authentication code
-                  <span aria-label="required" className="text-destructive">
-                    *
-                  </span>
-                </FieldLabel>
-                <FieldContent>
-                  <InputOTP
-                    aria-describedby={codeError ? "2fa-code-error" : undefined}
-                    aria-invalid={!!codeError}
-                    disabled={isLoading}
-                    id="2fa-code"
-                    maxLength={6}
-                    onChange={setCode}
-                    value={code}
-                  >
-                    <InputOTPGroup>
-                      <InputOTPSlot index={0} />
-                      <InputOTPSlot index={1} />
-                      <InputOTPSlot index={2} />
-                      <InputOTPSlot index={3} />
-                      <InputOTPSlot index={4} />
-                      <InputOTPSlot index={5} />
-                    </InputOTPGroup>
-                  </InputOTP>
-                  {codeError && (
-                    <FieldError id="2fa-code-error">{codeError}</FieldError>
-                  )}
-                  <div className="flex flex-col gap-2 text-muted-foreground text-xs sm:flex-row sm:items-center sm:justify-between">
-                    <span>Enter the 6-digit code from your app</span>
-                    {onResend && (
-                      <button
-                        className="self-start rounded-sm hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:self-auto"
-                        disabled={cooldown > 0 || isLoading}
-                        onClick={handleResend}
-                        type="button"
-                      >
-                        {cooldown > 0 ? (
-                          `Resend in ${cooldown}s`
-                        ) : (
-                          <span className="flex items-center gap-1">
-                            <RefreshCw className="size-3" />
-                            Resend code
-                          </span>
-                        )}
-                      </button>
-                    )}
-                  </div>
-                </FieldContent>
-              </Field>
+              <OTPFieldWithResend
+                cooldown={cooldown}
+                error={errors?.code}
+                isLoading={isLoading}
+                onChange={setCode}
+                onResend={onResend}
+                value={code}
+              />
 
               {onRecoveryCode && (
                 <>
-                  <div className="relative">
-                    <Separator />
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="bg-background px-2 text-muted-foreground text-xs">
-                        Or
-                      </span>
-                    </div>
-                  </div>
-
-                  <Button
-                    onClick={() => setUseRecoveryCode(true)}
-                    type="button"
-                    variant="ghost"
-                  >
-                    Use recovery code instead
-                  </Button>
+                  <EmailSeparator />
+                  <RecoveryCodeToggleButton
+                    onToggle={handleSwitchToRecoveryCode}
+                  />
                 </>
               )}
             </div>
