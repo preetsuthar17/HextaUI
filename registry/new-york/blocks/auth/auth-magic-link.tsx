@@ -304,7 +304,7 @@ export default function AuthMagicLink({
   email: statusEmail,
   resendCooldown = 60,
   errors,
-  successMessage = "We&apos;ve sent a magic link to your email address.",
+  successMessage = "We've sent a magic link to your email address.",
 }: AuthMagicLinkProps) {
   const [email, setEmail] = useState(defaultEmail);
   const [cooldown, setCooldown] = useState(0);
