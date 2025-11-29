@@ -1045,14 +1045,10 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     // Auth Blocks
     case "auth-login-form": {
       return {
-        onSubmit: ({
-          email,
-          password,
-          remember,
-        }: {
+        onSubmit: (data: {
           email: string;
           password: string;
-          remember: boolean;
+          rememberMe: boolean;
         }) => {
           /* demo login */
         },
@@ -1061,19 +1057,16 @@ This is a demonstration of real-time token-by-token streaming. The component pro
         },
         showRememberMe: true,
         showSocialLogin: true,
-        emailPlaceholder: "your@email.com",
       };
     }
     case "auth-signup-form": {
       return {
-        onSubmit: ({
-          email,
-          password,
-          confirm,
-        }: {
+        onSubmit: (data: {
+          name: string;
           email: string;
           password: string;
-          confirm: string;
+          confirmPassword: string;
+          acceptTerms: boolean;
         }) => {
           /* signup logic */
         },
@@ -1085,50 +1078,45 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     }
     case "auth-forgot-password": {
       return {
-        onSubmit: ({ email }: { email: string }) => {
+        onSubmit: (email: string) => {
           /* send reset link */
         },
-        onBackToLogin: () => {
+        onBack: () => {
           /* nav back to login */
         },
-        emailPlaceholder: "Enter your email address",
       };
     }
     case "auth-reset-password": {
       return {
-        onSubmit: ({
-          password,
-          confirm,
-        }: {
-          password: string;
-          confirm: string;
-        }) => {
+        onSubmit: (data: { password: string; token: string }) => {
           /* reset password logic */
         },
         token: "example-token-sent-via-email",
-        showPasswordStrength: true,
+        onTokenValidate: async (token: string) => {
+          /* validate token */
+          return true;
+        },
       };
     }
     case "auth-magic-link": {
       return {
-        onSubmit: ({ email }: { email: string }) => {
+        onSubmit: (email: string) => {
           /* send magic link */
         },
-        onResend: () => {
+        onResend: (email: string) => {
           /* resend magic link */
         },
         status: "pending" as const,
-        infoText: "Check your inbox for a sign-in link.",
       };
     }
     case "auth-otp-verify": {
       return {
         deliveryMethod: "email" as const,
         deliveryAddress: "user@example.com",
-        onSubmit: ({ code }: { code: string }) => {
+        onSubmit: (code: string) => {
           /* verify otp */
         },
-        onResend: () => {
+        onResend: (method: "email" | "sms" | "whatsapp") => {
           /* resend code */
         },
       };
@@ -1136,7 +1124,11 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     case "auth-phone-verify": {
       return {
         phoneNumber: "+1234567890",
-        onSubmit: ({ code }: { code: string }) => {
+        countryCode: "US",
+        onPhoneSubmit: (phoneNumber: string, countryCode: string) => {
+          /* submit phone number */
+        },
+        onOTPSubmit: (code: string) => {
           /* verify sms */
         },
         onResend: () => {
@@ -1152,23 +1144,14 @@ This is a demonstration of real-time token-by-token streaming. The component pro
         onResend: () => {
           /* resend email */
         },
-        onVerify: () => {
+        onVerify: (token: string) => {
           /* verify email link */
         },
-        infoText: "Verification link sent to your email.",
       };
     }
     case "auth-change-password": {
       return {
-        onSubmit: ({
-          current,
-          next,
-          confirm,
-        }: {
-          current: string;
-          next: string;
-          confirm: string;
-        }) => {
+        onSubmit: (data: { currentPassword: string; newPassword: string }) => {
           /* change password */
         },
       };
@@ -1176,24 +1159,41 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     case "auth-email-change": {
       return {
         currentEmail: "user@example.com",
-        onSubmit: ({ newEmail }: { newEmail: string }) => {
+        onSubmit: (data: { newEmail: string; password: string }) => {
           /* change email */
         },
       };
     }
     case "auth-two-factor-setup": {
       return {
-        qrUrl: "/static/2fa-qr.png",
-        secret: "JFVHK324HKJS",
-        onComplete: ({ code }: { code: string }) => {
-          /* complete 2fa setup */
+        isEnabled: false,
+        qrCodeUrl: "/static/2fa-qr.png",
+        secretKey: "JFVHK324HKJS",
+        backupCodes: ["173839", "572048", "208453", "983242"],
+        onEnable: () => {
+          /* enable 2FA */
+        },
+        onDisable: (password: string) => {
+          /* disable 2FA */
+        },
+        onGenerateBackupCodes: () => {
+          /* generate backup codes */
+        },
+        onRegenerateSecret: () => {
+          /* regenerate secret */
         },
       };
     }
     case "auth-two-factor-verify": {
       return {
-        onSubmit: ({ code }: { code: string }) => {
+        onSubmit: (code: string) => {
           /* verify two-factor code */
+        },
+        onRecoveryCode: (code: string) => {
+          /* verify recovery code */
+        },
+        onResend: () => {
+          /* resend code */
         },
       };
     }
@@ -1208,13 +1208,12 @@ This is a demonstration of real-time token-by-token streaming. The component pro
           "450281",
           "143892",
         ],
-        onRegenerate: async () => {
-          /* regenerate demo codes */
+        onGenerate: () => {
+          /* generate codes */
         },
-        onDownload: () => {
-          /* download demo codes */
+        onRegenerate: () => {
+          /* regenerate codes */
         },
-        showWarning: true,
       };
     }
     case "auth-session-manager": {
@@ -1249,19 +1248,30 @@ This is a demonstration of real-time token-by-token streaming. The component pro
     }
     case "auth-social-accounts": {
       return {
-        connectedAccounts: [
+        accounts: [
           {
-            id: "acct-google",
             provider: "google",
+            isConnected: true,
             email: "john.doe@gmail.com",
+            isPrimary: true,
+          },
+          {
+            provider: "github",
+            isConnected: false,
           },
         ],
-        availableProviders: ["google", "github", "twitter"],
-        onConnect: async (prov: string) => {
+        onConnect: (provider: "google" | "github" | "apple" | "microsoft") => {
           /* connect social provider */
         },
-        onDisconnect: async (prov: string) => {
+        onDisconnect: (
+          provider: "google" | "github" | "apple" | "microsoft"
+        ) => {
           /* disconnect provider */
+        },
+        onSetPrimary: (
+          provider: "google" | "github" | "apple" | "microsoft"
+        ) => {
+          /* set primary provider */
         },
       };
     }
@@ -4998,7 +5008,7 @@ This is a demonstration of real-time token-by-token streaming."
   "auth-change-password": {
     usageImports: `import AuthChangePassword from "@/registry/new-york/blocks/auth/auth-change-password";`,
     usageCode: `<AuthChangePassword
-  onSubmit={async ({ current, next, confirm }) => {
+  onSubmit={async (data) => {
     /* change password */
   }}
 />`,
@@ -5007,7 +5017,7 @@ This is a demonstration of real-time token-by-token streaming."
     usageImports: `import AuthEmailChange from "@/registry/new-york/blocks/auth/auth-email-change";`,
     usageCode: `<AuthEmailChange
   currentEmail="user@example.com"
-  onSubmit={async ({ newEmail }) => {
+  onSubmit={async (data) => {
     /* change email */
   }}
 />`,
@@ -5015,19 +5025,18 @@ This is a demonstration of real-time token-by-token streaming."
   "auth-forgot-password": {
     usageImports: `import AuthForgotPassword from "@/registry/new-york/blocks/auth/auth-forgot-password";`,
     usageCode: `<AuthForgotPassword
-  onSubmit={async ({ email }) => {
+  onSubmit={async (email) => {
     /* send reset link */
   }}
-  onBackToLogin={() => {
+  onBack={() => {
     /* nav back to login */
   }}
-  emailPlaceholder="Enter your email address"
 />`,
   },
   "auth-login-form": {
     usageImports: `import AuthLoginForm from "@/registry/new-york/blocks/auth/auth-login-form";`,
     usageCode: `<AuthLoginForm
-  onSubmit={async ({ email, password, remember }) => {
+  onSubmit={async (data) => {
     /* demo login */
   }}
   onSocialLogin={(provider) => {
@@ -5035,20 +5044,18 @@ This is a demonstration of real-time token-by-token streaming."
   }}
   showRememberMe={true}
   showSocialLogin={true}
-  emailPlaceholder="your@email.com"
 />`,
   },
   "auth-magic-link": {
     usageImports: `import AuthMagicLink from "@/registry/new-york/blocks/auth/auth-magic-link";`,
     usageCode: `<AuthMagicLink
-  onSubmit={async ({ email }) => {
+  onSubmit={async (email) => {
     /* send magic link */
   }}
-  onResend={() => {
+  onResend={(email) => {
     /* resend magic link */
   }}
   status="pending"
-  infoText="Check your inbox for a sign-in link."
 />`,
   },
   "auth-otp-verify": {
@@ -5056,10 +5063,10 @@ This is a demonstration of real-time token-by-token streaming."
     usageCode: `<AuthOTPVerify
   deliveryMethod="email"
   deliveryAddress="user@example.com"
-  onSubmit={async ({ code }) => {
+  onSubmit={async (code) => {
     /* verify otp */
   }}
-  onResend={() => {
+  onResend={(method) => {
     /* resend code */
   }}
 />`,
@@ -5068,7 +5075,11 @@ This is a demonstration of real-time token-by-token streaming."
     usageImports: `import AuthPhoneVerify from "@/registry/new-york/blocks/auth/auth-phone-verify";`,
     usageCode: `<AuthPhoneVerify
   phoneNumber="+1234567890"
-  onSubmit={async ({ code }) => {
+  countryCode="US"
+  onPhoneSubmit={(phoneNumber, countryCode) => {
+    /* submit phone number */
+  }}
+  onOTPSubmit={async (code) => {
     /* verify sms */
   }}
   onResend={() => {
@@ -5081,23 +5092,25 @@ This is a demonstration of real-time token-by-token streaming."
     usageImports: `import AuthRecoveryCodes from "@/registry/new-york/blocks/auth/auth-recovery-codes";`,
     usageCode: `<AuthRecoveryCodes
   codes={["173839", "572048", "208453", "983242"]}
-  onRegenerate={async () => {
-    /* regenerate demo codes */
+  onGenerate={() => {
+    /* generate codes */
   }}
-  onDownload={() => {
-    /* download demo codes */
+  onRegenerate={() => {
+    /* regenerate codes */
   }}
-  showWarning={true}
 />`,
   },
   "auth-reset-password": {
     usageImports: `import AuthResetPassword from "@/registry/new-york/blocks/auth/auth-reset-password";`,
     usageCode: `<AuthResetPassword
-  onSubmit={async ({ password, confirm }) => {
+  onSubmit={async (data) => {
     /* reset password logic */
   }}
   token="example-token-sent-via-email"
-  showPasswordStrength={true}
+  onTokenValidate={async (token) => {
+    /* validate token */
+    return true;
+  }}
 />`,
   },
   "auth-session-manager": {
@@ -5125,7 +5138,7 @@ This is a demonstration of real-time token-by-token streaming."
   "auth-signup-form": {
     usageImports: `import AuthSignupForm from "@/registry/new-york/blocks/auth/auth-signup-form";`,
     usageCode: `<AuthSignupForm
-  onSubmit={async ({ email, password, confirm }) => {
+  onSubmit={async (data) => {
     /* signup logic */
   }}
   onSocialLogin={(provider) => {
@@ -5137,37 +5150,61 @@ This is a demonstration of real-time token-by-token streaming."
   "auth-social-accounts": {
     usageImports: `import AuthSocialAccounts from "@/registry/new-york/blocks/auth/auth-social-accounts";`,
     usageCode: `<AuthSocialAccounts
-  connectedAccounts={[
+  accounts={[
     {
-      id: "acct-google",
       provider: "google",
+      isConnected: true,
       email: "john.doe@gmail.com",
+      isPrimary: true,
+    },
+    {
+      provider: "github",
+      isConnected: false,
     },
   ]}
-  availableProviders={["google", "github", "twitter"]}
-  onConnect={async (prov) => {
+  onConnect={(provider) => {
     /* connect social provider */
   }}
-  onDisconnect={async (prov) => {
+  onDisconnect={(provider) => {
     /* disconnect provider */
+  }}
+  onSetPrimary={(provider) => {
+    /* set primary provider */
   }}
 />`,
   },
   "auth-two-factor-setup": {
     usageImports: `import AuthTwoFactorSetup from "@/registry/new-york/blocks/auth/auth-two-factor-setup";`,
     usageCode: `<AuthTwoFactorSetup
-  qrUrl="/static/2fa-qr.png"
-  secret="JFVHK324HKJS"
-  onComplete={async ({ code }) => {
-    /* complete 2fa setup */
+  isEnabled={false}
+  qrCodeUrl="/static/2fa-qr.png"
+  secretKey="JFVHK324HKJS"
+  backupCodes={["173839", "572048", "208453"]}
+  onEnable={() => {
+    /* enable 2FA */
+  }}
+  onDisable={(password) => {
+    /* disable 2FA */
+  }}
+  onGenerateBackupCodes={() => {
+    /* generate backup codes */
+  }}
+  onRegenerateSecret={() => {
+    /* regenerate secret */
   }}
 />`,
   },
   "auth-two-factor-verify": {
     usageImports: `import AuthTwoFactorVerify from "@/registry/new-york/blocks/auth/auth-two-factor-verify";`,
     usageCode: `<AuthTwoFactorVerify
-  onSubmit={async ({ code }) => {
+  onSubmit={async (code) => {
     /* verify two-factor code */
+  }}
+  onRecoveryCode={(code) => {
+    /* verify recovery code */
+  }}
+  onResend={() => {
+    /* resend code */
   }}
 />`,
   },
@@ -5179,10 +5216,9 @@ This is a demonstration of real-time token-by-token streaming."
   onResend={async () => {
     /* resend email */
   }}
-  onVerify={() => {
+  onVerify={(token) => {
     /* verify email link */
   }}
-  infoText="Verification link sent to your email."
 />`,
   },
   "billing-billing-history": {
