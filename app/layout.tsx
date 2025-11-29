@@ -177,6 +177,7 @@ export default function RootLayout({
         {process.env.NODE_ENV === "development" && (
           <script
             crossOrigin="anonymous"
+            defer
             src="//unpkg.com/react-scan/dist/auto.global.js"
           />
         )}

@@ -127,8 +127,8 @@ export default function AuthPreview() {
           termsUrl="https://example.com/terms"
         />
         <AuthForgotPassword
-          defaultEmail="user@example.com"
           className="max-w-full"
+          defaultEmail="user@example.com"
           isSuccess={forgotPasswordSuccess}
           onBack={() => setForgotPasswordSuccess(false)}
           onSubmit={(email) => {
@@ -137,8 +137,8 @@ export default function AuthPreview() {
           }}
         />
         <AuthVerifyEmail
-          email="user@example.com"
           className="max-w-full"
+          email="user@example.com"
           onResend={() => {
             console.log("Resending verification email");
             setVerifyEmailStatus("pending");
@@ -147,8 +147,8 @@ export default function AuthPreview() {
           status={verifyEmailStatus}
         />
         <AuthResetPassword
-          isTokenValid={true}
           className="max-w-full"
+          isTokenValid={true}
           onSubmit={(data) => {
             console.log("Password reset:", data);
           }}
@@ -169,8 +169,8 @@ export default function AuthPreview() {
           }}
         />
         <AuthMagicLink
-          email="user@example.com"
           className="max-w-full"
+          email="user@example.com"
           onResend={(email) => {
             console.log("Resending magic link to:", email);
             setMagicLinkStatus("sent");
@@ -183,9 +183,9 @@ export default function AuthPreview() {
           status={magicLinkStatus}
         />
         <AuthOTPVerify
+          className="max-w-full"
           deliveryAddress="user@example.com"
           deliveryMethod="email"
-          className="max-w-full"
           onResend={(method) => {
             console.log("Resending OTP via:", method);
           }}
@@ -208,8 +208,8 @@ export default function AuthPreview() {
           resendCooldown={60}
         />
         <AuthPhoneVerify
-          countryCode="US"
           className="max-w-full"
+          countryCode="US"
           onChangePhone={() => {
             setPhoneVerifyStatus("pending");
           }}
@@ -244,8 +244,8 @@ export default function AuthPreview() {
       </div>
       <div className="flex flex-col gap-8">
         <AuthTwoFactorSetup
-          className="max-w-full"
           backupCodes={["ABC123", "DEF456", "GHI789", "JKL012", "MNO345"]}
+          className="max-w-full"
           isEnabled={twoFactorEnabled}
           onDisable={(password) => {
             console.log("2FA disabled with password");
@@ -265,16 +265,16 @@ export default function AuthPreview() {
           secretKey="JBSWY3DPEHPK3PXP"
         />
         <AuthEmailChange
-          currentEmail="user@example.com"
           className="max-w-full"
+          currentEmail="user@example.com"
           isSuccess={false}
           onSubmit={(data) => {
             console.log("Email change requested:", data);
           }}
         />
         <AuthRecoveryCodes
-          codes={["ABC123", "DEF456", "GHI789", "JKL012", "MNO345", "PQR678"]}
           className="max-w-full"
+          codes={["ABC123", "DEF456", "GHI789", "JKL012", "MNO345", "PQR678"]}
           onGenerate={() => {
             console.log("Generating recovery codes");
           }}

@@ -220,7 +220,6 @@ function CategoryFilter({
           aria-label={
             showFavoritesOnly ? "Show all templates" : "Show favorites only"
           }
-          aria-pressed={showFavoritesOnly}
           className={cn(
             "min-h-[32px] gap-2 px-3 py-1.5 sm:h-auto sm:min-h-[10px]",
             showFavoritesOnly
@@ -228,7 +227,6 @@ function CategoryFilter({
               : "bg-muted text-muted-foreground hover:bg-muted/80"
           )}
           onClick={onToggleFavorites}
-          role="tab"
           type="button"
           variant="ghost"
         >
@@ -242,7 +240,7 @@ function CategoryFilter({
         return (
           <Button
             aria-label={`Filter by ${category} category`}
-            aria-pressed={isSelected}
+            aria-pressed={undefined}
             className={cn(
               "min-h-[32px] gap-2 px-3 py-1.5 sm:h-auto sm:min-h-[10px]",
               isSelected
@@ -251,7 +249,7 @@ function CategoryFilter({
             )}
             key={category}
             onClick={() => onCategoryChange(category)}
-            role="tab"
+            role={undefined}
             type="button"
             variant="ghost"
           >
@@ -688,6 +686,18 @@ export default function AIPromptTemplates({
     }
   }, [focusedIndex, filteredTemplates.length]);
 
+  const handleSelect = useCallback(
+    (template: PromptTemplate) => {
+      if (template.variables && template.variables.length > 0) {
+        setSelectedTemplate(template);
+        setTemplateVariables({});
+      } else {
+        onSelect?.(template);
+      }
+    },
+    [onSelect]
+  );
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (
@@ -718,19 +728,7 @@ export default function AIPromptTemplates({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [filteredTemplates, focusedIndex]);
-
-  const handleSelect = useCallback(
-    (template: PromptTemplate) => {
-      if (template.variables && template.variables.length > 0) {
-        setSelectedTemplate(template);
-        setTemplateVariables({});
-      } else {
-        onSelect?.(template);
-      }
-    },
-    [onSelect]
-  );
+  }, [filteredTemplates, focusedIndex, handleSelect]);
 
   const handleUseTemplate = useCallback(() => {
     if (!selectedTemplate) return;

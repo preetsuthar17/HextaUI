@@ -173,7 +173,6 @@ function CategoryFilter({
         return (
           <Button
             aria-label={`Filter by ${category}`}
-            aria-pressed={isSelected}
             aria-selected={isSelected}
             className={cn(
               "min-h-[32px] gap-2 px-3 py-1.5 sm:h-auto sm:min-h-[10px]",
@@ -183,7 +182,6 @@ function CategoryFilter({
             )}
             key={category}
             onClick={() => onSelect(category)}
-            role="tab"
             type="button"
             variant="ghost"
           >
