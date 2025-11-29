@@ -12,6 +12,7 @@ import { BlockPrevNext } from "@/components/docs/block-prev-next";
 import { BlocksSidebar } from "@/components/docs/blocks-sidebar";
 import { ComponentSection } from "@/components/docs/component-section";
 import ComponentUsage from "@/components/docs/component-usage";
+import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 import {
   blocksRegistry,
   categoryLabels,
@@ -30,7 +31,6 @@ import {
 import { Button } from "@/registry/new-york/ui/button";
 import { Separator } from "@/registry/new-york/ui/separator";
 import { Spinner } from "@/registry/new-york/ui/spinner";
-import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -167,7 +167,7 @@ export default async function BlockPage({
           </header>
 
           {/* Demo */}
-          <div className="flex justify-end -mb-6">
+          <div className="-mb-6 flex justify-end">
             <OpenInV0Button url={`https://www.hextaui.com/r/${meta.id}.json`} />
           </div>
           <Suspense

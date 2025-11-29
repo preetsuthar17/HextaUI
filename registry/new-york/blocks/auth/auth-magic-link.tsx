@@ -41,12 +41,257 @@ export interface AuthMagicLinkProps {
   isLoading?: boolean;
   status?: MagicLinkStatus;
   email?: string;
-  resendCooldown?: number; // seconds
+  resendCooldown?: number;
   errors?: {
     email?: string;
     general?: string;
   };
   successMessage?: string;
+}
+
+function validateEmail(value: string): string | undefined {
+  if (!value.trim()) {
+    return "Email is required";
+  }
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(value)) {
+    return "Please enter a valid email address";
+  }
+  return;
+}
+
+interface ErrorAlertProps {
+  message: string;
+}
+
+function ErrorAlert({ message }: ErrorAlertProps) {
+  return (
+    <div
+      aria-live="polite"
+      className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
+      role="alert"
+    >
+      {message}
+    </div>
+  );
+}
+
+interface EmailFieldProps {
+  id: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string;
+}
+
+function EmailField({ id, value, onChange, error }: EmailFieldProps) {
+  return (
+    <Field data-invalid={!!error}>
+      <FieldLabel htmlFor={id}>
+        Email
+        <span aria-label="required" className="text-destructive">
+          *
+        </span>
+      </FieldLabel>
+      <FieldContent>
+        <InputGroup aria-invalid={!!error}>
+          <InputGroupAddon>
+            <Mail aria-hidden="true" className="size-4" />
+          </InputGroupAddon>
+          <InputGroupInput
+            aria-describedby={error ? `${id}-error` : undefined}
+            aria-invalid={!!error}
+            autoComplete="email"
+            id={id}
+            inputMode="email"
+            name="email"
+            onChange={onChange}
+            placeholder="name@example.com…"
+            required
+            type="email"
+            value={value}
+          />
+        </InputGroup>
+        {error && <FieldError id={`${id}-error`}>{error}</FieldError>}
+        <FieldDescription>
+          We&apos;ll send a secure link to sign in without a password
+        </FieldDescription>
+      </FieldContent>
+    </Field>
+  );
+}
+
+interface ResendButtonProps {
+  cooldown: number;
+  isLoading: boolean;
+  onClick: () => void;
+  variant?: "default" | "outline";
+}
+
+function ResendButton({
+  cooldown,
+  isLoading,
+  onClick,
+  variant = "default",
+}: ResendButtonProps) {
+  return (
+    <Button
+      aria-busy={isLoading}
+      className="min-h-[44px] w-full touch-manipulation"
+      data-loading={isLoading}
+      disabled={cooldown > 0 || isLoading}
+      onClick={onClick}
+      type="button"
+      variant={variant}
+    >
+      {isLoading ? (
+        <>
+          <Loader2 aria-hidden="true" className="size-4 animate-spin" />
+          Sending…
+        </>
+      ) : cooldown > 0 ? (
+        <>
+          <Clock aria-hidden="true" className="size-4" />
+          Resend in {cooldown}s
+        </>
+      ) : (
+        <>
+          <RefreshCw aria-hidden="true" className="size-4" />
+          {variant === "outline"
+            ? "Resend magic link"
+            : "Request new magic link"}
+        </>
+      )}
+    </Button>
+  );
+}
+
+interface VerifiedStateProps {
+  className?: string;
+}
+
+function VerifiedState({ className }: VerifiedStateProps) {
+  return (
+    <Card className={cn("w-full shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Email verified</CardTitle>
+        <CardDescription>You&apos;ve successfully signed in</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
+          <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
+            <CheckCircle2 aria-hidden="true" className="size-8 text-primary" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <p className="font-medium text-sm">
+              You&apos;re all set! Redirecting…
+            </p>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface ExpiredStateProps {
+  className?: string;
+  cooldown: number;
+  isLoading: boolean;
+  onResend?: () => void;
+}
+
+function ExpiredState({
+  className,
+  cooldown,
+  isLoading,
+  onResend,
+}: ExpiredStateProps) {
+  return (
+    <Card className={cn("w-full shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Link expired</CardTitle>
+        <CardDescription>
+          This magic link has expired. Please request a new one.
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-4">
+          <div className="flex flex-col items-center gap-4 rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
+            <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10">
+              <XCircle aria-hidden="true" className="size-8 text-destructive" />
+            </div>
+            <p className="text-destructive text-sm">
+              The magic link has expired. Please request a new one.
+            </p>
+          </div>
+
+          {onResend && (
+            <ResendButton
+              cooldown={cooldown}
+              isLoading={isLoading}
+              onClick={onResend}
+            />
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
+}
+
+interface SentStateProps {
+  className?: string;
+  cooldown: number;
+  displayEmail?: string;
+  isLoading: boolean;
+  message: string;
+  onResend?: () => void;
+}
+
+function SentState({
+  className,
+  cooldown,
+  displayEmail,
+  isLoading,
+  message,
+  onResend,
+}: SentStateProps) {
+  return (
+    <Card className={cn("w-full shadow-xs", className)}>
+      <CardHeader>
+        <CardTitle>Check your email</CardTitle>
+        <CardDescription>We&apos;ve sent you a magic link</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <div className="flex flex-col gap-6">
+          <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
+            <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
+              <Mail aria-hidden="true" className="size-8 text-primary" />
+            </div>
+            <div className="flex flex-col gap-2">
+              <p className="font-medium text-sm">{message}</p>
+              {displayEmail && (
+                <p className="text-muted-foreground text-sm">
+                  Sent to <span className="font-medium">{displayEmail}</span>
+                </p>
+              )}
+              <p className="text-muted-foreground text-xs">
+                Click the link in the email to sign in. If you don&apos;t see
+                it, check your spam folder.
+              </p>
+            </div>
+          </div>
+
+          {onResend && (
+            <ResendButton
+              cooldown={cooldown}
+              isLoading={isLoading}
+              onClick={onResend}
+              variant="outline"
+            />
+          )}
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
 
 export default function AuthMagicLink({
@@ -76,17 +321,6 @@ export default function AuthMagicLink({
     }
   }, [cooldown]);
 
-  const validateEmail = (value: string): string | undefined => {
-    if (!value.trim()) {
-      return "Email is required";
-    }
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(value)) {
-      return "Please enter a valid email address";
-    }
-    return;
-  };
-
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
@@ -113,152 +347,46 @@ export default function AuthMagicLink({
     }
   }, [cooldown, onResend, statusEmail, email, resendCooldown]);
 
-  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setEmail(value);
-    if (localErrors.email) {
-      setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
-    }
-  };
+  const handleEmailChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const value = e.target.value;
+      setEmail(value);
+      if (localErrors.email) {
+        setLocalErrors((prev) => ({ ...prev, email: validateEmail(value) }));
+      }
+    },
+    [localErrors.email]
+  );
 
   const emailError = errors?.email || localErrors.email;
   const generalError = errors?.general;
   const displayEmail = statusEmail || email;
 
   if (status === "verified") {
-    return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Email verified</CardTitle>
-          <CardDescription>You&apos;ve successfully signed in</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
-            <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
-              <CheckCircle2 className="size-8 text-primary" />
-            </div>
-            <div className="flex flex-col gap-2">
-              <p className="font-medium text-sm">
-                You&apos;re all set! Redirecting…
-              </p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
-    );
+    return <VerifiedState className={className} />;
   }
 
   if (status === "expired") {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Link expired</CardTitle>
-          <CardDescription>
-            This magic link has expired. Please request a new one.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-4">
-            <div className="flex flex-col items-center gap-4 rounded-lg border border-destructive/50 bg-destructive/10 p-6 text-center">
-              <div className="flex size-16 items-center justify-center rounded-full bg-destructive/10">
-                <XCircle className="size-8 text-destructive" />
-              </div>
-              <p className="text-destructive text-sm">
-                The magic link has expired. Please request a new one.
-              </p>
-            </div>
-
-            {onResend && (
-              <Button
-                aria-busy={isLoading}
-                className="w-full"
-                data-loading={isLoading}
-                disabled={cooldown > 0 || isLoading}
-                onClick={handleResend}
-                type="button"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" />
-                    Sending…
-                  </>
-                ) : cooldown > 0 ? (
-                  <>
-                    <Clock className="size-4" />
-                    Resend in {cooldown}s
-                  </>
-                ) : (
-                  <>
-                    <RefreshCw className="size-4" />
-                    Request new magic link
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+      <ExpiredState
+        className={className}
+        cooldown={cooldown}
+        isLoading={isLoading}
+        onResend={onResend ? handleResend : undefined}
+      />
     );
   }
 
   if (status === "sent") {
     return (
-      <Card className={cn("w-full shadow-xs", className)}>
-        <CardHeader>
-          <CardTitle>Check your email</CardTitle>
-          <CardDescription>We&apos;ve sent you a magic link</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col gap-6">
-            <div className="flex flex-col items-center gap-4 rounded-lg border border-primary/20 bg-primary/5 p-6 text-center">
-              <div className="flex size-16 items-center justify-center rounded-full bg-primary/10">
-                <Mail className="size-8 text-primary" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <p className="font-medium text-sm">{successMessage}</p>
-                {displayEmail && (
-                  <p className="text-muted-foreground text-sm">
-                    Sent to <span className="font-medium">{displayEmail}</span>
-                  </p>
-                )}
-                <p className="text-muted-foreground text-xs">
-                  Click the link in the email to sign in. If you don&apos;t see
-                  it, check your spam folder.
-                </p>
-              </div>
-            </div>
-
-            {onResend && (
-              <Button
-                aria-busy={isLoading}
-                className="w-full"
-                data-loading={isLoading}
-                disabled={cooldown > 0 || isLoading}
-                onClick={handleResend}
-                type="button"
-                variant="outline"
-              >
-                {isLoading ? (
-                  <>
-                    <Loader2 className="size-4 animate-spin" />
-                    Sending…
-                  </>
-                ) : cooldown > 0 ? (
-                  <>
-                    <Clock className="size-4" />
-                    Resend in {cooldown}s
-                  </>
-                ) : (
-                  <>
-                    <RefreshCw className="size-4" />
-                    Resend magic link
-                  </>
-                )}
-              </Button>
-            )}
-          </div>
-        </CardContent>
-      </Card>
+      <SentState
+        className={className}
+        cooldown={cooldown}
+        displayEmail={displayEmail}
+        isLoading={isLoading}
+        message={successMessage}
+        onResend={onResend ? handleResend : undefined}
+      />
     );
   }
 
@@ -272,70 +400,30 @@ export default function AuthMagicLink({
       </CardHeader>
       <CardContent>
         <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
-          {generalError && (
-            <div
-              aria-live="polite"
-              className="rounded-lg border border-destructive/50 bg-destructive/10 p-3 text-destructive text-sm"
-              role="alert"
-            >
-              {generalError}
-            </div>
-          )}
+          {generalError && <ErrorAlert message={generalError} />}
 
-          <Field data-invalid={!!emailError}>
-            <FieldLabel htmlFor="magic-link-email">
-              Email
-              <span aria-label="required" className="text-destructive">
-                *
-              </span>
-            </FieldLabel>
-            <FieldContent>
-              <InputGroup aria-invalid={!!emailError}>
-                <InputGroupAddon>
-                  <Mail className="size-4" />
-                </InputGroupAddon>
-                <InputGroupInput
-                  aria-describedby={
-                    emailError ? "magic-link-email-error" : undefined
-                  }
-                  aria-invalid={!!emailError}
-                  autoComplete="email"
-                  id="magic-link-email"
-                  inputMode="email"
-                  name="email"
-                  onChange={handleEmailChange}
-                  placeholder="name@example.com"
-                  required
-                  type="email"
-                  value={email}
-                />
-              </InputGroup>
-              {emailError && (
-                <FieldError id="magic-link-email-error">
-                  {emailError}
-                </FieldError>
-              )}
-              <FieldDescription>
-                We&apos;ll send a secure link to sign in without a password
-              </FieldDescription>
-            </FieldContent>
-          </Field>
+          <EmailField
+            error={emailError}
+            id="magic-link-email"
+            onChange={handleEmailChange}
+            value={email}
+          />
 
           <Button
             aria-busy={isLoading}
-            className="w-full"
+            className="min-h-[44px] w-full touch-manipulation"
             data-loading={isLoading}
             disabled={isLoading}
             type="submit"
           >
             {isLoading ? (
               <>
-                <Loader2 className="size-4 animate-spin" />
+                <Loader2 aria-hidden="true" className="size-4 animate-spin" />
                 Sending magic link…
               </>
             ) : (
               <>
-                <Mail className="size-4" />
+                <Mail aria-hidden="true" className="size-4" />
                 Send magic link
               </>
             )}
