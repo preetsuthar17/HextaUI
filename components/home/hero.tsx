@@ -33,7 +33,7 @@ async function fetchGitHubStars(): Promise<number | null> {
   }
 }
 
-const DEFAULT_STAR_COUNT = 400;
+const DEFAULT_STAR_COUNT = 500;
 
 export const Hero = memo(function Hero() {
   const [starCount, setStarCount] = useState<number | null>(null);
