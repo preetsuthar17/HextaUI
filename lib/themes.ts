@@ -25,12 +25,12 @@ export interface Theme {
 }
 
 export const themeRadii: Record<ThemeName, ThemeRadius> = {
-  default: { light: "1.2rem", dark: "1.2rem" },
+  default: { light: "0.625rem", dark: "0.625rem" },
   "retro-blue": { light: "0rem", dark: "0rem" },
-  purple: { light: "1.2rem", dark: "1.2rem" },
-  "night-wind": { light: "1.2rem", dark: "1.2rem" },
+  purple: { light: "0.625rem", dark: "0.625rem" },
+  "night-wind": { light: "0.625rem", dark: "0.625rem" },
   orbiter: { light: "0rem", dark: "0rem" },
-  "soft-orange": { light: "1.2rem", dark: "1.2rem" },
+  "soft-orange": { light: "0.625rem", dark: "0.625rem" },
 };
 
 export const themeFonts: Record<ThemeName, ThemeFonts> = {
