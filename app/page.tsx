@@ -44,11 +44,12 @@ function PreviewSection() {
     <div className="flex w-full flex-col gap-12">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap">
             {previewOptions.map((option) => (
               <Button
                 aria-current={selected === option.value ? "page" : undefined}
                 aria-pressed={selected === option.value}
+                className="px-4"
                 key={option.value}
                 onClick={() => setSelected(option.value)}
                 size="sm"
