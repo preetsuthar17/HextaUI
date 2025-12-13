@@ -12,18 +12,18 @@ import {
 import Link from "next/link";
 import * as React from "react";
 import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import {
   type BlockCategory,
   blockCategories,
   blocksRegistry,
   categoryLabels,
 } from "@/lib/blocks-registry";
 import { cn } from "@/lib/utils";
-import {
-  Collapsible,
-  CollapsibleContent,
-  CollapsibleTrigger,
-} from "@/registry/new-york/ui/collapsible";
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 
 const categoryIcons: Record<
   BlockCategory,
@@ -101,7 +101,7 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
     if (!scrollArea) return;
 
     const findViewport = (): HTMLElement | null =>
-      scrollArea.querySelector(
+      (scrollArea as HTMLElement).querySelector(
         '[data-slot="scroll-area-viewport"]'
       ) as HTMLElement | null;
 
@@ -169,7 +169,7 @@ export const BlocksSidebar = React.memo(function BlocksSidebar({
     >
       <div className="flex h-full w-full flex-col overflow-hidden bg-transparent">
         <div className="relative flex min-h-0 flex-1 flex-col">
-          <ScrollArea className="min-h-0 flex-1 p-2" ref={scrollAreaRef}>
+          <ScrollArea className="min-h-0 flex-1 p-2">
             <ul className="flex w-full flex-col gap-2">
               {blockCategories.map((category) => {
                 const categoryBlocks = groupedByCategory[category];

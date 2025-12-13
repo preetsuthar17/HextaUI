@@ -3,8 +3,7 @@
 import { Check, Copy, Palette } from "lucide-react";
 import { useTheme } from "next-themes";
 import { startTransition, useEffect, useState } from "react";
-import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,15 +11,16 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/registry/new-york/ui/dialog";
-import { ScrollArea, ScrollBar } from "@/registry/new-york/ui/scroll-area";
+} from "@/components/ui/dialog";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/registry/new-york/ui/select";
+} from "@/components/ui/select";
+import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
 
@@ -263,7 +263,7 @@ export function ThemeSelectorWithCopy() {
       <div className="flex items-center gap-2">
         <Select disabled value={colorTheme}>
           <SelectTrigger className="w-[180px]">
-            <SelectValue placeholder="Select theme" />
+            <SelectValue>Select theme</SelectValue>
           </SelectTrigger>
         </Select>
         <Button disabled size="icon" variant="outline">
@@ -285,7 +285,10 @@ export function ThemeSelectorWithCopy() {
 
   return (
     <div className="flex items-center gap-2">
-      <Select onValueChange={handleThemeChange} value={colorTheme}>
+      <Select
+        onValueChange={(value) => handleThemeChange(value as ThemeName)}
+        value={colorTheme}
+      >
         <SelectTrigger className="w-[180px]">
           <SelectValue>
             <span className="flex items-center gap-2">
@@ -304,7 +307,7 @@ export function ThemeSelectorWithCopy() {
       </Select>
 
       <Dialog>
-        <DialogTrigger asChild>
+        <DialogTrigger>
           <Button aria-label="Copy theme CSS" size="icon" variant="outline">
             <Copy className="size-4" />
           </Button>

@@ -3,13 +3,13 @@
 import { ChevronDown, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { useMemo } from "react";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 
 type AskAIButton = {
   componentId?: string;
@@ -40,7 +40,7 @@ export function AskAIButton({ componentId, blockId }: AskAIButton) {
   return (
     <div className="flex items-center gap-2">
       <DropdownMenu>
-        <DropdownMenuTrigger asChild>
+        <DropdownMenuTrigger>
           <Button
             aria-label="Ask AI"
             className="h-8 gap-1 px-3"
@@ -53,7 +53,7 @@ export function AskAIButton({ componentId, blockId }: AskAIButton) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent align="end" className="mt-1">
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem>
             <Link
               className="flex w-full items-center justify-start gap-2"
               href={v0Url}
@@ -63,7 +63,7 @@ export function AskAIButton({ componentId, blockId }: AskAIButton) {
               <ExternalLink className="size-4" /> Open in v0
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem>
             <Link
               className="flex w-full items-center justify-start gap-2"
               href={gpt}
@@ -73,7 +73,7 @@ export function AskAIButton({ componentId, blockId }: AskAIButton) {
               <ExternalLink className="size-4" /> Ask ChatGPT
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem>
             <Link
               className="flex w-full items-center justify-start gap-2"
               href={claude}
@@ -83,7 +83,7 @@ export function AskAIButton({ componentId, blockId }: AskAIButton) {
               <ExternalLink className="size-4" /> Open in Claude
             </Link>
           </DropdownMenuItem>
-          <DropdownMenuItem asChild>
+          <DropdownMenuItem>
             <Link
               className="flex w-full items-center justify-start gap-2"
               href={t3}

@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import { blocksRegistry } from "@/lib/blocks-registry";
-import { Button } from "@/registry/new-york/ui/button";
 
 type BlockHeaderActionsProps = {
   blockId: string;
@@ -23,7 +23,6 @@ export function BlockHeaderActions({
       {prevMeta ? (
         <Button
           aria-label={`Previous: ${prevMeta.title}`}
-          asChild
           size="icon-sm"
           variant="secondary"
         >
@@ -36,7 +35,6 @@ export function BlockHeaderActions({
       {nextMeta ? (
         <Button
           aria-label={`Next: ${nextMeta.title}`}
-          asChild
           size="icon-sm"
           variant="secondary"
         >

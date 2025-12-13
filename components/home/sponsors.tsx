@@ -3,13 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useMemo, useState } from "react";
-import { cn } from "@/lib/utils";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip";
+} from "@/components/ui/tooltip";
+import { cn } from "@/lib/utils";
 
 interface Sponsor {
   name: string;
@@ -201,7 +201,7 @@ export const Sponsors = memo(function Sponsors() {
 
                 return (
                   <Tooltip key={sponsor.name}>
-                    <TooltipTrigger asChild>
+                    <TooltipTrigger>
                       <Link
                         aria-label={`${sponsor.name} – ${tier[0].toUpperCase() + tier.slice(1)} Sponsor`}
                         className={cn(

@@ -1,23 +1,11 @@
 "use client";
 
 import { Star } from "lucide-react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useMemo, useState } from "react";
-import { Button } from "@/registry/new-york/ui/button";
-import { ButtonGroup } from "@/registry/new-york/ui/button-group";
-
-const PixelBlast = dynamic(
-  () =>
-    import("@/components/pixel-blast").then((mod) => ({
-      default: mod.PixelBlast,
-    })),
-  {
-    ssr: false,
-    loading: () => <div className="sr-only size-64" />,
-  }
-);
+import { Button } from "@/components/ui/button";
+import { ButtonGroup } from "@/components/ui/button-group";
 
 async function fetchGitHubStars(): Promise<number | null> {
   try {
@@ -49,9 +37,7 @@ export const Hero = memo(function Hero() {
   );
 
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-16 text-center">
-      <PixelBlast color="var(--primary)" transparent={true} />
-
+    <section className="mx-auto flex max-w-3xl flex-col items-center justify-center gap-4 py-16 text-center">
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for
@@ -72,12 +58,12 @@ export const Hero = memo(function Hero() {
         </p>
         <div className="flex flex-wrap items-center justify-center gap-4">
           <ButtonGroup aria-label="View components">
-            <Button asChild className="h-11" variant="default">
+            <Button className="h-11" variant="default">
               <Link href="/components/accordion">View Components</Link>
             </Button>
           </ButtonGroup>
           <ButtonGroup aria-label="GitHub repository">
-            <Button asChild className="h-11" variant="outline">
+            <Button className="h-11" variant="outline">
               <Link
                 href="https://github.com/preetsuthar17/hextaui"
                 rel="noopener noreferrer"
@@ -86,8 +72,9 @@ export const Hero = memo(function Hero() {
                 GitHub
               </Link>
             </Button>
-            <Button asChild className="h-11" variant="outline">
+            <Button className="h-11" variant="outline">
               <Link
+                className="flex items-center gap-1"
                 href="https://github.com/preetsuthar17/hextaui"
                 rel="noopener noreferrer"
                 target="_blank"

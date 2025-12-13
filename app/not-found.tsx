@@ -1,6 +1,6 @@
 import { Home } from "lucide-react";
 import Link from "next/link";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
@@ -14,7 +14,7 @@ export default function NotFound() {
           </p>
         </div>
       </div>
-      <Button asChild size="lg">
+      <Button size="lg">
         <Link href="/">
           <Home aria-hidden="true" className="size-4" />
           Go Home

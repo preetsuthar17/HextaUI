@@ -14,23 +14,23 @@ import { ComponentSection } from "@/components/docs/component-section";
 import ComponentUsage from "@/components/docs/component-usage";
 import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 import {
-  blocksRegistry,
-  categoryLabels,
-  getBlockMetaById,
-} from "@/lib/blocks-registry";
-import { getComponentCode } from "@/lib/get-component-code";
-import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
-import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/new-york/ui/breadcrumb";
-import { Button } from "@/registry/new-york/ui/button";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Spinner } from "@/registry/new-york/ui/spinner";
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  blocksRegistry,
+  categoryLabels,
+  getBlockMetaById,
+} from "@/lib/blocks-registry";
+import { getComponentCode } from "@/lib/get-component-code";
+import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -105,7 +105,7 @@ export default async function BlockPage({
           No block found with id &quot;{id}&quot;.
         </p>
         <div>
-          <Button asChild>
+          <Button>
             <Link href="/blocks">
               <ArrowLeft /> Back to Blocks
             </Link>
@@ -129,19 +129,19 @@ export default async function BlockPage({
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
+                    <BreadcrumbLink>
                       <Link href="/">Home</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
+                    <BreadcrumbLink>
                       <Link href="/blocks">Blocks</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
+                    <BreadcrumbLink>
                       <Link href="/blocks">
                         {categoryLabels[meta.category]}
                       </Link>
@@ -226,7 +226,7 @@ export default async function BlockPage({
               analysis.
             </p>
             <div>
-              <Button asChild variant={"outline"}>
+              <Button variant="outline">
                 <a
                   data-s-event="Blocks/Components link: ikiform.com"
                   data-s-event-props="location=blocks/components;label=ikiform.com"

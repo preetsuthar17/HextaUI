@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import * as React from "react";
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { componentsRegistry } from "@/lib/components-registry";
 import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/registry/new-york/ui/scroll-area";
 
 const SCROLL_POSITION_KEY = "components-sidebar-scroll";
 
@@ -13,8 +13,7 @@ export const ComponentsSidebar = React.memo(function ComponentsSidebar({
 }: {
   currentId?: string;
 }) {
-  const scrollAreaRef =
-    React.useRef<React.ComponentRef<typeof ScrollArea>>(null);
+  const scrollAreaRef = React.useRef<HTMLDivElement>(null);
 
   const sortedComponents = React.useMemo(
     () =>
@@ -27,7 +26,7 @@ export const ComponentsSidebar = React.memo(function ComponentsSidebar({
     if (!scrollArea) return;
 
     const findViewport = (): HTMLElement | null =>
-      scrollArea.querySelector(
+      (scrollArea as HTMLElement).querySelector(
         '[data-slot="scroll-area-viewport"]'
       ) as HTMLElement | null;
 
@@ -95,7 +94,7 @@ export const ComponentsSidebar = React.memo(function ComponentsSidebar({
     >
       <div className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-transparent">
         <div className="relative flex min-h-0 flex-1 flex-col">
-          <ScrollArea className="min-h-0 flex-1 p-2" ref={scrollAreaRef}>
+          <ScrollArea className="min-h-0 flex-1 p-2">
             <ul className="flex w-full flex-col">
               {sortedComponents.map((c) => {
                 const isCurrent = currentId === c.id;

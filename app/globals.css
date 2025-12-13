@@ -180,7 +180,7 @@
 /* Base Layers: Touch accessibility, border, fonts */
 @layer base {
   * {
-    @apply border-border outline-ring/50 corner-squircle;
+    @apply border-border outline-ring/50;
     box-sizing: border-box;
   }
 

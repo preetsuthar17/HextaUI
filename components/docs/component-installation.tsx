@@ -1,12 +1,7 @@
 "use client";
 
 import { parseAsStringEnum, useQueryState } from "nuqs";
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/registry/new-york/ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import CodeBlock from "./code-block";
 
 const parseInstallationTab = parseAsStringEnum(["cli", "manual"]).withDefault(

@@ -13,22 +13,22 @@ import ComponentUsage from "@/components/docs/component-usage";
 import { ComponentsSidebar } from "@/components/docs/components-sidebar";
 import { OpenInV0Button } from "@/components/docs/open-in-v0-button";
 import {
-  componentsRegistry,
-  getComponentMetaById,
-} from "@/lib/components-registry";
-import { getComponentCode } from "@/lib/get-component-code";
-import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
-import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/new-york/ui/breadcrumb";
-import { Button } from "@/registry/new-york/ui/button";
-import { Separator } from "@/registry/new-york/ui/separator";
-import { Spinner } from "@/registry/new-york/ui/spinner";
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Spinner } from "@/components/ui/spinner";
+import {
+  componentsRegistry,
+  getComponentMetaById,
+} from "@/lib/components-registry";
+import { getComponentCode } from "@/lib/get-component-code";
+import { generateMetadata as generatePageMetadata } from "@/lib/metadata";
 
 const ComponentInstallation = dynamic(
   () =>
@@ -98,7 +98,7 @@ export default async function ComponentPage({
           No component found with id “{id}”.
         </p>
         <div>
-          <Button asChild>
+          <Button>
             <Link href="/components">
               <ArrowLeft /> Back to Components
             </Link>
@@ -122,13 +122,13 @@ export default async function ComponentPage({
               <Breadcrumb>
                 <BreadcrumbList>
                   <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
+                    <BreadcrumbLink>
                       <Link href="/">Home</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
                   <BreadcrumbSeparator />
                   <BreadcrumbItem>
-                    <BreadcrumbLink asChild>
+                    <BreadcrumbLink>
                       <Link href="/components">Components</Link>
                     </BreadcrumbLink>
                   </BreadcrumbItem>
@@ -147,7 +147,7 @@ export default async function ComponentPage({
               {(meta.api_ref || meta.docs_ref) && (
                 <div className="flex flex-wrap items-center gap-3">
                   {meta.docs_ref && (
-                    <Button asChild size="sm" variant="secondary">
+                    <Button size="sm" variant="secondary">
                       <Link
                         href={meta.docs_ref}
                         rel="noopener noreferrer"
@@ -158,7 +158,7 @@ export default async function ComponentPage({
                     </Button>
                   )}
                   {meta.api_ref && (
-                    <Button asChild size="sm" variant="secondary">
+                    <Button size="sm" variant="secondary">
                       <Link
                         href={meta.api_ref}
                         rel="noopener noreferrer"
@@ -228,7 +228,7 @@ export default async function ComponentPage({
               analysis.
             </p>
             <div>
-              <Button asChild variant={"outline"}>
+              <Button variant="outline">
                 <a
                   data-s-event="Blocks/Components link: ikiform.com"
                   data-s-event-props="location=blocks/components;label=ikiform.com"

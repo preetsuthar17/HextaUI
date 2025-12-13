@@ -1,10 +1,9 @@
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 
 export function OpenInV0Button({ url }: { url: string }) {
   return (
     <Button
       aria-label="Open in v0"
-      asChild
       className="h-8 gap-1 rounded-md bg-black px-3 text-white text-xs hover:bg-black hover:text-white dark:bg-white dark:text-black"
     >
       <a

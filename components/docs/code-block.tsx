@@ -4,8 +4,8 @@ import { Check, Copy } from "lucide-react";
 import { useTheme } from "next-themes";
 import React, { useEffect, useState } from "react";
 import { type BundledLanguage, codeToHtml } from "shiki";
-import { Button } from "@/registry/new-york/ui/button";
-import { Spinner } from "@/registry/new-york/ui/spinner";
+import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 
 type CodeBlockProps = {
   code: string;

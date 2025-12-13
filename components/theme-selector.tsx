@@ -3,19 +3,19 @@
 import { Palette } from "lucide-react";
 import { useTheme } from "next-themes";
 import { startTransition, useEffect, useState } from "react";
-import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
-import { Button } from "@/registry/new-york/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/registry/new-york/ui/dropdown-menu";
+} from "@/components/ui/dropdown-menu";
 import {
   Tooltip,
   TooltipContent,
   TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip";
+} from "@/components/ui/tooltip";
+import { applyTheme, getTheme, type ThemeName, themes } from "@/lib/themes";
 
 const THEME_STORAGE_KEY = "hextaui-color-theme";
 
@@ -62,7 +62,7 @@ export function ThemeSelector() {
   if (!hydrated) {
     return (
       <Tooltip>
-        <TooltipTrigger asChild>
+        <TooltipTrigger>
           <Button
             aria-label="Select color theme"
             size="icon-sm"
@@ -85,8 +85,8 @@ export function ThemeSelector() {
   return (
     <DropdownMenu>
       <Tooltip>
-        <TooltipTrigger asChild>
-          <DropdownMenuTrigger asChild>
+        <TooltipTrigger>
+          <DropdownMenuTrigger>
             <Button
               aria-label={`Current color theme: ${currentTheme?.label}`}
               size="icon-sm"

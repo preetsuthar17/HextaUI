@@ -5,13 +5,13 @@ import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { Logo } from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Badge } from "@/registry/new-york/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import {
-  Tooltip,
   TooltipContent,
   TooltipProvider,
+  TooltipRoot,
   TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip";
+} from "@/components/ui/tooltip";
 
 export function SiteHeader() {
   return (
@@ -79,16 +79,16 @@ export function SiteHeader() {
               )
             }
           >
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild className="translate-y-0.5">
+            <TooltipProvider delay={0}>
+              <TooltipRoot>
+                <TooltipTrigger className="translate-y-[3px]">
                   <Badge
-                    className="cursor-pointer gap-2 lowercase"
+                    className="h-6 cursor-pointer gap-2 lowercase"
                     tabIndex={0}
                   >
                     <Image
                       alt="shadcnblocks logo"
-                      className="invert dark:invert-0"
+                      className="invert"
                       height={16}
                       src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
                       style={{ width: "16px", height: "auto" }}
@@ -103,7 +103,7 @@ export function SiteHeader() {
                     Tailwind
                   </span>
                 </TooltipContent>
-              </Tooltip>
+              </TooltipRoot>
             </TooltipProvider>
           </li>
           <li>

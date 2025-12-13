@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { componentsRegistry } from "@/lib/components-registry";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,8 +8,9 @@ import {
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
-} from "@/registry/new-york/ui/breadcrumb";
-import { Button } from "@/registry/new-york/ui/button";
+} from "@/components/ui/breadcrumb";
+import { Button } from "@/components/ui/button";
+import { componentsRegistry } from "@/lib/components-registry";
 
 export default function ComponentsIndexPage() {
   return (
@@ -18,7 +18,7 @@ export default function ComponentsIndexPage() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink asChild>
+            <BreadcrumbLink>
               <Link href="/">Home</Link>
             </BreadcrumbLink>
           </BreadcrumbItem>
@@ -64,7 +64,7 @@ export default function ComponentsIndexPage() {
             React. Ready to copy, paste, or install in your project.
           </p>
           <div>
-            <Button asChild variant={"outline"}>
+            <Button variant="outline">
               <a
                 data-s-event="Blocks link: shadcnblocks.com"
                 data-s-event-props="location=blocks;label=shadcnblocks.com"
@@ -111,7 +111,7 @@ export default function ComponentsIndexPage() {
             analysis. Get 49% OFF for black friday sale!
           </p>
           <div>
-            <Button asChild variant={"outline"}>
+            <Button variant="outline">
               <a
                 data-s-event="Blocks link: ikiform.com"
                 data-s-event-props="location=blocks;label=ikiform.com"

@@ -3,12 +3,7 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { startTransition, useCallback, useEffect, useState } from "react";
-import { Button } from "@/registry/new-york/ui/button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from "@/registry/new-york/ui/tooltip";
+import { Button } from "@/components/ui/button";
 
 export function ThemeSwitcher() {
   const { theme, setTheme } = useTheme();
@@ -33,22 +28,15 @@ export function ThemeSwitcher() {
   const label = currentTheme === "light" ? "Light" : "Dark";
 
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <Button
-          aria-label={`Current theme: ${label}.`}
-          onClick={cycleTheme}
-          size="icon-sm"
-          suppressHydrationWarning
-          variant="ghost"
-        >
-          <Icon className="size-4" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </TooltipTrigger>
-      <TooltipContent>
-        <p>{mounted ? label : "Dark"} theme</p>
-      </TooltipContent>
-    </Tooltip>
+    <Button
+      aria-label={`Current theme: ${label}.`}
+      onClick={cycleTheme}
+      size="icon-sm"
+      suppressHydrationWarning
+      variant="ghost"
+    >
+      <Icon className="size-4" />
+      <span className="sr-only">Toggle theme</span>
+    </Button>
   );
 }
