@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { parseAsStringEnum, useQueryState } from "nuqs";
 import { Suspense } from "react";
-import { Contributors } from "@/components/home/contributors";
 import { Hero } from "@/components/home/hero";
-import { Sponsors } from "@/components/home/sponsors";
 import { ThemeSelectorWithCopy } from "@/components/home/theme-selector-with-copy";
 import AIPreview from "@/components/previews/ai-preview";
 import AuthPreview from "@/components/previews/auth-preview";
@@ -41,10 +39,10 @@ function PreviewSection() {
     previewOptions.find((o) => o.value === selected)?.component ?? AuthPreview;
 
   return (
-    <div className="flex w-full flex-col gap-12">
+    <div className="flex w-full flex-col gap-12 max-w-7xl mx-auto">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-4">
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap gap-2">
             {previewOptions.map((option) => (
               <Button
                 aria-current={selected === option.value ? "page" : undefined}
@@ -54,7 +52,7 @@ function PreviewSection() {
                 onClick={() => setSelected(option.value)}
                 size="sm"
                 type="button"
-                variant={selected === option.value ? "outline" : "ghost"}
+                variant={selected === option.value ? "secondary" : "ghost"}
               >
                 {option.label}
               </Button>
@@ -90,34 +88,6 @@ export default function Home() {
       >
         <PreviewSection />
       </Suspense>
-
-      <section className="flex flex-col gap-8 py-8">
-        <Sponsors />
-        <Contributors />
-        <div className="flex flex-col items-start gap-4 text-left">
-          <p className="text-muted-foreground text-sm">
-            Want to support HextaUI?{" "}
-            <Link
-              className="underline underline-offset-4 hover:no-underline"
-              href="https://preetsuthar.me/sponsor"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              Become a sponsor
-            </Link>{" "}
-            or{" "}
-            <Link
-              className="underline underline-offset-4 hover:no-underline"
-              href="https://github.com/preetsuthar17/hextaui"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              contribute on GitHub
-            </Link>
-            .
-          </p>
-        </div>
-      </section>
     </div>
   );
 }

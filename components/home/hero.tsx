@@ -1,23 +1,11 @@
 "use client";
 
 import { Star } from "lucide-react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { memo, useEffect, useMemo, useState } from "react";
 import { Button } from "@/registry/new-york/ui/button";
 import { ButtonGroup } from "@/registry/new-york/ui/button-group";
-
-const PixelBlast = dynamic(
-  () =>
-    import("@/components/pixel-blast").then((mod) => ({
-      default: mod.PixelBlast,
-    })),
-  {
-    ssr: false,
-    loading: () => <div className="sr-only size-64" />,
-  }
-);
 
 async function fetchGitHubStars(): Promise<number | null> {
   try {
@@ -50,8 +38,6 @@ export const Hero = memo(function Hero() {
 
   return (
     <section className="flex flex-col items-center justify-center gap-4 py-16 text-center">
-      <PixelBlast color="var(--primary)" transparent={true} />
-
       <div className="flex flex-col gap-6">
         <h1 className="flex flex-wrap items-center justify-center gap-2">
           Extended Components for
