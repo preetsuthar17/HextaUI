@@ -134,7 +134,7 @@ export default function TeamAIRoom({
             </CardDescription>
           </div>
           <div className="flex shrink-0 items-center gap-2">
-            <div className="-space-x-2 flex">
+            <div className="flex -space-x-2">
               {participants.slice(0, 3).map((participant) => (
                 <Avatar
                   className="size-8 border-2 border-background"

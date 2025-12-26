@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
-  "type": "registry:ui",
   "title": "Input",
   "description": "Single-line text input.",
   "files": [
@@ -10,5 +9,6 @@
       "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst Input = React.forwardRef<HTMLInputElement, React.ComponentProps<\"input\">>(\n  function Input({ className, type, ...props }, ref) {\n    return (\n      <input\n        autoCapitalize={\n          (props as any).autoCapitalize ??\n          (type === \"email\" || type === \"password\" ? \"none\" : undefined)\n        }\n        autoCorrect={\n          (props as any).autoCorrect ??\n          (type === \"email\" || type === \"password\" ? \"off\" : undefined)\n        }\n        className={cn(\n          \"h-9 w-full min-w-0 touch-manipulation rounded-md border border-input bg-transparent px-3 py-1 text-base shadow-xs outline-none transition-[color,box-shadow] selection:bg-primary selection:text-primary-foreground file:inline-flex file:h-7 file:border-0 file:bg-transparent file:font-medium file:text-foreground file:text-sm placeholder:text-muted-foreground disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm dark:bg-input/30\",\n          \"focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50\",\n          \"aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40\",\n          className\n        )}\n        data-slot=\"input\"\n        ref={ref}\n        spellCheck={\n          (props as any).spellCheck ??\n          (type === \"email\" || type === \"password\" ? false : undefined)\n        }\n        type={type}\n        {...props}\n      />\n    );\n  }\n);\n\nexport { Input };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

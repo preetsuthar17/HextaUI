@@ -453,7 +453,7 @@ export default function TeamProjects({
                   </div>
                 )}
                 <div className="flex items-center justify-between">
-                  <div className="-space-x-2 flex">
+                  <div className="flex -space-x-2">
                     {project.members.slice(0, 3).map((member) => (
                       <Avatar
                         className="size-6 border-2 border-background"

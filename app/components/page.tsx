@@ -36,7 +36,7 @@ export default function ComponentsIndexPage() {
           </p>
         </div>
       </header>
-      <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
+      {/* <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
             alt="shadcnblocks logo"
@@ -82,11 +82,11 @@ export default function ComponentsIndexPage() {
             </Button>
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
-            alt="shadcnblocks logo"
+            alt="ikiform logo"
             className="dark:invert"
             height={84}
             src="https://ikiform.com/favicon.ico"
@@ -97,7 +97,7 @@ export default function ComponentsIndexPage() {
           <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl tracking-tighter">
             <span className="block shrink-0 md:hidden">
               <Image
-                alt="shadcnblocks logo"
+                alt="ikiform logo"
                 className="shrink-0 dark:invert"
                 height={24}
                 src="https://ikiform.com/favicon.ico"

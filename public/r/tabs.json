@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "tabs",
-  "type": "registry:ui",
   "title": "Tabs",
   "description": "Switches views using tabbed buttons.",
   "dependencies": ["@radix-ui/react-tabs"],
@@ -11,5 +10,6 @@
       "content": "\"use client\";\n\nimport * as TabsPrimitive from \"@radix-ui/react-tabs\";\nimport * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst Tabs = React.forwardRef<\n  React.ComponentRef<typeof TabsPrimitive.Root>,\n  React.ComponentProps<typeof TabsPrimitive.Root>\n>(function Tabs({ className, ...props }, ref) {\n  return (\n    <TabsPrimitive.Root\n      className={cn(\"flex flex-col gap-2\", className)}\n      data-slot=\"tabs\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nconst TabsList = React.forwardRef<\n  React.ComponentRef<typeof TabsPrimitive.List>,\n  React.ComponentProps<typeof TabsPrimitive.List>\n>(function TabsList({ className, ...props }, ref) {\n  return (\n    <TabsPrimitive.List\n      className={cn(\n        \"inline-flex h-9 w-fit touch-manipulation items-center justify-center rounded-lg bg-muted p-[3px] text-muted-foreground\",\n        className\n      )}\n      data-slot=\"tabs-list\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nconst TabsTrigger = React.forwardRef<\n  React.ComponentRef<typeof TabsPrimitive.Trigger>,\n  React.ComponentProps<typeof TabsPrimitive.Trigger>\n>(function TabsTrigger({ className, ...props }, ref) {\n  return (\n    <TabsPrimitive.Trigger\n      aria-disabled={(props as any).disabled ? true : undefined}\n      className={cn(\n        \"inline-flex h-[calc(100%-1px)] flex-1 touch-manipulation items-center justify-center gap-1.5 whitespace-nowrap rounded-md border border-transparent px-2 py-1 font-medium text-foreground text-sm transition-[color,box-shadow] focus-visible:border-ring focus-visible:outline-1 focus-visible:outline-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:shadow-sm dark:text-muted-foreground dark:data-[state=active]:border-input dark:data-[state=active]:bg-input/30 dark:data-[state=active]:text-foreground [&_svg:not([class*='size-'])]:size-4 [&_svg]:pointer-events-none [&_svg]:shrink-0\",\n        className\n      )}\n      data-slot=\"tabs-trigger\"\n      ref={ref}\n      type=\"button\"\n      {...props}\n    />\n  );\n});\n\nconst TabsContent = React.forwardRef<\n  React.ComponentRef<typeof TabsPrimitive.Content>,\n  React.ComponentProps<typeof TabsPrimitive.Content>\n>(function TabsContent({ className, ...props }, ref) {\n  return (\n    <TabsPrimitive.Content\n      className={cn(\"flex-1 outline-none\", className)}\n      data-slot=\"tabs-content\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nexport { Tabs, TabsList, TabsTrigger, TabsContent };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

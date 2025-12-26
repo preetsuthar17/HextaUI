@@ -179,7 +179,7 @@ export default function BillingPricingTable({
                 key={plan.id}
               >
                 {plan.isPopular && (
-                  <div className="-top-3 -translate-x-1/2 absolute left-1/2">
+                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <Badge className="bg-primary text-primary-foreground">
                       Popular
                     </Badge>

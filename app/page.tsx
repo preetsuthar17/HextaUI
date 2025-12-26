@@ -39,7 +39,7 @@ function PreviewSection() {
     previewOptions.find((o) => o.value === selected)?.component ?? AuthPreview;
 
   return (
-    <div className="flex w-full flex-col gap-12 max-w-7xl mx-auto">
+    <div className="mx-auto flex w-full max-w-7xl flex-col gap-12">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div className="flex flex-wrap items-center gap-4">
           <div className="flex flex-wrap gap-2">

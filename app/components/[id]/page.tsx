@@ -214,7 +214,7 @@ export default async function ComponentPage({
             <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl leading-tight tracking-tighter">
               <span className="block shrink-0">
                 <Image
-                  alt="shadcnblocks logo"
+                  alt="ikiform logo"
                   className="shrink-0 dark:invert"
                   height={32}
                   src="https://ikiform.com/favicon.ico"

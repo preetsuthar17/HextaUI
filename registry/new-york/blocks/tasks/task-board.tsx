@@ -193,7 +193,7 @@ function TaskCard({
           title={task.priority}
         />
         {task.assignees && task.assignees.length > 0 && (
-          <div className="-space-x-1.5 flex">
+          <div className="flex -space-x-1.5">
             {task.assignees.slice(0, 3).map((assignee) => (
               <Avatar
                 className="size-5 border-2 border-background"

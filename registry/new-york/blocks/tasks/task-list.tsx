@@ -240,7 +240,7 @@ function TaskItem({
               {task.assignees && task.assignees.length > 0 && (
                 <div className="flex items-center gap-1">
                   <User className="size-3 text-muted-foreground" />
-                  <div className="-space-x-2 flex">
+                  <div className="flex -space-x-2">
                     {task.assignees.slice(0, 3).map((assignee) => (
                       <Avatar
                         className="size-5 border-2 border-background"
@@ -485,7 +485,7 @@ export default function TaskList({
               {searchQuery && (
                 <Button
                   aria-label="Clear search"
-                  className="-translate-y-1/2 absolute top-1/2 right-2"
+                  className="absolute top-1/2 right-2 -translate-y-1/2"
                   onClick={() => setSearchQuery("")}
                   size="icon"
                   type="button"

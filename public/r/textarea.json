@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "textarea",
-  "type": "registry:ui",
   "title": "Textarea",
   "description": "Multi-line text input.",
   "files": [
@@ -10,5 +9,6 @@
       "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst Textarea = React.forwardRef<\n  HTMLTextAreaElement,\n  React.ComponentProps<\"textarea\">\n>(function Textarea({ className, ...props }, ref) {\n  return (\n    <textarea\n      aria-disabled={(props as any).disabled ? true : undefined}\n      aria-required={(props as any).required ? true : undefined}\n      className={cn(\n        \"field-sizing-content flex min-h-16 w-full touch-manipulation rounded-md border border-input bg-transparent px-3 py-2 text-base shadow-xs outline-none transition-[color,box-shadow] placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 md:text-sm dark:bg-input/30 dark:aria-invalid:ring-destructive/40\",\n        className\n      )}\n      data-slot=\"textarea\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nexport { Textarea };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

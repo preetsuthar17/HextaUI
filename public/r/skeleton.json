@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "skeleton",
-  "type": "registry:ui",
   "title": "Skeleton",
   "description": "Shimmer effect placeholder preview.",
   "files": [
@@ -10,5 +9,6 @@
       "content": "import * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nconst Skeleton = React.forwardRef<HTMLDivElement, React.ComponentProps<\"div\">>(\n  function Skeleton({ className, ...props }, ref) {\n    return (\n      <div\n        aria-hidden=\"true\"\n        className={cn(\n          \"animate-pulse rounded-xl bg-accent motion-reduce:animate-none\",\n          className\n        )}\n        data-slot=\"skeleton\"\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\n\nexport { Skeleton };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

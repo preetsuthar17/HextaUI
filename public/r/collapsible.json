@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "collapsible",
-  "type": "registry:ui",
   "title": "Collapsible",
   "description": "Panel that expands and collapses.",
   "dependencies": ["@radix-ui/react-collapsible"],
@@ -11,5 +10,6 @@
       "content": "\"use client\";\n\nimport * as CollapsiblePrimitive from \"@radix-ui/react-collapsible\";\nimport * as React from \"react\";\nimport { cn } from \"@/lib/utils\";\n\nconst Collapsible = React.forwardRef<\n  React.ComponentRef<typeof CollapsiblePrimitive.Root>,\n  React.ComponentProps<typeof CollapsiblePrimitive.Root>\n>(function Collapsible({ ...props }, ref) {\n  return (\n    <CollapsiblePrimitive.Root data-slot=\"collapsible\" ref={ref} {...props} />\n  );\n});\n\nconst CollapsibleTrigger = React.forwardRef<\n  React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleTrigger>,\n  React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleTrigger>\n>(function CollapsibleTrigger({ className, ...props }, ref) {\n  return (\n    <CollapsiblePrimitive.CollapsibleTrigger\n      className={cn(\"touch-manipulation\", className)}\n      data-slot=\"collapsible-trigger\"\n      ref={ref}\n      type=\"button\"\n      {...props}\n    />\n  );\n});\n\nconst CollapsibleContent = React.forwardRef<\n  React.ComponentRef<typeof CollapsiblePrimitive.CollapsibleContent>,\n  React.ComponentProps<typeof CollapsiblePrimitive.CollapsibleContent>\n>(function CollapsibleContent({ ...props }, ref) {\n  return (\n    <CollapsiblePrimitive.CollapsibleContent\n      data-slot=\"collapsible-content\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

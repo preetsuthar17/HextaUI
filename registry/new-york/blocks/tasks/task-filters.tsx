@@ -189,7 +189,7 @@ export default function TaskFilters({
             {search && (
               <Button
                 aria-label="Clear search"
-                className="-translate-y-1/2 absolute top-1/2 right-2"
+                className="absolute top-1/2 right-2 -translate-y-1/2"
                 onClick={() => {
                   setSearch("");
                   handleFilterChange();

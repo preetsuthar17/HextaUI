@@ -445,7 +445,7 @@ export default function TeamNotes({
                 </div>
                 {note.participants && note.participants.length > 0 && (
                   <div className="flex items-center gap-2">
-                    <div className="-space-x-2 flex">
+                    <div className="flex -space-x-2">
                       {note.participants.slice(0, 3).map((participant) => (
                         <Avatar
                           className="size-6 border-2 border-background"

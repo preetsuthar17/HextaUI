@@ -30,7 +30,7 @@ export function AvatarDemo() {
         </div>
         {/* Group */}
         <div className="flex flex-col items-center gap-1">
-          <div className="-space-x-3 flex">
+          <div className="flex -space-x-3">
             <Avatar className="border-2 border-background">
               <AvatarImage
                 alt="Anna"

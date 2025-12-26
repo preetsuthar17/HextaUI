@@ -42,7 +42,7 @@ const RadioGroupItem = React.forwardRef<
       >
         <CircleIcon
           aria-hidden="true"
-          className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2 size-2 fill-primary"
+          className="absolute top-1/2 left-1/2 size-2 -translate-x-1/2 -translate-y-1/2 fill-primary"
         />
       </RadioGroupPrimitive.Indicator>
     </RadioGroupPrimitive.Item>

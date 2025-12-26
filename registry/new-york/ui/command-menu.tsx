@@ -152,7 +152,7 @@ const CommandMenuContent = React.forwardRef<
         <DialogPrimitive.Content asChild ref={ref} {...props}>
           <div
             className={cn(
-              "-translate-x-1/2 -translate-y-1/2 fixed top-[30%] left-1/2 z-50 w-[95%] max-w-2xl",
+              "fixed top-[30%] left-1/2 z-50 w-[95%] max-w-2xl -translate-x-1/2 -translate-y-1/2",
               "rounded-xl border border-border bg-background",
               "overflow-hidden",
               "motion-safe:duration-200 motion-reduce:animate-none",

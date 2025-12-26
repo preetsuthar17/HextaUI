@@ -569,7 +569,7 @@ function InlineCitation({ number, onClick }: InlineCitationProps) {
   return (
     <CitationNumber
       aria-label={`View citation ${number}`}
-      className="-top-0.5 relative mx-0.5"
+      className="relative -top-0.5 mx-0.5"
       number={number}
       onClick={onClick}
     />

@@ -1,7 +1,6 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "avatar",
-  "type": "registry:ui",
   "title": "Avatar",
   "description": "Shows an image or initials for a user/object.",
   "dependencies": ["@radix-ui/react-avatar"],
@@ -11,5 +10,6 @@
       "content": "\"use client\";\n\nimport * as AvatarPrimitive from \"@radix-ui/react-avatar\";\nimport * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nconst Avatar = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Root>,\n  React.ComponentProps<typeof AvatarPrimitive.Root>\n>(function Avatar({ className, ...props }, ref) {\n  return (\n    <AvatarPrimitive.Root\n      className={cn(\n        \"relative flex size-8 shrink-0 touch-manipulation overflow-hidden rounded-full focus-visible:border-ring focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/50\",\n        className\n      )}\n      data-slot=\"avatar\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nconst AvatarImage = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Image>,\n  React.ComponentProps<typeof AvatarPrimitive.Image>\n>(function AvatarImage(\n  { className, loading, decoding, draggable, ...props },\n  ref\n) {\n  return (\n    <AvatarPrimitive.Image\n      alt={(props as any).alt ?? \"\"}\n      className={cn(\"aspect-square size-full\", className)}\n      data-slot=\"avatar-image\"\n      decoding={decoding ?? \"async\"}\n      draggable={draggable ?? false}\n      loading={loading ?? \"lazy\"}\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nconst AvatarFallback = React.forwardRef<\n  React.ComponentRef<typeof AvatarPrimitive.Fallback>,\n  React.ComponentProps<typeof AvatarPrimitive.Fallback>\n>(function AvatarFallback({ className, ...props }, ref) {\n  return (\n    <AvatarPrimitive.Fallback\n      className={cn(\n        \"flex size-full items-center justify-center rounded-full bg-muted\",\n        className\n      )}\n      data-slot=\"avatar-fallback\"\n      ref={ref}\n      {...props}\n    />\n  );\n});\n\nexport { Avatar, AvatarImage, AvatarFallback };\n",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "type": "registry:ui"
 }

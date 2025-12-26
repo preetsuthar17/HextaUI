@@ -90,7 +90,7 @@ export const ComponentsSidebar = React.memo(function ComponentsSidebar({
   return (
     <aside
       aria-label="Components navigation"
-      className="-translate-y-1/2 fixed inset-y-0 top-1/2 left-[2.5%] z-20 hidden h-[80dvh] w-full max-w-60 items-center md:flex"
+      className="fixed inset-y-0 top-1/2 left-[2.5%] z-20 hidden h-[80dvh] w-full max-w-60 -translate-y-1/2 items-center md:flex"
       style={{ minWidth: 0 }}
     >
       <div className="flex h-full w-full max-w-3xl flex-col overflow-hidden bg-transparent">

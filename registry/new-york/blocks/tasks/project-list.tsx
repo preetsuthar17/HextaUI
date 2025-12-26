@@ -264,7 +264,7 @@ function ProjectCard({
           </p>
         )}
         <div className="flex items-center justify-between">
-          <div className="-space-x-2 flex">
+          <div className="flex -space-x-2">
             {project.members.slice(0, 4).map((member) => (
               <Avatar
                 className="size-6 border-2 border-background"
@@ -403,7 +403,7 @@ export default function ProjectList({
               {searchQuery && (
                 <Button
                   aria-label="Clear search"
-                  className="-translate-y-1/2 absolute top-1/2 right-2"
+                  className="absolute top-1/2 right-2 -translate-y-1/2"
                   onClick={() => setSearchQuery("")}
                   size="icon"
                   type="button"

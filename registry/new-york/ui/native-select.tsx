@@ -26,7 +26,7 @@ const NativeSelect = React.forwardRef<
       />
       <ChevronDownIcon
         aria-hidden="true"
-        className="-translate-y-1/2 pointer-events-none absolute top-1/2 right-3.5 size-4 select-none text-muted-foreground opacity-50"
+        className="pointer-events-none absolute top-1/2 right-3.5 size-4 -translate-y-1/2 select-none text-muted-foreground opacity-50"
         data-slot="native-select-icon"
       />
     </div>
