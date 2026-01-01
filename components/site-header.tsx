@@ -1,12 +1,17 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { Logo } from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/new-york/ui/tooltip";
 import { Badge } from "@/registry/new-york/ui/badge";
-import Image from "next/image";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/registry/new-york/ui/tooltip";
 
 export function SiteHeader() {
   return (

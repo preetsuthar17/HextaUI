@@ -209,8 +209,44 @@ export default async function ComponentPage({
           <Separator />
           <ComponentPrevNext currentId={meta.id} />
         </div>
-        <aside className="hidden w-1/5 min-w-[180px] max-w-[240px] flex-col items-end gap-4 md:flex">
-          <div className="flex flex-col gap-2 border border-dashed p-4 sm:p-6">
+          <aside className="hidden w-1/5 min-w-[180px] max-w-[280px] flex-col items-end gap-4 md:flex">
+          <div className="flex flex-col gap-2 border border-dashed p-4 sm:p-6 w-full">
+            <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl leading-tight tracking-tighter">
+              <span className="block shrink-0">
+                <Image
+                  alt="shadcnblocks logo"
+                  className="shrink-0 dark:invert"
+                  height={32}
+                  src="https://deifkwefumgah.cloudfront.net/shadcnblocks/images/logo/shadcnblocks-logo.svg"
+                  width={32}
+                />
+              </span>
+              The ultimate block set for Shadcn UI & Tailwind
+            </h2>
+            <p className="text-muted-foreground text-sm">
+              929 blocks and 1115 patterns for shadcn/ui, Tailwind & React. Easy to use.
+            </p>
+            <div>
+              <Button asChild variant={"outline"}>
+                <a
+                  data-s-event="Blocks/Components link: shadcnblocks.com"
+                  data-s-event-props="location=blocks/components;label=shadcnblocks.com"
+                  href="https://shadcnblocks.com?utm_source=hextaui&utm_medium=referral&utm_campaign=component-docs&ref=hextaui.com"
+                  rel="noopener noreferrer"
+                  role="button"
+                  style={{ textDecoration: "none" }}
+                  tabIndex={0}
+                  target="_blank"
+                  type="button"
+                >
+                  Get Started
+                  <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />
+                </a>
+              </Button>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-2 border border-dashed p-4 sm:p-6 w-full">
             <h2 className="flex flex-wrap items-center gap-2 font-semibold text-xl leading-tight tracking-tighter">
               <span className="block shrink-0">
                 <Image
@@ -224,8 +260,7 @@ export default async function ComponentPage({
               Build Forms, Collect Responses & Analyze.
             </h2>
             <p className="text-muted-foreground text-sm">
-              The open-source forms platform for effortless data collection and
-              analysis.
+              The open-source forms platform for effortless data collection and analysis.
             </p>
             <div>
               <Button asChild variant={"outline"}>
@@ -240,12 +275,13 @@ export default async function ComponentPage({
                   target="_blank"
                   type="button"
                 >
-                  Start collecting responses
+                  Get Started
                   <ArrowRightIcon aria-hidden="true" className="ml-1 size-4" />
                 </a>
               </Button>
             </div>
           </div>
+          
           <CarbonAds />
         </aside>
       </div>
