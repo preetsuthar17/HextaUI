@@ -36,7 +36,7 @@ export default function ComponentsIndexPage() {
           </p>
         </div>
       </header>
-      {/* <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
+      <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
             alt="shadcnblocks logo"
@@ -82,7 +82,7 @@ export default function ComponentsIndexPage() {
             </Button>
           </div>
         </div>
-      </div> */}
+      </div>
       <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image

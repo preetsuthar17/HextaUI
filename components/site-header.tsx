@@ -4,6 +4,9 @@ import Link from "next/link";
 import { HeaderSearchTrigger } from "@/components/docs/header-search-trigger";
 import { Logo } from "@/components/logo";
 import { ThemeSwitcher } from "@/components/theme-switcher";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/registry/new-york/ui/tooltip";
+import { Badge } from "@/registry/new-york/ui/badge";
+import Image from "next/image";
 
 export function SiteHeader() {
   return (
@@ -61,7 +64,7 @@ export function SiteHeader() {
               Sponsor
             </Link>
           </li>
-          {/* <li
+          <li
             data-s-event="Header link: shadcnblocks.com"
             data-s-event-props="location=site-header;label=shadcnblocks.com"
             onClick={() =>
@@ -97,7 +100,7 @@ export function SiteHeader() {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          </li> */}
+          </li>
           <li>
             <ThemeSwitcher />
           </li>
