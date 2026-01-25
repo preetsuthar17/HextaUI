@@ -258,7 +258,8 @@ export default async function BlockPage({
               Build Forms, Collect Responses & Analyze.
             </h2>
             <p className="text-muted-foreground text-sm">
-              The open-source forms platform for effortless data collection and analysis.
+              The open-source forms platform for effortless data collection and
+              analysis.
             </p>
             <div>
               <Button asChild variant={"outline"}>
@@ -279,7 +280,7 @@ export default async function BlockPage({
               </Button>
             </div>
           </div>
-          
+
           <CarbonAds />
         </aside>
       </div>
