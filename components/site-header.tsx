@@ -69,7 +69,7 @@ export function SiteHeader() {
               Sponsor
             </Link>
           </li>
-          <li
+          {/*<li
             data-s-event="Header link: shadcnblocks.com"
             data-s-event-props="location=site-header;label=shadcnblocks.com"
             onClick={() =>
@@ -105,7 +105,7 @@ export function SiteHeader() {
                 </TooltipContent>
               </Tooltip>
             </TooltipProvider>
-          </li>
+          </li>*/}
           <li>
             <ThemeSwitcher />
           </li>

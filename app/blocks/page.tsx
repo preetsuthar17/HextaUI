@@ -40,7 +40,7 @@ export default function BlocksIndexPage() {
           </p>
         </div>
       </header>
-      <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
+      {/*<div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
             alt="shadcnblocks logo"
@@ -86,7 +86,7 @@ export default function BlocksIndexPage() {
             </Button>
           </div>
         </div>
-      </div>
+      </div>*/}
       <div className="flex flex-wrap items-center gap-6 rounded-xl border border-dashed p-6">
         <div className="hidden md:block">
           <Image
