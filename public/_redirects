@@ -143,5 +143,10 @@
 /blocks/billing-subscription-card /blocks/billing 301
 /blocks/billing-subscription-settings /blocks/billing 301
 /blocks/billing-usage-alerts /blocks/billing 301
+/blocks/auth-otp-verify /docs/input-otp 301
+/blocks/task-list /blocks/agent-todos 301
+/blocks/team-permissions-matrix /blocks/team 301
+/blocks/team-activity-feed /blocks/notifications 301
+/showcase / 301
 
 /preview/:slug /docs/:slug 301
