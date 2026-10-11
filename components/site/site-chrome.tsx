@@ -1,9 +1,9 @@
 "use client"
 
-import { usePathname } from "next/navigation"
+import { useSitePathname } from "@/lib/i18n/client"
 
 function SiteChrome({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname()
+  const pathname = useSitePathname()
   return pathname.startsWith("/preview/") ? null : children
 }
 

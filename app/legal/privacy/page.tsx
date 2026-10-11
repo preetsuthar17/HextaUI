@@ -25,7 +25,7 @@ export default function Page() {
     <LegalPage
       href="/legal/privacy"
       title="Privacy Policy"
-      updated="2026-10-08"
+      updated="2026-10-11"
     >
       <DocsParagraph>
         HextaUI (hextaui.com) is run by Preet Suthar, an individual based in
@@ -168,6 +168,13 @@ export default function Page() {
           of which release emails went to which account so nobody gets the same
           one twice, and the date you unsubscribed so I stop emailing you.
         </DocsParagraph>
+        <DocsParagraph>
+          You can also get release emails without an account, by entering your
+          email address in the form at the bottom of any page. I store that
+          address, the page you subscribed from, the last release email sent to
+          it, and the date you unsubscribed if you do. It’s used only for
+          release emails.
+        </DocsParagraph>
       </LegalSection>
 
       <LegalSection title="How the data is used">
@@ -265,6 +272,10 @@ export default function Page() {
           </li>
           <li>API tokens: until you revoke them or delete your account.</li>
           <li>Release email records: until you delete your account.</li>
+          <li>
+            Email addresses subscribed without an account: until you ask me to
+            delete them. Unsubscribing stops the emails straight away.
+          </li>
           <li>
             Teammate emails: until the Team owner removes them, or the Team plan
             is refunded or deleted.

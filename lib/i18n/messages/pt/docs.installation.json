@@ -1,0 +1,21 @@
+{
+  "A React 19 project with Tailwind CSS v4 and a `components.json`. If you don't have one yet, set it up with the shadcn CLI.": "Um projeto React 19 com Tailwind CSS v4 e um `components.json`. Se você ainda não tem um, configure-o com a shadcn CLI.",
+  "AI assistants": "Assistentes de IA",
+  "Add HextaUI to a React project with the shadcn CLI, or copy the files in by hand.": "Adicione o HextaUI a um projeto React com a shadcn CLI, ou copie os arquivos manualmente.",
+  "Add `.md` to any docs URL for that page, like `https://hextaui.com/docs/button.md`.": "Adicione `.md` a qualquer URL da documentação para obter aquela página, como `https://hextaui.com/docs/button.md`.",
+  "Add components": "Adicionar componentes",
+  "Add every component at once with:": "Adicione todos os componentes de uma vez com:",
+  "Components use a few tokens on top of shadcn/ui: status colors, easing curves, a hairline border width and the keyframes they animate with. The CLI adds them for you. When copying files by hand, add this to your global CSS once.": "Os componentes usam alguns tokens além do shadcn/ui: cores de status, curvas de easing, uma largura de borda hairline e os keyframes com que animam. A CLI os adiciona para você. Ao copiar os arquivos manualmente, adicione isto ao seu CSS global uma única vez.",
+  "Every page is available as Markdown, so assistants get the full source, examples and API without scraping. Use the Copy page menu at the top of any page, or point your assistant at these files.": "Todas as páginas estão disponíveis em Markdown, então os assistentes recebem o código-fonte completo, os exemplos e a API sem precisar fazer scraping. Use o menu Copy page no topo de qualquer página, ou aponte seu assistente para estes arquivos.",
+  "For the best results, connect the <0>HextaUI MCP server</0>. Assistants search the docs, read each API and get install commands without leaving your editor.": "Para melhores resultados, conecte o <0>servidor MCP do HextaUI</0>. Os assistentes pesquisam a documentação, leem cada API e obtêm comandos de instalação sem sair do seu editor.",
+  "Install HextaUI with the shadcn CLI": "Instale o HextaUI com a shadcn CLI",
+  "Namespace": "Namespace",
+  "Pass a component's registry URL to the CLI. It copies the source into your project, installs its dependencies, adds the theme tokens and pulls in any HextaUI components it builds on.": "Passe a URL do registry de um componente à CLI. Ela copia o código-fonte para o seu projeto, instala suas dependências, adiciona os tokens do tema e traz os componentes do HextaUI em que ele se baseia.",
+  "Register HextaUI in `components.json` to add components by name.": "Registre o HextaUI em `components.json` para adicionar componentes pelo nome.",
+  "Requirements": "Requisitos",
+  "The files are yours from then on. Import them from `@/components/ui` and edit them like any other code.": "A partir daí, os arquivos são seus. Importe-os de `@/components/ui` e edite-os como qualquer outro código.",
+  "Theme": "Tema",
+  "With the namespace above, the shadcn MCP server lets assistants like Claude Code, Cursor and Codex browse and install HextaUI components directly.": "Com o namespace acima, o servidor MCP do shadcn permite que assistentes como Claude Code, Cursor e Codex naveguem e instalem componentes do HextaUI diretamente.",
+  "`https://hextaui.com/llms-full.txt` has every page in one file.": "`https://hextaui.com/llms-full.txt` tem todas as páginas em um único arquivo.",
+  "`https://hextaui.com/llms.txt` lists every page with a short description.": "`https://hextaui.com/llms.txt` lista todas as páginas com uma descrição curta."
+}

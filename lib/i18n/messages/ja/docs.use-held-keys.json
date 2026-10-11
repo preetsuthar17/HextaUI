@@ -1,0 +1,21 @@
+{
+  "<l0/> is built on this hook. Each keycap presses down while its key is held.": "<l0/> はこのフックの上に構築されています。各キーキャップは、そのキーが押されている間押し込まれます。",
+  "Every component that calls the hook shares one store. The first subscriber adds passive `keydown` and `keyup` listeners to `window`, and the last one to unsubscribe removes them. A page with fifty listening keycaps still has one pair of listeners.": "フックを呼ぶすべてのコンポーネントは、1つのストアを共有します。最初の購読者が `window` にパッシブな `keydown` と `keyup` のリスナーを追加し、最後に購読を解除した購読者がそれらを削除します。50個のキーキャップが監視していても、リスナーは1組だけです。",
+  "Everything is released when the window loses focus or the tab is hidden. A shortcut that switches apps leaves nothing held.": "ウィンドウがフォーカスを失うか、タブが非表示になると、すべて解放されます。アプリを切り替えるショートカットで、押されたままになるものはありません。",
+  "For shortcuts that fire an action, use `matchesHotkey` from `Hotkey` in a keydown handler instead. Holding keys is for showing state, not for running commands.": "アクションを実行するショートカットには、代わりに keydown ハンドラーで `Hotkey` の `matchesHotkey` を使ってください。キーの押下保持は状態を表示するためのもので、コマンドを実行するためのものではありません。",
+  "Key repeat is ignored, and nothing re-renders while a key is held.": "キーリピートは無視され、キーが押されている間は何も再レンダリングされません。",
+  "Keycaps that press": "押し込まれるキーキャップ",
+  "Letters and digits come from `event.code`, the physical key, so holding Option+K on a Mac still reports `k` rather than `˚`.": "文字と数字は物理キーである `event.code` から取得するため、Mac で Option+K を押していても、`˚` ではなく `k` が報告されます。",
+  "On the server, and before hydration, the set is empty.": "サーバー上とハイドレーション前は、セットは空です。",
+  "Pass `false` to stop listening. The hook then returns an empty set and adds no listeners, so it's cheap to call it unconditionally.": "リッスンを止めるには `false` を渡します。フックは空のセットを返してリスナーを追加しないので、無条件に呼び出してもコストはかかりません。",
+  "The keys someone is holding down right now, shared by every subscriber through a single set of window listeners.": "今まさに押されているキー。1組の window リスナーを通じて、すべての購読者で共有されます。",
+  "The listeners only read events. They never call `preventDefault`, and they sit on `window`, after React's own handlers, so typing in a field is never delayed or changed.": "リスナーはイベントを読み取るだけです。`preventDefault` は呼ばず、React 自身のハンドラーの後で `window` に置かれるため、フィールドへの入力が遅れたり変更されたりすることはありません。",
+  "The names of the keys held down right now.": "いま押されているキーの名前。",
+  "The set is replaced only when a key goes down or up, so its identity works as a memo or effect dependency.": "セットはキーが押されたとき、または離されたときにだけ置き換えられるため、その同一性はメモ化や effect の依存配列として使えます。",
+  "Use it for anything that reacts to keys being held rather than pressed: keycaps that press down, shortcut hints that appear while you hold ⌘, or a modifier that switches a tool, like Alt to duplicate while dragging.": "キーを押すことではなく押し続けることに反応するものに使います。たとえば、押し込まれるキーキャップ、⌘ を押している間に表示されるショートカットのヒント、ドラッグ中に Alt で複製するようなツールを切り替える修飾キーです。",
+  "Whether to listen. When false, nothing is attached.": "リッスンするかどうか。false の場合、何もアタッチされません。",
+  "`Kbd` and `KbdGroup` through their `listen` prop.": "`listen` prop を通じた `Kbd` と `KbdGroup`。",
+  "macOS doesn't send `keyup` for other keys while ⌘ is down. When ⌘ is released, the store keeps only the modifiers still held, so letters can't get stuck.": "macOS では、⌘ が押されている間、他のキーの `keyup` が送られません。⌘ が離されると、ストアはまだ押されている修飾キーだけを保持するため、文字が押されたまま残ることはありません。",
+  "useHeldKeys(enabled)": "useHeldKeys(enabled)",
+  "useHeldKeys: track pressed keys in React": "useHeldKeys: React で押されているキーを追跡する"
+}

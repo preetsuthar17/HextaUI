@@ -6,6 +6,7 @@ import { cn } from "cn"
 import { DocsCopyButton } from "@/components/docs/docs-copy-button"
 import { DocsFileIcon } from "@/components/docs/docs-file-icon"
 import { Button } from "@/components/ui/button"
+import { useChrome } from "@/lib/i18n/chrome"
 
 type DocsCodeSource = {
   url: string
@@ -61,6 +62,7 @@ function DocsCodePanel({
   source?: DocsCodeSource
   className?: string
 }) {
+  const c = useChrome()
   const [expanded, setExpanded] = React.useState(false)
   const [fullHtml, setFullHtml] = React.useState<string | null>(null)
   const [failed, setFailed] = React.useState(false)
@@ -150,7 +152,7 @@ function DocsCodePanel({
               render={<a href={source.href} />}
               nativeButton={false}
             >
-              View on GitHub
+              {c("View on GitHub")}
             </Button>
           ) : (
             <Button
@@ -160,7 +162,7 @@ function DocsCodePanel({
               className="pointer-events-auto"
               onClick={toggle}
             >
-              {expanded ? "Collapse" : "View code"}
+              {expanded ? c("Collapse") : c("View code")}
             </Button>
           )}
           {source ? (

@@ -1,0 +1,21 @@
+{
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.": "揺れは「なぜ送信できなかったのか」という1つの問いに答えます。そのためこのフックは、送信を試みた直後にだけ揺れ、フォームに入力している最中には揺れません。",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.": "送信ボタンのクリック、フォームの入力欄での Enter、またはフォームの submit イベント。",
+  "Event": "イベント",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.": "`InputGroup` の内側では、内側のコントロールだけでなく、グループ全体が揺れます。",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.": "ネイティブのバリデーションは、送信時に最初の無効なコントロールにフォーカスします。揺れはその上に動きを加えるだけで、フォーカスを動かすことはありません。",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.": "送信の試みが失敗した後の400msの間、コントロールまたはその InputGroup に付きます。",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.": "属性を再設定するとアニメーションが再開するため、1回目がまだ実行中でも、2回目の失敗では再び揺れます。",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.": "コントロールが invalid を発火するか、aria-invalid=\"true\"、data-invalid、:user-invalid を持つ場合です。これにはネイティブのバリデーション、Base UI のフィールド、送信直後に設定されるサーバーエラーが含まれます。",
+  "The form control to watch.": "監視するフォームコントロール。",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.": "このフックでは、コントロールが <l0/> に属している必要があります。属していない場合は何もしません。",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.": "このフックが設定するのは `data-shake` 属性だけです。動きはテーマの `animate-button-shake` によるもので、`data-shake:motion-safe:animate-button-shake` で付けます。HextaUI の Input、Textarea、Native select、Input group にはそのクラスがすでに含まれていて、フックも呼んでいます。独自のコントロールでは直接使ってください。",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.": "コントロールごとに `enabled` 引数でオフにするか、HextaUI の入力欄では `shake={false}` を指定します。",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.": "視差効果の軽減が有効な場合は、何も設定されません。揺れはメッセージではなく合図なので、どちらの場合も、揺れに加えて表示されるエラーメッセージを組み合わせてください。",
+  "When it shakes": "揺れるタイミング",
+  "Whether to shake.": "揺れるかどうか。",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.": "`Input`、`Textarea`、`NativeSelect`、`InputGroup`。",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.": "data-shake は400ms設定されます。これらのシグナルがいくつ届いても、1回の試みにつき1回だけ揺れます。",
+  "useInvalidShake(ref, enabled?)": "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React": "useInvalidShake: React で無効なフォームフィールドを揺らす"
+}

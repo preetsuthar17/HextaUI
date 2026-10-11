@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "pnpm pro:build && next dev",
     "dev:api": "wrangler pages dev",
-    "build": "pnpm pro:build && pnpm registry:build && next build && node --experimental-strip-types --no-warnings scripts/write-routes.ts && node --experimental-strip-types --no-warnings scripts/check-pro-leak.ts && node --experimental-strip-types --no-warnings scripts/check-html-size.ts",
+    "build": "pnpm pro:build && pnpm registry:build && next build && node --experimental-strip-types --no-warnings scripts/localize-html.ts && node --experimental-strip-types --no-warnings scripts/write-routes.ts && node --experimental-strip-types --no-warnings scripts/check-pro-leak.ts && node --experimental-strip-types --no-warnings scripts/check-html-size.ts",
     "start": "next start",
     "registry:sync": "node scripts/sync-registry.mjs",
     "registry:build": "pnpm registry:sync && shadcn build",
@@ -20,6 +20,7 @@
     "db:migrate:local": "wrangler d1 migrations apply hextaui --local",
     "db:migrate:remote": "wrangler d1 migrations apply hextaui --remote",
     "email": "node --env-file-if-exists=.dev.vars --experimental-strip-types --no-warnings scripts/email.ts",
+    "i18n:sync": "node --experimental-strip-types --no-warnings scripts/i18n-sync.ts",
     "pro:build": "node --experimental-strip-types --no-warnings scripts/build-pro.ts"
   },
   "dependencies": {

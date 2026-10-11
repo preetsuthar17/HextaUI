@@ -6,6 +6,7 @@ import { cn } from "cn"
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import type { DocsTocItem } from "@/lib/docs"
+import { useChrome } from "@/lib/i18n/chrome"
 
 const activationOffset = 112
 const trackOffsets = { 2: 2.5, 3: 10.5 } as const
@@ -215,6 +216,7 @@ function DocsToc({
   items?: DocsTocItem[]
   className?: string
 }) {
+  const c = useChrome()
   const rootRef = React.useRef<HTMLElement>(null)
   const listRef = React.useRef<HTMLUListElement>(null)
   const highlightRef = React.useRef<SVGSVGElement>(null)
@@ -292,7 +294,7 @@ function DocsToc({
           data-passed={itemIndex <= activeTarget ? "" : undefined}
           aria-current={active ? "location" : undefined}
           className={cn(
-            "group/toc-link flex min-h-7 min-w-0 flex-1 items-center rounded-sm text-sm text-muted-foreground transition-colors duration-300 ease-out-quint outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:ring-inset focus-visible:outline-hidden data-passed:text-foreground motion-reduce:transition-none",
+            "group/toc-link flex min-h-7 min-w-0 flex-1 items-center rounded-sm text-sm text-muted-foreground transition-colors duration-300 ease-out-quint outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-focus-ring focus-visible:outline-hidden focus-visible:ring-inset data-passed:text-foreground motion-reduce:transition-none",
             item.depth === 3 ? "ps-7" : "ps-5"
           )}
         >
@@ -311,12 +313,12 @@ function DocsToc({
   return (
     <nav
       ref={rootRef}
-      aria-label="On this page"
+      aria-label={c("On this page")}
       className={cn("flex min-w-0 flex-col gap-2", className)}
     >
       <p className="flex min-h-7 items-center gap-2 text-sm text-muted-foreground">
         <IconAlignLeft aria-hidden="true" className="size-4" />
-        On this page
+        {c("On this page")}
       </p>
       <div
         className={cn(

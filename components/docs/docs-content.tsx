@@ -2,6 +2,7 @@ import * as React from "react"
 import { cn } from "cn"
 
 import { getDocsSlug } from "@/lib/docs"
+import { markLiteral, t, translateItems, translateNode } from "@/lib/i18n/rich"
 
 function DocsHeading({
   id,
@@ -30,7 +31,7 @@ function DocsHeading({
         href={`#${id}`}
         className="rounded-sm outline-none focus-visible:ring-3 focus-visible:ring-focus-ring focus-visible:outline-hidden"
       >
-        <span data-docs-heading-text="">{children}</span>
+        <span data-docs-heading-text="">{translateNode(children)}</span>
         <span
           aria-hidden="true"
           className="heading-anchor ms-2 text-muted-foreground opacity-0 transition-opacity duration-150 group-hover/heading:opacity-100 group-has-focus-visible/heading:opacity-100 motion-reduce:transition-none"
@@ -40,7 +41,11 @@ function DocsHeading({
   )
 }
 
-function DocsParagraph({ className, ...props }: React.ComponentProps<"p">) {
+function DocsParagraph({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"p">) {
   return (
     <p
       className={cn(
@@ -48,11 +53,17 @@ function DocsParagraph({ className, ...props }: React.ComponentProps<"p">) {
         className
       )}
       {...props}
-    />
+    >
+      {translateNode(children)}
+    </p>
   )
 }
 
-function DocsList({ className, ...props }: React.ComponentProps<"ul">) {
+function DocsList({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<"ul">) {
   return (
     <ul
       className={cn(
@@ -60,7 +71,9 @@ function DocsList({ className, ...props }: React.ComponentProps<"ul">) {
         className
       )}
       {...props}
-    />
+    >
+      {translateItems(children)}
+    </ul>
   )
 }
 
@@ -105,11 +118,11 @@ function DocsSection({
           level={level}
           className={cn("mt-0", level === 2 ? "text-xl" : "text-base")}
         >
-          {title}
+          {t(title)}
         </DocsHeading>
         {description ? (
           <p className="text-base/7 text-pretty text-muted-foreground">
-            {description}
+            {translateNode(description)}
           </p>
         ) : null}
       </div>
@@ -117,5 +130,7 @@ function DocsSection({
     </section>
   )
 }
+
+markLiteral(DocsCode)
 
 export { DocsCode, DocsHeading, DocsList, DocsParagraph, DocsSection }

@@ -1,9 +1,10 @@
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react"
 import { cn } from "cn"
 
 import { getDocsPager } from "@/lib/docs"
 import type { DocsNavItem } from "@/lib/docs"
+import { t } from "@/lib/i18n/rich"
 
 function DocsPagerLink({
   item,
@@ -23,7 +24,7 @@ function DocsPagerLink({
       )}
     >
       <span className="text-xs text-muted-foreground">
-        {next ? "Next" : "Previous"}
+        {next ? t("Next") : t("Previous")}
       </span>
       <span className="flex max-w-full items-center gap-1.5 text-sm font-medium">
         {next ? null : (
@@ -32,7 +33,7 @@ function DocsPagerLink({
             className="size-3.5 shrink-0 text-muted-foreground transition-transform duration-200 ease-out-quint group-hover/pager:-translate-x-0.5 motion-reduce:transition-none rtl:rotate-180 rtl:group-hover/pager:translate-x-0.5"
           />
         )}
-        <span className="truncate">{item.title}</span>
+        <span className="truncate">{t(item.title)}</span>
         {next ? (
           <IconArrowRight
             aria-hidden="true"
@@ -60,7 +61,7 @@ function DocsPager({
   }
 
   return (
-    <nav aria-label="Pagination" className={cn("flex gap-3", className)}>
+    <nav aria-label={t("Pagination")} className={cn("flex gap-3", className)}>
       {previous ? (
         <DocsPagerLink item={previous} direction="previous" />
       ) : (

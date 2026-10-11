@@ -1,0 +1,21 @@
+[
+  "A React 19 project with Tailwind CSS v4 and a `components.json`. If you don't have one yet, set it up with the shadcn CLI.",
+  "AI assistants",
+  "Add HextaUI to a React project with the shadcn CLI, or copy the files in by hand.",
+  "Add `.md` to any docs URL for that page, like `https://hextaui.com/docs/button.md`.",
+  "Add components",
+  "Add every component at once with:",
+  "Components use a few tokens on top of shadcn/ui: status colors, easing curves, a hairline border width and the keyframes they animate with. The CLI adds them for you. When copying files by hand, add this to your global CSS once.",
+  "Every page is available as Markdown, so assistants get the full source, examples and API without scraping. Use the Copy page menu at the top of any page, or point your assistant at these files.",
+  "For the best results, connect the <0>HextaUI MCP server</0>. Assistants search the docs, read each API and get install commands without leaving your editor.",
+  "Install HextaUI with the shadcn CLI",
+  "Namespace",
+  "Pass a component's registry URL to the CLI. It copies the source into your project, installs its dependencies, adds the theme tokens and pulls in any HextaUI components it builds on.",
+  "Register HextaUI in `components.json` to add components by name.",
+  "Requirements",
+  "The files are yours from then on. Import them from `@/components/ui` and edit them like any other code.",
+  "Theme",
+  "With the namespace above, the shadcn MCP server lets assistants like Claude Code, Cursor and Codex browse and install HextaUI components directly.",
+  "`https://hextaui.com/llms-full.txt` has every page in one file.",
+  "`https://hextaui.com/llms.txt` lists every page with a short description."
+]

@@ -1,8 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 import {
@@ -15,6 +14,7 @@ import {
 } from "@/components/ui/sidebar"
 import { useSharedHighlight } from "@/components/site/use-shared-highlight"
 import type { DocsNavSection } from "@/lib/docs"
+import { useSitePathname } from "@/lib/i18n/client"
 
 const buttonSelector = "[data-sidebar=menu-button]"
 
@@ -27,7 +27,7 @@ function DocsNav({
   onNavigate?: () => void
   className?: string
 }) {
-  const pathname = usePathname()
+  const pathname = useSitePathname()
   const { navRef, highlightRef, handlers } = useSharedHighlight<HTMLElement>(
     pathname,
     buttonSelector,

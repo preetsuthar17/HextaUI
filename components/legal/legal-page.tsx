@@ -1,7 +1,8 @@
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 
 import { siteContactEmail } from "@/lib/site"
+import { t } from "@/lib/i18n/rich"
 
 const legalPages = [
   { href: "/legal/privacy", title: "Privacy Policy" },
@@ -59,7 +60,7 @@ function LegalSection({
         id={id}
         className="scroll-mt-20 text-xl font-semibold tracking-tight text-balance"
       >
-        {title}
+        {t(title)}
       </h2>
       {children}
     </section>

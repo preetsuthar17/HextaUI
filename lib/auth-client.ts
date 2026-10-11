@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { createAuthClient } from "better-auth/react"
 
 import type { ProPlanId } from "@/lib/pro/pricing"
+import { track } from "@/lib/track"
 
 const authClient = createAuthClient()
 
@@ -94,6 +95,7 @@ function useSession() {
 type SignInProvider = "github" | "google"
 
 function signIn(provider: SignInProvider) {
+  track("Sign in started", { provider })
   writeSignedIn(true)
   return authClient.signIn.social({
     provider,
@@ -103,6 +105,7 @@ function signIn(provider: SignInProvider) {
 }
 
 async function startCheckout(plan: ProPlanId = "solo") {
+  track("Checkout started", { plan })
   const response = await fetch("/api/checkout", {
     method: "POST",
     headers: { "content-type": "application/json" },

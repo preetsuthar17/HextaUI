@@ -1,0 +1,21 @@
+{
+  "<l0/> is built on this hook. Each keycap presses down while its key is held.": "<l0/> é construído sobre este hook. Cada tecla é pressionada enquanto sua tecla real está segurada.",
+  "Every component that calls the hook shares one store. The first subscriber adds passive `keydown` and `keyup` listeners to `window`, and the last one to unsubscribe removes them. A page with fifty listening keycaps still has one pair of listeners.": "Todo componente que chama o hook compartilha um único store. O primeiro assinante adiciona listeners passivos de `keydown` e `keyup` em `window`, e o último a cancelar a assinatura os remove. Uma página com cinquenta teclas escutando ainda tem um par de listeners.",
+  "Everything is released when the window loses focus or the tab is hidden. A shortcut that switches apps leaves nothing held.": "Tudo é liberado quando a janela perde o foco ou a aba fica oculta. Um atalho que troca de app não deixa nada preso.",
+  "For shortcuts that fire an action, use `matchesHotkey` from `Hotkey` in a keydown handler instead. Holding keys is for showing state, not for running commands.": "Para atalhos que disparam uma ação, use `matchesHotkey` de `Hotkey` em um handler de keydown. Segurar teclas serve para mostrar estado, não para executar comandos.",
+  "Key repeat is ignored, and nothing re-renders while a key is held.": "A repetição de tecla é ignorada, e nada é renderizado novamente enquanto uma tecla está segurada.",
+  "Keycaps that press": "Teclas que pressionam",
+  "Letters and digits come from `event.code`, the physical key, so holding Option+K on a Mac still reports `k` rather than `˚`.": "Letras e dígitos vêm de `event.code`, a tecla física, então segurar Option+K em um Mac ainda informa `k` em vez de `˚`.",
+  "On the server, and before hydration, the set is empty.": "No servidor, e antes da hidratação, o conjunto está vazio.",
+  "Pass `false` to stop listening. The hook then returns an empty set and adds no listeners, so it's cheap to call it unconditionally.": "Passe `false` para parar de escutar. O hook então retorna um conjunto vazio e não adiciona listeners, então é barato chamá-lo incondicionalmente.",
+  "The keys someone is holding down right now, shared by every subscriber through a single set of window listeners.": "As teclas que alguém está segurando agora, compartilhadas por todos os assinantes por meio de um único conjunto de listeners na janela.",
+  "The listeners only read events. They never call `preventDefault`, and they sit on `window`, after React's own handlers, so typing in a field is never delayed or changed.": "Os listeners apenas leem eventos. Nunca chamam `preventDefault` e ficam em `window`, depois dos handlers do próprio React, então digitar em um campo nunca é atrasado nem alterado.",
+  "The names of the keys held down right now.": "Os nomes das teclas seguradas agora.",
+  "The set is replaced only when a key goes down or up, so its identity works as a memo or effect dependency.": "O conjunto só é substituído quando uma tecla é pressionada ou solta, então sua identidade funciona como dependência de memo ou effect.",
+  "Use it for anything that reacts to keys being held rather than pressed: keycaps that press down, shortcut hints that appear while you hold ⌘, or a modifier that switches a tool, like Alt to duplicate while dragging.": "Use para qualquer coisa que reaja a teclas seguradas em vez de pressionadas: teclas que afundam, dicas de atalho que aparecem enquanto você segura ⌘, ou um modificador que troca uma ferramenta, como Alt para duplicar ao arrastar.",
+  "Whether to listen. When false, nothing is attached.": "Se deve escutar. Quando false, nada é anexado.",
+  "`Kbd` and `KbdGroup` through their `listen` prop.": "`Kbd` e `KbdGroup` por meio da sua prop `listen`.",
+  "macOS doesn't send `keyup` for other keys while ⌘ is down. When ⌘ is released, the store keeps only the modifiers still held, so letters can't get stuck.": "O macOS não envia `keyup` para outras teclas enquanto ⌘ está pressionada. Quando ⌘ é solta, o store mantém apenas os modificadores ainda segurados, para letras não ficarem presas.",
+  "useHeldKeys(enabled)": "useHeldKeys(enabled)",
+  "useHeldKeys: track pressed keys in React": "useHeldKeys: acompanhe teclas pressionadas no React"
+}

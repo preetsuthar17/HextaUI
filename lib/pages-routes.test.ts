@@ -37,7 +37,6 @@ describe("getPagesRoutes", () => {
       expect.arrayContaining([
         "/_next/*",
         "/.well-known/*",
-        "/docs",
         "/docs.html",
         "/docs/*",
         "/index.md",
@@ -47,6 +46,10 @@ describe("getPagesRoutes", () => {
         "/_not-found",
       ])
     )
+  })
+
+  it("lets a folder wildcard cover the page with the same name", () => {
+    expect(routes.exclude).not.toContain("/docs")
   })
 
   it("keeps the homepage, MCP endpoint and Pro registry on Functions", () => {

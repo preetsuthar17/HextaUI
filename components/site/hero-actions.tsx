@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { IconArrowRight } from "@tabler/icons-react"
 import { cn } from "cn"
 
@@ -11,8 +11,10 @@ import { Separator } from "@/components/ui/separator"
 import { GithubLogo } from "@/components/site/github-logo"
 import { useGithubStars } from "@/components/site/use-github-stars"
 import { siteRepository } from "@/lib/site"
+import { useChrome } from "@/lib/i18n/chrome"
 
 function GithubStarsButton({ stars: initial }: { stars: number | null }) {
+  const c = useChrome()
   const stars = useGithubStars(initial)
   const [shown, setShown] = React.useState(0)
 
@@ -37,7 +39,7 @@ function GithubStarsButton({ stars: initial }: { stars: number | null }) {
       className={cn(buttonVariants({ variant: "outline", size: "lg" }), "px-3")}
     >
       <GithubLogo />
-      Star on GitHub
+      {c("Star on GitHub")}
       {stars === null ? null : (
         <>
           <Separator orientation="vertical" className="mx-1 h-4 self-center" />
@@ -51,13 +53,15 @@ function GithubStarsButton({ stars: initial }: { stars: number | null }) {
 }
 
 function HeroActions({ stars }: { stars: number | null }) {
+  const c = useChrome()
+
   return (
     <div className="flex flex-wrap items-center gap-2">
       <Link
         href="/blocks"
         className={cn(buttonVariants({ size: "lg" }), "px-4")}
       >
-        Browse blocks
+        {c("Browse blocks")}
         <IconArrowRight data-icon="inline-end" aria-hidden="true" />
       </Link>
       <Link
@@ -67,7 +71,7 @@ function HeroActions({ stars }: { stars: number | null }) {
           "px-4"
         )}
       >
-        Try Prompt Input free
+        {c("Try Prompt Input free")}
       </Link>
       <GithubStarsButton stars={stars} />
     </div>

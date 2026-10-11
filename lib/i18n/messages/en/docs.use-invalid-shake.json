@@ -1,0 +1,21 @@
+[
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.",
+  "Event",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.",
+  "The form control to watch.",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.",
+  "When it shakes",
+  "Whether to shake.",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.",
+  "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React"
+]

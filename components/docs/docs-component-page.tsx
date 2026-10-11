@@ -5,6 +5,7 @@ import { DocsRelated } from "@/components/docs/docs-related"
 import { JsonLd } from "@/components/site/json-ld"
 import { docsComponents, getDocsComponent } from "@/lib/docs"
 import { getRelatedBlocks, getRelatedDocs } from "@/lib/docs-related"
+import { t } from "@/lib/i18n/rich"
 import { docsArticleJsonLd } from "@/lib/structured-data"
 
 function DocsComponentPage({
@@ -49,7 +50,9 @@ function DocsComponentPage({
       <DocsRelated title="Related" links={getRelatedDocs(component.slug)} />
       <DocsRelated
         title="Used in blocks"
-        description={`Blocks that build on ${component.name}.`}
+        description={t("Blocks that build on {name}.", {
+          name: component.name,
+        })}
         links={getRelatedBlocks(component.slug)}
       />
     </DocsPage>

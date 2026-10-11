@@ -1,0 +1,19 @@
+{
+  "Button and Command use this spinner for their loading states, sized to the button's icons.": "Button ve Command yükleme durumları için bu spinner'ı kullanır; düğmenin simgelerine göre boyutlandırılmıştır.",
+  "In buttons": "Düğmelerde",
+  "Next to text, mark the spinner `aria-hidden` so the words do the talking. On its own, it announces its `label`.": "Metnin yanında spinner'ı `aria-hidden` işaretleyin ki sözcükler konuşsun. Tek başınayken `label` değerini duyurur.",
+  "On its own, the spinner is a `status` named by `label` (“Loading”).": "Tek başına spinner, `label` (“Loading”) ile adlandırılan bir `status`'tur.",
+  "Pass `loading` and the spinner waits `delay` (150ms) before showing, so fast loads never flash it, then stays at least `minDuration` (400ms) once it's visible.": "`loading` verin; spinner göstermeden önce `delay` (150ms) bekler, böylece hızlı yüklemelerde hiç çakmaz, ardından görünür olunca en az `minDuration` (400ms) kalır.",
+  "Pause the animation without hiding it.": "Animasyonu gizlemeden duraklatır.",
+  "Shows a loading state only when work is actually slow, then keeps it up long enough that it never flickers.": "Yükleme durumunu yalnızca iş gerçekten yavaşken gösterir, sonra hiç titremeyecek kadar uzun süre açık tutar.",
+  "Spinner component for React & shadcn/ui": "React ve shadcn/ui için Spinner bileşeni",
+  "The SVG, with data-variant.": "SVG; data-variant ile.",
+  "The default is the eight-spoke indicator from Apple platforms. `variant=\"ring\"` spins while its arc grows and shrinks, so it reads as working rather than stuck. Both are drawn in the current text color.": "Varsayılan, Apple platformlarındaki sekiz kollu göstergedir. `variant=\"ring\"` yayı büyüyüp küçülürken döner; böylece takılı kalmış değil çalışıyor gibi okunur. İkisi de geçerli metin renginde çizilir.",
+  "The same timing as a hook, for skeletons, overlays or anything else that shouldn't flash. See the <0>useDelayedLoading guide</0>.": "Aynı zamanlama bir hook olarak da var; skeleton'lar, bindirmeler veya çakmaması gereken her şey için. <0>useDelayedLoading kılavuzuna</0> bakın.",
+  "Turns on delayed showing. Leave it out to always show.": "Gecikmeli göstermeyi açar. Her zaman göstermek için vermeyin.",
+  "With `aria-hidden`, it drops its role, for use beside visible text or inside a busy button.": "`aria-hidden` ile rolünü bırakır; görünür metnin yanında veya meşgul bir düğmenin içinde kullanım için.",
+  "With reduced motion, it gently pulses instead of spinning, so it still shows that something is happening.": "Azaltılmış harekette dönmek yerine hafifçe nabız atar; böylece yine de bir şeylerin olduğunu gösterir.",
+  "Without flicker": "Titremesiz",
+  "`sm`, `default`, `lg` and `xl` for both variants.": "İki varyant için de `sm`, `default`, `lg` ve `xl`.",
+  "null leaves sizing to the parent.": "null boyutlandırmayı üst öğeye bırakır."
+}

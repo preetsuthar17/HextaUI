@@ -1,3 +1,6 @@
+import { localizeHref } from "@/lib/i18n/config"
+import { getRequestLocale } from "@/lib/i18n/request"
+import { t } from "@/lib/i18n/rich"
 import {
   absoluteUrl,
   siteAuthor,
@@ -25,15 +28,19 @@ type DocsArticle = {
 const websiteRef = { "@id": `${siteUrl}/#website` }
 const organizationRef = { "@id": `${siteUrl}/#organization` }
 
+function localUrl(path: string) {
+  return absoluteUrl(localizeHref(path, getRequestLocale().locale))
+}
+
 function breadcrumbList(path: string, crumbs: Crumb[]) {
   return {
     "@type": "BreadcrumbList",
-    "@id": `${absoluteUrl(path)}#breadcrumb`,
+    "@id": `${localUrl(path)}#breadcrumb`,
     itemListElement: crumbs.map((crumb, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: crumb.name,
-      item: absoluteUrl(crumb.path),
+      name: t(crumb.name),
+      item: localUrl(crumb.path),
     })),
   }
 }
@@ -45,7 +52,7 @@ function docsArticleJsonLd({
   breadcrumbs,
   code,
 }: DocsArticle) {
-  const url = absoluteUrl(path)
+  const url = localUrl(path)
 
   return {
     "@context": "https://schema.org",
@@ -54,11 +61,11 @@ function docsArticleJsonLd({
       {
         "@type": "TechArticle",
         "@id": `${url}#article`,
-        headline,
-        description,
+        headline: t(headline),
+        description: t(description),
         url,
         mainEntityOfPage: url,
-        inLanguage: "en",
+        inLanguage: getRequestLocale().locale,
         isPartOf: websiteRef,
         publisher: organizationRef,
         author: { "@type": "Person", name: siteAuthor },
@@ -80,7 +87,7 @@ function docsArticleJsonLd({
 function faqPageJsonLd(path: string, items: FaqItem[]) {
   return {
     "@type": "FAQPage",
-    "@id": `${absoluteUrl(path)}#faq`,
+    "@id": `${localUrl(path)}#faq`,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,

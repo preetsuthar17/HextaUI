@@ -20,6 +20,8 @@ import {
   dropdownMenuItemVariants,
 } from "@/components/ui/dropdown-menu"
 import { absoluteUrl } from "@/lib/site"
+import { track } from "@/lib/track"
+import { useChrome } from "@/lib/i18n/chrome"
 
 function IconV0(props: React.ComponentProps<"svg">) {
   return (
@@ -128,22 +130,26 @@ function DocsPageActions({
     `Read ${absoluteUrl(markdownHref)}, I want to ask questions about it.`
   )
   const itemClassName = dropdownMenuItemVariants()
+  const c = useChrome()
 
   return (
-    <ButtonGroup aria-label="Page actions" className={className}>
+    <ButtonGroup aria-label={c("Page actions")} className={className}>
       <Button
         variant="secondary"
         size="sm"
         feedback
-        successLabel="Copied"
-        errorLabel="Couldn’t copy"
+        successLabel={c("Copied")}
+        errorLabel={c("Couldn’t copy")}
         onPointerEnter={() => {
           void loadMarkdown(markdownHref).catch(() => {})
         }}
-        onClick={() => copyMarkdown(markdownHref)}
+        onClick={() => {
+          track("Copy page")
+          return copyMarkdown(markdownHref)
+        }}
       >
         <IconCopy />
-        Copy page
+        {c("Copy page")}
       </Button>
       <ButtonGroupSeparator />
       <DropdownMenu>
@@ -152,7 +158,7 @@ function DocsPageActions({
             <Button
               variant="secondary"
               size="icon-sm"
-              aria-label="More page actions"
+              aria-label={c("More page actions")}
             />
           }
         >
@@ -168,7 +174,7 @@ function DocsPageActions({
               className={itemClassName}
             >
               <IconMarkdown />
-              View as Markdown
+              {c("View as Markdown")}
             </MenuPrimitive.LinkItem>
           </DropdownMenuGroup>
           <DropdownMenuSeparator />

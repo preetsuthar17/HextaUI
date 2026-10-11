@@ -4,6 +4,7 @@ import * as React from "react"
 import { IconCheck, IconCopy } from "@tabler/icons-react"
 
 import { Button } from "@/components/ui/button"
+import { track, type TrackProps } from "@/lib/track"
 
 type CopyValue = string | (() => string | Promise<string>)
 
@@ -32,10 +33,14 @@ async function writeClipboard(value: CopyValue) {
 function DocsCopyButton({
   value,
   label = "Copy code",
+  event = "Copy code",
+  eventProps,
   className,
 }: {
   value: CopyValue
   label?: string
+  event?: string
+  eventProps?: TrackProps
   className?: string
 }) {
   const [copied, setCopied] = React.useState(false)
@@ -62,6 +67,7 @@ function DocsCopyButton({
         try {
           await writeClipboard(value)
           setCopied(true)
+          track(event, eventProps)
         } catch {
           setCopied(false)
         }

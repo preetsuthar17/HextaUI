@@ -122,7 +122,12 @@ function DocsCommand({
             </button>
           ))}
         </div>
-        <DocsCopyButton value={command} label="Copy command" />
+        <DocsCopyButton
+          value={command}
+          label="Copy command"
+          event="Copy command"
+          eventProps={{ packages: packages.join(" "), mode, manager: current }}
+        />
       </div>
       <pre
         id={`${id}-panel`}

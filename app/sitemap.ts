@@ -4,6 +4,12 @@ import path from "node:path"
 
 import type { MetadataRoute } from "next"
 
+import {
+  isLocalizedPath,
+  languageAlternates,
+  localizeHref,
+  translatedLocales,
+} from "@/lib/i18n/config"
 import { proBlocks } from "@/lib/pro/catalog"
 import { absoluteUrl, isNoindexPath } from "@/lib/site"
 
@@ -13,6 +19,17 @@ const appDir = path.join(process.cwd(), "app")
 
 const dynamicRoutes: Record<string, string[]> = {
   "/blocks/[name]": proBlocks.map((block) => block.name),
+}
+
+function languages(route: string) {
+  const alternates = languageAlternates(route)
+  if (!alternates) return undefined
+  return Object.fromEntries(
+    Object.entries(alternates).map(([locale, href]) => [
+      locale,
+      absoluteUrl(href),
+    ])
+  )
 }
 
 const priorities: [string, number][] = [
@@ -152,18 +169,31 @@ function priority(route: string) {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const pages = findPages(appDir).filter((page) => !isNoindexPath(page.route))
+  const pages = findPages(appDir).filter(
+    (page) => !isNoindexPath(page.route) && !page.route.startsWith("/[lang]")
+  )
   const ignored = ignoredFiles(pages.map((page) => page.file))
   const history = hasHistory()
 
   return pages
     .filter((page) => !ignored.has(page.file))
     .flatMap((page) =>
-      expand(page.route).map((route) => ({
-        url: absoluteUrl(route),
-        lastModified: lastModified(route, page.file, history),
-        priority: priority(route),
-      }))
+      expand(page.route).flatMap((route) => {
+        const entry = {
+          lastModified: lastModified(route, page.file, history),
+          priority: priority(route),
+          alternates: { languages: languages(route) },
+        }
+        const locales = isLocalizedPath(route) ? translatedLocales : []
+        return [
+          { url: absoluteUrl(route), ...entry },
+          ...locales.map((locale) => ({
+            url: absoluteUrl(localizeHref(route, locale)),
+            ...entry,
+            priority: Math.round(entry.priority * 80) / 100,
+          })),
+        ]
+      })
     )
     .sort((a, b) => b.priority - a.priority || a.url.localeCompare(b.url))
 }

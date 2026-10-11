@@ -1,8 +1,8 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "@/components/site/link"
+import { useSitePathname } from "@/lib/i18n/client"
 import {
   IconAccessible,
   IconBook2,
@@ -74,6 +74,7 @@ import {
 } from "@/lib/docs-search-query"
 import { matchesHotkey } from "@/lib/hotkey"
 import { absoluteUrl, siteRepository } from "@/lib/site"
+import { useChrome } from "@/lib/i18n/chrome"
 
 type PageKind = Extract<
   DocsSearchKind,
@@ -489,7 +490,7 @@ function usePageActions(
 }
 
 function useGlobalActions(): ActionEntry[] {
-  const pathname = usePathname()
+  const pathname = useSitePathname()
   const { theme, setTheme } = useTheme()
   const current = pageByHref.get(pathname)
 
@@ -1235,6 +1236,7 @@ function useDocsSearch() {
 
 function DocsSearchTrigger({ className }: { className?: string }) {
   const { open } = useDocsSearch()
+  const c = useChrome()
 
   return (
     <button
@@ -1249,7 +1251,7 @@ function DocsSearchTrigger({ className }: { className?: string }) {
       )}
     >
       <IconSearch aria-hidden="true" className="size-4 shrink-0" />
-      <span className="flex-1 truncate text-start">Search docs</span>
+      <span className="flex-1 truncate text-start">{c("Search docs")}</span>
       <KbdGroup aria-hidden="true" variant="keycap" size="sm" keys="mod+k" />
     </button>
   )

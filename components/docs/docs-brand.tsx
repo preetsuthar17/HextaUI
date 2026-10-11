@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 function DocsBrand({ className }: { className?: string }) {

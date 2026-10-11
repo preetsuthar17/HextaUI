@@ -1,0 +1,19 @@
+[
+  "Button and Command use this spinner for their loading states, sized to the button's icons.",
+  "In buttons",
+  "Next to text, mark the spinner `aria-hidden` so the words do the talking. On its own, it announces its `label`.",
+  "On its own, the spinner is a `status` named by `label` (“Loading”).",
+  "Pass `loading` and the spinner waits `delay` (150ms) before showing, so fast loads never flash it, then stays at least `minDuration` (400ms) once it's visible.",
+  "Pause the animation without hiding it.",
+  "Shows a loading state only when work is actually slow, then keeps it up long enough that it never flickers.",
+  "Spinner component for React & shadcn/ui",
+  "The SVG, with data-variant.",
+  "The default is the eight-spoke indicator from Apple platforms. `variant=\"ring\"` spins while its arc grows and shrinks, so it reads as working rather than stuck. Both are drawn in the current text color.",
+  "The same timing as a hook, for skeletons, overlays or anything else that shouldn't flash. See the <0>useDelayedLoading guide</0>.",
+  "Turns on delayed showing. Leave it out to always show.",
+  "With `aria-hidden`, it drops its role, for use beside visible text or inside a busy button.",
+  "With reduced motion, it gently pulses instead of spinning, so it still shows that something is happening.",
+  "Without flicker",
+  "`sm`, `default`, `lg` and `xl` for both variants.",
+  "null leaves sizing to the parent."
+]

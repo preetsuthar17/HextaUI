@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 import { buttonVariants } from "@/components/ui/button"

@@ -1,0 +1,21 @@
+[
+  "<l0/> is built on this hook. Each keycap presses down while its key is held.",
+  "Every component that calls the hook shares one store. The first subscriber adds passive `keydown` and `keyup` listeners to `window`, and the last one to unsubscribe removes them. A page with fifty listening keycaps still has one pair of listeners.",
+  "Everything is released when the window loses focus or the tab is hidden. A shortcut that switches apps leaves nothing held.",
+  "For shortcuts that fire an action, use `matchesHotkey` from `Hotkey` in a keydown handler instead. Holding keys is for showing state, not for running commands.",
+  "Key repeat is ignored, and nothing re-renders while a key is held.",
+  "Keycaps that press",
+  "Letters and digits come from `event.code`, the physical key, so holding Option+K on a Mac still reports `k` rather than `˚`.",
+  "On the server, and before hydration, the set is empty.",
+  "Pass `false` to stop listening. The hook then returns an empty set and adds no listeners, so it's cheap to call it unconditionally.",
+  "The keys someone is holding down right now, shared by every subscriber through a single set of window listeners.",
+  "The listeners only read events. They never call `preventDefault`, and they sit on `window`, after React's own handlers, so typing in a field is never delayed or changed.",
+  "The names of the keys held down right now.",
+  "The set is replaced only when a key goes down or up, so its identity works as a memo or effect dependency.",
+  "Use it for anything that reacts to keys being held rather than pressed: keycaps that press down, shortcut hints that appear while you hold ⌘, or a modifier that switches a tool, like Alt to duplicate while dragging.",
+  "Whether to listen. When false, nothing is attached.",
+  "`Kbd` and `KbdGroup` through their `listen` prop.",
+  "macOS doesn't send `keyup` for other keys while ⌘ is down. When ⌘ is released, the store keeps only the modifiers still held, so letters can't get stuck.",
+  "useHeldKeys(enabled)",
+  "useHeldKeys: track pressed keys in React"
+]

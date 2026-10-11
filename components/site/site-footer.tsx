@@ -1,8 +1,11 @@
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 import { legalPages } from "@/components/legal/legal-page"
 import { CookieSettingsButton } from "@/components/site/cookie-consent"
+import { LocaleSwitcher } from "@/components/site/locale-switcher"
+import { SubscribeForm } from "@/components/site/subscribe-form"
+import { Chrome } from "@/lib/i18n/chrome"
 
 import { siteRepository } from "@/lib/site"
 
@@ -10,6 +13,7 @@ const sitePages = [
   { href: "/docs", title: "Docs" },
   { href: "/components", title: "Components" },
   { href: "/blocks", title: "Blocks" },
+  { href: "/compare/shadcn-ui", title: "HextaUI vs shadcn/ui" },
   { href: "/about", title: "About" },
   { href: "/contact", title: "Contact" },
   { href: "/pricing", title: "Pricing" },
@@ -23,8 +27,11 @@ const linkClassName =
 function SiteFooter({ className }: { className?: string }) {
   return (
     <footer className={cn("px-4 py-8", className)}>
+      <div className="mx-auto mb-8 flex max-w-screen-2xl justify-center text-center">
+        <SubscribeForm />
+      </div>
       <p className="mx-auto max-w-screen-2xl text-center text-sm text-pretty text-muted-foreground">
-        Built by{" "}
+        <Chrome>Built by</Chrome>{" "}
         <a
           href="https://twitter.com/preetsuthar17"
           target="_blank"
@@ -33,7 +40,7 @@ function SiteFooter({ className }: { className?: string }) {
         >
           Preet Suthar
         </a>
-        . Open source under the MIT license, with the code on{" "}
+        . <Chrome>Open source under the MIT license, with the code on</Chrome>{" "}
         <a
           href={siteRepository}
           target="_blank"
@@ -50,7 +57,7 @@ function SiteFooter({ className }: { className?: string }) {
       >
         {[...sitePages, ...legalPages].map((page) => (
           <Link key={page.href} href={page.href} className={linkClassName}>
-            {page.title}
+            <Chrome>{page.title}</Chrome>
           </Link>
         ))}
         <CookieSettingsButton
@@ -60,6 +67,10 @@ function SiteFooter({ className }: { className?: string }) {
           )}
         />
       </nav>
+      <LocaleSwitcher
+        className="mx-auto mt-3 flex max-w-screen-2xl flex-wrap justify-center gap-x-4 gap-y-1 text-sm text-muted-foreground"
+        linkClassName={linkClassName}
+      />
     </footer>
   )
 }

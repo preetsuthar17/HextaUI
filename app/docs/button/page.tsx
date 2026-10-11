@@ -1,4 +1,4 @@
-import Link from "next/link"
+import Link from "@/components/site/link"
 
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
 import { DocsComponentPage } from "@/components/docs/docs-component-page"

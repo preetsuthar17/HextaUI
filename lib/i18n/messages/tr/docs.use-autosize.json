@@ -1,0 +1,19 @@
+{
+  "<l0/> already uses this hook. Call it yourself when you render your own <l1/>, such as a chat composer or an inline editor.": "<l0/> bu hook'u zaten kullanır. Sohbet yazma alanı veya satır içi düzenleyici gibi kendi <l1/> bileşeninizi işlerken onu kendiniz çağırın.",
+  "Controlled values": "Kontrollü değerler",
+  "Height changes animate over 180ms, and a change that comes in mid-animation starts from the current height, so fast typing never jumps. Under reduced motion the height snaps.": "Yükseklik değişiklikleri 180ms'de animasyonlanır ve animasyon sırasında gelen bir değişiklik geçerli yükseklikten başlar; böylece hızlı yazma asla zıplamaz. Azaltılmış harekette yükseklik anında değişir.",
+  "It listens for `input` on `window` and only measures. It never reads or writes the value, so keystrokes are never delayed or dropped.": "`window` üzerinde `input` olayını dinler ve yalnızca ölçer. Değeri asla okumaz veya yazmaz; böylece tuş vuruşları hiç gecikmez veya düşmez.",
+  "It refits when the width changes, because text that wraps differently changes the height.": "Genişlik değiştiğinde yeniden uyum sağlar, çünkü farklı sarılan metin yüksekliği değiştirir.",
+  "On each change the hook sets the height to `auto`, reads the natural `scrollHeight`, and clamps it to the element's own CSS `min-height` and `max-height`. All of that happens before paint, so you never see the collapsed frame. The bounds stay in your CSS, so they can be responsive or use `lh` to count lines.": "Her değişiklikte hook yüksekliği `auto` yapar, doğal `scrollHeight` değerini okur ve öğenin kendi CSS `min-height` ve `max-height` değerlerine sıkıştırır. Hepsi boyamadan önce olur, bu yüzden daralmış kareyi asla görmezsiniz. Sınırlar CSS'inizde kalır; böylece duyarlı olabilir veya satırları saymak için `lh` kullanabilir.",
+  "On touch screens, use at least 16px text in the textarea, or iOS zooms in when it's focused.": "Dokunmatik ekranlarda textarea'da en az 16px metin kullanın; aksi halde odaklanınca iOS yakınlaştırır.",
+  "Past `max-height` the textarea scrolls. Otherwise its scrollbar stays hidden, so it doesn't flash on each new line.": "`max-height` aşıldığında textarea kayar. Aksi halde kaydırma çubuğu gizli kalır; böylece her yeni satırda çakmaz.",
+  "Set `rows={1}` and `resize-none`. A manual resize handle fights the automatic height.": "`rows={1}` ve `resize-none` ayarlayın. Elle yeniden boyutlandırma tutamacı otomatik yükseklikle çatışır.",
+  "The controlled value. Pass undefined for uncontrolled textareas.": "Kontrollü değer. Kontrolsüz textarea'lar için undefined verin.",
+  "The textarea to size.": "Boyutlandırılacak textarea.",
+  "Turning `enabled` off or unmounting removes the inline height and overflow, handing the size back to your CSS.": "`enabled`'ı kapatmak veya unmount etmek satır içi yüksekliği ve taşmayı kaldırır, boyutu CSS'inize geri verir.",
+  "Typing fires `input`, but setting `value` from code doesn't. Pass the value as the third argument and the textarea refits when you insert a template or clear it.": "Yazmak `input` tetikler ama koddan `value` ayarlamak tetiklemez. Değeri üçüncü argüman olarak verin; bir şablon eklediğinizde veya temizlediğinizde textarea yeniden uyum sağlar.",
+  "Whether to size automatically.": "Otomatik boyutlandırılıp boyutlandırılmayacağı.",
+  "`Textarea` and `InputGroupTextarea`.": "`Textarea` ve `InputGroupTextarea`.",
+  "useAutosize(ref, enabled, value)": "useAutosize(ref, enabled, value)",
+  "useAutosize: auto-resizing textarea hook for React": "useAutosize: React için otomatik boyutlanan textarea hook'u"
+}

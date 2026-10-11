@@ -1,0 +1,19 @@
+{
+  "Button and Command use this spinner for their loading states, sized to the button's icons.": "Button e Command usam este spinner nos estados de carregamento, dimensionado para os ícones do botão.",
+  "In buttons": "Em botões",
+  "Next to text, mark the spinner `aria-hidden` so the words do the talking. On its own, it announces its `label`.": "Ao lado de texto, marque o spinner com `aria-hidden` para que as palavras falem por ele. Sozinho, ele anuncia seu `label`.",
+  "On its own, the spinner is a `status` named by `label` (“Loading”).": "Sozinho, o spinner é um `status` nomeado por `label` (“Loading”).",
+  "Pass `loading` and the spinner waits `delay` (150ms) before showing, so fast loads never flash it, then stays at least `minDuration` (400ms) once it's visible.": "Passe `loading` e o spinner espera `delay` (150ms) antes de aparecer, para carregamentos rápidos nunca o exibirem, e depois permanece por pelo menos `minDuration` (400ms) quando fica visível.",
+  "Pause the animation without hiding it.": "Pausa a animação sem ocultá-la.",
+  "Shows a loading state only when work is actually slow, then keeps it up long enough that it never flickers.": "Mostra um estado de carregamento só quando o trabalho é realmente lento e o mantém por tempo suficiente para nunca piscar.",
+  "Spinner component for React & shadcn/ui": "Componente Spinner para React e shadcn/ui",
+  "The SVG, with data-variant.": "O SVG, com data-variant.",
+  "The default is the eight-spoke indicator from Apple platforms. `variant=\"ring\"` spins while its arc grows and shrinks, so it reads as working rather than stuck. Both are drawn in the current text color.": "O padrão é o indicador de oito raios das plataformas Apple. `variant=\"ring\"` gira enquanto seu arco cresce e encolhe, então parece trabalhando em vez de travado. Ambos são desenhados na cor atual do texto.",
+  "The same timing as a hook, for skeletons, overlays or anything else that shouldn't flash. See the <0>useDelayedLoading guide</0>.": "O mesmo tempo como um hook, para skeletons, overlays ou qualquer coisa que não deva piscar. Veja o <0>guia do useDelayedLoading</0>.",
+  "Turns on delayed showing. Leave it out to always show.": "Ativa a exibição com atraso. Omita para sempre mostrar.",
+  "With `aria-hidden`, it drops its role, for use beside visible text or inside a busy button.": "Com `aria-hidden`, perde seu role, para uso ao lado de texto visível ou dentro de um botão ocupado.",
+  "With reduced motion, it gently pulses instead of spinning, so it still shows that something is happening.": "Com movimento reduzido, pulsa suavemente em vez de girar, para ainda mostrar que algo está acontecendo.",
+  "Without flicker": "Sem piscar",
+  "`sm`, `default`, `lg` and `xl` for both variants.": "`sm`, `default`, `lg` e `xl` para as duas variantes.",
+  "null leaves sizing to the parent.": "null deixa o dimensionamento para o pai."
+}

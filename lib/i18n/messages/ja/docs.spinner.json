@@ -1,0 +1,19 @@
+{
+  "Button and Command use this spinner for their loading states, sized to the button's icons.": "Button と Command は、読み込み状態にこのスピナーを使い、ボタンのアイコンに合わせたサイズにします。",
+  "In buttons": "ボタン内",
+  "Next to text, mark the spinner `aria-hidden` so the words do the talking. On its own, it announces its `label`.": "テキストの隣では、言葉が伝えるようにスピナーを `aria-hidden` にします。単独では `label` を読み上げます。",
+  "On its own, the spinner is a `status` named by `label` (“Loading”).": "単独では、スピナーは `label`(「Loading」)で名前が付いた `status` です。",
+  "Pass `loading` and the spinner waits `delay` (150ms) before showing, so fast loads never flash it, then stays at least `minDuration` (400ms) once it's visible.": "`loading` を渡すと、スピナーは `delay`(150ms)待ってから表示されるため、速い読み込みでは一瞬表示されることがなく、表示されたら最低でも `minDuration`(400ms)は残ります。",
+  "Pause the animation without hiding it.": "非表示にせずにアニメーションを一時停止します。",
+  "Shows a loading state only when work is actually slow, then keeps it up long enough that it never flickers.": "処理が実際に遅いときだけ読み込み状態を表示し、ちらつかないよう十分な時間表示し続けます。",
+  "Spinner component for React & shadcn/ui": "React と shadcn/ui の Spinner コンポーネント",
+  "The SVG, with data-variant.": "SVG。data-variant を持ちます。",
+  "The default is the eight-spoke indicator from Apple platforms. `variant=\"ring\"` spins while its arc grows and shrinks, so it reads as working rather than stuck. Both are drawn in the current text color.": "デフォルトは Apple のプラットフォームの8本スポークのインジケーターです。`variant=\"ring\"` は円弧が伸び縮みしながら回るので、止まっているのではなく作業中に見えます。どちらも現在のテキストの色で描画されます。",
+  "The same timing as a hook, for skeletons, overlays or anything else that shouldn't flash. See the <0>useDelayedLoading guide</0>.": "スケルトン、オーバーレイ、一瞬でも表示すべきでないあらゆるものに使える、同じタイミングのフックです。<0>useDelayedLoading ガイド</0>を参照してください。",
+  "Turns on delayed showing. Leave it out to always show.": "遅延表示を有効にします。常に表示するには省略します。",
+  "With `aria-hidden`, it drops its role, for use beside visible text or inside a busy button.": "`aria-hidden` を指定すると role が外れます。表示されているテキストの隣や、処理中のボタンの内側で使います。",
+  "With reduced motion, it gently pulses instead of spinning, so it still shows that something is happening.": "視差効果の軽減が有効な場合、回転せずにゆっくり脈動するため、何かが進行中であることは伝わります。",
+  "Without flicker": "ちらつきなし",
+  "`sm`, `default`, `lg` and `xl` for both variants.": "どちらのバリアントにも `sm`、`default`、`lg`、`xl`。",
+  "null leaves sizing to the parent.": "null ではサイズを親に任せます。"
+}

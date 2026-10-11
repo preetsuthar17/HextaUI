@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 
 import { request } from "@/components/account/pro-tokens"
 import { Button } from "@/components/ui/button"

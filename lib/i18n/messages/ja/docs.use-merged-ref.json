@@ -1,0 +1,14 @@
+{
+  "A video player with a scrubbable seek bar, auto-hiding controls, keyboard shortcuts, speed, picture in picture and full screen.": "ドラッグ可能なシークバー、自動で隠れるコントロール、キーボードショートカット、再生速度、ピクチャーインピクチャー、全画面表示を備えた動画プレーヤー。",
+  "An element has one `ref`, but components often need to hand it to several places: the parent that forwarded a ref, a local ref for effects, and hooks that work through a callback ref.`useMergedRef` returns one callback that feeds all of them.": "要素の `ref` は1つだけですが、コンポーネントは多くの場合、それを複数の場所に渡す必要があります。ref を転送した親、effect 用のローカル ref、コールバック ref を通じて動作するフックなどです。`useMergedRef` は、それらすべてに渡す1つのコールバックを返します。",
+  "For one forwarded ref plus a local object ref, <0>useComposedRef</0> is shorter.": "転送された ref 1つとローカルのオブジェクト ref の組み合わせなら、<0>useComposedRef</0> の方が短く書けます。",
+  "Object refs, callback refs or undefined.": "オブジェクト ref、コールバック ref、または undefined。",
+  "Pass to the element's ref. Returns the combined cleanup.": "要素の ref に渡します。統合されたクリーンアップを返します。",
+  "That makes callback refs a good home for anything tied to the element's lifetime, like observers and listeners. Setup and teardown live together, and merging them with other refs keeps them working.": "そのため、オブザーバーやリスナーなど、要素の寿命に結び付いたものは、コールバック ref に置くのが適しています。セットアップと破棄が一箇所にまとまり、他の ref とマージしても動作し続けます。",
+  "The merged callback changes whenever any ref changes. An inline arrow is a new ref on every render, so React detaches and reattaches the element each time. Wrap callback refs in `useCallback`.": "マージされたコールバックは、いずれかの ref が変わるたびに変わります。インラインのアロー関数はレンダリングのたびに新しい ref になるため、React は毎回要素をデタッチして再アタッチします。コールバック ref は `useCallback` で包んでください。",
+  "When the element attaches, every ref receives it. Object refs get `.current` set, and callback refs are called with the node. The merged callback returns a cleanup in the React 19 style. On detach it runs each callback ref's own cleanup, or calls the ref with `null` if it didn't return one, and resets object refs to `null`.": "要素がアタッチされると、すべての ref がそれを受け取ります。オブジェクト ref は `.current` が設定され、コールバック ref はノードとともに呼び出されます。マージされたコールバックは React 19 方式のクリーンアップを返します。デタッチ時には、各コールバック ref 自身のクリーンアップを実行し、返していなければ ref を `null` で呼び出し、オブジェクト ref は `null` にリセットします。",
+  "`Field` and `InputGroup`.": "`Field` と `InputGroup`。",
+  "`undefined` and `null` refs are skipped, so you can pass optional props straight in.": "`undefined` と `null` の ref はスキップされるので、省略可能な props をそのまま渡せます。",
+  "useMergedRef(...refs)": "useMergedRef(...refs)",
+  "useMergedRef: merge refs in React 19": "useMergedRef: React 19 で ref をマージする"
+}

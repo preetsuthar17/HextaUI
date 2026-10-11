@@ -6,6 +6,7 @@ import { HomeSections } from "@/components/site/home-sections"
 import { HomePreview } from "@/components/site/home-preview"
 import { docsComponents } from "@/lib/docs"
 import { getGithubStars } from "@/lib/github"
+import { T, t } from "@/lib/i18n/rich"
 import { pageMetadata } from "@/lib/metadata"
 import { getProBlock } from "@/lib/pro/catalog"
 
@@ -28,10 +29,10 @@ export default async function Page() {
         <div className="flex flex-col items-center gap-5 sm:items-start">
           <h1 className="text-hero font-medium tracking-tighter">
             <span className="block whitespace-nowrap">
-              The hard states, handled.
+              <T>The hard states, handled.</T>
             </span>{" "}
             <span className="block whitespace-nowrap">
-              Practical blocks for{" "}
+              <T>Practical blocks for</T>{" "}
               <Image
                 src="https://github.com/shadcn.png"
                 alt=""
@@ -44,10 +45,12 @@ export default async function Page() {
             </span>
           </h1>
           <p className="max-w-xl text-base/7 text-pretty text-muted-foreground">
-            Production blocks for products built with AI, from the chat that
-            streams, retries and asks before a tool runs to the screens around
-            it. Built on {docsComponents.length} free, open-source components,
-            and ready for your agent to install with the shadcn CLI.
+            <T>
+              Production blocks for products built with AI, from the chat that
+              streams, retries and asks before a tool runs to the screens around
+              it. Built on {docsComponents.length} free, open-source components,
+              and ready for your agent to install with the shadcn CLI.
+            </T>
           </p>
         </div>
         <HeroActions stars={stars} />
@@ -57,7 +60,7 @@ export default async function Page() {
         className="mx-auto w-full max-w-screen-2xl px-3 pb-24 sm:pb-32"
       >
         <h2 id="home-preview" className="sr-only">
-          Live previews
+          {t("Live previews")}
         </h2>
         <HomePreview blocks={previewBlocks} />
       </section>

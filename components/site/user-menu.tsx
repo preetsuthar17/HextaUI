@@ -1,6 +1,6 @@
 "use client"
 
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { IconLogout, IconUser } from "@tabler/icons-react"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -25,6 +25,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { signOut, useSession } from "@/lib/auth-client"
+import { useChrome } from "@/lib/i18n/chrome"
 
 function initials(name: string) {
   return name
@@ -38,6 +39,7 @@ function initials(name: string) {
 function UserMenu() {
   const { session, pending, cachedUser } = useSession()
   const user = session?.user ?? cachedUser
+  const c = useChrome()
 
   if (!user) {
     return (
@@ -51,7 +53,7 @@ function UserMenu() {
             />
           }
         >
-          Sign in
+          {c("Sign in")}
         </DialogTrigger>
         <DialogContent className="sm:max-w-sm">
           <DialogHeader>

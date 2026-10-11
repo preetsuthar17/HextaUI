@@ -1,0 +1,19 @@
+[
+  "<l0/> already uses this hook. Call it yourself when you render your own <l1/>, such as a chat composer or an inline editor.",
+  "Controlled values",
+  "Height changes animate over 180ms, and a change that comes in mid-animation starts from the current height, so fast typing never jumps. Under reduced motion the height snaps.",
+  "It listens for `input` on `window` and only measures. It never reads or writes the value, so keystrokes are never delayed or dropped.",
+  "It refits when the width changes, because text that wraps differently changes the height.",
+  "On each change the hook sets the height to `auto`, reads the natural `scrollHeight`, and clamps it to the element's own CSS `min-height` and `max-height`. All of that happens before paint, so you never see the collapsed frame. The bounds stay in your CSS, so they can be responsive or use `lh` to count lines.",
+  "On touch screens, use at least 16px text in the textarea, or iOS zooms in when it's focused.",
+  "Past `max-height` the textarea scrolls. Otherwise its scrollbar stays hidden, so it doesn't flash on each new line.",
+  "Set `rows={1}` and `resize-none`. A manual resize handle fights the automatic height.",
+  "The controlled value. Pass undefined for uncontrolled textareas.",
+  "The textarea to size.",
+  "Turning `enabled` off or unmounting removes the inline height and overflow, handing the size back to your CSS.",
+  "Typing fires `input`, but setting `value` from code doesn't. Pass the value as the third argument and the textarea refits when you insert a template or clear it.",
+  "Whether to size automatically.",
+  "`Textarea` and `InputGroupTextarea`.",
+  "useAutosize(ref, enabled, value)",
+  "useAutosize: auto-resizing textarea hook for React"
+]

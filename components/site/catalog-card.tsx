@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { useRouter } from "next/navigation"
 import { IconArrowRight } from "@tabler/icons-react"
 import { cn } from "cn"

@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm"
 import type { AuthEnv } from "@/lib/auth"
 import { getDb, schema } from "@/lib/db"
 import { verifyUnsubscribe } from "@/lib/email/unsubscribe"
+import { isSubscriberId } from "@/lib/subscribe"
 import { apiError } from "@/lib/api-error"
 import { siteUrl } from "@/lib/site"
 
@@ -41,10 +42,19 @@ export async function onRequestPost({ request, env }: Context) {
     : {}
   const subscribed = body.subscribed === true
 
-  await getDb(env.DB)
-    .update(schema.user)
-    .set({ unsubscribedAt: subscribed ? null : new Date() })
-    .where(eq(schema.user.id, userId))
+  const db = getDb(env.DB)
+  const unsubscribedAt = subscribed ? null : new Date()
+  if (isSubscriberId(userId)) {
+    await db
+      .update(schema.subscriber)
+      .set({ unsubscribedAt })
+      .where(eq(schema.subscriber.id, userId))
+  } else {
+    await db
+      .update(schema.user)
+      .set({ unsubscribedAt })
+      .where(eq(schema.user.id, userId))
+  }
 
   return Response.json(
     { subscribed },

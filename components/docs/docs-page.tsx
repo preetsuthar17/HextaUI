@@ -7,6 +7,7 @@ import { DocsPager } from "@/components/docs/docs-pager"
 import { DocsSponsor } from "@/components/docs/docs-sponsor"
 import { DocsToc } from "@/components/docs/docs-toc"
 import type { DocsNavItem, DocsTocItem } from "@/lib/docs"
+import { t, translateNode } from "@/lib/i18n/rich"
 
 function DocsPage({
   href,
@@ -43,7 +44,7 @@ function DocsPage({
         <header className="flex flex-col gap-2">
           <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
             <h1 className="min-w-0 text-3xl font-semibold tracking-tight text-balance wrap-break-word">
-              {title}
+              {t(title)}
             </h1>
             <div className="mt-0.5 flex shrink-0 items-center gap-2">
               {markdownHref ? (
@@ -61,7 +62,7 @@ function DocsPage({
           </div>
           {description ? (
             <p className="text-base/6 text-pretty text-muted-foreground">
-              {description}
+              {translateNode(description)}
             </p>
           ) : null}
         </header>
@@ -72,7 +73,9 @@ function DocsPage({
       </article>
       <div className="hidden xl:block">
         <div className="sticky top-14 flex flex-col gap-8 pe-4 pt-10 pb-14">
-          <DocsToc items={toc} />
+          <DocsToc
+            items={toc?.map((item) => ({ ...item, title: t(item.title) }))}
+          />
           <DocsSponsor className="[@media(max-height:40rem)]:hidden" />
         </div>
       </div>

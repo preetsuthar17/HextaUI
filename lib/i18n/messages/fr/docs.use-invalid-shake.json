@@ -1,0 +1,21 @@
+{
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.": "Un tremblement répond à une question : pourquoi mon envoi n'a-t-il pas fonctionné ? Le hook ne fait donc trembler que juste après une tentative d'envoi, et jamais pendant que l'on remplit encore le formulaire.",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.": "Un clic sur un bouton d'envoi, un appui sur Enter dans un champ du formulaire, ou l'événement submit du formulaire.",
+  "Event": "Événement",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.": "Dans un `InputGroup`, c'est tout le groupe qui tremble, pas seulement le contrôle interne.",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.": "La validation native donne le focus au premier contrôle invalide à l'envoi. Le tremblement n'ajoute que du mouvement par-dessus et ne déplace jamais le focus.",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.": "Présent pendant 400ms après une tentative d'envoi échouée, sur le contrôle ou son InputGroup.",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.": "Relancer l'attribut relance l'animation : une seconde tentative échouée fait donc trembler de nouveau même si la première est encore en cours.",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.": "Le contrôle déclenche invalid, ou a aria-invalid=\"true\", data-invalid ou :user-invalid. Cela couvre la validation native, les champs Base UI et les erreurs serveur définies juste après l'envoi.",
+  "The form control to watch.": "Le contrôle de formulaire à surveiller.",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.": "Le hook exige que le contrôle appartienne à un <l0/>. Sans cela, il ne fait rien.",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.": "Le hook ne fait que définir un attribut `data-shake`. Le mouvement vient du `animate-button-shake` du thème, que vous attachez avec `data-shake:motion-safe:animate-button-shake`. Input, Textarea, Native select et Input group de HextaUI incluent déjà cette classe et appellent le hook. Utilisez-le directement pour vos propres contrôles.",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.": "Désactivez-le par contrôle avec l'argument `enabled`, ou avec `shake={false}` sur les champs de HextaUI.",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.": "Avec la réduction des animations, rien n'est défini. Dans tous les cas, associez le tremblement à un message d'erreur visible, car le tremblement est un signal, pas le message.",
+  "When it shakes": "Quand il tremble",
+  "Whether to shake.": "Indique s'il faut trembler.",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.": "`Input`, `Textarea`, `NativeSelect` et `InputGroup`.",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.": "data-shake est défini pendant 400ms. Il tremble une fois par tentative, quel que soit le nombre de ces signaux reçus.",
+  "useInvalidShake(ref, enabled?)": "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React": "useInvalidShake : faire trembler les champs de formulaire invalides dans React"
+}

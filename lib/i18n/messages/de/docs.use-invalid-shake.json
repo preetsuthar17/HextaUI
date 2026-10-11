@@ -1,0 +1,21 @@
+{
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.": "Ein Wackeln beantwortet eine Frage: Warum hat mein Absenden nicht funktioniert? Deshalb wackelt der Hook nur direkt nach einem Absendeversuch und nie, während jemand das Formular noch ausfüllt.",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.": "Ein Klick auf einen Submit-Button, Enter in einem Input des Formulars oder das submit-Event des Formulars.",
+  "Event": "Event",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.": "In einer `InputGroup` wackelt die ganze Gruppe, nicht nur das innere Steuerelement.",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.": "Die native Validierung fokussiert beim Absenden das erste ungültige Steuerelement. Das Wackeln fügt nur Bewegung hinzu und verschiebt nie den Fokus.",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.": "Vorhanden für 400ms nach einem fehlgeschlagenen Absendeversuch, am Steuerelement oder seiner InputGroup.",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.": "Das Neustarten des Attributs startet die Animation neu, sodass ein zweiter fehlgeschlagener Versuch erneut wackelt, auch wenn der erste noch läuft.",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.": "Das Steuerelement löst invalid aus oder hat aria-invalid=\"true\", data-invalid oder :user-invalid. Das deckt native Validierung, Base-UI-Fields und Serverfehler ab, die direkt nach dem Absenden gesetzt werden.",
+  "The form control to watch.": "Das Formular-Steuerelement, das beobachtet wird.",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.": "Der Hook braucht ein Steuerelement, das zu einem <l0/> gehört. Ohne eines tut er nichts.",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.": "Der Hook setzt nur ein `data-shake`-Attribut. Die Bewegung kommt vom `animate-button-shake` des Themes, das du mit `data-shake:motion-safe:animate-button-shake` anhängst. Input, Textarea, Native select und Input group von HextaUI enthalten diese Klasse bereits und rufen den Hook auf. Nutze ihn direkt für eigene Steuerelemente.",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.": "Schalte es pro Steuerelement mit dem Argument `enabled` oder mit `shake={false}` an den Inputs von HextaUI ab.",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.": "Bei reduzierter Bewegung wird nichts gesetzt. Kombiniere das Wackeln in jedem Fall mit einer sichtbaren Fehlermeldung, da das Wackeln ein Hinweis ist, nicht die Meldung.",
+  "When it shakes": "Wann es wackelt",
+  "Whether to shake.": "Ob gewackelt wird.",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.": "`Input`, `Textarea`, `NativeSelect` und `InputGroup`.",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.": "data-shake wird für 400ms gesetzt. Es wackelt einmal pro Versuch, egal wie viele dieser Signale eintreffen.",
+  "useInvalidShake(ref, enabled?)": "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React": "useInvalidShake: ungültige Formularfelder in React wackeln lassen"
+}

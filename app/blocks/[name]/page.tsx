@@ -1,5 +1,5 @@
 import type { Metadata } from "next"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { notFound } from "next/navigation"
 
 import { BlockCode } from "@/components/blocks/block-code"
@@ -22,6 +22,7 @@ import {
   DocsPropsTable,
 } from "@/components/docs/docs-props-table"
 import { getBlockComponents } from "@/lib/docs-related"
+import { t } from "@/lib/i18n/rich"
 import { pageMetadata } from "@/lib/metadata"
 import { absoluteUrl } from "@/lib/site"
 import { docsArticleJsonLd } from "@/lib/structured-data"
@@ -211,14 +212,25 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
 
       <DocsRelated
         title="Built with"
-        description={`The free HextaUI components ${block.title} is made from. Each one installs on its own.`}
+        description={t(
+          "The free HextaUI components {title} is made from. Each one installs on its own.",
+          { title: block.title }
+        )}
         links={getBlockComponents(block.name)}
         variant="names"
       />
 
       <DocsSection
         title="Code"
-        description={`${block.files.length} ${block.files.length === 1 ? "file" : "files"}, added to components/blocks/${block.name}.`}
+        description={t(
+          block.files.length === 1
+            ? "{count} file, added to {path}."
+            : "{count} files, added to {path}.",
+          {
+            count: block.files.length,
+            path: `components/blocks/${block.name}`,
+          }
+        )}
       >
         <BlockCode name={block.name} free={block.free} />
       </DocsSection>

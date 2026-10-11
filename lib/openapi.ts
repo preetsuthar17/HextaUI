@@ -8,6 +8,7 @@ import {
   siteUrl,
 } from "@/lib/site"
 import { sponsorLimits } from "@/lib/sponsor"
+import { subscribeLimits } from "@/lib/subscribe"
 
 const json = "application/json"
 const problem = "application/problem+json"
@@ -95,6 +96,10 @@ function getOpenApiDocument() {
       {
         name: "Account",
         description: "The signed-in user, checkout and API tokens.",
+      },
+      {
+        name: "Email",
+        description: "Release emails for people without an account.",
       },
       {
         name: "Pro",
@@ -356,6 +361,47 @@ function getOpenApiDocument() {
               content: { [json]: { schema: ref("CheckoutUrl") } },
             },
             ...pick("400", "401", "403"),
+          },
+        },
+      },
+      "/api/subscribe": {
+        post: {
+          operationId: "subscribeToReleases",
+          tags: ["Email"],
+          summary: "Subscribe an email address to release emails",
+          description:
+            "Adds an email address to the release list without creating an account. Subscribing an address again turns its emails back on. Every release email carries an unsubscribe link. Only accepted from pages on hextaui.com.",
+          security: [],
+          requestBody: {
+            required: true,
+            content: {
+              [json]: {
+                schema: {
+                  type: "object",
+                  required: ["email"],
+                  properties: {
+                    email: {
+                      type: "string",
+                      format: "email",
+                      maxLength: subscribeLimits.email,
+                      description: "Where release emails go.",
+                    },
+                    source: {
+                      type: "string",
+                      maxLength: subscribeLimits.source,
+                      description: "Path of the page the form was on.",
+                    },
+                  },
+                },
+              },
+            },
+          },
+          responses: {
+            "200": {
+              description: "The address is subscribed.",
+              content: { [json]: { schema: ref("Subscription") } },
+            },
+            ...pick("400", "403"),
           },
         },
       },
@@ -895,6 +941,11 @@ function getOpenApiDocument() {
           type: "object",
           required: ["url"],
           properties: { url: { type: "string" } },
+        },
+        Subscription: {
+          type: "object",
+          required: ["subscribed"],
+          properties: { subscribed: { type: "boolean" } },
         },
         Token: {
           type: "object",

@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 import { useLoadSlot } from "@/components/site/block-card"

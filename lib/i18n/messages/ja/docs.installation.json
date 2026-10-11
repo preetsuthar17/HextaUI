@@ -1,0 +1,21 @@
+{
+  "A React 19 project with Tailwind CSS v4 and a `components.json`. If you don't have one yet, set it up with the shadcn CLI.": "Tailwind CSS v4 と `components.json` を備えた React 19 のプロジェクト。まだない場合は、shadcn CLI でセットアップしてください。",
+  "AI assistants": "AI アシスタント",
+  "Add HextaUI to a React project with the shadcn CLI, or copy the files in by hand.": "shadcn CLI で HextaUI を React プロジェクトに追加するか、ファイルを手動でコピーします。",
+  "Add `.md` to any docs URL for that page, like `https://hextaui.com/docs/button.md`.": "任意のドキュメントの URL に `.md` を付けると、そのページを取得できます。例: `https://hextaui.com/docs/button.md`。",
+  "Add components": "コンポーネントを追加する",
+  "Add every component at once with:": "次のコマンドで、すべてのコンポーネントを一度に追加します。",
+  "Components use a few tokens on top of shadcn/ui: status colors, easing curves, a hairline border width and the keyframes they animate with. The CLI adds them for you. When copying files by hand, add this to your global CSS once.": "コンポーネントは、shadcn/ui に加えて、ステータスカラー、イージングカーブ、ヘアラインの枠線の幅、アニメーションに使うキーフレームといったいくつかのトークンを使います。CLI がそれらを追加します。ファイルを手動でコピーする場合は、グローバル CSS に一度だけ次を追加してください。",
+  "Every page is available as Markdown, so assistants get the full source, examples and API without scraping. Use the Copy page menu at the top of any page, or point your assistant at these files.": "すべてのページが Markdown として利用できるため、アシスタントはスクレイピングなしで、完全なソース、例、API を取得できます。各ページ上部の Copy page メニューを使うか、アシスタントにこれらのファイルを案内してください。",
+  "For the best results, connect the <0>HextaUI MCP server</0>. Assistants search the docs, read each API and get install commands without leaving your editor.": "最良の結果を得るには、<0>HextaUI MCP server</0> に接続してください。アシスタントは、エディタを離れることなく、ドキュメントの検索、各 API の閲覧、インストールコマンドの取得ができます。",
+  "Install HextaUI with the shadcn CLI": "shadcn CLI で HextaUI をインストールする",
+  "Namespace": "名前空間",
+  "Pass a component's registry URL to the CLI. It copies the source into your project, installs its dependencies, adds the theme tokens and pulls in any HextaUI components it builds on.": "コンポーネントのレジストリ URL を CLI に渡します。CLI はソースをプロジェクトにコピーし、依存関係をインストールし、テーマトークンを追加し、ベースとなる HextaUI のコンポーネントもまとめて取り込みます。",
+  "Register HextaUI in `components.json` to add components by name.": "`components.json` に HextaUI を登録すると、名前でコンポーネントを追加できます。",
+  "Requirements": "要件",
+  "The files are yours from then on. Import them from `@/components/ui` and edit them like any other code.": "その後、ファイルは自分のものです。`@/components/ui` からインポートし、他のコードと同じように編集できます。",
+  "Theme": "テーマ",
+  "With the namespace above, the shadcn MCP server lets assistants like Claude Code, Cursor and Codex browse and install HextaUI components directly.": "上記の名前空間を設定すると、shadcn の MCP server により、Claude Code、Cursor、Codex などのアシスタントが HextaUI のコンポーネントを直接閲覧してインストールできます。",
+  "`https://hextaui.com/llms-full.txt` has every page in one file.": "`https://hextaui.com/llms-full.txt` には、すべてのページが 1 つのファイルにまとまっています。",
+  "`https://hextaui.com/llms.txt` lists every page with a short description.": "`https://hextaui.com/llms.txt` は、すべてのページを短い説明付きで一覧にしています。"
+}

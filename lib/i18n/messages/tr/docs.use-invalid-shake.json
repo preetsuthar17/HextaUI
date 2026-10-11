@@ -1,0 +1,21 @@
+{
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.": "Sallanma tek bir soruyu yanıtlar: göndermem neden çalışmadı? Bu yüzden hook yalnızca biri göndermeyi denedikten hemen sonra sallar, formu doldururken asla.",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.": "Bir gönder düğmesine tıklamak, formun bir girdisinde Enter'a basmak veya formun submit olayı.",
+  "Event": "Olay",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.": "Bir `InputGroup` içinde yalnızca iç denetim değil tüm grup sallanır.",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.": "Yerel doğrulama gönderirken ilk geçersiz denetime odaklanır. Sallanma bunun üstüne yalnızca hareket ekler ve odağı asla taşımaz.",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.": "Başarısız bir gönderim denemesinden sonra 400ms boyunca denetimde veya InputGroup'ta bulunur.",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.": "Niteliği yeniden başlatmak animasyonu yeniden başlatır; böylece ilki hâlâ sürüyor olsa bile ikinci bir başarısız deneme yeniden sallar.",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.": "Denetim invalid tetikler veya aria-invalid=\"true\", data-invalid ya da :user-invalid taşır. Bu, yerel doğrulamayı, Base UI alanlarını ve gönderdikten hemen sonra ayarlanan sunucu hatalarını kapsar.",
+  "The form control to watch.": "İzlenecek form denetimi.",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.": "Hook'un çalışması için denetimin bir <l0/>'a ait olması gerekir. Olmadan hiçbir şey yapmaz.",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.": "Hook yalnızca bir `data-shake` niteliği ayarlar. Hareket temanın `animate-button-shake` değerinden gelir ve onu `data-shake:motion-safe:animate-button-shake` ile eklersiniz. HextaUI'ın Input, Textarea, Native select ve Input group bileşenleri bu sınıfı zaten içerir ve hook'u çağırır. Kendi denetimleriniz için doğrudan kullanın.",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.": "Denetim başına `enabled` argümanıyla veya HextaUI girdilerinde `shake={false}` ile kapatın.",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.": "Azaltılmış harekette hiçbir şey ayarlanmaz. Her iki durumda da sallanmayı görünür bir hata mesajıyla eşleyin; çünkü sallanma bir ipucudur, mesaj değildir.",
+  "When it shakes": "Ne zaman sallanır",
+  "Whether to shake.": "Sallanıp sallanmayacağı.",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.": "`Input`, `Textarea`, `NativeSelect` ve `InputGroup`.",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.": "data-shake 400ms boyunca ayarlanır. Bu sinyallerden kaç tanesi gelirse gelsin, deneme başına bir kez sallanır.",
+  "useInvalidShake(ref, enabled?)": "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React": "useInvalidShake: React'te geçersiz form alanlarını sallayın"
+}

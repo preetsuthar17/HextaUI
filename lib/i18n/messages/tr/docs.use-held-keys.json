@@ -1,0 +1,21 @@
+{
+  "<l0/> is built on this hook. Each keycap presses down while its key is held.": "<l0/> bu hook üzerine kuruludur. Her tuş başlığı, tuşu basılı tutulurken basılır.",
+  "Every component that calls the hook shares one store. The first subscriber adds passive `keydown` and `keyup` listeners to `window`, and the last one to unsubscribe removes them. A page with fifty listening keycaps still has one pair of listeners.": "Hook'u çağıran her bileşen tek bir depoyu paylaşır. İlk abone `window` üzerine pasif `keydown` ve `keyup` dinleyicileri ekler, aboneliği bırakan son abone onları kaldırır. Elli dinleyen tuş başlığı olan bir sayfada yine tek bir dinleyici çifti vardır.",
+  "Everything is released when the window loses focus or the tab is hidden. A shortcut that switches apps leaves nothing held.": "Pencere odağı kaybedince veya sekme gizlenince her şey bırakılır. Uygulama değiştiren bir kısayol hiçbir şeyi basılı bırakmaz.",
+  "For shortcuts that fire an action, use `matchesHotkey` from `Hotkey` in a keydown handler instead. Holding keys is for showing state, not for running commands.": "Bir eylemi tetikleyen kısayollar için bunun yerine bir keydown işleyicisinde `Hotkey`'den `matchesHotkey` kullanın. Tuşları basılı tutmak durum göstermek içindir, komut çalıştırmak için değil.",
+  "Key repeat is ignored, and nothing re-renders while a key is held.": "Tuş tekrarı yok sayılır ve bir tuş basılıyken hiçbir şey yeniden işlenmez.",
+  "Keycaps that press": "Basılan tuş başlıkları",
+  "Letters and digits come from `event.code`, the physical key, so holding Option+K on a Mac still reports `k` rather than `˚`.": "Harfler ve rakamlar fiziksel tuş olan `event.code`'dan gelir; bu yüzden Mac'te Option+K basılı tutulduğunda da `˚` yerine `k` bildirilir.",
+  "On the server, and before hydration, the set is empty.": "Sunucuda ve hydration öncesinde küme boştur.",
+  "Pass `false` to stop listening. The hook then returns an empty set and adds no listeners, so it's cheap to call it unconditionally.": "Dinlemeyi durdurmak için `false` verin. Hook o zaman boş bir küme döndürür ve dinleyici eklemez; bu yüzden koşulsuz çağırmak ucuzdur.",
+  "The keys someone is holding down right now, shared by every subscriber through a single set of window listeners.": "Şu anda basılı tutulan tuşlar; tek bir pencere dinleyicisi kümesi üzerinden tüm abonelerle paylaşılır.",
+  "The listeners only read events. They never call `preventDefault`, and they sit on `window`, after React's own handlers, so typing in a field is never delayed or changed.": "Dinleyiciler yalnızca olayları okur. `preventDefault` asla çağırmazlar ve React'in kendi işleyicilerinden sonra `window` üzerinde dururlar; böylece bir alana yazmak asla gecikmez veya değişmez.",
+  "The names of the keys held down right now.": "Şu anda basılı tutulan tuşların adları.",
+  "The set is replaced only when a key goes down or up, so its identity works as a memo or effect dependency.": "Küme yalnızca bir tuş basıldığında veya bırakıldığında değiştirilir; böylece kimliği memo veya effect bağımlılığı olarak çalışır.",
+  "Use it for anything that reacts to keys being held rather than pressed: keycaps that press down, shortcut hints that appear while you hold ⌘, or a modifier that switches a tool, like Alt to duplicate while dragging.": "Tuşlara basılmasına değil basılı tutulmasına tepki veren her şey için kullanın: aşağı basılan tuş başlıkları, ⌘'yi basılı tutarken beliren kısayol ipuçları veya sürüklerken kopyalamak için Alt gibi bir aracı değiştiren değiştirici tuşlar.",
+  "Whether to listen. When false, nothing is attached.": "Dinlenip dinlenmeyeceği. false olduğunda hiçbir şey eklenmez.",
+  "`Kbd` and `KbdGroup` through their `listen` prop.": "`listen` prop'ları üzerinden `Kbd` ve `KbdGroup`.",
+  "macOS doesn't send `keyup` for other keys while ⌘ is down. When ⌘ is released, the store keeps only the modifiers still held, so letters can't get stuck.": "macOS, ⌘ basılıyken diğer tuşlar için `keyup` göndermez. ⌘ bırakıldığında depo yalnızca hâlâ basılı olan değiştirici tuşları tutar; böylece harfler takılı kalamaz.",
+  "useHeldKeys(enabled)": "useHeldKeys(enabled)",
+  "useHeldKeys: track pressed keys in React": "useHeldKeys: React'te basılı tuşları izleyin"
+}

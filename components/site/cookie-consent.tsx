@@ -1,10 +1,11 @@
 "use client"
 
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { GoogleAnalytics } from "@next/third-parties/google"
 
 import { Button } from "@/components/ui/button"
+import { useChrome } from "@/lib/i18n/chrome"
 
 const gaId = "G-22S9WDP6VC"
 const storageKey = "hextaui-analytics-consent"
@@ -96,24 +97,25 @@ function useConsent() {
 
 function CookieConsent() {
   const { consent, open } = useConsent()
+  const c = useChrome()
 
   return (
     <>
       {consent === "granted" ? <GoogleAnalytics gaId={gaId} /> : null}
       {open ? (
         <section
-          aria-label="Cookie consent"
+          aria-label={c("Cookie consent")}
           className="fixed inset-x-4 bottom-4 z-100 flex flex-col gap-3 rounded-xl bg-popover p-4 text-sm text-popover-foreground shadow-lg ring-(length:--hairline) ring-foreground/10 motion-safe:animate-in motion-safe:animation-duration-300 motion-safe:fade-in-0 motion-safe:slide-in-from-bottom-2 sm:right-auto sm:w-[22.5rem] forced-colors:border"
         >
           <p className="text-pretty text-muted-foreground">
-            HextaUI would like to use Google Analytics cookies to see which
-            pages people find useful. You can change this any time from the
-            footer.{" "}
+            {c(
+              "HextaUI would like to use Google Analytics cookies to see which pages people find useful. You can change this any time from the footer."
+            )}{" "}
             <Link
               href="/legal/privacy#cookies-and-browser-storage"
               className="rounded-sm text-foreground underline decoration-foreground/30 underline-offset-4 transition-colors duration-150 outline-none hover:decoration-foreground focus-visible:ring-3 focus-visible:ring-focus-ring motion-reduce:transition-none"
             >
-              Privacy Policy
+              {c("Privacy Policy")}
             </Link>
           </p>
           <div className="flex justify-end gap-2">
@@ -122,10 +124,10 @@ function CookieConsent() {
               variant="outline"
               onClick={() => setConsent("denied")}
             >
-              Decline
+              {c("Decline")}
             </Button>
             <Button size="sm" onClick={() => setConsent("granted")}>
-              Allow
+              {c("Allow")}
             </Button>
           </div>
         </section>
@@ -136,6 +138,7 @@ function CookieConsent() {
 
 function CookieSettingsButton({ className }: { className?: string }) {
   const { hydrated } = useConsent()
+  const c = useChrome()
 
   return (
     <button
@@ -144,7 +147,7 @@ function CookieSettingsButton({ className }: { className?: string }) {
       disabled={!hydrated}
       onClick={openCookieSettings}
     >
-      Cookie settings
+      {c("Cookie settings")}
     </button>
   )
 }

@@ -1,4 +1,4 @@
-import { and, asc, eq, isNull } from "drizzle-orm"
+import { and, asc, eq, isNull, ne, notInArray, or } from "drizzle-orm"
 
 import { changelog } from "@/lib/changelog"
 import { getDb, schema } from "@/lib/db"
@@ -75,10 +75,34 @@ export async function onRequestPost({ request, env }: Context) {
     .where(and(isNull(schema.user.unsubscribedAt), isNull(schema.emailSend.id)))
     .orderBy(asc(schema.user.createdAt))
 
+  const notSent = or(
+    isNull(schema.subscriber.lastCampaign),
+    ne(schema.subscriber.lastCampaign, campaign)
+  )
+  const pendingSubscribers = db
+    .select({
+      id: schema.subscriber.id,
+      email: schema.subscriber.email,
+      lastCampaign: schema.subscriber.lastCampaign,
+    })
+    .from(schema.subscriber)
+    .where(
+      and(
+        isNull(schema.subscriber.unsubscribedAt),
+        notSent,
+        notInArray(
+          schema.subscriber.email,
+          db.select({ email: schema.user.email }).from(schema.user)
+        )
+      )
+    )
+    .orderBy(asc(schema.subscriber.createdAt))
+
   if (body.dryRun === true) {
     const recipients = await pending
+    const subscribers = await pendingSubscribers
     return Response.json(
-      { campaign, remaining: recipients.length },
+      { campaign, remaining: recipients.length + subscribers.length },
       { headers: noStore }
     )
   }
@@ -118,7 +142,39 @@ export async function onRequestPost({ request, env }: Context) {
     }
   }
 
-  const remaining = (await pending).length
+  const subscribers = stopped
+    ? []
+    : await pendingSubscribers.limit(Math.max(limit - recipients.length, 0))
+
+  for (const recipient of subscribers) {
+    const claimed = await db
+      .update(schema.subscriber)
+      .set({ lastCampaign: campaign })
+      .where(and(eq(schema.subscriber.id, recipient.id), notSent))
+      .returning({ id: schema.subscriber.id })
+    if (claimed.length === 0) continue
+
+    const links = await unsubscribeLinks(env.BETTER_AUTH_SECRET, recipient.id)
+    const result = await sendEmail(
+      env,
+      releaseEmail(entry, recipient.email, links, "subscriber")
+    )
+    if (result.ok) {
+      sent += 1
+      continue
+    }
+    failed.push({ email: recipient.email, error: result.error })
+    if (result.error !== "Permanent bounce") {
+      await db
+        .update(schema.subscriber)
+        .set({ lastCampaign: recipient.lastCampaign })
+        .where(eq(schema.subscriber.id, recipient.id))
+      stopped = result.error
+      break
+    }
+  }
+
+  const remaining = (await pending).length + (await pendingSubscribers).length
   return Response.json(
     { campaign, sent, failed, remaining, stopped },
     { headers: noStore }

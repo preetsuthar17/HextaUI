@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useState } from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { IconCheck, IconCircleX, IconLock } from "@tabler/icons-react"
 
 import { ProTokens, request } from "@/components/account/pro-tokens"

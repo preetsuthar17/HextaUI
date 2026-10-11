@@ -1,0 +1,16 @@
+{
+  "Composed or merged": "Komponiert oder gemergt",
+  "In React 19, `ref` is a regular prop. When your component also needs the element for itself, you have two refs and only one `ref` attribute. This hook gives you an object ref to read, plus a callback that fills both refs.": "In React 19 ist `ref` eine normale Prop. Braucht deine Komponente das Element auch für sich selbst, hast du zwei Refs und nur ein `ref`-Attribut. Dieser Hook gibt dir eine Objekt-Ref zum Lesen sowie einen Callback, der beide Refs füllt.",
+  "Pass to the element's ref. Fills both refs.": "An die Ref des Elements übergeben. Füllt beide Refs.",
+  "The problem it solves": "Das Problem, das er löst",
+  "The ref your component received.": "Die Ref, die deine Komponente erhalten hat.",
+  "The returned `inputRef` is a normal `RefObject`, so you can pass it to hooks that expect one, like `useAutosize` or `useInvalidShake`.": "Die zurückgegebene `inputRef` ist eine normale `RefObject`, sodass du sie an Hooks übergeben kannst, die eine erwarten, etwa `useAutosize` oder `useInvalidShake`.",
+  "This compiles, but the parent's `ref` is dropped, so `ref.current` stays `null` in the parent. With `useComposedRef`, both the parent and the component get the element.": "Das kompiliert, aber die `ref` des Elternelements geht verloren, sodass `ref.current` im Elternelement `null` bleibt. Mit `useComposedRef` erhalten sowohl das Elternelement als auch die Komponente das Element.",
+  "Use `useComposedRef` when you combine exactly one forwarded ref with your own object ref, which is most components. Use <0>useMergedRef</0> when you combine more than two, when one of them is a callback ref from another hook, or when a forwarded callback ref returns a React 19 cleanup function. `useComposedRef` calls a callback ref with `null` on detach instead of running its cleanup.": "Nutze `useComposedRef`, wenn du genau eine weitergereichte Ref mit deiner eigenen Objekt-Ref kombinierst, was bei den meisten Komponenten der Fall ist. Nutze <0>useMergedRef</0>, wenn du mehr als zwei kombinierst, wenn eine davon eine Callback-Ref aus einem anderen Hook ist oder wenn eine weitergereichte Callback-Ref eine React-19-Cleanup-Funktion zurückgibt. `useComposedRef` ruft eine Callback-Ref beim Lösen mit `null` auf, statt ihre Cleanup-Funktion auszuführen.",
+  "Works with object refs, callback refs and no ref at all.": "Funktioniert mit Objekt-Refs, Callback-Refs und ganz ohne Ref.",
+  "Your own ref to the element.": "Deine eigene Ref auf das Element.",
+  "`Input`, `Textarea`, `NativeSelect`, `Field` and `InputGroup`.": "`Input`, `Textarea`, `NativeSelect`, `Field` und `InputGroup`.",
+  "`setRef` keeps the same identity while the parent's ref does, so React doesn't detach and reattach it on every render.": "`setRef` behält dieselbe Identität, solange die Ref des Elternelements sie behält, sodass React sie nicht bei jedem Render löst und neu anhängt.",
+  "useComposedRef(ref)": "useComposedRef(ref)",
+  "useComposedRef: keep and forward a ref in React": "useComposedRef: eine Ref in React behalten und weiterreichen"
+}

@@ -1,0 +1,21 @@
+{
+  "A shake answers one question: why didn't my submit work? So the hook only shakes right after someone tries to submit, and never while they're still filling in the form.": "Una vibración responde a una pregunta: ¿por qué no funcionó mi envío? Por eso el hook solo vibra justo después de que alguien intente enviar, y nunca mientras sigue rellenando el formulario.",
+  "Clicking a submit button, pressing Enter in an input of the form, or the form's submit event.": "Hacer clic en un botón de envío, pulsar Enter en un input del formulario, o el evento submit del formulario.",
+  "Event": "Evento",
+  "Inside an `InputGroup`, the whole group shakes, not just the inner control.": "Dentro de un `InputGroup`, vibra todo el grupo, no solo el control interior.",
+  "Native validation focuses the first invalid control on submit. The shake only adds motion on top of that and never moves focus.": "La validación nativa enfoca el primer control no válido al enviar. La vibración solo añade movimiento encima y nunca mueve el foco.",
+  "Present for 400ms after a failed submit attempt, on the control or its InputGroup.": "Presente durante 400ms tras un intento de envío fallido, en el control o en su InputGroup.",
+  "Restarting the attribute restarts the animation, so a second failed attempt shakes again even if the first is still running.": "Reiniciar el atributo reinicia la animación, así que un segundo intento fallido vibra de nuevo aunque el primero siga en marcha.",
+  "The control fires invalid, or has aria-invalid=\"true\", data-invalid or :user-invalid. That covers native validation, Base UI fields and server errors set right after submitting.": "El control dispara invalid, o tiene aria-invalid=\"true\", data-invalid o :user-invalid. Eso cubre la validación nativa, los fields de Base UI y los errores del servidor definidos justo después de enviar.",
+  "The form control to watch.": "El control de formulario que se va a observar.",
+  "The hook needs the control to belong to a <l0/>. Without one, it does nothing.": "El hook necesita que el control pertenezca a un <l0/>. Sin uno, no hace nada.",
+  "The hook only sets a `data-shake` attribute. The motion comes from the theme's `animate-button-shake`, which you attach with `data-shake:motion-safe:animate-button-shake`. HextaUI's Input, Textarea, Native select and Input group already include that class and call the hook. Use it directly for your own controls.": "El hook solo define un atributo `data-shake`. El movimiento viene del `animate-button-shake` del tema, que se adjunta con `data-shake:motion-safe:animate-button-shake`. Input, Textarea, Native select e Input group de HextaUI ya incluyen esa clase y llaman al hook. Úsalo directamente para tus propios controles.",
+  "Turn it off per control with the `enabled` argument, or with `shake={false}` on HextaUI's inputs.": "Desactívalo por control con el argumento `enabled`, o con `shake={false}` en los inputs de HextaUI.",
+  "Under reduced motion, nothing is set. Pair the shake with a visible error message either way, since the shake is a cue, not the message.": "Con movimiento reducido, no se define nada. Acompaña siempre la vibración con un mensaje de error visible, ya que la vibración es una señal, no el mensaje.",
+  "When it shakes": "Cuándo vibra",
+  "Whether to shake.": "Si debe vibrar.",
+  "`Input`, `Textarea`, `NativeSelect` and `InputGroup`.": "`Input`, `Textarea`, `NativeSelect` e `InputGroup`.",
+  "data-shake is set for 400ms. It shakes once per attempt, however many of those signals arrive.": "data-shake se define durante 400ms. Vibra una vez por intento, lleguen cuantas señales lleguen.",
+  "useInvalidShake(ref, enabled?)": "useInvalidShake(ref, enabled?)",
+  "useInvalidShake: shake invalid form fields in React": "useInvalidShake: hace vibrar los campos de formulario no válidos en React"
+}

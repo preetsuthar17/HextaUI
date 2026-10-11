@@ -1,5 +1,6 @@
 import type { Metadata } from "next"
 
+import { languageAlternates } from "@/lib/i18n/config"
 import {
   siteMetaDescription,
   siteName,
@@ -53,6 +54,7 @@ function pageMetadata({
     description,
     alternates: {
       canonical: path,
+      languages: languageAlternates(path),
       ...(markdown ? { types: { "text/markdown": markdown } } : {}),
     },
     openGraph: {

@@ -1,0 +1,19 @@
+{
+  "<l0/> already uses this hook. Call it yourself when you render your own <l1/>, such as a chat composer or an inline editor.": "<l0/> はすでにこのフックを使っています。チャットのコンポーザーやインラインエディターのように、独自の <l1/> を描画する場合は、自分で呼び出してください。",
+  "Controlled values": "制御される値",
+  "Height changes animate over 180ms, and a change that comes in mid-animation starts from the current height, so fast typing never jumps. Under reduced motion the height snaps.": "高さの変化は180msでアニメーションし、アニメーションの途中で来た変更は現在の高さから始まるため、素早く入力してもジャンプしません。視差効果の軽減が有効な場合、高さは即座に切り替わります。",
+  "It listens for `input` on `window` and only measures. It never reads or writes the value, so keystrokes are never delayed or dropped.": "`window` の `input` を監視し、計測するだけです。値の読み取りも書き込みも行わないため、キー入力が遅れたり失われたりすることはありません。",
+  "It refits when the width changes, because text that wraps differently changes the height.": "テキストの折り返し方が変わると高さが変わるため、幅が変わったときに再調整します。",
+  "On each change the hook sets the height to `auto`, reads the natural `scrollHeight`, and clamps it to the element's own CSS `min-height` and `max-height`. All of that happens before paint, so you never see the collapsed frame. The bounds stay in your CSS, so they can be responsive or use `lh` to count lines.": "変更のたびに、フックは高さを `auto` にして本来の `scrollHeight` を読み取り、要素自身の CSS の `min-height` と `max-height` の範囲に収めます。これらはすべて描画前に行われるため、縮んだフレームが見えることはありません。範囲は CSS 側に残るので、レスポンシブにしたり、`lh` で行数を指定したりできます。",
+  "On touch screens, use at least 16px text in the textarea, or iOS zooms in when it's focused.": "タッチスクリーンでは、textarea に16px以上のテキストを使ってください。そうしないと、フォーカス時に iOS がズームします。",
+  "Past `max-height` the textarea scrolls. Otherwise its scrollbar stays hidden, so it doesn't flash on each new line.": "`max-height` を超えると textarea はスクロールします。それ以外ではスクロールバーは隠れたままなので、新しい行のたびに点滅しません。",
+  "Set `rows={1}` and `resize-none`. A manual resize handle fights the automatic height.": "`rows={1}` と `resize-none` を設定してください。手動のリサイズハンドルは自動の高さと競合します。",
+  "The controlled value. Pass undefined for uncontrolled textareas.": "制御される値。非制御の textarea には undefined を渡します。",
+  "The textarea to size.": "サイズ調整する textarea。",
+  "Turning `enabled` off or unmounting removes the inline height and overflow, handing the size back to your CSS.": "`enabled` をオフにするかアンマウントすると、インラインの高さと overflow が取り除かれ、サイズが CSS に戻されます。",
+  "Typing fires `input`, but setting `value` from code doesn't. Pass the value as the third argument and the textarea refits when you insert a template or clear it.": "入力では `input` が発火しますが、コードから `value` を設定しても発火しません。値を第3引数に渡すと、テンプレートの挿入やクリアの際に textarea が再調整します。",
+  "Whether to size automatically.": "自動でサイズ調整するかどうか。",
+  "`Textarea` and `InputGroupTextarea`.": "`Textarea` と `InputGroupTextarea`。",
+  "useAutosize(ref, enabled, value)": "useAutosize(ref, enabled, value)",
+  "useAutosize: auto-resizing textarea hook for React": "useAutosize: React の自動リサイズ textarea フック"
+}

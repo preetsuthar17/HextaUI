@@ -1,0 +1,21 @@
+{
+  "A React 19 project with Tailwind CSS v4 and a `components.json`. If you don't have one yet, set it up with the shadcn CLI.": "Tailwind CSS v4 ve bir `components.json` içeren bir React 19 projesi. Henüz yoksa shadcn CLI ile kurun.",
+  "AI assistants": "AI asistanları",
+  "Add HextaUI to a React project with the shadcn CLI, or copy the files in by hand.": "HextaUI'ı shadcn CLI ile bir React projesine ekleyin veya dosyaları elle kopyalayın.",
+  "Add `.md` to any docs URL for that page, like `https://hextaui.com/docs/button.md`.": "O sayfa için herhangi bir belge URL'sine `.md` ekleyin; örneğin `https://hextaui.com/docs/button.md`.",
+  "Add components": "Bileşen ekleyin",
+  "Add every component at once with:": "Her bileşeni bir kerede ekleyin:",
+  "Components use a few tokens on top of shadcn/ui: status colors, easing curves, a hairline border width and the keyframes they animate with. The CLI adds them for you. When copying files by hand, add this to your global CSS once.": "Bileşenler shadcn/ui'ın üstünde birkaç token kullanır: durum renkleri, easing eğrileri, hairline kenarlık genişliği ve animasyon yaptıkları keyframe'ler. CLI bunları sizin için ekler. Dosyaları elle kopyalarken bunu global CSS'inize bir kez ekleyin.",
+  "Every page is available as Markdown, so assistants get the full source, examples and API without scraping. Use the Copy page menu at the top of any page, or point your assistant at these files.": "Her sayfa Markdown olarak kullanılabilir; böylece asistanlar kazıma yapmadan tam kaynağı, örnekleri ve API'yi alır. Herhangi bir sayfanın üstündeki Copy page menüsünü kullanın veya asistanınızı bu dosyalara yöneltin.",
+  "For the best results, connect the <0>HextaUI MCP server</0>. Assistants search the docs, read each API and get install commands without leaving your editor.": "En iyi sonuçlar için <0>HextaUI MCP sunucusuna</0> bağlanın. Asistanlar editörünüzden çıkmadan belgelerde arama yapar, her API'yi okur ve kurulum komutlarını alır.",
+  "Install HextaUI with the shadcn CLI": "HextaUI'ı shadcn CLI ile kurun",
+  "Namespace": "Namespace",
+  "Pass a component's registry URL to the CLI. It copies the source into your project, installs its dependencies, adds the theme tokens and pulls in any HextaUI components it builds on.": "Bir bileşenin registry URL'sini CLI'a geçin. Kaynağı projenize kopyalar, bağımlılıklarını kurar, tema token'larını ekler ve üzerine kurulduğu HextaUI bileşenlerini de getirir.",
+  "Register HextaUI in `components.json` to add components by name.": "Bileşenleri adıyla eklemek için HextaUI'ı `components.json` içinde kaydedin.",
+  "Requirements": "Gereksinimler",
+  "The files are yours from then on. Import them from `@/components/ui` and edit them like any other code.": "Dosyalar o andan itibaren sizindir. Onları `@/components/ui` içinden içe aktarın ve diğer kodlar gibi düzenleyin.",
+  "Theme": "Tema",
+  "With the namespace above, the shadcn MCP server lets assistants like Claude Code, Cursor and Codex browse and install HextaUI components directly.": "Yukarıdaki namespace ile shadcn MCP sunucusu, Claude Code, Cursor ve Codex gibi asistanların HextaUI bileşenlerine göz atıp doğrudan kurmasını sağlar.",
+  "`https://hextaui.com/llms-full.txt` has every page in one file.": "`https://hextaui.com/llms-full.txt` her sayfayı tek dosyada içerir.",
+  "`https://hextaui.com/llms.txt` lists every page with a short description.": "`https://hextaui.com/llms.txt` her sayfayı kısa bir açıklamayla listeler."
+}

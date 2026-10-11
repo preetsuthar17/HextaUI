@@ -2,6 +2,7 @@ import * as React from "react"
 
 import { DocsCode } from "@/components/docs/docs-content"
 import { Kbd, KbdGroup } from "@/components/ui/kbd"
+import { markLiteral, t, translateNode } from "@/lib/i18n/rich"
 import {
   Table,
   TableBody,
@@ -23,9 +24,9 @@ function DocsPropsTable({ props }: { props: DocsProp[] }) {
     <Table variant="surface" wrap className="min-w-lg table-fixed">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[42%]">Prop</TableHead>
-          <TableHead className="w-[38%]">Type</TableHead>
-          <TableHead className="w-[20%]">Default</TableHead>
+          <TableHead className="w-[42%]">{t("Prop")}</TableHead>
+          <TableHead className="w-[38%]">{t("Type")}</TableHead>
+          <TableHead className="w-[20%]">{t("Default")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -36,7 +37,7 @@ function DocsPropsTable({ props }: { props: DocsProp[] }) {
                 <DocsCode>{prop.name}</DocsCode>
                 {prop.description ? (
                   <span className="text-sm text-muted-foreground">
-                    {prop.description}
+                    {translateNode(prop.description)}
                   </span>
                 ) : null}
               </div>
@@ -72,8 +73,8 @@ function DocsKeyboardTable({ keys }: { keys: DocsKey[] }) {
     <Table variant="surface" wrap className="min-w-md table-fixed">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[38%]">Key</TableHead>
-          <TableHead>Action</TableHead>
+          <TableHead className="w-[38%]">{t("Key")}</TableHead>
+          <TableHead>{t("Action")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -88,7 +89,7 @@ function DocsKeyboardTable({ keys }: { keys: DocsKey[] }) {
             </TableHead>
             <TableCell>
               <span className="text-sm text-muted-foreground">
-                {row.description}
+                {translateNode(row.description)}
               </span>
             </TableCell>
           </TableRow>
@@ -114,8 +115,8 @@ function DocsAttributesTable({
     <Table variant="surface" wrap className="min-w-md table-fixed">
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[42%]">{label}</TableHead>
-          <TableHead>Description</TableHead>
+          <TableHead className="w-[42%]">{t(label)}</TableHead>
+          <TableHead>{t("Description")}</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
@@ -126,7 +127,7 @@ function DocsAttributesTable({
             </TableHead>
             <TableCell>
               <span className="text-sm text-muted-foreground">
-                {attribute.description}
+                {translateNode(attribute.description)}
               </span>
             </TableCell>
           </TableRow>
@@ -135,6 +136,9 @@ function DocsAttributesTable({
     </Table>
   )
 }
+
+markLiteral(Kbd)
+markLiteral(DocsKbd)
 
 export { DocsAttributesTable, DocsKbd, DocsKeyboardTable, DocsPropsTable }
 export type { DocsAttribute, DocsKey, DocsProp }

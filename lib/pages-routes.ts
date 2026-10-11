@@ -80,6 +80,10 @@ function getPagesRoutes(
     if (!isExcluded(source, exclude)) exclude.add(source)
   }
 
+  for (const rule of [...exclude]) {
+    if (rule.endsWith("/*")) exclude.delete(rule.slice(0, -2))
+  }
+
   const routes = {
     version: 1,
     description:

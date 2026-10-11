@@ -1,10 +1,11 @@
 import * as React from "react"
-import Link from "next/link"
+import Link from "@/components/site/link"
 
 import { DocsCodePanel } from "@/components/docs/docs-code-panel"
 import { DocsCommand } from "@/components/docs/docs-command"
 import { DocsSection } from "@/components/docs/docs-content"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { t, translateNode } from "@/lib/i18n/rich"
 import {
   getRegistryItemUrl,
   getRegistryKind,
@@ -34,7 +35,7 @@ function DocsStep({
         <span className="my-2 w-px flex-1 bg-border group-last/step:hidden" />
       </div>
       <div className="flex min-w-0 flex-col gap-3 pb-10 group-last/step:pb-0">
-        <p className="text-base/6 font-medium">{title}</p>
+        <p className="text-base/6 font-medium">{translateNode(title)}</p>
         {children}
       </div>
     </li>
@@ -116,9 +117,9 @@ async function DocsInstall({
   return (
     <DocsSection title="Installation">
       <Tabs defaultValue="cli">
-        <TabsList variant="line" aria-label="Installation method">
+        <TabsList variant="line" aria-label={t("Installation method")}>
           <TabsTrigger value="cli">CLI</TabsTrigger>
-          <TabsTrigger value="manual">Manual</TabsTrigger>
+          <TabsTrigger value="manual">{t("Manual")}</TabsTrigger>
         </TabsList>
         <TabsContent value="cli">
           <div className="flex flex-col gap-3">
@@ -128,8 +129,16 @@ async function DocsInstall({
             />
             <p className="text-sm/6 text-pretty text-muted-foreground">
               {kind === "component"
-                ? "Adds the component, the HextaUI theme tokens and any HextaUI components it depends on."
-                : `Adds the ${kind} and anything it depends on to your project.`}
+                ? t(
+                    "Adds the component, the HextaUI theme tokens and any HextaUI components it depends on."
+                  )
+                : kind === "hook"
+                  ? t(
+                      "Adds the hook and anything it depends on to your project."
+                    )
+                  : t(
+                      "Adds the utility and anything it depends on to your project."
+                    )}
             </p>
           </div>
         </TabsContent>

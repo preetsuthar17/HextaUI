@@ -1,7 +1,6 @@
 "use client"
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "@/components/site/link"
 import { IconBrightness } from "@tabler/icons-react"
 import { cn } from "cn"
 import { useTheme } from "next-themes"
@@ -20,6 +19,8 @@ import {
 } from "@/components/ui/tooltip"
 import { docsComponents, docsHooks, docsUtilities } from "@/lib/docs"
 import { formatStars } from "@/lib/github"
+import { useChrome } from "@/lib/i18n/chrome"
+import { useSitePathname } from "@/lib/i18n/client"
 import { siteRepository } from "@/lib/site"
 
 type SiteSection =
@@ -87,7 +88,8 @@ function SiteHeader({
   stars?: number | null
   className?: string
 }) {
-  const pathname = usePathname()
+  const pathname = useSitePathname()
+  const c = useChrome()
   const active = sectionFor(pathname)
   const stars = useGithubStars(initialStars)
   const { navRef, highlightRef, handlers } = useSharedHighlight<HTMLDivElement>(
@@ -106,7 +108,7 @@ function SiteHeader({
       )}
     >
       <div className="mx-auto flex h-14 max-w-screen-2xl items-center gap-2 px-3">
-        <nav aria-label="Main" className="min-w-0 flex-1">
+        <nav aria-label={c("Main")} className="min-w-0 flex-1">
           <div
             ref={navRef}
             className="relative isolate -m-1 [scrollbar-width:none] overflow-x-auto p-1"
@@ -131,7 +133,7 @@ function SiteHeader({
                         current && "text-foreground"
                       )}
                     >
-                      {link.label}
+                      {c(link.label)}
                     </Link>
                   </li>
                 )
@@ -166,7 +168,7 @@ function SiteHeader({
             href="/docs/installation"
             className={cn(buttonVariants({ size: "sm" }), "ms-1 max-sm:hidden")}
           >
-            Get started
+            {c("Get started")}
           </Link>
         </div>
       </div>

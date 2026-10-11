@@ -1,0 +1,19 @@
+{
+  "<l0/> already uses this hook. Call it yourself when you render your own <l1/>, such as a chat composer or an inline editor.": "<l0/> nutzt diesen Hook bereits. Rufe ihn selbst auf, wenn du dein eigenes <l1/> renderst, etwa einen Chat-Composer oder einen Inline-Editor.",
+  "Controlled values": "Kontrollierte Werte",
+  "Height changes animate over 180ms, and a change that comes in mid-animation starts from the current height, so fast typing never jumps. Under reduced motion the height snaps.": "Höhenänderungen werden über 180ms animiert, und eine Änderung mitten in der Animation startet von der aktuellen Höhe, sodass schnelles Tippen nie springt. Bei reduzierter Bewegung springt die Höhe.",
+  "It listens for `input` on `window` and only measures. It never reads or writes the value, so keystrokes are never delayed or dropped.": "Er lauscht auf `input` an `window` und misst nur. Er liest oder schreibt nie den Wert, sodass Tastenanschläge nie verzögert oder verworfen werden.",
+  "It refits when the width changes, because text that wraps differently changes the height.": "Er passt sich neu an, wenn sich die Breite ändert, da anders umbrechender Text die Höhe ändert.",
+  "On each change the hook sets the height to `auto`, reads the natural `scrollHeight`, and clamps it to the element's own CSS `min-height` and `max-height`. All of that happens before paint, so you never see the collapsed frame. The bounds stay in your CSS, so they can be responsive or use `lh` to count lines.": "Bei jeder Änderung setzt der Hook die Höhe auf `auto`, liest die natürliche `scrollHeight` und begrenzt sie auf `min-height` und `max-height` aus dem CSS des Elements. All das geschieht vor dem Paint, sodass du den eingeklappten Frame nie siehst. Die Grenzen bleiben in deinem CSS, können also responsiv sein oder `lh` nutzen, um Zeilen zu zählen.",
+  "On touch screens, use at least 16px text in the textarea, or iOS zooms in when it's focused.": "Verwende auf Touchscreens mindestens 16px Text in der Textarea, sonst zoomt iOS beim Fokussieren hinein.",
+  "Past `max-height` the textarea scrolls. Otherwise its scrollbar stays hidden, so it doesn't flash on each new line.": "Über `max-height` hinaus scrollt die Textarea. Ansonsten bleibt ihre Scrollleiste verborgen, damit sie nicht bei jeder neuen Zeile aufblitzt.",
+  "Set `rows={1}` and `resize-none`. A manual resize handle fights the automatic height.": "Setze `rows={1}` und `resize-none`. Ein manueller Resize-Griff kämpft gegen die automatische Höhe.",
+  "The controlled value. Pass undefined for uncontrolled textareas.": "Der kontrollierte Wert. Übergib undefined für unkontrollierte Textareas.",
+  "The textarea to size.": "Die Textarea, deren Größe angepasst wird.",
+  "Turning `enabled` off or unmounting removes the inline height and overflow, handing the size back to your CSS.": "Das Abschalten von `enabled` oder das Unmounten entfernt die Inline-Höhe und das Overflow und gibt die Größe an dein CSS zurück.",
+  "Typing fires `input`, but setting `value` from code doesn't. Pass the value as the third argument and the textarea refits when you insert a template or clear it.": "Tippen löst `input` aus, das Setzen von `value` aus dem Code jedoch nicht. Übergib den Wert als drittes Argument, und die Textarea passt sich neu an, wenn du eine Vorlage einfügst oder sie leerst.",
+  "Whether to size automatically.": "Ob automatisch dimensioniert wird.",
+  "`Textarea` and `InputGroupTextarea`.": "`Textarea` und `InputGroupTextarea`.",
+  "useAutosize(ref, enabled, value)": "useAutosize(ref, enabled, value)",
+  "useAutosize: auto-resizing textarea hook for React": "useAutosize: Hook für automatisch skalierende Textarea in React"
+}

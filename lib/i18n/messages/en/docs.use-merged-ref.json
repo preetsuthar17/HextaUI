@@ -1,0 +1,14 @@
+[
+  "A video player with a scrubbable seek bar, auto-hiding controls, keyboard shortcuts, speed, picture in picture and full screen.",
+  "An element has one `ref`, but components often need to hand it to several places: the parent that forwarded a ref, a local ref for effects, and hooks that work through a callback ref.`useMergedRef` returns one callback that feeds all of them.",
+  "For one forwarded ref plus a local object ref, <0>useComposedRef</0> is shorter.",
+  "Object refs, callback refs or undefined.",
+  "Pass to the element's ref. Returns the combined cleanup.",
+  "That makes callback refs a good home for anything tied to the element's lifetime, like observers and listeners. Setup and teardown live together, and merging them with other refs keeps them working.",
+  "The merged callback changes whenever any ref changes. An inline arrow is a new ref on every render, so React detaches and reattaches the element each time. Wrap callback refs in `useCallback`.",
+  "When the element attaches, every ref receives it. Object refs get `.current` set, and callback refs are called with the node. The merged callback returns a cleanup in the React 19 style. On detach it runs each callback ref's own cleanup, or calls the ref with `null` if it didn't return one, and resets object refs to `null`.",
+  "`Field` and `InputGroup`.",
+  "`undefined` and `null` refs are skipped, so you can pass optional props straight in.",
+  "useMergedRef(...refs)",
+  "useMergedRef: merge refs in React 19"
+]

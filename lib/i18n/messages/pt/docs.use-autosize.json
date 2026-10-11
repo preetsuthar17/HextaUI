@@ -1,0 +1,19 @@
+{
+  "<l0/> already uses this hook. Call it yourself when you render your own <l1/>, such as a chat composer or an inline editor.": "<l0/> já usa este hook. Chame-o você mesmo ao renderizar seu próprio <l1/>, como um compositor de chat ou um editor inline.",
+  "Controlled values": "Valores controlados",
+  "Height changes animate over 180ms, and a change that comes in mid-animation starts from the current height, so fast typing never jumps. Under reduced motion the height snaps.": "As mudanças de altura animam em 180ms, e uma mudança que chega no meio da animação parte da altura atual, então digitar rápido nunca salta. Com movimento reduzido, a altura muda de uma vez.",
+  "It listens for `input` on `window` and only measures. It never reads or writes the value, so keystrokes are never delayed or dropped.": "Ele escuta `input` em `window` e apenas mede. Nunca lê nem escreve o valor, então as teclas nunca são atrasadas nem perdidas.",
+  "It refits when the width changes, because text that wraps differently changes the height.": "Ele reajusta quando a largura muda, porque texto que quebra de outro jeito muda a altura.",
+  "On each change the hook sets the height to `auto`, reads the natural `scrollHeight`, and clamps it to the element's own CSS `min-height` and `max-height`. All of that happens before paint, so you never see the collapsed frame. The bounds stay in your CSS, so they can be responsive or use `lh` to count lines.": "A cada mudança o hook define a altura como `auto`, lê o `scrollHeight` natural e o limita ao `min-height` e `max-height` do próprio CSS do elemento. Tudo isso acontece antes da pintura, então você nunca vê o quadro recolhido. Os limites ficam no seu CSS, podendo ser responsivos ou usar `lh` para contar linhas.",
+  "On touch screens, use at least 16px text in the textarea, or iOS zooms in when it's focused.": "Em telas touch, use texto de pelo menos 16px no textarea, ou o iOS dá zoom ao focá-lo.",
+  "Past `max-height` the textarea scrolls. Otherwise its scrollbar stays hidden, so it doesn't flash on each new line.": "Além de `max-height` o textarea rola. Caso contrário, a barra de rolagem fica oculta, para não piscar a cada nova linha.",
+  "Set `rows={1}` and `resize-none`. A manual resize handle fights the automatic height.": "Defina `rows={1}` e `resize-none`. Uma alça de redimensionamento manual briga com a altura automática.",
+  "The controlled value. Pass undefined for uncontrolled textareas.": "O valor controlado. Passe undefined para textareas não controlados.",
+  "The textarea to size.": "O textarea a dimensionar.",
+  "Turning `enabled` off or unmounting removes the inline height and overflow, handing the size back to your CSS.": "Desligar `enabled` ou desmontar remove a altura e o overflow inline, devolvendo o tamanho ao seu CSS.",
+  "Typing fires `input`, but setting `value` from code doesn't. Pass the value as the third argument and the textarea refits when you insert a template or clear it.": "Digitar dispara `input`, mas definir `value` pelo código não. Passe o valor como terceiro argumento e o textarea se reajusta quando você insere um modelo ou o limpa.",
+  "Whether to size automatically.": "Se deve dimensionar automaticamente.",
+  "`Textarea` and `InputGroupTextarea`.": "`Textarea` e `InputGroupTextarea`.",
+  "useAutosize(ref, enabled, value)": "useAutosize(ref, enabled, value)",
+  "useAutosize: auto-resizing textarea hook for React": "useAutosize: hook de textarea com redimensionamento automático para React"
+}

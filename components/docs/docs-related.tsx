@@ -1,8 +1,9 @@
-import Link from "next/link"
+import Link from "@/components/site/link"
 import { cn } from "cn"
 
 import { DocsSection } from "@/components/docs/docs-content"
 import type { RelatedLink } from "@/lib/docs-related"
+import { t } from "@/lib/i18n/rich"
 
 const linkClassName =
   "transition-colors duration-150 ease-out-cubic outline-none hover:bg-muted/50 focus-visible:ring-3 focus-visible:ring-focus-ring focus-visible:outline-hidden motion-reduce:transition-none"
@@ -21,7 +22,7 @@ function DocsRelatedCards({ links }: { links: RelatedLink[] }) {
           >
             <span className="truncate text-sm font-medium">{link.title}</span>
             <span className="line-clamp-2 text-sm text-pretty text-muted-foreground">
-              {link.description}
+              {t(link.description)}
             </span>
           </Link>
         </li>

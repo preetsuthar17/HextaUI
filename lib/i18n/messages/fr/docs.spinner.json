@@ -1,0 +1,19 @@
+{
+  "Button and Command use this spinner for their loading states, sized to the button's icons.": "Button et Command utilisent ce spinner pour leurs états de chargement, dimensionné sur les icônes du bouton.",
+  "In buttons": "Dans les boutons",
+  "Next to text, mark the spinner `aria-hidden` so the words do the talking. On its own, it announces its `label`.": "À côté d'un texte, marquez le spinner `aria-hidden` pour que les mots parlent. Seul, il annonce son `label`.",
+  "On its own, the spinner is a `status` named by `label` (“Loading”).": "Seul, le spinner est un `status` nommé par `label` (« Loading »).",
+  "Pass `loading` and the spinner waits `delay` (150ms) before showing, so fast loads never flash it, then stays at least `minDuration` (400ms) once it's visible.": "Passez `loading` et le spinner attend `delay` (150ms) avant de s'afficher, pour que les chargements rapides ne le fassent jamais clignoter, puis reste au moins `minDuration` (400ms) une fois visible.",
+  "Pause the animation without hiding it.": "Met l'animation en pause sans la masquer.",
+  "Shows a loading state only when work is actually slow, then keeps it up long enough that it never flickers.": "N'affiche un état de chargement que lorsque le travail est vraiment lent, puis le garde assez longtemps pour qu'il ne scintille jamais.",
+  "Spinner component for React & shadcn/ui": "Composant Spinner pour React et shadcn/ui",
+  "The SVG, with data-variant.": "Le SVG, avec data-variant.",
+  "The default is the eight-spoke indicator from Apple platforms. `variant=\"ring\"` spins while its arc grows and shrinks, so it reads as working rather than stuck. Both are drawn in the current text color.": "Par défaut, c'est l'indicateur à huit branches des plateformes Apple. `variant=\"ring\"` tourne pendant que son arc grandit et rétrécit, pour donner l'impression de travailler plutôt que d'être bloqué. Les deux sont dessinés dans la couleur de texte courante.",
+  "The same timing as a hook, for skeletons, overlays or anything else that shouldn't flash. See the <0>useDelayedLoading guide</0>.": "Le même timing sous forme de hook, pour les skeletons, les overlays ou tout ce qui ne doit pas clignoter. Consultez le <0>guide de useDelayedLoading</0>.",
+  "Turns on delayed showing. Leave it out to always show.": "Active l'affichage différé. Omettez-le pour toujours afficher.",
+  "With `aria-hidden`, it drops its role, for use beside visible text or inside a busy button.": "Avec `aria-hidden`, il perd son rôle, pour l'utiliser à côté d'un texte visible ou dans un bouton occupé.",
+  "With reduced motion, it gently pulses instead of spinning, so it still shows that something is happening.": "Avec la réduction des animations, il pulse doucement au lieu de tourner, pour montrer qu'il se passe quelque chose.",
+  "Without flicker": "Sans scintillement",
+  "`sm`, `default`, `lg` and `xl` for both variants.": "`sm`, `default`, `lg` et `xl` pour les deux variantes.",
+  "null leaves sizing to the parent.": "null laisse le parent décider de la taille."
+}
