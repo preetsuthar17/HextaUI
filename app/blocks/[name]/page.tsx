@@ -16,17 +16,20 @@ import { DocsStep } from "@/components/docs/docs-install"
 import { DocsPage } from "@/components/docs/docs-page"
 import { DocsRelated } from "@/components/docs/docs-related"
 import { JsonLd } from "@/components/site/json-ld"
+import { TrackedLink } from "@/components/site/tracked-link"
+import { Button } from "@/components/ui/button"
 import {
   DocsAttributesTable,
   DocsKeyboardTable,
   DocsPropsTable,
 } from "@/components/docs/docs-props-table"
-import { getBlockComponents } from "@/lib/docs-related"
-import { t } from "@/lib/i18n/rich"
+import { getBlockComponents, getBlockLinks } from "@/lib/docs-related"
+import { T, t } from "@/lib/i18n/rich"
 import { pageMetadata } from "@/lib/metadata"
 import { absoluteUrl } from "@/lib/site"
 import { docsArticleJsonLd } from "@/lib/structured-data"
 import { blocksNavItems, getProBlock, proBlockParams } from "@/lib/pro/catalog"
+import { getNextBlocks } from "@/lib/pro/free-blocks"
 import { getProBlockTitle } from "@/lib/pro/titles"
 
 export const dynamicParams = false
@@ -65,6 +68,7 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
   const block = getProBlock((await params).name)
   if (!block) notFound()
   const { overview, anatomy, api, keyboard, accessibility } = block.docs
+  const nextBlocks = getBlockLinks(getNextBlocks(block.name))
 
   return (
     <DocsPage
@@ -72,6 +76,27 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
       title={block.title}
       description={block.description}
       navItems={blocksNavItems}
+      actions={
+        block.free ? null : (
+          <Button
+            size="sm"
+            nativeButton={false}
+            render={
+              <TrackedLink
+                href="/pricing"
+                event="Pro link clicked"
+                eventProps={{
+                  from: "block-header",
+                  to: "/pricing",
+                  block: block.name,
+                }}
+              />
+            }
+          >
+            {t("Get Pro")}
+          </Button>
+        )
+      }
       className="max-w-4xl"
     >
       <JsonLd
@@ -124,14 +149,32 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
       ) : (
         <DocsSection title="Installation">
           <ol className="flex flex-col">
-            <DocsStep step={1} title="Add the Pro registry to components.json">
+            <DocsStep step={1} title="Get HextaUI Pro">
+              <DocsParagraph>
+                One payment unlocks every block, including future ones.{" "}
+                <TrackedLink
+                  href="/pricing"
+                  event="Pro link clicked"
+                  eventProps={{
+                    from: "block-install",
+                    to: "/pricing",
+                    block: block.name,
+                  }}
+                  className={linkClassName}
+                >
+                  See pricing
+                </TrackedLink>
+                .
+              </DocsParagraph>
+            </DocsStep>
+            <DocsStep step={2} title="Add the Pro registry to components.json">
               <DocsCodeBlock
                 code={registryCode}
                 lang="json"
                 title="components.json"
               />
             </DocsStep>
-            <DocsStep step={2} title="Add your token">
+            <DocsStep step={3} title="Add your token">
               <DocsParagraph>
                 Create a token on your{" "}
                 <Link href="/account" className={linkClassName}>
@@ -141,7 +184,7 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
                 <DocsCode>HEXTAUI_PRO_TOKEN</DocsCode>.
               </DocsParagraph>
             </DocsStep>
-            <DocsStep step={3} title="Add the block">
+            <DocsStep step={4} title="Add the block">
               <DocsCommand
                 mode="dlx"
                 packages={[
@@ -154,6 +197,48 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
           </ol>
         </DocsSection>
       )}
+
+      {nextBlocks.length > 0 ? (
+        <DocsRelated
+          title="Build the rest of the chat"
+          description={t(
+            "{title} is free. These blocks build the rest of the chat around it, and come with HextaUI Pro.",
+            { title: block.title }
+          )}
+          links={nextBlocks}
+          event={{ name: "Pro link clicked", from: "next-step" }}
+        >
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+            <Button
+              size="sm"
+              nativeButton={false}
+              render={
+                <TrackedLink
+                  href="/pricing"
+                  event="Pro link clicked"
+                  eventProps={{ from: "next-step", to: "/pricing" }}
+                />
+              }
+            >
+              {t("Get Pro")}
+            </Button>
+            <p className="text-sm text-muted-foreground">
+              <T>
+                Or browse{" "}
+                <TrackedLink
+                  href="/blocks"
+                  event="Pro link clicked"
+                  eventProps={{ from: "next-step", to: "/blocks" }}
+                  className={linkClassName}
+                >
+                  every block
+                </TrackedLink>
+                .
+              </T>
+            </p>
+          </div>
+        </DocsRelated>
+      ) : null}
 
       {block.usage.length > 0 ? (
         <DocsSection title="Usage">

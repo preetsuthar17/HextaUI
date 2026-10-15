@@ -30,7 +30,6 @@
   "ReasoningStep": "ReasoningStep",
   "Seconds to show once finished. Leave it out to use the measured time.": "Segundos que mostrar al terminar. Omítelo para usar el tiempo medido.",
   "Short site name for the chip. Defaults to the domain.": "Nombre corto del sitio para el chip. Por defecto, el dominio.",
-  "Show what a model is doing while it works. A shader orb and a live label that follows each step, a collapsible trail of searches, source chips and reasoning, then an answer with citations right beside the claims they support.": "Muestra lo que hace un modelo mientras trabaja. Una esfera de shader y una etiqueta en vivo que sigue cada paso, un rastro colapsable de búsquedas, chips de fuentes y razonamiento, y luego una respuesta con citas justo al lado de las afirmaciones que respaldan.",
   "Show what a model is doing while it works. A shader orb and a live label that follows each step, a collapsible trail of searches, source chips and reasoning…": "Muestra lo que hace un modelo mientras trabaja. Una esfera de shader y una etiqueta en vivo que sigue cada paso, un rastro colapsable de búsquedas, chips de fuentes y razonamiento…",
   "Shown in the hover card.": "Se muestra en la hover card.",
   "Shows the caret and paces the text.": "Muestra el cursor y regula el ritmo del texto.",

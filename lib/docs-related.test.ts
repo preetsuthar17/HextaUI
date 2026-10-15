@@ -3,9 +3,10 @@ import { describe, expect, it } from "vitest"
 import { docsEntries } from "@/lib/docs"
 import {
   getBlockComponents,
+  getBlockLinks,
   getDocsDependencies,
   getDocsDependents,
-  getRelatedBlocks,
+  getProBlocksUsing,
   getRelatedDocs,
 } from "@/lib/docs-related"
 import { proBlocks } from "@/lib/pro/catalog"
@@ -47,11 +48,25 @@ describe("related docs", () => {
     }
   })
 
-  it("lists the free block first among the blocks that use a component", () => {
+  it("lists paid AI blocks first and the free block last", () => {
     const free = proBlocks.find((block) => block.free)
     if (!free?.components?.length) return
     const slug = free.components[0]
-    expect(getRelatedBlocks(slug)[0]?.href).toBe(`/blocks/${free.name}`)
+    const using = getProBlocksUsing(slug)
+    expect(using.at(-1)?.href).toBe(`/blocks/${free.name}`)
+    const first = proBlocks.find(
+      (block) => using[0]?.href === `/blocks/${block.name}`
+    )
+    expect(first?.free).toBeFalsy()
+    expect(first?.category).toBe("ai")
+  })
+
+  it("resolves next-step block names and skips unknown ones", () => {
+    const [block] = proBlocks
+    if (!block) return
+    expect(getBlockLinks([block.name, "missing-block"])).toEqual([
+      expect.objectContaining({ href: `/blocks/${block.name}` }),
+    ])
   })
 
   it("links each block to the documented components it is built from", () => {

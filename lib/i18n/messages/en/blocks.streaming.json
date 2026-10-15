@@ -8,7 +8,6 @@
   "Models send text in bursts: a few words, a pause, then a whole sentence at once. Printing each chunk as it lands makes a reply stutter. Streaming keeps what you have received separate from what you show, and reveals it at a steady 90 characters a second.",
   "Render each text part of a useChat message. The part’s own state tells StreamingText when the model is still writing, so finished messages and history appear instantly.",
   "Returns { text, animating }. animating stays true until the shown text reaches the full text.",
-  "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words and a caret while it writes.",
   "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words…",
   "Streaming Text for AI responses in React & shadcn/ui",
   "StreamingText",

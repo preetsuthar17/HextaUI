@@ -17,6 +17,8 @@ function DocsPage({
   registryHref,
   toc,
   navItems,
+  note,
+  actions,
   className,
   children,
 }: {
@@ -27,6 +29,8 @@ function DocsPage({
   registryHref?: string
   toc?: DocsTocItem[]
   navItems?: DocsNavItem[]
+  note?: React.ReactNode
+  actions?: React.ReactNode
   className?: string
   children?: React.ReactNode
 }) {
@@ -47,6 +51,7 @@ function DocsPage({
               {t(title)}
             </h1>
             <div className="mt-0.5 flex shrink-0 items-center gap-2">
+              {actions}
               {markdownHref ? (
                 <DocsPageActions
                   markdownHref={markdownHref}
@@ -65,6 +70,7 @@ function DocsPage({
               {translateNode(description)}
             </p>
           ) : null}
+          {note}
         </header>
         <div data-docs-content="" className="flex flex-col">
           {children}

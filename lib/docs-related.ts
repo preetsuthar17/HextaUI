@@ -9,7 +9,7 @@ type RelatedLink = {
 }
 
 const maxRelatedPages = 6
-const maxRelatedBlocks = 4
+const maxRelatedBlocks = 6
 
 const entrySlugs = new Set(docsEntries.map((entry) => entry.slug))
 
@@ -60,16 +60,34 @@ function getRelatedDocs(slug: string): RelatedLink[] {
   })
 }
 
-function getRelatedBlocks(slug: string): RelatedLink[] {
+function blockRank(block: (typeof proBlocks)[number]) {
+  return Number(Boolean(block.free)) * 2 + Number(block.category !== "ai")
+}
+
+function blockLink(block: (typeof proBlocks)[number]): RelatedLink {
+  return {
+    href: `/blocks/${block.name}`,
+    title: block.title,
+    description: block.description,
+  }
+}
+
+function getProBlocksUsing(slug: string): RelatedLink[] {
   return proBlocks
     .filter((block) => block.components?.includes(slug))
-    .sort((a, b) => Number(Boolean(b.free)) - Number(Boolean(a.free)))
-    .slice(0, maxRelatedBlocks)
-    .map((block) => ({
-      href: `/blocks/${block.name}`,
-      title: block.title,
-      description: block.description,
-    }))
+    .sort((a, b) => blockRank(a) - blockRank(b))
+    .map(blockLink)
+}
+
+function getRelatedBlocks(slug: string): RelatedLink[] {
+  return getProBlocksUsing(slug).slice(0, maxRelatedBlocks)
+}
+
+function getBlockLinks(names: readonly string[]): RelatedLink[] {
+  return names.flatMap((name) => {
+    const block = proBlocks.find((item) => item.name === name)
+    return block ? [blockLink(block)] : []
+  })
 }
 
 function getBlockComponents(name: string): RelatedLink[] {
@@ -88,8 +106,10 @@ function getBlockComponents(name: string): RelatedLink[] {
 
 export {
   getBlockComponents,
+  getBlockLinks,
   getDocsDependencies,
   getDocsDependents,
+  getProBlocksUsing,
   getRelatedBlocks,
   getRelatedDocs,
   type RelatedLink,
