@@ -249,3 +249,75 @@ describe("Progress element identity", () => {
     expect(React.isValidElement(<Progress value={1} />)).toBe(true)
   })
 })
+
+describe("Progress segments", () => {
+  function segments(container: HTMLElement) {
+    return [
+      ...container.querySelectorAll<HTMLElement>("[data-slot=progress-segment]"),
+    ]
+  }
+
+  it("splits the fill into parts that add up to the value", () => {
+    const { container } = render(
+      <Progress
+        max={40}
+        segments={[
+          { value: 20, variant: "success", label: "passed" },
+          { value: 4, variant: "destructive", label: "failed" },
+          { value: 0, variant: "warning", label: "skipped" },
+        ]}
+        aria-label="Tests"
+      />
+    )
+    const bar = screen.getByRole("progressbar", { name: "Tests" })
+    expect(bar.getAttribute("aria-valuenow")).toBe("24")
+    expect(bar.getAttribute("aria-valuetext")).toBe("60% (20 passed, 4 failed)")
+    expect(container.querySelector("[data-slot=progress-indicator]")).toBe(null)
+    const parts = segments(container)
+    expect(
+      parts.map((part) => part.style.getPropertyValue("--progress-segment"))
+    ).toEqual(["50%", "10%", "0%"])
+    expect(parts.map((part) => part.getAttribute("data-variant"))).toEqual([
+      "success",
+      "destructive",
+      "warning",
+    ])
+    expect(parts.map((part) => part.hasAttribute("data-gap"))).toEqual([
+      false,
+      true,
+      false,
+    ])
+  })
+
+  it("skips the gap before the first filled part and ignores bad values", () => {
+    const { container } = render(
+      <Progress
+        segments={[
+          { value: 0 },
+          { value: Number.NaN },
+          { value: 30, variant: "success" },
+          { value: -5 },
+        ]}
+      />
+    )
+    expect(screen.getByRole("progressbar").getAttribute("aria-valuenow")).toBe(
+      "30"
+    )
+    expect(segments(container).map((part) => part.hasAttribute("data-gap"))).toEqual(
+      [false, false, false, false]
+    )
+  })
+
+  it("keeps a caller's aria value text", () => {
+    render(
+      <Progress
+        segments={[{ value: 10, label: "passed" }]}
+        getAriaValueText={() => "Ten done"}
+      />
+    )
+    expect(
+      screen.getByRole("progressbar").getAttribute("aria-valuetext")
+    ).toBe("Ten done")
+  })
+})
+

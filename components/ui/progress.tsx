@@ -76,6 +76,23 @@ const progressIndicatorVariants = cva(
   }
 )
 
+const progressSegmentVariants = cva(
+  "h-full w-(--progress-segment) shrink-0 transition-[width,margin-inline-start] duration-300 ease-spring data-gap:ms-0.5 motion-reduce:transition-none forced-colors:bg-highlight",
+  {
+    variants: {
+      variant: {
+        default: "bg-primary",
+        success: "bg-success",
+        warning: "bg-warning",
+        destructive: "bg-destructive",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+)
+
 const progressCircleStroke = {
   default: "stroke-primary",
   success: "stroke-success",
@@ -101,9 +118,55 @@ const progressCircleVariants = cva(
   }
 )
 
-type ProgressProps = ProgressPrimitive.Root.Props & {
+type ProgressSegment = {
+  value: number
+  variant?: ProgressVariant
+  label?: string
+}
+
+type ProgressProps = Omit<ProgressPrimitive.Root.Props, "value"> & {
+  value?: ProgressPrimitive.Root.Props["value"]
   size?: ProgressSize
   variant?: ProgressVariant
+  segments?: ProgressSegment[]
+}
+
+function segmentsText(
+  segments: ProgressSegment[],
+  locale: Intl.LocalesArgument
+) {
+  const format = new Intl.NumberFormat(locale)
+  return segments
+    .filter((segment) => segment.label && segment.value > 0)
+    .map((segment) => `${format.format(segment.value)} ${segment.label}`)
+    .join(", ")
+}
+
+function ProgressSegments({
+  segments,
+  min,
+  max,
+}: {
+  segments: ProgressSegment[]
+  min: number
+  max: number
+}) {
+  let filled = false
+  return segments.map((segment, index) => {
+    const percent = toPercent(segment.value + min, min, max) ?? 0
+    const gap = filled && percent > 0
+    filled ||= percent > 0
+    return (
+      <span
+        key={index}
+        data-slot="progress-segment"
+        data-variant={segment.variant ?? "default"}
+        data-gap={gap ? "" : undefined}
+        style={{ "--progress-segment": `${percent}%` } as React.CSSProperties}
+        className={progressSegmentVariants({ variant: segment.variant })}
+      />
+    )
+  })
 }
 
 function Progress({
@@ -112,12 +175,25 @@ function Progress({
   size = "default",
   variant = "default",
   locale = "en-US",
+  segments,
+  value,
+  min = 0,
+  max = 100,
+  getAriaValueText,
   ...props
 }: ProgressProps) {
   const context = React.useMemo(
     () => ({ kind: "bar" as const, size, variant }),
     [size, variant]
   )
+  const total = segments
+    ? segments.reduce(
+        (sum, segment) =>
+          sum + (Number.isFinite(segment.value) ? Math.max(0, segment.value) : 0),
+        min
+      )
+    : undefined
+  const labelled = segments?.some((segment) => segment.label)
 
   return (
     <ProgressContext.Provider value={context}>
@@ -126,6 +202,20 @@ function Progress({
         data-size={size}
         data-variant={variant}
         locale={locale}
+        value={total ?? value ?? null}
+        min={min}
+        max={max}
+        getAriaValueText={
+          getAriaValueText ??
+          (segments && labelled
+            ? (formattedValue) => {
+                const parts = segmentsText(segments, locale)
+                return parts
+                  ? `${formattedValue ?? ""} (${parts})`.trim()
+                  : (formattedValue ?? "")
+              }
+            : undefined)
+        }
         className={mergeClassName(
           "flex w-full min-w-0 flex-wrap items-center gap-x-3 gap-y-2",
           className
@@ -134,7 +224,11 @@ function Progress({
       >
         {children}
         <ProgressTrack>
-          <ProgressIndicator />
+          {segments ? (
+            <ProgressSegments segments={segments} min={min} max={max} />
+          ) : (
+            <ProgressIndicator />
+          )}
         </ProgressTrack>
       </ProgressPrimitive.Root>
     </ProgressContext.Provider>
@@ -287,6 +381,7 @@ export {
   ProgressIndicator,
   progressIndicatorVariants,
   ProgressLabel,
+  progressSegmentVariants,
   ProgressTrack,
   progressTrackVariants,
   ProgressValue,
@@ -295,6 +390,7 @@ export type {
   ProgressCircleProps,
   ProgressCircleSize,
   ProgressProps,
+  ProgressSegment,
   ProgressSize,
   ProgressVariant,
 }

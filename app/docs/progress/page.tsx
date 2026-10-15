@@ -20,6 +20,7 @@ import { ProgressFormat } from "@/components/examples/progress/format"
 import { ProgressIndeterminate } from "@/components/examples/progress/indeterminate"
 import { ProgressNumberFlow } from "@/components/examples/progress/number-flow"
 import { ProgressRtl } from "@/components/examples/progress/rtl"
+import { ProgressSegments } from "@/components/examples/progress/segments"
 import { ProgressSizes } from "@/components/examples/progress/sizes"
 import { ProgressUnlabeled } from "@/components/examples/progress/unlabeled"
 import { ProgressVariants } from "@/components/examples/progress/variants"
@@ -118,6 +119,20 @@ export default function Page() {
           }
         >
           <ProgressVariants />
+        </DocsExample>
+        <DocsExample
+          file="progress/segments"
+          title="Segments"
+          description={
+            <>
+              Pass <DocsCode>segments</DocsCode> to split the fill into parts,
+              such as passed, failed and skipped tests. Each part eases on its
+              own and pushes the parts after it, and their labels are read out
+              with the value.
+            </>
+          }
+        >
+          <ProgressSegments />
         </DocsExample>
         <DocsExample
           file="progress/indeterminate"
@@ -271,6 +286,12 @@ export default function Page() {
                 default: '"default"',
               },
               {
+                name: "segments",
+                type: "{ value: number; variant?: ProgressVariant; label?: string }[]",
+                description:
+                  "Splits the fill into parts. Their sum becomes the value.",
+              },
+              {
                 name: "format",
                 type: "Intl.NumberFormatOptions",
                 description:
@@ -301,6 +322,11 @@ export default function Page() {
               },
               { name: "data-variant", description: "The status variant." },
               ...stateAttributes,
+              {
+                name: 'data-slot="progress-segment"',
+                description:
+                  "One part of a segmented fill, with its own data-variant. data-gap marks a part that follows a filled one.",
+              },
             ]}
           />
         </DocsSection>
