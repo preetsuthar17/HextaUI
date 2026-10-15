@@ -1,6 +1,8 @@
 {
   "9 hooks and 5 utilities you can install on their own, like <0>useButtonFeedback</0> and <1>useDelayedLoading</1>.": "<0>useButtonFeedback</0> や <1>useDelayedLoading</1> など、単独でインストールできる 9 個のフックと 5 個のユーティリティ。",
   "<0>22 blocks</0> for AI products, such as a chat thread, tool calls and voice mode. These are part of HextaUI Pro, which is paid, and <1>Prompt Input</1> is free.": "チャットスレッド、ツール呼び出し、音声モードなど、AI プロダクト向けの<0> 22 個のブロック</0>。これらは有料の HextaUI Pro に含まれ、<1>Prompt Input</1> は無料です。",
+  "<0>HextaUI vs AI Elements</0>": "<0>HextaUI と AI Elements の比較</0>",
+  "<0>shadcn AI chat templates</0>": "<0>shadcn の AI チャットテンプレート</0>",
   "Adding a component looks like this:": "コンポーネントの追加は次のようになります。",
   "Because the names and tokens match, you can replace one component at a time. Run the add command with `--overwrite` to swap a shadcn/ui component for the HextaUI version, then review the diff in git before you keep it. Components you don’t replace keep working. HextaUI has 65 components, and <0>Installation</0> covers the theme tokens they expect.": "名前とトークンが一致しているため、コンポーネントを 1 つずつ置き換えられます。add コマンドを `--overwrite` 付きで実行すると shadcn/ui のコンポーネントを HextaUI 版に差し替えられるので、採用する前に git で差分を確認してください。置き換えないコンポーネントはそのまま動作します。HextaUI には 65 個のコンポーネントがあり、<0>インストール</0>では各コンポーネントが前提とするテーマトークンを説明しています。",
   "Components keep the shadcn/ui names, parts and props, so `Dialog`, `DialogTrigger` and `DialogContent` work the way you expect.": "コンポーネントは shadcn/ui の名前、パーツ、props をそのまま引き継ぐため、`Dialog`、`DialogTrigger`、`DialogContent` は想定どおりに動作します。",
@@ -12,6 +14,7 @@
   "HextaUI is not a replacement for shadcn/ui. It is a registry you add to a shadcn/ui project, with the same CLI, the same component names and the same theme tokens. This page explains what it adds and when you don’t need it.": "HextaUI は shadcn/ui の代わりではありません。同じ CLI、同じコンポーネント名、同じテーマトークンで、shadcn/ui プロジェクトに追加するレジストリです。このページでは、何が追加されるのか、どんなときに不要なのかを説明します。",
   "HextaUI is not a replacement for shadcn/ui. It uses the same CLI, names and theme tokens, and adds finished states, motion, extra components and AI blocks.": "HextaUI は shadcn/ui の代わりではありません。同じ CLI、名前、テーマトークンを使い、仕上がった状態表現、モーション、追加コンポーネント、AI ブロックを加えます。",
   "HextaUI vs shadcn/ui: what HextaUI adds on top": "HextaUI と shadcn/ui の比較: HextaUI が追加するもの",
+  "More comparisons": "その他の比較",
   "Motion you can interrupt. Animations share one set of easing curves and durations, can be reversed halfway and turn into a fade when reduced motion is on.": "中断できるモーション。アニメーションは 1 組のイージングカーブと時間を共有し、途中で逆再生でき、視差効果の軽減(reduced motion)が有効なときはフェードに切り替わります。",
   "Styling uses the same theme tokens, such as `--background`, `--primary` and `--radius`, with Tailwind CSS v4.": "スタイリングは Tailwind CSS v4 と、`--background`、`--primary`、`--radius` などの同じテーマトークンを使います。",
   "The short answer": "結論",

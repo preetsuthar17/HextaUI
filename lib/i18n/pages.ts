@@ -7,6 +7,12 @@ const localizedDocsSlugs = docsNav
   .filter((href) => href.startsWith("/docs/") && isLocalizedPath(href))
   .map((href) => href.slice("/docs/".length))
 
-const comparePages = ["shadcn-ui"]
+const comparePages = [
+  "ai-elements",
+  "assistant-ui",
+  "prompt-kit",
+  "shadcn-ai-chat-templates",
+  "shadcn-ui",
+]
 
 export { comparePages, localizedDocsSlugs }

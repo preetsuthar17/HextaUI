@@ -7,6 +7,7 @@ import {
   DocsParagraph,
 } from "@/components/docs/docs-content"
 import { LegalLink, LegalSection } from "@/components/legal/legal-page"
+import { MoreComparisons } from "@/components/site/compare"
 import { InfoPage } from "@/components/site/info-page"
 import { docsComponents, docsHooks, docsUtilities } from "@/lib/docs"
 import { getRegistryItemUrl } from "@/lib/docs-registry"
@@ -154,6 +155,8 @@ export default function Page() {
           the theme tokens they expect.
         </DocsParagraph>
       </LegalSection>
+
+      <MoreComparisons current="/compare/shadcn-ui" />
     </InfoPage>
   )
 }
