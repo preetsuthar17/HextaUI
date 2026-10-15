@@ -42,6 +42,7 @@ function functionRoutes(dir: string, prefix = ""): string[] {
         `${prefix}/${entry.name}`
       )
     }
+    if (!entry.name.endsWith(".ts")) return []
     const name = entry.name.replace(/\.ts$/, "")
     if (name.startsWith("_")) return []
     return [`${prefix}/${name}`]
