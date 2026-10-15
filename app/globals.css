@@ -659,6 +659,29 @@
     }
   }
 
+  .footer-link {
+    display: inline-block;
+    border-radius: var(--radius-sm);
+    padding-block: calc(var(--spacing) * 1);
+    color: var(--color-muted-foreground);
+    outline: 2px solid transparent;
+    transition: color 150ms;
+    @media (hover: hover) {
+      &:hover {
+        color: var(--color-foreground);
+      }
+    }
+    &:focus-visible {
+      box-shadow: 0 0 0 3px var(--color-focus-ring);
+    }
+    @media (pointer: coarse) {
+      padding-block: calc(var(--spacing) * 1.5);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
   .heading-anchor::after {
     content: "#";
   }
