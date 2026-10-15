@@ -15,6 +15,25 @@ const changelogGroups = [
 
 const changelog: ChangelogEntry[] = [
   {
+    date: "2026-10-15",
+    title: "Stack Trace, Test Results and Subagents",
+    body: [
+      "Three new Pro blocks for what coding agents run into: crashes, test runs and work handed to other agents. Chat Thread gets restore points, and Code Block's terminal speaks ANSI.",
+    ],
+    added: [
+      "Stack Trace: an error view for failed commands, tool calls and tests. It parses Node, browser, Bun, Deno and Python stacks, folds framework frames, shows the failing line, follows the cause chain, and adds open in editor and Ask to fix.",
+      "Test Results: an agent's test run that streams tests into their files, then folds into a summary such as “118 passed, 2 failed in 4.2s”, with word-level Expected/Received diffs, stacks, filters, Rerun failed and Ask to fix, plus Vitest, Jest, Playwright and JUnit adapters.",
+      "Subagents: show the work an agent hands to other agents, one line per run, with live activity, parallel progress, Stop, Retry and an AI SDK adapter for streamed subagent messages.",
+    ],
+    changed: [
+      "Chat Thread: checkpoints are now restore points. Restore says how many messages go and which files revert, offers conversation and code or conversation only, puts your message back in the composer, and can be undone from a toast.",
+      "Code Block: CodeTerminal renders ANSI colours and styles, settles \\r progress bars, turns OSC 8 links into real links, and adds a live Running status, a Clear action and Show all for long output.",
+      "Prompt Input's context ring breaks AI SDK usage into input, cached, output and reasoning tokens, shows the cost from your pricing, and offers to compact the conversation near the limit.",
+      "Progress takes `segments` to split the fill into parts, such as passed, failed and skipped tests.",
+      "HextaAI: failed commands open in Stack Trace, test runs stream into Test Results, task calls run as Subagents, and every reply leaves a restore point you can undo.",
+    ],
+  },
+  {
     date: "2026-10-08",
     title: "Settings blocks, Diff Review and Artifact",
     body: [
