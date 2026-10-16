@@ -94,8 +94,9 @@ export default function Page() {
         <DocsParagraph>Please don’t:</DocsParagraph>
         <DocsList>
           <li>
-            Share your account or API tokens, or resell access. A Team plan may
-            keep one shared token in CI, as the Pro License describes.
+            Share your account or API tokens, or resell access. A Team or
+            Unlimited plan may keep one shared token in CI, as the Pro License
+            describes.
           </li>
           <li>Redistribute Pro code outside what the Pro License allows.</li>
           <li>

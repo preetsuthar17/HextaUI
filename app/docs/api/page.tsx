@@ -143,7 +143,7 @@ export default function Page() {
           Pro, on which plan, and which providers are linked.
         </li>
         <li>
-          <DocsCode>POST /api/checkout</DocsCode> starts a Solo or Team checkout
+          <DocsCode>POST /api/checkout</DocsCode> starts a Solo, Team or Unlimited checkout
           and returns its URL.
         </li>
         <li>

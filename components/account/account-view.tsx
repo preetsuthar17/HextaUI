@@ -28,9 +28,15 @@ import {
 import { Skeleton } from "@/components/ui/skeleton"
 import { Spinner } from "@/components/ui/spinner"
 import { Switch } from "@/components/ui/switch"
-import { signOut, startCheckout, useSession } from "@/lib/auth-client"
+import {
+  signOut,
+  startCheckout,
+  useSession,
+  writeCachedPro,
+} from "@/lib/auth-client"
 import {
   earlyBirdLastDay,
+  isTeamPlan,
   proPlanIds,
   proPlans,
   refundDays,
@@ -93,7 +99,9 @@ async function fetchPlan(paymentId: string | null) {
   const query = paymentId ? `?payment_id=${encodeURIComponent(paymentId)}` : ""
   const response = await fetch(`/api/account${query}`)
   if (!response.ok) throw new Error("Could not load your plan")
-  return (await response.json()) as Plan
+  const plan = (await response.json()) as Plan
+  writeCachedPro(plan.pro)
+  return plan
 }
 
 function usePlan(enabled: boolean) {
@@ -198,7 +206,7 @@ function ProUpgrade() {
           </li>
         ))}
       </ul>
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-3">
         {proPlanIds.map((id) => (
           <PlanCard key={id} plan={proPlans[id]} early={early} />
         ))}
@@ -222,19 +230,23 @@ function ProUpgrade() {
   )
 }
 
-function TeamUpgrade() {
+function TeamUpgrade({ plan }: { plan: "solo" | "team" }) {
+  const target = plan === "solo" ? "Team or Unlimited" : "Unlimited"
   return (
     <section className="flex flex-col gap-1">
-      <h2 className="font-medium">Need seats for your team?</h2>
+      <h2 className="font-medium">
+        {plan === "solo" ? "Need seats for your team?" : "Need more seats?"}
+      </h2>
       <p className="text-sm text-pretty text-muted-foreground">
         Email{" "}
         <a
-          href={`mailto:${siteContactEmail}?subject=Upgrade%20to%20HextaUI%20Pro%20Team`}
+          href={`mailto:${siteContactEmail}?subject=Upgrade%20HextaUI%20Pro%20to%20${plan === "solo" ? "Team" : "Unlimited"}`}
           className="text-foreground underline underline-offset-4"
         >
           {siteContactEmail}
         </a>{" "}
-        from this account’s email to move to Team. You only pay the difference.
+        from this account’s email to move to {target}. You only pay the
+        difference.
       </p>
     </section>
   )
@@ -284,12 +296,8 @@ function PlanStatus({
     )
   }
   if (!plan) return <Skeleton className="h-5 w-12" />
-  if (!plan.pro) return <Badge>Free</Badge>
-  return (
-    <Badge variant="success">
-      {plan.plan === "team" ? "Pro Team" : "Pro Solo"}
-    </Badge>
-  )
+  if (!plan.pro || !plan.plan) return <Badge>Free</Badge>
+  return <Badge variant="success">Pro {proPlans[plan.plan].name}</Badge>
 }
 
 function AccountView() {
@@ -312,6 +320,7 @@ function AccountView() {
 function AccountContent() {
   const { session, pending } = useSession()
   const { plan, confirming } = usePlan(Boolean(session))
+  const owned = plan?.via === "owner" ? plan.plan : null
 
   if (pending) {
     return (
@@ -389,9 +398,9 @@ function AccountContent() {
         <dd>{dateFormat.format(new Date(user.createdAt))}</dd>
       </dl>
       {plan && !plan.pro && !confirming ? <ProUpgrade /> : null}
-      {plan?.via === "owner" && plan.plan === "team" ? <TeamSeats /> : null}
+      {owned && isTeamPlan(owned) ? <TeamSeats /> : null}
       {plan?.pro ? <ProTokens /> : null}
-      {plan?.via === "owner" && plan.plan === "solo" ? <TeamUpgrade /> : null}
+      {owned && owned !== "unlimited" ? <TeamUpgrade plan={owned} /> : null}
       {plan ? <EmailSettings subscribed={plan.emailUpdates} /> : null}
       <div>
         <Button variant="outline" size="sm" onClick={() => signOut()}>

@@ -123,7 +123,7 @@ export const purchase = sqliteTable(
       .notNull()
       .references(() => user.id),
     productId: text("product_id").notNull(),
-    plan: text("plan", { enum: ["solo", "team"] })
+    plan: text("plan", { enum: ["solo", "team", "unlimited"] })
       .default("solo")
       .notNull(),
     customerId: text("customer_id").notNull(),

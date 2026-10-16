@@ -7,8 +7,8 @@ import {
   addMember,
   findOwnedTeam,
   listMembers,
-  memberLimit,
   normalizeEmail,
+  seatCount,
 } from "@/lib/pro/team"
 import { apiError, sameOriginError, signInError } from "@/lib/api-error"
 
@@ -21,9 +21,10 @@ const noStore = { "cache-control": "no-store" }
 
 function teamRequired() {
   return apiError("team_required", {
-    error: "Only a Team owner can manage seats",
-    detail: "This account doesn't own a HextaUI Pro Team plan.",
-    resolution: "Buy Team at https://hextaui.com/account to add teammates.",
+    error: "Only a Team or Unlimited owner can manage seats",
+    detail: "This account doesn't own a HextaUI Pro Team or Unlimited plan.",
+    resolution:
+      "Buy Team or Unlimited at https://hextaui.com/account to add teammates.",
   })
 }
 
@@ -46,7 +47,7 @@ export async function onRequestGet({ request, env }: Context) {
   }
   const members = await listMembers(db, team.id)
   return Response.json(
-    { seats: memberLimit + 1, members },
+    { seats: seatCount(team.plan), members },
     { headers: noStore }
   )
 }
@@ -82,11 +83,11 @@ export async function onRequestPost({ request, env }: Context) {
     })
   }
 
-  const member = await addMember(db, team.id, email)
+  const member = await addMember(db, team, email)
   if (!member) {
     return apiError("seat_limit", {
       error: "Every seat is taken",
-      detail: `A Team plan has ${memberLimit + 1} seats, including the owner's.`,
+      detail: `A Team plan has ${seatCount(team.plan)} seats, including the owner's.`,
       resolution:
         "Remove a teammate with DELETE /api/team/{id}, then try again.",
     })

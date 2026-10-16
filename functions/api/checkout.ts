@@ -7,7 +7,7 @@ import {
   getPayments,
   type PaymentsEnv,
 } from "@/lib/payments"
-import { isProPlanId } from "@/lib/pro/pricing"
+import { isProPlanId, planRank } from "@/lib/pro/pricing"
 import { apiError, sameOriginError, signInError } from "@/lib/api-error"
 
 type Context = {
@@ -32,19 +32,29 @@ export async function onRequestPost({ request, env }: Context) {
   if (!isProPlanId(plan)) {
     return apiError("bad_request", {
       error: "Unknown plan",
-      detail: "The plan must be solo or team.",
-      resolution: 'Send { "plan": "solo" } or { "plan": "team" }.',
+      detail: "The plan must be solo, team or unlimited.",
+      resolution:
+        'Send { "plan": "solo" }, { "plan": "team" } or { "plan": "unlimited" }.',
     })
   }
 
   const { user } = session
   const access = await findProAccess(getDb(env.DB), user.id)
-  if (access && (access.plan === "team" || plan === "solo")) {
+  if (access && planRank[access.plan] >= planRank[plan]) {
     return Response.json({ url: "/account" })
   }
 
+  const productId = checkoutProduct(env, plan)
+  if (!productId) {
+    return apiError("not_found", {
+      error: "This plan isn't on sale yet",
+      detail: `The ${plan} plan has no product configured for checkout.`,
+      resolution: "Choose another plan, or email hi@hextaui.com.",
+    })
+  }
+
   const checkout = await getPayments(env).checkoutSessions.create({
-    product_cart: [{ product_id: checkoutProduct(env, plan), quantity: 1 }],
+    product_cart: [{ product_id: productId, quantity: 1 }],
     customer: { email: user.email, name: user.name },
     metadata: { user_id: user.id, plan },
     return_url: new URL("/account?checkout=done", env.BETTER_AUTH_URL).href,

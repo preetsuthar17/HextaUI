@@ -71,7 +71,7 @@ export default function Page() {
           </li>
           <li>
             Share your account or API tokens with anyone, except the one shared
-            CI token a Team plan allows.
+            CI token a Team or Unlimited plan allows.
           </li>
           <li>
             Use Pro code to build a product that competes with HextaUI Pro, or
@@ -83,11 +83,12 @@ export default function Page() {
       <LegalSection title="Teams">
         <DocsParagraph>
           Each developer who installs or works on Pro code needs a seat: their
-          own Solo plan, or a seat on a Team plan. A Team plan has 10 seats,
-          including the buyer’s. The buyer can move a seat from one teammate to
-          another at any time, and the team may keep one shared API token in
-          continuous integration and build systems. Clients and colleagues who
-          only use the finished product don’t need a seat.
+          own Solo plan, or a seat on a Team or Unlimited plan. A Team plan has
+          10 seats, including the buyer’s. An Unlimited plan has no seat limit
+          and covers the developers of one company. The buyer can move a seat
+          from one teammate to another at any time, and the team may keep one
+          shared API token in continuous integration and build systems. Clients
+          and colleagues who only use the finished product don’t need a seat.
         </DocsParagraph>
       </LegalSection>
 

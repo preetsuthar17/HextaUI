@@ -10,7 +10,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 
 type Member = { id: string; email: string; createdAt: string }
 
-type Team = { seats: number; members: Member[] }
+type Team = { seats: number | null; members: Member[] }
 
 const dateFormat = new Intl.DateTimeFormat("en", { dateStyle: "medium" })
 
@@ -42,7 +42,7 @@ function TeamSeats() {
   }
 
   const used = team ? team.members.length + 1 : null
-  const full = team ? used === team.seats : false
+  const full = team !== null && team.seats !== null && used === team.seats
 
   return (
     <section className="flex flex-col gap-5">
@@ -51,7 +51,11 @@ function TeamSeats() {
         <p className="text-sm text-muted-foreground">
           Add a teammate’s email. They get Pro as soon as they sign in to
           HextaUI with that email, and lose it when you remove them.
-          {team ? ` ${used} of ${team.seats} seats used, including yours.` : ""}
+          {team
+            ? team.seats === null
+              ? ` ${used} seats used, including yours, with no limit.`
+              : ` ${used} of ${team.seats} seats used, including yours.`
+            : ""}
           {full ? " Remove someone to add another teammate." : ""}
         </p>
       </div>

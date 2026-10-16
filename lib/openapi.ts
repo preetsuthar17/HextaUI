@@ -346,7 +346,7 @@ function getOpenApiDocument() {
                   properties: {
                     plan: {
                       type: "string",
-                      enum: ["solo", "team"],
+                      enum: ["solo", "team", "unlimited"],
                       default: "solo",
                       description: "Which plan to buy.",
                     },
@@ -570,7 +570,7 @@ function getOpenApiDocument() {
           tags: ["Account"],
           summary: "Give a teammate a seat",
           description:
-            "Adds a teammate by email to the signed-in owner's Team plan. They get Pro as soon as they sign in with that verified email. A Team plan has 10 seats including the owner's. Only accepted from pages on hextaui.com.",
+            "Adds a teammate by email to the signed-in owner's Team plan. They get Pro as soon as they sign in with that verified email. A Team plan has 10 seats including the owner's; Unlimited has no seat limit. Only accepted from pages on hextaui.com.",
           security: signedIn,
           requestBody: {
             required: true,
@@ -915,7 +915,7 @@ function getOpenApiDocument() {
           ],
           properties: {
             pro: { type: "boolean" },
-            plan: { type: ["string", "null"], enum: ["solo", "team", null] },
+            plan: { type: ["string", "null"], enum: ["solo", "team", "unlimited", null] },
             via: {
               type: ["string", "null"],
               enum: ["owner", "member", null],
@@ -974,7 +974,11 @@ function getOpenApiDocument() {
           type: "object",
           required: ["seats", "members"],
           properties: {
-            seats: { type: "integer", example: 10 },
+            seats: {
+              type: ["integer", "null"],
+              example: 10,
+              description: "Seats on the plan, including the owner's. Null on Unlimited.",
+            },
             members: { type: "array", items: ref("TeamMember") },
           },
         },

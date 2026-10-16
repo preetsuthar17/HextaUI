@@ -80,10 +80,14 @@ describe("Markdown for agents", () => {
   it("takes prices from the pricing module", () => {
     const solo = isEarlyBird() ? proPlans.solo.earlyPrice : proPlans.solo.price
     const team = isEarlyBird() ? proPlans.team.earlyPrice : proPlans.team.price
+    const unlimited = isEarlyBird()
+      ? proPlans.unlimited.earlyPrice
+      : proPlans.unlimited.price
     expect(getPricingMarkdown()).toContain(`Solo: $${solo} once`)
     expect(getProProductJsonLd().offers.map((offer) => offer.price)).toEqual([
       solo,
       team,
+      unlimited,
     ])
   })
 

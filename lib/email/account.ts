@@ -37,11 +37,13 @@ function purchaseContent(user: Person, plan: ProPlanId): EmailContent {
     paragraphs: [
       `Thanks, ${firstName(user.name)}. Every Pro block is now unlocked on your account, including every block added later.`,
       "To install with the shadcn CLI, create a token in your account and add the @hextaui-pro registry to components.json. Your account page has the exact snippet to copy.",
-      ...(plan === "team"
-        ? [
-            `Your Team plan has ${seats} seats, including yours. Add teammates by email from your account, and they get Pro as soon as they sign in with that email.`,
-          ]
-        : []),
+      ...(plan === "solo"
+        ? []
+        : [
+            seats === null
+              ? `Your Unlimited plan has no seat limit. Add teammates by email from your account, and they get Pro as soon as they sign in with that email.`
+              : `Your Team plan has ${seats} seats, including yours. Add teammates by email from your account, and they get Pro as soon as they sign in with that email.`,
+          ]),
       `Not what you expected? It’s refundable within ${refundDays} days, no questions asked. Email ${siteContactEmail}.`,
     ],
     links: [
@@ -58,7 +60,7 @@ function teamInviteContent(owner: Person, email: string): EmailContent {
   return {
     title: `${owner.name} added you to ${siteName} Pro`,
     paragraphs: [
-      `${owner.name} (${owner.email}) gave you a seat on their ${siteName} Pro Team plan.`,
+      `${owner.name} (${owner.email}) gave you a seat on their ${siteName} Pro plan.`,
       `Sign in to ${siteName} with GitHub or Google using ${email}, and every Pro block unlocks. A different email won’t match the seat.`,
     ],
     links: [

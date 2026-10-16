@@ -1,11 +1,17 @@
 import DodoPayments from "dodopayments"
 import type { Payment } from "dodopayments/resources/payments"
-import { and, desc, eq } from "drizzle-orm"
+import { and, desc, eq, inArray } from "drizzle-orm"
 
 import type { AuthEnv } from "@/lib/auth"
 import { schema, type Db } from "@/lib/db"
 import { sendPurchaseEmail } from "@/lib/email/account"
-import { isEarlyBird, type ProPlanId } from "@/lib/pro/pricing"
+import {
+  isEarlyBird,
+  planRank,
+  teamPlanIds,
+  type ProPlanId,
+  type TeamPlanId,
+} from "@/lib/pro/pricing"
 
 type PaymentsEnv = AuthEnv & {
   DODO_PAYMENTS_API_KEY: string
@@ -15,13 +21,15 @@ type PaymentsEnv = AuthEnv & {
   DODO_SOLO_PRODUCT_ID: string
   DODO_TEAM_EARLY_PRODUCT_ID: string
   DODO_TEAM_PRODUCT_ID: string
+  DODO_UNLIMITED_EARLY_PRODUCT_ID?: string
+  DODO_UNLIMITED_PRODUCT_ID?: string
 }
 
 type Purchase = typeof schema.purchase.$inferSelect
 
 type ProAccess =
   | { via: "owner"; plan: ProPlanId; purchase: Purchase }
-  | { via: "member"; plan: "team"; purchase: Purchase; ownerName: string }
+  | { via: "member"; plan: TeamPlanId; purchase: Purchase; ownerName: string }
 
 let payments: DodoPayments | undefined
 
@@ -34,21 +42,36 @@ function getPayments(env: PaymentsEnv) {
   return payments
 }
 
+function planProducts(env: PaymentsEnv) {
+  return {
+    solo: {
+      early: env.DODO_SOLO_EARLY_PRODUCT_ID,
+      regular: env.DODO_SOLO_PRODUCT_ID,
+    },
+    team: {
+      early: env.DODO_TEAM_EARLY_PRODUCT_ID,
+      regular: env.DODO_TEAM_PRODUCT_ID,
+    },
+    unlimited: {
+      early: env.DODO_UNLIMITED_EARLY_PRODUCT_ID,
+      regular: env.DODO_UNLIMITED_PRODUCT_ID,
+    },
+  } satisfies Record<ProPlanId, { early?: string; regular?: string }>
+}
+
 function productPlans(env: PaymentsEnv) {
-  return new Map<string, ProPlanId>([
-    [env.DODO_SOLO_EARLY_PRODUCT_ID, "solo"],
-    [env.DODO_SOLO_PRODUCT_ID, "solo"],
-    [env.DODO_TEAM_EARLY_PRODUCT_ID, "team"],
-    [env.DODO_TEAM_PRODUCT_ID, "team"],
-  ])
+  const plans = new Map<string, ProPlanId>()
+  for (const [plan, products] of Object.entries(planProducts(env))) {
+    for (const id of [products.early, products.regular]) {
+      if (id) plans.set(id, plan as ProPlanId)
+    }
+  }
+  return plans
 }
 
 function checkoutProduct(env: PaymentsEnv, plan: ProPlanId, now = new Date()) {
-  const early = isEarlyBird(now)
-  if (plan === "team") {
-    return early ? env.DODO_TEAM_EARLY_PRODUCT_ID : env.DODO_TEAM_PRODUCT_ID
-  }
-  return early ? env.DODO_SOLO_EARLY_PRODUCT_ID : env.DODO_SOLO_PRODUCT_ID
+  const products = planProducts(env)[plan]
+  return (isEarlyBird(now) ? products.early : products.regular) || null
 }
 
 async function findOwnPurchase(db: Db, userId: string) {
@@ -59,7 +82,10 @@ async function findOwnPurchase(db: Db, userId: string) {
     ),
     orderBy: desc(schema.purchase.createdAt),
   })
-  return purchases.find((purchase) => purchase.plan === "team") ?? purchases[0]
+  return purchases
+    .slice()
+    .sort((a, b) => planRank[b.plan] - planRank[a.plan])
+    .at(0)
 }
 
 async function findTeamSeat(db: Db, email: string) {
@@ -75,7 +101,7 @@ async function findTeamSeat(db: Db, email: string) {
       and(
         eq(schema.teamMember.email, email.toLowerCase()),
         eq(schema.purchase.status, "paid"),
-        eq(schema.purchase.plan, "team")
+        inArray(schema.purchase.plan, teamPlanIds)
       )
     )
     .limit(1)
@@ -96,9 +122,10 @@ async function findProAccess(
 
   const seat = await findTeamSeat(db, user.email)
   if (!seat) return null
+  if (seat.purchase.plan === "solo") return null
   return {
     via: "member",
-    plan: "team",
+    plan: seat.purchase.plan,
     purchase: seat.purchase,
     ownerName: seat.ownerName,
   }
@@ -184,4 +211,5 @@ export {
   revokePurchase,
   type PaymentsEnv,
   type ProAccess,
+  type Purchase,
 }

@@ -80,17 +80,17 @@ const pricingQuestions = [
     answer: `On ${earlyBirdLastDay}. After that, Solo is $${proPlans.solo.price} and Team is $${proPlans.team.price}. There are no other sales or discount codes.`,
   },
   {
-    question: "Solo or Team?",
-    answer: `Solo covers one developer. Team covers up to ${proPlans.team.seats} developers on one invoice: the buyer adds teammates by email on their account page, and the team may keep one shared token in CI. Clients and colleagues who only use the finished product don't need a seat.`,
+    question: "Solo, Team or Unlimited?",
+    answer: `Solo covers one developer. Team covers up to ${proPlans.team.seats} developers on one invoice: the buyer adds teammates by email on their account page, and the team may keep one shared token in CI. Unlimited is Team with no seat limit, for every developer at one company. Clients and colleagues who only use the finished product don't need a seat.`,
   },
   {
     question: "Can I try it before I pay?",
     answer: `Every block has a live preview${freeBlockTitles.length > 0 ? `, and ${freeBlockTitles.join(" and ")} is free to install in your own project` : ""}.`,
   },
   {
-    question: "I bought Solo. Can I move to Team?",
+    question: "I bought Solo. Can I move to Team or Unlimited?",
     answer:
-      "Yes. Email from your account's address and you only pay the difference.",
+      "Yes, and Team can move to Unlimited. Email from your account's address and you only pay the difference.",
   },
   {
     question: "Can Pro blocks go in an open-source project?",
@@ -116,11 +116,11 @@ function getPricingBlocks() {
 function getPricingMarkdown() {
   const bullets = (items: string[]) =>
     items.map((item) => `- ${item}`).join("\n")
-  const [solo, team] = proPlanInfo
+  const [solo, team, unlimited] = proPlanInfo
   return `${[
     frontmatter({
       title: `${siteName} pricing`,
-      description: `${siteName} components are free under the MIT License. ${siteName} Pro is a one-time payment: Solo ${priceLabel(solo)}, Team ${priceLabel(team)}.`,
+      description: `${siteName} components are free under the MIT License. ${siteName} Pro is a one-time payment: Solo ${priceLabel(solo)}, Team ${priceLabel(team)}, Unlimited ${priceLabel(unlimited)}.`,
       canonical: absoluteUrl("/pricing"),
       "last-updated": pricingUpdated,
     }),
@@ -145,22 +145,22 @@ function getPricingMarkdown() {
     ),
     "## Compare plans",
     [
-      `| | ${freePlan.name} | ${solo.name} | ${team.name} |`,
-      "| --- | --- | --- | --- |",
-      `| Price (${pricingCurrency}) | $0 | ${priceLabel(solo)} | ${priceLabel(team)} |`,
-      "| Billing | None | One-time payment | One-time payment |",
-      `| Developers | Anyone | 1 | Up to ${team.seats} |`,
-      "| License | MIT | Pro License | Pro License |",
-      `| Components, hooks and utilities | All ${docsComponents.length + docsHooks.length + docsUtilities.length} | All | All |`,
-      `| Pro blocks | ${freeBlockTitles.length > 0 ? freeBlockTitles.join(", ") : "None"} | All ${proBlocks.length}, plus future ones | All ${proBlocks.length}, plus future ones |`,
-      "| Shared token in CI | Not needed | No | Yes, one |",
-      "| Commercial use and client work | Yes | Yes | Yes |",
-      `| Refund | Not applicable | ${refundDays} days, no questions asked | ${refundDays} days, no questions asked |`,
+      `| | ${freePlan.name} | ${solo.name} | ${team.name} | ${unlimited.name} |`,
+      "| --- | --- | --- | --- | --- |",
+      `| Price (${pricingCurrency}) | $0 | ${priceLabel(solo)} | ${priceLabel(team)} | ${priceLabel(unlimited)} |`,
+      "| Billing | None | One-time payment | One-time payment | One-time payment |",
+      `| Developers | Anyone | 1 | Up to ${team.seats} | Unlimited, one company |`,
+      "| License | MIT | Pro License | Pro License | Pro License |",
+      `| Components, hooks and utilities | All ${docsComponents.length + docsHooks.length + docsUtilities.length} | All | All | All |`,
+      `| Pro blocks | ${freeBlockTitles.length > 0 ? freeBlockTitles.join(", ") : "None"} | All ${proBlocks.length}, plus future ones | All ${proBlocks.length}, plus future ones | All ${proBlocks.length}, plus future ones |`,
+      "| Shared token in CI | Not needed | No | Yes, one | Yes, one |",
+      "| Commercial use and client work | Yes | Yes | Yes | Yes |",
+      `| Refund | Not applicable | ${refundDays} days, no questions asked | ${refundDays} days, no questions asked | ${refundDays} days, no questions asked |`,
     ].join("\n"),
     "## Common questions",
     bullets(pricingQuestions.map((item) => `${item.question} ${item.answer}`)),
     "## How to buy",
-    `Sign in with GitHub or Google at ${absoluteUrl("/account")} and choose Solo or Team. Checkout needs a person in a browser; agents cannot buy on a user's behalf through the API.`,
+    `Sign in with GitHub or Google at ${absoluteUrl("/account")} and choose Solo, Team or Unlimited. Checkout needs a person in a browser; agents cannot buy on a user's behalf through the API.`,
     "## Terms",
     bullets([
       `[Pro License](${absoluteUrl("/legal/license")})`,

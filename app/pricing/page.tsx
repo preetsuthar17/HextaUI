@@ -45,7 +45,7 @@ import { faqPageJsonLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = pageMetadata({
   title: "Pricing",
-  description: `HextaUI components are free and MIT licensed. HextaUI Pro blocks for AI products are one payment: Solo from $${proPlans.solo.earlyPrice}, a team of ${proPlans.team.seats} from $${proPlans.team.earlyPrice}.`,
+  description: `HextaUI components are free and MIT licensed. HextaUI Pro blocks for AI products are one payment: Solo from $${proPlans.solo.earlyPrice}, a team of ${proPlans.team.seats} from $${proPlans.team.earlyPrice}, unlimited seats from $${proPlans.unlimited.earlyPrice}.`,
   path: "/pricing",
   markdown: "/pricing.md",
 })
@@ -99,14 +99,27 @@ const plans: {
       `${refundDays}-day refund, no questions asked`,
     ],
   },
+  {
+    id: "unlimited",
+    name: proPlans.unlimited.name,
+    description: "For companies that don't want to count seats.",
+    features: [
+      "Everything in Team",
+      "No seat limit, for one company",
+      "Add and remove teammates by email",
+      "One shared token allowed in CI",
+      `${refundDays}-day refund, no questions asked`,
+    ],
+  },
 ]
 
 type Cell = boolean | string
 
-const comparison: { label: string; values: [Cell, Cell, Cell] }[] = [
+const comparison: { label: string; values: [Cell, Cell, Cell, Cell] }[] = [
   {
     label: "Components, hooks and utilities",
     values: [
+      `All ${libraryCount}`,
       `All ${libraryCount}`,
       `All ${libraryCount}`,
       `All ${libraryCount}`,
@@ -120,19 +133,31 @@ const comparison: { label: string; values: [Cell, Cell, Cell] }[] = [
         : false,
       `All ${blocks.length}`,
       `All ${blocks.length}`,
+      `All ${blocks.length}`,
     ],
   },
-  { label: "Future block categories", values: [false, true, true] },
+  { label: "Future block categories", values: [false, true, true, true] },
   {
     label: "Developers",
-    values: ["Anyone", "1", `Up to ${proPlans.team.seats}`],
+    values: ["Anyone", "1", `Up to ${proPlans.team.seats}`, "Unlimited"],
   },
-  { label: "Shared token in CI", values: [false, false, true] },
-  { label: "Commercial use and client work", values: [true, true, true] },
-  { label: "Billing", values: ["None", "One payment", "One payment"] },
+  { label: "Shared token in CI", values: [false, false, true, true] },
+  {
+    label: "Commercial use and client work",
+    values: [true, true, true, true],
+  },
+  {
+    label: "Billing",
+    values: ["None", "One payment", "One payment", "One payment"],
+  },
   {
     label: "Refund",
-    values: [false, `${refundDays} days`, `${refundDays} days`],
+    values: [
+      false,
+      `${refundDays} days`,
+      `${refundDays} days`,
+      `${refundDays} days`,
+    ],
   },
 ]
 
@@ -255,7 +280,7 @@ export default function Page() {
       </header>
 
       <section aria-label="Plans" className="flex flex-col gap-4">
-        <div className="grid gap-4 md:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {plans.map((plan) => (
             <PlanCard key={plan.id} plan={plan} />
           ))}
