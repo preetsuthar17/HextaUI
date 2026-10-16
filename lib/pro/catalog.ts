@@ -61,6 +61,7 @@ function categoryTitle(category: string) {
 const blockSections = Object.entries(
   Object.groupBy(proBlocks, (block) => block.category)
 ).map(([category, blocks]) => ({
+  category,
   title: categoryTitle(category),
   blocks: blocks ?? [],
 }))

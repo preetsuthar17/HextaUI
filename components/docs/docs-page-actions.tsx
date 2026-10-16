@@ -213,4 +213,4 @@ function DocsPageActions({
   )
 }
 
-export { DocsPageActions, copyMarkdown, loadMarkdown }
+export { DocsPageActions, IconV0, copyMarkdown, loadMarkdown }
