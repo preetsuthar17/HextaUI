@@ -3,7 +3,6 @@
   "A one-line pill with the current step, opening the list in a popover.": "Une pastille d’une ligne avec l’étape en cours, qui ouvre la liste dans un popover.",
   "AI Agent Plan & Todo List block for React & shadcn/ui": "Block Plan et liste de tâches d’agent IA pour React et shadcn/ui",
   "Adapters from each agent’s tool format to Todo items.": "Des adaptateurs du format d’outil de chaque agent vers les éléments Todo.",
-  "Agent Todos": "Agent Todos",
   "AgentTodos": "AgentTodos",
   "AgentTodosReview": "AgentTodosReview",
   "AgentTodosStatus": "AgentTodosStatus",

@@ -10218,6 +10218,22 @@
       ]
     },
     {
+      "name": "progress-segments",
+      "type": "registry:example",
+      "title": "Progress: Segments",
+      "description": "The Segments example from the Progress docs.",
+      "registryDependencies": [
+        "https://hextaui.com/r/button.json",
+        "https://hextaui.com/r/progress.json"
+      ],
+      "files": [
+        {
+          "path": "components/examples/progress/segments.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "progress-sizes",
       "type": "registry:example",
       "title": "Progress: Sizes",

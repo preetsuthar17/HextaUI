@@ -1,7 +1,6 @@
 {
   "<l0/> and <l1/> label and describe the popup for screen readers. Include a title whenever the popup contains more than a sentence.": "<l0/> ve <l1/> açılır pencereyi ekran okuyucular için etiketler ve tanımlar. Açılır pencere bir cümleden fazlasını içerdiğinde mutlaka bir başlık ekleyin.",
   "A `disabled` trigger never opens its popover.": "`disabled` bir tetikleyici popover'ını hiç açmaz.",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "Bir trigger'a sabitlenen, içeriğiyle birlikte düzgünce yeniden boyutlanan ve trigger'ın yönünü izleyen yüzen bir panel.",
   "A plain <l0/> that stacks the title and description.": "Başlığı ve açıklamayı üst üste dizen düz bir <l0/>.",
   "A popover inside another popover or a sheet layers above its parent. Clicks inside the child keep the parent open, and Escape closes only the topmost layer.": "Başka bir popover veya sheet içindeki popover, üst öğesinin üzerinde katmanlanır. Alt öğenin içindeki tıklamalar üst öğeyi açık tutar ve Escape yalnızca en üstteki katmanı kapatır.",
   "Built on the Base UI popover. Every part accepts the props of the primitive it wraps.": "Base UI popover üzerine kuruludur. Her parça sardığı ilkelin prop'larını kabul eder.",

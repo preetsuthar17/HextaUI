@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+
+import { JsonLd } from "@/components/site/json-ld"
 import Link from "@/components/site/link"
 
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
@@ -12,6 +14,7 @@ import { DocsPage } from "@/components/docs/docs-page"
 import { apiErrors } from "@/lib/api-error"
 import type { DocsTocItem } from "@/lib/docs"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 import { absoluteUrl } from "@/lib/site"
 
 const description =
@@ -72,6 +75,17 @@ export default function Page() {
       markdownHref="/docs/api.md"
       toc={toc}
     >
+      <JsonLd
+        data={pageJsonLd({
+          path: "/docs/api",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: "API", path: "/docs/api" },
+          ],
+        })}
+      />
       <DocsParagraph>
         Everything on HextaUI is also available over HTTP. The registry and docs
         are static JSON and Markdown files that need no key. Account and Pro
@@ -143,8 +157,8 @@ export default function Page() {
           Pro, on which plan, and which providers are linked.
         </li>
         <li>
-          <DocsCode>POST /api/checkout</DocsCode> starts a Solo, Team or Unlimited checkout
-          and returns its URL.
+          <DocsCode>POST /api/checkout</DocsCode> starts a Solo, Team or
+          Unlimited checkout and returns its URL.
         </li>
         <li>
           <DocsCode>GET /api/tokens</DocsCode> and{" "}

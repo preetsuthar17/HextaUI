@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+
+import { JsonLd } from "@/components/site/json-ld"
 import Link from "@/components/site/link"
 
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
@@ -12,6 +14,7 @@ import {
 import { DocsPage } from "@/components/docs/docs-page"
 import type { DocsTocItem } from "@/lib/docs"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 import { getRegistryItemUrl, getThemeCss } from "@/lib/docs-registry"
 import { absoluteUrl, siteUrl } from "@/lib/site"
 
@@ -52,6 +55,17 @@ export default async function Page() {
       markdownHref="/docs/installation.md"
       toc={toc}
     >
+      <JsonLd
+        data={pageJsonLd({
+          path: "/docs/installation",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: "Installation", path: "/docs/installation" },
+          ],
+        })}
+      />
       <DocsHeading id="requirements">Requirements</DocsHeading>
       <DocsParagraph>
         A React 19 project with Tailwind CSS v4 and a{" "}

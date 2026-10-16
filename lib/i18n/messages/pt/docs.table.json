@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "Uma tabela responsiva com estilo de superfície, células com quebra de linha ou compactas, cabeçalhos fixos, colunas fixadas e indicações de rolagem.",
   "Alignment, pinned columns and scroll fades follow the reading direction.": "Alinhamento, colunas fixas e esmaecimentos de rolagem seguem a direção de leitura.",
   "Below the table. In the surface variant it sits inside the frame.": "Abaixo da tabela. Na variante surface, fica dentro da moldura.",
   "Cell padding. Set by size.": "Padding das células. Definido por size.",

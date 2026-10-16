@@ -1,11 +1,14 @@
 import type { Metadata } from "next"
 
+import { JsonLd } from "@/components/site/json-ld"
+
 import {
   changelog,
   changelogGroups,
   type ChangelogEntry,
 } from "@/lib/changelog"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = pageMetadata({
   title: "Changelog",
@@ -66,6 +69,15 @@ function Entry({ entry }: { entry: ChangelogEntry }) {
 export default function Page() {
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col px-4 pt-16 pb-24 sm:pt-24">
+      <JsonLd
+        data={pageJsonLd({
+          path: "/changelog",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [{ name: "Changelog", path: "/changelog" }],
+          type: "WebPage",
+        })}
+      />
       <header className="grid gap-x-10 pb-16 md:grid-cols-[12rem_1fr]">
         <div className="flex max-w-2xl flex-col gap-3 md:col-start-2">
           <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">

@@ -3,7 +3,6 @@
   "A one-line pill with the current step, opening the list in a popover.",
   "AI Agent Plan & Todo List block for React & shadcn/ui",
   "Adapters from each agent’s tool format to Todo items.",
-  "Agent Todos",
   "AgentTodos",
   "AgentTodosReview",
   "AgentTodosStatus",

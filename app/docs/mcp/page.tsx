@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+
+import { JsonLd } from "@/components/site/json-ld"
 import Link from "@/components/site/link"
 
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
@@ -11,6 +13,7 @@ import {
 import { DocsPage } from "@/components/docs/docs-page"
 import type { DocsTocItem } from "@/lib/docs"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 import { absoluteUrl } from "@/lib/site"
 
 const description =
@@ -85,6 +88,17 @@ export default function Page() {
       markdownHref="/docs/mcp.md"
       toc={toc}
     >
+      <JsonLd
+        data={pageJsonLd({
+          path: "/docs/mcp",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [
+            { name: "Docs", path: "/docs" },
+            { name: "MCP server", path: "/docs/mcp" },
+          ],
+        })}
+      />
       <DocsParagraph>
         The HextaUI MCP server gives assistants the same docs you read here:
         what each component is for, its props and data attributes, keyboard

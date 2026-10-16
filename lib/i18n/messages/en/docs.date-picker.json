@@ -1,7 +1,6 @@
 [
   "<l0/> shows two months on larger screens. The first click always starts a new range, even when one is set, and the second click finishes it in either order and closes the picker.",
   "A disabled trigger can still show a value.",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.",
   "Accessible name of the popover, heading of the sheet.",
   "Adds a Clear button below the calendar once there is a value.",
   "Applied to the trigger, which is w-60 by default.",

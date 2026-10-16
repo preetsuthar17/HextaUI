@@ -18,7 +18,7 @@ import {
   type DocsKey,
   type DocsProp,
 } from "@/components/docs/docs-props-table"
-import { getDocsSlug } from "@/lib/docs"
+import { getDocsExampleHref, getDocsSlug } from "@/lib/docs"
 import {
   docsMarkdownPages,
   isElement,
@@ -134,12 +134,16 @@ function walk(node: React.ReactNode, context: WalkContext) {
         continue
       }
       const title = String(props.title)
-      addSection(context, {
+      const file = String(props.file)
+      const record = addSection(context, {
         title,
         id: getDocsSlug(title),
         kind: "example",
         text: plain(props.description as React.ReactNode),
       })
+      if (file.split("/")[0] === context.slug) {
+        record.href = getDocsExampleHref(file)
+      }
       continue
     }
 

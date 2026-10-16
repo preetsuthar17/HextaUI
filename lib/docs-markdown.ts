@@ -512,7 +512,9 @@ async function getLlmsFull() {
 }
 
 export {
+  codeCell as docsCodeCell,
   docsMarkdownPages,
+  fence as docsFence,
   findDocsElement,
   getDocsExampleName,
   getDocsSections,
@@ -524,5 +526,8 @@ export {
   getDocsMarkdownHref,
   getLlmsFull,
   getLlmsIndex,
+  heading as docsHeading,
   loadDocsPage,
+  table as docsTable,
+  cell as docsCell,
 }

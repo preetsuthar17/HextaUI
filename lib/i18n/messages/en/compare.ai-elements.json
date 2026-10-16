@@ -35,6 +35,7 @@
   "HextaUI blocks are those decisions, already made and tested:",
   "HextaUI blocks read the same message parts that `useChat` returns, so your route handler and data stay as they are. Start with the composer, since <0>Prompt Input</0> is free, then swap the thread and the tool calls when you need what they handle.",
   "HextaUI compared with both versions of AI Elements",
+  "HextaUI vs AI Elements",
   "HextaUI vs AI Elements: pieces or finished screens",
   "Is Vercel’s AI Elements being deprecated?",
   "Most AI Elements pieces have a HextaUI counterpart. The names below are from both AI Elements docs.",

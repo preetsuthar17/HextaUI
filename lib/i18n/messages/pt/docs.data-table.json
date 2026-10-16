@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "Uma tabela responsiva com estilo de superfície, células com quebra de linha ou compactas, cabeçalhos fixos, colunas fixadas e indicações de rolagem.",
   "A wrapping row for the search, the View menu and your own filters. Accepts every `div` prop and carries `data-table-toolbar` as its `data-slot`.": "Uma linha com quebra para a busca, o menu View e seus próprios filtros. Aceita todas as props de `div` e carrega `data-table-toolbar` como seu `data-slot`.",
   "Accessible name of the clear button.": "Nome acessível do botão de limpar.",
   "Applied to the scroll container.": "Aplicado ao contêiner de rolagem.",

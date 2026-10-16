@@ -76,7 +76,6 @@
   "Shows a skeleton or an error instead of the children.": "子要素の代わりに、スケルトンまたはエラーを表示します。",
   "Shows each group's name above it. Turn off to separate groups by space alone; the names still label the groups for screen readers.": "各グループの名前をその上に表示します。オフにすると、グループは余白だけで区切られます。名前は引き続きスクリーンリーダー向けにグループのラベルとして使われます。",
   "Shows the options. Usually the parent switch's value.": "オプションを表示します。通常は親のスイッチの値です。",
-  "Team": "Team",
   "The choices, in order.": "選択肢を、順番に。",
   "The chosen option.": "選択されたオプション。",
   "The chosen value.": "選択された値。",

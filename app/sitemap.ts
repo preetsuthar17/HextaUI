@@ -12,7 +12,12 @@ import {
 } from "@/lib/i18n/config"
 import { blogContentFile } from "@/lib/blog-content"
 import { isBlogSlug } from "@/lib/blog"
+import { componentCategories } from "@/lib/component-categories"
+import { docsEntries, getDocsExampleHref } from "@/lib/docs"
+import { getAllDocsExamples } from "@/lib/docs-examples"
+import { ogImagePath } from "@/lib/metadata"
 import { proBlocks } from "@/lib/pro/catalog"
+import { getShadcnComparisons } from "@/lib/shadcn-compare"
 import { absoluteUrl, isNoindexPath } from "@/lib/site"
 
 export const dynamic = "force-static"
@@ -21,6 +26,28 @@ const appDir = path.join(process.cwd(), "app")
 
 const dynamicRoutes: Record<string, string[]> = {
   "/blocks/[name]": proBlocks.map((block) => block.name),
+  "/compare/shadcn-ui/[component]": getShadcnComparisons().map(
+    (comparison) => comparison.slug
+  ),
+  "/components/[category]": componentCategories.map(
+    (category) => category.slug
+  ),
+}
+
+const examplePattern = /^\/docs\/([^/]+)\/examples\/([^/]+)$/
+
+function ogImage(route: string) {
+  const docs = /^\/docs\/([^/]+)/.exec(route)?.[1]
+  const compare = /^\/compare\/shadcn-ui\/([^/]+)$/.exec(route)?.[1]
+  const category = /^\/components\/([^/]+)$/.exec(route)?.[1]
+  const path = compare
+    ? ogImagePath("compare", compare)
+    : category
+      ? ogImagePath("components", category)
+      : docs && docsEntries.some((entry) => entry.slug === docs)
+        ? ogImagePath("docs", docs)
+        : "/opengraph-image"
+  return [absoluteUrl(path)]
 }
 
 function languages(route: string) {
@@ -109,6 +136,22 @@ function sourcesFor(route: string, file: string) {
   const post = /^\/blog\/([^/]+)$/.exec(route)?.[1]
   if (post && isBlogSlug(post)) return [file, blogContentFile(post)]
 
+  const example = examplePattern.exec(route)
+  if (example) {
+    return [
+      file,
+      `app/docs/${example[1]}/page.tsx`,
+      `components/examples/${example[1]}/${example[2]}.tsx`,
+    ].filter((source) => existsSync(path.resolve(process.cwd(), source)))
+  }
+  const compared = /^\/compare\/shadcn-ui\/([^/]+)$/.exec(route)?.[1]
+  if (compared) {
+    return [file, `components/ui/${compared}.tsx`, "lib/shadcn-snapshot.json"]
+  }
+  if (/^\/components\/[^/]+$/.test(route)) {
+    return [file, "lib/component-categories.ts"]
+  }
+
   const slug = /^\/docs\/([^/]+)$/.exec(route)?.[1]
   if (!slug) return [file]
 
@@ -160,12 +203,17 @@ function expand(route: string) {
     )
   }
 
-  return values.map((value) => route.replace(/\[[^\]]+\]/, value))
+  return values.map((value) =>
+    value.startsWith("/") ? value : route.replace(/\[[^\]]+\]/, value)
+  )
 }
 
 function priority(route: string) {
   if (route === "/") {
     return 1
+  }
+  if (examplePattern.test(route)) {
+    return 0.4
   }
 
   const match = priorities.find(
@@ -174,7 +222,10 @@ function priority(route: string) {
   return match?.[1] ?? 0.5
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  dynamicRoutes["/docs/[file]/examples/[example]"] = (
+    await getAllDocsExamples()
+  ).map((example) => getDocsExampleHref(example.file))
   const pages = findPages(appDir).filter(
     (page) => !isNoindexPath(page.route) && !page.route.startsWith("/[lang]")
   )
@@ -189,6 +240,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           lastModified: lastModified(route, page.file, history),
           priority: priority(route),
           alternates: { languages: languages(route) },
+          images: ogImage(route),
         }
         const locales = isLocalizedPath(route) ? translatedLocales : []
         return [

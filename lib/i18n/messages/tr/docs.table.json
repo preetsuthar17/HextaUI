@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "Yüzey stili, sarmalayan veya kompakt hücreler, yapışkan başlıklar, sabitlenmiş sütunlar ve kaydırma ipuçları olan duyarlı bir tablo.",
   "Alignment, pinned columns and scroll fades follow the reading direction.": "Hizalama, sabitlenmiş sütunlar ve kaydırma solmaları okuma yönünü izler.",
   "Below the table. In the surface variant it sits inside the frame.": "Tablonun altında. Surface varyantında çerçevenin içinde durur.",
   "Cell padding. Set by size.": "Hücre dolgusu. size ile belirlenir.",

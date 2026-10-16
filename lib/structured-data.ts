@@ -18,11 +18,27 @@ type DocsArticle = {
   headline: string
   description: string
   breadcrumbs: Crumb[]
+  image?: string
   code: {
     name: string
     free: boolean
     license: string
+    sampleType?: string
+    basedOn?: string
   }
+}
+
+type WebPageType = "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage"
+
+type PageGraph = {
+  path: string
+  name: string
+  description: string
+  breadcrumbs: Crumb[]
+  type?: WebPageType
+  image?: string
+  items?: Crumb[]
+  extra?: object[]
 }
 
 const websiteRef = { "@id": `${siteUrl}/#website` }
@@ -45,11 +61,25 @@ function breadcrumbList(path: string, crumbs: Crumb[]) {
   }
 }
 
+function imageObject(image: string | undefined) {
+  return image
+    ? {
+        image: {
+          "@type": "ImageObject",
+          url: absoluteUrl(image),
+          width: 1200,
+          height: 630,
+        },
+      }
+    : {}
+}
+
 function docsArticleJsonLd({
   path,
   headline,
   description,
   breadcrumbs,
+  image,
   code,
 }: DocsArticle) {
   const url = localUrl(path)
@@ -70,6 +100,7 @@ function docsArticleJsonLd({
         publisher: organizationRef,
         author: { "@type": "Person", name: siteAuthor },
         breadcrumb: { "@id": `${url}#breadcrumb` },
+        ...imageObject(image),
         about: {
           "@type": "SoftwareSourceCode",
           name: `${siteName} ${code.name}`,
@@ -78,6 +109,8 @@ function docsArticleJsonLd({
           codeRepository: siteRepository,
           license: code.license,
           isAccessibleForFree: code.free,
+          ...(code.sampleType ? { codeSampleType: code.sampleType } : {}),
+          ...(code.basedOn ? { isBasedOn: localUrl(code.basedOn) } : {}),
         },
       },
     ],
@@ -188,11 +221,63 @@ function faqPageJsonLd(path: string, items: FaqItem[]) {
   }
 }
 
+function itemList(path: string, name: string, items: Crumb[]) {
+  return {
+    "@type": "ItemList",
+    "@id": `${localUrl(path)}#items`,
+    name: t(name),
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: t(item.name),
+      url: localUrl(item.path),
+    })),
+  }
+}
+
+function pageJsonLd({
+  path,
+  name,
+  description,
+  breadcrumbs,
+  type = "WebPage",
+  image,
+  items,
+  extra = [],
+}: PageGraph) {
+  const url = localUrl(path)
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(path, breadcrumbs),
+      {
+        "@type": type,
+        "@id": `${url}#webpage`,
+        name: t(name),
+        description: t(description),
+        url,
+        inLanguage: getRequestLocale().locale,
+        isPartOf: websiteRef,
+        publisher: organizationRef,
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+        ...imageObject(image),
+        ...(items ? { mainEntity: { "@id": `${url}#items` } } : {}),
+      },
+      ...(items ? [itemList(path, name, items)] : []),
+      ...extra,
+    ],
+  }
+}
+
 export {
   blogJsonLd,
   blogPostingJsonLd,
   breadcrumbList,
   docsArticleJsonLd,
   faqPageJsonLd,
+  itemList,
+  pageJsonLd,
   type Crumb,
 }

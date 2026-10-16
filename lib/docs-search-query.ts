@@ -66,7 +66,9 @@ function packDocsSearchIndex(index: DocsSearchIndex): PackedDocsSearchIndex {
       recordKinds.indexOf(record.kind),
       lookup(pages, record.page),
       record.title,
-      record.href.slice(record.href.indexOf("#") + 1),
+      record.href.startsWith(`${docsPageHref(record.page)}/`)
+        ? record.href.slice(docsPageHref(record.page).length)
+        : record.href.slice(record.href.indexOf("#") + 1),
       (() => {
         const key = record.trail.join("\u0000")
         const index = lookup(trailKeys, key)
@@ -93,7 +95,9 @@ function unpackDocsSearchIndex(packed: PackedDocsSearchIndex): DocsSearchIndex {
       ([kind, page, title, anchor, trail, text, type, fallback]) => {
         const slug = packed.pages[page] ?? ""
         return {
-          href: `${docsPageHref(slug)}#${anchor}`,
+          href: anchor.startsWith("/")
+            ? `${docsPageHref(slug)}${anchor}`
+            : `${docsPageHref(slug)}#${anchor}`,
           page: slug,
           title,
           kind: recordKinds[kind] ?? "section",

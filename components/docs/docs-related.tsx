@@ -90,6 +90,7 @@ function DocsRelatedNames({ links }: { links: RelatedLink[] }) {
 }
 
 function DocsRelated({
+  id,
   title,
   description,
   links,
@@ -97,6 +98,7 @@ function DocsRelated({
   event,
   children,
 }: {
+  id?: string
   title: string
   description?: string
   links: RelatedLink[]
@@ -109,7 +111,7 @@ function DocsRelated({
   }
 
   return (
-    <DocsSection title={title} description={description}>
+    <DocsSection id={id} title={title} description={description}>
       {variant === "names" ? (
         <DocsRelatedNames links={links} />
       ) : (

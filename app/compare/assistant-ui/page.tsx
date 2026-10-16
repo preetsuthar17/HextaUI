@@ -48,6 +48,10 @@ const questions = [
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[
+        { name: "Compare", path: "/compare" },
+        { name: "HextaUI vs assistant-ui", path: "/compare/assistant-ui" },
+      ]}
       title="HextaUI and assistant-ui"
       lead="assistant-ui is a chat framework: a runtime that manages the conversation, with components that read from it. HextaUI gives you finished screens as plain components, and leaves the state where it already is. This page compares them as of October 2026."
     >

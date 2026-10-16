@@ -1,0 +1,1991 @@
+{
+  "source": "https://ui.shadcn.com/r/styles/base-vega",
+  "style": "base-vega",
+  "fetched": "2026-10-16",
+  "components": {
+    "accordion": {
+      "parts": [
+        "Accordion",
+        "AccordionItem",
+        "AccordionTrigger",
+        "AccordionContent"
+      ],
+      "variants": {},
+      "props": {
+        "Accordion": [],
+        "AccordionItem": [],
+        "AccordionTrigger": [],
+        "AccordionContent": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 88
+    },
+    "alert": {
+      "parts": [
+        "Alert",
+        "AlertTitle",
+        "AlertDescription",
+        "AlertAction"
+      ],
+      "variants": {
+        "Alert": {
+          "variant": [
+            "default",
+            "destructive"
+          ]
+        }
+      },
+      "props": {
+        "Alert": [
+          "variant"
+        ],
+        "AlertTitle": [],
+        "AlertDescription": [],
+        "AlertAction": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 75
+    },
+    "alert-dialog": {
+      "parts": [
+        "AlertDialog",
+        "AlertDialogTrigger",
+        "AlertDialogPortal",
+        "AlertDialogOverlay",
+        "AlertDialogContent",
+        "AlertDialogHeader",
+        "AlertDialogFooter",
+        "AlertDialogMedia",
+        "AlertDialogTitle",
+        "AlertDialogDescription",
+        "AlertDialogAction",
+        "AlertDialogCancel"
+      ],
+      "variants": {},
+      "props": {
+        "AlertDialog": [],
+        "AlertDialogTrigger": [],
+        "AlertDialogPortal": [],
+        "AlertDialogOverlay": [],
+        "AlertDialogContent": [
+          "size"
+        ],
+        "AlertDialogHeader": [],
+        "AlertDialogFooter": [],
+        "AlertDialogMedia": [],
+        "AlertDialogTitle": [],
+        "AlertDialogDescription": [],
+        "AlertDialogAction": [],
+        "AlertDialogCancel": [
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 187
+    },
+    "aspect-ratio": {
+      "parts": [
+        "AspectRatio"
+      ],
+      "variants": {},
+      "props": {
+        "AspectRatio": [
+          "ratio"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 22
+    },
+    "attachment": {
+      "parts": [
+        "Attachment",
+        "AttachmentMedia",
+        "AttachmentContent",
+        "AttachmentTitle",
+        "AttachmentDescription",
+        "AttachmentActions",
+        "AttachmentAction",
+        "AttachmentTrigger",
+        "AttachmentGroup"
+      ],
+      "variants": {
+        "Attachment": {
+          "size": [
+            "default",
+            "sm",
+            "xs"
+          ],
+          "orientation": [
+            "horizontal",
+            "vertical"
+          ]
+        },
+        "AttachmentMedia": {
+          "variant": [
+            "icon",
+            "image"
+          ]
+        }
+      },
+      "props": {
+        "Attachment": [
+          "state",
+          "size",
+          "orientation"
+        ],
+        "AttachmentMedia": [
+          "variant"
+        ],
+        "AttachmentContent": [],
+        "AttachmentTitle": [],
+        "AttachmentDescription": [],
+        "AttachmentActions": [],
+        "AttachmentAction": [
+          "variant",
+          "size"
+        ],
+        "AttachmentTrigger": [
+          "render",
+          "type"
+        ],
+        "AttachmentGroup": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 207
+    },
+    "avatar": {
+      "parts": [
+        "Avatar",
+        "AvatarImage",
+        "AvatarFallback",
+        "AvatarBadge",
+        "AvatarGroup",
+        "AvatarGroupCount"
+      ],
+      "variants": {},
+      "props": {
+        "Avatar": [
+          "size"
+        ],
+        "AvatarImage": [],
+        "AvatarFallback": [],
+        "AvatarBadge": [],
+        "AvatarGroup": [],
+        "AvatarGroupCount": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 108
+    },
+    "badge": {
+      "parts": [
+        "Badge"
+      ],
+      "variants": {
+        "Badge": {
+          "variant": [
+            "default",
+            "secondary",
+            "destructive",
+            "outline",
+            "ghost",
+            "link"
+          ]
+        }
+      },
+      "props": {
+        "Badge": [
+          "variant",
+          "render"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 51
+    },
+    "breadcrumb": {
+      "parts": [
+        "Breadcrumb",
+        "BreadcrumbList",
+        "BreadcrumbItem",
+        "BreadcrumbLink",
+        "BreadcrumbPage",
+        "BreadcrumbSeparator",
+        "BreadcrumbEllipsis"
+      ],
+      "variants": {},
+      "props": {
+        "Breadcrumb": [],
+        "BreadcrumbList": [],
+        "BreadcrumbItem": [],
+        "BreadcrumbLink": [
+          "render"
+        ],
+        "BreadcrumbPage": [],
+        "BreadcrumbSeparator": [],
+        "BreadcrumbEllipsis": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 137
+    },
+    "bubble": {
+      "parts": [
+        "BubbleGroup",
+        "Bubble",
+        "BubbleContent",
+        "BubbleReactions"
+      ],
+      "variants": {
+        "Bubble": {
+          "variant": [
+            "default",
+            "secondary",
+            "muted",
+            "tinted",
+            "outline",
+            "ghost",
+            "destructive"
+          ]
+        },
+        "BubbleReactions": {
+          "side": [
+            "top",
+            "bottom"
+          ],
+          "align": [
+            "start",
+            "end"
+          ]
+        }
+      },
+      "props": {
+        "BubbleGroup": [],
+        "Bubble": [
+          "variant",
+          "align"
+        ],
+        "BubbleContent": [
+          "render"
+        ],
+        "BubbleReactions": [
+          "side",
+          "align"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 127
+    },
+    "button": {
+      "parts": [
+        "Button"
+      ],
+      "variants": {
+        "Button": {
+          "variant": [
+            "default",
+            "outline",
+            "secondary",
+            "ghost",
+            "destructive",
+            "link"
+          ],
+          "size": [
+            "default",
+            "xs",
+            "sm",
+            "lg",
+            "icon",
+            "icon-xs",
+            "icon-sm",
+            "icon-lg"
+          ]
+        }
+      },
+      "props": {
+        "Button": [
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 57
+    },
+    "button-group": {
+      "parts": [
+        "ButtonGroup",
+        "ButtonGroupText",
+        "ButtonGroupSeparator"
+      ],
+      "variants": {
+        "ButtonGroup": {
+          "orientation": [
+            "horizontal",
+            "vertical"
+          ]
+        }
+      },
+      "props": {
+        "ButtonGroup": [
+          "orientation"
+        ],
+        "ButtonGroupText": [
+          "render"
+        ],
+        "ButtonGroupSeparator": [
+          "orientation"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "separator"
+      ],
+      "lines": 87
+    },
+    "calendar": {
+      "parts": [
+        "Calendar",
+        "CalendarDayButton"
+      ],
+      "variants": {},
+      "props": {
+        "Calendar": [
+          "classNames",
+          "showOutsideDays",
+          "captionLayout",
+          "buttonVariant",
+          "locale",
+          "formatters",
+          "components"
+        ],
+        "CalendarDayButton": [
+          "day",
+          "modifiers",
+          "locale"
+        ]
+      },
+      "dependencies": [
+        "cn",
+        "date-fns",
+        "react-day-picker@latest"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 245
+    },
+    "card": {
+      "parts": [
+        "Card",
+        "CardHeader",
+        "CardTitle",
+        "CardDescription",
+        "CardAction",
+        "CardContent",
+        "CardFooter"
+      ],
+      "variants": {},
+      "props": {
+        "Card": [
+          "size"
+        ],
+        "CardHeader": [],
+        "CardTitle": [],
+        "CardDescription": [],
+        "CardAction": [],
+        "CardContent": [],
+        "CardFooter": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 102
+    },
+    "carousel": {
+      "parts": [
+        "Carousel",
+        "CarouselContent",
+        "CarouselItem",
+        "CarouselPrevious",
+        "CarouselNext"
+      ],
+      "variants": {},
+      "props": {
+        "Carousel": [
+          "orientation",
+          "opts",
+          "setApi",
+          "plugins"
+        ],
+        "CarouselContent": [],
+        "CarouselItem": [],
+        "CarouselPrevious": [
+          "variant",
+          "size"
+        ],
+        "CarouselNext": [
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn",
+        "embla-carousel-react"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 256
+    },
+    "chart": {
+      "parts": [
+        "ChartContainer",
+        "ChartTooltipContent",
+        "ChartLegendContent"
+      ],
+      "variants": {},
+      "props": {
+        "ChartContainer": [
+          "id",
+          "config",
+          "initialDimension"
+        ],
+        "ChartTooltipContent": [
+          "active",
+          "payload",
+          "indicator",
+          "hideLabel",
+          "hideIndicator",
+          "label",
+          "labelFormatter",
+          "labelClassName",
+          "formatter",
+          "color",
+          "nameKey",
+          "labelKey"
+        ],
+        "ChartLegendContent": [
+          "hideIcon",
+          "payload",
+          "verticalAlign",
+          "nameKey"
+        ]
+      },
+      "dependencies": [
+        "cn",
+        "recharts@3.8.0"
+      ],
+      "registryDependencies": [
+        "card"
+      ],
+      "lines": 372
+    },
+    "checkbox": {
+      "parts": [
+        "Checkbox"
+      ],
+      "variants": {},
+      "props": {
+        "Checkbox": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 34
+    },
+    "collapsible": {
+      "parts": [
+        "Collapsible",
+        "CollapsibleTrigger",
+        "CollapsibleContent"
+      ],
+      "variants": {},
+      "props": {
+        "Collapsible": [],
+        "CollapsibleTrigger": [],
+        "CollapsibleContent": []
+      },
+      "dependencies": [],
+      "registryDependencies": [],
+      "lines": 21
+    },
+    "combobox": {
+      "parts": [
+        "ComboboxValue",
+        "ComboboxTrigger",
+        "ComboboxInput",
+        "ComboboxContent",
+        "ComboboxList",
+        "ComboboxItem",
+        "ComboboxGroup",
+        "ComboboxLabel",
+        "ComboboxCollection",
+        "ComboboxEmpty",
+        "ComboboxSeparator",
+        "ComboboxChips",
+        "ComboboxChip",
+        "ComboboxChipsInput"
+      ],
+      "variants": {},
+      "props": {
+        "ComboboxValue": [],
+        "ComboboxTrigger": [],
+        "ComboboxInput": [
+          "disabled",
+          "showTrigger",
+          "showClear"
+        ],
+        "ComboboxContent": [
+          "side",
+          "sideOffset",
+          "align",
+          "alignOffset",
+          "anchor"
+        ],
+        "ComboboxList": [],
+        "ComboboxItem": [],
+        "ComboboxGroup": [],
+        "ComboboxLabel": [],
+        "ComboboxCollection": [],
+        "ComboboxEmpty": [],
+        "ComboboxSeparator": [],
+        "ComboboxChips": [],
+        "ComboboxChip": [
+          "showRemove"
+        ],
+        "ComboboxChipsInput": []
+      },
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "input-group"
+      ],
+      "lines": 328
+    },
+    "command": {
+      "parts": [
+        "Command",
+        "CommandDialog",
+        "CommandInput",
+        "CommandList",
+        "CommandEmpty",
+        "CommandGroup",
+        "CommandSeparator",
+        "CommandItem",
+        "CommandShortcut"
+      ],
+      "variants": {},
+      "props": {
+        "Command": [],
+        "CommandDialog": [
+          "title",
+          "description",
+          "showCloseButton"
+        ],
+        "CommandInput": [],
+        "CommandList": [],
+        "CommandEmpty": [],
+        "CommandGroup": [],
+        "CommandSeparator": [],
+        "CommandItem": [],
+        "CommandShortcut": []
+      },
+      "dependencies": [
+        "cmdk",
+        "cn"
+      ],
+      "registryDependencies": [
+        "dialog",
+        "input-group"
+      ],
+      "lines": 210
+    },
+    "context-menu": {
+      "parts": [
+        "ContextMenu",
+        "ContextMenuPortal",
+        "ContextMenuTrigger",
+        "ContextMenuContent",
+        "ContextMenuGroup",
+        "ContextMenuLabel",
+        "ContextMenuItem",
+        "ContextMenuSub",
+        "ContextMenuSubTrigger",
+        "ContextMenuSubContent",
+        "ContextMenuCheckboxItem",
+        "ContextMenuRadioGroup",
+        "ContextMenuRadioItem",
+        "ContextMenuSeparator",
+        "ContextMenuShortcut"
+      ],
+      "variants": {},
+      "props": {
+        "ContextMenu": [],
+        "ContextMenuPortal": [],
+        "ContextMenuTrigger": [],
+        "ContextMenuContent": [
+          "align",
+          "alignOffset",
+          "side",
+          "sideOffset"
+        ],
+        "ContextMenuGroup": [],
+        "ContextMenuLabel": [
+          "inset"
+        ],
+        "ContextMenuItem": [
+          "inset",
+          "variant"
+        ],
+        "ContextMenuSub": [],
+        "ContextMenuSubTrigger": [
+          "inset"
+        ],
+        "ContextMenuSubContent": [],
+        "ContextMenuCheckboxItem": [
+          "checked",
+          "inset"
+        ],
+        "ContextMenuRadioGroup": [],
+        "ContextMenuRadioItem": [
+          "inset"
+        ],
+        "ContextMenuSeparator": [],
+        "ContextMenuShortcut": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 291
+    },
+    "dialog": {
+      "parts": [
+        "Dialog",
+        "DialogTrigger",
+        "DialogPortal",
+        "DialogClose",
+        "DialogOverlay",
+        "DialogContent",
+        "DialogHeader",
+        "DialogFooter",
+        "DialogTitle",
+        "DialogDescription"
+      ],
+      "variants": {},
+      "props": {
+        "Dialog": [],
+        "DialogTrigger": [],
+        "DialogPortal": [],
+        "DialogClose": [],
+        "DialogOverlay": [],
+        "DialogContent": [
+          "showCloseButton"
+        ],
+        "DialogHeader": [],
+        "DialogFooter": [
+          "showCloseButton"
+        ],
+        "DialogTitle": [],
+        "DialogDescription": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 162
+    },
+    "drawer": {
+      "parts": [
+        "Drawer",
+        "DrawerTrigger",
+        "DrawerPortal",
+        "DrawerClose",
+        "DrawerOverlay",
+        "DrawerSwipeHandle",
+        "DrawerContent",
+        "DrawerHeader",
+        "DrawerFooter",
+        "DrawerTitle",
+        "DrawerDescription"
+      ],
+      "variants": {},
+      "props": {
+        "Drawer": [
+          "modal",
+          "showSwipeHandle",
+          "snapPoints",
+          "swipeDirection"
+        ],
+        "DrawerTrigger": [],
+        "DrawerPortal": [],
+        "DrawerClose": [],
+        "DrawerOverlay": [],
+        "DrawerSwipeHandle": [],
+        "DrawerContent": [],
+        "DrawerHeader": [],
+        "DrawerFooter": [],
+        "DrawerTitle": [],
+        "DrawerDescription": []
+      },
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 224
+    },
+    "dropdown-menu": {
+      "parts": [
+        "DropdownMenu",
+        "DropdownMenuPortal",
+        "DropdownMenuTrigger",
+        "DropdownMenuContent",
+        "DropdownMenuGroup",
+        "DropdownMenuLabel",
+        "DropdownMenuItem",
+        "DropdownMenuSub",
+        "DropdownMenuSubTrigger",
+        "DropdownMenuSubContent",
+        "DropdownMenuCheckboxItem",
+        "DropdownMenuRadioGroup",
+        "DropdownMenuRadioItem",
+        "DropdownMenuSeparator",
+        "DropdownMenuShortcut"
+      ],
+      "variants": {},
+      "props": {
+        "DropdownMenu": [],
+        "DropdownMenuPortal": [],
+        "DropdownMenuTrigger": [],
+        "DropdownMenuContent": [
+          "align",
+          "alignOffset",
+          "side",
+          "sideOffset"
+        ],
+        "DropdownMenuGroup": [],
+        "DropdownMenuLabel": [
+          "inset"
+        ],
+        "DropdownMenuItem": [
+          "inset",
+          "variant"
+        ],
+        "DropdownMenuSub": [],
+        "DropdownMenuSubTrigger": [
+          "inset"
+        ],
+        "DropdownMenuSubContent": [
+          "align",
+          "alignOffset",
+          "side",
+          "sideOffset"
+        ],
+        "DropdownMenuCheckboxItem": [
+          "checked",
+          "inset"
+        ],
+        "DropdownMenuRadioGroup": [],
+        "DropdownMenuRadioItem": [
+          "inset"
+        ],
+        "DropdownMenuSeparator": [],
+        "DropdownMenuShortcut": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 291
+    },
+    "empty": {
+      "parts": [
+        "Empty",
+        "EmptyHeader",
+        "EmptyMedia",
+        "EmptyTitle",
+        "EmptyDescription",
+        "EmptyContent"
+      ],
+      "variants": {
+        "EmptyMedia": {
+          "variant": [
+            "default",
+            "icon"
+          ]
+        }
+      },
+      "props": {
+        "Empty": [],
+        "EmptyHeader": [],
+        "EmptyMedia": [
+          "variant"
+        ],
+        "EmptyTitle": [],
+        "EmptyDescription": [],
+        "EmptyContent": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 103
+    },
+    "field": {
+      "parts": [
+        "FieldSet",
+        "FieldLegend",
+        "FieldGroup",
+        "Field",
+        "FieldContent",
+        "FieldLabel",
+        "FieldTitle",
+        "FieldDescription",
+        "FieldSeparator",
+        "FieldError"
+      ],
+      "variants": {
+        "Field": {
+          "orientation": [
+            "vertical",
+            "horizontal",
+            "responsive"
+          ]
+        }
+      },
+      "props": {
+        "FieldSet": [],
+        "FieldLegend": [
+          "variant"
+        ],
+        "FieldGroup": [],
+        "Field": [
+          "orientation"
+        ],
+        "FieldContent": [],
+        "FieldLabel": [],
+        "FieldTitle": [],
+        "FieldDescription": [],
+        "FieldSeparator": [],
+        "FieldError": [
+          "errors"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "label",
+        "separator"
+      ],
+      "lines": 238
+    },
+    "hover-card": {
+      "parts": [
+        "HoverCard",
+        "HoverCardTrigger",
+        "HoverCardContent"
+      ],
+      "variants": {},
+      "props": {
+        "HoverCard": [],
+        "HoverCardTrigger": [],
+        "HoverCardContent": [
+          "side",
+          "sideOffset",
+          "align",
+          "alignOffset"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 50
+    },
+    "input": {
+      "parts": [
+        "Input"
+      ],
+      "variants": {},
+      "props": {
+        "Input": [
+          "type"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 19
+    },
+    "input-group": {
+      "parts": [
+        "InputGroup",
+        "InputGroupAddon",
+        "InputGroupButton",
+        "InputGroupText",
+        "InputGroupInput",
+        "InputGroupTextarea"
+      ],
+      "variants": {
+        "InputGroupAddon": {
+          "align": [
+            "inline-start",
+            "inline-end",
+            "block-start",
+            "block-end"
+          ]
+        },
+        "InputGroupButton": {
+          "size": [
+            "xs",
+            "sm",
+            "icon-xs",
+            "icon-sm"
+          ]
+        }
+      },
+      "props": {
+        "InputGroup": [],
+        "InputGroupAddon": [
+          "align"
+        ],
+        "InputGroupButton": [
+          "type",
+          "variant",
+          "size"
+        ],
+        "InputGroupText": [],
+        "InputGroupInput": [],
+        "InputGroupTextarea": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "textarea"
+      ],
+      "lines": 158
+    },
+    "input-otp": {
+      "parts": [
+        "InputOTP",
+        "InputOTPGroup",
+        "InputOTPSlot",
+        "InputOTPSeparator"
+      ],
+      "variants": {},
+      "props": {
+        "InputOTP": [
+          "containerClassName"
+        ],
+        "InputOTPGroup": [],
+        "InputOTPSlot": [
+          "index"
+        ],
+        "InputOTPSeparator": []
+      },
+      "dependencies": [
+        "cn",
+        "input-otp"
+      ],
+      "registryDependencies": [],
+      "lines": 92
+    },
+    "item": {
+      "parts": [
+        "ItemGroup",
+        "ItemSeparator",
+        "Item",
+        "ItemMedia",
+        "ItemContent",
+        "ItemTitle",
+        "ItemDescription",
+        "ItemActions",
+        "ItemHeader",
+        "ItemFooter"
+      ],
+      "variants": {
+        "Item": {
+          "variant": [
+            "default",
+            "outline",
+            "muted"
+          ],
+          "size": [
+            "default",
+            "sm",
+            "xs"
+          ]
+        },
+        "ItemMedia": {
+          "variant": [
+            "default",
+            "icon",
+            "image"
+          ]
+        }
+      },
+      "props": {
+        "ItemGroup": [],
+        "ItemSeparator": [],
+        "Item": [
+          "variant",
+          "size",
+          "render"
+        ],
+        "ItemMedia": [
+          "variant"
+        ],
+        "ItemContent": [],
+        "ItemTitle": [],
+        "ItemDescription": [],
+        "ItemActions": [],
+        "ItemHeader": [],
+        "ItemFooter": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "separator"
+      ],
+      "lines": 201
+    },
+    "kbd": {
+      "parts": [
+        "Kbd",
+        "KbdGroup"
+      ],
+      "variants": {},
+      "props": {
+        "Kbd": [],
+        "KbdGroup": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 26
+    },
+    "label": {
+      "parts": [
+        "Label"
+      ],
+      "variants": {},
+      "props": {
+        "Label": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 19
+    },
+    "marker": {
+      "parts": [
+        "Marker",
+        "MarkerIcon",
+        "MarkerContent"
+      ],
+      "variants": {
+        "Marker": {
+          "variant": [
+            "default",
+            "separator",
+            "border"
+          ]
+        }
+      },
+      "props": {
+        "Marker": [
+          "variant",
+          "render"
+        ],
+        "MarkerIcon": [],
+        "MarkerContent": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 70
+    },
+    "menubar": {
+      "parts": [
+        "Menubar",
+        "MenubarMenu",
+        "MenubarGroup",
+        "MenubarPortal",
+        "MenubarTrigger",
+        "MenubarContent",
+        "MenubarItem",
+        "MenubarCheckboxItem",
+        "MenubarRadioGroup",
+        "MenubarRadioItem",
+        "MenubarLabel",
+        "MenubarSeparator",
+        "MenubarShortcut",
+        "MenubarSub",
+        "MenubarSubTrigger",
+        "MenubarSubContent"
+      ],
+      "variants": {},
+      "props": {
+        "Menubar": [],
+        "MenubarMenu": [],
+        "MenubarGroup": [],
+        "MenubarPortal": [],
+        "MenubarTrigger": [],
+        "MenubarContent": [
+          "align",
+          "alignOffset",
+          "sideOffset"
+        ],
+        "MenubarItem": [
+          "inset",
+          "variant"
+        ],
+        "MenubarCheckboxItem": [
+          "checked",
+          "inset"
+        ],
+        "MenubarRadioGroup": [],
+        "MenubarRadioItem": [
+          "inset"
+        ],
+        "MenubarLabel": [
+          "inset"
+        ],
+        "MenubarSeparator": [],
+        "MenubarShortcut": [],
+        "MenubarSub": [],
+        "MenubarSubTrigger": [
+          "inset"
+        ],
+        "MenubarSubContent": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "dropdown-menu"
+      ],
+      "lines": 296
+    },
+    "message": {
+      "parts": [
+        "MessageGroup",
+        "Message",
+        "MessageAvatar",
+        "MessageContent",
+        "MessageHeader",
+        "MessageFooter"
+      ],
+      "variants": {},
+      "props": {
+        "MessageGroup": [],
+        "Message": [
+          "align"
+        ],
+        "MessageAvatar": [],
+        "MessageContent": [],
+        "MessageHeader": [],
+        "MessageFooter": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 91
+    },
+    "message-scroller": {
+      "parts": [
+        "MessageScrollerProvider",
+        "MessageScroller",
+        "MessageScrollerViewport",
+        "MessageScrollerContent",
+        "MessageScrollerItem",
+        "MessageScrollerButton"
+      ],
+      "variants": {},
+      "props": {
+        "MessageScrollerProvider": [],
+        "MessageScroller": [],
+        "MessageScrollerViewport": [],
+        "MessageScrollerContent": [],
+        "MessageScrollerItem": [
+          "scrollAnchor"
+        ],
+        "MessageScrollerButton": [
+          "direction",
+          "render",
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "@shadcn/react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 136
+    },
+    "native-select": {
+      "parts": [
+        "NativeSelect",
+        "NativeSelectOption",
+        "NativeSelectOptGroup"
+      ],
+      "variants": {},
+      "props": {
+        "NativeSelect": [
+          "size"
+        ],
+        "NativeSelectOption": [],
+        "NativeSelectOptGroup": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 70
+    },
+    "navigation-menu": {
+      "parts": [
+        "NavigationMenu",
+        "NavigationMenuList",
+        "NavigationMenuItem",
+        "NavigationMenuTrigger",
+        "NavigationMenuContent",
+        "NavigationMenuPositioner",
+        "NavigationMenuLink",
+        "NavigationMenuIndicator"
+      ],
+      "variants": {},
+      "props": {
+        "NavigationMenu": [
+          "align"
+        ],
+        "NavigationMenuList": [],
+        "NavigationMenuItem": [],
+        "NavigationMenuTrigger": [],
+        "NavigationMenuContent": [],
+        "NavigationMenuPositioner": [
+          "side",
+          "sideOffset",
+          "align",
+          "alignOffset"
+        ],
+        "NavigationMenuLink": [],
+        "NavigationMenuIndicator": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 176
+    },
+    "pagination": {
+      "parts": [
+        "Pagination",
+        "PaginationContent",
+        "PaginationItem",
+        "PaginationLink",
+        "PaginationPrevious",
+        "PaginationNext",
+        "PaginationEllipsis"
+      ],
+      "variants": {},
+      "props": {
+        "Pagination": [],
+        "PaginationContent": [],
+        "PaginationItem": [],
+        "PaginationLink": [
+          "isActive",
+          "size"
+        ],
+        "PaginationPrevious": [
+          "text"
+        ],
+        "PaginationNext": [
+          "text"
+        ],
+        "PaginationEllipsis": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 151
+    },
+    "popover": {
+      "parts": [
+        "Popover",
+        "PopoverTrigger",
+        "PopoverContent",
+        "PopoverHeader",
+        "PopoverTitle",
+        "PopoverDescription"
+      ],
+      "variants": {},
+      "props": {
+        "Popover": [],
+        "PopoverTrigger": [],
+        "PopoverContent": [
+          "align",
+          "alignOffset",
+          "side",
+          "sideOffset"
+        ],
+        "PopoverHeader": [],
+        "PopoverTitle": [],
+        "PopoverDescription": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 89
+    },
+    "progress": {
+      "parts": [
+        "Progress",
+        "ProgressTrack",
+        "ProgressIndicator",
+        "ProgressLabel",
+        "ProgressValue"
+      ],
+      "variants": {},
+      "props": {
+        "Progress": [
+          "value"
+        ],
+        "ProgressTrack": [],
+        "ProgressIndicator": [],
+        "ProgressLabel": [],
+        "ProgressValue": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 82
+    },
+    "questionnaire": {
+      "parts": [
+        "Questionnaire",
+        "QuestionnaireProgress",
+        "QuestionnaireItem",
+        "QuestionnaireTitle",
+        "QuestionnaireDescription",
+        "QuestionnaireChoices",
+        "QuestionnaireChoice",
+        "QuestionnaireChoiceDescription",
+        "QuestionnaireInput",
+        "QuestionnaireError",
+        "QuestionnaireActions",
+        "QuestionnairePrevious",
+        "QuestionnaireSkip",
+        "QuestionnaireNext",
+        "QuestionnaireSubmit"
+      ],
+      "variants": {},
+      "props": {
+        "Questionnaire": [],
+        "QuestionnaireProgress": [],
+        "QuestionnaireItem": [],
+        "QuestionnaireTitle": [],
+        "QuestionnaireDescription": [],
+        "QuestionnaireChoices": [],
+        "QuestionnaireChoice": [],
+        "QuestionnaireChoiceDescription": [],
+        "QuestionnaireInput": [],
+        "QuestionnaireError": [],
+        "QuestionnaireActions": [],
+        "QuestionnairePrevious": [
+          "size",
+          "variant"
+        ],
+        "QuestionnaireSkip": [
+          "size",
+          "variant"
+        ],
+        "QuestionnaireNext": [
+          "size",
+          "variant"
+        ],
+        "QuestionnaireSubmit": [
+          "size",
+          "variant"
+        ]
+      },
+      "dependencies": [
+        "@shadcn/react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 332
+    },
+    "radio-group": {
+      "parts": [
+        "RadioGroup",
+        "RadioGroupItem"
+      ],
+      "variants": {},
+      "props": {
+        "RadioGroup": [],
+        "RadioGroupItem": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 37
+    },
+    "resizable": {
+      "parts": [
+        "ResizablePanelGroup",
+        "ResizablePanel",
+        "ResizableHandle"
+      ],
+      "variants": {},
+      "props": {
+        "ResizablePanelGroup": [],
+        "ResizablePanel": [],
+        "ResizableHandle": [
+          "withHandle"
+        ]
+      },
+      "dependencies": [
+        "cn",
+        "react-resizable-panels"
+      ],
+      "registryDependencies": [],
+      "lines": 49
+    },
+    "scroll-area": {
+      "parts": [
+        "ScrollArea",
+        "ScrollBar"
+      ],
+      "variants": {},
+      "props": {
+        "ScrollArea": [],
+        "ScrollBar": [
+          "orientation"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 54
+    },
+    "select": {
+      "parts": [
+        "SelectGroup",
+        "SelectValue",
+        "SelectTrigger",
+        "SelectContent",
+        "SelectLabel",
+        "SelectItem",
+        "SelectSeparator",
+        "SelectScrollUpButton",
+        "SelectScrollDownButton"
+      ],
+      "variants": {},
+      "props": {
+        "SelectGroup": [],
+        "SelectValue": [],
+        "SelectTrigger": [
+          "size"
+        ],
+        "SelectContent": [
+          "side",
+          "sideOffset",
+          "align",
+          "alignOffset",
+          "alignItemWithTrigger"
+        ],
+        "SelectLabel": [],
+        "SelectItem": [],
+        "SelectSeparator": [],
+        "SelectScrollUpButton": [],
+        "SelectScrollDownButton": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 228
+    },
+    "separator": {
+      "parts": [
+        "Separator"
+      ],
+      "variants": {},
+      "props": {
+        "Separator": [
+          "orientation"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 24
+    },
+    "sheet": {
+      "parts": [
+        "Sheet",
+        "SheetTrigger",
+        "SheetClose",
+        "SheetContent",
+        "SheetHeader",
+        "SheetFooter",
+        "SheetTitle",
+        "SheetDescription"
+      ],
+      "variants": {},
+      "props": {
+        "Sheet": [],
+        "SheetTrigger": [],
+        "SheetClose": [],
+        "SheetContent": [
+          "side",
+          "showCloseButton"
+        ],
+        "SheetHeader": [],
+        "SheetFooter": [],
+        "SheetTitle": [],
+        "SheetDescription": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 140
+    },
+    "sidebar": {
+      "parts": [
+        "SidebarProvider",
+        "Sidebar",
+        "SidebarTrigger",
+        "SidebarRail",
+        "SidebarInset",
+        "SidebarInput",
+        "SidebarHeader",
+        "SidebarFooter",
+        "SidebarSeparator",
+        "SidebarContent",
+        "SidebarGroup",
+        "SidebarGroupLabel",
+        "SidebarGroupAction",
+        "SidebarGroupContent",
+        "SidebarMenu",
+        "SidebarMenuItem",
+        "SidebarMenuButton",
+        "SidebarMenuAction",
+        "SidebarMenuBadge",
+        "SidebarMenuSkeleton",
+        "SidebarMenuSub",
+        "SidebarMenuSubItem",
+        "SidebarMenuSubButton"
+      ],
+      "variants": {
+        "SidebarMenuButton": {
+          "variant": [
+            "default",
+            "outline"
+          ],
+          "size": [
+            "default",
+            "sm",
+            "lg"
+          ]
+        }
+      },
+      "props": {
+        "SidebarProvider": [
+          "defaultOpen",
+          "open",
+          "onOpenChange"
+        ],
+        "Sidebar": [
+          "side",
+          "variant",
+          "collapsible",
+          "dir"
+        ],
+        "SidebarTrigger": [
+          "onClick"
+        ],
+        "SidebarRail": [],
+        "SidebarInset": [],
+        "SidebarInput": [],
+        "SidebarHeader": [],
+        "SidebarFooter": [],
+        "SidebarSeparator": [],
+        "SidebarContent": [],
+        "SidebarGroup": [],
+        "SidebarGroupLabel": [
+          "render"
+        ],
+        "SidebarGroupAction": [
+          "render"
+        ],
+        "SidebarGroupContent": [],
+        "SidebarMenu": [],
+        "SidebarMenuItem": [],
+        "SidebarMenuButton": [
+          "render",
+          "isActive",
+          "variant",
+          "size",
+          "tooltip"
+        ],
+        "SidebarMenuAction": [
+          "render",
+          "showOnHover"
+        ],
+        "SidebarMenuBadge": [],
+        "SidebarMenuSkeleton": [
+          "showIcon"
+        ],
+        "SidebarMenuSub": [],
+        "SidebarMenuSubItem": [],
+        "SidebarMenuSubButton": [
+          "render",
+          "size",
+          "isActive"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "button",
+        "input",
+        "separator",
+        "sheet",
+        "skeleton",
+        "tooltip",
+        "use-mobile"
+      ],
+      "lines": 730
+    },
+    "skeleton": {
+      "parts": [
+        "Skeleton"
+      ],
+      "variants": {},
+      "props": {
+        "Skeleton": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 13
+    },
+    "slider": {
+      "parts": [
+        "Slider"
+      ],
+      "variants": {},
+      "props": {
+        "Slider": [
+          "defaultValue",
+          "value",
+          "min",
+          "max"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 51
+    },
+    "spinner": {
+      "parts": [
+        "Spinner"
+      ],
+      "variants": {},
+      "props": {
+        "Spinner": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 22
+    },
+    "switch": {
+      "parts": [
+        "Switch"
+      ],
+      "variants": {},
+      "props": {
+        "Switch": [
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 31
+    },
+    "table": {
+      "parts": [
+        "Table",
+        "TableHeader",
+        "TableBody",
+        "TableFooter",
+        "TableRow",
+        "TableHead",
+        "TableCell",
+        "TableCaption"
+      ],
+      "variants": {},
+      "props": {
+        "Table": [],
+        "TableHeader": [],
+        "TableBody": [],
+        "TableFooter": [],
+        "TableRow": [],
+        "TableHead": [],
+        "TableCell": [],
+        "TableCaption": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 115
+    },
+    "tabs": {
+      "parts": [
+        "Tabs",
+        "TabsList",
+        "TabsTrigger",
+        "TabsContent"
+      ],
+      "variants": {
+        "TabsList": {
+          "variant": [
+            "default",
+            "line"
+          ]
+        }
+      },
+      "props": {
+        "Tabs": [
+          "orientation"
+        ],
+        "TabsList": [
+          "variant"
+        ],
+        "TabsTrigger": [],
+        "TabsContent": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 81
+    },
+    "textarea": {
+      "parts": [
+        "Textarea"
+      ],
+      "variants": {},
+      "props": {
+        "Textarea": []
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 17
+    },
+    "toast": {
+      "parts": [
+        "ToastProvider",
+        "ToastPortal",
+        "ToastViewport",
+        "Toast",
+        "ToastContent",
+        "ToastTitle",
+        "ToastDescription",
+        "ToastAction",
+        "ToastClose",
+        "Toaster"
+      ],
+      "variants": {},
+      "props": {
+        "ToastProvider": [],
+        "ToastPortal": [],
+        "ToastViewport": [],
+        "Toast": [],
+        "ToastContent": [],
+        "ToastTitle": [],
+        "ToastDescription": [],
+        "ToastAction": [
+          "render"
+        ],
+        "ToastClose": [
+          "render"
+        ],
+        "Toaster": [
+          "toastManager"
+        ]
+      },
+      "dependencies": [
+        "@base-ui/react",
+        "cn"
+      ],
+      "registryDependencies": [
+        "button"
+      ],
+      "lines": 278
+    },
+    "toggle": {
+      "parts": [
+        "Toggle"
+      ],
+      "variants": {
+        "Toggle": {
+          "variant": [
+            "default",
+            "outline"
+          ],
+          "size": [
+            "default",
+            "sm",
+            "lg"
+          ]
+        }
+      },
+      "props": {
+        "Toggle": [
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 44
+    },
+    "toggle-group": {
+      "parts": [
+        "ToggleGroup",
+        "ToggleGroupItem"
+      ],
+      "variants": {},
+      "props": {
+        "ToggleGroup": [
+          "variant",
+          "size",
+          "spacing",
+          "orientation"
+        ],
+        "ToggleGroupItem": [
+          "variant",
+          "size"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [
+        "toggle"
+      ],
+      "lines": 89
+    },
+    "tooltip": {
+      "parts": [
+        "TooltipProvider",
+        "Tooltip",
+        "TooltipTrigger",
+        "TooltipContent"
+      ],
+      "variants": {},
+      "props": {
+        "TooltipProvider": [
+          "delay"
+        ],
+        "Tooltip": [],
+        "TooltipTrigger": [],
+        "TooltipContent": [
+          "side",
+          "sideOffset",
+          "align",
+          "alignOffset"
+        ]
+      },
+      "dependencies": [
+        "cn"
+      ],
+      "registryDependencies": [],
+      "lines": 65
+    }
+  }
+}

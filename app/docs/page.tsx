@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+
+import { JsonLd } from "@/components/site/json-ld"
 import Link from "@/components/site/link"
 
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
@@ -18,6 +20,7 @@ import {
 } from "@/lib/docs"
 import { getRegistryItemUrl } from "@/lib/docs-registry"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 import { siteDescription, siteRepository } from "@/lib/site"
 
 export const metadata: Metadata = pageMetadata({
@@ -66,6 +69,14 @@ export default function Page() {
       markdownHref="/docs.md"
       toc={toc}
     >
+      <JsonLd
+        data={pageJsonLd({
+          path: "/docs",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [{ name: "Docs", path: "/docs" }],
+        })}
+      />
       <DocsHeading id="what-is-hextaui">What is HextaUI</DocsHeading>
       <DocsParagraph>
         HextaUI is a collection of {docsComponents.length} components,{" "}

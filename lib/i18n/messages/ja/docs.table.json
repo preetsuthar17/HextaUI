@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "面のスタイル、折り返しまたはコンパクトなセル、固定ヘッダー、固定列、スクロールのヒントを備えたレスポンシブなテーブル。",
   "Alignment, pinned columns and scroll fades follow the reading direction.": "配置、固定列、スクロールのフェードは文字の読み方向に従います。",
   "Below the table. In the surface variant it sits inside the frame.": "テーブルの下。surface バリアントでは枠の内側に収まります。",
   "Cell padding. Set by size.": "セルのパディング。size によって設定されます。",

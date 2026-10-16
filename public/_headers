@@ -9,6 +9,10 @@
   Content-Type: image/png
   Cache-Control: public, max-age=86400
 
+/og/*
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
 /r/*
   Access-Control-Allow-Origin: *
   Cache-Control: public, max-age=300, must-revalidate

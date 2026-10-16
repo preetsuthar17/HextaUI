@@ -41,7 +41,7 @@ import {
   proSummary,
 } from "@/lib/pricing-info"
 import { proPlans, refundDays, type ProPlanId } from "@/lib/pro/pricing"
-import { faqPageJsonLd } from "@/lib/structured-data"
+import { faqPageJsonLd, pageJsonLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = pageMetadata({
   title: "Pricing",
@@ -260,6 +260,15 @@ function Section({
 export default function Page() {
   return (
     <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-20 px-4 pt-16 pb-24 sm:pt-24">
+      <JsonLd
+        data={pageJsonLd({
+          path: "/pricing",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [{ name: "Pricing", path: "/pricing" }],
+          type: "WebPage",
+        })}
+      />
       <JsonLd
         data={{
           "@context": "https://schema.org",

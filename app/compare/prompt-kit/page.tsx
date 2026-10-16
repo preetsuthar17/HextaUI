@@ -48,6 +48,10 @@ const questions = [
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[
+        { name: "Compare", path: "/compare" },
+        { name: "HextaUI vs prompt-kit", path: "/compare/prompt-kit" },
+      ]}
       title="HextaUI and prompt-kit"
       lead="prompt-kit gives you the pieces of an AI chat, such as a message, a prompt input and a tool call, as free shadcn/ui components. HextaUI gives you the finished screens those pieces become, with the hard states already handled. This page compares them as of October 2026."
     >

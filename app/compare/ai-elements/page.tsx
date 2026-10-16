@@ -48,6 +48,10 @@ const questions = [
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[
+        { name: "Compare", path: "/compare" },
+        { name: "HextaUI vs AI Elements", path: "/compare/ai-elements" },
+      ]}
       title="HextaUI and AI Elements"
       lead="AI Elements gives you the pieces of an AI chat, such as a message, a prompt input and a tool call. HextaUI gives you the finished screens those pieces become, with the hard states already handled. This page compares them as of October 2026."
     >

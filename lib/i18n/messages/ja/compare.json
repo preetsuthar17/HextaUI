@@ -1,0 +1,13 @@
+{
+  "Comparisons": "比較",
+  "Component by component": "コンポーネントごと",
+  "Each page puts one HextaUI component next to its shadcn/ui version: the parts, variants and props that differ, read from both sources, and the command to switch.": "各ページでは HextaUI のコンポーネントを shadcn/ui 版と並べ、両方のソースから読み取ったパーツ、バリアント、props の違いと、切り替えるためのコマンドを示します。",
+  "HextaUI compared with shadcn/ui, AI Elements and more": "HextaUI と shadcn/ui、AI Elements などの比較",
+  "HextaUI vs AI Elements": "HextaUI と AI Elements の比較",
+  "HextaUI vs assistant-ui": "HextaUI と assistant-ui の比較",
+  "HextaUI vs prompt-kit": "HextaUI と prompt-kit の比較",
+  "Honest comparisons between HextaUI and the libraries people weigh it against, with when each one is the better choice. Facts were checked against each project’s source and docs on the date each page states.": "HextaUI と比較されることの多いライブラリとの率直な比較で、それぞれがどんなときに向いているかも示します。内容は各ページに記載した日付時点で、各プロジェクトのソースとドキュメントで確認しています。",
+  "How HextaUI compares with shadcn/ui, AI Elements, assistant-ui, prompt-kit and shadcn AI chat templates, plus shadcn/ui comparisons component by component.": "HextaUI と shadcn/ui、AI Elements、assistant-ui、prompt-kit、shadcn の AI チャットテンプレートの比較と、コンポーネントごとの shadcn/ui との比較。",
+  "Libraries": "ライブラリ",
+  "shadcn AI chat templates": "shadcn の AI チャットテンプレート"
+}

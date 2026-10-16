@@ -35,6 +35,7 @@
   "HextaUI blocks are those decisions, already made and tested:": "HextaUI-Blöcke sind genau diese Entscheidungen, bereits getroffen und getestet:",
   "HextaUI blocks read the same message parts that `useChat` returns, so your route handler and data stay as they are. Start with the composer, since <0>Prompt Input</0> is free, then swap the thread and the tool calls when you need what they handle.": "HextaUI-Blöcke lesen dieselben Message-Parts, die `useChat` zurückgibt, sodass dein Route-Handler und deine Daten bleiben, wie sie sind. Fang mit dem Composer an, denn <0>Prompt Input</0> ist kostenlos, und tausche Thread und Tool-Aufrufe aus, sobald du brauchst, was sie abdecken.",
   "HextaUI compared with both versions of AI Elements": "HextaUI im Vergleich mit beiden Versionen von AI Elements",
+  "HextaUI vs AI Elements": "HextaUI vs. AI Elements",
   "HextaUI vs AI Elements: pieces or finished screens": "HextaUI vs. AI Elements: Bausteine oder fertige Screens",
   "Is Vercel’s AI Elements being deprecated?": "Wird Vercels AI Elements eingestellt?",
   "Most AI Elements pieces have a HextaUI counterpart. The names below are from both AI Elements docs.": "Für die meisten AI-Elements-Bausteine gibt es ein Gegenstück in HextaUI. Die Namen unten stammen aus beiden AI-Elements-Dokumentationen.",

@@ -76,7 +76,6 @@
   "Shows a skeleton or an error instead of the children.",
   "Shows each group's name above it. Turn off to separate groups by space alone; the names still label the groups for screen readers.",
   "Shows the options. Usually the parent switch's value.",
-  "Team",
   "The choices, in order.",
   "The chosen option.",
   "The chosen value.",

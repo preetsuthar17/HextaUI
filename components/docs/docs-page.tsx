@@ -19,6 +19,7 @@ function DocsPage({
   navItems,
   note,
   actions,
+  eyebrow,
   className,
   children,
 }: {
@@ -31,6 +32,7 @@ function DocsPage({
   navItems?: DocsNavItem[]
   note?: React.ReactNode
   actions?: React.ReactNode
+  eyebrow?: React.ReactNode
   className?: string
   children?: React.ReactNode
 }) {
@@ -46,6 +48,7 @@ function DocsPage({
         )}
       >
         <header className="flex flex-col gap-2">
+          {eyebrow}
           <div className="flex flex-wrap items-start justify-between gap-x-4 gap-y-3">
             <h1 className="min-w-0 text-3xl font-semibold tracking-tight text-balance wrap-break-word">
               {t(title)}

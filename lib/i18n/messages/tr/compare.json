@@ -1,0 +1,13 @@
+{
+  "Comparisons": "Karşılaştırmalar",
+  "Component by component": "Bileşen bileşen",
+  "Each page puts one HextaUI component next to its shadcn/ui version: the parts, variants and props that differ, read from both sources, and the command to switch.": "Her sayfa bir HextaUI bileşenini shadcn/ui sürümünün yanına koyar: iki kaynaktan okunan farklı parçalar, varyantlar ve props ile geçiş komutu.",
+  "HextaUI compared with shadcn/ui, AI Elements and more": "HextaUI ile shadcn/ui, AI Elements ve diğerleri",
+  "HextaUI vs AI Elements": "HextaUI ve AI Elements",
+  "HextaUI vs assistant-ui": "HextaUI ve assistant-ui",
+  "HextaUI vs prompt-kit": "HextaUI ve prompt-kit",
+  "Honest comparisons between HextaUI and the libraries people weigh it against, with when each one is the better choice. Facts were checked against each project’s source and docs on the date each page states.": "HextaUI ile karşılaştırıldığı kütüphaneler arasında, hangisinin ne zaman daha iyi olduğunu da söyleyen dürüst karşılaştırmalar. Bilgiler, her sayfada belirtilen tarihte her projenin kaynağı ve belgeleriyle kontrol edildi.",
+  "How HextaUI compares with shadcn/ui, AI Elements, assistant-ui, prompt-kit and shadcn AI chat templates, plus shadcn/ui comparisons component by component.": "HextaUI’nin shadcn/ui, AI Elements, assistant-ui, prompt-kit ve shadcn yapay zeka sohbet şablonlarıyla karşılaştırması ve bileşen bileşen shadcn/ui karşılaştırmaları.",
+  "Libraries": "Kütüphaneler",
+  "shadcn AI chat templates": "shadcn yapay zekâ sohbet şablonları"
+}

@@ -64,6 +64,9 @@ function MoreComparisons({ current }: { current: string }) {
   return (
     <LegalSection title="More comparisons">
       <DocsList>
+        <li>
+          <LegalLink href="/compare">All comparisons</LegalLink>
+        </li>
         {comparisons
           .filter((page) => page.href !== current)
           .map((page) => (

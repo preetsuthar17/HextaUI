@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "面のスタイル、折り返しまたはコンパクトなセル、固定ヘッダー、固定列、スクロールのヒントを備えたレスポンシブなテーブル。",
   "A wrapping row for the search, the View menu and your own filters. Accepts every `div` prop and carries `data-table-toolbar` as its `data-slot`.": "検索、View メニュー、独自のフィルター用の、折り返す行。`div` のすべての props を受け付け、`data-slot` として `data-table-toolbar` を持ちます。",
   "Accessible name of the clear button.": "クリアボタンのアクセシブルな名前。",
   "Applied to the scroll container.": "スクロールコンテナに適用されます。",

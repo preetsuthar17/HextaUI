@@ -76,7 +76,6 @@
   "Shows a skeleton or an error instead of the children.": "Affiche un skeleton ou une erreur à la place des enfants.",
   "Shows each group's name above it. Turn off to separate groups by space alone; the names still label the groups for screen readers.": "Affiche le nom de chaque groupe au-dessus de lui. Désactivez pour séparer les groupes par l’espace seul ; les noms continuent de libeller les groupes pour les lecteurs d’écran.",
   "Shows the options. Usually the parent switch's value.": "Affiche les options. Généralement la valeur du switch parent.",
-  "Team": "Équipe",
   "The choices, in order.": "Les choix, dans l’ordre.",
   "The chosen option.": "L’option choisie.",
   "The chosen value.": "La valeur choisie.",

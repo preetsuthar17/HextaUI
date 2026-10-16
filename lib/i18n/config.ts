@@ -28,9 +28,16 @@ const openGraphLocales: Record<Locale, string> = {
   ja: "ja_JP",
 }
 
-const localizedPrefixes = ["/docs", "/blocks", "/compare", "/blog"]
+const localizedPrefixes = [
+  "/docs",
+  "/blocks",
+  "/compare",
+  "/blog",
+  "/components",
+]
 const localizedPages = ["/", "/components"]
 const unlocalizedDocs = ["/docs/stress", "/docs/api"]
+const unlocalizedPattern = /^\/docs\/[^/]+\/examples(\/|$)/
 
 function isLocale(value: string | undefined): value is Locale {
   return locales.includes(value as Locale)
@@ -52,6 +59,7 @@ function splitHref(href: string) {
 function isLocalizedPath(path: string) {
   if (/\.[a-z0-9]+$/i.test(path)) return false
   if (unlocalizedDocs.includes(path)) return false
+  if (unlocalizedPattern.test(path)) return false
   return (
     localizedPages.includes(path) ||
     localizedPrefixes.some(

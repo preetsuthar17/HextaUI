@@ -33,7 +33,6 @@
   "Sends the invites from the address box or the note. Ctrl+Enter on Windows and Linux.",
   "Shows a row that lets people with a verified company email join without an invite.",
   "Skip words without an @ when at least one address is present, and count them in skipped.",
-  "Team",
   "Team Members & Invites block for React & shadcn/ui",
   "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.",

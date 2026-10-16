@@ -13,6 +13,9 @@ type PageMetadataOptions = {
   title?: string
   description?: string
   markdown?: string
+  image?: string
+  imageAlt?: string
+  type?: "website" | "article"
 }
 
 const maxDescriptionLength = 160
@@ -39,14 +42,17 @@ function pageMetadata({
   title,
   description: fullDescription = siteMetaDescription,
   markdown,
+  image: imageUrl = "/opengraph-image",
+  imageAlt,
+  type = "website",
 }: PageMetadataOptions): Metadata {
   const description = clampDescription(fullDescription)
   const socialTitle = title ? `${title} — ${siteName}` : siteTitle
   const image = {
-    url: "/opengraph-image",
+    url: imageUrl,
     width: 1200,
     height: 630,
-    alt: siteTitle,
+    alt: imageAlt ?? (title ? socialTitle : siteTitle),
   }
 
   return {
@@ -62,7 +68,7 @@ function pageMetadata({
       description,
       url: path,
       siteName,
-      type: "website",
+      type,
       locale: "en_US",
       images: [image],
     },
@@ -76,4 +82,8 @@ function pageMetadata({
   }
 }
 
-export { clampDescription, pageMetadata }
+function ogImagePath(group: string, slug: string) {
+  return `/og/${group}/${slug}.png`
+}
+
+export { clampDescription, ogImagePath, pageMetadata }

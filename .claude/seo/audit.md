@@ -146,7 +146,48 @@ Left for later, on purpose: "{component} vs {component}" guides and more competi
 
 ## Before and after
 
-Filled in after implementation.
+Measured on the build of `claude/seo-programmatic-16fde8` after rebasing on `main`, which already contains the blog from `feat/blog`. The Blog row is that branch's work, listed so the totals add up.
+
+| Page set | English before | English after | Translated before | Translated after |
+| --- | --- | --- | --- | --- |
+| Other pages | 11 | 11 | 12 | 12 |
+| Blocks | 26 | 26 | 156 | 156 |
+| Library comparisons | 5 | 5 | 30 | 30 |
+| Docs pages | 83 | 83 | 492 | 492 |
+| Blog | 0 | 6 | 0 | 36 |
+| shadcn/ui component comparisons | 0 | 38 | 0 | 228 |
+| Compare index | 0 | 1 | 0 | 6 |
+| Component category hubs | 0 | 8 | 0 | 48 |
+| Example pages | 0 | 599 | 0 | 0 |
+| **Total indexable** | | | | **815 → 1785** |
+
+| Coverage across indexable pages | Before | After |
+| --- | --- | --- |
+| Page-level JSON-LD | 757 of 815 (93 %) | 1785 of 1785 (100 %) |
+| BreadcrumbList | 728 of 815 (89 %) | 1778 of 1785 (99.6 %, all but the seven home pages) |
+| ItemList | 0 | 77 |
+| TechArticle | 728 | 1327 |
+| FAQPage | 29 | 29 |
+| Page-specific OG image | 0 of 815 (0 %) | 1474 of 1785 (83 %) |
+| Deepest page, clicks from home | 3 | 3 |
+
+Other measurements after the change:
+
+| Measure | Before | After |
+| --- | --- | --- |
+| Sitemap URLs | 815 | 1,785 |
+| Sitemap `image:image` entries | 0 | 1,785 |
+| Files in `out/` (Cloudflare Pages limit 20,000) | 7,257 | 14,428 |
+| Largest HTML page | 1.17 MB `/ja/docs/sidebar` | 1.41 MB `/docs/data-table/examples/sticky-header` |
+| JSON-LD nodes checked by `scripts/check-structured-data.ts` | not checked | 9,018, all valid |
+
+What changed against the plan:
+
+- **Done:** example pages, per-component shadcn/ui comparisons (38 components with three or more concrete differences, 22 with fewer were left out as too thin), eight category hubs, the `/compare` index, BreadcrumbList on every indexable page except the seven home pages, ItemList on every index page, per-page OG images, image sitemap entries, `lastmod` for every new URL from its sources' git history, a JSON-LD check in the build, and llms.txt listings.
+- **Not split:** the sitemap stays one file. At 1,785 URLs and well under 50 MB it is below the "few thousand" threshold, and the blog branch edits the same file.
+- **Skipped:** WebSite SearchAction. Google retired the sitelinks search box in November 2024, and the ⌘K palette has no URL that opens a query without changing the shipped Command component's API.
+- **Skipped:** title rewrites for `/pricing`, `/about`, `/contact`, `/changelog` and `/sponsor`. They are brand and navigation pages with little search demand, so the budget went to the page sets.
+- **Watch:** the largest example page is 0.09 MB under the 1.5 MB budget, and the build now uses 72 % of the Pages file limit. Translating the example pages would cross it.
 
 ## Appendix: every English indexable route
 

@@ -94,6 +94,7 @@ function DocsSection({
   description,
   id,
   level = 2,
+  action,
   className,
   children,
 }: {
@@ -101,6 +102,7 @@ function DocsSection({
   description?: React.ReactNode
   id?: string
   level?: 2 | 3
+  action?: React.ReactNode
   className?: string
   children?: React.ReactNode
 }) {
@@ -113,13 +115,26 @@ function DocsSection({
       )}
     >
       <div className="flex flex-col gap-1.5">
-        <DocsHeading
-          id={id ?? getDocsSlug(title)}
-          level={level}
-          className={cn("mt-0", level === 2 ? "text-xl" : "text-base")}
-        >
-          {t(title)}
-        </DocsHeading>
+        {action ? (
+          <div className="flex items-baseline justify-between gap-4">
+            <DocsHeading
+              id={id ?? getDocsSlug(title)}
+              level={level}
+              className={cn("mt-0", level === 2 ? "text-xl" : "text-base")}
+            >
+              {t(title)}
+            </DocsHeading>
+            {action}
+          </div>
+        ) : (
+          <DocsHeading
+            id={id ?? getDocsSlug(title)}
+            level={level}
+            className={cn("mt-0", level === 2 ? "text-xl" : "text-base")}
+          >
+            {t(title)}
+          </DocsHeading>
+        )}
         {description ? (
           <p className="text-base/7 text-pretty text-muted-foreground">
             {translateNode(description)}

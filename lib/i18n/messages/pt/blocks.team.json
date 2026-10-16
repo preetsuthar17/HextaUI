@@ -33,7 +33,6 @@
   "Sends the invites from the address box or the note. Ctrl+Enter on Windows and Linux.": "Envia os convites da caixa de endereços ou da nota. Ctrl+Enter no Windows e no Linux.",
   "Shows a row that lets people with a verified company email join without an invite.": "Mostra uma linha que permite que pessoas com um e-mail corporativo verificado entrem sem convite.",
   "Skip words without an @ when at least one address is present, and count them in skipped.": "Ignora palavras sem @ quando há pelo menos um endereço e as conta em skipped.",
-  "Team": "Equipe",
   "Team Members & Invites block for React & shadcn/ui": "Bloco de Membros da Equipe e Convites para React e shadcn/ui",
   "TeamSettings": "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.": "TeamSettings é controlado: passe members, invites e seats e atualize-os em cada handler. Retorne { email: message } de onInvite para manter os endereços que o seu servidor recusou, com o motivo em cada chip.",

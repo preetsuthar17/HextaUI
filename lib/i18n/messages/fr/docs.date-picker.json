@@ -1,7 +1,6 @@
 {
   "<l0/> shows two months on larger screens. The first click always starts a new range, even when one is set, and the second click finishes it in either order and closes the picker.": "<l0/> affiche deux mois sur les grands écrans. Le premier clic démarre toujours une nouvelle plage, même si une plage est définie, et le second la termine dans n’importe quel ordre et ferme le sélecteur.",
   "A disabled trigger can still show a value.": "Un déclencheur désactivé peut quand même afficher une valeur.",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "Un panneau flottant ancré à un déclencheur, qui se redimensionne en douceur avec son contenu et suit la direction du déclencheur.",
   "Accessible name of the popover, heading of the sheet.": "Nom accessible du popover, titre de la sheet.",
   "Adds a Clear button below the calendar once there is a value.": "Ajoute un bouton Clear sous le calendrier dès qu’il y a une valeur.",
   "Applied to the trigger, which is w-60 by default.": "Appliqué au déclencheur, qui est w-60 par défaut.",

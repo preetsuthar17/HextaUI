@@ -33,7 +33,6 @@
   "Sends the invites from the address box or the note. Ctrl+Enter on Windows and Linux.": "Davetleri adres kutusundan ya da nottan gönderir. Windows ve Linux'ta Ctrl+Enter.",
   "Shows a row that lets people with a verified company email join without an invite.": "Doğrulanmış bir şirket e-postası olan kişilerin davetsiz katılmasına izin veren bir satır gösterir.",
   "Skip words without an @ when at least one address is present, and count them in skipped.": "En az bir adres varken @ içermeyen kelimeleri atlar ve skipped içinde sayar.",
-  "Team": "Ekip",
   "Team Members & Invites block for React & shadcn/ui": "React ve shadcn/ui için Team Members & Invites bloğu",
   "TeamSettings": "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.": "TeamSettings kontrollüdür: members, invites ve seats iletin ve her işleyicide güncelleyin. Sunucunuzun reddettiği adresleri her çipte nedeniyle korumak için onInvite'tan { email: message } döndürün.",

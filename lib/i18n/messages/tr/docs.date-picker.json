@@ -1,7 +1,6 @@
 {
   "<l0/> shows two months on larger screens. The first click always starts a new range, even when one is set, and the second click finishes it in either order and closes the picker.": "<l0/> büyük ekranlarda iki ay gösterir. İlk tıklama, bir aralık ayarlı olsa bile her zaman yeni bir aralık başlatır; ikinci tıklama onu her iki sırada da bitirir ve seçiciyi kapatır.",
   "A disabled trigger can still show a value.": "Devre dışı bir trigger yine de bir değer gösterebilir.",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "Bir trigger'a sabitlenen, içeriğiyle birlikte düzgünce yeniden boyutlanan ve trigger'ın yönünü izleyen yüzen bir panel.",
   "Accessible name of the popover, heading of the sheet.": "Popover'ın erişilebilir adı, sheet'in başlığı.",
   "Adds a Clear button below the calendar once there is a value.": "Bir değer olduğunda takvimin altına bir Clear düğmesi ekler.",
   "Applied to the trigger, which is w-60 by default.": "Varsayılan olarak w-60 olan trigger'a uygulanır.",

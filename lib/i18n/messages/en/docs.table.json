@@ -1,5 +1,4 @@
 [
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.",
   "Alignment, pinned columns and scroll fades follow the reading direction.",
   "Below the table. In the surface variant it sits inside the frame.",
   "Cell padding. Set by size.",

@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "Eine responsive Tabelle mit Flächenstil, umbrechenden oder kompakten Zellen, fixierten Kopfzeilen, angehefteten Spalten und Scroll-Hinweisen.",
   "A wrapping row for the search, the View menu and your own filters. Accepts every `div` prop and carries `data-table-toolbar` as its `data-slot`.": "Eine umbrechende Zeile für die Suche, das Ansichtsmenü und deine eigenen Filter. Akzeptiert jede `div`-Prop und trägt `data-table-toolbar` als ihr `data-slot`.",
   "Accessible name of the clear button.": "Zugänglicher Name des Löschen-Buttons.",
   "Applied to the scroll container.": "Wird auf den Scroll-Container angewendet.",

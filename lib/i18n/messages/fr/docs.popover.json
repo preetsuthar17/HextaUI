@@ -1,7 +1,6 @@
 {
   "<l0/> and <l1/> label and describe the popup for screen readers. Include a title whenever the popup contains more than a sentence.": "<l0/> et <l1/> nomment et décrivent la popup pour les lecteurs d'écran. Incluez un titre dès que la popup contient plus d'une phrase.",
   "A `disabled` trigger never opens its popover.": "Un déclencheur `disabled` n'ouvre jamais son popover.",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "Un panneau flottant ancré à un déclencheur, qui se redimensionne en douceur avec son contenu et suit la direction du déclencheur.",
   "A plain <l0/> that stacks the title and description.": "Un simple <l0/> qui empile le titre et la description.",
   "A popover inside another popover or a sheet layers above its parent. Clicks inside the child keep the parent open, and Escape closes only the topmost layer.": "Un popover dans un autre popover ou dans une sheet se superpose à son parent. Les clics dans l'enfant gardent le parent ouvert, et Escape ne ferme que la couche la plus haute.",
   "Built on the Base UI popover. Every part accepts the props of the primitive it wraps.": "Construit sur le popover de Base UI. Chaque partie accepte les props de la primitive qu'elle enveloppe.",

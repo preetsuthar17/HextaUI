@@ -1,4 +1,6 @@
 import type { Metadata } from "next"
+
+import { JsonLd } from "@/components/site/json-ld"
 import Link from "@/components/site/link"
 
 import { BlocksCatalog } from "@/components/site/blocks-catalog"
@@ -6,6 +8,7 @@ import { CatalogViewToggle } from "@/components/site/catalog-view"
 import { blockSections, proBlocks } from "@/lib/pro/catalog"
 import { T, t } from "@/lib/i18n/rich"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 
 export const metadata: Metadata = pageMetadata({
   title: "React blocks for AI products, built on shadcn/ui",
@@ -17,6 +20,19 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col gap-10 px-4 py-16">
+      <JsonLd
+        data={pageJsonLd({
+          path: "/blocks",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [{ name: "Blocks", path: "/blocks" }],
+          type: "CollectionPage",
+          items: proBlocks.map((block) => ({
+            name: block.title,
+            path: `/blocks/${block.name}`,
+          })),
+        })}
+      />
       <header className="flex items-end justify-between gap-4">
         <div className="flex flex-col gap-1">
           <h1 className="text-xl font-semibold tracking-tight">

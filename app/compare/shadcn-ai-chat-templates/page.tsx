@@ -23,6 +23,13 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[
+        { name: "Compare", path: "/compare" },
+        {
+          name: "shadcn AI chat templates",
+          path: "/compare/shadcn-ai-chat-templates",
+        },
+      ]}
       title="shadcn/ui AI chat templates"
       lead="A shadcn/ui AI chat template is chat UI built from shadcn/ui components that you copy into your own project. Some give you pieces, some give you a whole app. This page compares seven options as of October 2026, and lists what a chat has to handle before you ship it."
     >

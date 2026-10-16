@@ -25,6 +25,7 @@
   "HextaUI and assistant-ui": "HextaUI et assistant-ui",
   "HextaUI compared with assistant-ui": "HextaUI comparé à assistant-ui",
   "HextaUI starts from the screen. Each block is a component you pass messages to, in the shape `useChat` returns, with the hard states already designed:": "HextaUI part de l’écran. Chaque bloc est un composant auquel vous passez des messages, au format renvoyé par `useChat`, avec les états difficiles déjà conçus :",
+  "HextaUI vs assistant-ui": "HextaUI vs assistant-ui",
   "HextaUI vs assistant-ui: chat runtime or screens": "HextaUI vs assistant-ui : runtime ou écrans finis",
   "Is assistant-ui free?": "assistant-ui est-il gratuit ?",
   "Markdown text, Streaming text": "Markdown text, Streaming text",

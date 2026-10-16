@@ -21,6 +21,8 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[{ name: "About", path: "/about" }]}
+      pageType="AboutPage"
       title="About HextaUI"
       lead="HextaUI is an open-source React component library built on top of shadcn/ui, made by Preet Suthar, an independent developer based in India."
     >

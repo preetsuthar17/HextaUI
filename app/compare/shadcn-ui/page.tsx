@@ -13,6 +13,10 @@ import { docsComponents, docsHooks, docsUtilities } from "@/lib/docs"
 import { getRegistryItemUrl } from "@/lib/docs-registry"
 import { pageMetadata } from "@/lib/metadata"
 import { proBlocks } from "@/lib/pro/catalog"
+import {
+  getShadcnComparisonHref,
+  getShadcnComparisons,
+} from "@/lib/shadcn-compare"
 
 export const metadata: Metadata = pageMetadata({
   title: "HextaUI vs shadcn/ui: what HextaUI adds on top",
@@ -24,6 +28,10 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[
+        { name: "Compare", path: "/compare" },
+        { name: "HextaUI vs shadcn/ui", path: "/compare/shadcn-ui" },
+      ]}
       title="HextaUI and shadcn/ui"
       lead="HextaUI is not a replacement for shadcn/ui. It is a registry you add to a shadcn/ui project, with the same CLI, the same component names and the same theme tokens. This page explains what it adds and when you don’t need it."
     >
@@ -154,6 +162,22 @@ export default function Page() {
           <LegalLink href="/docs/installation">Installation</LegalLink> covers
           the theme tokens they expect.
         </DocsParagraph>
+      </LegalSection>
+
+      <LegalSection title="Component by component">
+        <DocsParagraph>
+          Each of these pages puts one HextaUI component next to its shadcn/ui
+          version, with the parts, variants and props that differ.
+        </DocsParagraph>
+        <ul className="mt-4 flex flex-wrap gap-x-4 gap-y-2 text-base/7">
+          {getShadcnComparisons().map((item) => (
+            <li key={item.slug}>
+              <LegalLink href={getShadcnComparisonHref(item.slug)}>
+                {item.name}
+              </LegalLink>
+            </li>
+          ))}
+        </ul>
       </LegalSection>
 
       <MoreComparisons current="/compare/shadcn-ui" />

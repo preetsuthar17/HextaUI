@@ -1,7 +1,6 @@
 {
   "<l0/> and <l1/> label and describe the popup for screen readers. Include a title whenever the popup contains more than a sentence.": "<l0/> と <l1/> は、スクリーンリーダー向けにポップアップのラベルと説明を提供します。ポップアップに1文より長い内容が入る場合は、必ずタイトルを含めてください。",
   "A `disabled` trigger never opens its popover.": "`disabled` のトリガーは popover を開きません。",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "トリガーにアンカーされたフローティングパネル。コンテンツに合わせてなめらかにサイズが変わり、トリガーの方向に従います。",
   "A plain <l0/> that stacks the title and description.": "タイトルと説明を縦に並べるだけの <l0/>。",
   "A popover inside another popover or a sheet layers above its parent. Clicks inside the child keep the parent open, and Escape closes only the topmost layer.": "別の popover や sheet の内側にある popover は、親の上に重なります。子の内側でのクリックでは親は開いたままで、Escape は最上位のレイヤーだけを閉じます。",
   "Built on the Base UI popover. Every part accepts the props of the primitive it wraps.": "Base UI の popover 上に構築されています。すべてのパーツは、ラップしているプリミティブの props を受け付けます。",

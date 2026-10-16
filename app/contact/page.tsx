@@ -20,6 +20,8 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <InfoPage
+      breadcrumbs={[{ name: "Contact", path: "/contact" }]}
+      pageType="ContactPage"
       title="Contact HextaUI"
       lead="HextaUI is run by Preet Suthar, an independent developer based in India."
     >

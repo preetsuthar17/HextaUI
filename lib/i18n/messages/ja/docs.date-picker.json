@@ -1,7 +1,6 @@
 {
   "<l0/> shows two months on larger screens. The first click always starts a new range, even when one is set, and the second click finishes it in either order and closes the picker.": "<l0/> は、大きな画面では 2 か月分を表示します。最初のクリックは、すでに範囲が設定されていても常に新しい範囲を開始し、2 回目のクリックは、どちらの順序でも範囲を確定してピッカーを閉じます。",
   "A disabled trigger can still show a value.": "無効なトリガーでも、値を表示できます。",
-  "A floating panel anchored to a trigger that resizes smoothly with its content and follows the trigger’s direction.": "トリガーにアンカーされたフローティングパネル。コンテンツに合わせてなめらかにサイズが変わり、トリガーの方向に従います。",
   "Accessible name of the popover, heading of the sheet.": "ポップオーバーのアクセシブルな名前、およびシートの見出し。",
   "Adds a Clear button below the calendar once there is a value.": "値が設定されると、カレンダーの下に Clear ボタンを追加します。",
   "Applied to the trigger, which is w-60 by default.": "デフォルトで w-60 のトリガーに適用されます。",

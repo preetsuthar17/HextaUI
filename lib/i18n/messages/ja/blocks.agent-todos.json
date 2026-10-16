@@ -3,7 +3,6 @@
   "A one-line pill with the current step, opening the list in a popover.": "現在のステップを表示する1行のピルです。ポップオーバーでリストを開きます。",
   "AI Agent Plan & Todo List block for React & shadcn/ui": "React & shadcn/ui向けのAIエージェントのプラン & ToDoリストブロック",
   "Adapters from each agent’s tool format to Todo items.": "各エージェントのツール形式からTodo項目へのアダプターです。",
-  "Agent Todos": "Agent Todos",
   "AgentTodos": "AgentTodos",
   "AgentTodosReview": "AgentTodosReview",
   "AgentTodosStatus": "AgentTodosStatus",

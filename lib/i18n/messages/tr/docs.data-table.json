@@ -1,5 +1,4 @@
 {
-  "A responsive table with a surface style, wrapping or compact cells, sticky headers, pinned columns and scroll hints.": "Yüzey stili, sarmalayan veya kompakt hücreler, yapışkan başlıklar, sabitlenmiş sütunlar ve kaydırma ipuçları olan duyarlı bir tablo.",
   "A wrapping row for the search, the View menu and your own filters. Accepts every `div` prop and carries `data-table-toolbar` as its `data-slot`.": "Arama, View menüsü ve kendi filtreleriniz için sarmalayan bir satır. Tüm `div` prop'larını kabul eder ve `data-slot` olarak `data-table-toolbar` taşır.",
   "Accessible name of the clear button.": "Temizle düğmesinin erişilebilir adı.",
   "Applied to the scroll container.": "Kaydırma kapsayıcısına uygulanır.",

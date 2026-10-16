@@ -33,7 +33,6 @@
   "Sends the invites from the address box or the note. Ctrl+Enter on Windows and Linux.": "アドレスボックスまたはメモから招待を送信します。WindowsとLinuxではCtrl+Enterです。",
   "Shows a row that lets people with a verified company email join without an invite.": "確認済みの会社のメールアドレスを持つ人が、招待なしで参加できるようにする行を表示します。",
   "Skip words without an @ when at least one address is present, and count them in skipped.": "少なくとも1つのアドレスがある場合は、@を含まない単語をスキップし、skippedに数えます。",
-  "Team": "Team",
   "Team Members & Invites block for React & shadcn/ui": "React & shadcn/ui向けのチームメンバー & 招待ブロック",
   "TeamSettings": "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.": "TeamSettingsは制御コンポーネントです。members、invites、seatsを渡し、各ハンドラーで更新してください。サーバーが拒否したアドレスを、各チップに理由を付けて保持するには、onInviteから { email: message } を返します。",

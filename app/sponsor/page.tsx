@@ -1,9 +1,12 @@
 import type { Metadata } from "next"
 
+import { JsonLd } from "@/components/site/json-ld"
+
 import { DocsList, DocsParagraph } from "@/components/docs/docs-content"
 import { ContactEmail, LegalSection } from "@/components/legal/legal-page"
 import { SponsorForm } from "@/components/site/sponsor-form"
 import { pageMetadata } from "@/lib/metadata"
+import { pageJsonLd } from "@/lib/structured-data"
 import { currentSponsor, sponsorPrice, sponsorReviewDays } from "@/lib/sponsor"
 
 export const metadata: Metadata = pageMetadata({
@@ -15,6 +18,15 @@ export const metadata: Metadata = pageMetadata({
 export default function Page() {
   return (
     <main className="mx-auto flex w-full max-w-3xl flex-1 flex-col px-4 pt-16 pb-24">
+      <JsonLd
+        data={pageJsonLd({
+          path: "/sponsor",
+          name: String(metadata.title),
+          description: String(metadata.description),
+          breadcrumbs: [{ name: "Sponsor", path: "/sponsor" }],
+          type: "WebPage",
+        })}
+      />
       <header className="flex flex-col gap-3">
         <h1 className="text-3xl font-semibold tracking-tight text-balance">
           Sponsor HextaUI

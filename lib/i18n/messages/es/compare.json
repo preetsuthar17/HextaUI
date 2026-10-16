@@ -1,0 +1,13 @@
+{
+  "Comparisons": "Comparaciones",
+  "Component by component": "Componente a componente",
+  "Each page puts one HextaUI component next to its shadcn/ui version: the parts, variants and props that differ, read from both sources, and the command to switch.": "Cada página pone un componente de HextaUI junto a su versión de shadcn/ui: las partes, variantes y props que cambian, leídas del código de ambos, y el comando para cambiar.",
+  "HextaUI compared with shadcn/ui, AI Elements and more": "HextaUI comparado con shadcn/ui, AI Elements y más",
+  "HextaUI vs AI Elements": "HextaUI vs AI Elements",
+  "HextaUI vs assistant-ui": "HextaUI vs assistant-ui",
+  "HextaUI vs prompt-kit": "HextaUI vs prompt-kit",
+  "Honest comparisons between HextaUI and the libraries people weigh it against, with when each one is the better choice. Facts were checked against each project’s source and docs on the date each page states.": "Comparaciones honestas entre HextaUI y las librerías con las que se compara, con cuándo conviene cada una. Los datos se comprobaron en el código y la documentación de cada proyecto en la fecha que indica cada página.",
+  "How HextaUI compares with shadcn/ui, AI Elements, assistant-ui, prompt-kit and shadcn AI chat templates, plus shadcn/ui comparisons component by component.": "Cómo se compara HextaUI con shadcn/ui, AI Elements, assistant-ui, prompt-kit y las plantillas de chat con IA de shadcn, más comparaciones con shadcn/ui componente a componente.",
+  "Libraries": "Librerías",
+  "shadcn AI chat templates": "Plantillas de chat con IA para shadcn"
+}

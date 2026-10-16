@@ -1,7 +1,9 @@
 import * as React from "react"
 import Link from "@/components/site/link"
 
+import { JsonLd } from "@/components/site/json-ld"
 import { siteContactEmail } from "@/lib/site"
+import { pageJsonLd } from "@/lib/structured-data"
 import { t } from "@/lib/i18n/rich"
 
 const legalPages = [
@@ -80,6 +82,14 @@ function LegalPage({
 }) {
   return (
     <main className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 pt-16 pb-24">
+      <JsonLd
+        data={pageJsonLd({
+          path: href,
+          name: title,
+          description: `${title} for HextaUI and HextaUI Pro.`,
+          breadcrumbs: [{ name: title, path: href }],
+        })}
+      />
       <nav aria-label="Legal">
         <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm">
           {legalPages.map((page) => (

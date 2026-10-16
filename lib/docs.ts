@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 
-import { pageMetadata } from "@/lib/metadata"
+import { ogImagePath, pageMetadata } from "@/lib/metadata"
 
 type DocsNavItem = {
   title: string
@@ -842,7 +842,14 @@ function getDocsComponentMetadata(slug: string): Metadata {
     description: component.description,
     path: `/docs/${component.slug}`,
     markdown: `/docs/${component.slug}.md`,
+    image: ogImagePath("docs", component.slug),
+    type: "article",
   })
+}
+
+function getDocsExampleHref(file: string) {
+  const [dir, id] = file.split("/")
+  return `/docs/${dir}/examples/${id}`
 }
 
 function getDocsSlug(value: string) {
@@ -866,9 +873,11 @@ export {
   docsTitles,
   getDocsComponent,
   getDocsComponentMetadata,
+  getDocsExampleHref,
   getDocsPager,
   getDocsSlug,
   getDocsTitle,
+  titleCase,
 }
 export type {
   DocsCategory,

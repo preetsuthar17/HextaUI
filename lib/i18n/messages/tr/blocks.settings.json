@@ -76,7 +76,6 @@
   "Shows a skeleton or an error instead of the children.": "children yerine bir skeleton ya da hata gösterir.",
   "Shows each group's name above it. Turn off to separate groups by space alone; the names still label the groups for screen readers.": "Her grubun adını üstünde gösterir. Grupları yalnızca boşlukla ayırmak için kapatın; adlar yine de ekran okuyucular için grupları etiketler.",
   "Shows the options. Usually the parent switch's value.": "Seçenekleri gösterir. Genellikle üst anahtarın değeri.",
-  "Team": "Ekip",
   "The choices, in order.": "Seçenekler, sırayla.",
   "The chosen option.": "Seçilen seçenek.",
   "The chosen value.": "Seçilen değer.",
