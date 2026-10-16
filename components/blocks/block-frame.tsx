@@ -9,6 +9,10 @@ import {
 } from "@tabler/icons-react"
 import { cn } from "cn"
 
+import {
+  CopyPromptButton,
+  OpenInV0Link,
+} from "@/components/blocks/block-actions"
 import { Button } from "@/components/ui/button"
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 
@@ -20,13 +24,21 @@ const viewports = [
 
 type Viewport = (typeof viewports)[number]["value"]
 
-function BlockFrame({ name, title }: { name: string; title: string }) {
+function BlockFrame({
+  name,
+  title,
+  free,
+}: {
+  name: string
+  title: string
+  free?: boolean
+}) {
   const [viewport, setViewport] = React.useState<Viewport>("desktop")
   const src = `/preview/blocks/${name}`
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="flex items-center justify-between gap-2">
+      <div className="flex flex-wrap items-center justify-between gap-2">
         <ToggleGroup
           variant="outline"
           size="sm"
@@ -43,16 +55,20 @@ function BlockFrame({ name, title }: { name: string; title: string }) {
             </ToggleGroupItem>
           ))}
         </ToggleGroup>
-        <Button
-          variant="ghost"
-          size="sm"
-          nativeButton={false}
-          className="ms-auto"
-          render={<a href={src} target="_blank" rel="noreferrer" />}
-        >
-          Open in new tab
-          <IconArrowUpRight data-icon="inline-end" />
-        </Button>
+        <div className="ms-auto flex flex-wrap items-center justify-end gap-1">
+          <CopyPromptButton block={{ name, title, free }} />
+          {free ? <OpenInV0Link name={name} /> : null}
+          <Button
+            variant="ghost"
+            size="sm"
+            nativeButton={false}
+            aria-label="Open in new tab"
+            render={<a href={src} target="_blank" rel="noreferrer" />}
+          >
+            <span className="max-sm:sr-only">Open in new tab</span>
+            <IconArrowUpRight data-icon="inline-end" />
+          </Button>
+        </div>
       </div>
       <div className="overflow-hidden rounded-xl border bg-muted">
         <iframe

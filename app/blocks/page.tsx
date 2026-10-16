@@ -1,8 +1,7 @@
 import type { Metadata } from "next"
 import Link from "@/components/site/link"
 
-import { BlockCard } from "@/components/site/block-card"
-import { CatalogGrid, CatalogList } from "@/components/site/catalog-card"
+import { BlocksCatalog } from "@/components/site/blocks-catalog"
 import { CatalogViewToggle } from "@/components/site/catalog-view"
 import { blockSections, proBlocks } from "@/lib/pro/catalog"
 import { T, t } from "@/lib/i18n/rich"
@@ -48,28 +47,21 @@ export default function Page() {
         </div>
         {proBlocks.length > 0 ? <CatalogViewToggle /> : null}
       </header>
-      {blockSections.map((section) => (
-        <section key={section.title} className="flex flex-col gap-3">
-          <h2 className="text-sm font-medium text-muted-foreground">
-            {t(section.title)}
-          </h2>
-          <CatalogGrid>
-            {section.blocks.map((block) => (
-              <BlockCard
-                key={block.name}
-                name={block.name}
-                title={block.title}
-              />
-            ))}
-          </CatalogGrid>
-          <CatalogList
-            items={section.blocks.map((block) => ({
-              href: `/blocks/${block.name}`,
+      {proBlocks.length > 0 ? (
+        <BlocksCatalog
+          sections={blockSections.map((section) => ({
+            category: section.category,
+            title: t(section.title),
+            blocks: section.blocks.map((block) => ({
+              name: block.name,
               title: block.title,
-            }))}
-          />
-        </section>
-      ))}
+              description: block.description,
+              category: block.category,
+              free: block.free,
+            })),
+          }))}
+        />
+      ) : null}
     </main>
   )
 }

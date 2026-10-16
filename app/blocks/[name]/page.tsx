@@ -31,20 +31,10 @@ import { absoluteUrl } from "@/lib/site"
 import { docsArticleJsonLd } from "@/lib/structured-data"
 import { blocksNavItems, getProBlock, proBlockParams } from "@/lib/pro/catalog"
 import { getNextBlocks } from "@/lib/pro/free-blocks"
+import { proRegistryConfig } from "@/lib/pro/prompt"
 import { getProBlockTitle } from "@/lib/pro/titles"
 
 export const dynamicParams = false
-
-const registryCode = `{
-  "registries": {
-    "@hextaui-pro": {
-      "url": "https://hextaui.com/r/pro/{name}.json",
-      "headers": {
-        "Authorization": "Bearer \${HEXTAUI_PRO_TOKEN}"
-      }
-    }
-  }
-}`
 
 const linkClassName = "text-foreground underline underline-offset-4"
 
@@ -119,7 +109,7 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
         })}
       />
       <div className="mt-8">
-        <BlockFrame name={block.name} title={block.title} />
+        <BlockFrame name={block.name} title={block.title} free={block.free} />
       </div>
 
       {overview?.length ? (
@@ -183,7 +173,7 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
             </UnlessPro>
             <DocsStep step={2} title="Add the Pro registry to components.json">
               <DocsCodeBlock
-                code={registryCode}
+                code={proRegistryConfig}
                 lang="json"
                 title="components.json"
               />

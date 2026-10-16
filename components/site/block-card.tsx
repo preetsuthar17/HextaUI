@@ -1,6 +1,7 @@
 "use client"
 
 import * as React from "react"
+import { IconHeart, IconHeartFilled } from "@tabler/icons-react"
 
 import {
   CatalogCard,
@@ -8,6 +9,7 @@ import {
   CatalogCardPreview,
 } from "@/components/site/catalog-card"
 import { useInViewOnce } from "@/components/site/use-in-view-once"
+import { useChrome } from "@/lib/i18n/chrome"
 
 const maxLoading = 2
 const waiting: (() => void)[] = []
@@ -57,13 +59,55 @@ function useLoadSlot(requested: boolean) {
   return [granted, done] as const
 }
 
-function BlockCard({ name, title }: { name: string; title: string }) {
+function FavoriteToggle({
+  pressed,
+  onPressedChange,
+}: {
+  pressed: boolean
+  onPressedChange: (pressed: boolean) => void
+}) {
+  const c = useChrome()
+
+  return (
+    <button
+      type="button"
+      aria-label={c("Favorite")}
+      aria-pressed={pressed}
+      onClick={() => onPressedChange(!pressed)}
+      className="absolute end-2.5 top-2.5 z-10 inline-flex size-8 cursor-pointer items-center justify-center rounded-full bg-background/90 text-muted-foreground inset-ring-(length:--hairline) inset-ring-border backdrop-blur-sm transition-colors duration-200 ease-out-quint outline-none select-none hover:bg-background hover:text-foreground focus-visible:ring-3 focus-visible:ring-focus-ring focus-visible:inset-ring-ring focus-visible:outline-hidden aria-pressed:text-foreground motion-reduce:transition-none dark:bg-background/80 dark:hover:bg-background forced-colors:border pointer-coarse:after:absolute pointer-coarse:after:-inset-1.5 [&_svg]:size-4 [&_svg]:shrink-0"
+    >
+      {pressed ? (
+        <IconHeartFilled className="motion-safe:animate-in motion-safe:duration-200 motion-safe:ease-out-quint motion-safe:zoom-in-75" />
+      ) : (
+        <IconHeart />
+      )}
+    </button>
+  )
+}
+
+function BlockCard({
+  name,
+  title,
+  favorite,
+  onFavoriteChange,
+}: {
+  name: string
+  title: string
+  favorite?: boolean
+  onFavoriteChange?: (favorite: boolean) => void
+}) {
   const [ref, inView] = useInViewOnce<HTMLLIElement>()
   const [granted, done] = useLoadSlot(inView)
   const [loaded, setLoaded] = React.useState(false)
 
   return (
     <CatalogCard ref={ref}>
+      {onFavoriteChange ? (
+        <FavoriteToggle
+          pressed={Boolean(favorite)}
+          onPressedChange={onFavoriteChange}
+        />
+      ) : null}
       <CatalogCardPreview
         inert
         className="aspect-4/3 in-data-[catalog-view=single]:aspect-16/10"
