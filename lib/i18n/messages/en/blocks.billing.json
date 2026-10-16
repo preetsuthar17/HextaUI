@@ -18,7 +18,6 @@
   "Limits are a draft, like every other settings section. Drag the alert threshold or turn on extra usage and the markers move on the meters straight away, the extra usage meter slides in, and the save bar rises. A limit lower than what was already spent this cycle is refused with the amount.",
   "Meters use role meter with a value text that includes the projection and the alert threshold, and the model breakdown is a real list.",
   "Numbers and dates are formatted in English with fixed time zones, so the server and the browser render the same text.",
-  "Plan & usage for an AI product, in the style of Cursor, Claude and Vercel. A usage meter split by model that projects the end of the cycle and warns before…",
   "Plan changes, cancellations, card updates and downloads are announced politely. Failures show in the dialog that asked, as an alert, and the dialog stays open with your input.",
   "Prices are in cents and dates are ISO days like 2026-10-28. Leave out a callback to hide its action.",
   "Printed under Bill to on generated invoices.",

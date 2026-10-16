@@ -25,7 +25,6 @@
   "System follows prefers-color-scheme.",
   "System follows the device and says which one it is right now. High contrast strengthens edges and text and keeps backgrounds neutral, so the tint slider turns off while it's picked.",
   "Text size in pixels, 12 to 18.",
-  "The Appearance section of an AI product's settings: theme, accent, background tint, density, chat font, text sizes and accessibility options, all held as a…",
   "The accent hue is a real color track with eight quick picks under it, and the readout names the color, like Blue 250°. Background tint mixes that accent into the surfaces. Density and chat font cards show a sample of each option, and the two text sizes are steppers with limits.",
   "The accent's OKLCH hue, 0 to 359.",
   "The font for messages.",

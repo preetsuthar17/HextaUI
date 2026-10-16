@@ -59,7 +59,6 @@
   "The message. Also used for the checkpoint preview.": "Le message. Également utilisé pour l’aperçu du point de repère.",
   "The pieces the messages use, exported for custom layouts.": "Les éléments utilisés par les messages, exportés pour des mises en page personnalisées.",
   "The user message it sits before.": "Le message utilisateur devant lequel il se trouve.",
-  "The whole conversation around the composer. Your question pins to the top while the answer streams, checkpoints on the side jump between messages, and every…": "Toute la conversation autour du champ de saisie. Votre question reste épinglée en haut pendant que la réponse arrive en streaming, des points de repère sur le côté permettent de sauter d’un message à l’autre, et chaque…",
   "Usually Prompt Input. Centered when empty, docked at the bottom otherwise.": "Généralement Prompt Input. Centré quand c’est vide, ancré en bas sinon.",
   "Version arrows are a group named “Version 1 of 2”.": "Les flèches de version forment un groupe nommé « Version 1 of 2 ».",
   "Version arrows for retries.": "Flèches de version pour les nouveaux essais.",

@@ -13,7 +13,6 @@
   "High contrast": "Yüksek kontrast",
   "In a project set up with shadcn/ui, add a component:": "shadcn/ui ile kurulmuş bir projede bir bileşen ekleyin:",
   "Keyboard and screen readers": "Klavye ve ekran okuyucular",
-  "License": "Lisans",
   "Practical shadcn/ui blocks built for AI products, with the hard states handled.": "Zor durumları ele alan, AI ürünleri için geliştirilmiş pratik shadcn/ui blokları.",
   "Quick start": "Hızlı başlangıç",
   "React components for shadcn/ui, built on Base UI": "shadcn/ui için Base UI üzerine kurulu React bileşenleri",
@@ -25,6 +24,5 @@
   "These hold for every component, so you don't have to check each one.": "Bunlar her bileşen için geçerlidir; bu yüzden her birini ayrı ayrı denetlemeniz gerekmez.",
   "Touch and small screens": "Dokunmatik ve küçük ekranlar",
   "What is HextaUI": "HextaUI nedir",
-  "What you get": "Neler elde edersiniz",
   "shadcn/ui with the `base-vega` style": "`base-vega` stiliyle shadcn/ui"
 }

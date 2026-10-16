@@ -49,7 +49,6 @@
   "The element that moves. It glides when a shared card switches links.": "Hareket eden öğe. Paylaşılan bir kart bağlantı değiştirdiğinde kayar.",
   "The pointer, with data-side for its edge.": "Kenarı için data-side içeren işaretçi.",
   "The side the card settled on after collisions.": "Çarpışmalardan sonra kartın yerleştiği taraf.",
-  "The thinking view of an AI chat. A live label follows each step, searches and sources fold into a trail, and citations sit beside the answer.": "Bir yapay zeka sohbetinin düşünme görünümü. Canlı bir etiket her adımı izler, aramalar ve kaynaklar bir ize katlanır ve alıntılar yanıtın yanında durur.",
   "Unbroken text wraps inside the card, and a card taller than the space beside the trigger scrolls instead of leaving the screen.": "Kırılmayan metin kartın içinde sarar ve trigger'ın yanındaki alandan uzun bir kart ekrandan çıkmak yerine kayar.",
   "Use `render` to make the trigger any link, including one inside a sentence. When a link wraps onto two lines, the card anchors to the line you hovered.": "Trigger'ı, bir cümlenin içindekiler dahil herhangi bir bağlantı yapmak için `render` kullanın. Bir bağlantı iki satıra sardığında kart, üzerine geldiğiniz satıra sabitlenir.",
   "Use the function form to read the payload of the trigger that opened the card.": "Kartı açan trigger'ın payload'unu okumak için fonksiyon biçimini kullanın.",

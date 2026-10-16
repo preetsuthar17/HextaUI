@@ -1,6 +1,5 @@
 [
   "A drop-in text element that paces, fades and shows the caret. Use it for plain text replies.",
-  "Also accepts every div prop except children.",
   "Append each chunk to a string and pass it in. This works the same for fetch, OpenAI or Anthropic deltas, or server-sent events.",
   "Base reading pace before any catch-up.",
   "Base reading pace.",
@@ -8,7 +7,6 @@
   "Models send text in bursts: a few words, a pause, then a whole sentence at once. Printing each chunk as it lands makes a reply stutter. Streaming keeps what you have received separate from what you show, and reveals it at a steady 90 characters a second.",
   "Render each text part of a useChat message. The part’s own state tells StreamingText when the model is still writing, so finished messages and history appear instantly.",
   "Returns { text, animating }. animating stays true until the shown text reaches the full text.",
-  "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words…",
   "Streaming Text for AI responses in React & shadcn/ui",
   "StreamingText",
   "Text that isn’t streaming renders in full on the first frame, so history and server renders never animate. StreamingText adds a soft fade on the newest words and a caret while it writes. useSmoothText gives you the pacing alone, to put in front of any renderer, including Markdown.",

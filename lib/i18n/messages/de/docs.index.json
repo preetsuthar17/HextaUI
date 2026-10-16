@@ -13,7 +13,6 @@
   "High contrast": "Hoher Kontrast",
   "In a project set up with shadcn/ui, add a component:": "Füge in einem mit shadcn/ui eingerichteten Projekt eine Komponente hinzu:",
   "Keyboard and screen readers": "Tastatur und Screenreader",
-  "License": "Lizenz",
   "Practical shadcn/ui blocks built for AI products, with the hard states handled.": "Praktische shadcn/ui-Blöcke für KI-Produkte, bei denen die schwierigen Zustände abgedeckt sind.",
   "Quick start": "Schnellstart",
   "React components for shadcn/ui, built on Base UI": "React-Komponenten für shadcn/ui, gebaut auf Base UI",
@@ -25,6 +24,5 @@
   "These hold for every component, so you don't have to check each one.": "Das gilt für jede Komponente, du musst also nicht jede einzeln prüfen.",
   "Touch and small screens": "Touch und kleine Bildschirme",
   "What is HextaUI": "Was ist HextaUI",
-  "What you get": "Was du bekommst",
   "shadcn/ui with the `base-vega` style": "shadcn/ui mit dem Stil `base-vega`"
 }

@@ -50,7 +50,6 @@
   "Sky colors, as used by VoicePicker voices.": "VoicePicker の音声で使われる sky の色。",
   "Speak replies aloud. When false, replies appear as captions with the orb still animating.": "返答を音声で読み上げます。false の場合、オーブは動いたまま、返答が字幕として表示されます。",
   "Start time in ms, for the timer.": "タイマー用の開始時刻（ミリ秒）。",
-  "Talk to your assistant. Eight audio-reactive styles, from a cloudy sky and a ferrofluid blob to dithered pixels, ASCII, a CRT planet, halftone dots, a single…": "アシスタントと会話します。雲の漂う空やフェロフルイドの塊から、ディザリングされたピクセル、ASCII、CRT の惑星、ハーフトーンのドット、ひとつの…まで、音声に反応する 8 つのスタイルを用意しています。",
   "Tap the orb to interrupt.": "オーブをタップして割り込みます。",
   "The compact voice pill for inside a chat.": "チャット内で使うコンパクトな音声ピル。",
   "The conversation state.": "会話の状態。",

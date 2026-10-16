@@ -50,7 +50,6 @@
   "Sky colors, as used by VoicePicker voices.": "Colores del cielo, tal como los usan las voces de VoicePicker.",
   "Speak replies aloud. When false, replies appear as captions with the orb still animating.": "Lee las respuestas en voz alta. Cuando es false, las respuestas aparecen como subtítulos y el orbe sigue animándose.",
   "Start time in ms, for the timer.": "Hora de inicio en ms, para el temporizador.",
-  "Talk to your assistant. Eight audio-reactive styles, from a cloudy sky and a ferrofluid blob to dithered pixels, ASCII, a CRT planet, halftone dots, a single…": "Habla con tu asistente. Ocho estilos que reaccionan al audio, desde un cielo nublado y una mancha de ferrofluido hasta píxeles con dithering, ASCII, un planeta CRT, puntos de semitono, un único…",
   "Tap the orb to interrupt.": "Toca el orbe para interrumpir.",
   "The compact voice pill for inside a chat.": "La píldora de voz compacta para usar dentro de un chat.",
   "The conversation state.": "El estado de la conversación.",

@@ -57,7 +57,6 @@
   "Rejects the current change. ⌘⌫ does the same.": "Rejeita a alteração atual. ⌘⌫ faz o mesmo.",
   "Removed and added lines carry a striped or solid gutter bar as well as the − and + signs, and the bars stay visible in forced colors mode.": "As linhas removidas e adicionadas têm uma barra de margem listrada ou sólida além dos sinais − e +, e as barras permanecem visíveis no modo de cores forçadas.",
   "Returns { path, decision, content?, deleted, patch }. Pending changes count as rejected unless options.pending is \"accepted\".": "Retorna { path, decision, content?, deleted, patch }. As alterações pendentes contam como rejeitadas, a menos que options.pending seja \"accepted\".",
-  "Review an agent’s edits across files before they land. A file tree with counts, accept or reject each change, each file or everything, comments on any line or…": "Revise as edições de um agente em vários arquivos antes que sejam aplicadas. Uma árvore de arquivos com contagens, aceite ou rejeite cada mudança, cada arquivo ou tudo de uma vez, comentários em qualquer linha ou…",
   "Selects a range of lines. ⇧↑ extends it upward, and Esc clears it.": "Seleciona um intervalo de linhas. ⇧↑ o estende para cima, e Esc o limpa.",
   "Send line comments to the agent": "Envie comentários de linha ao agente",
   "Sends the comment from the composer. Esc closes it and keeps what you wrote for that line.": "Envia o comentário do composer. Esc o fecha e mantém o que você escreveu para aquela linha.",

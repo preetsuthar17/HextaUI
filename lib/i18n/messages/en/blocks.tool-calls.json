@@ -31,7 +31,6 @@
   "SearchResults",
   "Send it back with addToolOutput.",
   "Short result after the sentence, such as “3 results” or “+12 −3”.",
-  "Show what an agent does, one line per step. Reads and searches fold into a short summary, while edits, commands, approvals and errors stay in view.",
   "Shown before “Show all”.",
   "Shown when the step is opened.",
   "Shows “Always allow …” with this label, for example the program name.",

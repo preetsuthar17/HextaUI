@@ -1,3 +1,4 @@
+import { blogSlugs } from "@/lib/blog"
 import { docsNav } from "@/lib/docs"
 import { isLocalizedPath } from "@/lib/i18n/config"
 
@@ -15,4 +16,6 @@ const comparePages = [
   "shadcn-ui",
 ]
 
-export { comparePages, localizedDocsSlugs }
+const blogPages = blogSlugs
+
+export { blogPages, comparePages, localizedDocsSlugs }

@@ -63,7 +63,6 @@
   "Save the draft. Return { field: message } to show field errors, or throw to show the message in the save bar.",
   "Saves while something is unsaved. Ctrl+S on Windows and Linux.",
   "Saving shows its progress in the button, then the island shrinks to a Saved check and slides away. If your checks fail, the fields show their errors, focus moves to the first one, and the bar says how many to fix. If the server says no, return errors for the fields or throw, and the draft stays exactly as typed. Keep typing while it saves and the bar stays up for the newer edits.",
-  "Settings for an AI product, laid out like Cursor and Claude. A filled sidebar with search, groups and external links, cards of rows with quiet pickers and…",
   "SettingsChoice",
   "SettingsGroup",
   "SettingsLink",

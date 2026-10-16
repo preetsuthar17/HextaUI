@@ -28,6 +28,7 @@ const groups = [
     title: "Project",
     pages: [
       { href: "/about", title: "About" },
+      { href: "/blog", title: "Blog" },
       { href: "/sponsor", title: "Sponsor" },
       { href: "/contact", title: "Contact" },
     ],

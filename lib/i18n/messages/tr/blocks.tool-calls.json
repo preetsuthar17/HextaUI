@@ -31,7 +31,6 @@
   "SearchResults": "SearchResults",
   "Send it back with addToolOutput.": "addToolOutput ile geri gönderin.",
   "Short result after the sentence, such as “3 results” or “+12 −3”.": "Cümleden sonra “3 results” veya “+12 −3” gibi kısa sonuç.",
-  "Show what an agent does, one line per step. Reads and searches fold into a short summary, while edits, commands, approvals and errors stay in view.": "Bir ajanın ne yaptığını adım başına bir satırla gösterin. Okuma ve aramalar kısa bir özete katlanırken düzenlemeler, komutlar, onaylar ve hatalar görünür kalır.",
   "Shown before “Show all”.": "“Show all” öncesinde gösterilir.",
   "Shown when the step is opened.": "Adım açıldığında gösterilir.",
   "Shows “Always allow …” with this label, for example the program name.": "Bu etiketle “Always allow …” gösterir, örneğin program adı.",

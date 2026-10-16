@@ -3,7 +3,6 @@
   "AI Subagents UI block for React & shadcn/ui": "React ve shadcn/ui için yapay zekâ alt ajan arayüz bloğu",
   "Adds a kind, subject or view per nested tool. Common names like readFile, grep and bash are guessed for you.": "Her iç içe araç için bir tür, hedef veya görünüm ekler. readFile, grep ve bash gibi yaygın adlar sizin için tahmin edilir.",
   "Agent name. Defaults to subagent_type in the input, then the tool name.": "Ajan adı. Varsayılan olarak girdideki subagent_type, sonra araç adı.",
-  "Also accepts every div prop except children.": "children dışındaki tüm div prop’larını da kabul eder.",
   "Also accepts every section prop except children. One run renders without the header.": "children dışındaki tüm section prop’larını da kabul eder. Tek bir çalıştırma başlıksız gösterilir.",
   "Called from Stop all. Without it, Stop all calls each running run’s onStop.": "Stop all tarafından çağrılır. Verilmezse Stop all, çalışan her çalıştırmanın onStop’unu çağırır.",
   "Coding agents like Claude Code, Codex and Cursor hand parts of a job to other agents, often several at once. Subagents gives each of those runs one line that reads like a person delegating: the agent, its task in plain words, a live label of what it’s doing (“Reading auth/session.ts”), a timer and how many tools it has used.": "Claude Code, Codex ve Cursor gibi kodlama ajanları bir işin parçalarını, çoğu zaman aynı anda birkaçına olmak üzere, başka ajanlara devreder. Subagents bu çalıştırmaların her birine iş devreden birinin cümlesi gibi okunan bir satır verir: ajan, sade sözcüklerle görevi, o anda ne yaptığını gösteren canlı bir etiket (“Reading auth/session.ts”), bir zamanlayıcı ve kaç araç kullandığı.",
@@ -27,7 +26,6 @@
   "Returns a run from a tool part. Pass the result straight to Subagent or into Subagents’ runs.": "Bir araç parçasından bir çalıştırma döndürür. Sonucu doğrudan Subagent’a ya da Subagents’ın runs’ına verin.",
   "Runs in the order they were started. They keep their place as they finish.": "Başlatıldıkları sırayla çalıştırmalar. Bittikçe yerlerini korurlar.",
   "Runs start folded, so a busy reply stays short. Each line keeps saying what its run is doing, and opening it shows the tool calls streaming into a short window that follows the newest step. When a run finishes, its line turns into a past-tense summary such as “Mapped the token refresh flow · 14 tool uses · 32s”, with the first sentence of its report underneath and the full report inside.": "Çalıştırmalar katlanmış başlar, böylece yoğun bir yanıt kısa kalır. Her satır çalıştırmasının şu an ne yaptığını söylemeye devam eder; açıldığında araç çağrıları en yeni adımı takip eden kısa bir pencereye akar. Bir çalıştırma bittiğinde satırı “Mapped the token refresh flow · 14 tool uses · 32s” gibi geçmiş zamanlı bir özete dönüşür; altında raporunun ilk cümlesi, içinde de raporun tamamı bulunur.",
-  "Show the work an agent hands to other agents, one line per run. Each run says what it’s doing now and folds into a short summary when done.": "Bir ajanın başka ajanlara devrettiği işi, çalıştırma başına bir satırla gösterin. Her çalıştırma o anda ne yaptığını söyler ve bitince kısa bir özete katlanır.",
   "Shown as a badge on wider screens.": "Daha geniş ekranlarda rozet olarak gösterilir.",
   "Shows Retry once the run failed or was stopped.": "Çalıştırma başarısız olduğunda veya durdurulduğunda Retry gösterir.",
   "Shows Stop while the run is queued or running.": "Çalıştırma sıradayken veya çalışırken Stop gösterir.",
@@ -39,7 +37,6 @@
   "Stored seconds, for history.": "Kayıtlı saniye, geçmiş için.",
   "Stored total seconds, for history. Defaults to the time measured while the runs worked.": "Kayıtlı toplam saniye, geçmiş için. Varsayılan olarak çalıştırmalar çalışırken ölçülen süre.",
   "Subagent": "Subagent",
-  "Subagents": "Subagents",
   "The agent’s type or name, such as Explore or Plan.": "Ajanın türü veya adı, örneğin Explore ya da Plan.",
   "The chat stopped, so an unfinished run reads Stopped.": "Sohbet durdu, bu yüzden bitmemiş bir çalıştırma Stopped gösterir.",
   "The final report, as Markdown.": "Markdown olarak son rapor.",
@@ -54,7 +51,6 @@
   "What the agent was asked to do, in a few words: “Map the token refresh flow”.": "Ajandan istenen iş, birkaç sözcükle: “Map the token refresh flow”.",
   "When a run that is already working started, in milliseconds, so the timer doesn’t restart on mount.": "Zaten çalışan bir çalıştırmanın milisaniye cinsinden başlangıç zamanı; böylece zamanlayıcı bileşen yüklenince sıfırlanmaz.",
   "Why the run failed, shown on the line and in full when opened.": "Çalıştırmanın neden başarısız olduğu; satırda ve açıldığında tamamıyla gösterilir.",
-  "With the AI SDK": "AI SDK ile",
   "getSubagentFromPart(part, options)": "getSubagentFromPart(part, options)",
   "queued, running, done, failed or stopped.": "queued, running, done, failed veya stopped."
 }

@@ -31,7 +31,6 @@
   "SearchResults": "SearchResults",
   "Send it back with addToolOutput.": "addToolOutputで送り返します。",
   "Short result after the sentence, such as “3 results” or “+12 −3”.": "文の後に付く短い結果。「3 results」や「+12 −3」など。",
-  "Show what an agent does, one line per step. Reads and searches fold into a short summary, while edits, commands, approvals and errors stay in view.": "エージェントの動作を、1ステップにつき1行で表示します。読み取りと検索は短い要約にまとめられ、編集、コマンド、承認、エラーは表示されたままになります。",
   "Shown before “Show all”.": "「Show all」の前に表示されます。",
   "Shown when the step is opened.": "ステップを開いたときに表示されます。",
   "Shows “Always allow …” with this label, for example the program name.": "このラベルで「Always allow …」を表示します。たとえばプログラム名です。",

@@ -1,0 +1,9 @@
+{
+  "Articles from the maker of HextaUI on shadcn/ui, Base UI, the hard UI states, AI chat interfaces and registries that AI coding agents can use.": "HextaUI’ın yapımcısından shadcn/ui, Base UI, zor arayüz durumları, yapay zekâ sohbet arayüzleri ve yapay zekâ kodlama ajanlarının kullanabildiği registry’ler üzerine yazılar.",
+  "How to build a shadcn/ui registry that Claude Code and Cursor can actually use": "Claude Code ve Cursor’ın gerçekten kullanabileceği bir shadcn/ui registry’si nasıl kurulur",
+  "How to build an AI chat UI with shadcn/ui and the Vercel AI SDK that survives real users": "shadcn/ui ve Vercel AI SDK ile gerçek kullanıcılara dayanan bir yapay zekâ sohbet arayüzü nasıl kurulur",
+  "Notes from building HextaUI: shadcn/ui and Base UI, the states most interfaces skip, AI chat screens and making a registry work for coding agents.": "HextaUI’ı kurarken alınan notlar: shadcn/ui ve Base UI, çoğu arayüzün atladığı durumlar, yapay zekâ sohbet ekranları ve bir registry’yi kodlama ajanları için çalışır hale getirmek.",
+  "The states shadcn/ui leaves to you: loading, success, error, empty and reduced motion": "shadcn/ui’ın size bıraktığı durumlar: yükleme, başarı, hata, boş ve azaltılmış hareket",
+  "Vercel's AI Elements is being deprecated. Here are the alternatives for shadcn/ui AI chat UI": "Vercel’in AI Elements’ı kullanımdan kaldırılıyor. İşte shadcn/ui yapay zekâ sohbet arayüzü için alternatifler",
+  "shadcn/ui switched to Base UI. Here is what actually changes in your code": "shadcn/ui Base UI’a geçti. İşte kodunuzda gerçekten değişenler"
+}

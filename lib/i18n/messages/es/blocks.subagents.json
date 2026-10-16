@@ -3,7 +3,6 @@
   "AI Subagents UI block for React & shadcn/ui": "Bloque de UI de subagentes con IA para React y shadcn/ui",
   "Adds a kind, subject or view per nested tool. Common names like readFile, grep and bash are guessed for you.": "Añade un tipo, un objetivo o una vista por cada herramienta anidada. Los nombres habituales como readFile, grep y bash se deducen solos.",
   "Agent name. Defaults to subagent_type in the input, then the tool name.": "Nombre del agente. Por defecto, subagent_type de la entrada y, si no, el nombre de la herramienta.",
-  "Also accepts every div prop except children.": "También acepta cualquier prop de div excepto children.",
   "Also accepts every section prop except children. One run renders without the header.": "También acepta cualquier prop de section excepto children. Una sola ejecución se muestra sin cabecera.",
   "Called from Stop all. Without it, Stop all calls each running run’s onStop.": "Se llama desde Stop all. Sin ella, Stop all llama al onStop de cada ejecución en marcha.",
   "Coding agents like Claude Code, Codex and Cursor hand parts of a job to other agents, often several at once. Subagents gives each of those runs one line that reads like a person delegating: the agent, its task in plain words, a live label of what it’s doing (“Reading auth/session.ts”), a timer and how many tools it has used.": "Los agentes de programación como Claude Code, Codex y Cursor reparten partes de un trabajo entre otros agentes, a menudo varios a la vez. Subagents da a cada una de esas ejecuciones una línea que se lee como alguien delegando: el agente, su tarea en palabras sencillas, una etiqueta en vivo de lo que está haciendo («Reading auth/session.ts»), un temporizador y cuántas herramientas ha usado.",
@@ -27,7 +26,6 @@
   "Returns a run from a tool part. Pass the result straight to Subagent or into Subagents’ runs.": "Devuelve una ejecución a partir de una parte de herramienta. Pasa el resultado directamente a Subagent o a las runs de Subagents.",
   "Runs in the order they were started. They keep their place as they finish.": "Ejecuciones en el orden en que empezaron. Mantienen su sitio al terminar.",
   "Runs start folded, so a busy reply stays short. Each line keeps saying what its run is doing, and opening it shows the tool calls streaming into a short window that follows the newest step. When a run finishes, its line turns into a past-tense summary such as “Mapped the token refresh flow · 14 tool uses · 32s”, with the first sentence of its report underneath and the full report inside.": "Las ejecuciones empiezan plegadas, para que una respuesta con mucho trabajo siga siendo corta. Cada línea sigue diciendo qué hace su ejecución, y al abrirla se ven las llamadas a herramientas llegando en una ventana corta que sigue el paso más reciente. Cuando una ejecución termina, su línea pasa a un resumen en pasado como “Mapped the token refresh flow · 14 tool uses · 32s”, con la primera frase del informe debajo y el informe completo dentro.",
-  "Show the work an agent hands to other agents, one line per run. Each run says what it’s doing now and folds into a short summary when done.": "Muestra el trabajo que un agente reparte entre otros agentes, una línea por ejecución. Cada ejecución dice qué está haciendo y se pliega en un breve resumen al terminar.",
   "Shown as a badge on wider screens.": "Se muestra como insignia en pantallas más anchas.",
   "Shows Retry once the run failed or was stopped.": "Muestra Retry cuando la ejecución ha fallado o se ha detenido.",
   "Shows Stop while the run is queued or running.": "Muestra Stop mientras la ejecución está en cola o en marcha.",
@@ -39,7 +37,6 @@
   "Stored seconds, for history.": "Segundos guardados, para el historial.",
   "Stored total seconds, for history. Defaults to the time measured while the runs worked.": "Total de segundos guardados, para el historial. Por defecto, el tiempo medido mientras trabajaban las ejecuciones.",
   "Subagent": "Subagent",
-  "Subagents": "Subagents",
   "The agent’s type or name, such as Explore or Plan.": "El tipo o nombre del agente, como Explore o Plan.",
   "The chat stopped, so an unfinished run reads Stopped.": "El chat se detuvo, así que una ejecución sin terminar muestra Stopped.",
   "The final report, as Markdown.": "El informe final, en Markdown.",
@@ -54,7 +51,6 @@
   "What the agent was asked to do, in a few words: “Map the token refresh flow”.": "Lo que se le pidió al agente, en pocas palabras: «Map the token refresh flow».",
   "When a run that is already working started, in milliseconds, so the timer doesn’t restart on mount.": "Cuándo empezó una ejecución que ya está trabajando, en milisegundos, para que el temporizador no se reinicie al montarse.",
   "Why the run failed, shown on the line and in full when opened.": "Por qué falló la ejecución; se muestra en la línea y completo al abrirla.",
-  "With the AI SDK": "Con el AI SDK",
   "getSubagentFromPart(part, options)": "getSubagentFromPart(part, options)",
   "queued, running, done, failed or stopped.": "queued, running, done, failed o stopped."
 }

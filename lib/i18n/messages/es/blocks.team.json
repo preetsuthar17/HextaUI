@@ -35,7 +35,6 @@
   "Skip words without an @ when at least one address is present, and count them in skipped.": "Omite las palabras sin @ cuando hay al menos una dirección, y las cuenta en skipped.",
   "Team": "Equipo",
   "Team Members & Invites block for React & shadcn/ui": "Bloque de miembros del equipo e invitaciones para React y shadcn/ui",
-  "Team members and invites for an AI product's workspace settings. A seat meter that previews the invites you're typing, an invite box that turns a pasted list…": "Miembros del equipo e invitaciones para los ajustes del espacio de trabajo de un producto de IA. Un medidor de plazas que previsualiza las invitaciones que estás escribiendo, un cuadro de invitación que convierte una lista pegada…",
   "TeamSettings": "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.": "TeamSettings es controlado: pasa members, invites y seats, y actualízalos en cada handler. Devuelve { email: message } desde onInvite para conservar las direcciones que tu servidor rechazó, con el motivo en cada chip.",
   "The four roles with their labels and descriptions, in order from most to least access.": "Los cuatro roles con sus etiquetas y descripciones, ordenados de mayor a menor acceso.",

@@ -1,6 +1,5 @@
 {
   "A drop-in text element that paces, fades and shows the caret. Use it for plain text replies.": "Ein Drop-in-Textelement, das taktet, einblendet und den Cursor zeigt. Nutze es für reine Textantworten.",
-  "Also accepts every div prop except children.": "Akzeptiert auch alle div-Props außer children.",
   "Append each chunk to a string and pass it in. This works the same for fetch, OpenAI or Anthropic deltas, or server-sent events.": "Hänge jeden Chunk an einen String an und übergib ihn. Das funktioniert gleich für fetch, OpenAI- oder Anthropic-Deltas oder Server-Sent Events.",
   "Base reading pace before any catch-up.": "Grundlesetempo vor jedem Aufholen.",
   "Base reading pace.": "Grundlesetempo.",
@@ -8,7 +7,6 @@
   "Models send text in bursts: a few words, a pause, then a whole sentence at once. Printing each chunk as it lands makes a reply stutter. Streaming keeps what you have received separate from what you show, and reveals it at a steady 90 characters a second.": "Modelle senden Text in Schüben: ein paar Wörter, eine Pause, dann ein ganzer Satz auf einmal. Jeden Chunk beim Eintreffen auszugeben, lässt eine Antwort stottern. Streaming hält das Empfangene getrennt vom Angezeigten und enthüllt es mit gleichmäßigen 90 Zeichen pro Sekunde.",
   "Render each text part of a useChat message. The part’s own state tells StreamingText when the model is still writing, so finished messages and history appear instantly.": "Rendere jeden Text-Part einer useChat-Nachricht. Der eigene Zustand des Parts sagt StreamingText, wann das Modell noch schreibt, sodass fertige Nachrichten und der Verlauf sofort erscheinen.",
   "Returns { text, animating }. animating stays true until the shown text reaches the full text.": "Gibt { text, animating } zurück. animating bleibt true, bis der angezeigte Text den vollen Text erreicht.",
-  "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words…": "Streame KI-Antworten, die sich flüssig lesen. Schubweise Chunks vom Modell werden in gleichmäßigem Tempo enthüllt, das zum Aufholen schneller wird, mit sanftem Einblenden neuer Wörter…",
   "Streaming Text for AI responses in React & shadcn/ui": "Streaming Text für KI-Antworten in React & shadcn/ui",
   "StreamingText": "StreamingText",
   "Text that isn’t streaming renders in full on the first frame, so history and server renders never animate. StreamingText adds a soft fade on the newest words and a caret while it writes. useSmoothText gives you the pacing alone, to put in front of any renderer, including Markdown.": "Text, der nicht streamt, wird im ersten Frame vollständig gerendert, sodass Verlauf und Server-Renders nie animieren. StreamingText fügt ein sanftes Einblenden der neuesten Wörter und einen Cursor hinzu, während geschrieben wird. useSmoothText liefert nur das Timing, um es vor jeden Renderer zu setzen, auch Markdown.",

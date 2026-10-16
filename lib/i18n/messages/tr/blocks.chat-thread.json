@@ -59,7 +59,6 @@
   "The message. Also used for the checkpoint preview.": "Mesaj. Kontrol noktası önizlemesi için de kullanılır.",
   "The pieces the messages use, exported for custom layouts.": "Mesajların kullandığı parçalar, özel düzenler için dışa aktarılır.",
   "The user message it sits before.": "Önünde durduğu kullanıcı mesajı.",
-  "The whole conversation around the composer. Your question pins to the top while the answer streams, checkpoints on the side jump between messages, and every…": "Yazma alanının çevresindeki tüm konuşma. Yanıt akarken sorunuz üstte sabitlenir, yandaki kontrol noktaları mesajlar arasında atlar ve her…",
   "Usually Prompt Input. Centered when empty, docked at the bottom otherwise.": "Genellikle Prompt Input. Boşken ortalanır, aksi halde altta yerleşir.",
   "Version arrows are a group named “Version 1 of 2”.": "Sürüm okları “Version 1 of 2” adlı bir gruptur.",
   "Version arrows for retries.": "Yeniden denemeler için sürüm okları.",

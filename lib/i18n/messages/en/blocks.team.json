@@ -35,7 +35,6 @@
   "Skip words without an @ when at least one address is present, and count them in skipped.",
   "Team",
   "Team Members & Invites block for React & shadcn/ui",
-  "Team members and invites for an AI product's workspace settings. A seat meter that previews the invites you're typing, an invite box that turns a pasted list…",
   "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.",
   "The four roles with their labels and descriptions, in order from most to least access.",

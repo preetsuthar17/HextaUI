@@ -63,7 +63,6 @@
   "Save the draft. Return { field: message } to show field errors, or throw to show the message in the save bar.": "下書きを保存します。フィールドエラーを表示するには { field: message } を返し、保存バーにメッセージを表示するにはエラーを投げます。",
   "Saves while something is unsaved. Ctrl+S on Windows and Linux.": "未保存の変更があるときに保存します。WindowsとLinuxではCtrl+Sです。",
   "Saving shows its progress in the button, then the island shrinks to a Saved check and slides away. If your checks fail, the fields show their errors, focus moves to the first one, and the bar says how many to fix. If the server says no, return errors for the fields or throw, and the draft stays exactly as typed. Keep typing while it saves and the bar stays up for the newer edits.": "保存すると、ボタンに進捗が表示され、その後アイランドが縮んでSavedのチェックになり、スライドして消えます。チェックに失敗した場合は、フィールドにエラーが表示され、フォーカスが最初のフィールドに移り、バーが修正すべき数を伝えます。サーバーが拒否した場合は、フィールドのエラーを返すかエラーを投げると、下書きは入力したままの状態で残ります。保存中に入力を続けると、新しい編集のためにバーは表示されたままになります。",
-  "Settings for an AI product, laid out like Cursor and Claude. A filled sidebar with search, groups and external links, cards of rows with quiet pickers and…": "CursorやClaudeのように構成した、AIプロダクト向けの設定です。検索、グループ、外部リンクを備えた塗りつぶしのサイドバー、控えめなピッカーを持つ行のカード…",
   "SettingsChoice": "SettingsChoice",
   "SettingsGroup": "SettingsGroup",
   "SettingsLink": "SettingsLink",

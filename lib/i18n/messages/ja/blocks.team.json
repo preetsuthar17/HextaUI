@@ -35,7 +35,6 @@
   "Skip words without an @ when at least one address is present, and count them in skipped.": "少なくとも1つのアドレスがある場合は、@を含まない単語をスキップし、skippedに数えます。",
   "Team": "Team",
   "Team Members & Invites block for React & shadcn/ui": "React & shadcn/ui向けのチームメンバー & 招待ブロック",
-  "Team members and invites for an AI product's workspace settings. A seat meter that previews the invites you're typing, an invite box that turns a pasted list…": "AIプロダクトのワークスペース設定向けの、チームメンバーと招待です。入力中の招待をプレビューするシートメーター、貼り付けたリストを…に変える招待ボックス…",
   "TeamSettings": "TeamSettings",
   "TeamSettings is controlled: pass members, invites and seats, and update them in each handler. Return { email: message } from onInvite to keep the addresses your server refused, with the reason on each chip.": "TeamSettingsは制御コンポーネントです。members、invites、seatsを渡し、各ハンドラーで更新してください。サーバーが拒否したアドレスを、各チップに理由を付けて保持するには、onInviteから { email: message } を返します。",
   "The four roles with their labels and descriptions, in order from most to least access.": "4つのロールとそのラベルおよび説明。アクセス権が多い順に並びます。",

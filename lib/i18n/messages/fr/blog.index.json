@@ -1,0 +1,9 @@
+{
+  "Articles from the maker of HextaUI on shadcn/ui, Base UI, the hard UI states, AI chat interfaces and registries that AI coding agents can use.": "Articles du créateur de HextaUI sur shadcn/ui, Base UI, les états d’interface difficiles, les interfaces de chat IA et les registres que les agents de codage IA peuvent utiliser.",
+  "How to build a shadcn/ui registry that Claude Code and Cursor can actually use": "Comment construire un registre shadcn/ui que Claude Code et Cursor peuvent vraiment utiliser",
+  "How to build an AI chat UI with shadcn/ui and the Vercel AI SDK that survives real users": "Comment construire une interface de chat IA avec shadcn/ui et l’AI SDK de Vercel qui survit à de vrais utilisateurs",
+  "Notes from building HextaUI: shadcn/ui and Base UI, the states most interfaces skip, AI chat screens and making a registry work for coding agents.": "Notes tirées de la construction de HextaUI : shadcn/ui et Base UI, les états que la plupart des interfaces sautent, les écrans de chat IA et comment faire fonctionner un registre pour les agents de codage.",
+  "The states shadcn/ui leaves to you: loading, success, error, empty and reduced motion": "Les états que shadcn/ui vous laisse : chargement, succès, erreur, vide et mouvement réduit",
+  "Vercel's AI Elements is being deprecated. Here are the alternatives for shadcn/ui AI chat UI": "L’AI Elements de Vercel est déprécié. Voici les alternatives pour une interface de chat IA shadcn/ui",
+  "shadcn/ui switched to Base UI. Here is what actually changes in your code": "shadcn/ui est passé à Base UI. Voici ce qui change vraiment dans votre code"
+}

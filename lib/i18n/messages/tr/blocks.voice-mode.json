@@ -50,7 +50,6 @@
   "Sky colors, as used by VoicePicker voices.": "VoicePicker seslerinin kullandığı gökyüzü renkleri.",
   "Speak replies aloud. When false, replies appear as captions with the orb still animating.": "Yanıtları sesli okur. false olduğunda yanıtlar altyazı olarak görünür ve küre canlı kalmaya devam eder.",
   "Start time in ms, for the timer.": "Zamanlayıcı için milisaniye cinsinden başlangıç zamanı.",
-  "Talk to your assistant. Eight audio-reactive styles, from a cloudy sky and a ferrofluid blob to dithered pixels, ASCII, a CRT planet, halftone dots, a single…": "Asistanınızla konuşun. Bulutlu bir gökyüzü ve ferrofluid damlasından dither piksellere, ASCII'ye, CRT gezegenine, yarım ton noktalara ve tek bir…",
   "Tap the orb to interrupt.": "Sözünü kesmek için küreye dokunun.",
   "The compact voice pill for inside a chat.": "Sohbetin içinde kullanılan kompakt ses hapı.",
   "The conversation state.": "Konuşma durumu.",

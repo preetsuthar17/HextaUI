@@ -50,7 +50,6 @@
   "Sky colors, as used by VoicePicker voices.",
   "Speak replies aloud. When false, replies appear as captions with the orb still animating.",
   "Start time in ms, for the timer.",
-  "Talk to your assistant. Eight audio-reactive styles, from a cloudy sky and a ferrofluid blob to dithered pixels, ASCII, a CRT planet, halftone dots, a single…",
   "Tap the orb to interrupt.",
   "The compact voice pill for inside a chat.",
   "The conversation state.",

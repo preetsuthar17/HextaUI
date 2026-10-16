@@ -29,6 +29,20 @@
 /pricing.md
   Link: <https://hextaui.com/pricing>; rel="canonical"
 
+/blog.md
+  Link: <https://hextaui.com/blog>; rel="canonical"
+
+/blog/*.md
+  Link: <https://hextaui.com/blog/:splat>; rel="canonical"
+
+/blog/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
+/blog/:slug/opengraph-image
+  Content-Type: image/png
+  Cache-Control: public, max-age=86400
+
 /404.md
   X-Robots-Tag: noindex
 

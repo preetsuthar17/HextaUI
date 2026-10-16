@@ -31,7 +31,6 @@
   "Revoking asks first, naming the key. Then the row collapses away and a toast offers Undo for five seconds, and onRevoke only runs once that window closes, so Undo needs nothing from your server. Leaving the page or creating another key sends any waiting revokes right away. Rotate key swaps in a new secret and can keep the old one working for an hour, a day or a week. Rename in place with F2 or a double-click, Enter to save and Escape to cancel.": "取り消す前に、キーの名前を示して確認します。その後、行が折りたたまれて消え、トーストが5秒間Undoを提示します。onRevokeはその時間が過ぎてから実行されるため、Undoにサーバーは必要ありません。ページを離れたり別のキーを作成したりすると、待機中の取り消しはすぐに送信されます。Rotate keyは新しいシークレットに切り替え、古いものを1時間、1日、1週間のあいだ使えるままにできます。名前はF2またはダブルクリックでその場で変更でき、Enterで保存、Escapeでキャンセルします。",
   "Rotation, your own scopes and no undo": "ローテーション、独自のスコープ、元に戻せない取り消し",
   "Shown before the hint in masked keys, unless a key has its own prefix.": "キー自身のプレフィックスがない限り、マスクされたキーのヒントの前に表示されます。",
-  "The API keys page of an AI product, like the OpenAI and Anthropic consoles. Create keys with scoped permissions and an expiry, see the secret once with a copy…": "OpenAIやAnthropicのコンソールのような、AIプロダクトのAPIキーのページです。スコープ付きの権限と有効期限を持つキーを作成し、シークレットは一度だけ表示され、コピー…",
   "The command shown in the empty state, with a Copy button.": "空の状態に表示されるコマンドです。Copyボタンが付きます。",
   "The last characters of a secret, to store and show as the masked key.": "シークレットの末尾の文字。マスクされたキーとして保存・表示するためのものです。",
   "The list, its header with Create key, the limit note, the empty state and every dialog.": "リスト、Create keyを含むヘッダー、上限のメモ、空の状態、すべてのダイアログ。",

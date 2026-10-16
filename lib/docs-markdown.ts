@@ -497,6 +497,7 @@ function getLlmsIndex() {
     heading(2, "Optional"),
     `- [Docs index](${absoluteUrl("/docs/llms.txt")}): only the docs pages, for agents that need component context and nothing else.`,
     `- [Pro blocks index](${absoluteUrl("/blocks/llms.txt")}): the ${siteName} Pro blocks and how to install them.`,
+    `- [Blog index](${absoluteUrl("/blog/llms.txt")}): articles on shadcn/ui, Base UI, AI chat interfaces and agent-ready registries, each with a Markdown twin.`,
     `- [Full documentation](${absoluteUrl("/llms-full.txt")}): Every docs page in one file, with usage, installation, keyboard support and API reference. Component source and example code live in each component's Markdown page.`,
   ].join("\n\n")}\n`
 }

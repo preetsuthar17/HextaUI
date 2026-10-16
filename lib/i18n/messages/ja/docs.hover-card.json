@@ -49,7 +49,6 @@
   "The element that moves. It glides when a shared card switches links.": "動く要素。共有カードがリンクを切り替えるときに滑らかに移動します。",
   "The pointer, with data-side for its edge.": "ポインター。その端を示す data-side を持ちます。",
   "The side the card settled on after collisions.": "衝突の処理後にカードが決まった側。",
-  "The thinking view of an AI chat. A live label follows each step, searches and sources fold into a trail, and citations sit beside the answer.": "AI チャットの思考ビュー。ライブのラベルが各ステップを追い、検索とソースは履歴に折りたたまれ、引用は回答の横に並びます。",
   "Unbroken text wraps inside the card, and a card taller than the space beside the trigger scrolls instead of leaving the screen.": "区切りのないテキストはカード内で折り返され、トリガーの横の空間より高いカードは、画面から出ずにスクロールします。",
   "Use `render` to make the trigger any link, including one inside a sentence. When a link wraps onto two lines, the card anchors to the line you hovered.": "`render` を使うと、文中のリンクを含め、任意のリンクをトリガーにできます。リンクが 2 行に折り返された場合、カードはホバーした行にアンカーされます。",
   "Use the function form to read the payload of the trigger that opened the card.": "カードを開いたトリガーの payload を読み取るには、関数形式を使います。",

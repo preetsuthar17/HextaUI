@@ -33,7 +33,6 @@
   "Review before running": "Vor dem Ausführen prüfen",
   "Review fields are labelled by step number, moves are announced (“Moved to step 2 of 5”), and Enter waits while an input method is composing.": "Review-Felder werden nach Schrittnummer beschriftet, Verschiebungen werden angesagt („Auf Schritt 2 von 5 verschoben“), und Enter wartet, solange eine Eingabemethode komponiert.",
   "Runs the plan while it’s being reviewed, unless you’re typing in another field.": "Führt den Plan aus, während er geprüft wird, es sei denn, du tippst in einem anderen Feld.",
-  "Show an agent’s plan as it works. Every step moves from backlog to to do, in progress and done, with live timings, failures and the tool calls behind it.": "Zeige den Plan eines Agenten, während er arbeitet. Jeder Schritt wandert von Backlog über To do und In Arbeit zu Erledigt, mit Live-Zeiten, Fehlern und den dahinterliegenden Tool-Aufrufen.",
   "Shown under a failed step.": "Wird unter einem fehlgeschlagenen Schritt angezeigt.",
   "Shows Cancel and handles Escape.": "Zeigt Cancel und behandelt Escape.",
   "Stable id. Plan changes are detected by id.": "Stabile ID. Planänderungen werden anhand der ID erkannt.",

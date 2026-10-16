@@ -29,7 +29,6 @@
   "Pure helpers that build a run from streamed events.": "Funciones puras que construyen una ejecución a partir de eventos en streaming.",
   "Returns a new run. createTestRun() gives an empty one to start from.": "Devuelve una ejecución nueva. createTestRun() te da una vacía para empezar.",
   "Send run-start, test-start, test-end, file-end and run-end events from any runner and fold them with applyTestEvent. It’s pure, so it works in a reducer, a store or on the server.": "Envía eventos run-start, test-start, test-end, file-end y run-end desde cualquier runner y reúnelos con applyTestEvent. Es pura, así que funciona en un reducer, un store o en el servidor.",
-  "Show an agent’s test run as it happens. Tests stream into their files, then fold into “118 passed, 2 failed in 4.2s” with every failure still open.": "Muestra la ejecución de tests de un agente mientras ocurre. Los tests llegan a sus archivos y luego se pliegan en “118 passed, 2 failed in 4.2s” con cada fallo todavía abierto.",
   "Shows Ask to fix on the run and on each failure.": "Muestra Ask to fix en la ejecución y en cada fallo.",
   "Shows Rerun failed once the run ends with failures.": "Muestra Rerun failed cuando la ejecución termina con fallos.",
   "Shows Rerun on each failure.": "Muestra Rerun en cada fallo.",

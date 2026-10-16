@@ -25,7 +25,6 @@
   "System follows prefers-color-scheme.": "Systemはprefers-color-schemeに従います。",
   "System follows the device and says which one it is right now. High contrast strengthens edges and text and keeps backgrounds neutral, so the tint slider turns off while it's picked.": "Systemはデバイスの設定に従い、現在どちらになっているかを示します。High contrastはエッジとテキストを強調して背景をニュートラルに保つため、選択中は色合いのスライダーが無効になります。",
   "Text size in pixels, 12 to 18.": "文字サイズ(ピクセル)。12から18。",
-  "The Appearance section of an AI product's settings: theme, accent, background tint, density, chat font, text sizes and accessibility options, all held as a…": "AIプロダクトの設定にある外観セクションです。テーマ、アクセント、背景の色合い、密度、チャットのフォント、文字サイズ、アクセシビリティのオプションを、すべて…",
   "The accent hue is a real color track with eight quick picks under it, and the readout names the color, like Blue 250°. Background tint mixes that accent into the surfaces. Density and chat font cards show a sample of each option, and the two text sizes are steppers with limits.": "アクセントの色相は実際の色のトラックで、その下に8つのクイック選択があり、読み出しには「Blue 250°」のように色の名前が表示されます。背景の色合いは、そのアクセントをサーフェスに混ぜます。密度とチャットフォントのカードには各オプションのサンプルが表示され、2つの文字サイズは上限と下限のあるステッパーです。",
   "The accent's OKLCH hue, 0 to 359.": "アクセントのOKLCH色相。0から359。",
   "The font for messages.": "メッセージのフォント。",

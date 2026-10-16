@@ -40,7 +40,6 @@
   "SecuritySessions, SecurityPasswordRow, SecurityTwoFactorRow, SecurityPasskeys and SecurityDeleteAccount each work alone, so you can put them in any section. Return field errors from onChangePassword to show them under the field.": "SecuritySessions, SecurityPasswordRow, SecurityTwoFactorRow, SecurityPasskeys ve SecurityDeleteAccount tek başlarına çalışır; böylece onları herhangi bir bölüme koyabilirsiniz. Alan hatalarını alanın altında göstermek için onChangePassword'den döndürün.",
   "SecuritySettings": "SecuritySettings",
   "SecurityTwoFactorRow": "SecurityTwoFactorRow",
-  "Sessions and security for an AI product. Active devices with sign-out that animates rows away, a password change with a live strength meter, two-factor setup…": "Bir yapay zeka ürünü için oturumlar ve güvenlik. Satırları animasyonla kaldıran oturum kapatmalı etkin cihazlar, canlı güç ölçerli parola değişikliği, iki aşamalı doğrulama kurulumu…",
   "Shown as Last changed under Password.": "Password altında Last changed olarak gösterilir.",
   "Sign out every other session.": "Diğer her oturumu kapatır.",
   "Sign out every session except the current one. Runs after the person confirms.": "Geçerli olan dışındaki her oturumu kapatır. Kişi onayladıktan sonra çalışır.",

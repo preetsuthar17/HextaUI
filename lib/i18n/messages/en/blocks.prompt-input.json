@@ -1,6 +1,5 @@
 [
   "A caret menu for one trigger character.",
-  "A chat composer that starts as one calm line, grows into a card as you write, and moves down once the conversation starts.",
   "A compact picker for modes, run location, folders or repositories.",
   "A muted shell around the body that holds a footer row, for agent harnesses.",
   "A ring that fills as the context window does. Hover, click or press Enter to see the breakdown.",
@@ -13,6 +12,7 @@
   "Agent harness",
   "Also accepts every form prop except onSubmit and defaultValue.",
   "Always sends, even when submitOn is mod+enter.",
+  "Build the rest of the chat",
   "Called after a pick.",
   "Called as the slider moves.",
   "Called as the text changes.",
@@ -57,6 +57,7 @@
   "Moves the effort slider. Home and End jump to the ends.",
   "Moves through an open @ or / menu.",
   "One control for the model and effort, with the thinking switch.",
+  "Or browse <0>every block</0>.",
   "Pass useChat’s status and stop. Files arrive as FileUIPart with a data URL, and a message typed while a reply streams is queued and sent when it finishes. Send usage from the server as message metadata to fill the context ring.",
   "Pass useChat’s status. While busy, send becomes stop or queue.",
   "Picks a model while the model menu is open.",
@@ -120,5 +121,6 @@
   "Which key sends. ⌘↵ always sends.",
   "With reduced motion, height changes, the waveform and the effort fill all settle without animating.",
   "Wrap the body in PromptInputInset and add a PromptInputFooter. Use PromptInputSelect for the mode, where it runs and which folder it works in.",
-  "{ value, label, description?, icon?, hint?, keywords?, insert? }"
+  "{ value, label, description?, icon?, hint?, keywords?, insert? }",
+  "{title} is free. These blocks build the rest of the chat around it, and come with HextaUI Pro."
 ]

@@ -40,7 +40,6 @@
   "SecuritySessions, SecurityPasswordRow, SecurityTwoFactorRow, SecurityPasskeys and SecurityDeleteAccount each work alone, so you can put them in any section. Return field errors from onChangePassword to show them under the field.": "SecuritySessions、SecurityPasswordRow、SecurityTwoFactorRow、SecurityPasskeys、SecurityDeleteAccountはそれぞれ単独で動作するため、任意のセクションに置けます。フィールドの下にエラーを表示するには、onChangePasswordからフィールドエラーを返します。",
   "SecuritySettings": "SecuritySettings",
   "SecurityTwoFactorRow": "SecurityTwoFactorRow",
-  "Sessions and security for an AI product. Active devices with sign-out that animates rows away, a password change with a live strength meter, two-factor setup…": "AIプロダクト向けのセッションとセキュリティです。行がアニメーションで消えるサインアウトつきのアクティブなデバイス、リアルタイムの強度メーターつきのパスワード変更、二要素認証の設定…",
   "Shown as Last changed under Password.": "Passwordの下にLast changedとして表示されます。",
   "Sign out every other session.": "他のすべてのセッションをサインアウトします。",
   "Sign out every session except the current one. Runs after the person confirms.": "現在のセッション以外のすべてのセッションをサインアウトします。ユーザーが確認した後に実行されます。",

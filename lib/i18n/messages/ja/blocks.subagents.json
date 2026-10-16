@@ -3,7 +3,6 @@
   "AI Subagents UI block for React & shadcn/ui": "React と shadcn/ui 向け AI サブエージェント UI ブロック",
   "Adds a kind, subject or view per nested tool. Common names like readFile, grep and bash are guessed for you.": "ネストされたツールごとに種類、対象、ビューを追加します。readFile、grep、bash のような一般的な名前は自動で推測されます。",
   "Agent name. Defaults to subagent_type in the input, then the tool name.": "エージェント名。既定では入力の subagent_type、次にツール名。",
-  "Also accepts every div prop except children.": "children 以外のすべての div プロップも受け取ります。",
   "Also accepts every section prop except children. One run renders without the header.": "children 以外のすべての section プロップも受け取ります。実行が 1 つだけのときはヘッダーなしで表示されます。",
   "Called from Stop all. Without it, Stop all calls each running run’s onStop.": "Stop all から呼ばれます。指定しない場合、Stop all は実行中の各 run の onStop を呼びます。",
   "Coding agents like Claude Code, Codex and Cursor hand parts of a job to other agents, often several at once. Subagents gives each of those runs one line that reads like a person delegating: the agent, its task in plain words, a live label of what it’s doing (“Reading auth/session.ts”), a timer and how many tools it has used.": "Claude Code、Codex、Cursor のようなコーディングエージェントは、仕事の一部を別のエージェントに任せます。複数を同時に走らせることもよくあります。Subagents はそれぞれの実行に、人が仕事を任せるように読める 1 行を与えます。エージェント、平易な言葉のタスク、今していることのライブラベル（「Reading auth/session.ts」）、タイマー、使ったツールの数です。",
@@ -27,7 +26,6 @@
   "Returns a run from a tool part. Pass the result straight to Subagent or into Subagents’ runs.": "ツールパートから実行を返します。結果をそのまま Subagent に、または Subagents の runs に渡します。",
   "Runs in the order they were started. They keep their place as they finish.": "開始した順の実行。終わっても位置は変わりません。",
   "Runs start folded, so a busy reply stays short. Each line keeps saying what its run is doing, and opening it shows the tool calls streaming into a short window that follows the newest step. When a run finishes, its line turns into a past-tense summary such as “Mapped the token refresh flow · 14 tool uses · 32s”, with the first sentence of its report underneath and the full report inside.": "実行は折りたたまれた状態で始まるため、作業の多い返信も短く保てます。各行はその実行がいま何をしているかを表示し続け、開くと最新のステップを追う小さなウィンドウにツール呼び出しがストリーミングされます。実行が終わると、行は「Mapped the token refresh flow · 14 tool uses · 32s」のような過去形の要約に変わり、その下にレポートの最初の一文、中にレポート全文が入ります。",
-  "Show the work an agent hands to other agents, one line per run. Each run says what it’s doing now and folds into a short summary when done.": "エージェントが別のエージェントに任せた作業を、実行ごとに 1 行で表示します。各実行は今していることを示し、終わると短い要約に折りたたまれます。",
   "Shown as a badge on wider screens.": "広い画面ではバッジとして表示されます。",
   "Shows Retry once the run failed or was stopped.": "実行が失敗または停止したときに Retry を表示します。",
   "Shows Stop while the run is queued or running.": "実行が待機中または実行中の間、Stop を表示します。",
@@ -39,7 +37,6 @@
   "Stored seconds, for history.": "履歴用に保存した秒数。",
   "Stored total seconds, for history. Defaults to the time measured while the runs worked.": "履歴用に保存した合計秒数。既定では実行の作業中に計測した時間。",
   "Subagent": "Subagent",
-  "Subagents": "Subagents",
   "The agent’s type or name, such as Explore or Plan.": "エージェントの種類または名前（Explore や Plan など）。",
   "The chat stopped, so an unfinished run reads Stopped.": "チャットが停止したため、未完了の実行は Stopped と表示されます。",
   "The final report, as Markdown.": "Markdown の最終レポート。",
@@ -54,7 +51,6 @@
   "What the agent was asked to do, in a few words: “Map the token refresh flow”.": "エージェントに頼んだことを短い言葉で：「Map the token refresh flow」。",
   "When a run that is already working started, in milliseconds, so the timer doesn’t restart on mount.": "すでに作業中の実行が始まった時刻（ミリ秒）。マウント時にタイマーがリセットされないようにします。",
   "Why the run failed, shown on the line and in full when opened.": "実行が失敗した理由。行に表示され、開くと全文が表示されます。",
-  "With the AI SDK": "AI SDK と使う",
   "getSubagentFromPart(part, options)": "getSubagentFromPart(part, options)",
   "queued, running, done, failed or stopped.": "queued、running、done、failed、stopped のいずれか。"
 }

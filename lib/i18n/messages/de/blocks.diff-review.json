@@ -57,7 +57,6 @@
   "Rejects the current change. ⌘⌫ does the same.": "Lehnt die aktuelle Änderung ab. ⌘⌫ tut dasselbe.",
   "Removed and added lines carry a striped or solid gutter bar as well as the − and + signs, and the bars stay visible in forced colors mode.": "Entfernte und hinzugefügte Zeilen tragen neben den Zeichen − und + einen gestreiften oder durchgehenden Rinnenbalken, und die Balken bleiben im Forced-Colors-Modus sichtbar.",
   "Returns { path, decision, content?, deleted, patch }. Pending changes count as rejected unless options.pending is \"accepted\".": "Gibt { path, decision, content?, deleted, patch } zurück. Ausstehende Änderungen zählen als abgelehnt, außer options.pending ist \"accepted\".",
-  "Review an agent’s edits across files before they land. A file tree with counts, accept or reject each change, each file or everything, comments on any line or…": "Prüfe die Änderungen eines Agenten über mehrere Dateien, bevor sie übernommen werden. Ein Dateibaum mit Zählern, jede Änderung, jede Datei oder alles annehmen oder ablehnen, Kommentare zu jeder Zeile oder…",
   "Selects a range of lines. ⇧↑ extends it upward, and Esc clears it.": "Wählt einen Zeilenbereich. ⇧↑ erweitert ihn nach oben, und Esc hebt ihn auf.",
   "Send line comments to the agent": "Zeilenkommentare an den Agenten senden",
   "Sends the comment from the composer. Esc closes it and keeps what you wrote for that line.": "Sendet den Kommentar aus dem Composer. Esc schließt ihn und behält, was du für diese Zeile geschrieben hast.",

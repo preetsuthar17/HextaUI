@@ -31,7 +31,6 @@
   "Revoking asks first, naming the key. Then the row collapses away and a toast offers Undo for five seconds, and onRevoke only runs once that window closes, so Undo needs nothing from your server. Leaving the page or creating another key sends any waiting revokes right away. Rotate key swaps in a new secret and can keep the old one working for an hour, a day or a week. Rename in place with F2 or a double-click, Enter to save and Escape to cancel.",
   "Rotation, your own scopes and no undo",
   "Shown before the hint in masked keys, unless a key has its own prefix.",
-  "The API keys page of an AI product, like the OpenAI and Anthropic consoles. Create keys with scoped permissions and an expiry, see the secret once with a copy…",
   "The command shown in the empty state, with a Copy button.",
   "The last characters of a secret, to store and show as the masked key.",
   "The list, its header with Create key, the limit note, the empty state and every dialog.",

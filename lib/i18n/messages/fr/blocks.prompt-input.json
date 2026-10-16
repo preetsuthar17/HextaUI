@@ -1,6 +1,5 @@
 {
   "A caret menu for one trigger character.": "Un menu au curseur pour un caractère déclencheur.",
-  "A chat composer that starts as one calm line, grows into a card as you write, and moves down once the conversation starts.": "Un champ de discussion qui démarre sur une seule ligne sobre, grandit en carte à mesure que vous écrivez et descend une fois la conversation lancée.",
   "A compact picker for modes, run location, folders or repositories.": "Un sélecteur compact pour les modes, le lieu d’exécution, les dossiers ou les dépôts.",
   "A muted shell around the body that holds a footer row, for agent harnesses.": "Une coque discrète autour du corps qui contient une rangée de pied de page, pour les harnais d’agents.",
   "A ring that fills as the context window does. Hover, click or press Enter to see the breakdown.": "Un anneau qui se remplit avec la fenêtre de contexte. Survolez, cliquez ou appuyez sur Entrée pour voir le détail.",
@@ -13,6 +12,7 @@
   "Agent harness": "Harnais d’agent",
   "Also accepts every form prop except onSubmit and defaultValue.": "Accepte aussi toutes les props de form sauf onSubmit et defaultValue.",
   "Always sends, even when submitOn is mod+enter.": "Envoie toujours, même quand submitOn vaut mod+enter.",
+  "Build the rest of the chat": "Construisez le reste du chat",
   "Called after a pick.": "Appelé après un choix.",
   "Called as the slider moves.": "Appelé pendant le déplacement du curseur.",
   "Called as the text changes.": "Appelé à chaque changement du texte.",
@@ -57,6 +57,7 @@
   "Moves the effort slider. Home and End jump to the ends.": "Déplace le curseur d’effort. Home et End sautent aux extrémités.",
   "Moves through an open @ or / menu.": "Parcourt un menu @ ou / ouvert.",
   "One control for the model and effort, with the thinking switch.": "Un seul contrôle pour le modèle et l’effort, avec le switch de réflexion.",
+  "Or browse <0>every block</0>.": "Ou parcourez <0>tous les blocs</0>.",
   "Pass useChat’s status and stop. Files arrive as FileUIPart with a data URL, and a message typed while a reply streams is queued and sent when it finishes. Send usage from the server as message metadata to fill the context ring.": "Passez le status et stop de useChat. Les fichiers arrivent sous forme de FileUIPart avec une URL de données, et un message saisi pendant qu’une réponse arrive en streaming est mis en file et envoyé à la fin de celle-ci. Envoyez usage depuis le serveur dans les métadonnées du message pour remplir l’anneau de contexte.",
   "Pass useChat’s status. While busy, send becomes stop or queue.": "Passez le status de useChat. Tant que c’est occupé, l’envoi devient arrêt ou mise en file.",
   "Picks a model while the model menu is open.": "Choisit un modèle tant que le menu des modèles est ouvert.",
@@ -120,5 +121,6 @@
   "Which key sends. ⌘↵ always sends.": "Quelle touche envoie. ⌘↵ envoie toujours.",
   "With reduced motion, height changes, the waveform and the effort fill all settle without animating.": "Avec réduction des animations, les changements de hauteur, la forme d’onde et le remplissage de l’effort se stabilisent sans animation.",
   "Wrap the body in PromptInputInset and add a PromptInputFooter. Use PromptInputSelect for the mode, where it runs and which folder it works in.": "Enveloppez le corps dans PromptInputInset et ajoutez un PromptInputFooter. Utilisez PromptInputSelect pour le mode, le lieu d’exécution et le dossier de travail.",
-  "{ value, label, description?, icon?, hint?, keywords?, insert? }": "{ value, label, description?, icon?, hint?, keywords?, insert? }"
+  "{ value, label, description?, icon?, hint?, keywords?, insert? }": "{ value, label, description?, icon?, hint?, keywords?, insert? }",
+  "{title} is free. These blocks build the rest of the chat around it, and come with HextaUI Pro.": "{title} est gratuit. Ces blocs construisent le reste du chat autour de lui et font partie de HextaUI Pro."
 }

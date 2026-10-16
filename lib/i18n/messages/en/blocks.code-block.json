@@ -6,7 +6,6 @@
   "Called from Accept or ⌘↵.",
   "Called from Reject or ⌘⌫.",
   "Changed lines don’t rely on color. The + and − markers are visual only, and screen readers hear “added” or “removed” before each changed line instead.",
-  "Code blocks built for AI answers. Syntax highlighting that keeps up with streaming, copy, download and wrap, line numbers and highlighted lines, diffs with…",
   "Code in an AI answer arrives a few characters at a time, often as a diff someone has to approve. Code Block highlights while it streams, follows new lines unless the reader has scrolled up, and keeps copy, download and wrap out of the way until the code is complete.",
   "CodeBlock",
   "CodeBlockReview",

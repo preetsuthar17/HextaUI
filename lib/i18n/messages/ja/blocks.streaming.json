@@ -1,6 +1,5 @@
 {
   "A drop-in text element that paces, fades and shows the caret. Use it for plain text replies.": "ペースを調整し、フェードさせ、キャレットを表示する、そのまま使えるテキスト要素。プレーンテキストの返信に使います。",
-  "Also accepts every div prop except children.": "childrenを除くすべてのdivプロップも受け付けます。",
   "Append each chunk to a string and pass it in. This works the same for fetch, OpenAI or Anthropic deltas, or server-sent events.": "各チャンクを文字列に追記して渡します。fetch、OpenAI、Anthropicの差分、サーバー送信イベントのいずれでも同じように動作します。",
   "Base reading pace before any catch-up.": "追いつく処理の前の、基本の読み上げペース。",
   "Base reading pace.": "基本の読み上げペース。",
@@ -8,7 +7,6 @@
   "Models send text in bursts: a few words, a pause, then a whole sentence at once. Printing each chunk as it lands makes a reply stutter. Streaming keeps what you have received separate from what you show, and reveals it at a steady 90 characters a second.": "モデルは、数語、間、そして一文まるごと、というようにテキストをまとまって送ります。届いたチャンクをそのまま表示すると、返信がぎくしゃくします。Streamingは、受け取った内容と表示する内容を分けて保持し、毎秒90文字の一定のペースで表示します。",
   "Render each text part of a useChat message. The part’s own state tells StreamingText when the model is still writing, so finished messages and history appear instantly.": "useChatメッセージの各テキストパーツを描画します。パーツ自身のstateにより、StreamingTextはモデルがまだ書き込み中かどうかを判断するため、完了したメッセージや履歴は即座に表示されます。",
   "Returns { text, animating }. animating stays true until the shown text reaches the full text.": "{ text, animating } を返します。animatingは、表示中のテキストが全文に追いつくまでtrueのままです。",
-  "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words…": "滑らかに読めるAIの応答をストリーミングします。モデルからまとまって届くチャンクは、追いつくために加速する一定のペースで表示され、新しい単語はやわらかく…",
   "Streaming Text for AI responses in React & shadcn/ui": "React & shadcn/ui向けの、AI応答用ストリーミングテキスト",
   "StreamingText": "StreamingText",
   "Text that isn’t streaming renders in full on the first frame, so history and server renders never animate. StreamingText adds a soft fade on the newest words and a caret while it writes. useSmoothText gives you the pacing alone, to put in front of any renderer, including Markdown.": "ストリーミングされていないテキストは最初のフレームで全文が描画されるため、履歴やサーバーレンダリングがアニメーションすることはありません。StreamingTextは、最新の単語にやわらかなフェードを、書き込み中にキャレットを加えます。useSmoothTextは、ペース調整だけを提供するので、Markdownを含む任意のレンダラーの前に置けます。",

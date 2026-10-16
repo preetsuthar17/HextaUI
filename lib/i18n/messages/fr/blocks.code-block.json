@@ -6,7 +6,6 @@
   "Called from Accept or ⌘↵.": "Appelé depuis Accept ou ⌘↵.",
   "Called from Reject or ⌘⌫.": "Appelé depuis Reject ou ⌘⌫.",
   "Changed lines don’t rely on color. The + and − markers are visual only, and screen readers hear “added” or “removed” before each changed line instead.": "Les lignes modifiées ne reposent pas sur la couleur. Les marqueurs + et − sont purement visuels, et les lecteurs d’écran entendent « added » ou « removed » avant chaque ligne modifiée à la place.",
-  "Code blocks built for AI answers. Syntax highlighting that keeps up with streaming, copy, download and wrap, line numbers and highlighted lines, diffs with…": "Des blocs de code conçus pour les réponses d’IA. Coloration syntaxique qui suit le streaming, copie, téléchargement et retour à la ligne, numéros de ligne et lignes surlignées, diffs avec…",
   "Code in an AI answer arrives a few characters at a time, often as a diff someone has to approve. Code Block highlights while it streams, follows new lines unless the reader has scrolled up, and keeps copy, download and wrap out of the way until the code is complete.": "Le code d’une réponse d’IA arrive quelques caractères à la fois, souvent sous forme de diff qu’une personne doit approuver. Code Block colore pendant le streaming, suit les nouvelles lignes sauf si le lecteur a remonté, et garde la copie, le téléchargement et le retour à la ligne discrets jusqu’à ce que le code soit complet.",
   "CodeBlock": "CodeBlock",
   "CodeBlockReview": "CodeBlockReview",

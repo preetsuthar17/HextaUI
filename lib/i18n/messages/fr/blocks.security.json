@@ -40,7 +40,6 @@
   "SecuritySessions, SecurityPasswordRow, SecurityTwoFactorRow, SecurityPasskeys and SecurityDeleteAccount each work alone, so you can put them in any section. Return field errors from onChangePassword to show them under the field.": "SecuritySessions, SecurityPasswordRow, SecurityTwoFactorRow, SecurityPasskeys et SecurityDeleteAccount fonctionnent chacun seul, vous pouvez donc les placer dans n’importe quelle section. Retournez des erreurs de champ depuis onChangePassword pour les afficher sous le champ.",
   "SecuritySettings": "SecuritySettings",
   "SecurityTwoFactorRow": "SecurityTwoFactorRow",
-  "Sessions and security for an AI product. Active devices with sign-out that animates rows away, a password change with a live strength meter, two-factor setup…": "Sessions et sécurité pour un produit d’IA. Appareils actifs avec déconnexion qui fait disparaître les lignes en animation, changement de mot de passe avec jauge de robustesse en direct, configuration de l’authentification à deux facteurs…",
   "Shown as Last changed under Password.": "Affiché sous la forme Last changed sous Password.",
   "Sign out every other session.": "Déconnecte toutes les autres sessions.",
   "Sign out every session except the current one. Runs after the person confirms.": "Déconnecte toutes les sessions sauf la session courante. S’exécute après la confirmation de la personne.",

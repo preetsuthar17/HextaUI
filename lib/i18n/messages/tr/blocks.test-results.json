@@ -29,7 +29,6 @@
   "Pure helpers that build a run from streamed events.": "Akış hâlindeki olaylardan bir çalıştırma kuran saf yardımcılar.",
   "Returns a new run. createTestRun() gives an empty one to start from.": "Yeni bir çalıştırma döndürür. createTestRun() başlamak için boş bir tane verir.",
   "Send run-start, test-start, test-end, file-end and run-end events from any runner and fold them with applyTestEvent. It’s pure, so it works in a reducer, a store or on the server.": "Herhangi bir runner’dan run-start, test-start, test-end, file-end ve run-end olayları gönderin ve bunları applyTestEvent ile birleştirin. Saf bir fonksiyon olduğu için bir reducer’da, bir store’da ya da sunucuda çalışır.",
-  "Show an agent’s test run as it happens. Tests stream into their files, then fold into “118 passed, 2 failed in 4.2s” with every failure still open.": "Bir ajanın test çalıştırmasını gerçekleşirken gösterin. Testler dosyalarına akar, ardından her hata açık kalacak şekilde “118 passed, 2 failed in 4.2s” özetine katlanır.",
   "Shows Ask to fix on the run and on each failure.": "Ask to fix’i çalıştırmada ve her hatada gösterir.",
   "Shows Rerun failed once the run ends with failures.": "Çalıştırma hatalarla bittiğinde Rerun failed’ı gösterir.",
   "Shows Rerun on each failure.": "Her hatada Rerun’ı gösterir.",

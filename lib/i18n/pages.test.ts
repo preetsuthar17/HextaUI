@@ -10,7 +10,7 @@ import {
   localizeHref,
   stripLocale,
 } from "@/lib/i18n/config"
-import { comparePages, localizedDocsSlugs } from "@/lib/i18n/pages"
+import { blogPages, comparePages, localizedDocsSlugs } from "@/lib/i18n/pages"
 
 const docsDir = path.join(process.cwd(), "app/docs")
 const docsPages = readdirSync(docsDir).filter((name) =>
@@ -33,6 +33,16 @@ describe("localized compare pages", () => {
       existsSync(path.join(compareDir, name, "page.tsx"))
     )
     expect([...comparePages].sort()).toEqual(pages.sort())
+  })
+})
+
+describe("localized blog pages", () => {
+  it("has a translated route for every blog post", () => {
+    const blogDir = path.join(process.cwd(), "app/blog")
+    const pages = readdirSync(blogDir).filter((name) =>
+      existsSync(path.join(blogDir, name, "page.tsx"))
+    )
+    expect([...blogPages].sort()).toEqual(pages.sort())
   })
 })
 

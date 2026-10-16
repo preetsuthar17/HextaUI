@@ -10,6 +10,8 @@ import {
   localizeHref,
   translatedLocales,
 } from "@/lib/i18n/config"
+import { blogContentFile } from "@/lib/blog-content"
+import { isBlogSlug } from "@/lib/blog"
 import { proBlocks } from "@/lib/pro/catalog"
 import { absoluteUrl, isNoindexPath } from "@/lib/site"
 
@@ -35,6 +37,7 @@ function languages(route: string) {
 const priorities: [string, number][] = [
   ["/components", 0.8],
   ["/docs", 0.7],
+  ["/blog", 0.7],
   ["/blocks", 0.6],
   ["/legal", 0.2],
 ]
@@ -103,6 +106,9 @@ function hasHistory() {
 const proDir = path.join(process.cwd(), "pro")
 
 function sourcesFor(route: string, file: string) {
+  const post = /^\/blog\/([^/]+)$/.exec(route)?.[1]
+  if (post && isBlogSlug(post)) return [file, blogContentFile(post)]
+
   const slug = /^\/docs\/([^/]+)$/.exec(route)?.[1]
   if (!slug) return [file]
 

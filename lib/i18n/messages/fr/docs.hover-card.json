@@ -49,7 +49,6 @@
   "The element that moves. It glides when a shared card switches links.": "L’élément qui bouge. Il glisse lorsqu’une carte partagée change de lien.",
   "The pointer, with data-side for its edge.": "La pointe, avec data-side pour son bord.",
   "The side the card settled on after collisions.": "Le côté retenu par la carte après les collisions.",
-  "The thinking view of an AI chat. A live label follows each step, searches and sources fold into a trail, and citations sit beside the answer.": "La vue de réflexion d’un chat IA. Un libellé en direct suit chaque étape, les recherches et les sources se replient en piste et les citations accompagnent la réponse.",
   "Unbroken text wraps inside the card, and a card taller than the space beside the trigger scrolls instead of leaving the screen.": "Le texte sans coupure passe à la ligne dans la carte, et une carte plus haute que l’espace à côté du déclencheur défile au lieu de sortir de l’écran.",
   "Use `render` to make the trigger any link, including one inside a sentence. When a link wraps onto two lines, the card anchors to the line you hovered.": "Utilisez `render` pour faire du déclencheur n’importe quel lien, y compris un lien au milieu d’une phrase. Lorsqu’un lien passe sur deux lignes, la carte s’ancre à la ligne que vous avez survolée.",
   "Use the function form to read the payload of the trigger that opened the card.": "Utilisez la forme fonction pour lire le payload du déclencheur qui a ouvert la carte.",

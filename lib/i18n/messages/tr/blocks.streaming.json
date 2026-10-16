@@ -1,6 +1,5 @@
 {
   "A drop-in text element that paces, fades and shows the caret. Use it for plain text replies.": "Hızlandıran, solduran ve imleci gösteren hazır bir metin öğesi. Düz metin yanıtları için kullanın.",
-  "Also accepts every div prop except children.": "Ayrıca children dışındaki her div prop'unu kabul eder.",
   "Append each chunk to a string and pass it in. This works the same for fetch, OpenAI or Anthropic deltas, or server-sent events.": "Her parçayı bir dizeye ekleyin ve iletin. Bu, fetch, OpenAI ya da Anthropic delta'ları veya server-sent events için aynı şekilde çalışır.",
   "Base reading pace before any catch-up.": "Herhangi bir yetişmeden önceki temel okuma hızı.",
   "Base reading pace.": "Temel okuma hızı.",
@@ -8,7 +7,6 @@
   "Models send text in bursts: a few words, a pause, then a whole sentence at once. Printing each chunk as it lands makes a reply stutter. Streaming keeps what you have received separate from what you show, and reveals it at a steady 90 characters a second.": "Modeller metni patlamalar halinde gönderir: birkaç kelime, bir duraklama, sonra bir cümle birden. Her parçayı geldiği gibi yazdırmak yanıtı kekeme gösterir. Streaming, aldıklarınızı gösterdiklerinizden ayrı tutar ve saniyede sabit 90 karakterle gösterir.",
   "Render each text part of a useChat message. The part’s own state tells StreamingText when the model is still writing, so finished messages and history appear instantly.": "Bir useChat mesajının her metin parçasını render edin. Parçanın kendi durumu StreamingText'e modelin hâlâ yazıp yazmadığını söyler; bu yüzden tamamlanmış mesajlar ve geçmiş anında görünür.",
   "Returns { text, animating }. animating stays true until the shown text reaches the full text.": "{ text, animating } döndürür. animating, gösterilen metin tam metne ulaşana kadar true kalır.",
-  "Stream AI responses that read smoothly. Bursty chunks from the model are revealed at a steady pace that speeds up to catch up, with a soft fade on new words…": "Akıcı okunan yapay zeka yanıtları akıtın. Modelden gelen patlamalı parçalar, yetişmek için hızlanan sabit bir hızla gösterilir; yeni kelimelerde yumuşak bir solma…",
   "Streaming Text for AI responses in React & shadcn/ui": "React ve shadcn/ui'da yapay zeka yanıtları için Streaming Text",
   "StreamingText": "StreamingText",
   "Text that isn’t streaming renders in full on the first frame, so history and server renders never animate. StreamingText adds a soft fade on the newest words and a caret while it writes. useSmoothText gives you the pacing alone, to put in front of any renderer, including Markdown.": "Akmayan metin ilk karede tam olarak render edilir; böylece geçmiş ve sunucu render'ları asla animasyonlanmaz. StreamingText en yeni kelimelere yumuşak bir solma ve yazarken bir imleç ekler. useSmoothText, Markdown dahil herhangi bir renderer'ın önüne koymanız için yalnızca hızlandırmayı verir.",

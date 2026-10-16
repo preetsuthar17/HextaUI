@@ -31,7 +31,6 @@
   "SearchResults": "SearchResults",
   "Send it back with addToolOutput.": "Devuélvelo con addToolOutput.",
   "Short result after the sentence, such as “3 results” or “+12 −3”.": "Resultado breve tras la frase, como «3 results» o «+12 −3».",
-  "Show what an agent does, one line per step. Reads and searches fold into a short summary, while edits, commands, approvals and errors stay in view.": "Muestra lo que hace un agente, una línea por paso. Las lecturas y búsquedas se pliegan en un resumen breve, mientras que las ediciones, comandos, aprobaciones y errores permanecen a la vista.",
   "Shown before “Show all”.": "Se muestra antes de «Show all».",
   "Shown when the step is opened.": "Se muestra cuando se abre el paso.",
   "Shows “Always allow …” with this label, for example the program name.": "Muestra «Always allow …» con esta etiqueta, por ejemplo el nombre del programa.",

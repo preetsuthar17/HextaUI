@@ -3,7 +3,6 @@
   "AI Subagents UI block for React & shadcn/ui",
   "Adds a kind, subject or view per nested tool. Common names like readFile, grep and bash are guessed for you.",
   "Agent name. Defaults to subagent_type in the input, then the tool name.",
-  "Also accepts every div prop except children.",
   "Also accepts every section prop except children. One run renders without the header.",
   "Called from Stop all. Without it, Stop all calls each running run’s onStop.",
   "Coding agents like Claude Code, Codex and Cursor hand parts of a job to other agents, often several at once. Subagents gives each of those runs one line that reads like a person delegating: the agent, its task in plain words, a live label of what it’s doing (“Reading auth/session.ts”), a timer and how many tools it has used.",
@@ -27,7 +26,6 @@
   "Returns a run from a tool part. Pass the result straight to Subagent or into Subagents’ runs.",
   "Runs in the order they were started. They keep their place as they finish.",
   "Runs start folded, so a busy reply stays short. Each line keeps saying what its run is doing, and opening it shows the tool calls streaming into a short window that follows the newest step. When a run finishes, its line turns into a past-tense summary such as “Mapped the token refresh flow · 14 tool uses · 32s”, with the first sentence of its report underneath and the full report inside.",
-  "Show the work an agent hands to other agents, one line per run. Each run says what it’s doing now and folds into a short summary when done.",
   "Shown as a badge on wider screens.",
   "Shows Retry once the run failed or was stopped.",
   "Shows Stop while the run is queued or running.",
@@ -39,7 +37,6 @@
   "Stored seconds, for history.",
   "Stored total seconds, for history. Defaults to the time measured while the runs worked.",
   "Subagent",
-  "Subagents",
   "The agent’s type or name, such as Explore or Plan.",
   "The chat stopped, so an unfinished run reads Stopped.",
   "The final report, as Markdown.",
@@ -54,7 +51,6 @@
   "What the agent was asked to do, in a few words: “Map the token refresh flow”.",
   "When a run that is already working started, in milliseconds, so the timer doesn’t restart on mount.",
   "Why the run failed, shown on the line and in full when opened.",
-  "With the AI SDK",
   "getSubagentFromPart(part, options)",
   "queued, running, done, failed or stopped."
 ]

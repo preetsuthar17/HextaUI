@@ -57,7 +57,6 @@
   "Rejects the current change. ⌘⌫ does the same.": "Geçerli değişikliği reddeder. ⌘⌫ aynısını yapar.",
   "Removed and added lines carry a striped or solid gutter bar as well as the − and + signs, and the bars stay visible in forced colors mode.": "Kaldırılan ve eklenen satırlar − ve + işaretlerinin yanı sıra çizgili ya da dolu bir olluk çubuğu taşır ve çubuklar zorunlu renkler modunda görünür kalır.",
   "Returns { path, decision, content?, deleted, patch }. Pending changes count as rejected unless options.pending is \"accepted\".": "{ path, decision, content?, deleted, patch } döndürür. options.pending \"accepted\" değilse bekleyen değişiklikler reddedilmiş sayılır.",
-  "Review an agent’s edits across files before they land. A file tree with counts, accept or reject each change, each file or everything, comments on any line or…": "Bir ajanın dosyalardaki düzenlemelerini uygulanmadan önce gözden geçirin. Sayaçlı bir dosya ağacı, her değişikliği, her dosyayı ya da hepsini kabul veya reddetme, herhangi bir satıra ya da…",
   "Selects a range of lines. ⇧↑ extends it upward, and Esc clears it.": "Bir satır aralığı seçer. ⇧↑ yukarı doğru genişletir, Esc temizler.",
   "Send line comments to the agent": "Satır yorumlarını ajana gönderin",
   "Sends the comment from the composer. Esc closes it and keeps what you wrote for that line.": "Yorumu yazma alanından gönderir. Esc kapatır ve o satır için yazdıklarınızı korur.",

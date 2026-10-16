@@ -1,0 +1,9 @@
+{
+  "Articles from the maker of HextaUI on shadcn/ui, Base UI, the hard UI states, AI chat interfaces and registries that AI coding agents can use.": "HextaUI の作者による、shadcn/ui、Base UI、難しい UI の状態、AI チャットインターフェース、そして AI コーディングエージェントが使えるレジストリについての記事。",
+  "How to build a shadcn/ui registry that Claude Code and Cursor can actually use": "Claude Code と Cursor が本当に使える shadcn/ui レジストリの作り方",
+  "How to build an AI chat UI with shadcn/ui and the Vercel AI SDK that survives real users": "実際のユーザーに耐える AI チャット UI を shadcn/ui と Vercel AI SDK で作る方法",
+  "Notes from building HextaUI: shadcn/ui and Base UI, the states most interfaces skip, AI chat screens and making a registry work for coding agents.": "HextaUI を作る中でのメモ: shadcn/ui と Base UI、多くのインターフェースが飛ばす状態、AI チャット画面、そしてレジストリをコーディングエージェントで使えるようにすること。",
+  "The states shadcn/ui leaves to you: loading, success, error, empty and reduced motion": "shadcn/ui があなたに委ねる状態: ローディング、成功、エラー、空、そして reduced motion",
+  "Vercel's AI Elements is being deprecated. Here are the alternatives for shadcn/ui AI chat UI": "Vercel の AI Elements が非推奨になります。shadcn/ui の AI チャット UI の代替はこちら",
+  "shadcn/ui switched to Base UI. Here is what actually changes in your code": "shadcn/ui が Base UI に切り替わりました。コードで実際に変わることはこれです"
+}

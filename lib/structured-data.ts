@@ -84,6 +84,98 @@ function docsArticleJsonLd({
   }
 }
 
+type BlogArticleData = {
+  path: string
+  headline: string
+  description: string
+  published: string
+  tags: string[]
+  words: number
+  minutes: number
+  image: string
+  author: { name: string; url: string }
+}
+
+const blogCrumbs: Crumb[] = [
+  { name: "Home", path: "/" },
+  { name: "Blog", path: "/blog" },
+]
+
+function blogRef() {
+  return { "@id": `${absoluteUrl("/blog")}#blog` }
+}
+
+function blogPostingJsonLd({
+  path,
+  headline,
+  description,
+  published,
+  tags,
+  words,
+  minutes,
+  image,
+  author,
+}: BlogArticleData) {
+  const url = localUrl(path)
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList(path, [...blogCrumbs, { name: headline, path }]),
+      {
+        "@type": "BlogPosting",
+        "@id": `${url}#article`,
+        headline: t(headline),
+        description: t(description),
+        url,
+        mainEntityOfPage: url,
+        image: absoluteUrl(image),
+        datePublished: published,
+        dateModified: published,
+        inLanguage: getRequestLocale().locale,
+        isPartOf: blogRef(),
+        publisher: organizationRef,
+        author: { "@type": "Person", name: author.name, url: author.url },
+        keywords: tags,
+        wordCount: words,
+        timeRequired: `PT${minutes}M`,
+        breadcrumb: { "@id": `${url}#breadcrumb` },
+      },
+    ],
+  }
+}
+
+function blogJsonLd(
+  description: string,
+  posts: { path: string; headline: string; published: string }[]
+) {
+  const url = localUrl("/blog")
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      breadcrumbList("/blog", blogCrumbs),
+      {
+        "@type": "Blog",
+        "@id": `${absoluteUrl("/blog")}#blog`,
+        name: `${siteName} Blog`,
+        description: t(description),
+        url,
+        inLanguage: getRequestLocale().locale,
+        isPartOf: websiteRef,
+        publisher: organizationRef,
+        blogPost: posts.map((post) => ({
+          "@type": "BlogPosting",
+          "@id": `${localUrl(post.path)}#article`,
+          headline: t(post.headline),
+          url: localUrl(post.path),
+          datePublished: post.published,
+        })),
+      },
+    ],
+  }
+}
+
 function faqPageJsonLd(path: string, items: FaqItem[]) {
   return {
     "@type": "FAQPage",
@@ -96,4 +188,11 @@ function faqPageJsonLd(path: string, items: FaqItem[]) {
   }
 }
 
-export { breadcrumbList, docsArticleJsonLd, faqPageJsonLd, type Crumb }
+export {
+  blogJsonLd,
+  blogPostingJsonLd,
+  breadcrumbList,
+  docsArticleJsonLd,
+  faqPageJsonLd,
+  type Crumb,
+}

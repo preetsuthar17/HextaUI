@@ -59,7 +59,6 @@
   "The message. Also used for the checkpoint preview.": "メッセージ。チェックポイントのプレビューにも使われます。",
   "The pieces the messages use, exported for custom layouts.": "メッセージが使う部品。カスタムレイアウト向けにエクスポートされています。",
   "The user message it sits before.": "このチェックポイントが前に置かれるユーザーメッセージ。",
-  "The whole conversation around the composer. Your question pins to the top while the answer streams, checkpoints on the side jump between messages, and every…": "コンポーザーを中心にした会話全体です。回答のストリーミング中も質問は上部に固定され、サイドのチェックポイントでメッセージ間を移動でき、すべての…",
   "Usually Prompt Input. Centered when empty, docked at the bottom otherwise.": "通常はPrompt Input。空のときは中央に、それ以外は下部にドッキングされます。",
   "Version arrows are a group named “Version 1 of 2”.": "バージョンの矢印は「Version 1 of 2」という名前のグループです。",
   "Version arrows for retries.": "再試行用のバージョンの矢印。",

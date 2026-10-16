@@ -13,7 +13,6 @@
   "High contrast": "ハイコントラスト",
   "In a project set up with shadcn/ui, add a component:": "shadcn/ui でセットアップしたプロジェクトで、コンポーネントを追加します。",
   "Keyboard and screen readers": "キーボードとスクリーンリーダー",
-  "License": "ライセンス",
   "Practical shadcn/ui blocks built for AI products, with the hard states handled.": "AI プロダクト向けに作られた、難しい状態まで対応済みの実用的な shadcn/ui ブロック。",
   "Quick start": "クイックスタート",
   "React components for shadcn/ui, built on Base UI": "Base UI 上に構築された、shadcn/ui 向けの React コンポーネント",
@@ -25,6 +24,5 @@
   "These hold for every component, so you don't have to check each one.": "これらはすべてのコンポーネントに当てはまるため、一つひとつ確認する必要はありません。",
   "Touch and small screens": "タッチと小さな画面",
   "What is HextaUI": "HextaUI とは",
-  "What you get": "得られるもの",
   "shadcn/ui with the `base-vega` style": "`base-vega` スタイルの shadcn/ui"
 }

@@ -6,7 +6,6 @@
   "Called from Accept or ⌘↵.": "Acceptまたは⌘↵から呼ばれます。",
   "Called from Reject or ⌘⌫.": "Rejectまたは⌘⌫から呼ばれます。",
   "Changed lines don’t rely on color. The + and − markers are visual only, and screen readers hear “added” or “removed” before each changed line instead.": "変更された行は色だけに頼りません。+と−のマーカーは視覚的なもので、スクリーンリーダーは変更された各行の前に「added」または「removed」と読み上げます。",
-  "Code blocks built for AI answers. Syntax highlighting that keeps up with streaming, copy, download and wrap, line numbers and highlighted lines, diffs with…": "AIの回答向けに作られたコードブロックです。ストリーミングに追従するシンタックスハイライト、コピー、ダウンロード、折り返し、行番号とハイライト行、…つきの差分…",
   "Code in an AI answer arrives a few characters at a time, often as a diff someone has to approve. Code Block highlights while it streams, follows new lines unless the reader has scrolled up, and keeps copy, download and wrap out of the way until the code is complete.": "AIの回答に含まれるコードは数文字ずつ届き、人が承認しなければならない差分であることも少なくありません。Code Blockはストリーミング中もハイライトし、読み手が上にスクロールしていなければ新しい行に追従し、コードが完成するまでコピー、ダウンロード、折り返しを邪魔にならないように控えます。",
   "CodeBlock": "CodeBlock",
   "CodeBlockReview": "CodeBlockReview",

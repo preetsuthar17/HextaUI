@@ -45,7 +45,6 @@
   "Sends the code. Return a message to refuse.": "コードを送信します。拒否するにはメッセージを返します。",
   "Shown in the intro and refused as the new address.": "紹介文に表示され、新しいアドレスとしては拒否されます。",
   "Shows Verified, or Not verified with Resend link.": "Verifiedを、または未確認の場合はResend link付きのNot verifiedを表示します。",
-  "The Profile section of an AI product's settings. Crop a photo into a circle, pick a username that's checked as you type, confirm a new email with a 6-digit…": "AIプロダクトの設定にあるプロフィールセクションです。写真を円形に切り抜き、入力しながら確認されるユーザー名を選び、6桁の…で新しいメールアドレスを確認し…",
   "The crop area is focusable and works with arrow keys and plus and minus, and the zoom slider says its value as a percentage.": "切り抜き領域はフォーカス可能で、矢印キーとプラス・マイナスキーで操作でき、ズームスライダーは値をパーセンテージで読み上げます。",
   "The image to crop. Open while set.": "切り抜く画像。設定されている間、開きます。",
   "The live preview of the public profile, with Copy link. Usable on its own.": "公開プロフィールのライブプレビューとCopy link。単独でも使えます。",

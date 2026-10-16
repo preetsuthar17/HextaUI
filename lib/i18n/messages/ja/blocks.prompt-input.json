@@ -1,6 +1,5 @@
 {
   "A caret menu for one trigger character.": "1つのトリガー文字に対する、キャレット位置のメニュー。",
-  "A chat composer that starts as one calm line, grows into a card as you write, and moves down once the conversation starts.": "最初は静かな1行で、入力に合わせてカードへ広がり、会話が始まると下へ移動するチャット入力欄です。",
   "A compact picker for modes, run location, folders or repositories.": "モード、実行場所、フォルダー、リポジトリ用のコンパクトなピッカー。",
   "A muted shell around the body that holds a footer row, for agent harnesses.": "エージェントハーネス向けに、フッター行を保持する、本体を囲む控えめなシェル。",
   "A ring that fills as the context window does. Hover, click or press Enter to see the breakdown.": "コンテキストウィンドウに合わせて満ちていくリング。ホバー、クリック、またはEnterで内訳を表示します。",
@@ -13,6 +12,7 @@
   "Agent harness": "エージェントハーネス",
   "Also accepts every form prop except onSubmit and defaultValue.": "onSubmitとdefaultValueを除くすべてのformプロップも受け付けます。",
   "Always sends, even when submitOn is mod+enter.": "submitOnがmod+enterの場合でも、常に送信します。",
+  "Build the rest of the chat": "チャットの残りを組み立てる",
   "Called after a pick.": "選択後に呼ばれます。",
   "Called as the slider moves.": "スライダーの移動に合わせて呼ばれます。",
   "Called as the text changes.": "テキストが変わるたびに呼ばれます。",
@@ -57,6 +57,7 @@
   "Moves the effort slider. Home and End jump to the ends.": "推論量スライダーを動かします。HomeとEndで両端にジャンプします。",
   "Moves through an open @ or / menu.": "開いている@または/のメニュー内を移動します。",
   "One control for the model and effort, with the thinking switch.": "モデルと推論量をまとめた1つのコントロールで、シンキングのスイッチ付きです。",
+  "Or browse <0>every block</0>.": "または<0>すべてのブロック</0>を見る。",
   "Pass useChat’s status and stop. Files arrive as FileUIPart with a data URL, and a message typed while a reply streams is queued and sent when it finishes. Send usage from the server as message metadata to fill the context ring.": "useChatのstatusとstopを渡します。ファイルはデータURLを持つFileUIPartとして届き、返信のストリーミング中に入力されたメッセージはキューに入り、完了したときに送信されます。サーバーからメッセージのメタデータとしてusageを送ると、コンテキストリングが埋まります。",
   "Pass useChat’s status. While busy, send becomes stop or queue.": "useChatのstatusを渡します。ビジー中は、送信が停止またはキューに変わります。",
   "Picks a model while the model menu is open.": "モデルメニューが開いているとき、モデルを選択します。",
@@ -120,5 +121,6 @@
   "Which key sends. ⌘↵ always sends.": "送信に使うキー。⌘↵は常に送信します。",
   "With reduced motion, height changes, the waveform and the effort fill all settle without animating.": "モーション軽減時は、高さの変化、波形、推論量の塗りは、アニメーションせずに落ち着きます。",
   "Wrap the body in PromptInputInset and add a PromptInputFooter. Use PromptInputSelect for the mode, where it runs and which folder it works in.": "本体をPromptInputInsetで包み、PromptInputFooterを追加します。モード、実行場所、作業するフォルダーにはPromptInputSelectを使います。",
-  "{ value, label, description?, icon?, hint?, keywords?, insert? }": "{ value, label, description?, icon?, hint?, keywords?, insert? }"
+  "{ value, label, description?, icon?, hint?, keywords?, insert? }": "{ value, label, description?, icon?, hint?, keywords?, insert? }",
+  "{title} is free. These blocks build the rest of the chat around it, and come with HextaUI Pro.": "{title} は無料です。これらのブロックはその周りにチャットの残りを組み立てるもので、HextaUI Pro に含まれます。"
 }

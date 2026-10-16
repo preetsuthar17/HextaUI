@@ -45,7 +45,6 @@
   "Sends the code. Return a message to refuse.": "Kodu gönderir. Reddetmek için bir mesaj döndürün.",
   "Shown in the intro and refused as the new address.": "Girişte gösterilir ve yeni adres olarak reddedilir.",
   "Shows Verified, or Not verified with Resend link.": "Verified ya da Resend link ile Not verified gösterir.",
-  "The Profile section of an AI product's settings. Crop a photo into a circle, pick a username that's checked as you type, confirm a new email with a 6-digit…": "Bir yapay zeka ürününün ayarlarındaki Profil bölümü. Fotoğrafı daire içine kırpın, siz yazarken kontrol edilen bir kullanıcı adı seçin, yeni e-postayı 6 haneli…",
   "The crop area is focusable and works with arrow keys and plus and minus, and the zoom slider says its value as a percentage.": "Kırpma alanı odaklanabilir ve ok tuşları ile artı ve eksi ile çalışır; yakınlaştırma kaydırıcısı değerini yüzde olarak söyler.",
   "The image to crop. Open while set.": "Kırpılacak görsel. Ayarlıyken açıktır.",
   "The live preview of the public profile, with Copy link. Usable on its own.": "Herkese açık profilin Copy link içeren canlı önizlemesi. Tek başına kullanılabilir.",

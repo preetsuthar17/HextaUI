@@ -13,7 +13,6 @@
   "High contrast",
   "In a project set up with shadcn/ui, add a component:",
   "Keyboard and screen readers",
-  "License",
   "Practical shadcn/ui blocks built for AI products, with the hard states handled.",
   "Quick start",
   "React components for shadcn/ui, built on Base UI",
@@ -25,6 +24,5 @@
   "These hold for every component, so you don't have to check each one.",
   "Touch and small screens",
   "What is HextaUI",
-  "What you get",
   "shadcn/ui with the `base-vega` style"
 ]

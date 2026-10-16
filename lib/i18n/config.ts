@@ -28,7 +28,7 @@ const openGraphLocales: Record<Locale, string> = {
   ja: "ja_JP",
 }
 
-const localizedPrefixes = ["/docs", "/blocks", "/compare"]
+const localizedPrefixes = ["/docs", "/blocks", "/compare", "/blog"]
 const localizedPages = ["/", "/components"]
 const unlocalizedDocs = ["/docs/stress", "/docs/api"]
 

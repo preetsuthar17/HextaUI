@@ -29,7 +29,6 @@
   "Pure helpers that build a run from streamed events.": "ストリーミングされたイベントから実行を組み立てる純粋なヘルパー。",
   "Returns a new run. createTestRun() gives an empty one to start from.": "新しい実行を返します。createTestRun() は最初に使う空の実行を返します。",
   "Send run-start, test-start, test-end, file-end and run-end events from any runner and fold them with applyTestEvent. It’s pure, so it works in a reducer, a store or on the server.": "任意のランナーから run-start、test-start、test-end、file-end、run-end のイベントを送り、applyTestEvent でまとめます。純粋関数なので、reducer、ストア、サーバーのどこでも動きます。",
-  "Show an agent’s test run as it happens. Tests stream into their files, then fold into “118 passed, 2 failed in 4.2s” with every failure still open.": "エージェントのテスト実行を、その場で見せます。テストはファイルごとに流れ込み、最後は失敗を開いたまま「118 passed, 2 failed in 4.2s」にまとまります。",
   "Shows Ask to fix on the run and on each failure.": "実行と各失敗に Ask to fix を表示します。",
   "Shows Rerun failed once the run ends with failures.": "実行が失敗ありで終わったら Rerun failed を表示します。",
   "Shows Rerun on each failure.": "各失敗に Rerun を表示します。",
