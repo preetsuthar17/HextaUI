@@ -12,6 +12,7 @@ type Session = typeof authClient.$Infer.Session
 
 const signedInKey = "hextaui-signed-in"
 const userKey = "hextaui-user"
+const proKey = "hextaui-pro"
 
 type CachedUser = { name: string; email: string; image?: string | null }
 
@@ -46,7 +47,63 @@ function writeSignedIn(signedIn: boolean) {
   } catch {}
 }
 
+function readCachedPro() {
+  try {
+    return localStorage.getItem(proKey) === "1"
+  } catch {
+    return false
+  }
+}
+
+function writeCachedPro(pro: boolean) {
+  try {
+    if (pro) localStorage.setItem(proKey, "1")
+    else localStorage.removeItem(proKey)
+  } catch {}
+}
+
 let sessionRequest: Promise<Session | null> | undefined
+let proRequest: Promise<boolean> | undefined
+
+function loadPro() {
+  proRequest ??= fetch("/api/account").then(
+    async (response) => {
+      if (response.status === 401) {
+        writeSignedIn(false)
+        writeCachedUser(null)
+        writeCachedPro(false)
+        return false
+      }
+      if (!response.ok) return readCachedPro()
+      const { pro } = (await response.json()) as { pro: boolean }
+      writeCachedPro(pro)
+      return pro
+    },
+    () => readCachedPro()
+  )
+  return proRequest
+}
+
+function usePro() {
+  const [pro, setPro] = useState<boolean | null>(null)
+
+  useEffect(() => {
+    let active = true
+    if (!readSignedIn()) {
+      setPro(false)
+      return
+    }
+    setPro(readCachedPro())
+    loadPro().then((next) => {
+      if (active) setPro(next)
+    })
+    return () => {
+      active = false
+    }
+  }, [])
+
+  return pro
+}
 
 function loadSession() {
   sessionRequest ??= authClient.getSession().then(
@@ -124,7 +181,9 @@ async function signOut() {
   await authClient.signOut()
   writeSignedIn(false)
   writeCachedUser(null)
+  writeCachedPro(false)
   sessionRequest = undefined
+  proRequest = undefined
   window.location.reload()
 }
 
@@ -133,7 +192,9 @@ export {
   signIn,
   signOut,
   startCheckout,
+  usePro,
   useSession,
+  writeCachedPro,
   type CachedUser,
   type Session,
   type SignInProvider,

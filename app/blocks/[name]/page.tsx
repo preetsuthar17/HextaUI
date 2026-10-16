@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 
 import { BlockCode } from "@/components/blocks/block-code"
 import { BlockFrame } from "@/components/blocks/block-frame"
+import { UnlessPro } from "@/components/blocks/unless-pro"
 import { DocsCodeBlock } from "@/components/docs/docs-code-block"
 import { DocsCommand } from "@/components/docs/docs-command"
 import {
@@ -78,23 +79,25 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
       navItems={blocksNavItems}
       actions={
         block.free ? null : (
-          <Button
-            size="sm"
-            nativeButton={false}
-            render={
-              <TrackedLink
-                href="/pricing"
-                event="Pro link clicked"
-                eventProps={{
-                  from: "block-header",
-                  to: "/pricing",
-                  block: block.name,
-                }}
-              />
-            }
-          >
-            {t("Get Pro")}
-          </Button>
+          <UnlessPro>
+            <Button
+              size="sm"
+              nativeButton={false}
+              render={
+                <TrackedLink
+                  href="/pricing"
+                  event="Pro link clicked"
+                  eventProps={{
+                    from: "block-header",
+                    to: "/pricing",
+                    block: block.name,
+                  }}
+                />
+              }
+            >
+              {t("Get Pro")}
+            </Button>
+          </UnlessPro>
         )
       }
       className="max-w-4xl"
@@ -149,24 +152,35 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
       ) : (
         <DocsSection title="Installation">
           <ol className="flex flex-col">
-            <DocsStep step={1} title="Get HextaUI Pro">
-              <DocsParagraph>
-                One payment unlocks every block, including future ones.{" "}
-                <TrackedLink
-                  href="/pricing"
-                  event="Pro link clicked"
-                  eventProps={{
-                    from: "block-install",
-                    to: "/pricing",
-                    block: block.name,
-                  }}
-                  className={linkClassName}
-                >
-                  See pricing
-                </TrackedLink>
-                .
-              </DocsParagraph>
-            </DocsStep>
+            <UnlessPro
+              fallback={
+                <DocsStep step={1} title="You have HextaUI Pro">
+                  <DocsParagraph>
+                    Every block is unlocked on this account, including future
+                    ones.
+                  </DocsParagraph>
+                </DocsStep>
+              }
+            >
+              <DocsStep step={1} title="Get HextaUI Pro">
+                <DocsParagraph>
+                  One payment unlocks every block, including future ones.{" "}
+                  <TrackedLink
+                    href="/pricing"
+                    event="Pro link clicked"
+                    eventProps={{
+                      from: "block-install",
+                      to: "/pricing",
+                      block: block.name,
+                    }}
+                    className={linkClassName}
+                  >
+                    See pricing
+                  </TrackedLink>
+                  .
+                </DocsParagraph>
+              </DocsStep>
+            </UnlessPro>
             <DocsStep step={2} title="Add the Pro registry to components.json">
               <DocsCodeBlock
                 code={registryCode}
@@ -209,19 +223,21 @@ export default async function Page({ params }: PageProps<"/blocks/[name]">) {
           event={{ name: "Pro link clicked", from: "next-step" }}
         >
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-            <Button
-              size="sm"
-              nativeButton={false}
-              render={
-                <TrackedLink
-                  href="/pricing"
-                  event="Pro link clicked"
-                  eventProps={{ from: "next-step", to: "/pricing" }}
-                />
-              }
-            >
-              {t("Get Pro")}
-            </Button>
+            <UnlessPro>
+              <Button
+                size="sm"
+                nativeButton={false}
+                render={
+                  <TrackedLink
+                    href="/pricing"
+                    event="Pro link clicked"
+                    eventProps={{ from: "next-step", to: "/pricing" }}
+                  />
+                }
+              >
+                {t("Get Pro")}
+              </Button>
+            </UnlessPro>
             <p className="text-sm text-muted-foreground">
               <T>
                 Or browse{" "}
